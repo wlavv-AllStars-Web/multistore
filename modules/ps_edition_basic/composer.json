@@ -1,0 +1,30 @@
+{
+  "name": "prestashopcorp/ps_edition_basic",
+  "type": "prestashop-module",
+  "description": "PrestaShop Edition Basic module",
+  "license": "AFL-3.0",
+  "require": {
+    "php": ">=7.2.5",
+    "prestashop/module-lib-service-container": "^2.0",
+    "symfony/string": "^6.3"
+  },
+  "require-dev": {
+    "prestashop/php-dev-tools": "^4",
+    "friendsofphp/php-cs-fixer": "^3.16",
+    "phpstan/phpstan": "^1.10",
+    "overtrue/phplint": "^9.0",
+    "phpunit/phpunit": "^10.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "PrestaShop\\Module\\PsEditionBasic\\": "src/"
+    },
+    "classmap": [
+      "ps_edition_basic.php"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "prepend-autoloader": false
+  }
+}

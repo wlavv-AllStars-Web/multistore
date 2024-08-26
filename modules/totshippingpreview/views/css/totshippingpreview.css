@@ -1,0 +1,196 @@
+/*//////////////////////////////
+///  totshippingpreview.css  ///
+///  202-ecommerce.com       ///
+//////////////////////////////*/
+
+
+
+/**
+ * Bouton 'Voir les conditions de livraison',
+ * visible sur page produit et checkout.
+ */
+#totshippingpreview {
+	display: inline-block;
+	/*margin-bottom: 9px;*/
+	border: solid 1px #d8d8d8;
+	/*border-radius: 3px;*/
+	/*height: 32px;*/
+}
+
+#js-totshippingpreview-container{
+text-align: center;
+}
+
+.totlabel_tooltip {
+    text-decoration: none;
+    font-size: 13px;
+    color: #3586AE;
+    background-color: #edf7fb;
+    border: none;
+    border-bottom: solid 1px #D8EDF7;
+    padding: 0 5px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#totshippingpreview.label {
+	padding: .4em 1.2em .6em;
+	font-size: 100%;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 0;
+}
+
+/* Icone camion */
+#totcamion {
+	display: inline-block;
+	margin-right: 3px;
+}
+
+#totcamion img {
+	width: auto;
+	max-height: 14px;
+}
+
+/* Pop-in principale */
+.totselectzone {
+	background-color: white;
+    box-sizing: border-box;
+	padding: 15px 50px;
+	/*width: 700px;*/
+	max-width: 100%;
+	overflow: hidden;
+	color: #333333;
+	font-family: helvetica, arial, sans-serif;
+	text-align: center;
+}
+
+.totselectzone__title {
+	margin: -15px -50px 0 -50px;
+	padding: 15px;
+
+	border-bottom: solid 1px #d8d8d8;
+
+	color: #666666;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+/**
+ * Champs optionnels en BO
+ * Permet à l'utilisateur d'ajouter du contenu personnalisé
+ * au début et/ou à la fin de la fenêtre.
+ */
+
+#shipping_before,
+#shipping_after {
+	margin-top: 15px;
+}
+
+#shipping_before p,
+#shipping_after p {
+	margin: 0px;
+	padding: 0px;
+}
+
+#shipping_zone {
+	margin-top: 15px;
+}
+
+#totselectzone label {
+	display: block;
+	margin-bottom: 0;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+select#tot_zone_1,
+select#tot_zone_2 {
+	display: inline-block;
+	width: 200px;
+}
+
+/* Masque le deuxième select à l'ouverture de la fenêtre. */
+.choice_2 {
+	display: none;
+	margin-top: 5px;
+}
+
+/* Tableau frais de livraison */
+.totselectzone__table-container {
+	margin-top: 15px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.totselectzone__table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.totselectzone__table td,
+.totselectzone__table th {
+    padding: 9px 10px;
+    text-align: left;
+}
+
+.totselectzone__table tr {
+	min-height: 40px;
+	border-bottom:1pt solid black;
+}
+
+.totselectzone__table .has-image {
+	padding: 0 10px;
+}
+
+.totselectzone__table .fees {
+	white-space: nowrap;
+}
+
+.totselectzone__table img {
+	display: block;
+	margin: auto;
+}
+
+.totselectzone__row--head {
+	height: 40px;
+	background: #333333;
+	color: #DDDDDD;
+}
+
+.totselectzone__row--head th {
+	font-weight: 300 !important;
+}
+
+/*
+.totselectzone__row--first {}
+.totselectzone__row--last {}
+*/
+
+/* Ajoute un fond coloré à toutes les lignes impaires. */
+.totselectzone__row--odd {
+	background: #eaeaea;
+}
+
+@media screen
+and ( min-width: 200px )
+and ( max-width: 650px ) {
+	.totselectzone {
+		padding: 15px 15px;
+	}
+
+	.totselectzone .has-image {
+		display: none;
+	}
+}
+@media (max-width: 767px){
+	#totcamion img {
+	width: auto;
+	max-height: 24px;
+}
+}
+

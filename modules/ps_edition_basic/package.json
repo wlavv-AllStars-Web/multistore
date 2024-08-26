@@ -1,0 +1,13 @@
+{
+  "name": "@prestashopcorp/edition-module",
+  "version": "1.0.3",
+  "scripts": {
+    "precheck": "docker start temp-ps || docker run -tid --rm -v ps-volume:/var/www/html --name temp-ps prestashop/prestashop:8.1.1-apache",
+    "check": "docker run --rm --volumes-from temp-ps -v $PWD:/web/module -e _PS_ROOT_DIR_=/var/www/html --workdir=/web/module ghcr.io/phpstan/phpstan:latest-php8.1 analyse --configuration=/web/module/phpstan.neon",
+    "fmt": "vendor/bin/php-cs-fixer fix --quiet --diff",
+    "lint": "vendor/bin/phplint --exclude=vendor .",
+    "test": "vendor/bin/phpunit tests",
+    "validate": "composer validate --strict",
+    "postinstall": "composer install"
+  }
+}

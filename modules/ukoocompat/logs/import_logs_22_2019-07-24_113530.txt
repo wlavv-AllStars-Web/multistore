@@ -1,0 +1,3 @@
+Vous ne souhaitez pas créer le critère : "Exhaust accessory". La compatibilité sera créée sans ce critère.
+Vous ne souhaitez pas créer le filtre : "alias" . Cette colonne ne sera pas prise en compte.
+La compatibilité a été créée avec succès : l. 2

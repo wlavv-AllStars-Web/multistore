@@ -1,0 +1,27 @@
+[2024-07-15 09:54:35] Install.INFO: Start install process {"module_version":"1.3.2","prestashop_version":"8.1.6"} {"uid":"50ff004"}
+[2024-07-15 09:54:35] Install.INFO: Configuration meets technical requirements [] {"uid":"50ff004"}
+[2024-07-15 09:54:35] Install.INFO: Install tab AdminWorldlineopLogs [] {"uid":"50ff004"}
+[2024-07-15 09:54:35] Install.INFO: Install tab AdminWorldlineopAjax [] {"uid":"50ff004"}
+[2024-07-15 09:54:35] Install.INFO: Install tab AdminWorldlineopAjaxTransaction [] {"uid":"50ff004"}
+[2024-07-15 09:54:35] Install.INFO: Install tab AdminWorldlineopConfiguration [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook paymentOptions [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook orderConfirmation [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayAdminOrderLeft [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayAdminOrderMainBottom [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayHeader [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayPaymentByBinaries [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayPaymentTop [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook actionOrderStatusPostUpdate [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayBackOfficeFooter [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook actionFrontControllerSetMedia [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook actionAdminControllerSetMedia [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook customerAccount [] {"uid":"50ff004"}
+[2024-07-15 09:54:36] Install.INFO: Register hook displayPDFInvoice [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Database updated [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Install order status WOP_PENDING_ORDER_STATUS_ID [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Install order status WOP_AWAITING_CAPTURE_STATUS_ID [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Applying account default configuration [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Applying advanced default configuration [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Applying payment methods default configuration [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Default configuration applied [] {"uid":"50ff004"}
+[2024-07-15 09:54:37] Install.INFO: Install process finished with success [] {"uid":"50ff004"}

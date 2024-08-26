@@ -1,0 +1,5 @@
+Vous ne souhaitez pas créer le filtre : "alias" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "brand" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "model" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "category" . Cette colonne ne sera pas prise en compte.
+La compatibilité a été créée avec succès : l. 2

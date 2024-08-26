@@ -1,0 +1,23 @@
+ 
+
+{shop_url}
+
+Buna {firstname} {lastname},
+
+Cosul tau de la {shop_name}
+
+Iti multumim pentru vizita. Totusi, se pare ca nu ti-ai finalizat comanda.
+
+Cosul tau a fost salvat, astfel incat te poti intoarce la comanda ta din magazinul nostru: {shop_url}
+
+Suntem incantati sa iti oferim o reducere de {amount}%% pentru urmatoarea ta comanda! Aceasta oferta este valabila timp de {days} zile, asa ca nu mai astepta!
+
+Codul cuponului tau la {shop_name}
+
+Iata CODUL CUPONULUI tau: {voucher_num}
+
+Introdu acest cod in cosul de cumparaturi pentru a primi reducerea.
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

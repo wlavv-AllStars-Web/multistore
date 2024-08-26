@@ -1,0 +1,6 @@
+La compatibilité existe déjà : l. 2
+La compatibilité existe déjà : l. 3
+Vous ne souhaitez pas créer le filtre : "alias" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "marque" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "modele" . Cette colonne ne sera pas prise en compte.
+Vous ne souhaitez pas créer le filtre : "catégorie" . Cette colonne ne sera pas prise en compte.

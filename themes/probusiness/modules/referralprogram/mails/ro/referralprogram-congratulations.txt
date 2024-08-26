@@ -1,0 +1,15 @@
+ 
+
+{shop_url}
+
+Felicitari!
+
+Prietena/prietenul caruia ne-ai recomandat {sponsored_firstname} {sponsored_lastname} a plasat prima sa comanda pe [{shop_name}]({shop_url})!
+
+Suntem incantati sa iti oferim un cupon in valoare de {discount_display} (CODUL {discount_name}), pe care il vei putea folosi la urmatoarea ta comanda.
+
+Sincere salutari,
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

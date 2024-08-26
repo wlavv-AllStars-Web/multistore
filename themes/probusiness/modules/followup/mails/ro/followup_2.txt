@@ -1,0 +1,17 @@
+ 
+
+{shop_url}
+
+Buna {firstname} {lastname},
+
+Multumim pentru comanda.
+
+Suntem incantati sa iti oferim o reducere de {amount}%% pentru urmatoarea ta comanda! Aceasta oferta este valabila timp de {days} zile, asa ca nu mai astepta!
+
+Iata CODUL CUPONULUI tau: {voucher_num}
+
+Introdu acest cod in cosul de cumparaturi pentru a primi reducerea.
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

@@ -1,0 +1,311 @@
+{
+  "name": "moloni-pt/prestashop",
+  "description": "Moloni integration for Prestashop",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Moloni, lda",
+      "email": "apoio@moloni.pt"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Moloni\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "psr/log": "1.1.4"
+  },
+  "extra": {
+    "changelog": [
+      {
+        "version": "v3.0.4",
+        "title": "Release da versão 3.0.4",
+        "description": [
+          "Corrigidos erros na versão 1.6 do Prestashop",
+          "Corrigidos erros na versão 5.6 do PHP"
+        ]
+      },
+      {
+        "version": "v3.0.3",
+        "title": "Release da versão 3.0.3",
+        "description": [
+          "Adicionada janela para gerar URL de Webservice"
+        ]
+      },
+      {
+        "version": "v3.0.2",
+        "title": "Release da versão 3.0.2",
+        "description": [
+          "Correções em PHP 8"
+        ]
+      },
+      {
+        "version": "v3.0.1",
+        "title": "Release da versão 3.0.1",
+        "description": [
+          "Apresentação do erro de ligação na autenticação"
+        ]
+      },
+      {
+        "version": "v3.0.0",
+        "title": "Release da versão 3.0.0",
+        "description": [
+          "Adicionado sistema de registos.",
+          "Adicionado sistema de alertas via e-mail em caso de erros no módulo.",
+          "Adicionada a opção de atualizar imagens e impostos na ferramenta de importação de artigos.",
+          "Implementação de traduções no módulo.",
+          "Envio de documentos através da API Moloni.",
+          "Atualizadas dependências JS.",
+          "Correção no símbolo da moeda na listagem de encomendas pendentes.",
+          "Correção no registo do serviço de webservice na atualização do módulo."
+        ]
+      },
+      {
+        "version": "v2.6.6",
+        "title": "Release da versão 2.6.6",
+        "description": [
+          "Correção nos Webservice para Prestashop 8.1",
+          "Correção no download de orçamentos"
+        ]
+      },
+      {
+        "version": "v2.6.5",
+        "title": "Release da versão 2.6.5",
+        "description": [
+          "Correção na importação de impostos na criação de artigos no Prestashop"
+        ]
+      },
+      {
+        "version": "v2.6.4",
+        "title": "Release da versão 2.6.4",
+        "description": [
+          "Correção nos métodos de pagamento em documentos automáticos"
+        ]
+      },
+      {
+        "version": "v2.6.3",
+        "title": "Release da versão 2.6.3",
+        "description": [
+          "Melhorias nos processos de Webservices"
+        ]
+      },
+      {
+        "version": "v2.6.2",
+        "title": "Release da versão 2.6.2",
+        "description": [
+          "Correção de erro na criação da referência dos portes de envio",
+          "Mostrar mensagem de erro fatal nos Webservices"
+        ]
+      },
+      {
+        "version": "v2.6.1",
+        "title": "Release da versão 2.6.1",
+        "description": [
+          "Correção de erros"
+        ]
+      },
+      {
+        "version": "v2.6.0",
+        "title": "Release da versão 2.6.0",
+        "description": [
+          "Melhorias na importação de produtos do Moloni",
+          "Adicionado webservices de sincronização de artigos para usar, por exemplo, com crons",
+          "Atualização do logotipo Moloni",
+          "Usados novos endpoints para categorias Moloni"
+        ]
+      },
+      {
+        "version": "v2.5.2",
+        "title": "Release da versão 2.5.2",
+        "description": [
+          "Remoção de código descontinuado"
+        ]
+      },
+      {
+        "version": "v2.5.0",
+        "title": "Release da versão 2.5.0",
+        "description": [
+          "Adicionado suporte para Prestashop 8",
+          "Nova definição para escolher inclusão de informações de envio"
+        ]
+      },
+      {
+        "version": "v2.4.8",
+        "title": "Release da versão 2.4.8",
+        "description": [
+          "Usar país fiscal caso aplicável"
+        ]
+      },
+      {
+        "version": "v2.4.7",
+        "title": "Release da versão 2.4.7",
+        "description": [
+          "Ajustes adicionais na fórmula de obtenção de taxas nas encomendas"
+        ]
+      },
+      {
+        "version": "v2.4.6",
+        "title": "Release da versão 2.4.6",
+        "description": [
+          "Prevenir erro quando o cliente não existe ou não tem e-mail definido"
+        ]
+      },
+      {
+        "version": "v2.4.3",
+        "title": "Release da versão 2.4.3",
+        "description": [
+          "Nova fórmula de obtenção de taxas nas encomendas"
+        ]
+      },
+      {
+        "version": "v2.4.2",
+        "title": "Release da versão 2.4.2",
+        "description": [
+          "Criação de produto para envio como serviço"
+        ]
+      },
+      {
+        "version": "v2.4.1",
+        "title": "Release da versão 2.4.1",
+        "description": [
+          "Correção na apresentação das empresas disponíveis"
+        ]
+      },
+      {
+        "version": "v2.4.0",
+        "title": "Release da versão 2.4.0",
+        "description": [
+          "Correção no número de telefone do cliente",
+          "Validação do campo EAN13 antes de ser atualizado"
+        ]
+      },
+      {
+        "version": "v2.3.9",
+        "title": "Release da versão 2.3.9",
+        "description": [
+          "Melhorias na performance da listagem de encomendas pendentes",
+          "Nova definição para escolha da zona fiscal a aplicar"
+        ]
+      },
+      {
+        "version": "v2.3.8",
+        "title": "Release da versão 2.3.8",
+        "description": ["Melhorias de importação e sincronização de produtos"]
+      },
+      {
+        "version": "v2.3.7",
+        "title": "Release da versão 2.3.7"
+      },
+      {
+        "version": "v2.3.5",
+        "title": "Release da versão 2.3.5",
+        "description": [
+          "Pequenas melhorias de performance."
+        ]
+      },
+      {
+        "version": "v2.3.4",
+        "title": "Release da versão 2.3.4",
+        "description": [
+          "Acrescentar tentativas de refresh das tokens.",
+          "Alteração para possibilitar o uso do campo DNI como contribuinte."
+        ]
+      },
+      {
+        "version": "v2.3.3",
+        "title": "Release da versão 2.3.3",
+        "description": [
+          "Ajuste na captura dos valores de pagamento dos clientes.",
+          "Captura dos valores do Embrulho."
+        ]
+      },
+      {
+        "version": "v2.3.2",
+        "title": "Release da versão 2.3.2",
+        "description": [
+          "Alteração nas taxas de produtos compostos."
+        ]
+      },
+      {
+        "version": "v2.3.1",
+        "title": "Release da versão 2.3.1",
+        "description": [
+          "Atualização de versão."
+        ]
+      },
+      {
+        "version": "v2.3.0",
+        "title": "Release da versão 2.3.0",
+        "description": [
+          "Correção de erro em métodos de envio inválidos."
+        ]
+      },
+      {
+        "version": "v2.2.9",
+        "title": "Release da versão 2.2.9",
+        "description": [
+          "Correção de erro em métodos de envio inválidos."
+        ]
+      },
+      {
+        "version": "v2.2.8",
+        "title": "Release da versão 2.2.8",
+        "description": [
+          "Validação extra de campos na importação de artigos do Moloni."
+        ]
+      },
+      {
+        "version": "v2.2.7",
+        "title": "Release da versão 2.2.7",
+        "description": [
+          "Exportar ecotaxa dos produtos do Prestashop para o Moloni."
+        ]
+      },
+      {
+        "version": "v2.2.6",
+        "title": "Release da versão 2.2.6",
+        "description": [
+          "Exportar ecotaxa dos produtos do Prestashop para o Moloni."
+        ]
+      },
+      {
+        "version": "v2.2.5",
+        "title": "Release da versão 2.2.5",
+        "description": [
+          "Importado o campo EAN nos artigos com atributos"
+        ]
+      },
+      {
+        "version": "v2.2.4",
+        "title": "Release da versão 2.2.4",
+        "description": [
+          "Correção nas referências dos portes"
+        ]
+      },
+      {
+        "version": "v2.2.3",
+        "title": "Release da versão 2.2.3",
+        "description": [
+          ""
+        ]
+      },
+      {
+        "version": "v2.2.2",
+        "title": "Release da versão 2.2.2",
+        "description": [
+          "Corrigido um erro no cálculo da quantidade dos artigos \"pais\" de um composto"
+        ]
+      },
+      {
+        "version": "v2.2.1",
+        "title": "Initial Repository Commit",
+        "description": [
+          ""
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,746 @@
+#cms .breadcrumb_wrapper {
+  background-color: #F6F6F6;
+  border-bottom: none;
+  border-radius: 0 0 0 0;
+  border-top: 1px solid #D0D0D0;
+  list-style: none outside none;
+  margin-bottom: 1.7rem;
+  padding: 0 !important;
+}
+
+/* ourcars */
+
+
+.cms-id-28 .container {
+  max-width: none !important;
+  margin: 0;
+}
+
+.hover_for_text:hover div{
+  opacity: 1 !important;
+}
+
+.hover_for_text:hover div h2 {
+  color: var(--white);
+}
+
+.car-container strong {
+  font-weight: 600 !important;
+}
+
+
+/* partners */
+#cms-partners {
+  display:flex;flex-direction:column;background-color:#eee;max-width:1440px;font-family:Roboto;font-size:16px;margin:0 auto;font-family: Arial, Helvetica, sans-serif;
+}
+
+#cms-partners .cards {
+  max-width:1350px;margin:0 auto;
+}
+
+.button_partners {
+    color: white;
+    background-color: #dd170e;
+    text-transform: uppercase;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.button_partners:hover {
+  color: #dd170e;
+  background-color: #FFF;
+  text-transform: uppercase;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.card_partners {
+  box-shadow: 3px 3px 5px 6px #ccc;
+  height: auto;
+  background-color: #333;
+  color: white;
+  min-height: 465px;
+}
+
+.card_partners .image_partners {
+  width: 100%;
+}
+.text_partners {
+    padding: 20px;
+    min-height: 295px;
+    line-height: 1.4;
+    font-size: 14px;
+    text-align: center;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    text-align: center;
+}
+
+.button_container_partners {
+  padding: 0 20px 20px 20px;
+  margin: 20px auto 20px auto;
+  text-align: center;
+  display: grid;
+}
+
+/* galleries css */
+
+#galleries {
+    max-width: 1440px;
+    background: transparent none repeat scroll 0 0;
+    padding: 0 !important;
+    margin: auto;
+  }
+  
+  .galleries_header img{
+    width: 100%;
+  }
+  
+  .galleries_content {
+    padding: 0 !important;
+    width: 100%;
+    background: #d9d9db;
+  
+  }
+  
+  .galleries_content > .col-lg-6 {
+    padding: 0 !important;
+  }
+
+
+  /* terms */
+
+
+  #terms{
+    max-width: 1440px;
+    margin: auto;
+   }
+  
+   #terms br{
+    background: #eeeeee;
+   }
+
+   .terms-content {
+    text-align: center; background: #eeeeee;display: flex;flex-direction: column;gap: 2rem;padding-top: 2rem;
+   }
+  
+   .terms-line {
+    width: 80%;
+    margin: auto;
+   }
+   .terms-line h2{
+    font-weight: bold;
+    color: #dd170e;
+   }
+  
+   .terms-line b{
+    color: #dd170e;
+   }
+
+
+   /* legalNotice */
+
+   #legal .legal-footer .col-8 div {
+    margin-left: 50px; margin-top: 20px;
+  }
+  #legal .legal-footer-header img {
+    width: 200px; margin: 0 auto;
+  }
+  #legal .legal-line {
+    color: #101010;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #legal .legal-line .col-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #101010;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #legal .legal-line .col-3 a {
+    color: #000;
+  }
+  
+  #legal {
+    margin: 0 auto; 
+    background-color: #eee; 
+    width: 1440px; 
+    font-family: Roboto; 
+    font-size: 16px;
+  }
+  
+  #legal .legal-content {
+    padding: 50px; text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: #101010;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #legal .legal-content b {
+    color: #dd170e;
+  }
+  
+  .legal-footer{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .legal-footer-header {
+    display: flex;
+    justify-content: center;
+  }
+  
+
+  /* about us */
+
+  #about-us .about-header {
+    background-color: #eee; font-family: Arial, Helvetica, sans-serif; width: 1440px; margin: 0 auto;
+  }
+
+  #about-us .about-content {
+    background-color: #eee; font-family: Arial, Helvetica, sans-serif; width: 1440px; font-size: 16px; margin: 0 auto;
+  }
+
+  #about-us .about-content .about-content-imgs {
+    width: 1440px; background-color: #eee; margin: 0 auto;padding-top: 3rem;
+  }
+
+  #about-us .about-content-warehouse {
+    padding: 10px 0px; text-align: justify; width: 650px; float: left;
+  }
+
+  #about-us .about-content-text {
+    margin: 30px; text-align: center; width: 730px;color: #101010;
+  }
+  #about-us .about-content-text div{
+    padding: 20px 40px;
+  }
+
+  #about-us  .about-content-cards {
+    background-color: #eee; font-family: Arial, Helvetica, sans-serif; width: 1440px; text-align: center; padding: 40px 0 0 0; font-size: 16px; margin: 0 auto;color: #101010;
+  }
+  #about-us .about-content-cards .card{
+    width: 33%;
+    background: #eee;
+    border: 0;
+  }
+  #about-us .about-content-cards .card .card-content{
+    padding: 20px 60px;
+    display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  }
+
+  #about-us .about-content-cards .card .card-content img {
+    height: 70px; margin: 0 auto;
+  }
+
+  #about-us .about-content-cards .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  /* shipping */
+  #cms_shipping {
+    max-width: 1440px;
+    margin: auto;
+  }
+
+  #cms_shipping .shipping-header {
+    background-color: #eee; font-family: Roboto; width: 1440px; margin: 0 auto;
+  }
+
+  #cms_shipping .shipping-content {
+    display: flex;
+    background-color: #eee; font-family: Roboto; width: 1440px; margin: 0 auto; text-align: center; padding: 20px 0 0 0; font-size: 16px;color: #101010;font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #cms_shipping .shipping-content-title {
+    color: #dd170e; padding: 5px;text-transform: uppercase;font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #cms_shipping .shipping-content-left-text span {
+    margin-top: 1rem;
+    background: white;
+    padding: 0.5rem 1rem;
+  }
+
+  #cms_shipping .shipping-content-left {
+    padding-bottom: 2rem !important;
+  }
+
+  #cms_shipping .shipping-content-right {
+    display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+ 
+  }
+
+  #cms_shipping .shipping-content-right-text {
+    padding: 20px; text-align: center;
+  }
+
+  #cms_shipping .shipping-content-right-img img{
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #cms_shipping .shipping-content-title {
+    padding-bottom: 1rem;
+  }
+
+  /* payment */
+
+  #cms-payment {
+    background-color: #eee; width: 1440px; font-family: Roboto; font-size: 16px; margin: 0 auto;text-align: justify;font-family: Arial, Helvetica, sans-serif;color: #101010;
+  }
+
+  #cms-payment .payment {
+    padding: 10px 50px;
+  }
+
+  #cms-payment .payment-footer-img {
+    padding: 0px 20px 20px 20px; text-align: center;
+  }
+  #cms-payment .payment-footer-img img{
+    width: 800px; margin-top: 10px;
+  }
+
+  #cms-payment .payment-card-euro {
+    background-image: url('/img/cms/payment/euro.png'); background-repeat: no-repeat; text-align: center; background-size: contain; background-position: bottom; width: 200px; height: 200px; color: #333;
+  }
+
+  #cms-payment .payment-methods {
+    font-weight: bolder; color: #dd170e; font-size: 18px;
+  }
+
+  #cms-payment .payment-3dsecure img{
+    height: 50px; margin-top: 10px;
+  }
+  #cms-payment .payment-3dsecure {
+    background-color: #ddd; padding: 10px; margin: 10px 40px; color: #333; text-align: center;
+  }
+
+  #cms-payment .payment-content-bottom {
+    width: 100%;font-size: 16px;
+  }
+
+  #cms-payment .payment-alma {
+    background-image: url('/img/cms/payment/alma.png'); background-repeat: no-repeat; text-align: center; background-size: contain; background-position: center; margin: 5px; padding: 0;
+  }
+
+
+  /* user help */
+
+  /* #user-help{
+    max-width: 1440px; margin: 2rem auto;padding: 0;
+  }
+
+  #user-help .user-help-header{
+    padding: 0;
+  }
+
+  #user-help .user-help-header img {
+    width: 100%;
+  }
+
+  #user-help .user-help-content {
+    gap: 10px;
+    padding: 5px 0 0 0;
+    padding: 0;
+  }
+
+  #user-help .user-help-content .card {
+    color: white; background-color: #ededed; border:none; display: inline-block; margin: 10px 0; position: relative;background: white;padding:0 5px;text-decoration: none;
+  }
+
+  #user-help .user-help-content .card .card-description {
+    margin: 0; padding: 5px 10px; color: #fff; background-color: #dd170e; left: 7px; border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black; text-transform: uppercase;
+  }
+
+  #user-help .user-help-content .card .card-description h2{
+    font-weight: 500; color: white; margin: 0 5px; padding: 0; font-size: 25px;
+  }
+
+  #user-help .user-help-content .card .play {
+    pointer-events: none; position: absolute; top: 29%; left: 50%; transform: translate(-50%,50%);
+  }
+
+  #user-help #image_thumb_tut{
+    width: 100%; cursor: pointer; border: 1px solid black;position: relative;
+  }
+  
+  #user-help .play {
+    background: url("/img/youtube_play.png");
+    position: absolute !important;
+    top: 29% !important;
+  z-index: 4;
+  width: 100px !important;
+  height: 70px !important;
+  }
+
+  #user-help #video_1:hover .play {
+    background: url("/img/youtube_play_hover.png");
+  }
+
+  #user-help #video_1 a {
+    background: url("/img/youtube_play.png");
+  position: absolute !important;
+  
+  } */
+
+
+  #user-help{
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+}
+#user-help .user-help-content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+#user-help .user-help-content .card-user{
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+    min-width: 469px;
+    max-width: 32%;
+    outline: 1px solid #101010;
+}
+#user-help .user-help-content div a img{
+    width: 100%;
+}
+#user-help .user-help-content .card-user .play img{
+    width: 90px;
+}
+
+#user-help .play{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#user-help .card-description{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: red;
+    width: 100%;
+    outline: 1px solid #101010;
+}
+#user-help .card-description h2{
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+#user-help .iframeClass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+#user-help .iframeClass iframe{
+  width: 100%;
+  height: 100%;
+  min-height: 351.55px;
+}
+
+
+  /* about us mobile */
+
+
+
+  
+#about-mobile-header{
+  background-color: #eee; display: table; font-family: 'Roboto'; width: 100%;
+}
+#about-mobile-header img {
+  width: 100%;
+}
+
+#about-mobile-content {
+  background-color: #eee; display: table; font-family: 'Roboto'; width: 100%; font-size: 16px;padding: 1rem 0.5rem;color: #333;
+}
+
+.about-mobile-content-img {
+  padding: 10px 0px !important; text-align: justify; width: 100%;
+}
+.about-mobile-content-img img{
+  width: 100%;
+}
+
+.about-mobile-content-text {
+  text-align: center; width: 100%;
+}
+
+.about-mobile-cards {
+  background-color: #eee; display: table; font-family: 'Roboto'; width: 100%; text-align: center; padding: 20px 0 0 0; font-size: 16px;color: #333;
+}
+
+.about-mobile-card {
+  padding: 20px 60px;display: flex;flex-direction: column;gap: 1rem;
+}
+
+.about-mobile-card img {
+  width: 100px; margin: 0 auto;
+}
+
+.about-mobile-footer-img {
+  width: 100%; background-color: #eee;
+}
+.about-mobile-footer-img img{
+  width: 100%;
+}
+
+/* legal notice mobile */
+
+#legal-mobile .legal-mobile-header {
+  background-color: #eeeeee;
+ }
+ #legal-mobile .legal-mobile-header img {
+  width: 100%;
+ }
+ #legal-mobile .legal-mobile-content {
+  padding: 10px !important; text-align: justify; color: #333;
+ }
+
+ #legal-mobile .legal-mobile-content b {
+  color: #dd170e;margin-bottom: 1rem;
+  display: block;
+ }
+
+ #legal-mobile .legal-mobile-content .legal-mobile-cards {
+  display: flex;flex-direction: column;gap: 2rem;margin: 2rem 0;
+ }
+
+ #legal-mobile .legal-mobile-content .legal-mobile-cards .card {
+  border: none;
+  text-align: center;
+ }
+ #legal-mobile .legal-mobile-content .legal-mobile-cards .card a {
+  text-decoration: none;
+  color: var(--danger);
+ }
+
+ #legal-mobile .legal-mobile-content .legal-mobile-cards b {
+  color: #dd170e;
+ }
+
+ #legal-mobile .legal-mobile-content-img {
+  text-align: center;
+ }
+ #legal-mobile .legal-mobile-content-img img{
+  width: 200px; margin: 0 auto;
+ }
+
+
+ /* terms mobile */
+
+
+ #terms-mobile .terms-mobile-content {
+  background-color: #eee;
+}
+#terms-mobile .terms-mobile-content img {
+  width: 100%;
+}
+#terms-mobile .terms-mobile-text {
+  padding: 10px !important; text-align: justify;line-height: 1.5 !important;color: #333;
+}
+#terms-mobile .terms-mobile-text h2{
+  font-weight: bolder; color: #dd170e;
+}
+#terms-mobile .terms-mobile-text b{
+  display: block; color: #dd170e;margin-bottom: 1rem;
+}
+
+#terms-mobile .terms-mobile-text-title {
+  text-align: center;
+}
+#terms-mobile .terms-mobile-text div {
+  line-height: 1.5 !important;
+}
+
+/* shipping mobile */
+.shipping-mobile-header{
+  background-color: #eee; display: table; font-family: 'Roboto';
+}
+.shipping-mobile-header img {
+  width: 100%;
+}
+.shipping-mobile-content{
+  padding: 10px !important; text-align: justify;
+}
+.shipping-mobile-content b{
+  display: block;color: #dd170e;margin-bottom: 1rem;
+}
+.shipping-footer-img img{
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.shipping-mobile-contact-card{
+  margin: 10px 10px 3rem 10px; text-align: center; background-color: #fff; padding: 10px;
+}
+
+
+ /* payment mobile */
+ #payment-mobile {
+
+ }
+
+ .payment-mobile-header {
+   background-color: #eee;
+   display: table;
+   font-family: 'Roboto';
+ }
+
+ .payment-mobile-header img {
+   width: 100%;
+ }
+
+ .payment-mobile-content {
+   padding: 10px !important;
+   text-align: justify;
+ }
+
+ .payment-mobile-methods img {
+   width: 50px;
+ }
+
+ .payment-mobile-methods {
+   width: 100%;
+   margin: 20px 0;
+   font-size: 16px;
+ }
+
+ .payment-mobile-content .payment-methods-title {
+   font-weight: bolder;
+   color: #dd170e;
+   font-size: 18px;
+ }
+
+ .payment-vat-number-box {
+   background-image: url('/img/cms/mobile/payment/euro.png');
+   background-repeat: no-repeat;
+   text-align: center;
+   background-size: contain;
+   background-position: bottom;
+ }
+
+ .payment-3dsecure-mobile {
+   background-color: #ddd;
+   padding: 10px;
+   margin: 10px 40px;
+   color: #000;
+   text-align: center;
+ }
+
+ .payment-3dsecure-mobile img {
+   height: 50px;
+   margin-top: 10px;
+ }
+
+ .payment-alma-mobile {
+   background-image: url('/img/cms/mobile/payment/alma.png');
+   background-repeat: no-repeat;
+   text-align: center;
+   background-size: contain;
+   background-position: bottom;
+   margin: 5px;
+   padding: 10px;
+ }
+
+ .payment-footer-img-mobile {
+   margin-top: 20px;
+ }
+
+ .payment-footer-img-mobile img {
+   width: 100%;
+   margin-top: 10px;
+ }
+
+
+ /* partners */
+ #partners-mobile {
+  background-color: #eee; display: table; max-width: 1440px; font-family: 'Roboto'; font-size: 16px; margin: 0 auto;
+ }
+
+ .cards-partners-mobile {
+  /* max-width: 1350px; margin: 0 auto; */
+ }
+ #partners-mobile .text_partners {
+  font-size: 1rem !important;
+ }
+
+ /* galleries */
+ #galleries-mobile {
+  background-color: #d9d9db;
+}
+
+.title_background img{
+width: 100%;
+}
+
+
+  /* our cars mobile */
+  .our-cars-mobile-header{
+
+  }
+  
+  .cards-container-mobile{
+  }
+  
+  .card-car-mobile {
+    margin-bottom: 2rem;
+  }
+  
+  .card-car-mobile .img-car{
+   border-radius: 15px !important;
+  }
+  
+  .car_link{
+  
+  }
+  #our-cars-mobile .car_title{
+   text-align: center;
+   text-transform: uppercase;
+   color: var(--gray);
+   font-weight: 600;
+  }
+  
+
+  /* events mobile */
+  #events-mobile {
+    height: 100%;
+    background: #ededed;
+    padding: 1rem 0;
+  }
+  #events-mobile img{
+    width: 100%;
+  }
+
+  #events-mobile p{
+    text-align: center;
+    color: #333;
+  }
+
+  /* contact form */
+
+  .contact-form {
+    font-family: Arial, Helvetica, sans-serif;
+  }

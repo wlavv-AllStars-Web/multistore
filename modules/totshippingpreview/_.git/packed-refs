@@ -1,0 +1,31 @@
+# pack-refs with: peeled fully-peeled 
+b9ec3eee5a92aef611b15e2d5a37d055de54e8cb refs/remotes/origin/Presta1.6/develop
+943d202ee78e5cdae65de3ad2c6ede1bf81fe1b8 refs/remotes/origin/Presta1.6/feature
+35fac0cf4260904bb68233296bc0ca8e0cb9eab2 refs/remotes/origin/Presta1.6/master
+529e76f2ce0c8416f815c5472dc1fba8641f5414 refs/remotes/origin/Presta1.7/develop
+1c3606b506675146d20500a5dce01d4d5cb3dd0d refs/remotes/origin/Presta1.7/features/fixes_deliverytime
+8e295bcfd9f280ddf1cdcd6cdc0c5c3ee35bbd6a refs/remotes/origin/Presta1.7/features/hotfix/different_fixes
+4c9e350202a2c4350308571141e387c1f41e06e4 refs/remotes/origin/Presta1.7/features/refactoring
+4e1b6cd71f05bc4058783aec54a1df13dab4119b refs/remotes/origin/Presta1.7/features/widgets
+be33ae2a653e81cbbac9533e7e11aa43a0d9de8b refs/remotes/origin/Presta1.7/hotfix/lang
+bdce5bf5b8a89135d36e6e50025c5e74d4d208ad refs/remotes/origin/Presta1.7/hotfix/preview_in_cart
+74768257445d867b78e6cc9b6c131f343fedb209 refs/remotes/origin/Presta1.7/hotfix/simulation_hors_stock
+8711c6255cb76eb4ae3896e24ece45636f5f1c99 refs/remotes/origin/Presta1.7/master
+e6fedea8855cae13bbda684c476e54875799711a refs/remotes/origin/develop
+38f55b02a43a32b4409e388f2da520787811ee76 refs/remotes/origin/feature/1.2.0
+5f9da2ec0601d8f1712714da890083f0368cfb7f refs/remotes/origin/feature/correctifs
+d609c0d8c5caf785d93a25c3c473ee4e3455c2eb refs/remotes/origin/feature/evolution-aout
+47f41e4c99eac2bd063fbf3611c41c9ce01ef0ec refs/remotes/origin/hotfix/1.1.7
+a0322d76985009533ef3e23600ced5ac47bc4407 refs/remotes/origin/master
+69cad40f43a83293b40def7e9287cda3e8968574 refs/tags/1.1.3
+^22e07c15294388476dd921f24e72ea93e2d9aa53
+9785e0539f868d2fe501f78b1e13a6ec15484289 refs/tags/1.1.5
+^e9bf029c616076c6793c14f488a7bfc1d8bc2ed6
+1f68c735a53e2451feefa43f1083145f17f2ac6a refs/tags/1.1.6
+^a73ca1160e8bb10a7806f28941fa447108acb41a
+263c3eccf942460aa2f4e99141b92c840f095ddd refs/tags/1.2.0
+^54ae915466d96bd39055edc599d4469899cbb9a1
+29c84a312ee4e593e4ead946d692bed7b9d31c61 refs/tags/2.0.0
+^4c9e350202a2c4350308571141e387c1f41e06e4
+c3a6f89e60072a83fb1dce1e3ed3bc8e6fc65f23 refs/tags/8262
+^05a2ea78ea4f3649587dda33c895b74a45a14fe1
