@@ -21,7 +21,7 @@
         
         <div class="">
             <table class="table table-striped table-bordered hidden-sm-down">
-                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;color: #666;font-weight:700;">
+                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;color: #666;font-weight:700;">
                     <tr>
                         <td>{l s='Date'     d='Shop.Theme.Actions'}</td>
                         <td>{l s='Montant'  d='Shop.Theme.Checkout'}</td>
@@ -91,7 +91,7 @@
         <section id="order-history" class="">
             <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Status history' d='Shop.Theme.Actions'}</h3>
             <table class="table table-striped table-bordered table-labeled hidden-xs-down">
-                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;font-weight:700;">
+                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                     <tr>
                         <td>{l s='Date' d='Shop.Theme.Actions'}</td>
                         <td>{l s='Status' d='Shop.Theme.Actions'}</td>
@@ -133,7 +133,7 @@
             <div class="">
                 <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Information' d='Shop.Theme.Actions'}</h3>
                 <table class="table table-striped table-bordered hidden-sm-down" style>
-                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;font-weight:700;">
+                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                         <tr>
                             <td>{l s='Last update' d='Shop.Theme.Actions'}</td>
                             <td>{l s='Weight' d='Shop.Theme.Checkout'}</td>
