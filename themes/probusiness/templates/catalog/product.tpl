@@ -146,13 +146,13 @@
                 <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                     <div>
                         <span>{l s='Volume:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">1</span>
+                        <span style="font-weight: 400;">{$product.width*$product.height*$product.depth|number_format:2} <small>cm3</small></span>
                     </div>
                     <div>
-                        <span>{$product.width|number_format:0}cm x {$product.height|number_format:0}cm x {$product.depth|number_format:0}cm</span>
+                        <span style="font-weight: 400;"><span style="font-weight: 600;">W:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">H:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">L:</span> {$product.depth|number_format:0}<small>cm</small></span>
                     </div>
                     <div>
-                        <span>{$product.weight|number_format:2}kg</span>
+                        <span style="font-weight: 400;">{$product.weight|number_format:2}<small>kg</small></span>
                     </div>
                 </div>
                 
