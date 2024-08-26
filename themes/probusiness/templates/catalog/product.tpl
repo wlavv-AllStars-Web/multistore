@@ -54,7 +54,7 @@
                                 <i class="material-icons right">&#xE315;</i>
                             </div>
                         {/block}
-                        <div style="margin-top: 50px;border: 3px solid lightgrey; display: flex; line-height: 2;">
+                        <div style="margin-top: 10px;line-height: 2;">
                             {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
                         </div>
                     </section>
