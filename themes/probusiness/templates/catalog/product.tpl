@@ -54,11 +54,12 @@
                                 <i class="material-icons right">&#xE315;</i>
                             </div>
                         {/block}
-                        <div style="margin-top: 10px;line-height: 2;">
-                            {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
-                        </div>
+                        
                     </section>
                 {/block}
+                <div style="margin-top: 10px;line-height: 2;">
+                    {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
+                </div>
             </div>
             <div class="col-lg-8">
                 
