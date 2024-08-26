@@ -55,6 +55,11 @@
                             </div>
                         {/block}
                     </section>
+                    <div style="margin-top: 10px; line-height: 2;">
+                        {* <div style="float: left; width: calc( 100% - 60px )"> {l s='CHOOSE YOUR VERSION' d='Shop.Theme.Catalog'} </div>
+                        <div style="float: left; width: 60px"> <i class="fa-solid fa-chevron-down"></i> </div> *}
+                    {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
+                    </div>
                 {/block}
             </div>
             <div class="col-lg-8">
@@ -77,7 +82,7 @@
                     <div style="width: 150px; height: 3px; background-color: lightgrey; margin: 30px auto;"></div>
                 </div>
 
-                {block name='product_prices'} {include file='catalog/_partials/product-prices.tpl'} {/block}
+                {* {block name='product_prices'} {include file='catalog/_partials/product-prices.tpl'} {/block} *}
 
 
                 <div class="product-actions js-product-actions">
