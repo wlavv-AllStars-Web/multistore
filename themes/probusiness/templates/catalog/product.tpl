@@ -57,12 +57,13 @@
                         
                     </section>
                 {/block}
-                <div style="margin-top: 10px;line-height: 2;">
+                <div class="product-actions js-product-actions">
                     <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
                         <input type="hidden" name="token" value="{$static_token}">
                         <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
                         <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
-                        {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
+                        {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block} 
+                        {block name='product_refresh'}{/block}
                     </form>
                 </div>
             </div>
@@ -114,9 +115,12 @@
                           
                           {block name='product_refresh'}{/block}
                         </form>
+                        
                     {/block}
+                    
                 </div>
             </div>
+            
             <div class="col-lg-12">
                 <div style="width: 80%; height: 3px; background-color: lightgrey; margin: 30px auto;"></div>
             </div>
