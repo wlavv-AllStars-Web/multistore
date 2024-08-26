@@ -3046,6 +3046,16 @@ textarea {
   color: #fff !important;
 }
 
+.links-productpage a{
+  border-bottom: 2px solid #666;
+  cursor: pointer;
+}
+.links-productpage a:hover{
+  border-bottom: 2px solid #0273EB;
+  color: #0273EB !important;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1350px) {
   .banner_home {
     min-height: 346px;
@@ -3139,6 +3149,10 @@ textarea {
 
   .product-miniature:not(.type_list_full_width) .product-description{
     background: none !important;
+  }
+
+  #product .product-quantity .qty{
+    width: 164px;
   }
 
   .btn-product-details{

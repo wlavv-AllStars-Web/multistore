@@ -23,7 +23,7 @@
 {/block}
 
 {block name='content'}
-
+{* <pre>{$product|print_r}</pre> *}
     <meta content="{$product.url}">
 
     <section id="main" style="max-width:1350px;margin:auto;">
@@ -62,14 +62,14 @@
                     <h1 class="h1" style="text-align: center;font-size:30px;color: #666;font-weight:bold;line-height:1.15;text-transform:uppercase;">{block name='page_title'}{$product.name}{/block}</h1>
                     
                     <div class="product-details" >
-                        <div class="product-manufacturer"> <span style="font-size: 18px;font-weight:600;">{l s='BRAND:' d='Shop.Theme.Catalog'} {$product->manufacturer_name}</span> </div>
+                        <div class="product-manufacturer" style="font-size: 18px;font-weight:600;">{l s='Brand:' d='Shop.Theme.Catalog'} <span style="font-size: 18px;font-weight:400;">{$product->manufacturer_name}</span> </div>
                         <span class="separator">|</span>
-                        <div class="product-reference">    <span style="font-size: 18px;font-weight:600;">{l s='SKU:' d='Shop.Theme.Catalog'} {$product.reference}</span> </div>
+                        <div class="product-reference" style="font-size: 18px;font-weight:600;">  {l s='SKU:' d='Shop.Theme.Catalog'}   <span style="font-size: 18px;font-weight:400;">{$product.reference}</span> </div>
                     </div>
                     
                     {if $product->ean13 != ''}
                     <div class="product-details" >
-                        <div class="product-manufacturer"> <span style="font-size: 18px;font-weight:600;">{l s='UPC:' d='Shop.Theme.Catalog'} {$product->ean13}</span> </div>
+                        <div class="product-manufacturer" style="font-size: 18px;font-weight:600;">{l s='UPC:' d='Shop.Theme.Catalog'} <span style="font-size: 18px;font-weight:400;"> {$product->ean13}</span> </div>
                     </div>
                     {/if}
                     
@@ -114,71 +114,74 @@
 
         <div class="row" style="text-align: left;margin-top: 30px;">
             <div class="col-lg-3">
-                <h1>{l s='DISPONIBILITY:' d='Shop.Theme.Catalog'}</h1>
-                <div style="width: 20%; height: 2px; background-color: #0273eb"></div>
-                <div style="font-size: 22px; color: #666;line-height: 1.7; font-weight: bolder;">
+                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
+                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                     <div>
                         <span>{l s='Stock:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="color: green">1000</span>
+                        {if $product.quantity > 3}
+                            <span style="color: green;font-weight:400;">{$product.quantity}</span>
+                        {elseif $product.quantity >= 1 && $product.quantity <= 3}
+                            <span style="color: orange;font-weight:400;">{$product.quantity}</span>
+                        {else}
+                            <span style="color: red;font-weight:400;">0</span>
+                        {/if}
+                        
                     </div>
                     <div>
                         <span>{l s='Arrive:' d='Shop.Theme.Catalog'}</span> 
-                        <span>15</span>
+                        <span style="font-weight: 400;">15</span>
                     </div>
                     <div>
                         <span>{l s='ETA:' d='Shop.Theme.Catalog'}</span> 
-                        <span>12/04/2024</span>
+                        <span style="font-weight: 400;">12/04/2024</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                <h1>{l s='PACKAGE:' d='Shop.Theme.Catalog'}</h1>
-                <div style="width: 20%; height: 2px; background-color: #0273eb"></div>
-                <div style="font-size: 22px; color: #666;line-height: 1.7; font-weight: bolder;">
+                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Package:' d='Shop.Theme.Catalog'}</h1>
+                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                     <div>
                         <span>{l s='Volume:' d='Shop.Theme.Catalog'}</span> 
-                        <span>1</span>
+                        <span style="font-weight: 400;">1</span>
                     </div>
                     <div>
-                        <span>100x100x100cm</span>
+                        <span>{$product.width|number_format:0}cm x {$product.height|number_format:0}cm x {$product.depth|number_format:0}cm</span>
                     </div>
                     <div>
-                        <span>32kg</span>
+                        <span>{$product.weight|number_format:2}kg</span>
                     </div>
                 </div>
                 
             </div>
             <div class="col-lg-3">
-                <h1>{l s='INFO:' d='Shop.Theme.Catalog'}</h1>
-                <div style="width: 20%; height: 2px; background-color: #0273eb"></div>
-                <div style="font-size: 22px; color: #666;line-height: 1.7; font-weight: bolder;">
+                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Info:' d='Shop.Theme.Catalog'}</h1>
+                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                     <div>
                         <span>{l s='Origin:' d='Shop.Theme.Catalog'}</span> 
-                        <span>UK</span>
+                        <span style="font-weight: 400;">{$product.location}</span>
                     </div>
                     <div>
                         <span>{l s='Rate:' d='Shop.Theme.Catalog'}</span> 
-                        <span>15</span>
+                        <span style="font-weight: 400;">{$product.rate}</span>
                     </div>
                     <div>
                         <span>{l s='Status:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="color: green">Active</span>
+                {if $product.active === 1}<span style="color: green;font-weight:400;">{l s='Active' d='Shop.Theme.Catalog'}</span>{else}<span style="color: red;font-weight:400;">{l s="Unavailable" d='Shop.Theme.Catalog'}</span>{/if}
                     </div>
                 </div>
                 
             </div>
             <div class="col-lg-3">
-                <h1>{l s='LINKS:' d='Shop.Theme.Catalog'}</h1>
-                <div style="width: 20%; height: 2px; background-color: #0273eb"></div>
-                <div style="font-size: 22px; color: #666;line-height: 1.7; font-weight: bolder;">
+                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
+                <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                     <div>
-                        <a style="color: #666;" href="">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
+                        <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
                     </div>
                     <div>
                         <a style="color: #666;" href="">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
                     </div>
                     <div>
-                        <a style="color: #666;" href="">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 
+                        <a style="color: #666;" onclick="openShippingtab('{$urls.pages.my_account}','shipping')">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 
                     </div>
                 </div>
             </div>
@@ -188,15 +191,17 @@
             </div>
             
             <div class="col-lg-12" style="text-align: center;">
-                <h1 style="color: #0273eb;font-size:28px">{l s='DETAILS' d='Shop.Theme.Catalog'}</h1>
-                <div style="margin-top: 30px; font-size: 20px; color: #666;line-height: 1.7; font-weight: bolder;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultricies, ante id pulvinar porttitor, lacus tellus malesuada tellus, id pretium lorem ligula tincidunt ipsum. Aliquam facilisis et metus eget imperdiet. Suspendisse eleifend ullamcorper nisl, ac posuere nulla sollicitudin non. Proin vulputate accumsan ante in ornare. Suspendisse non tristique est. Cras sollicitudin augue magna, ac congue massa elementum ut. Sed malesuada volutpat ullamcorper. Sed lacinia orci et justo tempus venenatis. Etiam mollis sodales quam sit amet volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam tortor dui, ultrices vel consequat sed, pretium id sapien. Nam vel nisl vel odio egestas tempus a ac orci. Maecenas quam enim, accumsan vehicula euismod hendrerit, dapibus vitae dolor. Suspendisse feugiat odio ac lacinia ultrices. Ut at elementum lacus, quis placerat mauris.
-                    <br><br>
-                    Proin ultrices, nibh eget dignissim aliquam, enim magna condimentum diam, quis consectetur quam mauris et purus. In at ultrices enim. Proin faucibus imperdiet dui, eget posuere arcu facilisis non. Phasellus ante ligula, iaculis vel gravida ac, tristique sit amet urna. Quisque pharetra, ante eu blandit varius, risus quam scelerisque dui, sit amet sagittis eros purus sed purus. Curabitur diam magna, pulvinar ut leo in, varius blandit tellus. Pellentesque orci dui, semper a gravida vitae, pulvinar id lectus. Sed felis lacus, gravida congue purus id, tempor dictum orci. Suspendisse nec viverra enim. In sit amet lectus est. Morbi sagittis sit amet nibh at ullamcorper. Ut commodo auctor elit eget varius. Nam non varius turpis.
-                    <br><br>
-                    In risus mi, elementum at lobortis vitae, euismod vel lacus. Nam ut consequat turpis. Sed cursus rutrum ante. Maecenas at leo vulputate, malesuada elit vel, lobortis justo. Cras convallis turpis nec rhoncus dapibus. Pellentesque vulputate pulvinar rutrum. Fusce aliquam maximus fermentum. Aenean tincidunt scelerisque magna quis hendrerit. Curabitur quis congue sapien. Proin sed orci rhoncus justo fringilla porttitor. Fusce vitae gravida erat, id ornare neque. In consectetur accumsan fermentum. Fusce blandit ligula eget mauris ultricies porta.
-                    <br><br>
-                    Aenean ultrices lacus a quam pretium fringilla. Curabitur a facilisis est. Sed facilisis fringilla tortor. Integer id eleifend nisl, et pharetra metus. Pellentesque eget pretium nunc. Suspendisse potenti. Nulla ut sem varius, tincidunt mauris ut, imperdiet nibh. 
+                <h1 style="color: #0273eb;font-size:24px">{l s='DETAILS' d='Shop.Theme.Catalog'}</h1>
+                <div style="margin-top: 30px; font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
+                    {if $product.description || $product.description_short}
+                        {if $product.description}
+                            {$product.description}
+                        {else}
+                            {$product.description_short}
+                        {/if}
+                    {else}
+                        {l s="No details"}
+                    {/if}
                 </div>
             </div>
             
@@ -205,8 +210,8 @@
             </div>
             
             <div class="col-lg-12" style="text-align: center;">
-                <h1 style="color: #0273eb;font-size:28px">{l s='NOTE' d='Shop.Theme.Catalog'}</h1>
-                <div style="margin-top: 30px; font-size: 20px; color: #666;line-height: 1.7; font-weight: bolder;">
+                <h1 style="color: #0273eb;font-size:24px">{l s='NOTE' d='Shop.Theme.Catalog'}</h1>
+                <div style="margin-top: 30px; font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                     {l s='Fusce sodales, lorem eget tincidunt eleifend, magna urna vehicula lectus, eu ultrices nunc nulla a turpis. In hac habitasse platea dictumst. Nulla a posuere felis. Vestibulum molestie lectus orci. Suspendisse dapibus nulla ex, sit amet efficitur tellus facilisis id. Etiam suscipit bibendum purus quis gravida. Mauris congue, ante non finibus scelerisque, lorem diam aliquam arcu, aliquam auctor dui nulla ac dui. Vivamus in eros risus. Curabitur vitae massa euismod quam sodales fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas faucibus, mi non accumsan tincidunt, justo ante fermentum ligula, sit amet accumsan nisi lacus vel purus. Etiam non interdum metus.' d='Shop.Theme.Catalog'} 
                 </div>
             </div>
