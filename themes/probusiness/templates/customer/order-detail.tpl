@@ -12,8 +12,8 @@
         <div id="order-infos">
             <div class="box">
                 <div class="row">
-                    <div class="col-xs-{if $order.details.reorder_url}9{else}12{/if}" style="text-align: center;text-transform: uppercase;font-size: 34px;">
-                        <strong style="color: #777;"> {l s='Order' d='Shop.Theme.Actions'} <span style="color: #0273eb">{$order.details.reference}</span> <strong>
+                    <div class="col-xs-{if $order.details.reorder_url}9{else}12{/if}" style="text-align: center;text-transform: uppercase;font-size: 30px;">
+                        <strong style="color: #666;font-weight:400;"> {l s='Order' d='Shop.Theme.Actions'} <span style="color: #0273eb;font-weight:600;">{$order.details.reference}</span> <strong>
                     </div>
                 <div class="clearfix"></div>
             </div>
@@ -21,7 +21,7 @@
         
         <div class="">
             <table class="table table-striped table-bordered hidden-sm-down">
-                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 24px">
+                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;color: #666;font-weight:700;">
                     <tr>
                         <td>{l s='Date'     d='Shop.Theme.Actions'}</td>
                         <td>{l s='Montant'  d='Shop.Theme.Checkout'}</td>
@@ -34,7 +34,7 @@
                         {/if}
                     </tr>
                 </thead>
-                <tbody style="text-align: center;font-size: 18px;">
+                <tbody style="text-align: center;font-size: 16px;font-weight:400;">
                     <tr>
                         <td>{$order.history.current.date_add|date_format:"d-m-Y"}</td>
                         <td>{$order.totals.total.value|escape:'html':'UTF-8'}</td>
@@ -57,20 +57,20 @@
     {/block}
 
     {block name='addresses'}
-        <div class="addresses">
+        <div class="addresses" style="display: flex;padding: 1rem 0;">
             {if $order.addresses.delivery}
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <article id="delivery-address" class="box">
+            <div class="col-lg-6 col-md-6 col-sm-6" style="min-height:100%;">
+                <article id="delivery-address" class="box" style="height: 100%;margin-bottom:0;">
                     <h4 style="font-size: 24px;border-bottom: 3px solid #0273eb;padding: 10px 0;text-transform: uppercase">{l s='Delivery address' d='Shop.Theme.Checkout'}</h4>
-                    <address style="font-size: 18px; line-height: 1.4;">{$order.addresses.delivery.formatted nofilter}</address>
+                    <address style="font-size: 16px;font-weight:400; line-height: 1.4;">{$order.addresses.delivery.formatted nofilter}</address>
                 </article>
             </div>
             {/if}
             
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <article id="invoice-address" class="box" style="text-align: right;">
+            <div class="col-lg-6 col-md-6 col-sm-6"  style="min-height:100%;">
+                <article id="invoice-address" class="box" style="text-align: right;height: 100%;margin-bottom:0;">
                     <h4 style="font-size: 24px;border-bottom: 3px solid #0273eb;padding: 10px 0;text-transform: uppercase">{l s='Invoice address' d='Shop.Theme.Checkout'}</h4>
-                    <address style="font-size: 18px; line-height: 1.4;">{$order.addresses.invoice.formatted nofilter}</address>
+                    <address style="font-size: 16px;font-weight:400; line-height: 1.4;">{$order.addresses.invoice.formatted nofilter}</address>
                 </article>
             </div>
             <div class="clearfix"></div>
@@ -89,9 +89,9 @@
 
     {block name='order_history'}
         <section id="order-history" class="">
-            <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;">{l s='Status history' d='Shop.Theme.Actions'}</h3>
+            <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Status history' d='Shop.Theme.Actions'}</h3>
             <table class="table table-striped table-bordered table-labeled hidden-xs-down">
-                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 24px">
+                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;font-weight:700;">
                     <tr>
                         <td>{l s='Date' d='Shop.Theme.Actions'}</td>
                         <td>{l s='Status' d='Shop.Theme.Actions'}</td>
@@ -99,7 +99,7 @@
             </thead>
             <tbody>
                 {foreach from=$order.history item=state}
-                    <tr style="text-align: center;font-size: 18px">
+                    <tr style="text-align: center;font-size: 16px;font-weight:400;">
                         <td>{$state.history_date|escape:'html':'UTF-8'}</td>
                         <td> <span class="label label-pill {$state.contrast|escape:'html':'UTF-8'}" style="background-color:{$state.color|escape:'html':'UTF-8'}"> {$state.ostate_name|escape:'html':'UTF-8'} </span> </td>
                     </tr>
@@ -131,9 +131,9 @@
     {block name='order_carriers'}
         {if $order.shipping}
             <div class="">
-                <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;">{l s='Information' d='Shop.Theme.Actions'}</h3>
+                <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Information' d='Shop.Theme.Actions'}</h3>
                 <table class="table table-striped table-bordered hidden-sm-down" style>
-                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 24px">
+                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;font-weight:700;">
                         <tr>
                             <td>{l s='Last update' d='Shop.Theme.Actions'}</td>
                             <td>{l s='Weight' d='Shop.Theme.Checkout'}</td>
@@ -143,7 +143,7 @@
                     </thead>
                     <tbody>
                         {foreach from=$order.shipping item=line}
-                            <tr style="text-align: center;font-size: 18px">
+                            <tr style="text-align: center;font-size: 16px;font-weight:400;">
                                 <td>{$line.shipping_date|escape:'html':'UTF-8'}</td>
                                 <td>{$line.weight|number_format:2:".":","} Kg</td>
                                 <td>{$line.carrier_name|escape:'html':'UTF-8'}</td>

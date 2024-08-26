@@ -4,7 +4,7 @@
 
     <div class="hidden-sm-down">
         <table id="order-products" class="table table-bordered">
-            <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 24px">
+            <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;text-transform: uppercase;font-size: 16px;font-weight:700;">
                 <tr style="text-align: center;">
                     <td>{l s='Reference' d='Shop.Theme.Catalog'}</td>
                     <td>{l s='Product' d='Shop.Theme.Catalog'}</td>
@@ -16,7 +16,7 @@
             </thead>
 
             {foreach from=$order.products item=product}
-                <tr style="font-size: 18px;text-align: center;">
+                <tr style="font-size: 16px;font-weight:400;text-align: center;">
                     <td>
                     {$product.reference|escape:'html':'UTF-8'} </td>
                     <td> <a style="display: block;" {if isset($product.download_link)}href="{$product.download_link|escape:'html':'UTF-8'}"{/if}> {$product.name|escape:'html':'UTF-8'} </a> 
@@ -70,15 +70,15 @@
             {/foreach}
             <tfoot>
                 {if ($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount ) > 0}
-                <tr style="font-size: 18px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
-                    <td colspan="5" style="text-align: right;">{l s='Total taxes' d='Shop.Theme.Catalog'}</td>
-                    <td>{number_format($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount, 2, '.', ',')} €</td>
+                <tr style="font-size: 16px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
+                    <td colspan="5" style="text-align: right;font-weight:700;text-transform:uppercase;">{l s='Total taxes' d='Shop.Theme.Catalog'}</td>
+                    <td style="font-weight:400;">{number_format($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount, 2, '.', ',')} €</td>
                 </tr>
                 {/if}
 
-                <tr style="font-size: 18px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
-                    <td colspan="5" style="text-align: right;">{l s='Total paid' d='Shop.Theme.Catalog'}</td>
-                    <td>{$order.totals.total.value|escape:'html':'UTF-8'}</td>
+                <tr style="font-size: 16px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
+                    <td colspan="5" style="text-align: right;font-weight:700;text-transform:uppercase;">{l s='Total paid' d='Shop.Theme.Catalog'}</td>
+                    <td style="font-weight:400;">{$order.totals.total.value|escape:'html':'UTF-8'}</td>
                 </tr>
             </tfoot>
         </table>
