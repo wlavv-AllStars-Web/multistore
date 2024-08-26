@@ -54,6 +54,9 @@
                                 <i class="material-icons right">&#xE315;</i>
                             </div>
                         {/block}
+                        <div style="margin-top: 50px;border: 3px solid lightgrey; display: flex; line-height: 2;">
+                            {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
+                        </div>
                     </section>
                 {/block}
             </div>
@@ -77,7 +80,7 @@
                     <div style="width: 150px; height: 3px; background-color: lightgrey; margin: 30px auto;"></div>
                 </div>
 
-                {* {block name='product_prices'} {include file='catalog/_partials/product-prices.tpl'} {/block} *}
+                {block name='product_prices'} {include file='catalog/_partials/product-prices.tpl'} {/block}
 
 
                 <div class="product-actions js-product-actions">
@@ -87,7 +90,7 @@
                             <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
                             <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
         
-                            {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
+                            {* {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block} *}
         
                             {block name='product_pack'}
                                 {if $packItems}
