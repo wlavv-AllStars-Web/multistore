@@ -55,9 +55,6 @@
                             </div>
                         {/block}
                     </section>
-                    {* <div style="margin-top: 10px; line-height: 2;">
-                        {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
-                    </div> *}
                 {/block}
             </div>
             <div class="col-lg-8">
