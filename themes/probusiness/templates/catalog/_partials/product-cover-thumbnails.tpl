@@ -49,9 +49,9 @@
     </div>
     <div style="font-weight: bolder;color: grey">{l s='ILLUSTRATIVE PHOTO, WITHOUT LICENSE' d='Shop.Theme.Catalog'}</div>
     
-    <div style="margin-top: 50px;border: 3px solid lightgrey; display: flex; line-height: 2;">
-        <div style="float: left; width: calc( 100% - 60px )"> {l s='CHOOSE YOUR VERSION' d='Shop.Theme.Catalog'} </div>
-        <div style="float: left; width: 60px"> <i class="fa-solid fa-chevron-down"></i> </div>
+    <div style="margin-top: 10px; line-height: 2;">
+        {* <div style="float: left; width: calc( 100% - 60px )"> {l s='CHOOSE YOUR VERSION' d='Shop.Theme.Catalog'} </div>
+        <div style="float: left; width: 60px"> <i class="fa-solid fa-chevron-down"></i> </div> *}
       {block name='product_variants'} {include file='catalog/_partials/product-variants.tpl'} {/block}
     </div>
   {/block}
