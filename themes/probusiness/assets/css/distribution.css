@@ -3131,10 +3131,15 @@ textarea {
    }
 
    #js-product-list .product-miniature .thumbnail-container:hover{
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
     /* outline: 2px solid #0273EB; */
     /* transition: box-shadow ease-in-out 250ms; */
+    background: #f6f6f6;
    }
+
+  .product-miniature:not(.type_list_full_width) .product-description{
+    background: none !important;
+  }
 
   .btn-product-details{
     text-transform: uppercase;
