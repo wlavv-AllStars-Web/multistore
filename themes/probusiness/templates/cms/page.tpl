@@ -1169,7 +1169,7 @@
                   {l s='Vehicles transport specialist, TrancarPremium uses state-of-the-art logistics tools, allowing the team to offer unparalleled quality of service and great management flexibility. Based in Portugal, the company offers different premium solutions for shipping supercars, racing cars, classics or exotics throughout Europe.' d='Shop.Theme.Partners'}
                 </div>
                 <div class="button_container_partners">
-                  <a href="https://transcarpremium.com/en/" target="_blank" class="button_partners" rel="noreferrer noopener">{l s='Website' d='Shop.Theme.Partners'}</a>
+                  <a href="https://transcarpremium.com/" target="_blank" class="button_partners" rel="noreferrer noopener">{l s='Website' d='Shop.Theme.Partners'}</a>
                 </div>
               </div>
               </div>
