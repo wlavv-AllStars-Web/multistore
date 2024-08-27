@@ -4761,6 +4761,11 @@ textarea {
 }
 
 @media screen and (min-width: 541px) {
+
+  .container-orders{
+    margin-top: 2rem;
+  }
+
   /* cms privacy */
 
   .cms-id-7 .breadcrumb {
@@ -5997,10 +6002,6 @@ textarea {
 
   #my-account #myTabContent {
     padding: 0;
-  }
-
-  #my-account #myTabContent #order_history {
-    padding-top: 1rem;
   }
 
   #my-account #myTabContent #order_history .order {

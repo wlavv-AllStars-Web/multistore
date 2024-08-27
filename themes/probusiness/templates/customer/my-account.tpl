@@ -201,7 +201,7 @@
                 </a>
             </div> 
           </div>
-          <div class="container-orders" style="margin-top: 2rem;">
+          <div class="container-orders">
             <div style="display: flex;justify-content:space-between;width:100%;">
               <h1>{l s='Order history' d='Shop.Theme.Customeraccount'}</h1>
               {* <a class="btn_clearfilter" onclick="cleanFilter()">{l s="Clean Filter" d="Shop.Theme.Customeraccount"}<i class="fa-solid fa-filter-circle-xmark" ></i></a> *}
