@@ -79,7 +79,7 @@
                 <img class="left_icon_footer" src="/img/asd/ASD_footer_ima.png" alt="Star" width="25" height="25">
               {/if}
               <a id="{$link.id|escape:'html':'UTF-8'}-{$linkBlock.id|escape:'html':'UTF-8'}"
-                class="text {$link.class|escape:'html':'UTF-8'}" href="{$link.url|escape:'html':'UTF-8'}"
+                class="text {$link.class|escape:'html':'UTF-8'}"  target="_blank"  href="{$link.url|escape:'html':'UTF-8'}"
                 title="{$link.description|escape:'html':'UTF-8'}">
                 {$link.title|escape:'html':'UTF-8'}
               </a>
@@ -103,7 +103,7 @@
           </a> *}
           <div>
             <img class="left_icon_footer" src="/img/asd/location.png" width="24" height="24" alt="location">
-            Z.I Gandra, 4930-311 Valença</div>
+            Z.I. Gandra, 4930-311 Valença</div>
         </li>
         <li>
           <div>
@@ -209,13 +209,13 @@
             {/foreach}
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
               <img class="left_icon_footer" src="/img/asd/facebook.svg" width="25" height="25" alt="facebook"> 
-                <a id="link-cms-page-7" class="text cms-page-link" href="https://www.facebook.com/allstarsdistribution" title="">
+                <a id="link-cms-page-7" class="text cms-page-link" target="_blank" href="https://www.facebook.com/allstarsdistribution" title="">
                   Facebook
                 </a>
               </li>
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
                 <img class="left_icon_footer" src="/img/asd/instagram.svg" width="25" height="25" alt="instagram"> 
-                <a id="link-cms-page-7" class="text cms-page-link" href="https://instagram.com/allstarsdistribution" title="">
+                <a id="link-cms-page-7" class="text cms-page-link" target="_blank" href="https://instagram.com/allstarsdistribution" title="">
                   Instagram
                 </a>
               </li>
@@ -234,7 +234,7 @@
 
         <div>
           <img class="left_icon_footer" src="/img/asd/location.png" width="24" height="24" alt="location">
-          Z.I Gandra, 4930-311 Valença, Portugal
+          Z.I. Gandra, 4930-311 Valença
         </div>
       </li>
       <li>

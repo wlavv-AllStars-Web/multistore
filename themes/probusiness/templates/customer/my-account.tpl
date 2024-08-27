@@ -649,6 +649,11 @@
             @media screen and (max-width:540px){
               table#table_shipping > thead > tr > td { color: #FFF; background-color: dodgerblue; text-align: center; text-transform: uppercase;font-size: 1rem; font-weight: bolder; }
               table#table_shipping > tbody > tr > td { color: #333; background-color: #fff; text-align: center; text-transform: uppercase;font-size: 14px; font-weight: bolder;line-height: 2; }
+
+              #shipping h1{
+                display: flex;
+                flex-direction: column;
+              }
             }
             
         </style>
