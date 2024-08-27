@@ -5027,6 +5027,10 @@ textarea {
 
 @media (max-width: 543px) {
 
+  form .send-form{
+    margin: auto;
+  }
+
   .order-states-container {
     display: grid;
     margin: 1rem 0;
@@ -5929,7 +5933,7 @@ textarea {
 
   .radio-btns-form {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 
   /* cms terms */

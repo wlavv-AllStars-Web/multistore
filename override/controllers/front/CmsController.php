@@ -271,7 +271,10 @@ class CmsControllerCore extends FrontController
     }
 
     public function getCountries(){
-        $query='SELECT '._DB_PREFIX_.'country.id_country, `name`, '._DB_PREFIX_.'country_lang.id_lang, `call_prefix` FROM `'._DB_PREFIX_.'country` INNER JOIN `'._DB_PREFIX_.'country_lang` ON '._DB_PREFIX_.'country.id_country='._DB_PREFIX_.'country_lang.id_country AND '._DB_PREFIX_.'country_lang.id_lang = 1 ORDER BY name ASC';
+        
+        // echo '<pre>'.print_r($this->context->language->id,1).'</pre>';
+        // exit;
+        $query='SELECT '._DB_PREFIX_.'country.id_country, `name`, '._DB_PREFIX_.'country_lang.id_lang, `call_prefix` FROM `'._DB_PREFIX_.'country` INNER JOIN `'._DB_PREFIX_.'country_lang` ON '._DB_PREFIX_.'country.id_country='._DB_PREFIX_.'country_lang.id_country AND '._DB_PREFIX_.'country_lang.id_lang = '.$this->context->language->id.' ORDER BY name ASC';
         
         //echo $query;
         //exit;

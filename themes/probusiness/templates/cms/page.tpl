@@ -710,11 +710,11 @@
 
             <p>{l s='In order to make the Website and Services available to you, or to meet a legal obligation, we may need to collect and use certain Personal Information. If you do not provide the information that we request, we may not be able to provide you with the requested products or services. Any of the information we collect from you may be used for the following purposes:' d='Shop.Theme.Privacy'}</p><br>
 
-            <p>{l s='Create and manage user accounts' d='Shop.Theme.Privacy'}</p>
-            <p>{l s='Fulfill and manage orders' d='Shop.Theme.Privacy'}</p>
-            <p>{l s='Deliver products or services' d='Shop.Theme.Privacy'}</p>
-            <p>{l s='Respond to inquiries and offer support' d='Shop.Theme.Privacy'}</p>
-            <p>{l s='Run and operate the Website and Services' d='Shop.Theme.Privacy'}</p><br>
+            <p>-{l s='Create and manage user accounts' d='Shop.Theme.Privacy'}</p>
+            <p>-{l s='Fulfill and manage orders' d='Shop.Theme.Privacy'}</p>
+            <p>-{l s='Deliver products or services' d='Shop.Theme.Privacy'}</p>
+            <p>-{l s='Respond to inquiries and offer support' d='Shop.Theme.Privacy'}</p>
+            <p>-{l s='Run and operate the Website and Services' d='Shop.Theme.Privacy'}</p><br>
 
             <p>{l s='Processing your Personal Information depends on how you interact with the Website and Services, where you are located in the world and if one of the following applies: (i) you have given your consent for one or more specific purposes; this, however, does not apply, whenever the processing of Personal Information is subject to European data protection law; (ii) provision of information is necessary for the performance of an agreement with you and/or for any pre-contractual obligations thereof; (iii) processing is necessary for compliance with a legal obligation to which you are subject; (iv) processing is related to a task that is carried out in the public interest or in the exercise of official authority vested in us; (v) processing is necessary for the purposes of the legitimate interests pursued by us or by a third party.' d='Shop.Theme.Privacy'}</p>
 
@@ -916,10 +916,10 @@
             </div>
             <div class="legal-info col-lg-12 col-md-12">
               <div class="line-info">
-                <strong>{l s='This website uses cookies for optimal performance and to analyze our traffic.' d="Shop.Theme.LegalNotice"}</strong>
+                <span>{l s='This website uses cookies for optimal performance and to analyze our traffic.' d="Shop.Theme.LegalNotice"}</span>
                 </div>
               <div class="line-info">
-                <strong>{l s='We do not share information about your use of our site with any third company.' d="Shop.Theme.LegalNotice"}</strong>
+                <span>{l s='We do not share information about your use of our site with any third company.' d="Shop.Theme.LegalNotice"}</span>
               </div>
 
             </div>
@@ -928,7 +928,7 @@
             </div>
             <div class="legal-copyright col-lg-12 col-md-12">
               <div class="line-info">
-                <strong>{l s='Copyright 2024 : All Stars Distribution - All Rights Reserved' d="Shop.Theme.LegalNotice"}</strong>
+                <span>{l s='Copyright 2024 : All Stars Distribution - All Rights Reserved' d="Shop.Theme.LegalNotice"}</span>
               </div> 
             </div>
           </div>
@@ -1370,13 +1370,13 @@
                 <form class="form-career" action_job="form_job" method="post" name="application__form">
                   <input type="hidden" name="action_job" value="form_job">
                   <div class="form-row radio-btns-form  col-lg-12">
-                    <div class="form-check col-md-1">
+                    <div class="form-check col-lg-1 col-md-6">
                       <input class="form-check-input" type="radio" name="gender" id="gender" value="1">
                       <label class="form-check-label" for="gender">
                       {l s='Mr.' d='Shop.Theme.Career'}
                       </label>
                     </div>
-                    <div class="form-check  col-md-1">
+                    <div class="form-check  col-lg-1 col-md-6">
                       <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="2">
                       <label class="form-check-label" for="gridRadios2">
                       {l s='Mrs.' d='Shop.Theme.Career'}
