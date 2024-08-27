@@ -69,9 +69,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="notification-tab" title="{l s="Notifications" d="Shop.Theme.Statistics"}"  onclick="openShippingtab('{$urls.pages.my_account}','notification')" role="tab" aria-controls="notification" aria-selected="false" style="padding:0.5rem 1rem;" ><i class="fa-solid fa-bell"></i></a>
             </li>
-            <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
+            {* <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
                 <a class="nav-link" id="logout-tab"  href="/?mylogout="><i class="fa-solid fa-lock-open"></i></a>
-            </li>
+            </li> *}
         </ul>
     </div>
 

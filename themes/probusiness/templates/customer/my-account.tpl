@@ -74,9 +74,9 @@
       {* <li class="setNameTitle" style="width: 100%;display:flex;justify-content: center;font-size:30px;color:#666;font-weight:700;">
         titulo
       </li> *}
-      <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
+      {* <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
         <a class="nav-link" id="logout-tab"  href="/?mylogout="><i class="fa-solid fa-lock-open"></i></a>
-      </li>
+      </li> *}
 
       
     </ul>
@@ -190,7 +190,7 @@
                 </a>
             </div> 
             <div class="card-status-myaccount">
-                <a onclick="cleanFilter()">
+                <a onclick="findRowTable(0)">
                     <div class="counters_panel margin-lados-10 ">
                       <div class="color-label">
                         <div class="not_invoiced"></div>
@@ -201,7 +201,7 @@
                 </a>
             </div> 
           </div>
-          <div style="margin-top: 2rem;">
+          <div class="container-orders" style="margin-top: 2rem;">
             <div style="display: flex;justify-content:space-between;width:100%;">
               <h1>{l s='Order history' d='Shop.Theme.Customeraccount'}</h1>
               {* <a class="btn_clearfilter" onclick="cleanFilter()">{l s="Clean Filter" d="Shop.Theme.Customeraccount"}<i class="fa-solid fa-filter-circle-xmark" ></i></a> *}
@@ -322,12 +322,22 @@
           {/if}
           <script>
             function findRowTable(state_num) {
+              const containerOrders = document.querySelector(".container-orders")
               const rows = document.querySelectorAll("#order_history tbody tr");
               const rowsM = document.querySelectorAll("#order_history .orders .order");
+              containerOrders.classList.add("show-orders")
+
+              containerOrders.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                  inline: 'nearest'
+              });
 
               if(window.screen.width > 767){
                 rows.forEach(row => {
                   if (row.getAttribute('data-state') == state_num) {
+                    row.style.display = ''; 
+                  }else if(state_num === 0) {
                     row.style.display = ''; 
                   } else {
                     row.style.display = 'none'; 
@@ -337,7 +347,9 @@
                 rowsM.forEach(row => {
                   if (row.getAttribute('data-state') == state_num) {
                     row.style.display = ''; 
-                  } else {
+                  }else if(state_num === 0) {
+                    row.style.display = ''; 
+                  }else {
                     row.style.display = 'none'; 
                   }
                 });

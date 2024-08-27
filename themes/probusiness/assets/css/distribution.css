@@ -6304,11 +6304,48 @@ textarea {
     width: 100%;
   }
 
+  #menu-client{
+    justify-content: space-between;
+  }
+
+  #menu-client .nav-item{
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    height: 38px;
+  }
+  #menu-client .nav-item #warranty-tab{
+    padding-block: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #menu-client .nav-item #contact-tab{
+    padding-block: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #menu-client li:last-child{
+    border-right: 0 !important;
+  }
+
   #menu-client .nav-item a {
     display: flex;
   }
   #menu-client .nav-item a i {
     font-size: 1.25rem;
+  }
+
+  #my-account #profile .form-check-label{
+    text-align: left !important;
+  }
+  .container-orders{
+    display: none;
+  }
+  .container-orders.show-orders{
+    display: block;
   }
 
   /* cart page */
