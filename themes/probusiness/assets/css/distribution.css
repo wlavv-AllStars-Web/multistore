@@ -6051,6 +6051,10 @@ textarea {
     overflow: scroll;
   }
 
+  #my-account .status .label-pill{
+    padding: 0.25rem;
+  }
+
 
   /* cms terms */
 

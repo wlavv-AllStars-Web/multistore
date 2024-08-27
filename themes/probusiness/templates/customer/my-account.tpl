@@ -286,7 +286,7 @@
               {foreach from=$orders item=order}
                 <div class="order" data-state="{$order.history.current.id_order_state}">
                   <div class="row" style="display: flex;">
-                    <div class="col-xs-6" >
+                    <div class="col-xs-6 pr-0" >
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3>
                       <div class="date" style="color: #555;">{$order.details.order_date|escape:'html':'UTF-8'}</div>
                       <div class="total" style="color: #555;">{$order.totals.total.value|escape:'html':'UTF-8'}</div>
