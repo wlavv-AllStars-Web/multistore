@@ -373,19 +373,19 @@
           <div class="col-sm-12 text-center" style="margin-bottom: 2rem;">
               <div class="row statistics_container charts" style="max-width: 1350px; margin: 0 auto;">
                   <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                      <div>{l s='Total purchases per month' d='Shop.Theme.Statistics'}</div>
+                      <div  style="font-size: 24px;position: relative;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Total purchases per month' d='Shop.Theme.Statistics'}</div>
                       <canvas id="myChart" width="664" height="332"></canvas>
                   </div>
 
                   <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                    <div>{l s='Total purchases by brand (€)' d='Shop.Theme.Statistics'}</div>
+                    <div  style="font-size: 24px;position: relative;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Total purchases by brand (€)' d='Shop.Theme.Statistics'}</div>
                       <canvas id="chart-area" height="332" class="chartjs-render-monitor"></canvas>
                   </div>
               </div>
           </div>
           <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12">
-              <div class="title-clientstatistics"  style="font-size: 14px;position: relative; top: 20px;text-align:center;">{l s='Best seller products' d="Shop.Theme.Statistics"}</div>
+              <div class="title-clientstatistics"  style="font-size: 24px;position: relative; top: 20px;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Best seller products' d="Shop.Theme.Statistics"}</div>
               <canvas id="myChart-statistics"></canvas>
             </div>
             <div style="border-top: 1px solid #c8c8c8;padding: 10px 0;text-align: center;color: #666;cursor: pointer;margin-top: 20px; font-weight: bolder;" onclick="$('#top_100').toggle()">{l s='Check Top 100' d="Shop.Theme.Statistics"}</div>
