@@ -254,7 +254,9 @@
                     </td>
                     <td class="text-xs-center">
                       {foreach from=$order.shipping item=line}
+                        <a href="{$line.url}" style="color: #0273eb;">
                         {$line.tracking}
+                        </a>
                       {/foreach}
                     </td>
                     <td class="text-xs-center hidden-md-down">
@@ -283,8 +285,8 @@
             <div class="orders hidden-md-up">
               {foreach from=$orders item=order}
                 <div class="order" data-state="{$order.history.current.id_order_state}">
-                  <div class="row">
-                    <div class="col-xs-10" >
+                  <div class="row" style="display: flex;">
+                    <div class="col-xs-6" >
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3></a>
                       <div class="date">{$order.details.order_date|escape:'html':'UTF-8'}</div>
                       <div class="total">{$order.totals.total.value|escape:'html':'UTF-8'}</div>
@@ -297,19 +299,34 @@
                         </span>
                       </div>
                     </div>
-                    <div class="col-xs-2 text-xs-right">
+                    <div class="col-xs-6 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 1rem;">
+                        {* <pre>{$order.shipping|print_r}</pre> *}
                         <div>
-                          <a href="{$order.details.details_url|escape:'html':'UTF-8'}" data-link-action="view-order-details" title="{l s='Details'  d='Shop.Theme.Customeraccount'}">
-                            <i class="material-icons">&#xE8B6;</i>
-                          </a>
+                          {foreach from=$order.shipping item=line}
+                            {$line.carrier_name}
+                            
+                            <i class="fa-solid fa-truck" style="font-size: 1.25rem;padding-left: 0.5rem;color: #0273eb;"></i>
+                          {/foreach}
                         </div>
-                        {if $order.details.reorder_url}
-                          <div>
-                            <a href="{$order.details.reorder_url|escape:'html':'UTF-8'}" title="{l s='Reorder'  d='Shop.Theme.Customeraccount'}">
-                              <i class="material-icons">&#xE863;</i>
+                        <div>
+                          {foreach from=$order.shipping item=line}
+                            <a href="{$line.url}" style="color: #0273eb;">
+                              {$line.tracking}
+                              <i class="fa-solid fa-map-location-dot" style="font-size: 1.25rem;padding-left: 0.5rem;"></i>
                             </a>
-                          </div>
+                          {/foreach}
+                        </div>
+
+                        <div>
+                        {if $order.details.invoice_url}
+                          <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
+                            {* <i class="material-icons">&#xE415;</i> *}
+                            <img src="/img/asd/icon_invoice.svg" width="23" height="23" style="width: 23px;height:auto;" />
+                          </a>
+                        {else}
+                          -
                         {/if}
+                      </div>
                     </div>
                   </div>
                 </div>
