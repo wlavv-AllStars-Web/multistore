@@ -143,6 +143,12 @@
             {foreach $linkBlock.links as $link key=item}
                 
               {if $item == 0}
+                <img class="left_icon_footer" src="/img/asd/ASD_footer_ima.png" alt="Star" width="25" height="25">
+                    <a id="{$link.id|escape:'html':'UTF-8'}-{$linkBlock.id|escape:'html':'UTF-8'}"
+                      class="text {$link.class|escape:'html':'UTF-8'}" href="{$link.url|escape:'html':'UTF-8'}"
+                      title="{$link.description|escape:'html':'UTF-8'}">
+                      {$link.title|escape:'html':'UTF-8'}
+                    </a>
               {else}
                 <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
                   {if $link.title == "Facebook"}
