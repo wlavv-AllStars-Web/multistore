@@ -10,6 +10,10 @@ class IndexController extends IndexControllerCore
     {
         $this->getCategories();
 
+        if($this->context->customer->isLogged()){
+            Tools::redirect('my-account');
+        }
+
         
 
         $this->id_shop = (int)Context::getContext()->shop->id;
