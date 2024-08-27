@@ -6055,6 +6055,12 @@ textarea {
     padding: 0.25rem;
   }
 
+  #js-product-list .next.js-search-link i {
+    font-weight: inherit !important;
+  }
+  #js-product-list .previous.js-search-link i {
+    font-weight: inherit !important;
+  }
 
   /* cms terms */
 

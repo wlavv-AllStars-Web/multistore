@@ -19,7 +19,7 @@
 *  International Registered Trademark & Property of ETS-Soft
 *}
 <nav class="pagination">
-  
+
 
   <div class="col-md-12" style="display: flex;justify-content:center;">
     {block name='pagination_page_list'}
@@ -36,9 +36,11 @@
                 style="position: relative;"
               >
                 {if $page.type === 'previous'}
-                  <i style="font-size: 32px;font-style:normal;position:absolute;top:50%;left:50%;transform:translate(-66%,-54%)">🢐</i>{l s='Previous' d='Shop.Theme.Actions'}
+                  {* {l s='Previous' d='Shop.Theme.Actions'} *}
+                  <i class="fa-solid fa-angle-left"></i>
                 {elseif $page.type === 'next'}
-                  {l s='Next' d='Shop.Theme.Actions'}<i style="font-size: 32px;font-style:normal;position:absolute;top:50%;left:50%;transform:translate(-31%,-54%)">🢒</i>
+                  {* {l s='Next' d='Shop.Theme.Actions'} *}
+                  <i class="fa-solid fa-angle-right"></i>
                 {else}
                   {$page.page|escape:'html':'UTF-8'}
                 {/if}
