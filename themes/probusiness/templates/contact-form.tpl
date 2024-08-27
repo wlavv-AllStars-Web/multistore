@@ -45,7 +45,7 @@
   <div style="background-color: #fff;">
     <img alt="contact" src="/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp" class="img-responsive" style="margin:0 auto;width:100%">
 
-    <div>
+    <div style="display:flex;">
         <ul class="nav nav-tabs" id="menu-client" role="tablist" style="display: flex;align-items:center;background-color: #f7f7f7; border: 1px solid #d8d8d8; height: 55px;margin-top: 20px;">
             <li class="nav-item">
                 <a class="nav-link" title="{l s="Orders history" d="Shop.Theme.Statistics"}" id="order_history-tab"  onclick="openShippingtab('{$urls.pages.my_account}','order_history')"role="tab" aria-controls="order_history" aria-selected="false" style="padding:0.5rem 1rem;" ><i class="fa fa-list-ol website_blue font-size-40"></i></a>
