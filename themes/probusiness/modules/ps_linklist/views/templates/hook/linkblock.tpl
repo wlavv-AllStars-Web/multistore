@@ -214,13 +214,13 @@
               
             {/foreach}
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
-              <img class="left_icon_footer" src="/img/asd/facebook.svg" width="25" height="25" alt="facebook"> 
+              <img class="left_icon_footer" src="/img/asd/facebook.svg" width="25" height="25" alt="facebook" style="margin-left: -2px;"> 
                 <a id="link-cms-page-7" class="text cms-page-link" target="_blank" href="https://www.facebook.com/allstarsdistribution" title="">
                   Facebook
                 </a>
               </li>
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
-                <img class="left_icon_footer" src="/img/asd/instagram.svg" width="25" height="25" alt="instagram"> 
+                <img class="left_icon_footer" src="/img/asd/instagram.svg" width="25" height="25" alt="instagram" style="margin-left: -2px;"> 
                 <a id="link-cms-page-7" class="text cms-page-link" target="_blank" href="https://instagram.com/allstarsdistribution" title="">
                   Instagram
                 </a>
