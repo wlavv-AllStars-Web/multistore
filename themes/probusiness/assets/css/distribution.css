@@ -5936,6 +5936,22 @@ textarea {
     /* flex-direction: column; */
   }
 
+  /* login form  */
+
+  #authentication .login-form-page{
+    width: 100%;
+    padding: 1rem;
+    max-width: 600px;
+    box-shadow: none;
+  }
+
+  #authentication .login-form-page .col-md-6{
+    width: 100% !important;
+  }
+  #authentication .login-form-page input{
+    width: 100%;
+  }
+
   /* cms terms */
 
   .cms-id-13 .breadcrumb {
