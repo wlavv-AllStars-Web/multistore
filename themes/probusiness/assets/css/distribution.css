@@ -4762,6 +4762,10 @@ textarea {
 
 @media screen and (min-width: 541px) {
 
+  #my-account .row.statistics_container.charts{
+    margin-bottom: 2rem !important;
+  }
+
   .container-orders{
     margin-top: 2rem;
   }
@@ -6009,12 +6013,19 @@ textarea {
     padding: 1rem;
   }
 
+
   #my-account #myTabContent #order_history .order:nth-child(even) {
     background-color: #e7e7e7;
   }
 
   #my-account #myTabContent #order_history .order .row div:nth-child(1) a {
     color: #0273eb;
+  }
+
+  #my-account .row.statistics_container.charts{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
   /*  */
   /* Dashboard mobile */

@@ -400,7 +400,7 @@
         </div> *}
 
         <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">  
-          <div class="col-sm-12 text-center" style="margin-bottom: 2rem;">
+          <div class="col-sm-12 text-center">
               <div class="row statistics_container charts" style="max-width: 1350px; margin: 0 auto;">
                   <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
                       <div  style="font-size: 24px;position: relative;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Total purchases per month' d='Shop.Theme.Statistics'}</div>
@@ -418,9 +418,9 @@
               <div class="title-clientstatistics"  style="font-size: 24px;position: relative; top: 20px;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Best seller products' d="Shop.Theme.Statistics"}</div>
               <canvas id="myChart-statistics"></canvas>
             </div>
-            <div style="border-top: 1px solid #c8c8c8;padding: 10px 0;text-align: center;color: #666;cursor: pointer;margin-top: 20px; font-weight: bolder;" onclick="$('#top_100').toggle()">{l s='Check Top 100' d="Shop.Theme.Statistics"}</div>
-            <div id="top_100" style="display: none;border-top: 1px solid #c8c8c8;padding: 10px 0;text-align: left;color: #666;cursor: pointer;margin-top: 0px; font-weight: bolder;">
-                    <div style="width: 33%; float: left;">
+            {* <div style="border-top: 1px solid #c8c8c8;padding: 10px 0;text-align: center;color: #666;cursor: pointer;margin-top: 20px; font-weight: bolder;" onclick="$('#top_100').toggle()">{l s='Check Top 100' d="Shop.Theme.Statistics"}</div>
+            <div id="top_100" style="display: none;border-top: 1px solid #c8c8c8;padding: 10px 0;text-align: left;color: #666;cursor: pointer;margin-top: 0px; font-weight: bolder;"> *}
+                    {* <div style="width: 33%; float: left;">
                     {foreach $top['top1'] AS $k => $product}
                         <div style="padding: 5px; height: 27px;">
                             <div style="width: 40px; float: left;">{$k+1}.</div>
@@ -445,8 +445,8 @@
                             <div style="width: calc(100% - 40px); float: left;"><a style="color: #777;" href="/{$product['id_product']}-top100.html" target="_blank">{$product['reference']}</a></div>
                         </div>
                     {/foreach}
-                    </div>
-                </div>
+                    </div> *}
+                {* </div> *}
           </div>
           {* {debug} *}
           <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
@@ -496,7 +496,7 @@
 
 
           <div class="col-sm-12 last-viewed-products-container">
-            <div class="statistics_container">
+            <div class="statistics_container" style="color: #0273eb;font-size:20px;">
               {l s='Last viewed products' d="Shop.Theme.Statistics"}
             </div>
             <div class="last-viewed-products">
@@ -535,7 +535,7 @@
           </div>
 
           <div class="col-sm-12 most-purchased-container" style="margin-left: 0;">
-            <div class="statistics_container">
+            <div class="statistics_container" style="color: #0273eb;font-size:20px;">
               {l s='Most purchased products' d="Shop.Theme.Statistics"}
             </div>
             <div class="most-purchased" style="">
@@ -621,16 +621,35 @@
                         {/foreach}
                     </tbody>
                 </table>
-                <div style="text-align: center;text-transform: uppercase;color: #000;font-size: 16px; border-left: 3px solid #000; border-bottom: 3px solid #000; border-right: 3px solid #000; padding: 20px;width: 800px; margin: 0 auto;font-weight: bolder;">{l s='Rate per parcel up to 305cm girth ( 2 x H + 2 x B + 1 x L ) - Oversized applicable : 21.50 €' d='Shop.Theme.Customeraccount'}</div>
+                <div class="table_shipping_footer">{l s='Rate per parcel up to 305cm girth ( 2 x H + 2 x B + 1 x L ) - Oversized applicable : 21.50 €' d='Shop.Theme.Customeraccount'}</div>
             </div>
         </div>
         
         <style>
             
-            table#table_shipping{ width: 800px; margin: 0 auto; }
+            table#table_shipping{ max-width: 800px; margin: 0 auto;width: 100%; }
             table#table_shipping > thead > tr { border-bottom: 3px solid #333; }
             table#table_shipping > thead > tr > td { color: #FFF; background-color: dodgerblue; text-align: center; text-transform: uppercase;font-size: 22px; font-weight: bolder; }
             table#table_shipping > tbody > tr > td { color: #333; background-color: #fff; text-align: center; text-transform: uppercase;font-size: 22px; font-weight: bolder;line-height: 2; }
+            .table_shipping_footer {
+              text-align: center;
+              text-transform: uppercase;
+              color: #333;
+              font-size: 16px;
+              border-left: 3px solid #333; 
+              border-bottom: 3px solid #333; 
+              border-right: 3px solid #333; 
+              padding: 20px;
+              max-width: 800px; 
+              width: 100%;
+              margin: 0 auto;
+              font-weight: bolder;
+            }
+
+            @media screen and (max-width:540px){
+              table#table_shipping > thead > tr > td { color: #FFF; background-color: dodgerblue; text-align: center; text-transform: uppercase;font-size: 1rem; font-weight: bolder; }
+              table#table_shipping > tbody > tr > td { color: #333; background-color: #fff; text-align: center; text-transform: uppercase;font-size: 14px; font-weight: bolder;line-height: 2; }
+            }
             
         </style>
         
@@ -1045,7 +1064,7 @@ const totalArray = totalString.split(",").map(total => total.trim());
 					display: false,
 				},
 				title: {
-					display: true,
+					display: false,
 					text: ''
 				},
         
