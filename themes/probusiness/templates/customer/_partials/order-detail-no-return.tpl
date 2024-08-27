@@ -88,7 +88,7 @@
         {foreach from=$order.products item=product}
             <div class="order-item">
             <div class="row">
-              <div class="col-sm-5 desc">
+              <div class="col-md-5 col-sm-12 col-xs-12 desc">
                 <div class="name">{$product.name|escape:'html':'UTF-8'}</div>
                 {if $product.reference}
                   <div class="ref">{l s='Reference' d='Shop.Theme.Catalog'}: {$product.reference|escape:'html':'UTF-8'}</div>
@@ -103,7 +103,7 @@
                   {/foreach}
                 {/if}
               </div>
-              <div class="col-sm-7 qty">
+              <div class="col-md-7 col-sm-12 col-xs-12 qty">
                 <div class="row">
                   <div class="col-xs-4 text-sm-left text-xs-left">
                     {$product.price|escape:'html':'UTF-8'}

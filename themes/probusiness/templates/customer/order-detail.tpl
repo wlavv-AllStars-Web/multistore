@@ -1,8 +1,8 @@
 {extends file='customer/page.tpl'}
 
 {block name='page_title'}
-    <div class="col-lg-12 banner-myaccount" style="margin-bottom: 1rem;padding:0;">
-        <img src="/img/asd/Content_pages/order-details/order_{$language.iso_code}.webp" alt="account_banner" />
+    <div class="col-lg-12 banner-orderdetails" style="margin-bottom: 1rem;padding:0;">
+        <img src="/img/asd/Content_pages/order-details/order_{$language.iso_code}.webp" alt="account_banner" style="width: 100%;" />
     </div>
 {/block}
 
@@ -12,7 +12,7 @@
         <div id="order-infos">
             <div class="box">
                 <div class="row">
-                    <div class="col-xs-{if $order.details.reorder_url}9{else}12{/if}" style="text-align: center;text-transform: uppercase;font-size: 30px;">
+                    <div class="col-xs-12" style="text-align: center;text-transform: uppercase;font-size: 30px;">
                         <strong style="color: #666;font-weight:400;"> {l s='Order' d='Shop.Theme.Actions'} <span style="color: #0273eb;font-weight:600;">{$order.details.reference}</span> <strong>
                     </div>
                 <div class="clearfix"></div>
@@ -59,7 +59,7 @@
     {block name='addresses'}
         <div class="addresses" style="display: flex;padding: 1rem 0;">
             {if $order.addresses.delivery}
-            <div class="col-lg-6 col-md-6 col-sm-6" style="min-height:100%;">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="min-height:100%;">
                 <article id="delivery-address" class="box" style="height: 100%;margin-bottom:0;">
                     <h4 style="font-size: 24px;border-bottom: 3px solid #0273eb;padding: 10px 0;text-transform: uppercase">{l s='Delivery address' d='Shop.Theme.Checkout'}</h4>
                     <address style="font-size: 16px;font-weight:400; line-height: 1.4;">{$order.addresses.delivery.formatted nofilter}</address>
@@ -67,7 +67,7 @@
             </div>
             {/if}
             
-            <div class="col-lg-6 col-md-6 col-sm-6"  style="min-height:100%;">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"  style="min-height:100%;">
                 <article id="invoice-address" class="box" style="text-align: right;height: 100%;margin-bottom:0;">
                     <h4 style="font-size: 24px;border-bottom: 3px solid #0273eb;padding: 10px 0;text-transform: uppercase">{l s='Invoice address' d='Shop.Theme.Checkout'}</h4>
                     <address style="font-size: 16px;font-weight:400; line-height: 1.4;">{$order.addresses.invoice.formatted nofilter}</address>
@@ -132,7 +132,8 @@
         {if $order.shipping}
             <div class="">
                 <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Information' d='Shop.Theme.Actions'}</h3>
-                <table class="table table-striped table-bordered hidden-sm-down" style>
+                <div class="mobile-table">
+                <table class="table table-striped table-bordered" style>
                     <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                         <tr>
                             <td>{l s='Last update' d='Shop.Theme.Actions'}</td>
@@ -152,6 +153,7 @@
                         {/foreach}
                     </tbody>
                 </table>
+                </div>
             </div>
         {/if}
     {/block}

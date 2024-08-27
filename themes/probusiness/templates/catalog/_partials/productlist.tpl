@@ -28,7 +28,7 @@
 <div class="products{if !empty($cssClass)} {$cssClass}{/if}">
     {foreach from=$products item="product" key="position"}
         {if $position%2==0 && $position > 0}
-            <div class="col-lg-12" style="height: 2px;width:100%;background: #0273EB ;"></div>
+            <div class="col-lg-12 line-productlist" style="height: 2px;width:100%;background: #0273EB ;"></div>
         {/if} 
         {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses}
     {/foreach}
