@@ -287,9 +287,9 @@
                 <div class="order" data-state="{$order.history.current.id_order_state}">
                   <div class="row" style="display: flex;">
                     <div class="col-xs-6" >
-                      <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3></a>
-                      <div class="date">{$order.details.order_date|escape:'html':'UTF-8'}</div>
-                      <div class="total">{$order.totals.total.value|escape:'html':'UTF-8'}</div>
+                      <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3>
+                      <div class="date" style="color: #555;">{$order.details.order_date|escape:'html':'UTF-8'}</div>
+                      <div class="total" style="color: #555;">{$order.totals.total.value|escape:'html':'UTF-8'}</div>
                       <div class="status">
                         <span
                           class="label label-pill {$order.history.current.contrast|escape:'html':'UTF-8'}"
@@ -298,17 +298,18 @@
                           {$order.history.current.ostate_name|escape:'html':'UTF-8'}
                         </span>
                       </div>
+                      </a>
                     </div>
-                    <div class="col-xs-6 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 1rem;">
+                    <div class="col-xs-6 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 14px;">
                         {* <pre>{$order.shipping|print_r}</pre> *}
-                        <div>
+                        <div style="display: flex;align-items:center;justify-content:end;">
                           {foreach from=$order.shipping item=line}
                             {$line.carrier_name}
                             
                             <i class="fa-solid fa-truck" style="font-size: 1.25rem;padding-left: 0.5rem;color: #0273eb;"></i>
                           {/foreach}
                         </div>
-                        <div>
+                        <div style="display: flex;align-items:center;justify-content:end;">
                           {foreach from=$order.shipping item=line}
                             <a href="{$line.url}" style="color: #0273eb;">
                               {$line.tracking}
@@ -317,7 +318,7 @@
                           {/foreach}
                         </div>
 
-                        <div>
+                        <div style="display: flex;align-items:center;justify-content:end;">
                         {if $order.details.invoice_url}
                           <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
                             {* <i class="material-icons">&#xE415;</i> *}
