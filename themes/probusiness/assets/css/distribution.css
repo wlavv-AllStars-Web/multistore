@@ -5513,10 +5513,14 @@ textarea {
     height: 40px;
     align-items: center;
   }
-  
+
   .header-nav-container {
     width: 100%;
     display: flex;
+  }
+
+  .card-status-myaccount a{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
   .wdth.mobile .cart-container {
