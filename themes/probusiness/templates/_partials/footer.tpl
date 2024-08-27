@@ -27,7 +27,7 @@
     
     <div style="justify-content:center; display: flex ; max-width: 100%;" class="row">
     <div style="padding-top: 25px ;" class="col-md-12" >
-      <p class="text-sm-center" style="font-weight: 600;font-size:12px;text-transform:uppercase;">
+      <p class="text-sm-center" style="font-weight: 600;font-size:12px;text-transform:uppercase;text-align:center;">
         {block name='copyright_link'}
           {l s='@ 2024 All Stars Distribution. All Rights Reserved.' d='Shop.Theme.Copyrights'}
         {/block}

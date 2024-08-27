@@ -206,13 +206,13 @@
         </li>
 
         <li style="width: 100%" class="mxsz cms-page" id="cms-page-26">
-            <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 600" class="bortextalign dropdown-item" href="{$link->getCategoryLink(16)|escape:'html':'UTF-8'}" data-depth="0">
-            {l s='Clearence' d='Shop.Theme.Menu'}
+            <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 600" class="bortextalign dropdown-item" href="{$link->getPageLink('catalog', true)}" data-depth="0">
+            {l s='Catalogs' d='Shop.Theme.Menu'}
             </a>
         </li>
         <li style="width: 100%" class="mxsz cms-page" id="cms-page-26">
-            <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 600" class="bortextalign dropdown-item" href="{$link->getPageLink('catalog', true)}" data-depth="0">
-            {l s='Catalogs' d='Shop.Theme.Menu'}
+            <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 600" class="bortextalign dropdown-item" href="{$link->getCategoryLink(16)|escape:'html':'UTF-8'}" data-depth="0">
+            {l s='Clearence' d='Shop.Theme.Menu'}
             </a>
         </li>
       </ul>
