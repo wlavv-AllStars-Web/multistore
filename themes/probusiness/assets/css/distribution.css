@@ -5510,8 +5510,10 @@ textarea {
   }
 
   #header .header-nav {
-    height: 30px;
+    height: 40px;
+    align-items: center;
   }
+  
   .header-nav-container {
     width: 100%;
     display: flex;
@@ -6388,6 +6390,11 @@ textarea {
   #menu-client{
     max-height: 42px;
     margin-bottom: 1rem;
+  }
+
+  #menu-client .nav-item a{
+    width: 100%;
+  justify-content: center;
   }
 
   #notification .notification-header{
