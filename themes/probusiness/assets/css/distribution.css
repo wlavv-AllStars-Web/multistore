@@ -3853,6 +3853,18 @@ textarea {
   #checkout #delivery-addresses .form-control{
     background-color: #ffffff !important;
   }
+
+  .row-info-product .col-lg-12.row-info-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+  .row-info-product .row-info-details .col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    width: fit-content !important;
+  }
 }
 
 @media screen and (min-width: 769px) and (max-width: 991px) {

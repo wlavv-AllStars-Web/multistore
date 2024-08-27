@@ -29,17 +29,8 @@
 
     <section id="main" style="max-width:1350px;margin:auto;">
 
-        <div class="row" style="text-align: center;">
-            <div class="col-lg-2">
-                <img src="/img/asd/product/exclusive.webp" style="width: 120px;padding: 25px 0;" alt="Distributor"/>
-            </div>
-            <div class="col-lg-8">
-                <img src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product->manufacturer_name|replace:' ':''}/{$product.id_manufacturer}.webp" style="width: 90%; margin: 0 auto;" alt="Brand banner"/>
-            </div>
-            <div class="col-lg-2">
-                <img src="/img/asd/product/exclusive.webp" style="width: 120px;padding: 25px 0;" alt="Origin"/>
-            </div>
-        </div>
+        
+        <img src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product->manufacturer_name|replace:' ':''}/{$product.id_manufacturer}.webp" style="width: 100%; margin: 0 auto;" alt="Brand banner"/>
 
         <div class="row" style="text-align: center;margin-top: 50px;">
             <div class="col-lg-4">
@@ -126,80 +117,81 @@
             </div>
         </div>
 
-        <div class="row" style="text-align: left;margin-top: 30px;">
-            <div class="col-lg-3">
-                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
-                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
-                    <div>
-                        <span>{l s='Stock:' d='Shop.Theme.Catalog'}</span> 
-                        {if $product.quantity > 3}
-                            <span style="color: green;font-weight:400;">{$product.quantity}</span>
-                        {elseif $product.quantity >= 1 && $product.quantity <= 3}
-                            <span style="color: orange;font-weight:400;">{$product.quantity}</span>
-                        {else}
-                            <span style="color: red;font-weight:400;">0</span>
-                        {/if}
-                        
+        <div class="row-info-product" style="text-align: left;margin-top: 30px;">
+            <div class="col-lg-12 row-info-details">
+                <div class="col-lg-3">
+                    <h1 style="width:fit-content;padding-bottom: 5px;font-size: 24px;color:#0273eb;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
+                    <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
+                        <div>
+                            <span>{l s='Stock:' d='Shop.Theme.Catalog'}</span> 
+                            {if $product.quantity > 3}
+                                <span style="color: green;font-weight:400;">{$product.quantity}</span>
+                            {elseif $product.quantity >= 1 && $product.quantity <= 3}
+                                <span style="color: orange;font-weight:400;">{$product.quantity}</span>
+                            {else}
+                                <span style="color: red;font-weight:400;">0</span>
+                            {/if}
+                            
+                        </div>
+                        <div>
+                            <span>{l s='Arrive:' d='Shop.Theme.Catalog'}</span> 
+                            <span style="font-weight: 400;">15</span>
+                        </div>
+                        <div>
+                            <span>{l s='ETA:' d='Shop.Theme.Catalog'}</span> 
+                            <span style="font-weight: 400;">12/04/2024</span>
+                        </div>
                     </div>
-                    <div>
-                        <span>{l s='Arrive:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">15</span>
+                </div>
+                <div class="col-lg-3">
+                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Package:' d='Shop.Theme.Catalog'}</h1>
+                    <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
+                        <div>
+                            <span>{l s='Volume:' d='Shop.Theme.Catalog'}</span> 
+                            <span style="font-weight: 400;">{$product.width*$product.height*$product.depth|number_format:2} <small>cm3</small></span>
+                        </div>
+                        <div>
+                            <span style="font-weight: 400;"><span style="font-weight: 600;">W:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">H:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">L:</span> {$product.depth|number_format:0}<small>cm</small></span>
+                        </div>
+                        <div>
+                            <span style="font-weight: 400;">{$product.weight|number_format:2}<small>kg</small></span>
+                        </div>
                     </div>
-                    <div>
-                        <span>{l s='ETA:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">12/04/2024</span>
+                    
+                </div>
+                <div class="col-lg-3">
+                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Info:' d='Shop.Theme.Catalog'}</h1>
+                    <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
+                        <div>
+                            <span>{l s='Origin:' d='Shop.Theme.Catalog'}</span> 
+                            <span style="font-weight: 400;">{$product.location}</span>
+                        </div>
+                        <div>
+                            <span>{l s='Tax:' d='Shop.Theme.Catalog'}</span> 
+                            <span style="font-weight: 400;">{$product.rate}</span>
+                        </div>
+                        <div>
+                            <span>{l s='Status:' d='Shop.Theme.Catalog'}</span> 
+                    {if $product.active === 1}<span style="color: green;font-weight:400;">{l s='Active' d='Shop.Theme.Catalog'}</span>{else}<span style="color: red;font-weight:400;">{l s="Unavailable" d='Shop.Theme.Catalog'}</span>{/if}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-3">
+                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
+                    <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
+                        <div>
+                            <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
+                        </div>
+                        <div>
+                            <a style="color: #666;" href="">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
+                        </div>
+                        <div>
+                            <a style="color: #666;" onclick="openShippingtab('{$urls.pages.my_account}','shipping')">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Package:' d='Shop.Theme.Catalog'}</h1>
-                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
-                    <div>
-                        <span>{l s='Volume:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">{$product.width*$product.height*$product.depth|number_format:2} <small>cm3</small></span>
-                    </div>
-                    <div>
-                        <span style="font-weight: 400;"><span style="font-weight: 600;">W:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">H:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">L:</span> {$product.depth|number_format:0}<small>cm</small></span>
-                    </div>
-                    <div>
-                        <span style="font-weight: 400;">{$product.weight|number_format:2}<small>kg</small></span>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-lg-3">
-                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Info:' d='Shop.Theme.Catalog'}</h1>
-                <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
-                    <div>
-                        <span>{l s='Origin:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">{$product.location}</span>
-                    </div>
-                    <div>
-                        <span>{l s='Tax:' d='Shop.Theme.Catalog'}</span> 
-                        <span style="font-weight: 400;">{$product.rate}</span>
-                    </div>
-                    <div>
-                        <span>{l s='Status:' d='Shop.Theme.Catalog'}</span> 
-                {if $product.active === 1}<span style="color: green;font-weight:400;">{l s='Active' d='Shop.Theme.Catalog'}</span>{else}<span style="color: red;font-weight:400;">{l s="Unavailable" d='Shop.Theme.Catalog'}</span>{/if}
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-lg-3">
-                <h1 style="border-bottom: 3px solid #0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
-                <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
-                    <div>
-                        <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
-                    </div>
-                    <div>
-                        <a style="color: #666;" href="">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
-                    </div>
-                    <div>
-                        <a style="color: #666;" onclick="openShippingtab('{$urls.pages.my_account}','shipping')">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 
-                    </div>
-                </div>
-            </div>
-            
             <div class="col-lg-12">
                 <div style="width: 80%; height: 3px; background-color: lightgrey; margin: 50px auto;"></div>
             </div>

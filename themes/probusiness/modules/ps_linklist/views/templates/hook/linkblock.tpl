@@ -208,13 +208,13 @@
               
             {/foreach}
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
-              <img class="left_icon_footer" src="/img/asd/facebook.svg" width="24" height="24" alt="facebook"> 
+              <img class="left_icon_footer" src="/img/asd/facebook.svg" width="25" height="25" alt="facebook"> 
                 <a id="link-cms-page-7" class="text cms-page-link" href="https://www.facebook.com/allstarsdistribution" title="">
                   Facebook
                 </a>
               </li>
               <li style="list-style-type: none !important;display:flex;align-items:center;gap: 0.25rem;">
-                <img class="left_icon_footer" src="/img/asd/instagram.svg" width="24" height="24" alt="instagram"> 
+                <img class="left_icon_footer" src="/img/asd/instagram.svg" width="25" height="25" alt="instagram"> 
                 <a id="link-cms-page-7" class="text cms-page-link" href="https://instagram.com/allstarsdistribution" title="">
                   Instagram
                 </a>
@@ -409,7 +409,7 @@
     }
 
     .mobile-footer ul {
-      background: #666;
+      background: #222;
       border-top: 2px solid #0273eb;
       padding: 1rem;
     }

@@ -442,13 +442,13 @@
                   <div class="stats_container_value">{$lastOrder}</div>
               </div>
               <div class="spacer-20"></div>
-              <div class="statistics_container margin-left-10">
+              {* <div class="statistics_container margin-left-10">
                   <div class="stats_container_label">{l s='My addresses' d="Shop.Theme.Statistics"}</div>
                   <div class="stats_container_value">{$numberAddresses}</div>
-              </div>
+              </div> *}
               <div class="spacer-20"></div>
               <div class="statistics_container margin-left-10">
-                  <div class="stats_container_label"><a style="color: dodgerblue;" href="#order_history">{l s='Number of orders' d="Shop.Theme.Statistics"}</a></div>
+                  <div class="stats_container_label">{l s='Number of orders' d="Shop.Theme.Statistics"}</div>
                   <div class="stats_container_value">{$numberOfOrders}</div>
               </div>
               <div class="spacer-20"></div>

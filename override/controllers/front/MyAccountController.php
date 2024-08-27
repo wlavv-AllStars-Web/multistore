@@ -179,6 +179,8 @@ class MyAccountController extends MyAccountControllerCore
             $this->order_presenter = new OrderPresenter();
         }
 
+
+
         $has_address = $this->context->customer->getAddresses($this->context->language->id);
         $this->context->smarty->assign(array(
             'shipping' => $shipping,
@@ -200,7 +202,7 @@ class MyAccountController extends MyAccountControllerCore
             'clientSince' => $clientSince,
             'numberAddresses' => self::getNumberAddresses($idCustomer),
             'numberOfOrders' => $numberOfOrders,
-            'totalOfOrders' => $totalOfOrders,
+            'totalOfOrders' => number_format($totalOfOrders, 2, ',', ' '),
             'average' => number_format($average, 2, ',', ''),
             'lastViewedProducts' => self::getLastViewedProducts(),
             'mostBoughtProducts' => self::getMostBoughtProducts($idCustomer),
