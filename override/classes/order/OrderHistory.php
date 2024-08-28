@@ -782,7 +782,7 @@ class OrderHistoryCore extends ObjectModel
                 <tr>
                     <td>
                         <p>
-                        '.$this->trans('message_payment_card', [], 'Emails.Body').'
+                        '.$this->trans('message_payment_card', [], 'Shop.Theme.Global').'
                         </p>
                     </td>
                 </tr>
