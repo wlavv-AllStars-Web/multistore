@@ -154,7 +154,7 @@
                             <span style="font-weight: 400;"><span style="font-weight: 600;">{l s='Width' d='Shop.Theme.Catalog'}:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='Height' d='Shop.Theme.Catalog'}:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='Length' d='Shop.Theme.Catalog'}:</span> {$product.depth|number_format:0}<small>cm</small></span>
                         </div>
                         <div>
-                            <span style="font-weight: 400;">{$product.weight|number_format:2}<small>kg</small></span>
+                            <span style="font-weight: 400;">{l s='Weight' d='Shop.Theme.Catalog'}: {$product.weight|number_format:2}<small>kg</small></span>
                         </div>
                     </div>
                     
@@ -181,7 +181,7 @@
                     <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links' d='Shop.Theme.Catalog'}:</h1>
                     <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                         <div>
-                            <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue'}</a> 
+                            <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='CatalogueLink' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
                             <a style="color: #666;" href="">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
