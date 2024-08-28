@@ -4,15 +4,15 @@
             {if $product.has_discount}
                 <div>
                     {hook h='displayProductPriceBlock' product=$product type="old_price"}
-                    <div>{l s="RRP / PVP: " d="Shop.Theme.ProductList"} <span style="font-weight: 400;">{$product.regular_price}</span></div>
-                    <div>{l s="Discount: " d="Shop.Theme.ProductList"} <span style="font-weight: 400;">{$product.discount_percentage}</span></div>
+                    <div>{l s="RRP / PVP" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.regular_price}</span></div>
+                    <div>{l s="Discount" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.discount_percentage}</span></div>
                 </div>
             {/if}
         {/block}
 
         {block name='product_price'}
             <div>
-                {l s="Your Price: " d="Shop.Theme.ProductList"} 
+                {l s="Your Price " d="Shop.Theme.ProductList"}:
                 
                 {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='product_sheet'}{/capture}
                 
@@ -23,7 +23,7 @@
                         <p class="product-unit-price sub">{$product.unit_price_full}</p>
                     {/if}
                 {/block}
-                <div> {l s="Your Margin: " d="Shop.Theme.ProductList"} <span style="font-weight: 400;">{$product.discount_to_display} </span></div>
+                <div> {l s="Your Margin " d="Shop.Theme.ProductList"}: <span style="font-weight: 400;">{$product.discount_to_display} </span></div>
             </div>
         {/block}
 
