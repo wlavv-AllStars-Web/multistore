@@ -6054,6 +6054,25 @@ textarea {
   font-size: 1.25rem;
 }
 
+#my-account .contact-form .btn[name="submitMessage"]{
+  background: #0273eb !important;
+  border: 1px solid #666;
+  color: #fff !important;
+  border-radius: .25rem;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  height: unset;
+}
+
+#my-account .contact-form footer div {
+  margin: auto;
+}
+
 /* product details */
 
   #order-detail .container-fluid{

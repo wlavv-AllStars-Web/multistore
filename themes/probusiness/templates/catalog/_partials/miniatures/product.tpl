@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
- {* <pre>{print_r($product,1)}</pre> *}
+ {* <pre>{print_r($product.id_product_attribute,1)}</pre> *}
  {block name='product_miniature_item'}
  <div class="js-product product{if !empty($productClasses)} {$productClasses}{/if}" style="padding:0;">
  
@@ -127,7 +127,8 @@
                   {hook h='displayProductPriceBlock' product=$product type='weight'}
     
                   
-    
+                  {if $product.id_product_attribute == 0}
+                  {* <pre>{print_r($product.id_product_attribute,1)}</pre> *}
                   <div class="product-actions js-product-actions">
                   {block name='product_buy'}
                     {* <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
@@ -149,45 +150,47 @@
                       <input type="hidden" name="token" value="{$static_token}">
                       <input type="hidden" name="id_product" value="{$product.id}" id="product_page_product_id">
                       <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
-    
-                      {block name='product_quantity'}
-                        <div class="product-quantity clearfix">
-                          <div class="qty">
-                            <input
-                              type="number"
-                              name="qty"
-                              id="quantity_wanted"
-                              inputmode="numeric"
-                              pattern="[0-9]*"
-                              {if $product.quantity_wanted}
-                                value="{$product.quantity_wanted}"
-                                min="{$product.minimal_quantity}"
-                              {else}
-                                value="1"
-                                min="1"
-                              {/if}
-                              class="input-group"
-                              aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
-                            >
-                          </div>
-                  
-                          <div class="add">
-                            <button
-                              class="btn btn-primary add-to-cart"
-                              data-button-action="add-to-cart"
-                              type="submit"
-                              {if !$product.add_to_cart_url}
-                                disabled
-                              {/if}
-                              style="display: flex;"
-                            >
-                              <i class="material-icons shopping-cart" style="margin-right: 0;">&#xE547;</i>
-                            </button>
-                          </div>
-                  
+                      
+                        {block name='product_quantity'}
+                          <div class="product-quantity clearfix">
+                            <div class="qty">
+                              <input
+                                type="number"
+                                name="qty"
+                                id="quantity_wanted"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                                {if $product.quantity_wanted}
+                                  value="{$product.quantity_wanted}"
+                                  min="{$product.minimal_quantity}"
+                                {else}
+                                  value="1"
+                                  min="1"
+                                {/if}
+                                class="input-group"
+                                aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
+                              >
+                            </div>
+                    
+                            <div class="add">
+                              <button
+                                class="btn btn-primary add-to-cart"
+                                data-button-action="add-to-cart"
+                                type="submit"
+                                {if !$product.add_to_cart_url}
+                                  disabled
+                                {/if}
+                                style="display: flex;"
+                              >
+                                <i class="material-icons shopping-cart" style="margin-right: 0;">&#xE547;</i>
+                              </button>
+                            </div>
+                          
                           {* {hook h='displayProductActions' product=$product} *}
                         </div>
                       {/block}
+                          
+
     
                       {block name='product_refresh'}{/block}
                     </form>
@@ -213,6 +216,11 @@
                   {/block}
     
                 </div>
+                {else}
+                  <div style="color: #0273EB;">
+                    {l s="Variations Available" d="Shop.Theme.Productlist"}
+                  </div>
+                {/if}
                   
                 </div>
               {/if}
