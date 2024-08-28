@@ -32,7 +32,7 @@
         
         <img src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product->manufacturer_name|replace:' ':''}/{$product.id_manufacturer}.webp" style="width: 100%; margin: 0 auto;" alt="Brand banner"/>
 
-        <div class="row" style="text-align: center;margin-top: 50px;">
+        <div class="row row-container-product" style="text-align: center;margin-top: 50px;">
             <div class="col-lg-4">
                 {block name='page_content_container'}
                     <section class="page-content" id="content">
@@ -120,7 +120,7 @@
         <div class="row-info-product" style="text-align: left;margin-top: 30px;">
             <div class="col-lg-12 row-info-details">
                 <div class="col-lg-3">
-                    <h1 style="width:fit-content;padding-bottom: 5px;font-size: 24px;color:#0273eb;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
+                    <h1 style="padding-bottom: 5px;font-size: 24px;color:#0273eb;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
                     <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                         <div>
                             <span>{l s='Stock:' d='Shop.Theme.Catalog'}</span> 
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Package:' d='Shop.Theme.Catalog'}</h1>
+                    <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Package:' d='Shop.Theme.Catalog'}</h1>
                     <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                         <div>
                             <span>{l s='Volume:' d='Shop.Theme.Catalog'}</span> 
@@ -160,7 +160,7 @@
                     
                 </div>
                 <div class="col-lg-3">
-                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Info:' d='Shop.Theme.Catalog'}</h1>
+                    <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Info:' d='Shop.Theme.Catalog'}</h1>
                     <div style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 600;">
                         <div>
                             <span>{l s='Origin:' d='Shop.Theme.Catalog'}</span> 
@@ -178,7 +178,7 @@
                     
                 </div>
                 <div class="col-lg-3">
-                    <h1 style="color:#0273eb;width:fit-content;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
+                    <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
                     <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                         <div>
                             <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
