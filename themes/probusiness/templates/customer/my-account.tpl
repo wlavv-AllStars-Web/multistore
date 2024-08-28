@@ -852,7 +852,7 @@
         </div>
 
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        {debug}
+        {* {debug} *}
           {hook h="displayContactContent"}
         </div>
 
