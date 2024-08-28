@@ -151,7 +151,7 @@
                             <span style="font-weight: 400;">{$product.width*$product.height*$product.depth|number_format:2} <small>cm3</small></span>
                         </div>
                         <div>
-                            <span style="font-weight: 400;"><span style="font-weight: 600;">{l s='W:' d='Shop.Theme.Catalog'}:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='H:' d='Shop.Theme.Catalog'}:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='L:' d='Shop.Theme.Catalog'}:</span> {$product.depth|number_format:0}<small>cm</small></span>
+                            <span style="font-weight: 400;"><span style="font-weight: 600;">{l s='W' d='Shop.Theme.Catalog'}:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='H' d='Shop.Theme.Catalog'}:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='L' d='Shop.Theme.Catalog'}:</span> {$product.depth|number_format:0}<small>cm</small></span>
                         </div>
                         <div>
                             <span style="font-weight: 400;">{$product.weight|number_format:2}<small>kg</small></span>
