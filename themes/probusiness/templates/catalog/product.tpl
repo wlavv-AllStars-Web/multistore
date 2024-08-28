@@ -154,7 +154,7 @@
                             <span style="font-weight: 400;"><span style="font-weight: 600;">{l s='Width' d='Shop.Theme.Catalog'}:</span> {$product.width|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='Height' d='Shop.Theme.Catalog'}:</span> {$product.height|number_format:0}<small>cm</small> x <span style="font-weight: 600;">{l s='Length' d='Shop.Theme.Catalog'}:</span> {$product.depth|number_format:0}<small>cm</small></span>
                         </div>
                         <div>
-                            <span style="font-weight: 400;">{l s='Weight' d='Shop.Theme.Catalog'}: {$product.weight|number_format:2}<small>kg</small></span>
+                            <span style="font-weight: 400;"><span style="font-weight: 600;">{l s='Weight' d='Shop.Theme.Catalog'}:</span> {$product.weight|number_format:2}<small>kg</small></span>
                         </div>
                     </div>
                     
