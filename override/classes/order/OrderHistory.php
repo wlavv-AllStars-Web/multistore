@@ -696,6 +696,7 @@ class OrderHistoryCore extends ObjectModel
                 $cart_rules_list_html = $this->getEmailTemplateContent('order_conf_cart_rules.tpl', Mail::TYPE_HTML, $cart_rules_list);
             }
         
+            $payment_string = $this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Global');
 
         $data = [
             '{firstname}' => $customer->firstname,
@@ -752,7 +753,8 @@ class OrderHistoryCore extends ObjectModel
             '{message}' => $order->getFirstMessage(),
             
             '{note}' => $this->getNote($order->id),
-            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference),
+
+            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$payment_string),
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
@@ -775,14 +777,14 @@ class OrderHistoryCore extends ObjectModel
 
     }
 
-    public function getMessage($payment_id,$reference) {
+    public function getMessage($payment_id,$reference,$payment_string) {
         if($payment_id == 2){
             return 
             '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
                 <tr>
                     <td>
                         <p>
-                        '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Global').'
+                        '. $payment_string .'
                         </p>
                     </td>
                 </tr>
