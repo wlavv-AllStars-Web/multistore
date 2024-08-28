@@ -303,7 +303,7 @@
                     <div class="col-xs-6 pr-0" >
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3>
                       <div class="date" style="color: #555;">{$order.details.order_date|escape:'html':'UTF-8'}</div>
-                      <div class="total" style="color: #555;">{$order.totals.total.value|escape:'html':'UTF-8'}</div>
+                      <div class="total" style="color: #555;">{$order.totals.total.value|replace:',':'.'|escape:'html':'UTF-8'}</div>
                       <div class="status">
                         <span
                           class="label label-pill {$order.history.current.contrast|escape:'html':'UTF-8'}"
@@ -333,7 +333,8 @@
                               </a>
                             {else}
                                 <span style="color: #666;opacity: .8;">
-                                    {$line.tracking}
+                                    {* {$line.tracking} *}
+                                    {l s="Unavailable" d='Shop.Theme.Customeraccount'}
                                     <i class="fa-solid fa-map-location-dot" style="font-size: 1.25rem;padding-left: 0.5rem;"></i>
                                 </span>
                             {/if}
