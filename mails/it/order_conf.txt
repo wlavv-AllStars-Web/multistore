@@ -35,6 +35,8 @@ Indirizzo di fatturazione
 
 {invoice_block_txt}
 
+{message_payment}
+
 Segui il tuo ordine e scarica la fattura sul nostro negozio, vai alla sezione [Storico e dettagli degli ordini]({history_url}) del tuo account cliente.
 
 Se hai un account ospite, puoi seguire le fasi del tuo ordine tramite la sezione [Tracciamento Ospite]({guest_tracking_url}) nel nostro negozio.
