@@ -782,7 +782,7 @@ class OrderHistoryCore extends ObjectModel
                 <tr>
                     <td>
                         <p>
-                        '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Emails.Body').'
+                        '.$this->trans('message_payment_card', [], 'Emails.Body').'
                         </p>
                     </td>
                 </tr>
