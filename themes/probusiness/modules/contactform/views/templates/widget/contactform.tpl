@@ -26,12 +26,12 @@
 <pre>{$language_id|print_r}</pre> *}
 <section class="contact-form" style="width:100%;max-width:1440px;">
   <div align="center" style="background-color: #fff;">
-    <img alt="contact" src="/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp" class="img-responsive" style="margin:0 auto;width:100%">
+    {* <img alt="contact" src="/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp" class="img-responsive" style="margin:0 auto;width:100%"> *}
     {* <div style="max-width: 1200px;padding-top: 23px;font-height: 600; color:#000; font-size:16px;margin: 20px auto 40px auto;padding-inline:1rem">
       {l s='In order to provide optimal customer service in 4 languages that ensures fast and efficient follow-up of our contacts, our communications are exclusively carried out by email. We do not use telephone lines or social networks.' d='Shop.Theme.Global'}
     </div> *}
 
-    <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if} style="max-width: 1440px;">
+    <form action="{$urls.pages.my_account}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if} style="max-width: 1440px;">
       {if $notifications}
         <div class="col-xs-12 alert {if $notifications.nw_error}alert-danger{else}alert-success{/if}">
           <ul>
@@ -46,7 +46,7 @@
         <section class="form-fields">
 
 
-          {* <div class="form-group row">
+          <div class="form-group row" style="display: none;">
             <label class="col-md-3 form-control-label" for="id_contact">{l s='Subject' d='Shop.Forms.Labels'}</label>
             <div class="col-md-6">
               <select name="id_contact" id="id_contact" class="form-control form-control-select">
@@ -55,9 +55,9 @@
                 {/foreach}
               </select>
             </div>
-          </div> *}
+          </div>
 
-          {if $contact.orders}
+          {* {if $contact.orders}
             <div class="form-group col-12 col-lg-4 col-xs-12">
               <label class="col-md-12 form-control-label"
                 for="id-order">{l s='Order reference' d='Shop.Forms.Labels'}</label>
@@ -68,7 +68,7 @@
                     <option value="{$order.id_order}">{$order.reference}</option>
                   {/foreach}
                 </select>
-              </div>
+              </div> *}
               {* <div class="col-12" style="display: flex;align-items: center;gap: 5px;justify-content:flex-start;padding-top:0.5rem;">
                 <input type="checkbox" id="messageCheckBox" name="messageCheckBox" />
                 <label for="messageCheckBox" style="margin-bottom: 0;">{l s='My contact does not refer to any order' d='Shop.Forms.Labels'}<sup>*</sup></label>
@@ -76,9 +76,9 @@
               {* <span class="col-md-3 form-control-comment">
                 {l s='optional' d='Shop.Forms.Help'}
               </span> *}
-            </div>
-          {else}
-            <div class="form-group col-12 col-lg-4 col-xs-12">
+            {* </div>
+          {else} *}
+            <div class="form-group col-12 col-lg-4 col-xs-12" style="display: none;">
                 <label class="col-md-12 form-control-label" for="reference">{l s='Order Reference' d='Shop.Forms.Labels'}<sup>*</sup></label>
                 <div class="col-md-12">
                   <input id="reference" class="form-control" name="from" type="text" value="{!!$contact.orders}"
@@ -89,7 +89,7 @@
                   <label for="messageCheckBox" style="margin-bottom: 0;">{l s='My contact does not refer to any order' d='Shop.Forms.Labels'}<sup>*</sup></label>
                 </div>
             </div>
-          {/if}
+          {* {/if} *}
           
           
 

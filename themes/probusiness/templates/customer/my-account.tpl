@@ -66,8 +66,11 @@
         <a class="nav-link" id="warranty-tab" title="{l s="Warranty" d="Shop.Theme.Statistics"}" data-toggle="tab" href="#warranty" role="tab" aria-controls="warranty" aria-selected="false" style="padding:0.5rem 12px;" onclick="changeImgBanner(this)"><img src="/img/asd/warranty_icon.svg" width="37" /></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" title="{l s="Contact" d="Shop.Theme.Statistics"}"  href="{$link->getPageLink('contact')}" role="" aria-controls="contact" aria-selected="false" style="padding:0.5rem 9px;" ><img src="/img/asd/email_icon.svg" width="43" /></a>
+        <a class="nav-link" id="contact-tab" title="{l s="Contact" d="Shop.Theme.Statistics"}" onclick="changeImgBanner(this)" data-toggle="tab" href="#contact"  role="tab" aria-controls="contact" aria-selected="false" style="padding:0.5rem 9px;" ><img src="/img/asd/email_icon.svg" width="43" /></a>
       </li>
+      {* <li class="nav-item">
+        <a class="nav-link" id="contact-tab" title="{l s="Contact" d="Shop.Theme.Statistics"}"  href="{$link->getPageLink('contact')}" role="" aria-controls="contact" aria-selected="false" style="padding:0.5rem 9px;" ><img src="/img/asd/email_icon.svg" width="43" /></a>
+      </li> *}
       <li class="nav-item">
         <a class="nav-link" id="notification-tab" title="{l s="Notifications" d="Shop.Theme.Statistics"}" data-toggle="tab" href="#notification" role="tab" aria-controls="notification" aria-selected="false" style="padding:0.5rem 1rem;" onclick="changeImgBanner(this)"><i class="fa-solid fa-bell"></i></a>
       </li>
@@ -828,7 +831,8 @@
         </div>
 
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-          <h1>Contact</h1>
+        {debug}
+          {hook h="displayContactContent"}
         </div>
 
 
@@ -967,6 +971,8 @@
             banner.setAttribute("src", "/img/asd/Content_pages/shipping/shipping_costs_{$language.iso_code}.webp");
           }else if(tabid === 'warranty'){
             banner.setAttribute("src", "/img/asd/Content_pages/warranty/warranty_{$language.iso_code}.webp");
+          }else if(tabid === 'contact'){
+            banner.setAttribute("src", "/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp");
           }else{ 
               banner.setAttribute("src", "/img/asd/Content_pages/account/account_{$language.iso_code}.webp");
           }
