@@ -752,7 +752,7 @@ class OrderHistoryCore extends ObjectModel
             '{message}' => $order->getFirstMessage(),
             
             '{note}' => $this->getNote($order->id),
-            '{message_payment}' => $this->getNote($order->payment_id,$order->reference),
+            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference),
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
