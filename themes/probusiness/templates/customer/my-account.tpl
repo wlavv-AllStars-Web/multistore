@@ -255,17 +255,28 @@
                         {$line.carrier_name}
                       {/foreach}
                     </td>
+                    {* <pre>{print_r($order.shipping,1)}</pre> *}
                     <td class="text-xs-center">
                       {foreach from=$order.shipping item=line}
-                        <a href="{$line.url}" style="color: #0273eb;">
-                        {$line.tracking}
-                        </a>
+                        
+                        {if !empty($line.tracking_number)}
+                          <a href="{$line.url}" style="color: #0273eb;">
+                              {$line.tracking}
+                          </a>
+                        {else}
+                            <span style="color: #333;">
+                                {$line.tracking}
+                            </span>
+                        {/if}
+                      
+                      
                       {/foreach}
                     </td>
                     <td class="text-xs-center hidden-md-down">
                       {if $order.details.invoice_url}
                         <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
                           {* <i class="material-icons">&#xE415;</i> *}
+                          
                           <img src="/img/asd/icon_invoice.svg" width="23" height="23" style="width: 23px;height:auto;" />
                         </a>
                       {else}
@@ -314,17 +325,26 @@
                         </div>
                         <div style="display: flex;align-items:center;justify-content:end;">
                           {foreach from=$order.shipping item=line}
-                            <a href="{$line.url}" style="color: #0273eb;">
-                              {$line.tracking}
-                              <i class="fa-solid fa-map-location-dot" style="font-size: 1.25rem;padding-left: 0.5rem;"></i>
-                            </a>
+                            
+                            {if !empty($line.tracking_number)}
+                              <a href="{$line.url}" style="color: #0273eb;">
+                                {$line.tracking}
+                                <i class="fa-solid fa-map-location-dot" style="font-size: 1.25rem;padding-left: 0.5rem;"></i>
+                              </a>
+                            {else}
+                                <span style="color: #666;opacity: .8;">
+                                    {$line.tracking}
+                                    <i class="fa-solid fa-map-location-dot" style="font-size: 1.25rem;padding-left: 0.5rem;"></i>
+                                </span>
+                            {/if}
                           {/foreach}
                         </div>
 
                         <div style="display: flex;align-items:center;justify-content:end;">
                         {if $order.details.invoice_url}
-                          <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
+                          <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}" style="color: #666;display:flex;align-items:center;gap:1rem;">
                             {* <i class="material-icons">&#xE415;</i> *}
+                            {l s="Invoice" d='Shop.Theme.Customeraccount'}
                             <img src="/img/asd/icon_invoice.svg" width="23" height="23" style="width: 23px;height:auto;" />
                           </a>
                         {else}
