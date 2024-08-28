@@ -782,14 +782,14 @@ class OrderHistoryCore extends ObjectModel
                 <tr>
                     <td>
                         <p>
-                        '.$this->trans('message_payment_card', [], 'Shop.Theme.Global').'
+                        '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Global').'
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
-                            '.$this->trans('Link', [], 'Emails.Body').'
+                            '.$this->trans('Link', [], 'Shop.Theme.Global').'
                         </a>
                     </td>
                 </tr>
