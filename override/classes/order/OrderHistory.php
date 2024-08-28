@@ -696,7 +696,6 @@ class OrderHistoryCore extends ObjectModel
                 $cart_rules_list_html = $this->getEmailTemplateContent('order_conf_cart_rules.tpl', Mail::TYPE_HTML, $cart_rules_list);
             }
         
-            $payment_string = $this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Global');
 
         $data = [
             '{firstname}' => $customer->firstname,
@@ -753,8 +752,7 @@ class OrderHistoryCore extends ObjectModel
             '{message}' => $order->getFirstMessage(),
             
             '{note}' => $this->getNote($order->id),
-
-            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$payment_string),
+            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$this->trans()),
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
@@ -777,28 +775,28 @@ class OrderHistoryCore extends ObjectModel
 
     }
 
-    public function getMessage($payment_id,$reference,$payment_string) {
+    public function getMessage($payment_id,$reference) {
         if($payment_id == 2){
             return 
             '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
                 <tr>
                     <td>
                         <p>
-                        '. $payment_string .'
+                        '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Emails.Body').'
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
-                            '.$this->trans('Link', [], 'Shop.Theme.Global').'
+                            '.$this->trans('Link', [], 'Emails.Body').'
                         </a>
                     </td>
                 </tr>
             </table>';
         }else{
             return '<p>
-                '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Shop.Theme.Global').'
+                '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Emails.Body').'
             </p>';
         }
 
