@@ -103,8 +103,8 @@
                 </div>
 
                 <div class="btns_homepage">
-                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(15)}'">{l s='Become a Dealer' d='Shop.Theme.HomepageLogout'}</div>
-                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(14)}'">{l s='Become a Supplier' d='Shop.Theme.HomepageLogout'}</div>
+                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(14)}'">{l s='Become a Dealer' d='Shop.Theme.HomepageLogout'}</div>
+                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(15)}'">{l s='Become a Supplier' d='Shop.Theme.HomepageLogout'}</div>
                 </div>
 
               </div>
