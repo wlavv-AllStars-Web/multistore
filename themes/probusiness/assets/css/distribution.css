@@ -6050,6 +6050,10 @@ textarea {
   width: 100%;
 }
 
+#menu-client .nav-item a i:hover::before{
+  font-size: 1.25rem;
+}
+
 /* product details */
 
   #order-detail .container-fluid{
