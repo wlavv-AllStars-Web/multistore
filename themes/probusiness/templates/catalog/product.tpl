@@ -206,7 +206,7 @@
                             {$product.description_short}
                         {/if}
                     {else}
-                        {l s="No details"}
+                        {l s="No details"  d='Shop.Theme.Catalog'}
                     {/if}
                 </div>
             </div>
