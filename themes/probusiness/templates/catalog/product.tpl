@@ -178,7 +178,7 @@
                     
                 </div>
                 <div class="col-lg-3">
-                    <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links:' d='Shop.Theme.Catalog'}</h1>
+                    <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links' d='Shop.Theme.Catalog'}:</h1>
                     <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                         <div>
                             <a style="color: #666;" href="{$link->getPageLink('catalog', true)}">{l s='Catalogue' d='Shop.Theme.Catalog'}</a> 
