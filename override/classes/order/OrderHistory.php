@@ -778,14 +778,22 @@ class OrderHistoryCore extends ObjectModel
     public function getMessage($payment_id,$reference) {
         if($payment_id == 2){
             return 
-            '<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
-                <p>
-                '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Emailtemplate').'
-                </p>
-                <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
-                    '.$this->trans('Link').'
-                </a>
-            </div>';
+            '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+                <tr>
+                    <td>
+                        <p>
+                        '.$this->trans('As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.', [], 'Shop.Theme.Emailtemplate').'
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
+                            '.$this->trans('Link').'
+                        </a>
+                    </td>
+                </tr>
+            </table>';
         }else{
             return '<p>
                 '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Shop.Theme.Emailtemplate').'
