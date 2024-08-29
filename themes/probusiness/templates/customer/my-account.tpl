@@ -649,7 +649,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="table_shipping_footer">{l s='Rate per parcel up to 305cm girth ( 2 x H + 2 x B + 1 x L ) - Oversized applicable : 21.50 €' d='Shop.Theme.Customeraccount'}</div>
+                <div class="table_shipping_footer">{l s='Prices applicable up to 305 CM volumetric weight (L+2xW+2xH) - Oversized parcel fee : 21.50€' d='Shop.Theme.Customeraccount'}</div>
             </div>
         </div>
         
