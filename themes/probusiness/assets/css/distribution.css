@@ -1900,6 +1900,7 @@ input[type="number"] {
   display: flex;
   gap:0.5rem;
   justify-content:center;
+  flex-wrap: wrap;
 }
 .product-details .separator{
   color: #0273EB;
@@ -3047,7 +3048,6 @@ textarea {
 }
 
 .links-productpage a{
-  border-bottom: 2px solid #666;
   cursor: pointer;
 }
 .links-productpage a:hover{
@@ -3852,6 +3852,10 @@ textarea {
   }
   #checkout #delivery-addresses .form-control{
     background-color: #ffffff !important;
+  }
+
+  .row-info-product{
+    margin-top: 20px;
   }
 
   .row-info-product .col-lg-12.row-info-details {
@@ -6729,14 +6733,17 @@ textarea {
 
   #product .row-container-product{
     padding: 1rem;
+    margin: 0 !important;
   }
 
   #product .row-info-product .row-info-details {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
   }
 
+  #product .row-info-product .row-info-details > div:nth-child(odd){
+    padding: 1rem;
+  }
   #product .row-info-product .row-info-details > div:nth-child(even){
     background: #f6f6f6;
     padding: 1rem;

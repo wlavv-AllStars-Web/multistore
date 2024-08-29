@@ -67,13 +67,13 @@
                         <div class="product-manufacturer" style="font-size: 18px;font-weight:600;">{l s='Brand:' d='Shop.Theme.Catalog'} <span style="font-size: 18px;font-weight:400;">{$product->manufacturer_name}</span> </div>
                         <span class="separator">|</span>
                         <div class="product-reference" style="font-size: 18px;font-weight:600;">  {l s='SKU:' d='Shop.Theme.Catalog'}   <span style="font-size: 18px;font-weight:400;">{$product.reference}</span> </div>
+                        {if $product->ean13 != ''}
+                            {* <div class="product-details" > *}
+                                <div class="product-manufacturer" style="font-size: 18px;font-weight:600;width:100%;">{l s='UPC:' d='Shop.Theme.Catalog'} <span style="font-size: 18px;font-weight:400;"> {$product->ean13}</span> </div>
+                            {* </div> *}
+                        {/if}
                     </div>
                     
-                    {if $product->ean13 != ''}
-                    <div class="product-details" >
-                        <div class="product-manufacturer" style="font-size: 18px;font-weight:600;">{l s='UPC:' d='Shop.Theme.Catalog'} <span style="font-size: 18px;font-weight:400;"> {$product->ean13}</span> </div>
-                    </div>
-                    {/if}
                     
                     <div style="width: 150px; height: 3px; background-color: lightgrey; margin: 30px auto;"></div>
                 </div>
@@ -117,7 +117,7 @@
             </div>
         </div>
 
-        <div class="row-info-product" style="text-align: left;margin-top: 30px;">
+        <div class="row-info-product" style="text-align: left;">
             <div class="col-lg-12 row-info-details">
                 <div class="col-lg-3">
                     <h1 style="padding-bottom: 5px;font-size: 24px;color:#0273eb;">{l s='Disponibility:' d='Shop.Theme.Catalog'}</h1>
