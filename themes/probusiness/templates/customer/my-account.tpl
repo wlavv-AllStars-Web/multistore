@@ -438,7 +438,7 @@
               </div>
           </div>
           <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12">
+            <div class="col-lg-12 px-0">
               <div class="title-clientstatistics"  style="font-size: 24px;position: relative; top: 20px;text-align:center;padding: 0.5rem;color: #0273eb;">{l s='Best seller products' d="Shop.Theme.Statistics"}</div>
               <canvas id="myChart-statistics"></canvas>
             </div>
