@@ -643,6 +643,10 @@
                             <td>{number_format($row['value_2'], 2 )} €</td>
                         </tr>
                         {/foreach}
+                        <tr>
+                          <td colspan="1">{l s="Resto do Mundo" d="Shop.Theme.Customeraccount"}</td>
+                          <td colspan="2">{l s="Sob consulta" d="Shop.Theme.Customeraccount"}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <div class="table_shipping_footer">{l s='Rate per parcel up to 305cm girth ( 2 x H + 2 x B + 1 x L ) - Oversized applicable : 21.50 €' d='Shop.Theme.Customeraccount'}</div>

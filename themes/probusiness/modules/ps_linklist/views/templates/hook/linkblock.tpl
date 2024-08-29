@@ -369,7 +369,7 @@
     }
 
     .mobile-footer li a:hover{
-      color: #222 !important;
+      /* color: #222 !important; */
       text-decoration: underline;
     }
 
@@ -436,7 +436,7 @@
     }
 
     .mobile-footer li a:hover{
-      color: #222 !important;
+      /* color: #222 !important; */
       text-decoration: underline;
     }
 

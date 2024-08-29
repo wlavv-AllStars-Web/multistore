@@ -94,10 +94,21 @@
           
 
           <div class="form-group  col-12 col-lg-4 col-xs-12">
-            <label class="col-md-12 form-control-label" for="name">{l s='Name' d='Shop.Forms.Labels'}<sup>*</sup></label>
+            <label class="col-md-12 form-control-label" for="name">{l s='Name' d="Shop.Theme.Contactform"}<sup>*</sup></label>
             <div class="col-md-12">
               <input id="name" class="form-control" name="from" type="text" value=""
-                placeholder="Name">
+                placeholder="{l s='Name' d="Shop.Theme.Contactform"}">
+            </div>
+          </div>
+
+          <div class="lastname_field col-12  col-lg-4 col-xs-12">
+            <div class="form-group">
+                          <label class="col-md-12 form-control-label" for="lastname">{l s='Last Name' d="Shop.Theme.Contactform"}<sup>*</sup></label>
+                          {* {if isset($customerThread.extrafield)}
+                          <input class="form-control grey" type="text" id="extrafield" name="extrafield" value="{$customerThread.extrafield|escape:'htmlall':'UTF-8'}" readonly="readonly" maxlength="40" style="max-width: 100%;padding:0.5rem 1rem;"/>
+                          {else} *}
+                          <input class="is_required form-control grey validate" type="text" id="lastname" name="lastname" data-validate="isName" value="" maxlength="40" placeholder="{l s='Last Name' d="Shop.Theme.Contactform"}" style="max-width: 100%;padding:0.5rem 1rem;"/>
+                          {* {/if} *}
             </div>
           </div>
 
@@ -143,7 +154,7 @@
                 placeholder="{l s='How can we help?' d='Shop.Forms.Help'}"
                 rows="3">{if $contact.message}{$contact.message}{/if}</textarea>
             </div>
-            <span class="col-md-12" style="font-size: small;text-align:start;color:#333;">{l s='(max 500 chars)'}</span>
+            <span class="col-md-12" style="font-size: small;text-align:start;color:#333;">{l s='(max 500 chars)' d="Shop.Theme.Contactform"}</span>
           </div>
 
           {if isset($id_module)}
@@ -165,7 +176,7 @@
           <input type="text" name="url" value="" />
           <input type="hidden" name="token" value="{$token}" />
           <div style="width: fit-content; height: fit-content; position: relative; padding-bottom: 1rem;">
-              <input class="btn" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="background: white; color: var(--color-red); margin-bottom: 1rem;">
+              <input class="btn" type="submit" name="submitMessage" value="{l s='Send' d="Shop.Theme.Contactform"}" style="background: white; color: var(--color-red); margin-bottom: 1rem;">
           </div>
 
 

@@ -709,13 +709,24 @@
             <p>{l s='We act in the capacity of a data processor in situations when you submit Personal Information through the Website and Services. We do not own, control, or make decisions about the submitted Personal Information, and such Personal Information is processed only in accordance with your instructions. In such instances, the User providing Personal Information acts as a data controller in terms of the GDPR.' d='Shop.Theme.Privacy'}</p>
 
             <p>{l s='In order to make the Website and Services available to you, or to meet a legal obligation, we may need to collect and use certain Personal Information. If you do not provide the information that we request, we may not be able to provide you with the requested products or services. Any of the information we collect from you may be used for the following purposes:' d='Shop.Theme.Privacy'}</p><br>
-
-            <p>-{l s='Create and manage user accounts' d='Shop.Theme.Privacy'}</p>
-            <p>-{l s='Fulfill and manage orders' d='Shop.Theme.Privacy'}</p>
-            <p>-{l s='Deliver products or services' d='Shop.Theme.Privacy'}</p>
-            <p>-{l s='Respond to inquiries and offer support' d='Shop.Theme.Privacy'}</p>
-            <p>-{l s='Run and operate the Website and Services' d='Shop.Theme.Privacy'}</p><br>
-
+            <ul style="padding-left: 1rem;">
+              <li>
+              <p>- {l s='Create and manage user accounts' d='Shop.Theme.Privacy'}</p>
+              </li>
+              <li>
+              <p>- {l s='Fulfill and manage orders' d='Shop.Theme.Privacy'}</p>
+              </li>
+              <li>
+              <p>- {l s='Deliver products or services' d='Shop.Theme.Privacy'}</p>
+              </li>
+              <li>
+              <p>- {l s='Respond to inquiries and offer support' d='Shop.Theme.Privacy'}</p>
+              </li>
+              <li>
+              <p>- {l s='Run and operate the Website and Services' d='Shop.Theme.Privacy'}</p>
+              </li>
+            </ul>
+            <br>
             <p>{l s='Processing your Personal Information depends on how you interact with the Website and Services, where you are located in the world and if one of the following applies: (i) you have given your consent for one or more specific purposes; this, however, does not apply, whenever the processing of Personal Information is subject to European data protection law; (ii) provision of information is necessary for the performance of an agreement with you and/or for any pre-contractual obligations thereof; (iii) processing is necessary for compliance with a legal obligation to which you are subject; (iv) processing is related to a task that is carried out in the public interest or in the exercise of official authority vested in us; (v) processing is necessary for the purposes of the legitimate interests pursued by us or by a third party.' d='Shop.Theme.Privacy'}</p>
 
             <p>{l s='We rely on user’s consent as a legal base as defined in the GDPR upon which we collect and process your Personal Information.' d='Shop.Theme.Privacy'}</p>
