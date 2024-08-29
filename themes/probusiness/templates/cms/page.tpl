@@ -927,10 +927,10 @@
             </div>
             <div class="legal-info col-lg-12 col-md-12">
               <div class="line-info">
-                <span>{l s='This website uses cookies for optimal performance and to analyze our traffic.' d="Shop.Theme.LegalNotice"}</span>
+                <span>{l s='This website uses cookies for optimal performance and traffic analyze.' d="Shop.Theme.LegalNotice"}</span>
                 </div>
               <div class="line-info">
-                <span>{l s='We do not share information about your use of our site with any third company.' d="Shop.Theme.LegalNotice"}</span>
+                <span>{l s='We do not share information about our website use with any third company.' d="Shop.Theme.LegalNotice"}</span>
               </div>
 
             </div>
