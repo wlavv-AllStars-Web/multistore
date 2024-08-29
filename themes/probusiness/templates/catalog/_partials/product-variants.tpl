@@ -25,7 +25,7 @@
 <div class="product-variants js-product-variants">
   {foreach from=$groups key=id_attribute_group item=group}
     {if !empty($group.attributes)}
-    <div class="clearfix product-variants-item" style="flex-direction: column;text-align:start;">
+    <div class="clearfix product-variants-item" style="flex-direction: column;text-align:start;width:100%;max-width:300px;margin:1rem auto;">
       <span class="control-label">{$group.name}{l s=': ' d='Shop.Theme.Catalog'}
           {foreach from=$group.attributes key=id_attribute item=group_attribute}
             {if $group_attribute.selected}{$group_attribute.name}{/if}

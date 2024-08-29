@@ -1,5 +1,5 @@
 {if $product.show_price}
-    <div style="font-size: 24px; color: #666; font-weight: bold; line-height: 1.7; margin-bottom: 50px;">
+    <div style="font-size: 24px; color: #666; font-weight: bold; line-height: 1.7; margin-bottom: 0px;">
         {block name='product_discount'}
             {if $product.has_discount}
                 <div>

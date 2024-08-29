@@ -1666,8 +1666,8 @@ nav.pagination .page-list li a {
   transform: translate(-50%, -50%);
   position: absolute;
   height: 50px;
-  font-size: 5rem;
-  line-height: 0;
+  font-size: 3rem;
+  line-height: 16px;
   padding-top: 4px;
 }
 #product .product-add-to-cart .input-group-btn-vertical #quantity_wanted {
@@ -6746,6 +6746,10 @@ textarea {
   }
   #product .row-info-product .row-info-details > div:nth-child(even){
     background: #f6f6f6;
+    padding: 1rem;
+  }
+
+  #product .product-add-to-cart.js-product-add-to-cart{
     padding: 1rem;
   }
 }
