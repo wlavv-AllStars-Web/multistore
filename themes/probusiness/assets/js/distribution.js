@@ -93,6 +93,23 @@ function moveQuantityInput() {
         inputGroupVertical.insertBefore(quantityInput, buttons[1]);
     }
 
+    if (buttons.length >= 2) {
+        // First button
+        var firstIcon = buttons[0].querySelector('i');
+        if (firstIcon) {
+            firstIcon.classList.remove('material-icons','touchspin-up');
+            firstIcon.classList.add('fa-solid','fa-plus');
+        }
+
+
+        // Second button
+        var secondIcon = buttons[1].querySelector('i');
+        if (secondIcon) {
+            secondIcon.classList.remove('material-icons','touchspin-down');
+            secondIcon.classList.add('fa-solid','fa-minus');
+        }
+    }
+
 }
 
 // Call the function when DOM content is loaded

@@ -1631,7 +1631,7 @@ nav.pagination .page-list li a {
 
 #product .product-add-to-cart .input-group-btn-vertical .btn-touchspin {
   background: transparent !important;
-  border: 1px solid #0273eb;
+  border: 1px solid #0273EB;
   color: #0273eb;
   /* padding: 0 1.5rem; */
   width: 50px;
@@ -1645,8 +1645,9 @@ nav.pagination .page-list li a {
 #product .product-add-to-cart .input-group-btn-vertical .btn-touchspin i {
   top: 50% !important;
   left: 50% !important;
-  font-size: 1rem !important;
+  /* font-size: 1rem !important; */
   transform: translate(-50%, -50%) !important;
+  font-weight: 600 !important;
 }
 #product .bootstrap-touchspin .input-group-btn-vertical .touchspin-up::after {
   content: "\207A";
@@ -6751,6 +6752,13 @@ textarea {
 
   #product .product-add-to-cart.js-product-add-to-cart{
     padding: 1rem;
+  }
+
+  #product .product-variants.js-product-variants .product-variants-item .control-label{
+    text-align: center;
+  }
+  #product .product-variants.js-product-variants .product-variants-item select{
+    text-align: center;
   }
 }
 
