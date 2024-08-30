@@ -100,9 +100,11 @@
 			</div>
 			<div class="resource-brand-btns">
 				<div class="col-md-4">
+					
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/csv{if $manufacturer.csv == 1}_updated{elseif $manufacturer.csv == 2}_none{elseif $manufacturer.csv == 3}_commingSoon{/if}.png" alt="csv_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Import File' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-4">
@@ -113,30 +115,35 @@
 					{/if}
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/xlsx{if $manufacturer.xlsx == 1}_updated{elseif $manufacturer.xlsx == 2}_none{elseif $manufacturer.xlsx == 3}_commingSoon{/if}.png" alt="xlsx_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Catalogue' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-4">
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_images.zip" download="{$manufacturer.name|replace:' ':''}_IMAGES.zip">
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/zip{if $manufacturer.pictures == 1}_updated{elseif $manufacturer.pictures == 2}_none{elseif $manufacturer.pictures == 3}_commingSoon{/if}.png" alt="pictures_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Pictures' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-4">
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_logos.zip" download="{$manufacturer.name|replace:' ':''}_LOGOS.zip">
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/jpg{if $manufacturer.logos == 1}_updated{elseif $manufacturer.logos == 2}_none{/if}.png" alt="logos_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Logos' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-4">
 					<a href="{$manufacturer.facebook_url}" target="_blank">
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/facebook{if $manufacturer.facebook == 1}_updated{elseif $manufacturer.facebook == 2 }_none{/if}.png" alt="facebook_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Facebook' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-4">
 					<a href="{$manufacturer.site_url}" target="_blank">
 						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/website{if $manufacturer.site ==1}_updated{elseif $manufacturer.site == 2 }_none{/if}.png" alt="site_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
 					</a>
+					<span class="title-resource-btn">{l s='Website' d="Shop.Theme.catalog" }</span>
 				</div>
 			</div>
 
