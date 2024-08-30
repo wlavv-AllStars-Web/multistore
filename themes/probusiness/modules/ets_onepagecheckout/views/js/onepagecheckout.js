@@ -832,7 +832,9 @@ function ets_refresh_shipping_cart(del_product)
             dataType: 'json',                
             success: function(json){ 
                 const loadingOverlay = document.querySelector(".loading-overlay")
-                document.body.removeChild(loadingOverlay);
+                if(loadingOverlay){
+                    document.body.removeChild(loadingOverlay);
+                }
                 $('.loading').removeClass('loading');
                 if(json.cart_detailed=='empty')
                 {
