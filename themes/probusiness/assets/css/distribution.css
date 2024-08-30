@@ -5241,6 +5241,14 @@ textarea {
     display: none !important; 
   }
 
+  .cart_delete-mobile {
+    display: none;
+  }
+
+  .caret-mobile{
+    display: none;
+  }
+
 }
 
 @media (max-width: 543px) {
@@ -5400,7 +5408,7 @@ textarea {
   }
 
   #checkout #conditions-to-approve label{
-    text-align: start;
+    text-align: center;
   }
 
   .cart_unit{
@@ -5492,9 +5500,7 @@ textarea {
   }
 
   .ets_checkinput{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    text-align: center !important;
   }
 
   .invoice_address{
@@ -6631,6 +6637,42 @@ textarea {
   }
   #blockcart-modal .container-modal-btns-shopping a{
     width: 100%;
+  }
+
+  
+  /* checkotu */
+  .cart_delete-mobile{
+    margin-top: 1rem;
+  }
+
+  .cart_delete-mobile i::before{
+    color: #fff !important;
+  }
+
+  .cart-overview .cart_item{
+    padding-bottom: 0;
+  }
+  
+  .js-address-form.invoice_address {
+    height: 0;
+    overflow: hidden;
+    transition: height 500ms ease-in-out, opacity 500ms ease-in-out;
+    opacity: 0;
+  }
+  .js-address-form.invoice_address.showinvoice {
+    height: auto;
+    transition: height 500ms ease-in-out, opacity 500ms ease-in-out;
+    opacity: 1;
+  }
+
+  .btn-toggle-invoice-address{
+    color: #0273EB !important;
+  }
+
+  #checkout .btn-contact-us-link{
+    color: #555 !important;
+    text-decoration: underline;
+    white-space: wrap;
   }
 
   #blockcart-modal .container-modal-btns-shopping .cart-content-btn:nth-child(1){

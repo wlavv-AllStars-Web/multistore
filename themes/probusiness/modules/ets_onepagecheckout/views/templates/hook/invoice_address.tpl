@@ -17,10 +17,10 @@
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
 <div class="col-lg-12 flex" style="align-items: center;">
-        <div class="title" display="block" style="margin: 0;">{l s='Billing address' d='Shop.Theme.Checkout'}</div>
+        <div class="title btn-toggle-invoice-address" onclick="toggleInvoiceaddressMobile()" display="block" style="margin: 0;">{l s='Billing address' d='Shop.Theme.Checkout'} <span class="caret-mobile"><i class="fa-solid fa-caret-down"></i></span></div>
     {* <div class="col-lg-3">
         <label class="col-lg-12 col-xs-12 form-control-label"></label> *}
-        <a class="btn btn-default btn-contact-us-link" href="{$link->getPageLink('contact')}" title="Contact us to update">
+        <a class="btn btn-contact-us-link" href="{$link->getPageLink('contact')}" title="Contact us to update">
         {l s="Contact us to update" d="Shop.Theme.Checkout"}
         </a>
     {* </div> *}
@@ -52,3 +52,9 @@
     {/if}
 {/if}
 {$address_form nofilter}
+
+<script>
+    function toggleInvoiceaddressMobile(){
+        document.querySelector(".js-address-form.invoice_address").classList.toggle("showinvoice")
+    }
+</script>

@@ -162,6 +162,23 @@
           </span>
         </div>
       </td>
+      <td class="cart_delete-mobile text-center" style="width: 100%;background:#0273eb;padding: 0.5rem 1rem;">
+        <div style="display: flex;justify-content: center;"> 
+          <a 
+            class                       = "remove-from-cart"
+            rel                         = "nofollow"
+            href                        = "{$product.remove_from_cart_url|escape:'html':'UTF-8'}"
+            data-link-action            = "ets-delete-from-cart"
+            data-id-product             = "{$product.id_product|intval}"
+            data-id-product-attribute   = "{$product.id_product_attribute|intval}"
+            data-id-customization   	  = "{$product.id_customization|intval}"
+            >
+            {if empty($product.is_gift)}
+              <i class="material-icons float-xs-left" style="line-height:25px;">delete</i>
+            {/if}
+          </a>
+        </div>
+      </td>
     </tr>
 
 
