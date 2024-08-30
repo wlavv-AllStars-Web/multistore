@@ -143,7 +143,7 @@
 				</div>
 			</div>
 				<div class="resources-upd-date">
-				{$manufacturer.info_updated}
+				{$manufacturer.date_upd|date_format:"%Y-%m-%d"}
 				</div>
 			</div>
 			
