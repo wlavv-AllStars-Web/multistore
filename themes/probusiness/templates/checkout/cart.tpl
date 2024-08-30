@@ -30,7 +30,7 @@
   <section id="main">
 <div class="cart-grid row" {if !$cart.products}style="max-width:1350px;margin:auto;"{/if}>
       <div class="banner_cart" style="margin-bottom: 2rem;">
-        <img src="/img/asd/Content_pages/shopping_cart/shopping_{$language.iso_code}.webp"  style="width: 100%;height:auto;"/>
+        <img class="p-img" src="/img/asd/Content_pages/shopping_cart/shopping_{$language.iso_code}.webp"  style="width: 100%;height:auto;"/>
       </div>
       <!-- Left Block: cart product informations & shipping -->
       <div class="cart-grid-body col-lg-12 mb-0">

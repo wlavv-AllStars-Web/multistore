@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="banner_order_confirmation" style="max-width: 1350px;display:flex;justify-content:center;margin-bottom:2rem;">
-              <img src="/img/asd/Content_pages/order-confirmation/orderconf_{$language.iso_code}.webp" style="width: 100%;height:auto;" />
+              <img class="p-img" src="/img/asd/Content_pages/order-confirmation/orderconf_{$language.iso_code}.webp" style="width: 100%;height:auto;" />
             </div>
           </div>
           <div class="col-md-12" style="padding: 2rem 0;">

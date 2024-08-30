@@ -27,7 +27,7 @@
         <div class="block-category card card-block">
             {if $category.id === 16}
             <div class="clearance_banner" style="max-width: 1350px;margin:auto;">
-                <img src="/img/asd/Content_pages/clearance/clearance_{$language.iso_code}.webp" style="width: 100%;" alt="clearance_banner"/>
+                <img class="p-img" src="/img/asd/Content_pages/clearance/clearance_{$language.iso_code}.webp" style="width: 100%;" alt="clearance_banner"/>
             </div>
             {/if}
             <h1 class="h1">{$category.name}</h1>

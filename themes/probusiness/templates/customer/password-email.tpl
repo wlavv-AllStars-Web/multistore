@@ -5,7 +5,7 @@
     <style>nav.breadcrumb { display: none; }</style>
 
   <div style="max-width:1350px;margin:auto;">
-    <img src="/img/asd/Content_pages/forgot/forgot_{$language.iso_code}.webp" style="width: 100%;" alt="news_banner"/>
+    <img class="p-img" src="/img/asd/Content_pages/forgot/forgot_{$language.iso_code}.webp" style="width: 100%;" alt="news_banner"/>
   </div>
   
   <form action="{$urls.pages.password|escape:'html':'UTF-8'}" class="forgotten-password" method="post">

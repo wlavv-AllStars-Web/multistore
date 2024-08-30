@@ -23,7 +23,7 @@
                 
                 <div class="add">
                     <button
-                    class="btn btn-primary add-to-cart"
+                    class="btn btn-primary"
                     data-button-action="add-to-cart"
                     type="submit"
                     {if !$product.add_to_cart_url}
@@ -39,31 +39,31 @@
             </div>
         {/block}
         
-        {block name='product_availability'}
+        {* {block name='product_availability'}
         
             <span id="product-availability" class="js-product-availability">
                 {if $product.show_availability && $product.availability_message}
                     {if $product.availability == 'available'}
                         <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i>
                         {$product.availability_message}
-                    {elseif $product.availability == 'last_remaining_items'}
+                    {elseif $product.availability == 'last_remaining_items'} *}
                     {* <i class="material-icons product-last-items">&#xE002;</i>
                         {$product.availability_message} *}
-                    {else}
+                    {* {else}
                         <i class="material-icons product-unavailable">&#xE14B;</i>
                         {$product.availability_message}
                     {/if}
                 {/if}
             </span>
             
-        {/block}
+        {/block} *}
         
-        {block name='product_minimal_quantity'}
+        {* {block name='product_minimal_quantity'}
             <p class="product-minimal-quantity js-product-minimal-quantity">
                 {if $product.minimal_quantity > 1}
                     {l s='The minimum purchase order quantity for the product is %quantity%.' d='Shop.Theme.Checkout' sprintf=['%quantity%' => $product.minimal_quantity]}
                 {/if}
             </p>
-        {/block}
+        {/block} *}
     {/if}
 </div>

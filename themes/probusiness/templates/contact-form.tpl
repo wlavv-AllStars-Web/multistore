@@ -125,7 +125,7 @@
 				</div>
 			</div>
 			<div class="submit col-lg-12 px-0">
-				<button type="submit" name="submitMessage" id="submitMessage" class="btn btn-default btn-md">
+				<button type="submit" name="submitMessage" id="submitMessage" class="btn btn-primary">
 					<span> {l s='Send' d="Shop.Theme.Contactform"} <i class="fa fa-chevron-right right"></i> </span>
 				</button>
 			</div>

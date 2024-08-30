@@ -32,7 +32,7 @@
               <div class="not_logged_homepage">
                 <div class="banner_home hidden-sm-down" >
                 <a href="{$homepage_footer['link_banner']}">
-                  <img src="/img/asd/homepage/main.webp?{rand()}" alt="{$homepage_footer['alt_banner']}" style="width: 100%;height:auto;" width="1690" height="443" loading="eager" />
+                  <img class="p-img" src="/img/asd/homepage/main.webp?{rand()}" alt="{$homepage_footer['alt_banner']}" style="width: 100%;height:auto;" width="1690" height="443" loading="eager" />
                 </a>
                 </div>
 
@@ -103,8 +103,8 @@
                 </div>
 
                 <div class="btns_homepage">
-                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(14)}'">{l s='Become a Dealer' d='Shop.Theme.HomepageLogout'}</div>
-                  <div class="button_half" onclick="window.location.href='{$link->getCMSLink(15)}'">{l s='Become a Supplier' d='Shop.Theme.HomepageLogout'}</div>
+                  <div class="button_half btn-primary" onclick="window.location.href='{$link->getCMSLink(14)}'">{l s='Become a Dealer' d='Shop.Theme.HomepageLogout'}</div>
+                  <div class="button_half btn-primary" onclick="window.location.href='{$link->getCMSLink(15)}'">{l s='Become a Supplier' d='Shop.Theme.HomepageLogout'}</div>
                 </div>
 
               </div>

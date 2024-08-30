@@ -65,7 +65,7 @@
     {block name='cms_content'}
       {if $cms.id === 8}
         <div id="cms_container_8">
-          <div><img class="about_banner" src="/img/asd/Content_pages/aboutus/top_image_short.webp" alt="top_image_short" /></div>
+          <div><img class="about_banner p-img" src="/img/asd/Content_pages/aboutus/top_image_short.webp" alt="top_image_short" /></div>
           <div class="profile_container_cms">
           <div class="profile_style">{l s='Profile' d='Shop.Theme.About'}</div>
           <div class="profile_container_text" id="profile_container_text">{l s='Supplying over 30 top of the line brands to automotive performance professionals worldwide, All Stars Distribution is one of the largest European wholesalers of performance and design parts. Dedicated to serving shops, tuners, e-dealers and other resellers, All Stars Distribution is committed to employing the best of inventory management and distribution practices to get our customers the performance parts they need to satisfy their customers.' d='Shop.Theme.About'}</div>
@@ -180,7 +180,7 @@
 
         <div id="cms_container_14">
           <div>
-            <img class="banner_becomedealer" data-src="/img/asd/dealers/headers/bdealer_{$language.iso_code}.webp" alt="banner_becomedealer" width="1350" height="300" />
+            <img class="banner_becomedealer p-img" data-src="/img/asd/dealers/headers/bdealer_{$language.iso_code}.webp" alt="banner_becomedealer" width="1350" height="300" />
           </div>
           <div class="choose_us_btn">
             <h5 class="cms_shadow_button">{l s='Why choose us ?' d='Shop.Theme.BecomeDealer'}</h5>
@@ -464,7 +464,7 @@
               </div>
             
               <div class="form-group col-lg-12 col-md-6 col-sm-12" style="display: flex;justify-content:center;align-items:center;">
-                <button type="submit" class="btn send-form" onclick="validateForm()">{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button>
+                <button type="submit" class="btn btn-primary" onclick="validateForm()">{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button>
               </div>
             </div>
             </form>
@@ -516,7 +516,7 @@
         <div id="cms_container_15">
           <div class="banner_supplier">
             <img class="desktop" src="/img/asd/dealers/headers/bsupplier_{$language.iso_code}.webp"  alt="banner become supplier" width="1350" height="300" />
-            <img class="mobile" src="/img/asd/dealers/headers/bsupplier_{$language.iso_code}.webp"  alt="banner become supplier" width="394" height="90" />
+            <img class="mobile p-img" src="/img/asd/dealers/headers/bsupplier_{$language.iso_code}.webp"  alt="banner become supplier" width="394" height="90" />
           </div>
 
           <p class="become_supplier_text">
@@ -638,7 +638,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-12  col-sm-12 col-xs-12" style="display: flex;justify-content:center;">
-                  <button type="submit" class="btn send-form">{l s='Submit' d='Shop.Theme.FormBecomesupplier'}</button>
+                  <button type="submit" class="btn btn-primary">{l s='Submit' d='Shop.Theme.FormBecomesupplier'}</button>
                 </div>
               </div>
             </form>
@@ -649,7 +649,7 @@
       {elseif $cms.id === 7}
         <div class="cms-privacy">
           <div class="privacy-banner">
-            <img src="/img/asd/Content_pages/privacy/ppolicy_{$language.iso_code}.webp" alt="privacy_banner" width="1350" height="300"/>
+            <img class="p-img" src="/img/asd/Content_pages/privacy/ppolicy_{$language.iso_code}.webp" alt="privacy_banner" width="1350" height="300"/>
           </div>
           <div class="privacy-content">
             {* <h1>{l s='Privacy policy' d='Shop.Theme.Privacy'}</h1> *}
@@ -848,14 +848,14 @@
             <br>
             <p>{l s='We will attempt to resolve complaints and disputes and make every reasonable effort to honor your wish to exercise your rights as quickly as possible and in any event, within the timescales provided by applicable data protection laws.' d='Shop.Theme.Privacy'}</p>
 
-            <p>{l s='This document was last updated on June, 2024' d='Shop.Theme.Privacy'}</p>
+            <p style="text-align: center;">{l s='This document was last updated on June, 2024' d='Shop.Theme.Privacy'}</p>
 
           </div>
         </div>
       {elseif $cms.id === 10}
         <div class="cms-legal">
           <div class="legal-banner">
-            <img class="legal_image" src="" alt="legal image" />
+            <img class="legal_image p-img" src="" alt="legal image" />
           </div>
           <div class="legal-content col-lg-12" style="max-width: 1350px;">
             <div class="legal-company col-lg-6 col-md-12">
@@ -1121,7 +1121,7 @@
         
         <div class="banner_cms_partners" style="margin-bottom: 3rem;">
           <div class="partners-banner">
-            <img src="/img/asd/Content_pages/partners/partners_{$language.iso_code}.webp" alt="banner partners" width="1350" height="300" />
+            <img class="p-img" src="/img/asd/Content_pages/partners/partners_{$language.iso_code}.webp" alt="banner partners" width="1350" height="300" />
           </div>
           <div class="rte">
             <div id="cms-partners">
@@ -1305,7 +1305,7 @@
       {elseif $cms.id === 11}
         <div class="rte">
           <div class="text-center">
-            <img src="/img/asd/Content_pages/payment/payment_{$language.iso_code}.webp" alt="All Stars Distribution Payment" class="img-fluid cms_header_image" width="1350" height="300">
+            <img src="/img/asd/Content_pages/payment/payment_{$language.iso_code}.webp" alt="All Stars Distribution Payment" class="img-fluid cms_header_image p-img" width="1350" height="300">
           </div>
           
           <p class="cms_title_center" style="color: black; font-weight: bolder; font-size: 23px;">{l s='ALL STARS DISTRIBUTION offers two methods of payment :' d='Shop.Theme.Payment'}</p>
@@ -1341,7 +1341,7 @@
       {elseif $cms.id === 12}
         <div class="cms-career">
           <div class="career-banner">
-            <img src="/img/asd/Content_pages/career/career_{$language.iso_code}.webp" alt="career banner"/>
+            <img class="p-img" src="/img/asd/Content_pages/career/career_{$language.iso_code}.webp" alt="career banner"/>
           </div>
           <div class="career-content">
             <h1>{l s='> OPEN POSITIONS <' d='Shop.Theme.Career'}</h1>
@@ -1496,7 +1496,7 @@
     
                   <div class="form-row ">
                     <div class="form-group col-md-2 col-sm-12 col-xs-12" style="display: flex;justify-content:start;">
-                      <button type="submit" class="btn send-form col-md-2">{l s='Send' d='Shop.Theme.Career'}</button>
+                      <button type="submit" class="btn btn-primary">{l s='Send' d='Shop.Theme.Career'}</button>
                     </div>
                   </div>
                 </form>
@@ -1508,7 +1508,7 @@
       {elseif $cms.id === 13}
         <div class="cms-terms">
           <div class="banner-terms">
-            <img src="/img/asd/Content_pages/terms/terms_{$language.iso_code}.webp" alt="terms banner" width="1350" height="300" />
+            <img class="p-img" src="/img/asd/Content_pages/terms/terms_{$language.iso_code}.webp" alt="terms banner" width="1350" height="300" />
           </div>
           <div class="terms-content">
             <h1>{l s='GENERAL CONDITIONS OF SALE' d='Shop.Theme.Terms'}</h1>

@@ -27,7 +27,7 @@
 {block name='page_content'}
   <div class="row myaccount-container">
     <div class="col-lg-12 banner-myaccount">
-      <img src="/img/asd/Content_pages/account/account_{$language.iso_code}.webp" alt="account_banner" />
+      <img class="p-img" src="/img/asd/Content_pages/account/account_{$language.iso_code}.webp" alt="account_banner" />
     </div>
 
 
@@ -661,7 +661,7 @@
             table#table_shipping > tbody > tr > td { color: #333; background-color: #fff; text-align: center; text-transform: uppercase;font-size: 22px; font-weight: bolder;line-height: 2; }
             .table_shipping_footer {
               text-align: center;
-              text-transform: uppercase;
+              /* text-transform: uppercase; */
               color: #333;
               font-size: 16px;
               border-left: 3px solid #333; 

@@ -34,6 +34,7 @@ use PrestaShop\PrestaShop\Core\Product\ProductExtraContentFinder;
 
 class ProductControllerCore extends ProductPresentingFrontControllerCore
 {
+    public $auth = true;
     /** @var string */
     public $php_self = 'product';
 

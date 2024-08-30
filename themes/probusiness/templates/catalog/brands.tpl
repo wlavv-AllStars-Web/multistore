@@ -29,7 +29,7 @@
      <div id="brands-page">
        <div class="brands_banner">
          <img class="desktop" src="/img/asd/dealers/headers/linecard_{$language.iso_code}.webp" alt="brands_banner" width="1350" height="300" />
-         <img class="mobile" src="/img/asd/dealers/headers/linecard_{$language.iso_code}.webp" alt="brands_banner" width="390" height="90" />
+         <img class="mobile p-img" src="/img/asd/dealers/headers/linecard_{$language.iso_code}.webp" alt="brands_banner" width="390" height="90" />
        </div>
      {block name='brand_miniature'}
        <ul class="list_manu row">

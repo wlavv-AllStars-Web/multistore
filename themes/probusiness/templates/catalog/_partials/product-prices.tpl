@@ -4,7 +4,7 @@
             {if $product.has_discount}
                 <div>
                     {hook h='displayProductPriceBlock' product=$product type="old_price"}
-                    <div>{l s="RRP / PVP" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.price_without_reduction_without_tax|number_format:2}€</span></div>
+                    <div>{l s="RRP / PVP" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.price_without_reduction_without_tax|number_format:2}€ <span style="font-size: 12px;font-weight:600;color:#666;">({l s="ExVAT" d='Shop.Theme.Modal'})</span></span></div>
                     <div>{l s="Discount" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.discount_percentage}</span></div>
                 </div>
             {/if}

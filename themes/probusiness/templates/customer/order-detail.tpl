@@ -2,7 +2,7 @@
 
 {block name='page_title'}
     <div class="col-lg-12 banner-orderdetails" style="margin-bottom: 1rem;padding:0;">
-        <img src="/img/asd/Content_pages/order-details/order_{$language.iso_code}.webp" alt="account_banner" style="width: 100%;" />
+        <img class="p-img" src="/img/asd/Content_pages/order-details/order_{$language.iso_code}.webp" alt="account_banner" style="width: 100%;" />
     </div>
 {/block}
 

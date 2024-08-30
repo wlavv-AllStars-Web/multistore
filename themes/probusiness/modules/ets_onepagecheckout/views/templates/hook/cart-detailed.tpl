@@ -20,7 +20,7 @@
     {if isset($cart.products) &&  $cart.products}
 
     <div class="banner_checkout" style="max-width: 1350px;margin-bottom:2rem;">
-      <img src="/img/asd/Content_pages/checkout/checkout_{$language.iso_code}.webp" style="width: 100%;" />
+      <img class="padding-imagem" src="/img/asd/Content_pages/checkout/checkout_{$language.iso_code}.webp" style="width: 100%;" />
     </div>
 
     <table class="col-lg-12">

@@ -27,7 +27,7 @@
 {block name='product_list_header'}
 
   <div style="max-width:1350px;margin:auto;">
-    <img src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.id}.webp" style="width: 100%;" alt="Brand banner"/>
+    <img class="p-img" src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.id}.webp" style="width: 100%;" alt="Brand banner"/>
   </div>
   
   <style>

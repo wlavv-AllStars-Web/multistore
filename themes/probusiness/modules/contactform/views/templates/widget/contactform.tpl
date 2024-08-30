@@ -176,7 +176,7 @@
           <input type="text" name="url" value="" />
           <input type="hidden" name="token" value="{$token}" />
           <div style="width: fit-content; height: fit-content; position: relative; padding-bottom: 1rem;">
-              <input class="btn" type="submit" name="submitMessage" value="{l s='Send' d="Shop.Theme.Contactform"}" style="background: white; color: var(--color-red); margin-bottom: 1rem;">
+              <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='Send' d="Shop.Theme.Contactform"}">
           </div>
 
 
@@ -246,10 +246,7 @@
     position: absolute;
   }
 
-  .contact-form .btn[type="submit"]:hover{
-    background: var(--color-red) !important;
-    color: white !important;
-  }
+
 
   .contact-form .btn[type="submit"]:hover ~ i{
     color: white !important;

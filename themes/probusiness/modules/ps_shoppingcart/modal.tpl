@@ -90,7 +90,7 @@
 
           <div class="col-lg-12 container-modal-btns-shopping">
             <div class="cart-content-btn col-lg-6">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Modal'}</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Modal'}</button>
             </div>
             <div class="cart-content-btn col-lg-6">
               <a href="{$order_url}" class="btn btn-primary"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Modal'}</a>
