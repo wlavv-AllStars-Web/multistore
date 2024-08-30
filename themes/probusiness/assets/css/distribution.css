@@ -3688,6 +3688,12 @@ textarea {
 .resources-mobile .resource-container-brand .resource-brand-btns .title-resource-btn{
   font-weight: 600;
   color: #333;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    max-width: -moz-available;
 }
 
   .resources-mobile .resource-container-brand .resource-brand-btns > div{
