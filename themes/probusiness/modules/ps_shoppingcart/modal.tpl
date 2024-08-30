@@ -30,7 +30,7 @@
             </button>
           </div>
         </div>
-        <div class="col-lg-6 modal-header-right modal-header-desktop" style="padding-left: calc(2.5rem + 15px);font-weight:600;">
+        <div class="col-lg-6 modal-header-right modal-header-desktop" style="padding-left: 1rem;font-weight:600;">
           {if $cart.products_count > 1}
             <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Modal'}</p>
           {else}
