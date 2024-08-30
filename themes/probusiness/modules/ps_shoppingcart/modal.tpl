@@ -24,8 +24,13 @@
       <div class="modal-header">
         <div class="col-lg-6 divide-right">
           <h4 class="modal-title h6 text-xs-center" id="myModalLabel" style="display: flex;align-items:center;"><i class="material-icons" style="background: #19b719;width:2rem;height:2rem;border-radius:50%;display:flex;justify-content:center;align-items:center;">&#xE876;</i>{l s='Product successfully added to your shopping cart' d='Shop.Theme.Modal'}</h4>
+          <div class="modal-header-mobile">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
-        <div class="col-lg-6 modal-header-right" style="padding-left: calc(2.5rem + 15px);font-weight:600;">
+        <div class="col-lg-6 modal-header-right modal-header-desktop" style="padding-left: calc(2.5rem + 15px);font-weight:600;">
           {if $cart.products_count > 1}
             <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Modal'}</p>
           {else}
@@ -48,7 +53,7 @@
               {* <pre>{print_r($cart,1)}</pre> *}
               
                 <h6 class="h6 product-name">{$product.name|escape:'html':'UTF-8'}</h6>
-                <span><strong>{l s="Price" d="Shop.Theme.Modal"}</strong>: €{$product.price_with_reduction_without_tax|number_format:2}</span>
+                <span><strong>{l s="Price" d="Shop.Theme.Modal"}</strong>: {$product.price_with_reduction_without_tax|number_format:2} €</span>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 <span><strong>{l s="Reference" d="Shop.Theme.Modal"}</strong>: {$product.reference|escape:'html':'UTF-8'}</span>
                 {foreach from=$product.attributes item="property_value" key="property"}
@@ -58,11 +63,23 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-sm-12 col-xs-12">
-            <div class="cart-content">
+
+          
+          <div class="col-md-6 col-sm-12 col-xs-12 px-0">
+
+          <div class="col-lg-12 modal-header-mobile" style="padding: 0;font-weight:600;">
+              {if $cart.products_count > 1}
+                <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Modal'}</p>
+              {else}
+                <p class="cart-products-count">{l s='There is %product_count% item in your cart.' sprintf=['%product_count%' =>$cart.products_count] d='Shop.Theme.Modal'}</p>
+              {/if}
+              
+          </div>
+
+            <div class="cart-content" style="padding: 1rem;">
                 {* {debug} *}
-              <p><strong>{l s='Price' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.totals.total_excluding_tax.value} ({l s="ExVAT" d='Shop.Theme.Modal'})</p>
-              <p><strong>{l s='VAT' d='Shop.Theme.Modal'} :</strong>&nbsp;€{($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount)|number_format:2}</p>
+              <p><strong>{l s='Price' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.totals.total_excluding_tax.amount|number_format:2} € ({l s="ExVAT" d='Shop.Theme.Modal'})</p>
+              <p><strong>{l s='VAT' d='Shop.Theme.Modal'} :</strong>&nbsp;{($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount)|number_format:2} €</p>
               <p>
                 <strong>{l s='Shipping' d='Shop.Theme.Modal'}  :</strong>&nbsp;
                 {if $cart.subtotals.shipping.amount|escape:'html':'UTF-8' > 0} 
@@ -71,7 +88,7 @@
                 {else} 
                   ({l s="To be defined" d="Shop.Theme.Modal"})
                 {/if}{hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</p>
-              <p><strong>{l s='Total' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.subtotals.products.value|escape:'html':'UTF-8'}</p>
+              <p><strong>{l s='Total' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.subtotals.products.amount|number_format:2|escape:'html':'UTF-8'} €</p>
 
               {* ---------------------------------------- *}
               {* <p class="subtitle-modal-cart"><strong>{l s='Total products:' d='Shop.Theme.Checkout'}</strong>&nbsp;{$cart.subtotals.products.value|escape:'html':'UTF-8'}</p> *}
@@ -90,7 +107,7 @@
 
           <div class="col-lg-12 container-modal-btns-shopping">
             <div class="cart-content-btn col-lg-6">
-              <button type="button" class="btn btn-default" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Modal'}</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Modal'}</button>
             </div>
             <div class="cart-content-btn col-lg-6">
               <a href="{$order_url}" class="btn btn-primary"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Modal'}</a>

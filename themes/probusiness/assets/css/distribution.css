@@ -5205,7 +5205,12 @@ textarea {
     display: flex !important;
   }
 
-  
+  .modal-header-desktop{
+    display: flex !important;
+  }
+  .modal-header-mobile{
+    display: none !important; 
+  }
 
 }
 
@@ -5513,6 +5518,38 @@ textarea {
 }
 
 @media (max-width: 540px) {
+
+  #blockcart-modal .divide-right{
+    padding-bottom: 0 !important;
+    display: flex;
+  }
+
+  #blockcart-modal .divide-right .close{
+    font-size: 1.5rem;
+    color: #fff;
+    opacity: .9;
+    text-shadow: none !important;
+  }
+
+  #myModalLabel{ 
+    border-bottom: 0 !important;
+  }
+
+  .modal-header-desktop{
+    display: none !important; 
+  }
+  .modal-header-mobile{
+    display: flex;
+    background: #0273EB;
+    padding: 1rem 2rem !important;
+    color: #fff;
+  }
+
+  #product .btn-secondary{
+    max-width: 300px;
+    margin: auto;
+  }
+
   .container-price_atributes{
     flex-direction: column;
   }
@@ -6237,6 +6274,11 @@ textarea {
   text-align: center;
 }
 
+#product .product-add-to-cart .input-group-btn-vertical .btn-touchspin:hover{
+  color: #0273eb !important;
+  background: white !important;
+}
+
 #contact #menu-client {
   width: 100%;
 }
@@ -6520,7 +6562,7 @@ textarea {
   /* shopcart modal */
 
   #blockcart-modal .divide-right{
-    padding:  0 1rem 1rem 1rem  !important;
+    /* padding:  0 1rem 1rem 1rem  !important; */
     border-right: 0 !important;
   }
   #blockcart-modal .divide-right #myModalLabel{
@@ -6546,7 +6588,7 @@ textarea {
   .modal.in .modal-dialog {
     transform: translatey(-50%) !important;
     -webkit-transform: translatey(-50%) !important;
-    top: 55%;
+    top: 50%;
   }
 
   #blockcart-modal .container-modal-btns-shopping{
