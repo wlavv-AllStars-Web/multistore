@@ -55,6 +55,7 @@ body::-ms-scrollbar-thumb:hover {
   background: #6a6a6b; /* Color of the scrollbar handle on hover */
 }
 
+
 .btn-default {
   background: #e9e9ed !important;
   color: #000 !important;
