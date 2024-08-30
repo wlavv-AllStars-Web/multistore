@@ -209,8 +209,8 @@
                             <div class="condition-label">
                                 
                                 <div>
-                                    <a href="{$link->getCMSLink(13)}" id="cta-terms-and-conditions-0">{l s='Conditions'  d="Shop.Theme.Checkout"}</a>
-                                    | <a href="{$link->getCMSLink(7)}" id="cta-terms-and-conditions-0">{l s='Privacy'  d="Shop.Theme.Checkout"}</a>
+                                    <a href="{$link->getCMSLink(13)}" >{l s='Conditions'  d="Shop.Theme.Checkout"}</a>
+                                    | <a href="{$link->getCMSLink(7)}" >{l s='Privacy'  d="Shop.Theme.Checkout"}</a>
                                 </div>
                             </div>
                         </li>
@@ -226,7 +226,7 @@
                         {l s='Payment method' mod='ets_onepagecheckout'}
                     </div> *}
                     <div style="display: flex;flex-direction:column;width:100%;">
-                        <h1 style="text-align: center;font-weight:600;margin-bottom: 1rem;">{l s="Select your payment method" d="Shop.Theme.Checkout"}</h1>
+                        <h1 style="text-align: center;font-weight:600;margin-bottom: 1rem;color:#0273eb;">{l s="Select your payment method" d="Shop.Theme.Checkout"}</h1>
                     
                         <div class="block-content" style="width: 100%;">
                             {$payment_methods nofilter}

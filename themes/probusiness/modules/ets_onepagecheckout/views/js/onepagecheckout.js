@@ -741,6 +741,18 @@ $(document).on('change','input[name="product-quantity-spin"]',function(){
     $('.block-onepagecheckout.block-payment').addClass('loading');
     $('.block-onepagecheckout.block-shop-license-info').addClass('loading');
     $('.block-shopping-cart').attr('data-change-cart','1');
+    var loadingOverlay = document.createElement('div');
+        loadingOverlay.className = 'loading-overlay';
+
+        // Create the spinner element
+        var spinner = document.createElement('div');
+        spinner.className = 'loading-spinner';
+
+        // Append the spinner to the overlay
+        loadingOverlay.appendChild(spinner);
+
+        // Append the overlay to the body
+        document.body.appendChild(loadingOverlay);
 });
 $(document).on('click','.remove-from-cart,a[data-link-action="ets-remove-voucher"]',function(){
     if(!$('.block-shopping-cart').hasClass('loading'))
@@ -811,13 +823,16 @@ $(document).on('click','#promo-code button',function(e){
 function ets_refresh_shipping_cart(del_product)
 {
     if($(".js-cart").data("refresh-url"))
-    {
+    {   
+        
         $.ajax({
             url: $(".js-cart").data("refresh-url"),
             data: 'id_country='+$('#invoice_address_id_country').val()+'&del_product='+del_product+($('#invoice_address_id_state').length ? '&id_state='+$('#invoice_address_id_state').val() :'')+($('#invoice_address_postal_code').length ? '&postal_code='+$('#invoice_address_postal_code').val():'')+($('.block-shop-license-info').length ? '&'+$('.block-shop-license-info input').serialize():''),
             type: 'post',
             dataType: 'json',                
             success: function(json){ 
+                const loadingOverlay = document.querySelector(".loading-overlay")
+                document.body.removeChild(loadingOverlay);
                 $('.loading').removeClass('loading');
                 if(json.cart_detailed=='empty')
                 {
@@ -920,6 +935,7 @@ function ets_refresh_shipping_cart(del_product)
                         resp: json
                     });
                 }
+
                 if(document.querySelector("#use_pickup_address").checked){
                     document.querySelector("#delivery_option_8").checked = true;
                 }else{
