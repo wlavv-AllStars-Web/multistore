@@ -3549,6 +3549,13 @@ textarea {
 
 @media (min-width: 992px) {
 
+  .resources-desktop{
+    display: flex;
+  }
+  .resources-mobile{
+    display: none;
+  }
+
   #canvas4 {
     min-height: 140px;
   }
@@ -3610,6 +3617,78 @@ textarea {
   }
   .form-personal-info .years{
     padding-right: 0;
+  }
+}
+
+@media screen and (min-width:992px){
+  .resources-desktop{
+    display: table !important;
+  }
+  .resources-mobile{
+    display: none !important;
+  }
+}
+@media screen and (max-width:991px){
+  #catalog .container-fluid{
+    padding: 0;
+  }
+
+  .resources-desktop{
+    display: none !important;
+  }
+  .resources-mobile{
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+
+  .resources-mobile .resource-container-brand {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+  }
+
+  .resources-mobile .resource-container-brand .resources-upd-date{
+    width: 100%;
+    background: #0273EB;
+    color: #fff;
+    text-align: center;
+  }
+
+  .resources-mobile .resource-container-brand > div:nth-child(1){
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #0273EB;
+  }
+
+  .resources-mobile .resource-container-brand .resource-brand-btns {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms ease-in-out, opacity 500ms ease-in-out, padding 500ms ease-in-out;
+    opacity: 0;
+    padding: 1rem 0; /* Initially no padding */
+}
+
+.resources-mobile .resource-container-brand .resource-brand-btns.showbtns {
+    max-height: 500px; /* Ensure this fits the content */
+    opacity: 1;
+    padding: 1rem 0; /* Padding applied during transition */
+    flex-wrap: wrap; /* Ensure these are always set */
+    row-gap: 1rem;
+}
+
+
+  .resources-mobile .resource-container-brand .resource-brand-btns > div{
+    display: flex;
+    justify-content: center;
+  }
+  .resources-mobile .resource-container-brand .resource-brand-btns.showbtns > div{
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -4842,6 +4921,10 @@ textarea {
 
 @media screen and (min-width: 541px) {
 
+  .container-reset-password .reset-sub a{
+    color: #0273EB !important;
+  }
+
   #my-account .row.statistics_container.charts{
     margin-bottom: 2rem !important;
   }
@@ -5417,7 +5500,7 @@ textarea {
   }
 
   .p-img{
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   #product .product-add-to-cart .product-quantity{
@@ -6578,6 +6661,24 @@ textarea {
   }
   #pagenotfound #content{
     max-width: 100vw !important;
+  }
+
+  /* password */
+
+  .container-reset-password{
+    padding: 2rem 0;
+  }
+
+  .container-reset-password .reset-sub a{
+    color: #0273EB !important;
+  }
+
+  #password .forgotten-password{
+    padding: 1rem;
+  }
+
+  #password .container-fluid {
+    padding-inline: 0;
   }
 
   /* contact page */

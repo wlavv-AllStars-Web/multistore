@@ -8,7 +8,7 @@
 </div>
 
 <div class="spacer-20"></div>
-<table id="cms_catalog_main_table" style="max-width: 1350px;margin:auto;">
+<table id="cms_catalog_main_table" class="resources-desktop" style="max-width: 1350px;margin:auto;">
 	<tbody>
 		<tr class="cms_catalog_table_header">
 			<td class="header_label"><p>{l s='Brand'  d="Shop.Theme.catalog" }</p></td>
@@ -89,6 +89,61 @@
 		{/foreach}
 	</tbody>
 </table>
+<div class="resources-mobile">
+{foreach from=$manufacturers item=manufacturer name=manufacturers}
+	<div class="resource-container-brand col-md-4 col-sm-6 col-xs-12">
+			<div onclick="togglebtnsresources(this)">
+				<img src="{$base_dir}/img/m/{$manufacturer.id_manufacturer}-medium_default.jpg" width="125" height="125" class="cms_catalog_table_brand_td_image" alt="brand_logo"/>
+				<div class="resources-upd-date">
+				{$manufacturer.info_updated}
+				</div>
+			</div>
+			<div class="resource-brand-btns">
+				<div class="col-md-4">
+					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/csv{if $manufacturer.csv == 1}_updated{elseif $manufacturer.csv == 2}_none{elseif $manufacturer.csv == 3}_commingSoon{/if}.png" alt="csv_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					{if ($manufacturer.id_manufacturer == 11) || ($manufacturer.id_manufacturer == 20) }
+						<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.pdf" download="{$manufacturer.name|replace:' ':''}.pdf">
+					{else}
+						<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.xlsx" download="{$manufacturer.name|replace:' ':''}.xlsx">
+					{/if}
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/xlsx{if $manufacturer.xlsx == 1}_updated{elseif $manufacturer.xlsx == 2}_none{elseif $manufacturer.xlsx == 3}_commingSoon{/if}.png" alt="xlsx_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_images.zip" download="{$manufacturer.name|replace:' ':''}_IMAGES.zip">
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/zip{if $manufacturer.pictures == 1}_updated{elseif $manufacturer.pictures == 2}_none{elseif $manufacturer.pictures == 3}_commingSoon{/if}.png" alt="pictures_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_logos.zip" download="{$manufacturer.name|replace:' ':''}_LOGOS.zip">
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/jpg{if $manufacturer.logos == 1}_updated{elseif $manufacturer.logos == 2}_none{/if}.png" alt="logos_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					<a href="{$manufacturer.facebook_url}" target="_blank">
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/facebook{if $manufacturer.facebook == 1}_updated{elseif $manufacturer.facebook == 2 }_none{/if}.png" alt="facebook_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					<a href="{$manufacturer.site_url}" target="_blank">
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/website{if $manufacturer.site ==1}_updated{elseif $manufacturer.site == 2 }_none{/if}.png" alt="site_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+					</a>
+				</div>
+			</div>
+
+	</div>
+{{/foreach}}
+</div>
+
 	</section>
 	<style>
     .width_100{ width: 100%; }
@@ -113,5 +168,12 @@
     #cms #center_column img.cms_catalog_updated_image{ height:60px; }
     
 </style>
+
+<script>
+	function togglebtnsresources(e) {
+		const container = e.parentElement
+		container.querySelector(".resource-brand-btns").classList.toggle("showbtns")
+	}
+</script>
 {/block}
 
