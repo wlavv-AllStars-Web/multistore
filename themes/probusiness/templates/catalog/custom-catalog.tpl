@@ -4,7 +4,7 @@
 {block name='content'}
 	<section id="main" style="display: flex;flex-direction:column;">
 <div class="text-center" style="max-width: 1350px;margin:auto;">
-	<img src="/img/asd/Content_pages/catalog/ressources_{$language.iso_code}.webp" alt="All Stars Distribution" class="img-fluid cms_header_image" />
+	<img src="/img/asd/Content_pages/catalog/ressources_{$language.iso_code}.webp" alt="All Stars Distribution" class="img-fluid cms_header_image p-img" />
 </div>
 
 <div class="spacer-20"></div>
