@@ -88,7 +88,9 @@
                 {else} 
                   ({l s="To be defined" d="Shop.Theme.Modal"})
                 {/if}{hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</p>
-              <p><strong>{l s='Total' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.subtotals.products.amount|number_format:2|escape:'html':'UTF-8'} €</p>
+              <p><strong>{l s='Total' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.subtotals.products.amount|number_format:2|escape:'html':'UTF-8'} €
+              {if ($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount) == 0} ({l s="ExVAT" d='Shop.Theme.Modal'}) {/if}
+              </p>
 
               {* ---------------------------------------- *}
               {* <p class="subtitle-modal-cart"><strong>{l s='Total products:' d='Shop.Theme.Checkout'}</strong>&nbsp;{$cart.subtotals.products.value|escape:'html':'UTF-8'}</p> *}
