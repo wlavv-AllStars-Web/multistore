@@ -3670,7 +3670,7 @@ textarea {
     overflow: hidden;
     transition: max-height 500ms ease-in-out, opacity 500ms ease-in-out, padding 500ms ease-in-out;
     opacity: 0;
-    padding: 1rem 0; 
+    /* padding: 1rem 0;  */
     display: flex;
     flex-wrap: wrap;
     row-gap: 1.5rem;

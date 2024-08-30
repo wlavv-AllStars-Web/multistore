@@ -94,11 +94,7 @@
 	<div class="resource-container-brand col-md-4 col-sm-6 col-xs-12">
 			<div onclick="togglebtnsresources(this)">
 				<img src="{$base_dir}/img/m/{$manufacturer.id_manufacturer}-medium_default.jpg" width="125" height="125" class="cms_catalog_table_brand_td_image" alt="brand_logo"/>
-				<div class="resources-upd-date">
-				{$manufacturer.info_updated}
-				</div>
-			</div>
-			<div class="resource-brand-btns">
+				<div class="resource-brand-btns">
 				<div class="col-md-4">
 					
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
@@ -146,6 +142,11 @@
 					<span class="title-resource-btn">{l s='Website' d="Shop.Theme.catalog" }</span>
 				</div>
 			</div>
+				<div class="resources-upd-date">
+				{$manufacturer.info_updated}
+				</div>
+			</div>
+			
 
 	</div>
 {{/foreach}}
