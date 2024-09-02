@@ -617,6 +617,9 @@ class OrderHistoryCore extends ObjectModel
 
                 $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, Context::getContext()->getComputingPrecision()) : $price_wt;
 
+                $image_link= new Link();
+                $image_url = $image_link->getImageLink($product['reference'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
+
                 $product_var_tpl = [
                     'id_product' => $product['id_product'],
                     'id_product_attribute' => $product['product_attribute_id'],
@@ -626,6 +629,7 @@ class OrderHistoryCore extends ObjectModel
                     'price' => Tools::getContextLocale($this->context)->formatPrice($product_price * $product['product_quantity'], $this->context->currency->iso_code),
                     'quantity' => $product['product_quantity'],
                     'customization' => [],
+                    'image_p' => $image_url,
                 ];
 
                 if (isset($product['price']) && $product['price']) {
@@ -671,13 +675,13 @@ class OrderHistoryCore extends ObjectModel
             $product_list_txt = '';
             $product_list_html = '';
             if (count($product_var_tpl_list) > 0) {
-                // if($this->context->shop->id === 3){
-                //     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
-                //     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_3.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
-                // }else{
+                if($this->context->shop->id === 3){
+                    $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
+                    $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_3.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                }else{
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
                     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
-                // }
+                }
             }
 
             $total_reduction_value_ti = 0;
@@ -702,35 +706,35 @@ class OrderHistoryCore extends ObjectModel
             }
 
             
-            $container = '';
-            if($order->payment_id == 2){
-                $container =
-                '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
-                    <tr>
-                        <td>
-                            <p>
-                            '.$this->trans('payment_method_credit_card', [], 'Shop.Theme.Global').'
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$order->reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
-                                '.$this->trans('Link', [], 'Shop.Theme.Global').'
-                            </a>
-                        </td>
-                    </tr>
-                </table>';
-                return $container;
-            }else{
-                $container = '<p>
-                    '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Shop.Theme.Global').'
-                </p>';
-                return $container;
-            }
+        //     $container = '';
+        //     if($order->payment_id == 2){
+        //         $container =
+        //         '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        //             <tr>
+        //                 <td>
+        //                     <p>
+        //                     '.$this->trans('payment_method_credit_card', [], 'Shop.Theme.Global').'
+        //                     </p>
+        //                 </td>
+        //             </tr>
+        //             <tr>
+        //                 <td>
+        //                     <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$order->reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
+        //                         '.$this->trans('Link', [], 'Shop.Theme.Global').'
+        //                     </a>
+        //                 </td>
+        //             </tr>
+        //         </table>';
+        //         return $container;
+        //     }else{
+        //         $container = '<p>
+        //             '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Shop.Theme.Global').'
+        //         </p>';
+        //         return $container;
+        //     }
         
-        echo 'paulo';
-        exit;
+        // echo 'paulo';
+        // exit;
 
         $data = [
             '{firstname}' => $customer->firstname,
@@ -787,7 +791,7 @@ class OrderHistoryCore extends ObjectModel
             '{message}' => $order->getFirstMessage(),
             
             '{note}' => $this->getNote($order->id),
-            '{message_payment}' => $container,
+            // '{message_payment}' => $container,
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
