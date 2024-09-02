@@ -671,8 +671,13 @@ class OrderHistoryCore extends ObjectModel
             $product_list_txt = '';
             $product_list_html = '';
             if (count($product_var_tpl_list) > 0) {
-                $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
-                $product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                if($this->context->shop->id === 3){
+                    $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
+                    $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_3.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                }else{
+                    $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
+                    $product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                }
             }
 
             $total_reduction_value_ti = 0;
