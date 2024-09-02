@@ -439,10 +439,12 @@ abstract class PaymentModuleCore extends Module
 
                 $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, Context::getContext()->getComputingPrecision()) : $price_wt;
 
-                $image_link= new LinkCore();
-                $image_url = $image_link->getImageLink($product['name'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
-                echo 'teste6 '.$image_url;
-                exit;
+                $image_link= new Link();
+                $image_url = $image_link->getImageLink($product['reference'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
+                // echo $image_url ;
+                // exit;
+
+                
                 $product_var_tpl = [
                     'id_product' => $product['id_product'],
                     'id_product_attribute' => $product['id_product_attribute'],
