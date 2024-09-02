@@ -5455,6 +5455,34 @@ textarea {
     border-right: 0 !important;
   }
 
+  #checkout .cart-overview .cart_item {
+    padding: 0.5rem;
+  }
+
+  #form_ets_onepagecheckout i.ets_checkbox{
+    width: 18px !important;
+    position: absolute;
+  }
+
+  .invoice-address-container .ets_checkinput {
+    display: flex;
+    gap: 0.5rem;
+    text-align: center !important;
+  }
+
+  .invoice-address-container .ets_checkinput i{
+    width: 18px !important;
+  }
+
+  #conditions-to-approve .js-terms {
+    display: flex;
+    align-items: center;
+  }
+
+  
+
+
+
   .block-onepagecheckout .cart-container tfoot tr{
     width: 100vw;
     display: flex;
