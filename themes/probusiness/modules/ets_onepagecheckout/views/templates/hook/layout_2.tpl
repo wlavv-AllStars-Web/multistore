@@ -77,12 +77,12 @@
                             <label for="use_another_address_for_invoice" class="ets_checkinput">
                                 <input type="checkbox" name="use_another_address_for_invoice" id="use_another_address_for_invoice" value="1" />
                                 <i class="ets_checkbox"></i>
-                                <span style="padding-left:1.5rem;">{l s='Deliver to a different address?' d='Shop.Theme.Checkout'} ({l s='Dropship' d='Shop.Theme.Checkout'})</span>
+                                <span >{l s='Deliver to a different address?' d='Shop.Theme.Checkout'} ({l s='Dropship' d='Shop.Theme.Checkout'})</span>
                             </label>
                             <label for="use_pickup_address" class="ets_checkinput">
                                 <input type="checkbox" name="use_pickup_address" id="use_pickup_address" value="1" />
                                 <i class="ets_checkbox"></i>
-                                <span style="padding-left:1.5rem;">{l s='Pick up with your carrier' d='Shop.Theme.Checkout'} ({l s='Pickup' d='Shop.Theme.Checkout'})</span>
+                                <span >{l s='Pick up with your carrier' d='Shop.Theme.Checkout'} ({l s='Pickup' d='Shop.Theme.Checkout'})</span>
                             </label>
                             
                         </div>
@@ -204,7 +204,7 @@
                                 <span class="checkbox ets_checkinput">
                                 <label class="js-terms required" for="conditions_to_approve" onclick="checkCheckboxTerms()" >
                                     <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" onclick="checkCheckboxTerms()" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
-                                    <span style="padding-left: 1.5rem;">{l s='I have read and accept the current terms, conditions and policies.' d="Shop.Theme.Checkout"}</span>
+                                    <span>{l s='I have read and accept the current terms, conditions and policies.' d="Shop.Theme.Checkout"}</span>
                                 </label>
                                 </span>
                             </div>
