@@ -1,4 +1,5 @@
 {foreach $list as $product}
+						{$product['image_p']}
 						{$product['reference']}
 
 						{$product['name']}

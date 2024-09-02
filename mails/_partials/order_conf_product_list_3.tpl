@@ -25,7 +25,7 @@
     	<td style="border:1px solid #D6D4D4; text-align: center;">
     	    <font size="3" face="Open-sans, sans-serif" color="#555454"> {$product['price']}      </font>
     	</td> *}
-		<td colspan="1"><img src="{$product['image']}" /></td>
+		<td colspan="1"><img src="{$product['image_p']}" /></td>
 		<td colspan="2">
 			<table>
 				<tr>
