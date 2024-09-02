@@ -213,11 +213,12 @@
       {/foreach}
     </div>
     <div class="order-totals hidden-md-up box">
-      {foreach $order.subtotals as $line}
+      {foreach $order.subtotals as $k => $line}
+        <pre>{$line|print_r}</pre>
         {if $line.value}
           <div class="order-total row">
             <div class="col-xs-8"><strong>{$line.label|escape:'html':'UTF-8'}</strong></div>
-            <div class="col-xs-4 text-xs-right">{$line.value|escape:'html':'UTF-8'}</div>
+            <div class="col-xs-4 text-xs-right">{if $k == 1}{else}{$line.value|escape:'html':'UTF-8'}{/if}</div>
           </div>
         {/if}
       {/foreach}

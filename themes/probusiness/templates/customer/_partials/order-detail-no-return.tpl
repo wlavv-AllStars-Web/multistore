@@ -54,7 +54,7 @@
                             {/foreach}
                         {/if}                    
                     </td>        
-                    <td>{number_format($product.total_price_tax_excl / (1-($product.reduction_percent/100)), 2, '.', ',')} €</td>        
+                    <td>{number_format($product.total_price_tax_excl / (1-($product.reduction_percent/100)), 2, '.', ' ')} €</td>        
                     <td>{number_format($product.reduction_percent, 0)} %</td>
                     <td>
                         {if $product.customizations}
@@ -65,20 +65,20 @@
                             {$product.quantity|escape:'html':'UTF-8'}
                         {/if}
                     </td>
-                    <td>{number_format($product.total_price_tax_excl, 2, '.', ',')} €</td>
+                    <td>{number_format($product.total_price_tax_excl, 2, '.', ' ')} €</td>
                 </tr>
             {/foreach}
             <tfoot>
                 {if ($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount ) > 0}
                 <tr style="font-size: 16px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
                     <td colspan="5" style="text-align: right;font-weight:700;">{l s='Total taxes' d='Shop.Theme.Catalog'}</td>
-                    <td style="font-weight:400;">{number_format($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount, 2, '.', ',')} €</td>
+                    <td style="font-weight:400;">{number_format($order.totals.total_including_tax.amount - $order.totals.total_excluding_tax.amount, 2, '.', ' ')} €</td>
                 </tr>
                 {/if}
 
                 <tr style="font-size: 16px;text-align: center;" class="line-{$order.totals.total.type|escape:'html':'UTF-8'}">
                     <td colspan="5" style="text-align: right;font-weight:700;">{l s='Total paid' d='Shop.Theme.Catalog'}</td>
-                    <td style="font-weight:400;">{$order.totals.total.value|escape:'html':'UTF-8'}</td>
+                    <td style="font-weight:400;">{number_format($order.totals.total.amount, 2, '.', ' ')|escape:'html':'UTF-8'} €</td>
                 </tr>
             </tfoot>
         </table>
@@ -130,12 +130,13 @@
     <div class="order-totals hidden-md-up box">
         
         {foreach $order.subtotals as $line}
-        
-            {if ($line.value)}
-                <div class="order-total row">
-                    <div class="col-xs-8"><strong>{$line.label|escape:'html':'UTF-8'} - {$line.type}</strong></div>
-                    <div class="col-xs-4 text-xs-right">{$line.value|escape:'html':'UTF-8'}</div>
-                </div>
+            {if !$line.type == "shipping"}
+                {if ($line.value)}
+                    <div class="order-total row">
+                        <div class="col-xs-8"><strong>{$line.label|escape:'html':'UTF-8'} - {$line.type}</strong></div>
+                        <div class="col-xs-4 text-xs-right">{$line.value|escape:'html':'UTF-8'}</div>
+                    </div>
+                {/if}
             {/if}
         {/foreach}
         <div class="order-total row">

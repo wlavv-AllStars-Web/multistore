@@ -20,7 +20,7 @@
         </div>
         
         <div class="">
-            <table class="table table-striped table-bordered hidden-sm-down">
+            <table class="table table-striped table-bordered table-desktop">
                 <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;color: #666;font-weight:700;">
                     <tr>
                         <td>{l s='Date'     d='Shop.Theme.Actions'}</td>
@@ -37,7 +37,7 @@
                 <tbody style="text-align: center;font-size: 16px;font-weight:400;">
                     <tr>
                         <td>{$order.history.current.date_add|date_format:"d-m-Y"}</td>
-                        <td>{$order.totals.total.value|escape:'html':'UTF-8'}</td>
+                        <td>{number_format($order.totals.total.amount, 2, '.', ' ')|escape:'html':'UTF-8'} €</td>
                         <td>{$order->details->getPayment()}</td>
                         <td>{$order.shipping[0].carrier_name}</td>
                         
@@ -51,6 +51,45 @@
                             <td>{$order.history.current.date_add|cat:' +5 days'|strtotime|date_format:"d-m-Y"}</td>
                         {/if}
                     </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-striped table-bordered table-mobile">
+                <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;color: #666;font-weight:700;">
+                    
+                </thead>
+                <tbody style="text-align: center;font-size: 16px;font-weight:400;">
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Date' d='Shop.Theme.Actions'}</td>
+                        <td>{$order.history.current.date_add|date_format:"d-m-Y"}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Montant' d='Shop.Theme.Checkout'}</td>
+                        <td>{$order.totals.total.value|escape:'html':'UTF-8'}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Payment' d='Shop.Theme.Checkout'}</td>
+                        <td>{$order->details->getPayment()}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Shipping' d='Shop.Theme.Checkout'}</td>
+                        <td>{$order.shipping[0].carrier_name}</td>
+                    </tr>
+                    {if $order.details.invoice_url}
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Invoice' d='Shop.Theme.Checkout'}</td>
+                        <td>
+                            <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}" style="display: block;">
+                                <img src="/img/asd/icon_invoice.svg" width="23" height="23" style="width: 23px;height:auto;" />
+                            </a>
+                        </td>
+                    </tr>
+                    {else}
+                    <tr>
+                        <td style="font-weight: 600;">{l s='Valid to' d='Shop.Theme.Checkout'}</td>
+                        <td>{$order.history.current.date_add|cat:' +5 days'|strtotime|date_format:"d-m-Y"}</td>
+                    </tr>
+                    {/if}
                 </tbody>
             </table>
         </div>
@@ -90,7 +129,7 @@
     {block name='order_history'}
         <section id="order-history" class="">
             <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Status history' d='Shop.Theme.Actions'}</h3>
-            <table class="table table-striped table-bordered table-labeled hidden-xs-down">
+            <table class="table table-striped table-bordered table-labeled ">
                 <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                     <tr>
                         <td>{l s='Date' d='Shop.Theme.Actions'}</td>
@@ -106,7 +145,7 @@
                 {/foreach}
             </tbody>
           </table>
-          <div class="hidden-sm-up history-lines">
+          {* <div class="hidden-sm-up history-lines">
             {foreach from=$order.history item=state}
               <div class="history-line">
                 <div class="date">{$state.history_date|escape:'html':'UTF-8'}</div>
@@ -117,7 +156,7 @@
                 </div>
               </div>
             {/foreach}
-          </div>
+          </div> *}
         </section>
     {/block}
 
@@ -133,7 +172,7 @@
             <div class="">
                 <h3 style="text-align: center; border-top: 3px solid #0273eb;padding: 20px 0 10px 0;text-transform: uppercase;font-size: 24px;margin-top: 60px;color: #666;">{l s='Information' d='Shop.Theme.Actions'}</h3>
                 <div class="mobile-table">
-                <table class="table table-striped table-bordered" style>
+                <table class="table table-striped table-bordered table-desktop" style>
                     <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                         <tr>
                             <td>{l s='Last update' d='Shop.Theme.Actions'}</td>
@@ -148,6 +187,32 @@
                                 <td>{$line.shipping_date|escape:'html':'UTF-8'}</td>
                                 <td>{$line.weight|number_format:2:".":","} Kg</td>
                                 <td>{$line.carrier_name|escape:'html':'UTF-8'}</td>
+                                <td>{$line.tracking|escape:'html':'UTF-8'}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-bordered table-mobile" style>
+                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
+                        
+                    </thead>
+                    <tbody>
+                        {foreach from=$order.shipping item=line}
+                            <tr>
+                                <td><strong>{l s='Last update' d='Shop.Theme.Actions'}</strong></td>
+                                <td>{$line.shipping_date|escape:'html':'UTF-8'}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{l s='Weight' d='Shop.Theme.Checkout'}</strong></td>
+                                <td>{$line.weight|number_format:2:".":","} Kg</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{l s='Carrier' d='Shop.Theme.Checkout'}</strong></td>
+                                <td>{$line.carrier_name|escape:'html':'UTF-8'}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{l s='Tracking' d='Shop.Theme.Checkout'}</strong></td>
                                 <td>{$line.tracking|escape:'html':'UTF-8'}</td>
                             </tr>
                         {/foreach}

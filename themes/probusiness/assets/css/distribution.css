@@ -4070,6 +4070,13 @@ textarea {
     text-align: end;
   }
 
+  .table-mobile{
+    display: none;
+  }
+
+  .table-desktop{
+    display: table;
+  }
 
 }
 
@@ -4302,6 +4309,14 @@ textarea {
     margin-top: 1rem;
   }
 
+
+  .table-mobile{
+    display: table;
+  }
+
+  .table-desktop{
+    display: none;
+  }
 
 }
 
@@ -5619,6 +5634,24 @@ textarea {
 
 @media (max-width: 540px) {
 
+  /* order details page*/
+
+  #order-detail #delivery-address{
+    text-align: center;
+  }
+
+  #order-detail #invoice-address{
+    text-align: center !important;
+  }
+
+  .page-order-detail .order-items .order-item{
+    border-bottom:  1px solid #0273EB !important;
+  }
+  .page-order-detail .order-items .order-item:last-child{
+    border-bottom: 0 !important;
+  }
+
+  /* modal */
   #blockcart-modal .divide-right{
     padding-bottom: 0 !important;
     display: flex;
