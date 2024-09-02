@@ -439,8 +439,8 @@ abstract class PaymentModuleCore extends Module
 
                 $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, Context::getContext()->getComputingPrecision()) : $price_wt;
 
-                $image_link= new Link();
-                $image_url = $image_link->getImageLink($product['reference'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
+                // $image_link= new Link();
+                // $image_url = $image_link->getImageLink($product['reference'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
                 // echo $image_url ;
                 // exit;
 
@@ -453,7 +453,7 @@ abstract class PaymentModuleCore extends Module
                     'price' => Tools::getContextLocale($this->context)->formatPrice($product_price * $product['quantity'], $this->context->currency->iso_code),
                     'quantity' => $product['quantity'],
                     'customization' => [],
-                    'image_p' => $image_url,
+                    // 'image_p' => $image_url,
                 ];
 
                 if (isset($product['price']) && $product['price']) {
