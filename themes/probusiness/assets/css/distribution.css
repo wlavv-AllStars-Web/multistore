@@ -3134,6 +3134,11 @@ textarea {
   cursor: pointer;
 }
 
+#searchbox .button-search {
+  background: #0273eb !important;
+  color: #fff !important;
+}
+
 
 .container-price_atributes{
   display: flex;
