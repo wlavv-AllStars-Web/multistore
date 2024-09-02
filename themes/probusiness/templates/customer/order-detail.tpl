@@ -194,26 +194,26 @@
                 </table>
 
                 <table class="table table-striped table-bordered table-mobile" style>
-                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
+                    <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:600;">
                         
                     </thead>
                     <tbody>
                         {foreach from=$order.shipping item=line}
                             <tr>
-                                <td><strong>{l s='Last update' d='Shop.Theme.Actions'}</strong></td>
-                                <td>{$line.shipping_date|escape:'html':'UTF-8'}</td>
+                                <td style="font-weight:600;"><span>{l s='Last update' d='Shop.Theme.Actions'}</span></td>
+                                <td style="font-weight:400;">{$line.shipping_date|escape:'html':'UTF-8'}</td>
                             </tr>
                             <tr>
-                                <td><strong>{l s='Weight' d='Shop.Theme.Checkout'}</strong></td>
-                                <td>{$line.weight|number_format:2:".":","} Kg</td>
+                                <td style="font-weight:600;"><span>{l s='Weight' d='Shop.Theme.Checkout'}</span></td>
+                                <td style="font-weight:400;">{$line.weight|number_format:2:".":","} Kg</td>
                             </tr>
                             <tr>
-                                <td><strong>{l s='Carrier' d='Shop.Theme.Checkout'}</strong></td>
-                                <td>{$line.carrier_name|escape:'html':'UTF-8'}</td>
+                                <td style="font-weight:600;"><span>{l s='Carrier' d='Shop.Theme.Checkout'}</span></td>
+                                <td style="font-weight:400;">{$line.carrier_name|escape:'html':'UTF-8'}</td>
                             </tr>
                             <tr>
-                                <td><strong>{l s='Tracking' d='Shop.Theme.Checkout'}</strong></td>
-                                <td>{$line.tracking|escape:'html':'UTF-8'}</td>
+                                <td style="font-weight:600;"><span>{l s='Tracking' d='Shop.Theme.Checkout'}</span></td>
+                                <td style="font-weight:400;">{$line.tracking|escape:'html':'UTF-8'}</td>
                             </tr>
                         {/foreach}
                     </tbody>
