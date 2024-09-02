@@ -453,7 +453,7 @@ abstract class PaymentModuleCore extends Module
                     'price' => Tools::getContextLocale($this->context)->formatPrice($product_price * $product['quantity'], $this->context->currency->iso_code),
                     'quantity' => $product['quantity'],
                     'customization' => [],
-                    'image' => $image_url,
+                    'image_p' => $image_url,
                 ];
 
                 if (isset($product['price']) && $product['price']) {
