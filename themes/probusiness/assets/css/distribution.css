@@ -5451,6 +5451,10 @@ textarea {
     align-items: center;
   }
 
+  #checkout table{
+    border-top: 0 !important;
+  }
+
   #checkout .cart-overview td{
     border-right: 0 !important;
   }
@@ -5479,7 +5483,34 @@ textarea {
     align-items: center;
   }
 
-  
+  #form_ets_onepagecheckout input:checked + .ets_checkbox{
+    position: absolute !important;
+  }
+
+  /* order confirmantion page */
+
+  #order-confirmation .container-fluid{
+    padding: 0;
+  }
+  #order-confirmation #content-wrapper{
+    max-width: 1350px;
+    width: 100%;
+  }
+
+  #order-confirmation #content-wrapper .card-block .row{
+    margin: 0 !important;
+  }
+  #order-confirmation #content-wrapper .card-block .row .col-md-12:nth-child(1){
+    padding: 0 !important;
+  }
+
+  #order-confirmation #content-wrapper .card-block .row .col-md-12:nth-child(2){
+    padding: 1rem !important;
+  }
+
+  #order-confirmation #content-wrapper .card-block .row .col-md-12:nth-child(2) div:nth-child(1){
+    flex-wrap: wrap;
+  }
 
 
 
