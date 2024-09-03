@@ -42,7 +42,7 @@
               <p style="font-size: 18px;color: #333;">{l s="Thank you" d="Shop.Theme.OrderConfirmation"}</p>
               <br>
               <div>
-                <a class="btn btn-primary btn-view-history" href="{$link->getPageLink('my-account')}" title="Go to your order history page">{l s="View your order history" d="Shop.Theme.OrderConfirmation"}</a>
+                <a class="btn btn-primary btn-view-history" href="{$link->getPageLink('my-account')}" title="Go to your order history page">{l s="Order history" d="Shop.Theme.Customeraccount"}</a>
               </div>
             </div>
 

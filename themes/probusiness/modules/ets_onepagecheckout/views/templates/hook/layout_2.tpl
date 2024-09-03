@@ -211,8 +211,8 @@
                             <div class="condition-label">
                                 
                                 <div>
-                                    <a href="{$link->getCMSLink(13)}" >{l s='Conditions'  d="Shop.Theme.Checkout"}</a>
-                                    | <a href="{$link->getCMSLink(7)}" >{l s='Privacy'  d="Shop.Theme.Checkout"}</a>
+                                    <a href="{$link->getCMSLink(13)}" target="_blank">{l s='Conditions'  d="Shop.Theme.Checkout"}</a>
+                                    | <a href="{$link->getCMSLink(7)}"  target="_blank">{l s='Privacy'  d="Shop.Theme.Checkout"}</a>
                                 </div>
                             </div>
                         </li>
