@@ -251,7 +251,7 @@ var login_before_text = '{l s='Please login before completing your order' mod='e
                 <span aria-hidden="true">×</span>
             </button>
             <div class="js-modal-content">
-                {$terms_page->content nofilter}
+                {* {$terms_page->content nofilter} *}
             </div>
         </div>
     </div>
