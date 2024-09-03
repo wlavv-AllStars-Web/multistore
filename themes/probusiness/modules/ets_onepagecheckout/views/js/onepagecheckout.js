@@ -854,6 +854,7 @@ function ets_refresh_shipping_cart(del_product)
                     const language_iso = document.querySelector("html").getAttribute("lang")
                     $('#form_ets_onepagecheckout').html(`<div style="display:flex;flex-direction:column;justify-content:center;align-items: center;"><img style="width:100%;" src="/img/asd/Content_pages/shopping_cart/shopping_${language_iso}.webp" /> <div style="padding:2rem 0;width:100%;display:flex;flex-direction:column;justify-content:center;align-items: center;gap:1rem;"><div class="alert alert-warning" style="width:100%;max-width:1350px;">${json.text_info}</div><a class="btn btn-primary" href="${json.link}">${json.text_btn}</a></div></div>`);
                     $(".cart-container .productsValue").replaceWith("0.00 €"); 
+                    $(".cart-container .products_total_header div").text("0"); 
 
                 }
                 else
