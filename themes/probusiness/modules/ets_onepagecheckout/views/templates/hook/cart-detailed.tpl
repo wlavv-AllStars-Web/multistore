@@ -37,15 +37,15 @@
       <tfoot style="background: #e7e7e7;">
         <tr class="cart_total_price">
           <td colspan="5" class="text-right" style="padding-right:1rem;">{l s="Total (Ex VAT)" d="Shop.Theme.Checkout"}</td>
-          <td class="price" id="total_product" style="text-align: center;">{$cart.totals.total_excluding_tax.value}</td>
+          <td class="price" id="total_product" style="text-align: center;">{$cart.totals.total_excluding_tax.amount|number_format:2:'.':' '} €</td>
         </tr>
         <tr class="cart_total_tax">
           <td colspan="5" class="text-right" style="padding-right:1rem;">{l s="VAT" d="Shop.Theme.Checkout"}</td>
-          <td class="price" id="total_tax" style="text-align: center;">€ {($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2}</td>
+          <td class="price" id="total_tax" style="text-align: center;">{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '} €</td>
         </tr>
         <tr class="cart_total_price">
           <td colspan="5" class="total_price_container text-right" style="padding-right:1rem;"> <span>{l s="Total" d="Shop.Theme.Checkout"}</span></td>
-          <td class="price" id="total_price_container" style="text-align: center;"> <span id="total_price">{$cart.totals.total.value}</span>
+          <td class="price" id="total_price_container" style="text-align: center;"> <span id="total_price">{$cart.totals.total.amount|number_format:2:'.':' '} €</span>
           </td>
         </tr>
       </tfoot>

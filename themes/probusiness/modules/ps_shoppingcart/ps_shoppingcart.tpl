@@ -28,7 +28,7 @@
             <div style="width:33px; background-color: #0273eb;float: left;border-radius: 20px 0 0 20px;border: 1px solid #777; color: white;display:flex;align-items:center;justify-content:center;"> 
               <i class="fa fa-shopping-cart" style="font-size: 17px;"></i>
             </div>
-            <div style="height:35px; border: 1px solid #777" class="cart_total_header"> {l s="Total" d="Shop.Theme.Cart"} <span class="productsValue">{$cart.subtotals.products.value|escape:'html':'UTF-8'}</span></div>
+            <div style="height:35px; border: 1px solid #777" class="cart_total_header"> {l s="Total" d="Shop.Theme.Cart"} <span class="productsValue">{$cart.totals.total_excluding_tax.amount|number_format:2:'.':' '} €</span></div>
             <div class="products_total_header">
               <div style="width:33px; height:35px; background-color: #0273eb;border-radius: 0px 20px 20px 0px;border: 1px solid #777; color: white; font-size: 18px;text-align:center;display:flex;justify-content:center;align-items:center;" >{$cart.products_count}</div>
             </div>

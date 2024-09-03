@@ -96,7 +96,7 @@
           {* {debug} *}
           
           <div class="current-price">
-            <span class="price">{$product.price_with_reduction_without_tax|number_format:2}&nbsp;€ </span>
+            <span class="price">{$product.price_with_reduction_without_tax|number_format:2:'.':' '} € </span>
             {if $product.unit_price_full}
               <div class="unit-price-cart">{$product.unit_price_full}</div>
             {/if}
@@ -156,7 +156,7 @@
                 <span class="gift">{l s='Gift' d='Shop.Theme.Checkout'}</span>
               {else}
                 {* {$product.total} *}
-                {($product.price_with_reduction_without_tax * $product.quantity)|number_format:2} €
+                {($product.price_with_reduction_without_tax * $product.quantity)|number_format:2:'.':' '} €
               {/if}
             </strong>
           </span>
