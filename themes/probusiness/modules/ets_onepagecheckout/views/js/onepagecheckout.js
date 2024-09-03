@@ -744,19 +744,17 @@ $(document).on('change','input[name="product-quantity-spin"]',function(){
     var loadingOverlay = document.createElement('div');
         loadingOverlay.className = 'loading-overlay';
 
-        // Create the spinner element
         var spinner = document.createElement('div');
         spinner.className = 'loading-spinner';
 
-        // Append the spinner to the overlay
         loadingOverlay.appendChild(spinner);
 
-        // Append the overlay to the body
         document.body.appendChild(loadingOverlay);
 });
 $(document).on('click','.remove-from-cart,a[data-link-action="ets-remove-voucher"]',function(){
     if(!$('.block-shopping-cart').hasClass('loading'))
     {
+        
         if($(this).hasClass('remove-from-cart'))
             var del_product = 1;
         else
@@ -768,6 +766,15 @@ $(document).on('click','.remove-from-cart,a[data-link-action="ets-remove-voucher
             {
                 $('.block-onepagecheckout.block-shipping').addClass('loading');
                 $('.block-onepagecheckout.block-shop-license-info').addClass('loading');
+                var loadingOverlay = document.createElement('div');
+                loadingOverlay.className = 'loading-overlay';
+
+                var spinner = document.createElement('div');
+                spinner.className = 'loading-spinner';
+
+                loadingOverlay.appendChild(spinner);
+
+                document.body.appendChild(loadingOverlay);
             }
             var url_ajax = $(this).attr('href');
             $.ajax({
