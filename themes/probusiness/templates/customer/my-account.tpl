@@ -625,7 +625,7 @@
         <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
             
             <div style="width: 100%;">
-                <div style="text-align: center;text-transform: uppercase;color: #000;font-size: 18px;padding: 20px;"><h1>{l s='Euro shipping rates' d='Shop.Theme.Customeraccount'} <span style="color: #0273eb;">( {date('Y-m-d')} )</span></h1></div>
+                <div style="text-align: center;text-transform: uppercase;color: #000;font-size: 18px;padding: 20px;"><h1>{l s='Shipping Costs' d='Shop.Theme.Customeraccount'} <span style="color: #0273eb;">( {date('Y-m-d')} )</span></h1></div>
 
                 <table id="table_shipping" border="3" bgcolor="#999">
                     <thead>
@@ -906,7 +906,7 @@
                                               {*<div style="min-height: 25px;" class="{if $message['message_type'] == 1} alert alert-danger {else if $message['message_type'] == 2} alert alert-warning {else if $message['message_type'] == 3} alert alert-success {else if $message['message_type'] == 4} alert alert-info{/if}" role="alert">*}
                                               <div class="notification-container" role="alert">
                                                 <div class="notification-header">
-                                                  <div class="title-notification"><i class="fa-solid fa-circle-info"></i>{$message["title_{$language.iso_code}"]}</div>
+                                                  <div class="title-notification"><i class="fa-solid fa-circle-info"></i><span>{$message["title_{$language.iso_code}"]}</span></div>
                                                   <div class="date-notification"><i class="fa-regular fa-calendar"></i>{$message["creation_date"]|date_format:"%d-%m-%Y"}</div>
                                                 </div>
                                                 <div class="notification-body">
