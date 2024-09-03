@@ -125,6 +125,9 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                             'cart_detailed' => 'empty',
                             'url_cart' => $this->context->link->getPageLink('cart'),
                             'text_info' => $this->module->l('There are no more items in your cart','order'),
+                            'text_btn' => $this->module->l('Continue shopping','order'),
+                            'title_cart' => $this->module->l('Shopping Cart','order'),
+                            'link' => $this->context->link->getPageLink('new-products')
                         )
                     )
                 );
