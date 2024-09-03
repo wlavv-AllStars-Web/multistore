@@ -171,6 +171,13 @@
                             <input id="{$address_type|escape:'html':'UTF-8'}_vat_number" class="form-control validate{if in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isGenericName" name="{$address_type|escape:'html':'UTF-8'}[vat_number]" value="{if $address_type|escape:'html':'UTF-8' == 'invoice_address'}{$class_address->vat_number|trim|escape:'html':'UTF-8'}{/if}" maxlength="128" type="text" data-validate-errors="{l s='VAT number is not valid'  d='Shop.Theme.Checkout' js=1}" data-required-errors="{l s='VAT number is required'  d='Shop.Theme.Checkout' js=1}" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {/if}/>
                         </div>
                     </div>
+                {else}
+                    <div class="form-group row  col-lg-3 col-xs-12" style="display: none;">
+                        <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4 col-xs-12{/if} form-control-label {if in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} required{/if}"> {l s='VAT number'  d='Shop.Theme.Checkout'} </label>
+                        <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8 col-xs-12{/if} opc_field_right ">
+                            <input id="{$address_type|escape:'html':'UTF-8'}_vat_number" class="form-control validate{if in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isGenericName" name="{$address_type|escape:'html':'UTF-8'}[vat_number]" value="999999999" maxlength="128" type="text" data-validate-errors="{l s='VAT number is not valid'  d='Shop.Theme.Checkout' js=1}" data-required-errors="{l s='VAT number is required'  d='Shop.Theme.Checkout' js=1}" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {/if}/>
+                        </div>
+                    </div>
                 {/if}
             {/if}
             {if $key=='doornumber' && in_array('door_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
