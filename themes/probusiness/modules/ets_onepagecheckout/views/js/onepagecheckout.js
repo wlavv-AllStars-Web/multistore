@@ -845,8 +845,8 @@ function ets_refresh_shipping_cart(del_product)
                 $('.loading').removeClass('loading');
                 if(json.cart_detailed=='empty')
                 {
-                    $('.cart-container').html('<div class="alert alert-warning">'+json.text_info+'</div>');
                     window.location.href = json.url_cart;
+                    $('.cart-container').html('<div class="alert alert-warning">'+json.text_info+'</div>');
                 }
                 else
                 {
