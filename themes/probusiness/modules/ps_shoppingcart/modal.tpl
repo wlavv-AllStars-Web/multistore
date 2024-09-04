@@ -78,17 +78,17 @@
 
             <div class="cart-content" style="padding: 1rem;">
                 {* {debug} *}
-              <p><strong>{l s='Price' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.totals.total_excluding_tax.amount|number_format:2:".":" "} € ({l s="ExVAT" d='Shop.Theme.Modal'})</p>
-              <p><strong>{l s='VAT' d='Shop.Theme.Modal'} :</strong>&nbsp;{($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:".":" "} €</p>
+              <p><strong>{l s='Price' d='Shop.Theme.Modal'}:</strong>&nbsp;{$cart.totals.total_excluding_tax.amount|number_format:2:".":" "} € ({l s="ExVAT" d='Shop.Theme.Modal'})</p>
+              <p><strong>{l s='VAT' d='Shop.Theme.Modal'}:</strong>&nbsp;{($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:".":" "} €</p>
               <p>
-                <strong>{l s='Shipping' d='Shop.Theme.Modal'}  :</strong>&nbsp;
+                <strong>{l s='Shipping' d='Shop.Theme.Modal'}:</strong>&nbsp;
                 {if $cart.subtotals.shipping.amount|escape:'html':'UTF-8' > 0} 
                   {* {$cart.subtotals.shipping.amount|escape:'html':'UTF-8'} *}
                   ({l s="To be defined" d="Shop.Theme.Modal"})
                 {else} 
                   ({l s="To be defined" d="Shop.Theme.Modal"})
                 {/if}{hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</p>
-              <p><strong>{l s='Total' d='Shop.Theme.Modal'} :</strong>&nbsp;{$cart.subtotals.products.amount|number_format:2:".":" "|escape:'html':'UTF-8'} €
+              <p><strong>{l s='Total' d='Shop.Theme.Modal'}:</strong>&nbsp;{$cart.subtotals.products.amount|number_format:2:".":" "|escape:'html':'UTF-8'} €
               {if ($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount) == 0} ({l s="ExVAT" d='Shop.Theme.Modal'}) {/if}
               </p>
 

@@ -237,7 +237,8 @@
             <div class="col-lg-12" style="text-align: center;">
                 <h1 style="color: #0273eb;font-size:24px">{l s='NOTE' d='Shop.Theme.Catalog'}</h1>
                 <div style="margin-top: 30px; font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
-                    {l s='Fusce sodales, lorem eget tincidunt eleifend, magna urna vehicula lectus, eu ultrices nunc nulla a turpis. In hac habitasse platea dictumst. Nulla a posuere felis. Vestibulum molestie lectus orci. Suspendisse dapibus nulla ex, sit amet efficitur tellus facilisis id. Etiam suscipit bibendum purus quis gravida. Mauris congue, ante non finibus scelerisque, lorem diam aliquam arcu, aliquam auctor dui nulla ac dui. Vivamus in eros risus. Curabitur vitae massa euismod quam sodales fermentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas faucibus, mi non accumsan tincidunt, justo ante fermentum ligula, sit amet accumsan nisi lacus vel purus. Etiam non interdum metus.' d='Shop.Theme.Catalog'} 
+                    <p>{l s='Rates do not include shipping costs which will be calculated at the most economical way after order creation. All sales are final, returns are not permitted.' d='Shop.Theme.Catalog'}</p>
+                    <p>{l s='Be sure to confirm items compatibility using manufacturers catalogs or websites.' d='Shop.Theme.Catalog'}</p> 
                 </div>
             </div>
             <div class="col-lg-12">

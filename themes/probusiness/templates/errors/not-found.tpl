@@ -86,14 +86,14 @@
 
   #search .page-content.page-not-found{
     background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
-    width: 600px !important;
+    width: 100vw !important;
     height: 400px;
     position: relative;
     display: flex;
     align-items: end;
     padding: 0 !important;
     margin-bottom: 0 !important;
-    max-width: unset !important;
+    max-width: 600px !important;
     justify-content: end;
   }
 

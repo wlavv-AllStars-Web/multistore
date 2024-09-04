@@ -4086,6 +4086,13 @@ textarea {
   }
 
 
+  #checkout .product-line-info.size{
+    display: flex;
+    flex-direction: row !important;
+    gap: 0.25rem !important;
+    padding: 0 !important;
+  }
+
   #checkout .cart_empty .btn.btn-primary:hover{
     background: #fff !important;
     color: #0273EB !important;
@@ -4094,6 +4101,15 @@ textarea {
 
   .text_mobile{
     display: none;
+  }
+
+  .btn-primary:hover i{
+    color: #0273EB !important;
+  }
+
+  #product .product-actions.js-product-actions{
+    display: flex;
+    align-items: center;
   }
 
 }
@@ -4342,6 +4358,25 @@ textarea {
     font-weight: 400;
   }
 
+  body#checkout .form-group{
+    margin-bottom: 1rem !important;
+  }
+
+  #checkout .product-line-info.size{
+    display: flex;
+    flex-direction: row !important;
+    gap: 0.25rem !important;
+    padding: 0 !important;
+  }
+
+  #search .container-fluid{
+    margin: 0;
+    padding: 0;
+  }
+
+  #search .page-content.page-not-found{
+    width: 100vw !important;
+  }
 }
 
 @media screen and (min-width: 1101px){

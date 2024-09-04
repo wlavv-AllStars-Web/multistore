@@ -78,7 +78,7 @@
     						</tr>
     						<tr>
     							<td class="no_padding_text_center">
-    								<div class="cms_catalog{if $manufacturer.info == 1}_updated{/if}_messages width_100">{l s='Updated' d="Shop.Theme.catalog"} <br>{$manufacturer.info_updated}</div>
+    								<div class="cms_catalog{if $manufacturer.info == 1}_updated{/if}_messages width_100">{l s='Updated' d="Shop.Theme.catalog"} <br>{$manufacturer.date_upd|date_format:"%Y-%m-%d"}</div>
     							</td>
     						</tr>
     					</tbody>
