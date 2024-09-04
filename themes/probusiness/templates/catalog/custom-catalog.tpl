@@ -93,12 +93,12 @@
 {foreach from=$manufacturers item=manufacturer name=manufacturers}
 	<div class="resource-container-brand col-md-4 col-sm-6 col-xs-12">
 			<div onclick="togglebtnsresources(this)">
-				<img src="{$base_dir}/img/m/{$manufacturer.id_manufacturer}-medium_default.jpg" width="125" height="125" class="cms_catalog_table_brand_td_image" alt="brand_logo"/>
+				<img src="{$base_dir}/img/m/{$manufacturer.id_manufacturer}-home_default.jpg" width="160" height="160" class="cms_catalog_table_brand_td_image" alt="brand_logo"/>
 				<div class="resource-brand-btns">
 				<div class="col-md-6">
 					
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/csv{if $manufacturer.csv == 1}_updated{elseif $manufacturer.csv == 2}_none{elseif $manufacturer.csv == 3}_commingSoon{/if}.png" alt="csv_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/csv{if $manufacturer.csv == 1}_updated{elseif $manufacturer.csv == 2}_none{elseif $manufacturer.csv == 3}_commingSoon{/if}.png" alt="csv_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Import File' d="Shop.Theme.catalog" }</span>
 				</div>
@@ -109,41 +109,41 @@
 					{else}
 						<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.xlsx" download="{$manufacturer.name|replace:' ':''}.xlsx">
 					{/if}
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/xlsx{if $manufacturer.xlsx == 1}_updated{elseif $manufacturer.xlsx == 2}_none{elseif $manufacturer.xlsx == 3}_commingSoon{/if}.png" alt="xlsx_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/xlsx{if $manufacturer.xlsx == 1}_updated{elseif $manufacturer.xlsx == 2}_none{elseif $manufacturer.xlsx == 3}_commingSoon{/if}.png" alt="xlsx_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Catalogue' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-6">
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_images.zip" download="{$manufacturer.name|replace:' ':''}_IMAGES.zip">
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/zip{if $manufacturer.pictures == 1}_updated{elseif $manufacturer.pictures == 2}_none{elseif $manufacturer.pictures == 3}_commingSoon{/if}.png" alt="pictures_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/zip{if $manufacturer.pictures == 1}_updated{elseif $manufacturer.pictures == 2}_none{elseif $manufacturer.pictures == 3}_commingSoon{/if}.png" alt="pictures_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Pictures' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-6">
 					<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_logos.zip" download="{$manufacturer.name|replace:' ':''}_LOGOS.zip">
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/jpg{if $manufacturer.logos == 1}_updated{elseif $manufacturer.logos == 2}_none{/if}.png" alt="logos_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/jpg{if $manufacturer.logos == 1}_updated{elseif $manufacturer.logos == 2}_none{/if}.png" alt="logos_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Logos' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-6">
 					<a href="{$manufacturer.facebook_url}" target="_blank">
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/facebook{if $manufacturer.facebook == 1}_updated{elseif $manufacturer.facebook == 2 }_none{/if}.png" alt="facebook_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/facebook{if $manufacturer.facebook == 1}_updated{elseif $manufacturer.facebook == 2 }_none{/if}.png" alt="facebook_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Facebook' d="Shop.Theme.catalog" }</span>
 				</div>
 
 				<div class="col-md-6">
 					<a href="{$manufacturer.site_url}" target="_blank">
-						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/website{if $manufacturer.site ==1}_updated{elseif $manufacturer.site == 2 }_none{/if}.png" alt="site_{$manufacturer.name|replace:' ':''}" width="50" height="50"/>
+						<img class="cms_catalog_image-mobile" src="/img/asd/Content_pages/catalog/icons/website{if $manufacturer.site ==1}_updated{elseif $manufacturer.site == 2 }_none{/if}.png" alt="site_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
 					</a>
 					<span class="title-resource-btn">{l s='Website' d="Shop.Theme.catalog" }</span>
 				</div>
 			</div>
 				<div class="resources-upd-date">
-				{$manufacturer.date_upd|date_format:"%Y-%m-%d"}
+				<span class="resources-upd-date-title">{l s='Updated' d="Shop.Theme.catalog"}:</span> {$manufacturer.date_upd|date_format:"%Y-%m-%d"}
 				</div>
 			</div>
 			
@@ -169,7 +169,7 @@
     #cms_catalog_main_table{ max-width: 1350px; margin: 20px auto 2rem auto; margin-bottom: 40px;border: 1px solid #ddd; width: 100%; }
     .cms_catalog_table_brand_td{ border-right: 1px solid #ddd; width: 150px !important; padding: 0; text-align: center; }
     .cms_catalog_table_downloads_td{ width: 1070px; padding: 0 }
-    .cms_catalog_table_brand_td_image{ width: 125px; max-width: 125px !important;height: auto; margin: 10px; }
+    .resources-desktop .cms_catalog_table_brand_td_image{ width: 125px; max-width: 125px !important;height: auto; margin: 10px; }
     .cms_catalog_table_updated_td{ width: 140px; padding: 0; text-align: center;}
     .no_padding_text_center{ padding: 0; text-align: center; }
     #cms #center_column img.cms_catalog_image{ height:80px; }

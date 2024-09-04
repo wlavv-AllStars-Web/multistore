@@ -4377,6 +4377,30 @@ textarea {
   #search .page-content.page-not-found{
     width: 100vw !important;
   }
+
+  .resources-mobile .resources-upd-date{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 1rem;
+    font-size: 1rem;
+  }
+
+  .resources-mobile .resources-upd-date-title{
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .resources-mobile .resource-brand-btns .title-resource-btn{
+    text-transform: uppercase;
+  }
+
+  .resources-mobile .cms_catalog_table_brand_td_image{
+    width: 160px;
+    max-width: 160px !important;
+    height: auto;
+    margin: 10px;
+  }
 }
 
 @media screen and (min-width: 1101px){
