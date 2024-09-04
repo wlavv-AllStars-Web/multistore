@@ -74,17 +74,34 @@
                     {if $use_address_invoice}
                         {* <p class="no_invoice_address">{l s='The selected address will be used both as your personal address (for invoice) and as your delivery address.' mod='ets_onepagecheckout'}</p> *}
                         <div class="form-group typeofshipping flex" style="gap: 2rem;">
-                            <label for="use_another_address_for_invoice" class="ets_checkinput">
-                                <input type="checkbox" name="use_another_address_for_invoice" id="use_another_address_for_invoice" value="1" />
-                                <i class="ets_checkbox"></i>
-                                <span >{l s='Deliver to a different address?' d='Shop.Theme.Checkout'} ({l s='Dropship' d='Shop.Theme.Checkout'})</span>
-                            </label>
-                            <label for="use_pickup_address" class="ets_checkinput">
-                                <input type="checkbox" name="use_pickup_address" id="use_pickup_address" value="1" />
-                                <i class="ets_checkbox"></i>
-                                <span >{l s='Pick up with your carrier' d='Shop.Theme.Checkout'} ({l s='Pickup' d='Shop.Theme.Checkout'})</span>
-                            </label>
-                            
+
+                            <div class="checkbox-delivery">
+                                <label for="use_another_address_for_invoice" class="ets_checkinput">
+                                    <span onclick="selectcheckbox(this)">
+                                        <input type="checkbox" name="use_another_address_for_invoice" id="use_another_address_for_invoice" value="1"/>
+                                        {* <i class="ets_checkbox" ></i> *}
+                                        <i class="fa-regular fa-square" ></i>
+                                        <div class="container-text-checkbox" >
+                                            <p>{l s='Deliver to a different address?' d='Shop.Theme.Checkout'} ({l s='Dropship' d='Shop.Theme.Checkout'})</p>
+                                        </div>
+                                    </span>
+                                </label>
+                            </div>
+
+
+                            <div class="checkbox-pickup" >
+                                <label for="use_pickup_address" class="ets_checkinput">
+                                    <span onclick="selectcheckbox(this)">
+                                        <input type="checkbox" name="use_pickup_address" id="use_pickup_address" value="1" />
+                                        {* <i class="ets_checkbox" ></i> *}
+                                        <i class="fa-regular fa-square"></i>
+                                        <div class="container-text-checkbox">
+                                            <p>{l s='Pick up with your carrier' d='Shop.Theme.Checkout'} ({l s='Pickup' d='Shop.Theme.Checkout'})</p>
+                                        </div>
+                                    </span>
+                                </label>
+                            </div>
+
                         </div>
                     {/if}
                     
@@ -201,11 +218,18 @@
                     <ul>
                         <li style="max-width: 600px;margin: auto;text-align: center;display:flex;justify-content:center;flex-direction:column;">
                             <div class="float-xs-left">
-                                <span class="checkbox ets_checkinput">
-                                <label class="js-terms required" for="conditions_to_approve" onclick="checkCheckboxTerms()" >
-                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" onclick="checkCheckboxTerms()" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
-                                    <span>{l s='I have read and accept the current terms, conditions and policies.' d="Shop.Theme.Checkout"}</span>
-                                </label>
+                                <span class="checkbox ets_checkinput" style="width: 100%;">
+                                    
+                                    <label class="js-terms required" for="conditions_to_approve" onclick="checkCheckboxTerms()" style="width: 100%;">
+                                        <span>
+                                            <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js"  type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />
+                                            {* <i class="ets_checkbox"></i> *}
+                                            <i class="fa-regular fa-square" ></i>
+                                            <div class="container-text-checkbox" >
+                                                <p>{l s='I have read and accept the current terms, conditions and policies.' d="Shop.Theme.Checkout"}</p>
+                                            </div>
+                                        </span>
+                                    </label>
                                 </span>
                             </div>
                             <div class="condition-label">
@@ -436,11 +460,16 @@
 function checkCheckboxTerms() {
     const ifcheckterms = document.querySelector("#conditions_to_approve")
     const paymentmethods = document.querySelector(".block-payment")
+    const checkboxterms = document.querySelector("#conditions-to-approve .js-terms i")
     // console.log(ifcheckterms.checked)
     if(ifcheckterms.checked){
         paymentmethods.classList.add("show")
+        checkboxterms.classList.remove("fa-square")
+        checkboxterms.classList.add("fa-square-check")
     }else{
         paymentmethods.classList.remove("show")
+        checkboxterms.classList.remove("fa-square-check")
+        checkboxterms.classList.add("fa-square")
     }
 }
 
@@ -463,7 +492,9 @@ function checkCheckboxsShipping() {
                 });
                 
                 if(checkboxname == 'use_pickup_address'){
-                    document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='1,']").checked = true;
+                    // document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='8,']").checked = true;
+                    const firstelement = document.querySelector(".block-shipping .delivery-options").firstElementChild;
+                    firstelement.querySelector(".delivery-option input").checked = true 
                 }else{
                     document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='7,']").checked = true;
                 }

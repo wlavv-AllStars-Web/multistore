@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     const careerBtns = document.querySelectorAll("#why_us_anchor .card_view_more")
     const profileBtns = document.querySelectorAll(".profile_container_cms .card_view_more")
+
+    if(window.screen.width <= 768){
+        const formdeliveryaddress = document.querySelector("#delivery-addresses")
+        const parentDiv = document.querySelector('.form-group.typeofshipping.flex');
+        const checkboxPickup = document.querySelector('.checkbox-pickup');
+
+        if(formdeliveryaddress){
+            parentDiv.insertBefore(formdeliveryaddress, checkboxPickup);
+        }
+    }
+    
     
     if(careerBtns){
         careerBtns.forEach(item => {
@@ -15,6 +26,22 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 });
+
+function onchangecountry() {
+        // Get the selected value
+        const selectedValue = event.target.value;
+    
+        // Check if the selected value is 229
+        if (selectedValue == "229") {
+            document.querySelector(".shipping_address .dni-input").style.display = "block"
+        }else{
+            document.querySelector(".shipping_address .dni-input").style.display = "none"
+        }
+}
+
+
+
+
 
 function viewMore(event){
     
@@ -319,6 +346,49 @@ inputs.forEach(function(input) {
     });
 });
 
+
+function selectcheckbox(e){
+    const hiddencheckbox = e.querySelector("input")
+    const selectcheckbox = e.querySelector("i")
+    
+    if(hiddencheckbox.checked === true){
+        selectcheckbox.classList.remove("fa-square")
+        selectcheckbox.classList.add("fa-square-check")
+    }else{
+        selectcheckbox.classList.remove("fa-square-check")
+        selectcheckbox.classList.add("fa-square")
+    }
+
+
+}
+
+
+
+
+// function changecheckicon(e){
+//  if(e.classList.contains("fa-square")){
+//     e.classList.remove("fa-square")
+//     e.classList.add("fa-square-check")
+//  }else{
+//     e.classList.remove("fa-square-check")
+//     e.classList.add("fa-square")
+//  }
+// }
+
+// function clicklabelcheck(e) {
+//     const square = document.querySelectorAll(".typeofshipping  .fa-square-check")
+//     if(square){
+//         square.forEach((item) => {
+//             item.classList.remove("fa-square-check")
+//             item.classList.add("fa-square")
+//         })
+//     }
+//     e.parentElement.querySelector("i").click();
+// }
+
+// function clicklabelterms(e) {
+//     e.parentElement.querySelector("i").click();
+// }
 
 
 

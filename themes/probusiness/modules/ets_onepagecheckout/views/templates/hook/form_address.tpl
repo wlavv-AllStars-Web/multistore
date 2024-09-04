@@ -17,7 +17,13 @@
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
 
+
 <div class="js-address-form {$address_type|escape:'html':'UTF-8'}">
+    {if $address_type|escape:'html':'UTF-8' == 'invoice_address'}
+        <a class="btn btn-contact-us-link col-lg-12" onclick="openShippingtab('{$urls.pages.my_account}','contact')" title="{l s="Contact us to update" d="Shop.Theme.Checkout"}">
+        {l s="Contact us to update" d="Shop.Theme.Checkout"}
+        </a>
+    {/if}
 <input name="{$address_type|escape:'html':'UTF-8'}[id_address]" value="{if $address_type|escape:'html':'UTF-8' == 'invoice_address'}{$class_address->id|intval}{/if}" type="hidden" />
     {if $field_address}
         {if !in_array('country',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
@@ -127,7 +133,7 @@
                             <span class="ets_opc_select_arrow">
                                     <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>
                                 </span>
-                            <select id="{$address_type|escape:'html':'UTF-8'}_id_country" class="form-control form-control-select ets-onepage-js-country" name="{$address_type|escape:'html':'UTF-8'}[id_country]" data-type="{$address_type|escape:'html':'UTF-8'}" id="{$address_type|escape:'html':'UTF-8'}_country" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {/if}>
+                            <select id="{$address_type|escape:'html':'UTF-8'}_id_country" class="form-control form-control-select ets-onepage-js-country" name="{$address_type|escape:'html':'UTF-8'}[id_country]" data-type="{$address_type|escape:'html':'UTF-8'}" id="{$address_type|escape:'html':'UTF-8'}_country" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {else} onchange="onchangecountry()" {/if}>
                                 <option value="">-- {l s='please choose'  d='Shop.Theme.Checkout'} --</option>
                                 {if $countries}
                                     {foreach from=$countries item='country'}
@@ -156,7 +162,7 @@
                 </div>
             {/if}
             {if $key=='dni' && in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
-                <div class="form-group row  col-lg-3 col-xs-12">
+                <div class="form-group row  col-lg-3 col-xs-12 dni-input" style="display: none;">
                     <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4 col-xs-12{/if} form-control-label {if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} required{/if}"> {l s='Identification number'  d='Shop.Theme.Checkout'} </label>
                     <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8 col-xs-12{/if} opc_field_right ">
                         <input id="{$address_type|escape:'html':'UTF-8'}_dni" class="form-control validate{if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isDniLite" name="{$address_type|escape:'html':'UTF-8'}[dni]" value="{if $address_type|escape:'html':'UTF-8' == 'invoice_address'}{$class_address->dni|trim|escape:'html':'UTF-8'}{/if}" maxlength="128" type="text" data-validate-errors="{l s='Identification number is not valid'  d='Shop.Theme.Checkout' js=1}" data-required-errors="{l s='Identification number is required'  d='Shop.Theme.Checkout' js=1}" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {/if}/>

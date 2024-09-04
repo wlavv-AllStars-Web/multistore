@@ -35,6 +35,9 @@
   100% { transform: rotate(360deg); }
 }
 
+
+
+
 /* scrollbar css */
 
 /* WebKit browsers (Chrome, Safari) */
@@ -4112,6 +4115,39 @@ textarea {
     align-items: center;
   }
 
+  .typeofshipping .checkbox-delivery {
+    padding-inline: 1rem;
+  }
+
+  .typeofshipping .checkbox-pickup {
+    padding-inline: 1rem;
+  }
+
+  .typeofshipping .ets_checkinput span{
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .typeofshipping .ets_checkinput span .container-text-checkbox p{
+    font-size: 18px;
+  }
+
+  #conditions-to-approve .js-terms span {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  #conditions-to-approve .js-terms span .container-text-checkbox p {
+    font-size: 18px;
+  }
+
+  #blockcart-modal .container-modal-btns-shopping .cart-content-btn .btn-primary:hover i {
+    color: #fff !important;
+  }
+
+
 }
 
 @media screen and (min-width: 769px) and (max-width: 991px) {
@@ -5347,9 +5383,175 @@ textarea {
     display: none;
   }
 
+  .checkbox-delivery #use_another_address_for_invoice{
+    position: absolute !important;
+    top: 1rem !important;
+    opacity: 0 !important;
+  }
+
+  .checkbox-pickup #use_pickup_address{
+    position: absolute !important;
+    top: 1rem !important;
+    opacity: 0 !important;
+  }
+
 }
 
 @media (max-width: 543px) {
+
+
+  /* checkbox checkout0 */
+  .block-onepagecheckout.block-shipping{
+    margin-bottom: 0 !important;
+  }
+  #invoice-addresses .btn-toggle-invoice-address{
+    text-align: center;
+  }
+  #invoice-addresses .btn-contact-us-link{
+    text-align: center;
+  }
+
+  .invoice-address-container .checkbox-pickup{
+    margin: 0 !important;
+  }
+
+  .typeofshipping .checkbox-delivery{
+    margin: 0 !important;
+  }
+
+  .invoice-address-container .checkbox-delivery {
+    display: flex;gap:1rem;position:relative;
+  }
+
+  .invoice-address-container .checkbox-delivery .ets_checkinput .container-text-checkbox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .invoice-address-container .checkbox-pickup .ets_checkinput .container-text-checkbox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #conditions-to-approve .js-terms span .container-text-checkbox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .invoice-address-container .checkbox-delivery .ets_checkinput p{
+    font-size: 18px;max-width: 70vw;
+  }
+
+  .invoice-address-container .checkbox-pickup .ets_checkinput p{
+    font-size: 18px;max-width: 70vw;
+  }
+
+  #conditions-to-approve .js-terms span p {
+    font-size: 18px;max-width: 70vw;
+  }
+
+
+  #conditions-to-approve ul{
+    width: 100%;justify-content: center;
+  }
+
+  .invoice-address-container .checkbox-delivery .ets_checkinput{
+    width: 100%;justify-content: center;
+    margin: 0 !important;
+  }
+
+  .invoice-address-container .checkbox-pickup .ets_checkinput{
+    width: 100%;justify-content: center;
+    margin: 0 !important;
+  }
+
+  .invoice-address-container .checkbox-delivery .ets_checkinput span{
+    display: flex;align-items: baseline;justify-content: space-between;width: 100%;gap: 0.5rem;
+  }
+
+  .invoice-address-container .checkbox-pickup .ets_checkinput span{
+    display: flex;align-items: baseline;justify-content: space-between;gap: 0.5rem;
+    width: 100%;
+  }
+
+  #conditions-to-approve .js-terms span {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  #checkout .block-onepagecheckout.block-shipping{
+    position: absolute;
+  }
+
+  .btn-toggle-invoice-address{
+    margin: 0;
+    border: 1px solid;
+    padding: 0.5rem 1rem !important;
+    color: #fff !important;
+    background: #0273EB;
+  }
+
+  .invoice-address-container #use_another_address_for_invoice {
+    display: none;
+    position: relative !important;
+  vertical-align: -1px !important;
+  transform: unset !important;
+  }
+
+  .invoice-address-container .checkbox-delivery i.ets_checkbox{
+    position: relative !important;
+  vertical-align: -1px !important;
+  transform: unset !important;
+  }
+
+
+  .invoice-address-container .checkbox-delivery label.ets_checkinput span{
+    padding: 0 2rem;
+  }
+
+  .invoice-address-container .checkbox-pickup {
+    display: flex;gap:1rem;position:relative;
+  }
+
+  .invoice-address-container #use_pickup_address {
+    display: none;
+    position: relative !important;
+  vertical-align: -1px !important;
+  transform: unset !important;
+  }
+
+  .invoice-address-container .checkbox-pickup i.ets_checkbox{
+    position: relative !important;
+  vertical-align: -1px !important;
+  transform: unset !important;
+  }
+
+  #form_ets_onepagecheckout input:checked + .ets_checkbox{
+    position: relative !important;
+  }
+
+
+  .invoice-address-container .checkbox-pickup label.ets_checkinput span{
+    padding: 0 2rem;
+  }
+
+  #conditions-to-approve #conditions_to_approve {
+    position: relative;
+    display: none !important;
+  }
+
+  #conditions-to-approve .ets_checkbox {
+    position: relative !important;
+  }
+
+  /*  */
 
   form .send-form{
     margin: auto;
@@ -5497,7 +5699,7 @@ textarea {
   }
 
   #invoice-addresses .flex .btn-contact-us-link{
-    padding-left: 0;
+    width: 100%;
     margin-bottom: 0.5rem;
   }
 
@@ -5575,21 +5777,10 @@ textarea {
   .invoice-address-container .ets_checkinput i{
     width: 18px !important;
   }
-  .invoice-address-container .ets_checkinput span{
-    padding-left: 1.5rem;
-  }
 
-  #conditions-to-approve .js-terms {
-    display: flex;
-    align-items: center;
-  }
-  #conditions-to-approve .js-terms span{
-    padding-left: 1.5rem;
-  }
 
-  #form_ets_onepagecheckout input:checked + .ets_checkbox{
-    position: absolute !important;
-  }
+
+
 
   /* order confirmantion page */
 
@@ -6846,9 +7037,7 @@ textarea {
     opacity: 1;
   }
 
-  .btn-toggle-invoice-address{
-    color: #0273EB !important;
-  }
+
 
   #checkout .btn-contact-us-link{
     color: #555 !important;

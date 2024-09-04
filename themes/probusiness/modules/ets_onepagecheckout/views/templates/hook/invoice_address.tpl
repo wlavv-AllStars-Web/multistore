@@ -20,9 +20,9 @@
         <div class="title btn-toggle-invoice-address" onclick="toggleInvoiceaddressMobile()" display="block" style="margin: 0;">{l s='Billing address' d='Shop.Theme.Checkout'} <span class="caret-mobile"><i class="fa-solid fa-caret-down"></i></span></div>
     {* <div class="col-lg-3">
         <label class="col-lg-12 col-xs-12 form-control-label"></label> *}
-        <a class="btn btn-contact-us-link" onclick="openShippingtab('{$urls.pages.my_account}','contact')" title="{l s="Contact us to update" d="Shop.Theme.Checkout"}">
+        {* <a class="btn btn-contact-us-link" onclick="openShippingtab('{$urls.pages.my_account}','contact')" title="{l s="Contact us to update" d="Shop.Theme.Checkout"}">
         {l s="Contact us to update" d="Shop.Theme.Checkout"}
-        </a>
+        </a> *}
     {* </div> *}
 </div>
 {* <div class="title yes_invoice_address">{l s='Invoice address' mod='ets_onepagecheckout'}</div> *}
