@@ -23,7 +23,7 @@
     </ul>
     <div class="container-reset-password">
       <div class="reset-header">
-        <h1>{l s="Forgot Password?" d="Shop.Theme.Reset"}</h1>
+        {* <h1>{l s="Forgot Password?" d="Shop.Theme.Reset"}</h1> *}
         <h1>{l s="Reset your Password" d="Shop.Theme.Reset"}</h1>
       </div>
       <div class="reset-sub">

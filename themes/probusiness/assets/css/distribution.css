@@ -4147,6 +4147,13 @@ textarea {
     color: #fff !important;
   }
 
+  .btn-contact-us-link {
+    text-align: start !important;
+  }
+
+  #shipping_address_id_country option:checked{
+    color: #111;
+  }
 
 }
 
