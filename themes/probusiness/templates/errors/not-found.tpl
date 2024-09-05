@@ -95,7 +95,7 @@
       background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
       background-repeat: no-repeat !important;
-      background-size: contain !important;
+      background-size: cover !important;
       background-position: center !important;
       padding: 0;
       position: relative;
@@ -106,6 +106,9 @@
       margin: 0;
       padding: 1rem;
       bottom: 1rem;
+      max-width: 350px;
+      transform: translateX(-50%);
+      left: 50%;
     }
   
   }
