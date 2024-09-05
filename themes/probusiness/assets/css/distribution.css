@@ -5915,6 +5915,10 @@ textarea {
 
 @media (max-width: 540px) {
 
+  .btn-primary:hover i{
+    color: #0273EB !important;
+  }
+
   /* order details page*/
 
   #order-detail #delivery-address{

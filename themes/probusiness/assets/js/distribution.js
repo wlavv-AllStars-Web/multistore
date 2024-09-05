@@ -32,8 +32,9 @@ function onchangecountry() {
         const selectedValue = event.target.value;
     
         // Check if the selected value is 229
-        if (selectedValue == "229") {
+        if (selectedValue == "243" || selectedValue == "244") {
             document.querySelector(".shipping_address .dni-input").style.display = "block"
+            // document.querySelector(".shipping_address .dni-input").setAttribute("required","required")
         }else{
             document.querySelector(".shipping_address .dni-input").style.display = "none"
         }
