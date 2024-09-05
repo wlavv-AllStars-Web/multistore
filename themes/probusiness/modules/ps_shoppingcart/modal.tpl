@@ -53,9 +53,9 @@
               {* <pre>{print_r($cart,1)}</pre> *}
               
                 <h6 class="h6 product-name">{$product.name|escape:'html':'UTF-8'}</h6>
-                <span><strong>{l s="Price" d="Shop.Theme.Modal"}</strong>: {$product.price_with_reduction_without_tax|number_format:2:".":" "} €</span>
+                <span><strong>{l s="Price" d="Shop.Theme.Modal"}:</strong> {$product.price_with_reduction_without_tax|number_format:2:".":" "} €</span>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
-                <span><strong>{l s="Reference" d="Shop.Theme.Modal"}</strong>: {$product.reference|escape:'html':'UTF-8'}</span>
+                <span><strong>{l s="Reference" d="Shop.Theme.Modal"}:</strong> {$product.reference|escape:'html':'UTF-8'}</span>
                 {foreach from=$product.attributes item="property_value" key="property"}
                   <span><strong>{$property|escape:'html':'UTF-8'}</strong>: {$property_value|escape:'html':'UTF-8'}</span>
                 {/foreach}

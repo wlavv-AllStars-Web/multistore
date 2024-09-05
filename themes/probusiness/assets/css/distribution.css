@@ -425,9 +425,9 @@ body #wrapper {
 /*  */
 
 .whtbl {
-  background-color: white;
-  color: #0273eb;
-  border: 1px solid #d8d8d8;
+  background-color: #0273eb;
+  color: #fff;
+  border: 1px solid #0273eb;
 }
 form .form-control {
   color: #333;
