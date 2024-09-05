@@ -57,7 +57,7 @@
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 <span><strong>{l s="Reference" d="Shop.Theme.Modal"}:</strong> {$product.reference|escape:'html':'UTF-8'}</span>
                 {foreach from=$product.attributes item="property_value" key="property"}
-                  <span><strong>{$property|escape:'html':'UTF-8'}</strong>: {$property_value|escape:'html':'UTF-8'}</span>
+                  <span><strong>{$property|escape:'html':'UTF-8'}:</strong> {$property_value|escape:'html':'UTF-8'}</span>
                 {/foreach}
                 <p><strong>{l s='Quantity:' d='Shop.Theme.Modal'}</strong>&nbsp;{$product.cart_quantity|escape:'html':'UTF-8'}</p>
               </div>

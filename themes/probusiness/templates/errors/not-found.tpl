@@ -75,18 +75,21 @@
   }
 
   @media screen and (min-width:769px){
-    #pagenotfound .page-content.page-not-found{
-    background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
-    width: 600px !important;
-    height: 400px;
-    position: relative;
-    display: flex;
-    align-items: end;
-    padding: 0 !important;
-    margin-bottom: 0 !important;
-    max-width: unset !important;
+    #search .page-content.page-not-found{
+      background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
+      width: 600px !important;
+      height: 400px;
+      position: relative;
+      min-height: 400px;
+      padding: 0;
+    }
+
+    #search .page-content.page-not-found #search_widget{
+      position: absolute;
+      bottom: 1rem;
+    }
   }
-  }
+  
   @media screen and (max-width:768px){
     #search #wrapper {
       min-height: 60dvh;
