@@ -1,16 +1,18 @@
 {if $product.show_price}
     <div style="font-size: 24px; color: #666; font-weight: bold; line-height: 1.7; margin-bottom: 0px;">
         {block name='product_discount'}
-            {if $product.has_discount}
+            
                 <div>
                     {hook h='displayProductPriceBlock' product=$product type="old_price"}
                     <div>{l s="RRP / PVP" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.price_without_reduction_without_tax|number_format:2}€ <span style="font-size: 12px;font-weight:600;color:#666;">({l s="ExVAT" d='Shop.Theme.Modal'})</span></span></div>
+                    {if $product.has_discount}
                     <div>{l s="Discount" d="Shop.Theme.ProductList"}:  <span style="font-weight: 400;">{$product.discount_percentage}</span></div>
+                    {/if}
                 </div>
-            {/if}
         {/block}
 
         {block name='product_price'}
+          {if $product.has_discount}
             <div>
                 {l s="Your Price " d="Shop.Theme.ProductList"}:
                 
@@ -25,6 +27,7 @@
                 {/block}
                 <div> {l s="Your Margin " d="Shop.Theme.ProductList"}: <span style="font-weight: 400;">{$product.price_without_reduction_without_tax - ($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2}€ </span></div>
             </div>
+          {/if}
         {/block}
 
     {block name='product_without_taxes'}

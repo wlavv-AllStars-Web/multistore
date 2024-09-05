@@ -204,7 +204,7 @@
                             <a style="color: #666;" href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product_manufacturer->name|replace:' ':''}/{$product_manufacturer->name|replace:' ':''}.xlsx" download="{$product_manufacturer->name|replace:' ':''}.xlsx">{l s='CatalogueLink' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
-                            <a style="color: #666;" href="{$product_manufacturer->site_url}">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
+                            <a style="color: #666;" href="{$product_manufacturer->site_url}" target="_blank">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
                             <a style="color: #666;" onclick="openShippingtab('{$urls.pages.my_account}','shipping')">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 
