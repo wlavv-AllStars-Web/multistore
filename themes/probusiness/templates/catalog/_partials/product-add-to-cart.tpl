@@ -18,6 +18,7 @@
                     {/if}
                     class="input-group"
                     aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
+                    style="font-size: 16px;"
                     >
                 </div>
                 
