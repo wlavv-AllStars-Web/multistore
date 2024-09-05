@@ -348,32 +348,29 @@ inputs.forEach(function(input) {
 });
 
 
-function selectcheckbox(e){
-    
-
-    // Define the elements first before using them
-    const hiddencheckbox = e.querySelector("input[type='checkbox']");
+function selectcheckbox(e) {
+    const hiddencheckbox = e.querySelector("input");
     const selectcheckbox = e.querySelector("i");
 
-    // console.log(e, hiddencheckbox, selectcheckbox);
-
-    // Uncheck all other checkboxes
+    // Uncheck all other checkboxes when this one is checked
     const allCheckboxes = document.querySelectorAll(".typeofshipping input[type='checkbox']");
     const allIcons = document.querySelectorAll(".typeofshipping i");
 
-    // First, uncheck all checkboxes and reset their icons
-    allCheckboxes.forEach((checkbox, index) => {
-        checkbox.checked = false;  // Uncheck all
-        allIcons[index].classList.remove("fa-square-check"); // Remove checked class
-        allIcons[index].classList.add("fa-square"); // Add unchecked class
-    });
+    // If the current checkbox is already checked, uncheck it and reset its icon
+    if (hiddencheckbox.checked) {
+        hiddencheckbox.checked = false; // Uncheck the current checkbox
+        selectcheckbox.classList.remove("fa-square-check"); // Remove the checked icon
+        selectcheckbox.classList.add("fa-square"); // Add the unchecked icon
+    } else {
+        // Uncheck all checkboxes and reset their icons first
+        allCheckboxes.forEach((checkbox, index) => {
+            checkbox.checked = false; // Uncheck all
+            allIcons[index].classList.remove("fa-square-check"); // Remove checked icon
+            allIcons[index].classList.add("fa-square"); // Add unchecked icon
+        });
 
-    // Then, check the selected checkbox and update its icon
-    if (hiddencheckbox) {
+        // Check the clicked checkbox and update its icon
         hiddencheckbox.checked = true; // Set this checkbox as checked
-    }
-
-    if (selectcheckbox) {
         selectcheckbox.classList.remove("fa-square");
         selectcheckbox.classList.add("fa-square-check");
     }

@@ -110,6 +110,14 @@
       transform: translateX(-50%);
       left: 50%;
     }
+
+
+    #search .page-content.page-not-found #search_widget .search_block_top_fixed {
+      border-radius: 0;
+    }
+    #search .page-content.page-not-found #search_widget form i {
+      border-radius: 0;
+    }
   
   }
 
