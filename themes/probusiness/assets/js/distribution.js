@@ -348,19 +348,26 @@ inputs.forEach(function(input) {
 
 
 function selectcheckbox(e){
-    const hiddencheckbox = e.querySelector("input")
-    const selectcheckbox = e.querySelector("i")
-    
-    if(hiddencheckbox.checked === true){
-        selectcheckbox.classList.remove("fa-square")
-        selectcheckbox.classList.add("fa-square-check")
-    }else{
-        selectcheckbox.classList.remove("fa-square-check")
-        selectcheckbox.classList.add("fa-square")
-    }
+    const hiddencheckbox = e.querySelector("input");
+    const selectcheckbox = e.querySelector("i");
 
+    // Uncheck all other checkboxes when this one is checked
+    const allCheckboxes = document.querySelectorAll(".typeofshipping input[type='checkbox']");
+    const allIcons = document.querySelectorAll(".typeofshipping i");
 
+    // First, uncheck all checkboxes and reset their icons
+    allCheckboxes.forEach((checkbox, index) => {
+        checkbox.checked = false;  // Uncheck all
+        allIcons[index].classList.remove("fa-square-check"); // Remove checked class
+        allIcons[index].classList.add("fa-square"); // Add unchecked class
+    });
+
+    // Then, check the selected checkbox and update its icon
+    hiddencheckbox.checked = true; // Set this checkbox as checked
+    selectcheckbox.classList.remove("fa-square");
+    selectcheckbox.classList.add("fa-square-check");
 }
+
 
 
 
