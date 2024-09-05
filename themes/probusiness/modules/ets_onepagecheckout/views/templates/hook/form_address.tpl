@@ -133,7 +133,7 @@
                             <span class="ets_opc_select_arrow">
                                     <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>
                                 </span>
-                            <select id="{$address_type|escape:'html':'UTF-8'}_id_country" class="form-control form-control-select ets-onepage-js-country" name="{$address_type|escape:'html':'UTF-8'}[id_country]" data-type="{$address_type|escape:'html':'UTF-8'}" id="{$address_type|escape:'html':'UTF-8'}_country" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {else} onchange="onchangecountry()" {/if}>
+                            <select id="{$address_type|escape:'html':'UTF-8'}_id_country" class="form-control form-control-select ets-onepage-js-country" name="{$address_type|escape:'html':'UTF-8'}[id_country]" data-type="{$address_type|escape:'html':'UTF-8'}" id="{$address_type|escape:'html':'UTF-8'}_country" {if $address_type|escape:'html':'UTF-8' == 'invoice_address'} disabled {else} onchange="onchangecountry(event)" {/if}>
                                 <option value="">-- {l s='please choose'  d='Shop.Theme.Checkout'} --</option>
                                 {if $countries}
                                     {foreach from=$countries item='country'}

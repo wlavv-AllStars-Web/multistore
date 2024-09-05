@@ -261,29 +261,29 @@
                 </div>
                 <div class="form-group col-lg-8 col-md-4 col-sm-12 col-xs-12">
                   <label for="adresse_line_1">{l s='Address' d='Shop.Theme.FormBecomedealer'}<span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="adresse_line_1" placeholder="1234 Main St" name="adresse_line_1" required>
+                  <input type="text" class="form-control" id="adresse_line_1"  name="adresse_line_1" required>
                 </div>
               
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label for="phone">{l s='Phone' d='Shop.Theme.FormBecomedealer'}<span style="color: red;">*</span></label>
-                  <input type="tel" class="form-control" id="phone" placeholder="Apartment, studio, or floor" name="phone" required>
+                  <input type="tel" class="form-control" id="phone"  name="phone" required>
                 </div>
                 <div class="form-group col-lg-8 col-md-4 col-sm-12 col-xs-12">
                   <label for="adresse_line_2">{l s='Address 2' d='Shop.Theme.FormBecomedealer'}</label>
-                  <input type="text" class="form-control" id="adresse_line_2" placeholder="Apartment, studio, or floor" name="adresse_line_2" >
+                  <input type="text" class="form-control" id="adresse_line_2"  name="adresse_line_2" >
                 </div>
               
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <label for="site">{l s='Website' d='Shop.Theme.FormBecomedealer'}<span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="site" placeholder="Website" name="site" required>
+                  <input type="text" class="form-control" id="site"  name="site" required>
                 </div>
                 <div class="form-group col-lg-6 col-md-4 col-sm-12 col-xs-12">
                   <label for="city">{l s='City' d='Shop.Theme.FormBecomedealer'}<span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="city" placeholder="City" name="city" required>
+                  <input type="text" class="form-control" id="city" name="city" required>
                 </div>
                 <div class="form-group col-lg-2 col-md-4 col-sm-12 col-xs-12">
                   <label for="postal_code">{l s='Zip Code' d='Shop.Theme.FormBecomedealer'}<span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" id="postal_code" placeholder="Zip Code" name="postal_code" required>
+                  <input type="text" class="form-control" id="postal_code" name="postal_code" required>
                 </div>
               
                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">

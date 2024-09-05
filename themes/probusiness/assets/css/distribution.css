@@ -5921,6 +5921,17 @@ textarea {
 
   /* order details page*/
 
+  .details-page-reference{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .details-page-reference span{
+    padding-top: 0.5rem;
+  }
+
   #order-detail #delivery-address{
     text-align: center;
   }

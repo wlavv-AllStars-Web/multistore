@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
 });
 
-function onchangecountry() {
+function onchangecountry(event) {
         // Get the selected value
         const selectedValue = event.target.value;
     

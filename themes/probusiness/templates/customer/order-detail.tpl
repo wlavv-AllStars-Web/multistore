@@ -13,7 +13,7 @@
             <div class="box">
                 <div class="row">
                     <div class="col-xs-12" style="text-align: center;text-transform: uppercase;font-size: 30px;">
-                        <strong style="color: #666;font-weight:400;"> {l s='Order' d='Shop.Theme.Actions'} <span style="color: #0273eb;font-weight:600;">{$order.details.reference}</span> <strong>
+                        <strong class="details-page-reference" style="color: #666;font-weight:400;"> {l s='Order' d='Shop.Theme.Actions'} <span  style="color: #0273eb;font-weight:600;">{$order.details.reference}</span> <strong>
                     </div>
                 <div class="clearfix"></div>
             </div>
