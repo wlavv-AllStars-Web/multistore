@@ -4445,6 +4445,10 @@ textarea {
     height: auto;
     margin: 10px;
   }
+
+  #blockcart-modal .container-modal-btns-shopping .cart-content-btn .btn-primary:hover i {
+    color: #fff !important;
+  }
 }
 
 @media screen and (min-width: 1101px){
