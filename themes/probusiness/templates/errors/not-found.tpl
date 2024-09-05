@@ -42,17 +42,7 @@
     align-items: center;
   }
 
-  #pagenotfound .page-content.page-not-found{
-    background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
-    width: 600px !important;
-    height: 400px;
-    position: relative;
-    display: flex;
-    align-items: end;
-    padding: 0 !important;
-    margin-bottom: 0 !important;
-    max-width: unset !important;
-  }
+
 
   #pagenotfound .page-content #search_widget{
     position: absolute;
@@ -84,18 +74,42 @@
     align-items: center;
   }
 
-  #search .page-content.page-not-found{
+  @media screen and (min-width:769px){
+    #pagenotfound .page-content.page-not-found{
     background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
-    width: 100vw !important;
+    width: 600px !important;
     height: 400px;
     position: relative;
     display: flex;
     align-items: end;
     padding: 0 !important;
     margin-bottom: 0 !important;
-    max-width: 600px !important;
-    justify-content: end;
+    max-width: unset !important;
   }
+  }
+  @media screen and (max-width:768px){
+    #search #wrapper {
+      min-height: 60dvh;
+    }
+    #search .page-content.page-not-found{
+      background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
+      height: 60dvh;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      background-position: center !important;
+      padding: 0;
+      position: relative;
+    }
+
+    #search .page-content.page-not-found #search_widget{
+      position: absolute;
+      margin: 0;
+      padding: 1rem;
+      bottom: 1rem;
+    }
+  
+  }
+
 
   #search .page-content #search_widget{
     position: absolute;
