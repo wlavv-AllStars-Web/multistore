@@ -135,7 +135,7 @@
                 <div style="width: 80%; height: 3px; background-color: lightgrey; margin: 30px auto;"></div>
             </div>
         </div>
-
+        {* <pre>{$product_manufacturer|print_r}</pre> *}
         <div class="row-info-product" style="text-align: left;">
             <div class="col-lg-12 row-info-details">
                 <div class="col-lg-3">
@@ -196,7 +196,7 @@
                     </div>
                     
                 </div>
-                {* {$product_manufacturer|print_r} *}
+                
                 <div class="col-lg-3">
                     <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links' d='Shop.Theme.Catalog'}:</h1>
                     <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
@@ -204,7 +204,7 @@
                             <a style="color: #666;" href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product_manufacturer->name|replace:' ':''}/{$product_manufacturer->name|replace:' ':''}.xlsx" download="{$product_manufacturer->name|replace:' ':''}.xlsx">{l s='CatalogueLink' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
-                            <a style="color: #666;" href="">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
+                            <a style="color: #666;" href="{$product_manufacturer->site_url}">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
                             <a style="color: #666;" onclick="openShippingtab('{$urls.pages.my_account}','shipping')">{l s='Transport prices' d='Shop.Theme.Catalog'}</a> 

@@ -68,6 +68,24 @@ class ManufacturerCore extends ObjectModel
     /** @var bool active */
     public $bike_parts;
 
+    public $csv;
+    public $csv_update;
+    public $xlsx;
+    public $xlsx_update;
+    public $pictures;
+    public $pictures_update;
+    public $logos;
+    public $logos_update;
+    public $facebook;
+    public $facebook_url;
+    public $facebook_update;
+    public $site;
+    public $site_url;
+    public $site_update;
+    public $info;
+    public $info_updated;
+    public $youtube;
+
     /**
      * @see ObjectModel::$definition
      */
@@ -80,7 +98,7 @@ class ManufacturerCore extends ObjectModel
             'active' => ['type' => self::TYPE_BOOL],
             'date_add' => ['type' => self::TYPE_DATE],
             'date_upd' => ['type' => self::TYPE_DATE],
-            'bike_parts' => ['type' => self::TYPE_INT],
+            
 
             /* Lang fields */
             'description' => ['type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'],
@@ -88,6 +106,26 @@ class ManufacturerCore extends ObjectModel
             'meta_title' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255],
             'meta_description' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 512],
             'meta_keywords' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName'],
+
+            // custom fields
+            'bike_parts' => ['type' => self::TYPE_INT],
+            'csv' => ['type' => self::TYPE_INT],
+            'csv_update' => ['type' => self::TYPE_DATE],
+            'xlsx' => ['type' => self::TYPE_INT],
+            'xlsx_update' => ['type' => self::TYPE_DATE],
+            'pictures' => ['type' => self::TYPE_INT],
+            'pictures_update' => ['type' => self::TYPE_DATE],
+            'logos' => ['type' => self::TYPE_INT],
+            'logos_update' => ['type' => self::TYPE_DATE],
+            'facebook' => ['type' => self::TYPE_INT],
+            'facebook_url' => ['type' => self::TYPE_STRING], 'size' => 75,
+            'facebook_update' => ['type' => self::TYPE_DATE],
+            'site' => ['type' => self::TYPE_INT],
+            'site_url' => ['type' => self::TYPE_STRING], 'size' => 75,
+            'site_update' => ['type' => self::TYPE_DATE],
+            'info' => ['type' => self::TYPE_INT],
+            'info_updated' => ['type' => self::TYPE_DATE],
+            'youtube' => ['type' => self::TYPE_STRING], 'size' => 15,
         ],
     ];
 

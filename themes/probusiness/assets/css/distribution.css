@@ -571,6 +571,7 @@ form .form-control {
   color: #0273eb !important;
   background-color: #fff !important;
   font-weight: 600;
+  outline: 1px solid #0273EB;
 }
 
 .header-nav {
