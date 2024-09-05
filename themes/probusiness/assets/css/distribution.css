@@ -2325,6 +2325,10 @@ input[type="number"] {
   padding: 0;
 }
 
+.invoice-address-container .typeofshipping {
+  justify-content: space-between;
+}
+
 #checkout .ets_opc_error{
   position: absolute;
 }
