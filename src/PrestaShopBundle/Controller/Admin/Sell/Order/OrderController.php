@@ -756,6 +756,36 @@ class OrderController extends FrameworkBundleAdminController
                 Response::HTTP_BAD_REQUEST
             );
         }
+        
+        if( $this->getContext()->shop->id == 3 ){
+
+            $price_tax_incl = $request->get('price_tax_incl');
+            $price_tax_excl = $request->get('price_tax_excl');
+            
+            $reference  = \Db::getInstance()->getValue("SELECT reference FROM ps_product WHERE id_product=" . $request->get('product_id'));
+            $payment_id = \Db::getInstance()->getValue("SELECT payment_id FROM ps_orders WHERE id_order=" . $orderId);
+            
+            if( ( $payment_id == 2 ) && ( str_contains($reference, 'SHIPPING-') ) ){
+
+                /** ADD FEE **/
+                $sql = "SELECT sum(total_price_tax_incl) AS total_price_tax_incl,  sum(total_price_tax_excl) AS total_price_tax_excl FROM ps_order_detail WHERE id_order=" . $orderId . " AND product_id<>18104";
+                $order_value = (object)\Db::getInstance()->getRow($sql);
+                
+                $price_tax_incl = round($order_value->total_price_tax_incl*0.01, 2);
+                $price_tax_excl = round($order_value->total_price_tax_excl*0.01, 2);
+                
+                $addProductCommand = AddProductToOrderCommand::withNewInvoice(
+                    $orderId,
+                    18104,
+                    0,
+                    $price_tax_incl,
+                    $price_tax_excl,
+                    1
+                );
+                
+                $this->getCommandBus()->handle($addProductCommand);
+            }
+        }
 
         /**
          * Returning the products list view is not required since we reload the whole list
