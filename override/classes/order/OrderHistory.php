@@ -610,12 +610,17 @@ class OrderHistoryCore extends ObjectModel
             $product_var_tpl_list = [];
             foreach ($product_list as $product) {
                 
-                //echo '<pre>' . print_r($product, 1) . '</pre>';
-                //exit;
+                /**echo '<pre>' . print_r($product, 1) . '</pre>';
+                exit;**/
                 $price = Product::getPriceStatic((int) $product['id_product'], false, ($product['product_attribute_id'] ? (int) $product['product_attribute_id'] : null), 6, null, false, true, $product['product_quantity'], false, (int) $order->id_customer, (int) $order->id_cart, (int) $order->{Configuration::get('PS_TAX_ADDRESS_TYPE')}, $specific_price, true, true, null, true, $product['id_customization']);
-                $price_wt = Product::getPriceStatic((int) $product['id_product'], true, ($product['product_attribute_id'] ? (int) $product['product_attribute_id'] : null), 2, null, false, true, $product['product_quantity'], false, (int) $order->id_customer, (int) $order->id_cart, (int) $order->{Configuration::get('PS_TAX_ADDRESS_TYPE')}, $specific_price, true, true, null, true, $product['id_customization']);
+                if($this->context->shop->id == 3){
+                    $price_wt = $product['product_price'];
+                }else{
+                    $price_wt = Product::getPriceStatic((int) $product['id_product'], true, ($product['product_attribute_id'] ? (int) $product['product_attribute_id'] : null), 2, null, false, true, $product['product_quantity'], false, (int) $order->id_customer, (int) $order->id_cart, (int) $order->{Configuration::get('PS_TAX_ADDRESS_TYPE')}, $specific_price, true, true, null, true, $product['id_customization']);
+                }
 
-                $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, Context::getContext()->getComputingPrecision()) : $price_wt;
+                $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($product['product_price'], Context::getContext()->getComputingPrecision()) : $price_wt;
+                
 
                 $image_link= new Link();
                 $image_url = $image_link->getImageLink($product['reference'], null, null, 'jpg', $product['id_product'], $product['id_manufacturer'], 'thumb');
@@ -762,7 +767,7 @@ class OrderHistoryCore extends ObjectModel
             '{message}' => $order->getFirstMessage(),
             
             '{note}' => $this->getNote($order->id),
-            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference),
+            '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$order->id_lang),
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
@@ -785,29 +790,78 @@ class OrderHistoryCore extends ObjectModel
 
     }
 
-    public function getMessage($payment_id,$reference) {
+    public function getMessage($payment_id,$reference,$lang) {
         if($payment_id == 2){
-            return 
-            '<table style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
-                <tr>
-                    <td>
-                        <p>
-                        '.$this->trans('payment_method_credit_card', [], 'Shop.Theme.Global').'
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">
-                            '.$this->trans('Link', [], 'Shop.Theme.Global').'
-                        </a>
-                    </td>
-                </tr>
-            </table>';
+            $message =
+            '<table style="text-align:center;width:100%;">
+                    <tr>
+                        <td style="text-align:center;">
+                            <p>';
+                                
+            if($lang == 1){
+                 $message .= 'Tendo selecionado o cartão de crédito como método de pagamento desta encomenda, encontrará abaixo um link que lhe permitirá efetuar o pagamento através da plataforma de débito do nosso parceiro financeiro. Este link totalmente seguro estará ativo apenas durante 48 horas e atualizará automaticamente o estado do seu pedido assim que for validado.'; 
+            }else if($lang == 2){
+                $message .= 'As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.'; 
+            }else if($lang == 4){
+                $message .= 'Habiendo seleccionado la tarjeta de crédito como método de pago para este pedido, encontrará a continuación un enlace que le permitirá realizar el pago a través de la plataforma de débito de nuestro socio financiero. Este enlace completamente seguro estará activo solo durante 48 horas y actualizará automáticamente el estado de su pedido una vez validado.'; 
+            }else if($lang == 5){
+                $message .= 'Ayant sélectionné carte bancaire comme mode de paiement pour cette commande, vous trouverez ci-dessous un lien cliquable vous permettant d\'effectuer votre paiement via la plateforme de débit de notre partenaire financier. Ce lien complètement sécurisé sera actif durant 48h uniquement et actualisera automatiquement le statut de votre commande une fois validé.'; 
+            }else if($lang == 7){
+                $message .= 'Avendo selezionato la carta di credito come metodo di pagamento per questo ordine, troverai di seguito un collegamento che ti permetterà di effettuare il pagamento tramite la piattaforma di addebito del nostro partner finanziario. Questo collegamento completamente sicuro sarà attivo solo per 48 ore e aggiornerà automaticamente lo stato del tuo ordine una volta convalidato.'; 
+            }else{
+                $message .= 'As you selected credit card as payment method for this order, you will find below a link that will allow you to make the payment through our financial partner platform. This completely secure link will be active only for 48 hours and will automatically update the status of your order once validated.'; 
+            }
+                  
+            $message .= '</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;padding-top:20px;">
+                        
+                            <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">';
+                                
+                                
+                                if($lang == 1){
+                 $message .= 'Link'; 
+            }else if($lang == 2){
+                $message .= 'Link'; 
+            }else if($lang == 4){
+                $message .= 'Enlace'; 
+            }else if($lang == 5){
+                $message .= 'Lien'; 
+            }else if($lang == 7){
+                $message .= 'Collegamento'; 
+            }else{
+                $message .= 'Link'; 
+            }
+                                
+                                
+                          $message .= '</a>
+                        </td>
+                    </tr>
+                </table>';
+                
+         return $message;
         }else{
-            return '<p>
-                '.$this->trans('As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.', [], 'Shop.Theme.Global').'
-            </p>';
+            $message = '<p>';
+            
+            if($lang == 1){
+                 $message .= 'Tendo selecionado a transferência bancária como método de pagamento desta encomenda, solicitamos que efetue esta transferência para a nossa conta portuguesa (Banco Millennium BCP) através dos dados bancários fornecidos aquando da criação da sua conta de revendedor. Qualquer e-mail a solicitar pagamento para outra conta deve ser considerado fraudulento. Não hesite em contactar-nos para mais informações.'; 
+            }else if($lang == 2){
+                $message .= 'As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.'; 
+            }else if($lang == 4){
+                $message .= 'Habiendo seleccionado la transferencia bancaria como método de pago para este pedido, le rogamos que realice esta transferencia a nuestra cuenta portuguesa (Millennium BCP Bank) a través de los datos bancarios proporcionados al crear su cuenta de revendedor. Cualquier correo electrónico solicitando pago a otra cuenta debe considerarse fraudulento. No dude en contactarnos para más información.'; 
+            }else if($lang == 5){
+                $message .= 'Ayant sélectionné virement bancaire comme mode paiement pour cette commande, nous vous prions de bien vouloir effectuer ce transfert de fonds vers notre compte portugais (Millennium BCP Bank) via les coordonnées bancaires fournies lors de la création de votre compte revendeur. Tout email demandant un paiement vers un autre compte doit être considéré comme frauduleux. N\'hésitez pas à nous contacter pour plus d\'informations.'; 
+            }else if($lang == 7){
+                $message .= 'Avendo selezionato il bonifico bancario come metodo di pagamento per questo ordine, ti chiediamo gentilmente di effettuare questo trasferimento di fondi sul nostro conto portoghese (Millennium BCP Bank) tramite le coordinate bancarie fornite durante la creazione del tuo account rivenditore. Qualsiasi e-mail che richieda il pagamento su un altro account dovrebbe essere considerata fraudolenta. Non esitate a contattarci per ulteriori informazioni.'; 
+            }else{
+                $message .= 'As you selected bank transfer as payment method for this order, we kindly ask you to make this transfer to our Portuguese account (Millennium BCP Bank) via the bank details provided when creating your dealer account. Any email requesting payment to another account should be considered fraudulent. Do not hesitate to contact us for more information.'; 
+            }
+            
+            $message .= '</p>';
+            
+         return $message;
         }
 
     }
