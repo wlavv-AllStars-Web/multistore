@@ -495,10 +495,9 @@ function checkCheckboxsShipping() {
                 
                 if(checkboxname == 'use_pickup_address'){
                     // document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='8,']").checked = true;
-                    const firstelement = document.querySelector(".block-shipping .delivery-options").firstElementChild;
-                    firstelement.querySelector(".delivery-option input").checked = true 
+                    document.querySelector(".block-shipping .delivery-option .custom-radio input[reference='1']").checked = true;
                 }else{
-                    document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='7,']").checked = true;
+                    document.querySelector(".block-shipping .delivery-option .custom-radio input[reference='2']").checked = true;
                 }
 
             } else {
@@ -512,6 +511,6 @@ function checkCheckboxsShipping() {
 
 document.addEventListener("DOMContentLoaded", (e) => {
     checkCheckboxsShipping()
-    document.querySelector(".block-shipping .delivery-options .delivery-option input[type='radio'][value='7,']").checked = true;
+    document.querySelector(".block-shipping .delivery-option .custom-radio input[reference='2']").checked = true;
 })
 </script>

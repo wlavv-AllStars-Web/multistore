@@ -489,6 +489,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                                     $delivery['extraContent'] = Hook::exec('displayCarrierExtraContent', ['carrier' => $carrier], $moduleId);
                                 }
                             }
+                            $delivery['id_reference'] = $carrier['instance']->id_reference;
                             $delivery['id_carrier'] = $id_carrier;
                             $delivery['name'] = $carrier['instance']->name;
                             $delivery['delay'] = $carrier['instance']->delay[$this->context->language->id];
@@ -1070,12 +1071,14 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                     'error' => $this->module->l('Mobile phone is required','order')
                 );
             }
-            if(in_array('dni',$address_field) && in_array('dni',$address_field_required) && (!isset($invoice_address['dni'])|| !$invoice_address['dni']))
+            if(in_array('dni',$address_field) && ($invoice_address['id_country'] == 244 || $invoice_address['id_country'] == 243) )
             {
-                $field_errors[] = array(
-                    'field' => 'invoice_address_dni',
-                    'error' => $this->module->l('Identification number is required','order')
-                );
+                if (empty($invoice_address['dni'])) {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_dni',
+                        'error' => $this->module->l('Identification number is required','order')
+                    );
+                }
             }
             if(in_array('other',$address_field) && in_array('other',$address_field_required) && (!isset($invoice_address['other'])|| !$invoice_address['other']))
             {
@@ -1281,12 +1284,14 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                         'error' => $this->module->l('Mobile phone is required','order')
                     );
                 }
-                if(in_array('dni',$address_field) && in_array('dni',$address_field_required) && (!isset($shipping_address['dni'])|| !$shipping_address['dni']))
+                if(in_array('dni',$address_field) && ($shipping_address['id_country'] == 244 || $shipping_address['id_country'] == 243) )
                 {
-                    $field_errors[] = array(
-                        'field' => 'shipping_address_dni',
-                        'error' => $this->module->l('Identification number is required','order')
-                    );
+                    if (empty($shipping_address['dni'])) {
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_dni',
+                            'error' => $this->module->l('Identification number is required','order')
+                        );
+                    }
                 }
                 if(in_array('door_number',$address_field) && in_array('door_number',$address_field_required) && (!isset($shipping_address['door_number'])|| !$shipping_address['door_number']))
                 {

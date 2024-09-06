@@ -16,6 +16,7 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
+<pre>{$delivery_option_list|print_r}</pre>
 <div class="delivery-options-list shipping_{$opc_layout|escape:'html':'UTF-8'}">
     <div id="hook-display-before-carrier">
         {if isset($hookDisplayBeforeCarrier)}
@@ -31,7 +32,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 left_content">
                                     <span class="custom-radio">
-                <input id="delivery_option_{$option.id_carrier|intval}" name="delivery_option[{$id_address|intval}]" {if $option.id_carrier|intval == 4} checked {else} {/if}  value="{$key|escape:'html':'UTF-8'}"  type="radio"{if $option.default == 1}checked{/if} />
+                <input id="delivery_option_{$option.id_carrier|intval}" reference="{$option.id_reference|intval}" name="delivery_option[{$id_address|intval}]" {if $option.id_carrier|intval == 4} checked {else} {/if}  value="{$key|escape:'html':'UTF-8'}"  type="radio"{if $option.default == 1}checked{/if} />
                                         <span></span>
                                     </span>
                                     <div class="carrier-name-img">

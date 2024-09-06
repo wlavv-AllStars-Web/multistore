@@ -34,9 +34,14 @@ function onchangecountry(event) {
         // Check if the selected value is 229
         if (selectedValue == "243" || selectedValue == "244") {
             document.querySelector(".shipping_address .dni-input").style.display = "block"
+            document.querySelector(".shipping_address .dni-input label").classList.add("required")
+            document.querySelector(".shipping_address .dni-input .opc_field_right input").setAttribute("required","required")
+            document.querySelector(".shipping_address .dni-input .opc_field_right input").classList.add("is_required")
             // document.querySelector(".shipping_address .dni-input").setAttribute("required","required")
         }else{
             document.querySelector(".shipping_address .dni-input").style.display = "none"
+            document.querySelector(".shipping_address .dni-input label").classList.remove("required")
+            document.querySelector(".shipping_address .dni-input .opc_field_right input").removeAttribute("required")
         }
 }
 
