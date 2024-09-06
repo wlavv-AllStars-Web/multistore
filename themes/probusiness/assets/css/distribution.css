@@ -6152,7 +6152,7 @@ textarea {
   }
 
   #order_history .order .status {
-    padding: 0.25rem 0 0.5rem 0;
+    padding: 0.25rem 0 0 0;
   }
   #order_history .order .label-pill {
     color: #fff;
@@ -6964,8 +6964,11 @@ textarea {
   }
 
 
-  #my-account #myTabContent #order_history .order:nth-child(even) {
-    background-color: #e7e7e7;
+  #my-account #myTabContent #order_history .order {
+    border-bottom:1px solid#0273EB;
+  }
+  #my-account #myTabContent #order_history .order:last-child {
+    border-bottom: 0;
   }
 
   #my-account #myTabContent #order_history .order .row div:nth-child(1) a {
