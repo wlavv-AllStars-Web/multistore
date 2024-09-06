@@ -4200,7 +4200,7 @@ textarea {
   #conditions-to-approve .js-terms span {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content:  center;
     gap: 1rem;
   }
 
@@ -4389,6 +4389,17 @@ textarea {
     font-size: 2rem;
     color: #0273EB;
   }
+
+  .cart-empty {
+    padding: 1rem 0;
+    margin: 0 -1rem;
+  }
+
+  .cart-empty > div{
+    padding: 2rem 1rem;
+  }
+
+
 
   .product-information{
     margin-top: 56px;
