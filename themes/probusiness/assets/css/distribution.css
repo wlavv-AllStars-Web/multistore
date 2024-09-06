@@ -5908,6 +5908,10 @@ textarea {
     width: 32%;
   }
 
+  #invoice_address_id_country{
+    background: #eeeeee !important;
+  }
+
 
   .block-onepagecheckout.block-address {
     flex-wrap: wrap;

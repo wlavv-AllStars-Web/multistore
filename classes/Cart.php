@@ -3085,7 +3085,9 @@ class CartCore extends ObjectModel
                 $total_price_without_tax = 0;
                 $total_price_without_tax_with_rules = 0;
                 $position = 0;
+                $id_reference = 1;
                 foreach ($value['carrier_list'] as $id_carrier => $data) {
+                    $id_reference = $data['id_reference'];
                     $total_price_with_tax += $data['price_with_tax'];
                     $total_price_without_tax += $data['price_without_tax'];
                     $total_price_without_tax_with_rules = (in_array($id_carrier, $free_carriers_rules)) ? 0 : $total_price_without_tax;
@@ -3103,6 +3105,8 @@ class CartCore extends ObjectModel
 
                     $position += $carrier_collection[$id_carrier]->position;
                 }
+
+                $delivery_option_list[$id_address][$key]['id_reference'] = $id_reference;
                 $delivery_option_list[$id_address][$key]['total_price_with_tax'] = $total_price_with_tax;
                 $delivery_option_list[$id_address][$key]['total_price_without_tax'] = $total_price_without_tax;
                 $delivery_option_list[$id_address][$key]['is_free'] = !$total_price_without_tax_with_rules ? true : false;
