@@ -351,31 +351,52 @@ inputs.forEach(function(input) {
 function selectcheckbox(e) {
     const hiddencheckbox = e.querySelector("input");
     const selectcheckbox = e.querySelector("i");
+    const selectedCorrect = e.querySelector(".container-text-checkbox .correct-svg")
 
     // Uncheck all other checkboxes when this one is checked
     const allCheckboxes = document.querySelectorAll(".typeofshipping input[type='checkbox']");
-    const allIcons = document.querySelectorAll(".typeofshipping i");
+    // const allIcons = document.querySelectorAll(".typeofshipping i");
+    const correctIcons = document.querySelectorAll(".container-text-checkbox .correct-svg");
+    const corrects = document.querySelectorAll(".typeofshipping .container-text-checkbox");
+    const correct = e.querySelector(".container-text-checkbox");
 
     // If the current checkbox is already checked, uncheck it and reset its icon
+
     if (hiddencheckbox.checked) {
         hiddencheckbox.checked = false; // Uncheck the current checkbox
-        selectcheckbox.classList.remove("fa-square-check"); // Remove the checked icon
-        selectcheckbox.classList.add("fa-square"); // Add the unchecked icon
+        // selectcheckbox.classList.remove("fa-square-check"); // Remove the checked icon
+        // selectcheckbox.classList.add("fa-square"); // Add the unchecked icon
+        correct.classList.remove("selectedCheck")
+        selectedCorrect.classList.remove("complete")
+
     } else {
         // Uncheck all checkboxes and reset their icons first
+
         allCheckboxes.forEach((checkbox, index) => {
             checkbox.checked = false; // Uncheck all
-            allIcons[index].classList.remove("fa-square-check"); // Remove checked icon
-            allIcons[index].classList.add("fa-square"); // Add unchecked icon
+            // allIcons[index].classList.remove("fa-square-check"); 
+            // allIcons[index].classList.add("fa-square"); 
+            corrects[index].classList.remove("selectedCheck")
+            correctIcons[index].classList.remove("complete");
+
         });
 
         // Check the clicked checkbox and update its icon
         hiddencheckbox.checked = true; // Set this checkbox as checked
-        selectcheckbox.classList.remove("fa-square");
-        selectcheckbox.classList.add("fa-square-check");
+        // selectcheckbox.classList.remove("fa-square");
+        // selectcheckbox.classList.add("fa-square-check");
+        correct.classList.add("selectedCheck")
+        selectedCorrect.classList.add("complete");
     }
 }
 
+
+
+// document.querySelectorAll(".container-text-checkbox").forEach(item => {
+//     item.addEventListener("click", function() {
+//         document.querySelector(".container-text-checkbox .correct-svg").classList.add("complete");
+//     });
+// })
 
 
 

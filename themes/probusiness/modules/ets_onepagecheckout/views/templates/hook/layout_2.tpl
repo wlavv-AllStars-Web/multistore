@@ -80,8 +80,9 @@
                                     <span onclick="selectcheckbox(this)">
                                         <input type="checkbox" name="use_another_address_for_invoice" id="use_another_address_for_invoice" value="1"/>
                                         {* <i class="ets_checkbox" ></i> *}
-                                        <i class="fa-regular fa-square" ></i>
+                                        <i class="fa-regular fa-square" style="display: none;"></i>
                                         <div class="container-text-checkbox" >
+                                            <img src="/img/asd/correct.svg" class="correct-svg"/>
                                             <p>{l s='Deliver to a different address?' d='Shop.Theme.Checkout'} ({l s='Dropship' d='Shop.Theme.Checkout'})</p>
                                         </div>
                                     </span>
@@ -94,8 +95,9 @@
                                     <span onclick="selectcheckbox(this)">
                                         <input type="checkbox" name="use_pickup_address" id="use_pickup_address" value="1" />
                                         {* <i class="ets_checkbox" ></i> *}
-                                        <i class="fa-regular fa-square"></i>
+                                        <i class="fa-regular fa-square" style="display: none;"></i>
                                         <div class="container-text-checkbox">
+                                            <img src="/img/asd/correct.svg" class="correct-svg"/>
                                             <p>{l s='Pick up with your carrier' d='Shop.Theme.Checkout'} ({l s='Pickup' d='Shop.Theme.Checkout'})</p>
                                         </div>
                                     </span>

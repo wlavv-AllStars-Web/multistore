@@ -6,6 +6,64 @@
   font-style: normal;
 }
 
+/* teste */
+
+/* Default state of the SVG */
+#checkmark path {
+  stroke-dasharray: 50; /* Dash pattern length */
+  stroke-dashoffset: 50; /* Start at the full length, making it invisible */
+  transition: stroke-dashoffset 0.5s ease-out; /* Smooth animation */
+}
+
+#checkmark.complete path {
+  stroke-dashoffset: 0; /* Bring it to 0 to make the stroke visible */
+}
+
+/* Optional: Add a nice checkmark circle animation */
+#checkmark circle {
+  stroke-dasharray: 157; /* Total circumference of the circle */
+  stroke-dashoffset: 157;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+#checkmark.complete circle {
+  stroke-dashoffset: 0; /* Complete the circle */
+}
+
+
+.typeofshipping .container-text-checkbox{
+  display: flex;
+  align-items: center;
+  padding: .5rem 2rem;
+  border: 1px solid #0273EB;
+  position: relative;
+  background: #fff;
+  color: #0273EB;
+}
+
+.typeofshipping .container-text-checkbox.selectedCheck{
+  background: #0273EB;
+  color: #fff;
+}
+
+.typeofshipping .container-text-checkbox .correct-svg{
+  width: 20px;
+  visibility: hidden;
+  position: absolute;
+  left: .5rem;
+}
+.typeofshipping .container-text-checkbox .correct-svg.complete{
+  width: 20px;
+  visibility: visible;
+}
+.typeofshipping .container-text-checkbox p{
+  margin-bottom: 0;
+}
+
+
+
+/* fim test */
+
 
 .loading-spinner {
   border: 4px solid #f3f3f3; /* Light grey */
@@ -2369,9 +2427,9 @@ input[type="number"] {
   color: #0273eb !important;
 }
 
-#checkout .invoice-address-container div:nth-child(1){
+/* #checkout .invoice-address-container div:nth-child(1){
   margin-bottom: 14px !important;
-}
+} */
 #checkout .invoice-address-container #invoice-addresses .ets_opc_select{
   margin-bottom: 0 !important;
 }
@@ -5415,6 +5473,9 @@ textarea {
 
 @media (max-width: 543px) {
 
+  .typeofshipping .container-text-checkbox{
+    min-height: 66px;
+  }
 
   /* checkbox checkout0 */
   .block-onepagecheckout.block-shipping{
@@ -5474,6 +5535,10 @@ textarea {
     width: 100%;justify-content: center;
   }
 
+  .invoice-address-container .checkbox-delivery{
+    margin-bottom: 0 !important;
+  }
+
   .invoice-address-container .checkbox-delivery .ets_checkinput{
     width: 100%;justify-content: center;
     margin: 0 !important;
@@ -5529,7 +5594,7 @@ textarea {
 
 
   .invoice-address-container .checkbox-delivery label.ets_checkinput span{
-    padding: 0 2rem;
+    padding: 0;
   }
 
   .invoice-address-container .checkbox-pickup {
@@ -5555,7 +5620,7 @@ textarea {
 
 
   .invoice-address-container .checkbox-pickup label.ets_checkinput span{
-    padding: 0 2rem;
+    padding: 0;
   }
 
   #conditions-to-approve #conditions_to_approve {
@@ -5850,6 +5915,9 @@ textarea {
   }
   .block-onepagecheckout.block-address .invoice-address-container .form-group .ets_checkinput{
     padding: 1rem !important;
+  }
+  .block-onepagecheckout.block-address .invoice-address-container .form-group .checkbox-delivery .ets_checkinput{
+    padding-bottom: 0 !important;
   }
 
   #delivery-addresses .shipping_address{
