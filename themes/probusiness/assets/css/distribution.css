@@ -39,6 +39,7 @@
   position: relative;
   background: #fff;
   color: #0273EB;
+  cursor: pointer;
 }
 
 .typeofshipping .container-text-checkbox.selectedCheck{
@@ -4199,6 +4200,7 @@ textarea {
   #conditions-to-approve .js-terms span {
     display: flex;
     align-items: baseline;
+    justify-content: space-between;
     gap: 1rem;
   }
 

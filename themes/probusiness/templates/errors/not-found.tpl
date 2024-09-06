@@ -109,6 +109,17 @@
     #search #wrapper {
       min-height: 60dvh;
     }
+    #pagenotfound #wrapper {
+      min-height: 60dvh;
+    }
+    #pagenotfound #content-wrapper .page-footer{
+      margin-bottom: 0 !important;
+    }
+
+    #pagenotfound #main .page-content{
+      margin-bottom: 0 !important;
+    }
+
     #pagenotfound .page-content.page-not-found{
       background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
@@ -117,6 +128,7 @@
       background-position: center !important;
       padding: 0;
       position: relative;
+      width: 100vw !important;
     }
     #search .page-content.page-not-found{
       background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
@@ -149,6 +161,12 @@
     }
 
 
+    #pagenotfound .page-content.page-not-found #search_widget .search_block_top_fixed {
+      border-radius: 0;
+    }
+    #pagenotfound .page-content.page-not-found #search_widget form i {
+      border-radius: 0;
+    }
     #search .page-content.page-not-found #search_widget .search_block_top_fixed {
       border-radius: 0;
     }
