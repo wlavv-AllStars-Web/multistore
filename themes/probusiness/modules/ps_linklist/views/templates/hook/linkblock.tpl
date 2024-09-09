@@ -47,7 +47,7 @@
     display: unset;
   }
 </style>
-<div style="padding: 20px 0 0 0;" class="col-xs-12 col-sm-10 col-md-12 links footer_linklist alignment bigalign">
+<div style="padding: 20px 0 0 0;" class="col-xs-12 col-sm-12 col-md-12 links footer_linklist alignment bigalign">
   <div class="row alignment ">
     {foreach $linkBlocks as $linkBlock key=key}
       {if $key == 0}
@@ -359,7 +359,7 @@
     }
 
     .mobile-footer ul {
-      background: #666;
+      background: #222;
       border-top: 2px solid #0273eb;
       padding: 1rem;
     }

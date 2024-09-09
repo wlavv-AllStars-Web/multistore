@@ -300,7 +300,7 @@
               {foreach from=$orders item=order}
                 <div class="order" data-state="{$order.history.current.id_order_state}">
                   <div class="row" style="display: flex;">
-                    <div class="col-xs-6 pr-0" >
+                    <div class="col-xs-6 col-sm-8 pr-0" >
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3>
                       <div class="date" style="color: #555;">{$order.details.order_date|escape:'html':'UTF-8'}</div>
                       <div class="total" style="color: #555;">{$order.totals.total.value|replace:',':'.'|escape:'html':'UTF-8'}</div>
@@ -314,7 +314,7 @@
                       </div>
                       </a>
                     </div>
-                    <div class="col-xs-6 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 14px;">
+                    <div class="col-xs-6 col-sm-4 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 14px;">
                         {* <pre>{$order.shipping|print_r}</pre> *}
                         <div style="display: flex;align-items:center;justify-content:end;">
                           {foreach from=$order.shipping item=line}
@@ -693,7 +693,7 @@
             
           {* <pre>{$customerData|print_r}</pre> *}
             <form action="{$urls.pages.my_account}" method="post" class="std">
-                <div class="left-form-personal col-lg-6 col-sm-12" style="display: flex;flex-direction:column;align-items:center;">
+                <div class="left-form-personal col-lg-6 col-sm-12 col-md-12" style="display: flex;flex-direction:column;align-items:center;">
                   <div class="form-group col-lg-9">
                     <h1 style="text-align: center;">{l s="Your Personal Information" d='Shop.Theme.Customeraccount'}</h1>
                     <p style="text-align: center;">{l s="Please be sure to update your personal information if changed." d='Shop.Theme.Customeraccount'}</p>

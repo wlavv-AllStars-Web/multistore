@@ -30,7 +30,7 @@
  
      <div class="thumbnail-container" style="display: flex;align-items:center;">
      
-       <div class="thumbnail-top col-lg-2 col-md-3 col-sm-6 col-xs-6 px-0" style="display: flex !important;justify-content:center;" >
+       <div class="thumbnail-top col-lg-2 col-md-2 col-sm-6 col-xs-6 px-0" style="display: flex !important;justify-content:center;" >
          {block name='product_thumbnail'}
            {if $product.cover}
              <a href="{$product.url}" class="thumbnail product-thumbnail">
@@ -62,9 +62,9 @@
          {/block}
        </div>
  
-       <div class="col-lg-10 bottom-product" style="display: flex;flex-direction:column;height:100%;">
+       <div class="col-lg-10 col-md-10 bottom-product" style="display: flex;flex-direction:column;height:100%;">
          <div class="col-lg-12 px-0 bottom-product-container" style="display: flex;align-items:center;flex:1;">
-          <div class="information-product col-lg-8 col-md-5 col-sm-12 col-xs-12 px-0" onclick="window.location.href='{$product.url}'">
+          <div class="information-product col-lg-8 col-md-8 col-sm-12 col-xs-12 px-0" onclick="window.location.href='{$product.url}'">
                 {* <div class="btn-catalog-brand"><img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/xlsx_updated.png" style=" height: auto; width: 100%;"></div> *}
               <div class="brand-product" style="font-weight: 700;font-size:16px;line-height:18px;color:#111;text-transform:uppercase;" >{$product.manufacturer_name}</div>
               <div class="referencia" style="font-weight: 400;font-size:16px;line-height:18px;color: #0273EB;">{$product.reference}</div>
@@ -78,7 +78,7 @@
     
           </div>
             
-          <div class="product-description col-lg-4 col-md-4 col-sm-12 col-xs-12" >
+          <div class="product-description col-lg-4 col-md-4 col-sm-12 col-xs-12 pr-0" >
     
             {block name='product_price_and_shipping'}
               {if $product.show_price}

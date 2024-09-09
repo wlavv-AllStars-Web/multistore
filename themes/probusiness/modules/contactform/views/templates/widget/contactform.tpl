@@ -93,7 +93,7 @@
           
           
 
-          <div class="form-group  col-12 col-lg-4 col-xs-12">
+          <div class="form-group  col-12 col-lg-4 col-xs-12 col-sm-12 col-md-6">
             <label class="col-md-12 form-control-label" for="name">{l s='Name' d="Shop.Theme.Contactform"}<sup>*</sup></label>
             <div class="col-md-12">
               <input id="name" class="form-control" name="from" type="text" value=""
@@ -101,7 +101,7 @@
             </div>
           </div>
 
-          <div class="lastname_field col-12  col-lg-4 col-xs-12">
+          <div class="lastname_field col-12  col-lg-4 col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
                           <label class="col-md-12 form-control-label" for="lastname">{l s='Last Name' d="Shop.Theme.Contactform"}<sup>*</sup></label>
                           {* {if isset($customerThread.extrafield)}
@@ -113,7 +113,7 @@
           </div>
 
           {if $contact.email}
-          <div class="form-group   col-12 col-lg-4 col-xs-12">
+          <div class="form-group   col-12 col-lg-4 col-xs-12 col-sm-12 col-md-12">
             <label class="col-md-12 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}<sup>*</sup></label>
             <div class="col-md-12">
               <input id="email" class="form-control" name="from" type="email" value="{$contact.email}"
@@ -121,7 +121,7 @@
             </div>
           </div>
           {else}
-          <div class="form-group   col-12 col-lg-4 col-xs-12">
+          <div class="form-group   col-12 col-lg-4 col-xs-12 col-sm-12 col-md-12">
             <label class="col-md-12 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}<sup>*</sup></label>
             <div class="col-md-12">
               <input id="email" class="form-control" name="from" type="email" 

@@ -449,6 +449,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $delivery_option_list = $this->context->cart->getDeliveryOptionList($country,true);
         if($delivery_option_list)
         {
+            
             foreach($delivery_option_list as $id_address => &$option_list)
             {
                 foreach($option_list as $key => &$option)
@@ -466,6 +467,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                                     $delivery['extraContent'] = Hook::exec('displayCarrierExtraContent', ['carrier' => $carrier], $moduleId);
                                 }
                             }
+                            $delivery['id_reference'] = $carrier['instance']->id_reference;
                             $delivery['id_carrier'] = $id_carrier;
                             $delivery['name'] = $carrier['instance']->name;
                             $delivery['delay'] = $carrier['instance']->delay[$this->context->language->id];
@@ -943,6 +945,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $shipping_address = Tools::getValue('shipping_address',array());
         $address_field = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD')):array();
         $address_field_required = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED')):array();
+        // $address_field_required[] = 'dni';
+        // echo '<pre>'.print_r($$address_field,1).'</pre>';
+        // echo '<pre>'.print_r($address_field_required,1).'</pre>';
+        // exit;
         if(!is_array($shipping_address) || !Ets_onepagecheckout::validateArray($shipping_address))
             $this->errors[] = $this->module->l('Shipping address data is not valid','order');
         else
@@ -1122,8 +1128,11 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $use_another_address_for_invoice = (int)Tools::getValue('use_another_address_for_invoice');
         if($use_another_address_for_invoice)
         {
-            
+        //     echo '<pre>'.print_r($$address_field,1).'</pre>';
+        // echo '<pre>'.print_r($address_field_required,1).'</pre>';
+        // exit;
             $invoice_address = Tools::getValue('invoice_address',array());
+
             if(!is_array($invoice_address) || !Ets_onepagecheckout::validateArray($invoice_address))
                 $this->errors[] = $this->module->l('Invoice address data is not valid','order');
             else
@@ -1201,7 +1210,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                         'error' => $this->module->l('Mobile phone is required','order')
                     );
                 }
-                if(in_array('dni',$address_field) && in_array('dni',$address_field_required) && (!isset($invoice_address['dni'])|| !$invoice_address['dni']))
+                if(in_array('dni',$address_field)  && (!isset($invoice_address['dni'])|| !$invoice_address['dni']))
                 {
                     $field_errors[] = array(
                         'field' => 'invoice_address_dni',
