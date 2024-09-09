@@ -1002,17 +1002,21 @@ class LinkCore
             }
 
             $brand = str_replace(' ', '', $manufacturer_name);
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
             
             if($folder == '600'){
-            $brand_logo_url = '/img/m/' . $id_manufacturer . '-large_default.jpg';
+            $brand_logo_url = $protocol.$_SERVER['SERVER_NAME'].'/img/m/' . $id_manufacturer . '-large_default.jpg';
             }else{
-            $brand_logo_url = '/img/m/' . $id_manufacturer . '-medium_default.jpg';
+            $brand_logo_url = $protocol.$_SERVER['SERVER_NAME'].'/img/m/' . $id_manufacturer . '-medium_default.jpg';
             }
             
             $root_image ="/home/asw200923/webtools/public/uploads/manufacturer/ASD/" . $brand . "/" . $folder. "/" . $reference . ".jpg";
             
+            $server_name = $_SERVER['SERVER_NAME'];
             
-            if ( file_exists($root_image) ) return str_replace("asd", "https://webtools", $_SERVER['SERVER_NAME'])  ."/uploads/manufacturer/ASD/" . $brand . "/" . $folder. "/" . $reference . ".jpg";
+            $server_name = preg_replace('/^(asd|alpha-asd)/', 'https://webtools', $server_name);
+            
+            if ( file_exists($root_image) ) return $server_name ."/uploads/manufacturer/ASD/" . $brand . "/" . $folder. "/" . $reference . ".jpg";
             else return $brand_logo_url;
 
         }
