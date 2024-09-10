@@ -519,7 +519,7 @@
               <h3>VEHICLE TYPES</h3>
             </div> *}
             <div class="categoryCars" style="display: flex;justify-content:space-evenly;width:100%;padding:3rem 0;">
-            {* <pre>{print_r($cats,1)}</pre> *}
+            {* <pre>{print_r($language.iso_code,1)}</pre> *}
               {* {foreach from=$categories item=categoryLevel1} *}
                 {foreach from=$cats item=category}
                   {if $category.id_category == 9 || $category.id_category == 10 || $category.id_category == 11 || $category.id_category == 12 || $category.id_category == 13 || $category.id_category == 14  }
@@ -531,7 +531,7 @@
                         </div>
                       </a>
                     {else}
-                      <a rel="nofollow" href="/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
+                      <a rel="nofollow" href="/{$language.iso_code}/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
                         <div class="category {$category.name}">
                           <img src="/img/eurmuscle/bannersHome/{$category.id_category}.webp" loading="lazy" alt="category {$category.name}">
                           <div class="model-type-overlay"><span>{$category.name}</span></div>
