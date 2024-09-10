@@ -37,12 +37,12 @@
             <a href="{$product.url}" class="thumbnail product-thumbnail">
               <picture>
                 <img
-                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
+                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
                   alt="{$product.name|truncate:30:'...'}"
                   loading="lazy"
                   data-full-size-image-url="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer)}"
-                  width="125"
-                  height="125"
+                  width="600"
+                  height="450"
                   style="width:125px;height:auto;border: 2px solid #dedede;"
                 />
               </picture>
@@ -51,10 +51,10 @@
             <a href="{$product.url}" class="thumbnail product-thumbnail">
               <picture>
                 <img
-                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
+                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
                   loading="lazy"
-                  width="125"
-                  height="125"
+                  width="600"
+                  height="450"
                   style="width:125px;height:auto;border: 2px solid #dedede;"
                 />
               </picture>

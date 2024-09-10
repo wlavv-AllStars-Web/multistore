@@ -991,7 +991,7 @@ class LinkCore
     public function getImageLink($name, $ids, $type = null, string $extension = 'jpg', $id_product = null, $id_manufacturer = null, $folder = '600')
     {
         
-        if( ( Context::getContext()->shop->id == 3 ) && ( !is_null($id_product))){
+        if( ( Context::getContext()->shop->id == 3 || Context::getContext()->shop->id == 1) && ( !is_null($id_product))){
 
             $reference= $name;
             $manufacturer_name = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT name FROM ps_manufacturer WHERE id_manufacturer = ' . $id_manufacturer );
@@ -1011,10 +1011,14 @@ class LinkCore
             }
             
             $root_image ="/home/asw200923/webtools/public/uploads/manufacturer/ASD/" . $brand . "/" . $folder. "/" . $reference . ".jpg";
+
+            // echo $_SERVER['SERVER_NAME'];
             
             $server_name = $_SERVER['SERVER_NAME'];
             
-            $server_name = preg_replace('/^(asd|alpha-asd)/', 'https://webtools', $server_name);
+            $server_name = preg_replace('/^(asd|alpha-asd|euromus.local|alpha)/', 'https://webtools', $server_name);
+
+            // echo $server_name;
             
             if ( file_exists($root_image) ) return $server_name ."/uploads/manufacturer/ASD/" . $brand . "/" . $folder. "/" . $reference . ".jpg";
             else return $brand_logo_url;
