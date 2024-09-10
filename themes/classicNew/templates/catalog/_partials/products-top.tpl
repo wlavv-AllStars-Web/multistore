@@ -35,7 +35,7 @@
   {elseif $smarty.server.REQUEST_URI === "/fr/nouveaux-produits"}
   <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_fr.webp?t=123"  style="width:100%;"/></div>
  {/if}
-<div id="js-product-list-top" class="row products-selection" style="display: flex;align-items:center;margin:2rem 0 4rem 0;gap:0rem;">
+<div id="js-product-list-top" class="row products-selection" style="display: flex;align-items:center;gap:0rem;">
 
   {if $ukoo_name_1}
     <div class="col-lg-2  total-products">
@@ -63,7 +63,7 @@
     {/if}
     {if $smarty.server.REQUEST_URI == "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       <div style="display: flex;align-items:center;gap:1rem;">
-        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-medium_default.jpg" width="100%" style="max-width: 125px;padding:0.5rem;background:#fff;border-radius:0.5rem;">
+        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-medium_default.jpg" width="100%" style="max-width: 200px;padding:0.5rem;background:#fff;border-radius:0.5rem;">
         {* <h2 style="text-transform: uppercase;color:#103054">{$listing['products'][0]['manufacturer_name']}</h2> *}
       </div>
     {else}
