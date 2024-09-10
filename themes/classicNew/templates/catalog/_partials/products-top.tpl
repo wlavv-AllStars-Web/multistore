@@ -63,7 +63,7 @@
     {/if}
     {if $smarty.server.REQUEST_URI == "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       <div style="display: flex;align-items:center;gap:1rem;">
-        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-medium_default.jpg" width="100%" style="max-width: 200px;padding:0.5rem;background:#fff;border-radius:0.5rem;">
+        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-home_default.jpg" width="100%" style="max-width: 200px;padding:0.5rem;background:#fff;border-radius:0.5rem;">
         {* <h2 style="text-transform: uppercase;color:#103054">{$listing['products'][0]['manufacturer_name']}</h2> *}
       </div>
     {else}
