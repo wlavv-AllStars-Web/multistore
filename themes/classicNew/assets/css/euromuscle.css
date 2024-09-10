@@ -22,6 +22,10 @@ main {
   gap: 0.5rem;
 }
 
+.product-miniature .highlighted-informations {
+  background: unset !important;
+}
+
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
   display: none;
 }
