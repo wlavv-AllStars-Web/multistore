@@ -41,7 +41,7 @@
             loading="lazy"
             width="{$product.default_image.bySize.large_default.width}"
             height="{$product.default_image.bySize.large_default.height}"
-            style="width: 100%;height:100%;object-fit:contain;"
+            style="width: 100%;height:100%;object-fit:contain;max-width: 600px;"
           >
         </picture>
         <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
@@ -57,7 +57,7 @@
             loading="lazy"
             width="{$urls.no_picture_image.bySize.large_default.width}"
             height="{$urls.no_picture_image.bySize.large_default.height}"
-            style="width: 100%;height:100%;object-fit:contain;"
+            style="width: 100%;height:100%;object-fit:contain;max-width: 600px;"
           >
         </picture>
       {/if}
