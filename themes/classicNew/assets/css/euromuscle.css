@@ -10,12 +10,20 @@ main {
     background: #f6f6f6;
 }
 
+#pagenotfound #content-wrapper {
+  text-align: center;
+}
+
 #wrapper .breadcrumb {
   padding: 0;
   background: 0 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.product-miniature .highlighted-informations {
+  background: unset !important;
 }
 
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
@@ -2730,7 +2738,7 @@ header.page-header {
   object-position: 2px center !important;
 }
 .categoryCars .MERCHANDISING:hover img {
-  transform: scale(1.2) !important;
+  transform: scale(0.85) !important;
 }
 
 .categoryCars .COMERCIALIZACIÓN img
@@ -4176,6 +4184,17 @@ a:focus {
   width: 524px;
 }
 
+.videosContainer .image_play{
+  max-width: 100px !important;
+  position: absolute !important;
+  pointer-events: none;
+  width: 100%;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  }
+
 .firstDiv {
   width: 524px; /* Each column takes up one-third of the width */
   min-width: 524px;
@@ -4193,16 +4212,7 @@ a:focus {
   height: 295px;
 }
 
-.videosContainer .image_play{
-max-width: 100px !important;
-position: absolute !important;
-pointer-events: none;
-width: 100%;
-object-fit: contain;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
-}
+
 
 @media screen and (min-width:1920px) {
   .videosContainer {
@@ -4309,6 +4319,55 @@ transform: translate(-50%,-50%);
 
 }
 
+/* ets checkout */
+#form_ets_onepagecheckout{
+  background: unset !important;
+  box-shadow: none !important;
+}
+
+#form_ets_onepagecheckout label{
+  color: #103054 !important;
+}
+
+#form_ets_onepagecheckout .block-onepagecheckout{
+  background: #fff;
+}
+
+#form_ets_onepagecheckout button[name="submitCompleteMyOrder"]{
+  color: #fff !important;
+  background: #103054 !important;
+}
+
+.block-onepagecheckout .title-heading, #ets_onepagecheckout .block-onepagecheckout .product-line-info.product_info_name a.label, #invoice-addresses .title, #delivery-addresses .title, .block-onepagecheckout .product-line-info.product_info_name .label {
+  color: #103054 !important;
+}
+
+.block-onepagecheckout .title-heading, .ets_pr_gift_products .card-block{
+  border-top: 3px solid #103054 !important;
+}
+
+#ets_onepagecheckout a{
+  color: #ee302e !important;
+}
+#ets_onepagecheckout a:hover{
+  color: #103054 !important;
+}
+
+#form_ets_onepagecheckout .row.delivery-option .carrier-name{
+  color: #103054 !important;
+}
+
+.block-onepagecheckout .title-heading svg {
+  fill: #103054 !important;
+}
+
+#ets_onepagecheckout a svg{
+  fill: #ee302e !important;
+}
+
+#form_ets_onepagecheckout .product-line-grid-right .cart-line-product-actions, #form_ets_onepagecheckout .product-line-grid-right .product-price{
+  color: #103054 !important;
+}
 
 
 @media screen and (max-width: 540px) {
@@ -4325,13 +4384,6 @@ transform: translate(-50%,-50%);
 
   #contact .contact_Banner {
     width: 100%;
-  }
-
-
-  /* page product */
-
-  #product .product-container{
-    flex-direction: column;
   }
 }
 
