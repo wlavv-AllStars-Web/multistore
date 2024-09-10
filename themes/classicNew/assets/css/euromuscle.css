@@ -10,20 +10,12 @@ main {
     background: #f6f6f6;
 }
 
-#pagenotfound #content-wrapper {
-  text-align: center;
-}
-
 #wrapper .breadcrumb {
   padding: 0;
   background: 0 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.product-miniature .highlighted-informations {
-  background: unset !important;
 }
 
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
@@ -2738,7 +2730,7 @@ header.page-header {
   object-position: 2px center !important;
 }
 .categoryCars .MERCHANDISING:hover img {
-  transform: scale(0.85) !important;
+  transform: scale(1.2) !important;
 }
 
 .categoryCars .COMERCIALIZACIÓN img
@@ -4184,17 +4176,6 @@ a:focus {
   width: 524px;
 }
 
-.videosContainer .image_play{
-  max-width: 100px !important;
-  position: absolute !important;
-  pointer-events: none;
-  width: 100%;
-  object-fit: contain;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  }
-
 .firstDiv {
   width: 524px; /* Each column takes up one-third of the width */
   min-width: 524px;
@@ -4212,7 +4193,16 @@ a:focus {
   height: 295px;
 }
 
-
+.videosContainer .image_play{
+max-width: 100px !important;
+position: absolute !important;
+pointer-events: none;
+width: 100%;
+object-fit: contain;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
 
 @media screen and (min-width:1920px) {
   .videosContainer {
@@ -4318,3 +4308,31 @@ transform: translate(-50%,-50%);
 }
 
 }
+
+
+
+@media screen and (max-width: 540px) {
+  #search #wrapper {
+    background: unset !important;
+  }
+
+  /* new products */
+
+  #js-product-list-top {
+    flex-direction: column;
+    padding-right: 1rem;
+  }
+
+  #contact .contact_Banner {
+    width: 100%;
+  }
+
+
+  /* page product */
+
+  #product .product-container{
+    flex-direction: column;
+  }
+}
+
+
