@@ -35,7 +35,7 @@
               <img
                 class="js-modal-product-cover product-cover-modal"
                 width="{$product.default_image.bySize.large_default.width}"
-                src="{$product.default_image.bySize.large_default.url}"
+                src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
                 {if !empty($product.default_image.legend)}
                   alt="{$product.default_image.legend}"
                   title="{$product.default_image.legend}"
@@ -49,7 +49,10 @@
             <picture>
               {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
               {if !empty($urls.no_picture_image.bySize.large_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
-              <img src="{$urls.no_picture_image.bySize.large_default.url}" loading="lazy" width="{$urls.no_picture_image.bySize.large_default.width}" height="{$urls.no_picture_image.bySize.large_default.height}" />
+              <img src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
+                loading="lazy"
+                width="{$urls.no_picture_image.bySize.large_default.width}" 
+                height="{$urls.no_picture_image.bySize.large_default.height}" />
             </picture>
           {/if}
           <figcaption class="image-caption">
