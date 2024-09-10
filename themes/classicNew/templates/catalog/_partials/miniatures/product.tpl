@@ -32,37 +32,35 @@
     <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
       <div class="thumbnail-container">
         <div class="thumbnail-top">
-          {block name='product_thumbnail'}
-            {if $product.cover_image_id}
-              <a href="{$product.link}" class="thumbnail product-thumbnail">
-                <picture>
-                  {* {if !empty($product.cover.bySize.home_default.sources.avif)}<source srcset="{$product.cover.bySize.home_default.sources.avif}" type="image/avif">{/if}
-                  {if !empty($product.cover.bySize.home_default.sources.webp)}<source srcset="{$product.cover.bySize.home_default.sources.webp}" type="image/webp">{/if} *}
-                  <img
-                  src="{if !empty($product.cover.bySize.home_default.url)}{$product.cover.bySize.home_default.url}{else}{$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'home_default')}{/if}"
-                    alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-                    loading="lazy"
-                    data-full-size-image-url="{$product.cover.large.url}"
-                    width="{$product.cover.bySize.home_default.width}"
-                    height="{$product.cover.bySize.home_default.height}"
-                  />
-                </picture>
-              </a>
-            {else}
-              <a href="{$product.url}" class="thumbnail product-thumbnail">
-                <picture>
-                  {if !empty($urls.no_picture_image.bySize.home_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.avif}" type="image/avif">{/if}
-                  {if !empty($urls.no_picture_image.bySize.home_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.webp}" type="image/webp">{/if}
-                  <img
-                    src="{$urls.no_picture_image.bySize.home_default.url}"
-                    loading="lazy"
-                    width="{$urls.no_picture_image.bySize.home_default.width}"
-                    height="{$urls.no_picture_image.bySize.home_default.height}"
-                  />
-                </picture>
-              </a>
-            {/if}
-          {/block}
+        {block name='product_thumbnail'}
+          {if $product.cover}
+            <a href="{$product.url}" class="thumbnail product-thumbnail">
+              <picture>
+                <img
+                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
+                  alt="{$product.name|truncate:30:'...'}"
+                  loading="lazy"
+                  data-full-size-image-url="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer)}"
+                  width="125"
+                  height="125"
+                  style="width:125px;height:auto;border: 2px solid #dedede;"
+                />
+              </picture>
+            </a>
+          {else}
+            <a href="{$product.url}" class="thumbnail product-thumbnail">
+              <picture>
+                <img
+                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
+                  loading="lazy"
+                  width="125"
+                  height="125"
+                  style="width:125px;height:auto;border: 2px solid #dedede;"
+                />
+              </picture>
+            </a>
+          {/if}
+        {/block}
   
           <div class="highlighted-informations{if !$product.main_variants} no-variants{/if}">
             {block name='quick_view'}
