@@ -31,7 +31,7 @@
           {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
           <img
             class="js-qv-product-cover img-fluid"
-            src="{$product.default_image.bySize.large_default.url}"
+             src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
             {if !empty($product.default_image.legend)}
               alt="{$product.default_image.legend}"
               title="{$product.default_image.legend}"
@@ -41,7 +41,7 @@
             loading="lazy"
             width="{$product.default_image.bySize.large_default.width}"
             height="{$product.default_image.bySize.large_default.height}"
-           
+            style="width: 100%;height:100%;object-fit:contain;"
           >
         </picture>
         <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
@@ -53,10 +53,11 @@
           {if !empty($urls.no_picture_image.bySize.large_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
           <img
             class="img-fluid"
-            src="{$urls.no_picture_image.bySize.large_default.url}"
+             src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
             loading="lazy"
             width="{$urls.no_picture_image.bySize.large_default.width}"
             height="{$urls.no_picture_image.bySize.large_default.height}"
+            style="width: 100%;height:100%;object-fit:contain;"
           >
         </picture>
       {/if}
