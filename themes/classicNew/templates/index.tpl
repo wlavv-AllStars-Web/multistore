@@ -519,8 +519,9 @@
               <h3>VEHICLE TYPES</h3>
             </div> *}
             <div class="categoryCars" style="display: flex;justify-content:space-evenly;width:100%;padding:3rem 0;">
-              {foreach from=$categories[1] item=categoryLevel1}
-                {foreach from=$categoryLevel1 item=category}
+            {* <pre>{print_r($cats,1)}</pre> *}
+              {* {foreach from=$categories item=categoryLevel1} *}
+                {foreach from=$cats item=category}
                   {if $category.id_category == 9 || $category.id_category == 10 || $category.id_category == 11 || $category.id_category == 12 || $category.id_category == 13 || $category.id_category == 14  }
                     {if $category.id_category == 14}
                       <a rel="nofollow" href="http://tune4style.com/{$currentLanguageIso}" class="select-list ">
@@ -539,7 +540,7 @@
                     {/if}
                   {/if}
                 {/foreach}
-              {/foreach}
+              {* {/foreach} *}
           
             </div>
           </div>

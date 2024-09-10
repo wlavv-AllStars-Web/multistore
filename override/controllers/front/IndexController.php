@@ -226,10 +226,38 @@ class IndexController extends IndexControllerCore
 
     public function getCategories()
     {
+
+        $shopId = (int)Context::getContext()->shop->id;
         $lang = (int)Context::getContext()->language->id;
-		$cats = Category::getCategories($lang);				
+				
+        $sql = 'SELECT cl.*
+        FROM ' . _DB_PREFIX_ . 'category c
+        INNER JOIN ' . _DB_PREFIX_ . 'category_lang cl ON (c.id_category = cl.id_category)
+        WHERE cl.id_shop = ' . (int)$shopId . ' 
+        AND cl.id_lang = ' . (int)$lang . ' 
+        AND c.active = 1';
+
+
+        $cats = Db::getInstance()->executeS($sql);
+        $categoryArray = [];
+
+        foreach ($cats as $category) {
+            $categoryArray[] = [
+                'id_category' => $category['id_category'],
+                'id_shop' => $category['id_shop'],
+                'id_lang' => $category['id_lang'],
+                'name' => $category['name'],
+                'description' => $category['description'],
+                'additional_description' => $category['additional_description'],
+                'link_rewrite' => $category['link_rewrite'],
+                'meta_title' => $category['meta_title'],
+                'meta_keywords' => $category['meta_keywords'],
+                'meta_description' => $category['meta_description'],
+            ];
+        }
+   
         
-		$this->context->smarty->assign('categories', $cats);		
+		$this->context->smarty->assign('cats', $categoryArray);		
     }
 
 

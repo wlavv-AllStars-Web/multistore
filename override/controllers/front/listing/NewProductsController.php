@@ -29,11 +29,22 @@ use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
 
 class NewProductsControllerCore extends ProductListingFrontController
 {
-    public $auth=true;
+    public $auth=false;
     public $authRedirection = 'my-account';
 
     /** @var string */
     public $php_self = 'new-products';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Check if the shop ID is 3
+        if ($this->context->shop->id == 3) {
+            $this->auth = true;
+            $this->authRedirection = 'my-account';
+        }
+    }
 
     public function getCanonicalURL(): string
     {

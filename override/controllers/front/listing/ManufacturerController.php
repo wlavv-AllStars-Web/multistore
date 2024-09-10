@@ -5,20 +5,22 @@ class ManufacturerController extends ManufacturerControllerCore
 
     public function init()
     {
-        if ($id_manufacturer = Tools::getValue('id_manufacturer')) {
-            if($this->context->customer->isLogged()){
-                $this->manufacturer = new Manufacturer((int) $id_manufacturer, $this->context->language->id);
-    
-                if (!Validate::isLoadedObject($this->manufacturer) || !$this->manufacturer->active || !$this->manufacturer->isAssociatedToShop()) {
-                    $this->redirect_after = '404';
-                    $this->redirect();
-                } else {
-                    $this->canonicalRedirection();
+        if ($this->context->shop->id == 3) {
+            if ($id_manufacturer = Tools::getValue('id_manufacturer')) {
+                if($this->context->customer->isLogged()){
+                    $this->manufacturer = new Manufacturer((int) $id_manufacturer, $this->context->language->id);
+        
+                    if (!Validate::isLoadedObject($this->manufacturer) || !$this->manufacturer->active || !$this->manufacturer->isAssociatedToShop()) {
+                        $this->redirect_after = '404';
+                        $this->redirect();
+                    } else {
+                        $this->canonicalRedirection();
+                    }
+                }else{
+                    Tools::redirect('index.php?controller=authentication?back=my-account');
                 }
-            }else{
-                Tools::redirect('index.php?controller=authentication?back=my-account');
-            }
 
+            }
         }
 
         parent::init();

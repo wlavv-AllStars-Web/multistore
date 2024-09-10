@@ -247,9 +247,12 @@ class ContactControllerCore extends FrontController
             'message' => html_entity_decode(Tools::getValue('message')),
             'contactKey' => $contactKey,
         ));
-
-        $this->setTemplate('contact-form');
-
+        
+        if ($this->context->shop->id == 3) {
+            $this->setTemplate('contact-form');
+        }else{
+            $this->setTemplate('contact');
+        }
     }
 
     /**
