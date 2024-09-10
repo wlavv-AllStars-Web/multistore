@@ -43,7 +43,7 @@
                   data-full-size-image-url="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer)}"
                   width="600"
                   height="450"
-                  style="width:100%;height:auto;border: 2px solid #dedede;"
+                  style="width:100%;height:auto;"
                 />
               </picture>
             </a>
@@ -55,7 +55,7 @@
                   loading="lazy"
                   width="600"
                   height="450"
-                  style="width:100%;height:auto;border: 2px solid #dedede;"
+                  style="width:100%;height:auto;"
                 />
               </picture>
             </a>

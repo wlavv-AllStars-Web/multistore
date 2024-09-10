@@ -1016,7 +1016,7 @@ class LinkCore
             
             $server_name = $_SERVER['SERVER_NAME'];
             
-            $server_name = preg_replace('/^(asd|alpha-asd|euromus.local|alpha)/', 'https://webtools', $server_name);
+            $server_name = preg_replace('/^(asd|alpha-asd|euromus.local|alpha|beta)/', 'https://webtools', $server_name);
 
             // echo $server_name;
             
