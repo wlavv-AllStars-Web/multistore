@@ -4515,5 +4515,13 @@ transform: translate(-50%,-50%);
   .product-add-to-cart.js-product-add-to-cart .product-quantity .qty {
     width: 80px;
   }
+
+  .right-side .product_features div{
+    padding: 0.2rem 1rem;
+    white-space: nowrap;
+    max-width: 215px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
