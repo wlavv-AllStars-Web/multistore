@@ -3603,12 +3603,6 @@ justify-content: center;
     margin-left: 0 !important;
   }
 
-
-  .features_productdetails {
-    flex-direction: column;
-    align-items: start !important;
-  }
-
   .product_features {
     width: 100% !important;
   }
@@ -4404,6 +4398,11 @@ transform: translate(-50%,-50%);
 /* small tablet */
 
 @media screen and (min-width: 540px) and (max-width: 768px) {
+  #product .images-container.js-images-container .product-cover{
+    display: flex;
+    justify-content: center;
+  }
+
   #tab-content #description .tab-description{
     flex-direction: column !important;
   }
