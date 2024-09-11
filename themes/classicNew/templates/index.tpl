@@ -522,8 +522,8 @@
             {* <pre>{print_r($language.iso_code,1)}</pre> *}
               {* {foreach from=$categories item=categoryLevel1} *}
                 {foreach from=$cats item=category}
-                  {if $category.id_category == 9 || $category.id_category == 10 || $category.id_category == 11 || $category.id_category == 12 || $category.id_category == 13 || $category.id_category == 14  }
-                    {if $category.id_category == 14}
+                  {* {if $category.id_category == 9 || $category.id_category == 10 || $category.id_category == 11 || $category.id_category == 12 || $category.id_category == 13 || $category.id_category == 14  } *}
+                    {if $category.link_rewrite == 'merchandising'}
                       <a rel="nofollow" href="http://tune4style.com/{$currentLanguageIso}" class="select-list ">
                         <div class="category {$category.name}">
                           <img src="/img/eurmuscle/bannersHome/{$category.id_category}.webp" loading="lazy" alt="category {$category.name}">
@@ -533,12 +533,12 @@
                     {else}
                       <a rel="nofollow" href="/{$language.iso_code}/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
                         <div class="category {$category.name}">
-                          <img src="/img/eurmuscle/bannersHome/{$category.id_category}.webp" loading="lazy" alt="category {$category.name}">
+                          <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" loading="lazy" alt="category {$category.name}">
                           <div class="model-type-overlay"><span>{$category.name}</span></div>
                         </div>
                       </a>
                     {/if}
-                  {/if}
+                  {* {/if} *}
                 {/foreach}
               {* {/foreach} *}
           

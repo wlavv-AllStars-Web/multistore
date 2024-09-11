@@ -239,6 +239,9 @@ class IndexController extends IndexControllerCore
         INNER JOIN ' . _DB_PREFIX_ . 'category_lang cl ON (c.id_category = cl.id_category)
         WHERE cl.id_shop = ' . (int)$shopId . ' 
         AND cl.id_lang = ' . (int)$lang . ' 
+        AND c.is_root_category = 0
+        AND cl.id_category != 1
+        AND cl.id_category != 219
         AND c.active = 1';
 
 
