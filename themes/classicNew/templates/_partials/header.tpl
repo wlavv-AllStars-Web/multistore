@@ -32,7 +32,7 @@
 {assign var="linkMyaccount" value=$urls.pages.my_account}
 {assign var="linkShipping" value=$link->getCMSLink(46)}
 {assign var="linkPayment" value=$link->getCMSLink(47)}
-{assign var="linkClearance" value=$link->getCategoryLink(15)}
+{assign var="linkClearance" value=$link->getCategoryLink(226)}
 {assign var="customerId" value=Context::getContext()->customer->id}
 
 {assign var="currentUrl" value=Tools::getCurrentUrl()}
