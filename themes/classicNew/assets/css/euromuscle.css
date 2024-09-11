@@ -4511,5 +4511,9 @@ transform: translate(-50%,-50%);
   #product .right-side .prices-availability #product-availability{
     min-width: fit-content;
   }
+
+  .product-add-to-cart.js-product-add-to-cart .product-quantity .qty {
+    width: 80px;
+  }
 }
 
