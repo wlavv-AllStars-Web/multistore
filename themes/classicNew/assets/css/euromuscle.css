@@ -4421,8 +4421,26 @@ transform: translate(-50%,-50%);
     text-align: center;
   }
 
+  #product .right-side .prices-availability{
+    align-items: baseline;
+    flex-direction: unset;
+    justify-content: space-between;
+  }
+
+  #product .right-side .prices-availability .product-price{
+    flex: unset;
+  }
+  #product .right-side .prices-availability .tax-shipping-delivery-label{
+    flex: unset;
+  }
+
   #product .tabs .nav-tabs .nav-link {
     border-bottom: #f6f6f6 3px solid;
+  }
+
+  #product .right-side .product-details-options{
+    flex-direction: unset;
+
   }
 }
 
