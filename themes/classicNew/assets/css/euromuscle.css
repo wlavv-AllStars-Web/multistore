@@ -4517,7 +4517,7 @@ transform: translate(-50%,-50%);
   }
 
   .right-side .product_features div{
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 1rem !important;
     white-space: nowrap;
     max-width: 215px;
     overflow: hidden;
