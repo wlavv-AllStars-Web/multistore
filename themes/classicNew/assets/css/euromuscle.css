@@ -4504,5 +4504,12 @@ transform: translate(-50%,-50%);
   #product .right-side .prices-availability #product-availability{
     min-width: fit-content;
   }
+
+}
+
+@media screen and (min-width: 1400px){
+  #product .right-side .prices-availability #product-availability{
+    min-width: fit-content;
+  }
 }
 
