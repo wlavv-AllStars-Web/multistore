@@ -4431,7 +4431,11 @@ transform: translate(-50%,-50%);
     flex: unset;
   }
   #product .right-side .prices-availability .tax-shipping-delivery-label{
-    flex: unset;
+    flex: .5;
+  }
+
+  #product .right-side .prices-availability #product-availability{
+    min-width: fit-content;
   }
 
   #product .tabs .nav-tabs .nav-link {
