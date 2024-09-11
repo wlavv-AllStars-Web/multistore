@@ -768,6 +768,8 @@ class OrderHistoryCore extends ObjectModel
             
             '{note}' => $this->getNote($order->id),
             '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$order->id_lang),
+            '{shipping_number}' => $order->getWsShippingNumber(),
+
         ];
 
         if (Product::getTaxCalculationMethod() == PS_TAX_EXC) {
