@@ -531,12 +531,15 @@
                         </div>
                       </a>
                     {else}
+                      {if $category.link_rewrite !== 'clearance'}
                       <a rel="nofollow" href="/{$language.iso_code}/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
                         <div class="category {$category.name}">
                           <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" loading="lazy" alt="category {$category.name}">
                           <div class="model-type-overlay"><span>{$category.name}</span></div>
                         </div>
                       </a>
+
+                      {/if}
                     {/if}
                   {* {/if} *}
                 {/foreach}
