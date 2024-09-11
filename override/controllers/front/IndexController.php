@@ -10,8 +10,10 @@ class IndexController extends IndexControllerCore
     {
         $this->getCategories();
 
-        if($this->context->customer->isLogged()){
-            Tools::redirect('my-account');
+        if($this->context->shop->id == 3){
+            if($this->context->customer->isLogged()){
+                Tools::redirect('my-account');
+            }
         }
 
         
@@ -135,6 +137,7 @@ class IndexController extends IndexControllerCore
     public static function getCarsOfBrand($idBrand,$idModel=NULL,$idLang=NULL){
         
         // echo $idBrand;
+        // echo _DB_PREFIX_;
         // exit;
         if(Context::getContext()->shop->id === 2){
 
@@ -176,6 +179,7 @@ class IndexController extends IndexControllerCore
                             FROM "._DB_PREFIX_."ukoocompat_criterion_lang
                             WHERE value = '" . $idBrand . "'
                             LIMIT 1";
+
             $brandnameIdResult  = Db::getInstance()->executeS($brandnameIdsql);
             $brandnameId = !empty($brandnameIdResult) ? $brandnameIdResult[0]['id_ukoocompat_criterion'] : null;
 
