@@ -4488,3 +4488,21 @@ transform: translate(-50%,-50%);
   /* product page fim*/
 }
 
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  #product .right-side .features_productdetails{
+    align-items: start;
+    flex-direction: column;
+  }
+
+  #product .product-prices.js-product-prices{
+    flex-direction: column;
+  }
+  #product .product-prices.js-product-prices .product-price{
+    margin-bottom: 0;
+  }
+
+  #product .right-side .prices-availability #product-availability{
+    min-width: fit-content;
+  }
+}
+
