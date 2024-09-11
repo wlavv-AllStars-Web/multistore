@@ -4470,5 +4470,9 @@ transform: translate(-50%,-50%);
   #product .row.product-container.js-product-container .right-side{
     padding-right: 0;
   }
+
+  .tabs .nav-tabs .nav-link{
+    background: unset !important;
+  }
 }
 
