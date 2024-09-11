@@ -77,7 +77,7 @@
             <div class="thumbnail-container" style="background:#1030543d;display: flex;flex-direction: row;justify-content: center;align-items:center;">
                 <div class="thumbnail-top" style="flex: 1;height:100%;">
                     <picture>
-                        <img src="/img/eurmuscle/bannersHome/{$category.id}.webp" style="width: 100%;background:transparent;height:100%;object-position: -132px center;
+                        <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" style="width: 100%;background:transparent;height:100%;object-position: -132px center;
                         object-fit: cover;"/>
                     </picture>
                 </div>
