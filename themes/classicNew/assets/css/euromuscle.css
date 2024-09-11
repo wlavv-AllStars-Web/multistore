@@ -4457,6 +4457,8 @@ transform: translate(-50%,-50%);
 /* normal tablet */
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
+
+  /* product page*/
   #product .column_tabs .nav-tabs{
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr;
@@ -4482,5 +4484,7 @@ transform: translate(-50%,-50%);
   #product .images-container.js-images-container .product-cover{
     width: fit-content;
   }
+
+  /* product page fim*/
 }
 

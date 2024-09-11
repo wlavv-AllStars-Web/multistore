@@ -22,6 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+ {if !empty($group.attributes)}
 <div class="product-variants js-product-variants">
   {foreach from=$groups key=id_attribute_group item=group}
     {* <pre>{print_r($group,1)}</pre> *}
@@ -78,3 +79,4 @@
     {/if}
   {/foreach}
 </div>
+{/if}
