@@ -526,7 +526,7 @@
                     {if $category.link_rewrite == 'merchandising'}
                       <a rel="nofollow" href="http://tune4style.com/{$currentLanguageIso}" class="select-list ">
                         <div class="category {$category.name}">
-                          <img src="/img/eurmuscle/bannersHome/{$category.name}.webp" loading="lazy" alt="category {$category.name}">
+                          <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" loading="lazy" alt="category {$category.name}">
                           <div class="model-type-overlay"><span>{$category.name}</span></div>
                         </div>
                       </a>
