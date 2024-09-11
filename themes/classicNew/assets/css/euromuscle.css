@@ -29,6 +29,16 @@ main {
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
   display: none;
 }
+
+#form_ets_onepagecheckout button[name="submitCompleteMyOrder"]{
+  color: #fff !important;
+  background: #103054 !important;
+}
+#form_ets_onepagecheckout .btn-primary:hover{
+  color: #fff !important;
+  background: #103054d4 !important
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
@@ -4337,6 +4347,10 @@ transform: translate(-50%,-50%);
   color: #fff !important;
   background: #103054 !important;
 }
+#form_ets_onepagecheckout .btn-primary:hover{
+  color: #fff !important;
+  background: #103054d4 !important
+}
 
 .block-onepagecheckout .title-heading, #ets_onepagecheckout .block-onepagecheckout .product-line-info.product_info_name a.label, #invoice-addresses .title, #delivery-addresses .title, .block-onepagecheckout .product-line-info.product_info_name .label {
   color: #103054 !important;
@@ -4387,4 +4401,9 @@ transform: translate(-50%,-50%);
   }
 }
 
+@media screen and (min-width: 540px) and (max-width: 768px) {
+  #tab-content #description .tab-description{
+    flex-direction: column !important;
+  }
+}
 
