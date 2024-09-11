@@ -540,7 +540,7 @@ class OrderHistoryCore extends ObjectModel
                     $file_attachement = null;
                 }
                 
-                if( ( $order->id_shop == 3 ) && ( in_array( $this->id_order_state , [ 10, 6, 25] ) ) ) $data = $this->setConfOrderInfo();
+                if( ( $order->id_shop == 3 || $order->id_shop == 1 ) && ( in_array( $this->id_order_state , [ 10, 6, 25] ) ) ) $data = $this->setConfOrderInfo();
                 
                 if (!Mail::Send(
                     (int) $order->id_lang,
@@ -679,8 +679,8 @@ class OrderHistoryCore extends ObjectModel
 
             $product_list_txt = '';
             $product_list_html = '';
-            if (count($product_var_tpl_list) > 0) {
-                if($this->context->shop->id === 3){
+            if (count($product_var_tpl_list) > 0){
+                if($this->context->shop->id === 3 || $this->context->shop->id === 1 ){
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
                     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_3.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
                 }else{
