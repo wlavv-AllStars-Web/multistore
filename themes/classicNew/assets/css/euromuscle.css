@@ -4474,5 +4474,9 @@ transform: translate(-50%,-50%);
   .tabs .nav-tabs .nav-link{
     background: unset !important;
   }
+
+  .images-container.js-images-container .product-cover{
+    width: 100%;
+  }
 }
 
