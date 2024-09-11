@@ -4405,5 +4405,20 @@ transform: translate(-50%,-50%);
   #tab-content #description .tab-description{
     flex-direction: column !important;
   }
+
+  #tab-content #description .tab-description .column_video{
+    width: 100% !important;
+    max-height: 318px;
+  }
+
+  #tab-content #description .tab-description .product-description{
+    width: 100% !important;
+  }
+
+  #product .column_tabs .nav-tabs{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+  }
 }
 
