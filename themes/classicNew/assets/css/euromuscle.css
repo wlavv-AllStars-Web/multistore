@@ -4420,5 +4420,9 @@ transform: translate(-50%,-50%);
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
   }
+
+  #product .tabs .nav-tabs .nav-link {
+    border-bottom: #f6f6f6 3px solid;
+  }
 }
 
