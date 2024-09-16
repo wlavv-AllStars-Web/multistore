@@ -772,7 +772,7 @@
           arrowLeft.style.height = "2.5rem";
           arrowLeft.style.cursor = "pointer";
 
-          if (index === 0) {
+          if (index == 0) {
 
             arrowRight.addEventListener('click', function() {
 

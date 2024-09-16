@@ -29,7 +29,7 @@
       <ul class="category-sub-menu">
         {foreach from=$nodes item=node}
           <li data-depth="{$depth}">
-            {if $depth===0}
+            {if $depth==0}
               <a href="{$node.link}">{$node.name}</a>
               {if $node.children}
                 <div class="navbar-toggler collapse-icons" data-toggle="collapse" data-target="#exCollapsingNavbar{$node.id}">

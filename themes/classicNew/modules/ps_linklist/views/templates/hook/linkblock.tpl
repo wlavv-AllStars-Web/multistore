@@ -26,7 +26,7 @@
  
  
   {foreach $linkBlocks as $linkBlock}
-    {if $linkBlock['title'] === 'Support'}
+    {if $linkBlock['title'] == 'Support'}
       <div class="links">
      {else}
       <div class="col-md-6 col-lg-10 links">

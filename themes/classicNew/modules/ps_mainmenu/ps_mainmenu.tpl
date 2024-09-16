@@ -23,7 +23,7 @@
                 {$node.label}
               </a>
               {if $node.children|count}
-              <div {if $depth === 0} class="popover sub-menu js-sub-menu collapse"{else} class="collapse"{/if} id="top_sub_menu_{$_expand_id}">
+              <div {if $depth == 0} class="popover sub-menu js-sub-menu collapse"{else} class="collapse"{/if} id="top_sub_menu_{$_expand_id}">
                 {menu nodes=$node.children depth=$node.depth parent=$node}
               </div>
               {/if}
