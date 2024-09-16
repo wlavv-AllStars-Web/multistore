@@ -7888,12 +7888,21 @@ select option {
     float: left;
     width: 100% !important;
   }
+
+  #pagenotfound .page-not-found .search-widget, #products .page-not-found .search-widget {
+    margin: 0 !important;
+  }
 }
 
 /* tablet pequena */
 
 @media screen and (min-width: 544px) and (max-width: 768px) {
-  
+  #content-wrapper .search-widget form button[type=submit] {
+    height: auto !important;
+    bottom: 0 !important;
+    top: unset !important;
+  }
+
   #profile .left-form-personal .form-check-label {
     text-align: start;
   }

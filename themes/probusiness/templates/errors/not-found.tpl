@@ -19,6 +19,7 @@
 *  International Registered Trademark & Property of ETS-Soft
 *}
 <section id="content" class="page-content page-not-found">
+<img src="/img/asd/Content_pages/error/errorM_en.webp"  style="width:100%;"/>
   {block name='page_content'}
 
       {* <h4>{l s='Sorry for the inconvenience.' d='Shop.Theme.Actions'}</h4>
@@ -121,23 +122,31 @@
     }
 
     #pagenotfound .page-content.page-not-found{
-      background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
+      /* background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
       background-repeat: no-repeat !important;
       background-size: cover !important;
       background-position: center !important;
-      padding: 0;
+      padding: 0; */
       position: relative;
       width: 100vw !important;
     }
     #search .page-content.page-not-found{
-      background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
+      /* background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
       background-repeat: no-repeat !important;
       background-size: cover !important;
       background-position: center !important;
-      padding: 0;
+      padding: 0; */
       position: relative;
+    }
+
+    #search footer{
+      float: unset;
+    }
+
+    #search #wrapper{
+      height: auto;
     }
 
     #pagenotfound .page-content.page-not-found #search_widget{
