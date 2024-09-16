@@ -532,6 +532,7 @@ main {
     #brands_mobile .content_brands img{
       width: 50px;
       margin: auto;
+      height: auto;
     }
 
 
