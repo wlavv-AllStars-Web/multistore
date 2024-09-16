@@ -220,7 +220,7 @@
                   <th class="text-xs-center">{l s='Order ID' d='Shop.Theme.Customeraccount'}</th>
                   {* <th class="text-xs-center">{l s='Order Id' d='Shop.Theme.Customeraccount'}</th> *}
                   <th class="text-xs-center">{l s='Total price' d='Shop.Theme.Customeraccount'}</th>
-                  <th class="hidden-md-down text-xs-center">{l s='Status' d='Shop.Theme.Customeraccount'}</th>
+                  <th class="text-xs-center">{l s='Status' d='Shop.Theme.Customeraccount'}</th>
                   <th class="text-xs-center">{l s='Carrier' d='Shop.Theme.Customeraccount'}</th>
                   <th class="text-xs-center">{l s='Tracking' d='Shop.Theme.Customeraccount'}</th>
                   {* <th class="hidden-md-down">{l s='Payment' d='Shop.Theme.Customeraccount'}</th> *}
@@ -272,7 +272,7 @@
                       
                       {/foreach}
                     </td>
-                    <td class="text-xs-center hidden-md-down">
+                    <td class="text-xs-center">
                       {if $order.details.invoice_url}
                         <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
                           {* <i class="material-icons">&#xE415;</i> *}
