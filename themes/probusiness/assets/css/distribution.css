@@ -4601,6 +4601,14 @@ textarea {
     padding: 0 !important;
   }
 
+  #my-account #myTabContent{
+    padding: 0 !important;
+  }
+
+  .myaccount-container > div {
+    padding: 0 !important;
+  }
+
   .form-become-dealer .form-group {
     width: 50%;
   }
