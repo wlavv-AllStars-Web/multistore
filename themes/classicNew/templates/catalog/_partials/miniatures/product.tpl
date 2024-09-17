@@ -34,7 +34,7 @@
         <div class="thumbnail-top">
         {block name='product_thumbnail'}
           {if $product.cover}
-            <a href="{$product.url}" class="thumbnail product-thumbnail">
+          <a href="{if $product.link}{$product.link}{else}{$product.url}{/if}" class="thumbnail product-thumbnail">
               <picture>
                 <img
                   src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
@@ -48,7 +48,7 @@
               </picture>
             </a>
           {else}
-            <a href="{$product.url}" class="thumbnail product-thumbnail">
+            <a href="{if $product.link}{$product.link}{else}{$product.url}{/if}" class="thumbnail product-thumbnail">
               <picture>
                 <img
                   src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"

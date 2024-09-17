@@ -125,16 +125,16 @@
       </div>
     </div>
 
-  <div class="col-sm-12 hidden-md-up text-sm-center showing">
-    {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=[
+  {* <div class="col-sm-12 hidden-md-up text-sm-center showing"> *}
+    {* {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=[
     '%from%' => $listing.pagination.items_shown_from ,
     '%to%' => $listing.pagination.items_shown_to,
     '%total%' => $listing.pagination.total_items
-    ]}
+    ]} *}
     {* {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=[
     '%from%' => $listing.pagination.items_shown_from ,
     '%to%' => $listing.nb_products,
     '%total%' => $listing.products|count
     ]} *}
-  </div>
+  {* </div> *}
 </div>

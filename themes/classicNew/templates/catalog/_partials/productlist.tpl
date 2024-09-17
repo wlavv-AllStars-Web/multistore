@@ -32,7 +32,7 @@
         {$filter3 = Tools::getValue('filters3')}
         {$filter4 = Tools::getValue('filters4')}
 
-        {assign var="compatvalues" value=IndexControllerCore::getBrandAndModel($filter1,$filter2,$filter3,$filter4,2)}
+        {assign var="compatvalues" value=IndexController::getBrandAndModel($filter1,$filter2,$filter3,$filter4,2)}
 
         {foreach from=$compatvalues item=item}
             {foreach from=$item.name_brand item=brand}

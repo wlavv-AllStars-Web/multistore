@@ -4078,6 +4078,7 @@ body#checkout section.checkout-step .address-selector {
   justify-content: center;
 }
 #js-product-list .js-product.product{
+  outline: 3px solid #dedede;
   /* outline: 3px solid #103054;
   border-radius: 0.5rem; */
 }
@@ -4394,6 +4395,11 @@ transform: translate(-50%,-50%);
   #contact .contact_Banner {
     width: 100%;
   }
+
+  .bannersHomeMobile img{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
 }
 
 /* small tablet */
@@ -4452,6 +4458,12 @@ transform: translate(-50%,-50%);
   }
   /* product page fim*/
 
+  /* homepage */
+
+  .bannersHomeMobile img{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
 
 }
 
