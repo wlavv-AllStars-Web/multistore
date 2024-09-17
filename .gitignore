@@ -2,7 +2,9 @@
 
 /.htaccess
 *.log
-var/*
+!var/*
+img/
+!img/
 
 # Cache
 /cache/*
@@ -24,7 +26,7 @@ var/*
 /download/*
 !/download/.htaccess
 !/download/index.php
-
+img/*
 # Images
 /img/*
 !/img/.htaccess
