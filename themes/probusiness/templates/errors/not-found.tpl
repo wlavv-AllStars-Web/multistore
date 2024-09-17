@@ -19,7 +19,8 @@
 *  International Registered Trademark & Property of ETS-Soft
 *}
 <section id="content" class="page-content page-not-found">
-<img src="/img/asd/Content_pages/error/errorM_en.webp"  style="width:100%;"/>
+{* <img src="/img/asd/Content_pages/error/errorM_en.webp" class="errorMobile"  style="width:100%;"/>
+<img src="/img/asd/Content_pages/error/error_en.webp" class="errorDesktop"  style="width:100%;"/> *}
   {block name='page_content'}
 
       {* <h4>{l s='Sorry for the inconvenience.' d='Shop.Theme.Actions'}</h4>
@@ -80,18 +81,18 @@
       background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
       width: 600px !important;
       height: 400px;
-      position: relative;
       min-height: 400px;
       padding: 0;
+      position: relative;
     }
 
     #search .page-content.page-not-found{
       background: url('/img/asd/Content_pages/error/error_{$language.iso_code}.webp') !important;
       width: 600px !important;
       height: 400px;
-      position: relative;
       min-height: 400px;
       padding: 0;
+      position: relative;
     }
 
     #pagenotfound .page-content.page-not-found #search_widget{
@@ -102,11 +103,27 @@
       position: absolute;
       bottom: 1rem;
     }
+    #pagenotfound .page-content.page-not-found .errorDesktop{
+      display: block;
+    }
+    #search .page-content.page-not-found .errorMobile{
+      display: none;
+    }
   }
 
 
 
   @media screen and (max-width:768px){
+
+  .header-top .search-widget form input[type="text"]{
+    background-color: #fff !important;
+    border: 1px solid #d4d4d4 !important;
+  }
+
+  .header-top .search-widget form i{
+    border-radius: 0 !important;
+  }
+
     #search #wrapper {
       min-height: 60dvh;
     }
@@ -122,23 +139,43 @@
     }
 
     #pagenotfound .page-content.page-not-found{
-      /* background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
+      background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
       background-repeat: no-repeat !important;
       background-size: cover !important;
       background-position: center !important;
-      padding: 0; */
+      padding: 0;
       position: relative;
       width: 100vw !important;
     }
     #search .page-content.page-not-found{
-      /* background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
+      background: url('/img/asd/Content_pages/error/errorM_{$language.iso_code}.webp') !important;
       height: 60dvh;
       background-repeat: no-repeat !important;
       background-size: cover !important;
       background-position: center !important;
-      padding: 0; */
+      padding: 0;
       position: relative;
+    }
+
+    /* #pagenotfound .page-content.page-not-found .errorDesktop{
+      display: none;
+    }
+    #pagenotfound .page-content.page-not-found .errorMobile{
+      display: block;
+    }
+    #search .page-content.page-not-found .errorDesktop{
+      display: none;
+    }
+    #search .page-content.page-not-found .errorMobile{
+      display: block;
+    }
+
+    #pagenotfound .container-fluid{
+      width: 100%;
+    }
+    #search .container-fluid{
+      width: 100%;
     }
 
     #search footer{
@@ -147,7 +184,7 @@
 
     #search #wrapper{
       height: auto;
-    }
+    } */
 
     #pagenotfound .page-content.page-not-found #search_widget{
       position: absolute;
