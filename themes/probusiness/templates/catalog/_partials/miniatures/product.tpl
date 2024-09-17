@@ -62,7 +62,7 @@
          {/block}
        </div>
  
-       <div class="col-lg-10 col-md-10 bottom-product" style="display: flex;flex-direction:column;height:100%;">
+       <div class="col-lg-10 col-md-12 bottom-product" style="display: flex;flex-direction:column;height:100%;">
          <div class="col-lg-12 px-0 bottom-product-container" style="display: flex;align-items:center;flex:1;">
           <div class="information-product col-lg-8 col-md-8 col-sm-12 col-xs-12 px-0" onclick="window.location.href='{$product.url}'">
                 {* <div class="btn-catalog-brand"><img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/xlsx_updated.png" style=" height: auto; width: 100%;"></div> *}
@@ -274,6 +274,23 @@
      </div>
    </article>
  </div>
+{* {debug} *}
+ <script>
+  if(window.screen.width <= 992){
+    if(document.querySelectorAll('.product-miniature')){
+      document.querySelectorAll('.product-miniature').forEach(function(article) {
+        article.addEventListener('click', function(event) {
+            // If the click was inside the product-description, do nothing
+            if (!event.target.closest('.product-description')) {
+                window.location.href = '{$product.url}';
+            }
+        });
+      });
+    }
+  }
+  
+
+ </script>
 
  {* <pre>{$product|print_r}</pre> *}
  {/block}

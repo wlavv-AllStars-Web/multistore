@@ -204,7 +204,7 @@
             {* cars *}
 
             <div class="hidden-md-up"
-  style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;"></div>
+  style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
 
 <div class="cars-container">
   <div class="cars-cards col-12">
@@ -510,7 +510,7 @@
             {* categories *}
 
             <div class="hidden-md-up"
-            style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;"></div>
+            style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
             <div class="hidden-sm-down" style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;  background: #fff;"></div>
           <div class="otherCars"
             style="width:100%;display: flex;flex-direction:column;justify-content:center;align-items:center;background:#707c88;">
