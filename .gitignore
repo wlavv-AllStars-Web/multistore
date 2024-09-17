@@ -5,6 +5,7 @@
 !var/*
 img/
 !img/
+var/
 
 # Cache
 /cache/*
