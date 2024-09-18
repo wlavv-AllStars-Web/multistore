@@ -540,7 +540,7 @@ class OrderHistoryCore extends ObjectModel
                     $file_attachement = null;
                 }
                 
-                if( ( $order->id_shop == 3 || $order->id_shop == 1 ) && ( in_array( $this->id_order_state , [ 10, 6, 25] ) ) ) $data = $this->setConfOrderInfo();
+                if( ( $order->id_shop == 3 || $order->id_shop == 1 ) && ( in_array( $this->id_order_state , [ 10, 6, 25, 4] ) ) ) $data = $this->setConfOrderInfo();
                 
                 if (!Mail::Send(
                     (int) $order->id_lang,
@@ -635,6 +635,7 @@ class OrderHistoryCore extends ObjectModel
                     'quantity' => $product['product_quantity'],
                     'customization' => [],
                     'image_p' => $image_url,
+                    'quantity_sent' => $product['product_quantity_sent'],
                 ];
 
                 if (isset($product['price']) && $product['price']) {
@@ -683,6 +684,7 @@ class OrderHistoryCore extends ObjectModel
                 if($this->context->shop->id === 3 ){
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
                     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_3.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                    $product_list_html_shipped = $this->getEmailTemplateContent('order_conf_product_list_1_shipped.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
                 }else if($this->context->shop->id === 1){
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
                     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_1.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
@@ -758,6 +760,7 @@ class OrderHistoryCore extends ObjectModel
             '{carrier}' => (!isset($carrier->name)) ? $this->trans('No carrier', [], 'Admin.Payment.Notification') : $carrier->name,
             '{payment}' => Tools::substr($order->payment, 0, 255) . ($order->hasBeenPaid() ? '' : '&nbsp;' . $this->trans('(waiting for validation)', [], 'Emails.Body')),
             '{products}' => $product_list_html,
+            '{products_shipped}' => $product_list_html_shipped,
             '{products_txt}' => $product_list_txt,
             '{discounts}' => $cart_rules_list_html,
             '{discounts_txt}' => $cart_rules_list_txt,

@@ -390,7 +390,8 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
         $id_row=0;
 
         
-
+        // echo "aqui";
+        // exit;
         
         if((int)Context::getContext()->shop->id === 2){
 
@@ -406,8 +407,11 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
             $this->context->cookie->__set('ukoocompat_search_'.(int)$search->id, serialize($filters));
             
             Tools::redirect('/?open=yourCar');
-        }else{
+        
         }
+        else{
+        
+        
 
             $this->context->smarty->assign(array(
                 'ukoodata' => $ukooData,
@@ -439,7 +443,7 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
                 'in_my_cars' => $id_row,
             ));
 
-        
+        }
         
             // $link = new Link();
             // $moduleLink = $link->getModuleLink('ukoocompact');
@@ -454,7 +458,14 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
             // $this->setTemplate('listing.tpl');
 
             // $this->setTemplate('module:listing.tpl');
-            $this->setTemplate('module:ukoocompat/views/templates/front/listing.tpl');
+
+
+            
+
+
+
+
+
             // $this->setTemplate("file:modules/ukoocompat/views/templates/front/listing.tpl");
 
             // $this->setTemplate('module:ukoocompat/views/templates/front/listing.tpl');
@@ -471,6 +482,7 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
             // if((int)Context::getContext()->shop->id === 2){
             // }
             }
+            $this->setTemplate('module:ukoocompat/views/templates/front/listing.tpl');
     }
 
     private function getTemplateVarPagination(
