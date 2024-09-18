@@ -76,7 +76,7 @@
 
               const wrapper = document.getElementById("wrapper")
 
-              if(screenSize > 600){
+              if(screenSize > 390){
                 banner_contact.classList.remove("banner_contact_mobile");
                 banner_contact.classList.add("banner_contact_desk");
                 wrapper.classList.add("wrapper_desktop");
