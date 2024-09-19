@@ -33,29 +33,31 @@
       <div class="thumbnail-container">
         <div class="thumbnail-top">
         {block name='product_thumbnail'}
-          {if $product.cover}
-          <a href="{if $product.link}{$product.link}{else}{$product.url}{/if}" class="thumbnail product-thumbnail">
+          {if $product.cover_image_id}
+            <a href="{$product.link}" class="thumbnail product-thumbnail">
               <picture>
+                {* {if !empty($product.cover.bySize.home_default.sources.avif)}<source srcset="{$product.cover.bySize.home_default.sources.avif}" type="image/avif">{/if}
+                {if !empty($product.cover.bySize.home_default.sources.webp)}<source srcset="{$product.cover.bySize.home_default.sources.webp}" type="image/webp">{/if} *}
                 <img
-                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
-                  alt="{$product.name|truncate:30:'...'}"
+                src="{if !empty($product.cover.bySize.home_default.url)}{$product.cover.bySize.home_default.url}{else}{$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'home_default')}{/if}"
+                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
                   loading="lazy"
-                  data-full-size-image-url="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer)}"
-                  width="600"
-                  height="450"
-                  style="width:250px;height:200px;"
+                  data-full-size-image-url="{$product.cover.large.url}"
+                  width="{$product.cover.bySize.home_default.width}"
+                  height="{$product.cover.bySize.home_default.height}"
                 />
               </picture>
             </a>
           {else}
-            <a href="{if $product.link}{$product.link}{else}{$product.url}{/if}" class="thumbnail product-thumbnail">
+            <a href="{$product.url}" class="thumbnail product-thumbnail">
               <picture>
+                {if !empty($urls.no_picture_image.bySize.home_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.avif}" type="image/avif">{/if}
+                {if !empty($urls.no_picture_image.bySize.home_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.webp}" type="image/webp">{/if}
                 <img
-                  src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, '600')}"
+                  src="{$urls.no_picture_image.bySize.home_default.url}"
                   loading="lazy"
-                  width="600"
-                  height="450"
-                  style="width:250px;height:200px;"
+                  width="{$urls.no_picture_image.bySize.home_default.width}"
+                  height="{$urls.no_picture_image.bySize.home_default.height}"
                 />
               </picture>
             </a>

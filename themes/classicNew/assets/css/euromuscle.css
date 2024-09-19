@@ -5651,7 +5651,21 @@ transform: translate(-50%,-50%);
     justify-content: center;
   }
 
+  .banner-tabs .product-attachments .attachment {
+    display: flex;
+    justify-content: center;
+  }
+
+  #product .container .row{
+    margin: 0;
+  }
+
+
   /* product page fim*/
+}
+
+#product .nav-tabs::after, #product .navbar::after{
+  content: none !important;
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
