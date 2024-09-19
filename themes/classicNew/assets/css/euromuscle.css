@@ -4511,16 +4511,76 @@ transform: translate(-50%,-50%);
     margin: 0;
   }
 
+  .about-content-cards{
+    width: 100%;
+  }
+
+  .about-content-cards .card{
+    width: 100%;
+  }
+
+  #about-us .about-content .about-content-imgs {
+    width: 100%;
+  }
+  #about-us .about-content .about-content-imgs img{
+    width: 100%;
+  }
+
   /* homepage */
 
   .bannersHomeMobile .layerHovermobile{
     height: unset;
   }
+
+  /* specific request */
+
+  .page-cms-52 .cms_specificRequest .banner_cms .img-mobile{
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .page-cms-52 .cms_specificRequest .banner_cms .img-desktop{
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  
+  /* brands */
+
+  .brand .brand-infos {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+      /* brand page */
+      #js-product-list .products {
+        padding: 1rem;
+      }
+    
+      .products-sort-order{
+        padding: 2rem 0;
+        max-width: 400px;
+      }
 }
 
 /* small tablet */
 
 @media screen and (min-width: 540px) and (max-width: 768px) {
+
+  /* specific request */
+
+  .page-cms-52 .cms_specificRequest .banner_cms .img-mobile{
+    display: none;
+  }
+  .page-cms-52 .cms_specificRequest .banner_cms .img-desktop{
+    display: block;
+    width: 100%;
+  }
+
+  .page-cms-52 .cms_specificRequest .banner_cms h2{
+    font-size: 2.5rem !important;
+  }
+  /*  */
     .page-cms #wrapper{
       padding-block: 0 !important;
     }
@@ -4826,12 +4886,83 @@ transform: translate(-50%,-50%);
     flex-wrap: wrap;
   }
 
+  .about-content-cards .card{
+    width: 100%;
+  }
+
   /*  */
+
+  /* brands */
+
+  .brand .brand-infos {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* brand page */
+  #js-product-list .products {
+    padding: 1rem;
+  }
+
+  .products-sort-order{
+    padding: 2rem 0;
+    max-width: 400px;
+  }
+
+  #js-product-list-top .col-lg-7{
+    padding: 0;
+  }
 
 }
 
 /* normal tablet */
 @media screen and (min-width: 768px) and (max-width: 992px) {
+  #footer .links{
+    max-width: unset;
+    flex: unset;
+  }
+
+  .footer-row .links .wrapper {
+    width: 100% !important;
+    max-width: unset;
+    flex: unset;
+    padding: 0.5rem;
+  }
+
+  #footer_sub_menu_12 li a {
+    font-size: 1rem;
+    padding: 5px;
+    white-space: normal;
+  }
+
+    /* specific request */
+
+    .cms-id-52 #wrapper{
+      padding-block: 0;
+    }
+    .cms-id-52 #wrapper .container{
+      padding: 0;
+    }
+    .cms-id-52 #wrapper .container .row{
+      margin: 0;
+    }
+    .cms-id-52 #wrapper .container .row #content-wrapper{
+      padding: 0;
+    }
+
+    .page-cms-52 .cms_specificRequest .banner_cms .img-mobile{
+      display: none;
+    }
+    .page-cms-52 .cms_specificRequest .banner_cms .img-desktop{
+      display: block;
+      width: 100%;
+    }
+  
+    .page-cms-52 .cms_specificRequest .banner_cms h2{
+      font-size: 2.5rem !important;
+    }
+    /*  */
     /* partners */
 
     .cms-id-51 #wrapper {
@@ -5051,9 +5182,55 @@ transform: translate(-50%,-50%);
   #contact .notifications-container.container{
     padding: 0 !important;
   }
+
+  /* about us page */
+
+  .about-content-cards .card .card-content{
+    padding: 1rem;
+  }
+
+  /* brand page */
+
+  #js-product-list .products {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    place-items: center;
+    grid-column-gap: 1rem;
+    grid-row-gap: 2rem;
+  }
 }
 
+
+
 @media screen and (min-width: 993px) and (max-width: 1200px) {
+    /* specific request */
+
+    .cms-id-52 #wrapper {
+      padding-block: 0;
+    }
+    .cms-id-52 #wrapper .row {
+      margin: 0;
+    }
+    .cms-id-52 #wrapper .container {
+      padding: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper {
+      padding: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper .page-cms-52{
+      margin-bottom: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper .page-cms-52 .cms_specificRequest h2{
+      font-size: 3rem !important;
+    }
+
+    /* footer */
+
+    #footer_sub_menu_12 li a {
+      font-size: 1rem;
+    }
+
     /* partners */
 
     .cms-id-51 #wrapper {
@@ -5459,17 +5636,52 @@ transform: translate(-50%,-50%);
   }
 
   #product .images-container.js-images-container {
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column;
+    align-items: center; */
   }
   #product .images-container.js-images-container .product-cover{
     width: fit-content;
+  }
+
+  #product .row.product-container.js-product-container .right-side{
+    padding: 1rem;
+  }
+
+  .images-container.js-images-container{
+    justify-content: center;
   }
 
   /* product page fim*/
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
+    /* brands page */
+
+    #manufacturer .container .row {
+      margin: 0;
+    }
+
+    /* specific request */
+
+    .cms-id-52 #wrapper {
+      padding-block: 0;
+    }
+    .cms-id-52 #wrapper .row {
+      margin: 0;
+    }
+    .cms-id-52 #wrapper .container {
+      padding: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper {
+      padding: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper .page-cms-52{
+      margin-bottom: 0;
+    }
+    .cms-id-52 #wrapper #content-wrapper .page-cms-52 .cms_specificRequest h2{
+      font-size: 3rem !important;
+    }
+
     /* about us */
 
     .cms-id-45 #wrapper{
@@ -5823,6 +6035,10 @@ transform: translate(-50%,-50%);
 
 @media screen and (min-width: 1400px){
 
+  .cms-id-52 #wrapper #content-wrapper .page-cms-52 .cms_specificRequest h2{
+    font-size: 4rem !important;
+  }
+
   /* about us */
 
   .page-cms-45 .banner_cms .img-desktop{
@@ -6151,4 +6367,21 @@ transform: translate(-50%,-50%);
   .banner_contact.banner_contact_desk {
     padding-top: 2rem;
   }
+}
+
+#manufacturer .container .row {
+  margin: 0;
+}
+
+#js-product-list .products {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  place-items: first baseline;
+  grid-column-gap: 1rem;
+  grid-row-gap: 2rem;
+}
+
+#js-product-list .products .js-product.product{
+  max-width: 340px;
 }
