@@ -525,14 +525,15 @@ main {
         color: #0d2540;
         display: flex;
         gap: 0.5rem;
-        width: 114px;
-        height: 66.8px;
+        width: 125px;
+        height: 125px;
     }
 
     #brands_mobile .content_brands img{
-      width: 50px;
+      width: 100%;
       margin: auto;
       height: auto;
+      max-width: unset !important;
     }
 
 
