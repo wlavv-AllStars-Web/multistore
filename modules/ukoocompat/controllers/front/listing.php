@@ -482,7 +482,11 @@ class UkooCompatListingModuleFrontController extends ModuleFrontController
             // if((int)Context::getContext()->shop->id === 2){
             // }
             }
-            $this->setTemplate('module:ukoocompat/views/templates/front/listing.tpl');
+            if(count($products) > 0){
+                $this->setTemplate('module:ukoocompat/views/templates/front/listing.tpl');
+            }else{
+                Tools::redirect('index.php?controller=pagenotfound');
+            }
     }
 
     private function getTemplateVarPagination(

@@ -184,7 +184,7 @@
 {else}
     {if !Context::getContext()->isMobile()}
         <div class="content_sortPagiBar">
-            {include file="$tpl_dir./wm_top_filter.tpl"}
+            {* {include file="$tpl_dir./wm_top_filter.tpl"} *}
             {if $products}<div class="top-pagination-content clearfix"> {include file="file:themes/classicNew/templates/_partials/pagination.tpl"} </div>{/if}
         </div>
     {else}
@@ -193,7 +193,7 @@
             <span>{${"apply_filter_$lang_iso"}}</span>
         </div>
         <div class="content_sortPagiBar" id="filters_holder" style="display: none;">
-            <span> {include file="themes/theme1164/mobile/wm_top_filter.tpl"} </span>
+            {* <span> {include file="themes/theme1164/mobile/wm_top_filter.tpl"} </span> *}
         </div>
     {/if}
     <div class="spacer-15"></div>

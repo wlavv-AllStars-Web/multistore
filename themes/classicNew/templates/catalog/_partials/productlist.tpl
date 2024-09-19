@@ -24,6 +24,7 @@
  *}
 
 {capture assign="productClasses"}{if !empty($productClass)}{$productClass}{else}col-xs-12 col-sm-6 col-lg-3 col-xl-3{/if}{/capture}
+{assign var="count_products" value=$products|count}
     
 <div class="products{if !empty($cssClass)} {$cssClass}{/if}">
     {if isset($search)}
@@ -50,7 +51,7 @@
         {/foreach}
 
         <div class="js-product product car{if !empty($productClasses)} {$productClasses}{/if}" style="display: flex;justify-content:center;outline: 3px solid #103054;">
-            <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
+            <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" style="min-height: 266px;">
                 <div class="thumbnail-container" style="background:#1030543d;display: flex;flex-direction: column;justify-content: center;">
                     <div class="thumbnail-top">
                         <picture>
@@ -87,8 +88,9 @@
             </div>
     </div>
     {/if}
+
     {foreach from=$products item="product" key="position"}
-        {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses}
+        {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses }
     {/foreach}
 </div>
 
