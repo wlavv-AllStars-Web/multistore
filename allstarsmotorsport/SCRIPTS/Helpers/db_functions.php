@@ -13,19 +13,25 @@ function getConn()
         define('_DB_NAME_', 'asw200923_euromuscle_beta');
         return new mysqli("localhost", "asw200923_user_db", "*U;Z)q%F5T.1", "asw200923_euromuscle_beta");
 
-    } elseif(substr($currentUrl, 0, 8) === 'euromus.') {
+    } elseif(substr($currentUrl, 0, 5) === 'alpha') {
+        define('_DB_SERVER_', 'localhost');
+        define('_DB_USER_', 'asw200923_user_db');
+        define('_DB_PASSWD_', '*U;Z)q%F5T.1');
+        define('_DB_NAME_', 'asw200923_euromuscle_alpha');
+        return new mysqli("localhost", "asw200923_user_db", "*U;Z)q%F5T.1", "asw200923_euromuscle_alpha");
+    } elseif(substr($currentUrl, 0, 7) === 'euromus') {
         define('_DB_SERVER_', 'localhost');
         define('_DB_USER_', 'root');
         define('_DB_PASSWD_', '');
-        define('_DB_NAME_', 'euromus');
-        return new mysqli("localhost", "root", "", "euromus");
+        define('_DB_NAME_', 'multistore');
+        return new mysqli("localhost", "root", "", "multistore");
 
     } elseif(substr($currentUrl, 0, 3) === 'asm') {
         define('_DB_SERVER_', 'localhost');
         define('_DB_USER_', 'root');
         define('_DB_PASSWD_', '');
-        define('_DB_NAME_', 'euromus');
-        return new mysqli("localhost", "root", "", "euromus");
+        define('_DB_NAME_', 'multistore');
+        return new mysqli("localhost", "root", "", "multistore");
         // URL does not start with '/beta'
     } else {
         define('_DB_SERVER_', 'localhost');
