@@ -530,7 +530,7 @@ main {
         display: flex;
         gap: 0.5rem;
         width: 125px;
-        height: 125px;
+        height: 125px !important;
     }
 
     #brands_mobile .content_brands img{
@@ -558,6 +558,10 @@ main {
         margin-bottom: 0;
         width: fit-content;
         text-transform: uppercase;
+    }
+
+    #cms_shipping .shipping-content-left-text span{
+      display: flex;
     }
 
     #checkout .cart-grid-body .form-informations {
