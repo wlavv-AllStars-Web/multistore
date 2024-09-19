@@ -522,6 +522,10 @@ main {
     }
 
     #mobile_top_menu_wrapper .js-top-menu-bottom a {
+      gap: 0.5rem;
+    }
+
+    #mobile_top_menu_wrapper .js-top-menu-bottom .content_brands a {
         color: #0d2540;
         display: flex;
         gap: 0.5rem;
