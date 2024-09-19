@@ -5664,9 +5664,7 @@ transform: translate(-50%,-50%);
   /* product page fim*/
 }
 
-#product .nav-tabs::after, #product .navbar::after{
-  content: none !important;
-}
+
 
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
     /* brands page */
@@ -6398,4 +6396,17 @@ transform: translate(-50%,-50%);
 
 #js-product-list .products .js-product.product{
   max-width: 340px;
+}
+
+#product .nav-tabs::after, #product .navbar::after{
+  content: none !important;
+}
+
+.images-container .product-images > li.thumb-container .thumb{
+  margin-right: 0;
+}
+
+.product-images > li.thumb-container .thumb.selected, .product-images > li.thumb-container .thumb:hover{
+  outline: #ee302e 3px solid !important;
+  border: 0 !important;
 }
