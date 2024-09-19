@@ -5194,7 +5194,7 @@ transform: translate(-50%,-50%);
   #js-product-list .products {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
     place-items: center;
     grid-column-gap: 1rem;
     grid-row-gap: 2rem;
@@ -6388,8 +6388,8 @@ transform: translate(-50%,-50%);
 #js-product-list .products {
   width: 100%;
   display: grid !important;
-  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-  place-items: first baseline;
+  grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+  place-items: center;
   grid-column-gap: 1rem;
   grid-row-gap: 2rem;
 }
