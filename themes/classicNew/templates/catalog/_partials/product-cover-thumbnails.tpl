@@ -65,7 +65,12 @@
   {/block}
 
   {block name='product_images'}
-    <div class="js-qv-mask mask">
+    {if $product.images|count == 0}
+    <div class="js-qv-mask mask" style="display: none !important;">
+      {else}
+    <div class="js-qv-mask mask" style="">
+    {/if}
+      
       <ul class="product-images js-qv-product-images" >
         {foreach from=$product.images item=image key=key}
           {if $key < 5}
