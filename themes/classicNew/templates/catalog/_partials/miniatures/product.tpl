@@ -23,7 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
- {* <pre>{print_r($search,1)}</pre> *}
+ {* <pre>{print_r($count_products,1)}</pre> *}
  {* http://euromus.local/29-home_default/mustang-23t-ecoboost-mishimoto-aluminium-radiator.jpg *}
  {* {$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'home_default')} *}
 
@@ -83,12 +83,12 @@
           {block name='product_name'}
             {if $product.url}
               {if $page.page_name == 'index'}
-                <h3 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h3>
+                <h3 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name}</a></h3>
               {else}
-                <h2 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h2>
+                <h2 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name}</a></h2>
               {/if}
             {else}
-              <h2 class="h3 product-title"><a href="{$product.link}" content="{$product.link}">{$product.name|truncate:30:'...'}</a></h2>
+              <h2 class="h3 product-title"><a href="{$product.link}" content="{$product.link}">{$product.name}</a></h2>
             {/if}
           {/block}
   
@@ -129,7 +129,7 @@
           {/block}
         </div>
   
-        {include file='catalog/_partials/product-flags.tpl'}
+        {* {include file='catalog/_partials/product-flags.tpl'} *}
       </div>
     </article>
     
