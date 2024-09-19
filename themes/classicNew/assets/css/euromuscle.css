@@ -6410,3 +6410,11 @@ transform: translate(-50%,-50%);
   outline: #ee302e 3px solid !important;
   border: 0 !important;
 }
+
+.product-miniature .product-title a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
