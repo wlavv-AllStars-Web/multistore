@@ -6392,6 +6392,11 @@ transform: translate(-50%,-50%);
   .banner_contact.banner_contact_desk {
     padding-top: 2rem;
   }
+
+  #product .product-attachments .attachment{
+    display: flex;
+    justify-content: center;
+  }
 }
 
 #manufacturer .container .row {
