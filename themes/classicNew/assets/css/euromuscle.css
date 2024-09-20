@@ -2804,6 +2804,7 @@ header.page-header {
 #blockcart-modal .cart-content-btn .btn-primary{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #index #wrapper{
@@ -6528,3 +6529,28 @@ transform: translate(-50%,-50%);
   display: flex;
   align-items: center !important;
 }
+
+#blockcart-modal .divide-right .label{
+  text-align: start;
+  font-size: 1rem;
+}
+
+#blockcart-modal .cart-content{
+  padding-top: 2rem;
+}
+#blockcart-modal .cart-content p{
+  color: #103054 !important;
+  width: 100%;
+}
+
+#blockcart-modal .cart-content p .label{
+  text-transform: initial;
+  font-size: 1rem;
+  font-weight: 400;
+}
+#blockcart-modal .cart-content .cart-products-count{
+  color: #103054 !important;
+  text-transform: inherit;
+  padding-bottom: 1rem;
+}
+

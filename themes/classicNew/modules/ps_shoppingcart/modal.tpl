@@ -57,12 +57,12 @@
               </div>
               <div class="col-md-12">
                 <h6 class="h6 product-name">{$product.name}</h6>
-                <p class="product-price" style="color: #103054;">{l s='Price' d='Shop.Theme.Checkout'}: <strong>{$product.price}</strong></p>
+                <span class="product-price label" style="color: #103054;">{l s='Price' d='Shop.Theme.Checkout'}: <strong>{$product.price}</strong></span>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 {foreach from=$product.attributes item="property_value" key="property"}
-                <span class="{$property|lower}">{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
+                <span class="{$property|lower} label">{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
                 {/foreach}
-                <span class="product-quantity">{l s='Quantity:' d='Shop.Theme.Checkout'}&nbsp;<strong>{$product.cart_quantity}</strong></span>
+                <span class="product-quantity label">{l s='Quantity:' d='Shop.Theme.Checkout'}&nbsp;<strong>{$product.cart_quantity}</strong></span>
               </div>
             </div>
           </div>
@@ -75,18 +75,18 @@
               {/if}
               <p><span class="label">{l s='Subtotal:' d='Shop.Theme.Checkout'}</span>&nbsp;<span class="subtotal value">{$cart.subtotals.products.value}</span></p>
               {if $cart.subtotals.shipping.value}
-                <p><span>{l s='Shipping:' d='Shop.Theme.Checkout'}</span>&nbsp;<span class="shipping value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span></p>
+                <p><span class="label">{l s='Shipping:' d='Shop.Theme.Checkout'}</span>&nbsp;<span class="shipping value">{$cart.subtotals.shipping.value} {hook h='displayCheckoutSubtotalDetails' subtotal=$cart.subtotals.shipping}</span></p>
               {/if}
 
               {if !$configuration.display_prices_tax_incl && $configuration.taxes_enabled}
                 <p><span>{$cart.totals.total.label}{if $configuration.display_taxes_label}&nbsp;{$cart.labels.tax_short}{/if}</span>&nbsp;<span>{$cart.totals.total.value}</span></p>
-                <p class="product-total"><span class="label">{$cart.totals.total_including_tax.label}</span>&nbsp;<span class="value">{$cart.totals.total_including_tax.value}</span></p>
+                <p class="product-total"><span class="label">{$cart.totals.total_including_tax.label}</span>: <span class="value">{$cart.totals.total_including_tax.value}</span></p>
               {else}
-                <p class="product-total"><span class="label">{$cart.totals.total.label}&nbsp;{if $configuration.taxes_enabled && $configuration.display_taxes_label}{$cart.labels.tax_short}{/if}</span>&nbsp;<span class="value">{$cart.totals.total.value}</span></p>
+                <p class="product-total"><span class="label">{$cart.totals.total.label} {if $configuration.taxes_enabled && $configuration.display_taxes_label}{$cart.labels.tax_short}{/if}:</span><span class="value">{$cart.totals.total.value}</span></p>
               {/if}
 
               {if $cart.subtotals.tax}
-                <p class="product-tax">{l s='%label%:' sprintf=['%label%' => $cart.subtotals.tax.label] d='Shop.Theme.Global'}&nbsp;<span class="value">{$cart.subtotals.tax.value}</span></p>
+                <p class="product-tax">{l s='%label%:' sprintf=['%label%' => $cart.subtotals.tax.label] d='Shop.Theme.Global'}: <span class="value">{$cart.subtotals.tax.value}</span></p>
               {/if}
               {hook h='displayCartModalContent' product=$product}
               <div class="cart-content-btn" style="width: 100%;">
