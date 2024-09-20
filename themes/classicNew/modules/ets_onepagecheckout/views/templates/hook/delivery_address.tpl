@@ -45,7 +45,7 @@
 {$address_form nofilter}
 {if $use_address_invoice}
     <p class="no_invoice_address">{l s='The selected address will be used both as your personal address (for invoice) and as your delivery address.' mod='ets_onepagecheckout'}</p>
-    <div class="form-group" style="padding: 0 2rem;">
+    <div class="form-group col-lg-12">
         <label for="use_another_address_for_invoice" class="ets_checkinput col-lg-12">
         <input type="checkbox" name="use_another_address_for_invoice" id="use_another_address_for_invoice" value="1" />&nbsp;<i class="ets_checkbox"></i>{l s='Use another address for invoice' mod='ets_onepagecheckout'}
         </label>

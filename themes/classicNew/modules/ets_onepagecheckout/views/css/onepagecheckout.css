@@ -517,7 +517,7 @@ body#checkout #header .header-nav {
 }
 #form_ets_onepagecheckout {
   background: #fff;
-  padding: 30px 30px 0;
+  padding: 0;
   box-shadow: 0 0 5px 1px #ddd;
   margin-bottom:30px;
 }
@@ -528,6 +528,12 @@ body#checkout #header .header-nav {
     box-shadow: none;
     border-radius: 0;
 }
+
+#onepagecheckout-information-errros button.close{
+  font-size: 1rem;
+  color: #103054 !important;
+}
+
 .onepagecheckout-left .product-line-grid > div:not(.clearfix) {
     float: left;
 }
@@ -1733,6 +1739,17 @@ opacity: 0.4;
 #checkout .header-nav .right-nav{
     display:none;
 }
+
+
+.delivery-options .left_content {
+  align-items: center;
+  width: 100%;
+}
+#form_ets_onepagecheckout .row.delivery-option .carrier-name{
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 .custom-file input.form-control[type="file"] {
     opacity: 0!important;
     cursor: pointer;
@@ -2012,8 +2029,9 @@ body#checkout #form_ets_onepagecheckout .condition-label{
     margin:10px;
 }
 .no_invoice_address,.yes_invoice_address {
-  padding: 0 15px;
+  padding: 0 2rem;
   font-style: italic;
+  color: #7a7a7a;
 }
 @media (max-width: 767px){
     .block-onepagecheckout .delivery-options .col-sm-1 {
