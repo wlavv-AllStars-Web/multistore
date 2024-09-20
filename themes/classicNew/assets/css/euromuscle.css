@@ -6347,7 +6347,7 @@ transform: translate(-50%,-50%);
   }
 
   #contact .wrapper_desktop {
-    padding-block: 0 !important;
+    padding-block: 1rem !important;
   }
 
   /* shipping page */
@@ -6406,9 +6406,9 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 1440px) {
-  .banner_contact.banner_contact_desk {
+  /* .banner_contact.banner_contact_desk {
     padding-top: 2rem;
-  }
+  } */
 
   #product .product-attachments .attachment{
     display: flex;
