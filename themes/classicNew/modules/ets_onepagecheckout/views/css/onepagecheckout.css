@@ -911,7 +911,9 @@ img.safe_icon {
 .ets_payment_method span.custom-radio span {
     opacity: 0;
 }
-
+#onepagecheckout-information-errros .module_error.alert{
+  border-radius: 0.25rem;
+}
 #onepagecheckout-information-errros .module_error.alert.alert-danger {
     margin-left: 0;
     margin-right: 0;
@@ -1740,6 +1742,9 @@ opacity: 0.4;
     display:none;
 }
 
+.delivery-options .delivery-option .row{
+  display: flex;
+}
 
 .delivery-options .left_content {
   align-items: center;
