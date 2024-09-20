@@ -4599,6 +4599,16 @@ transform: translate(-50%,-50%);
   .right-side .features_productdetails{
     flex-direction: column !important;
   }
+
+  /* pointer events mobile */
+
+  .tabs .nav-tabs .nav-link:hover {
+    pointer-events: none;
+  }
+
+  .js-product.product {
+    pointer-events: none;
+  }
 }
 
 /* small tablet */
