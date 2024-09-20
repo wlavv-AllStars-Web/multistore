@@ -6349,8 +6349,8 @@ transform: translate(-50%,-50%);
     height: auto;
     min-height: 58px;
     padding: 0.5rem;
-    background: rgba(16, 48, 84, 0.8);
-    color: #fff;
+    background: rgba(250, 250, 250, 0.6);
+    color: #103054;
     left: 0;
     width: 100%;
     display: flex;
@@ -6382,9 +6382,10 @@ transform: translate(-50%,-50%);
 
   .bannersHome .card-min-img .layerHover{
     height: auto !important;
-    min-height: 44px !important;
+    min-height: 100% !important;
     width: 100%;
     left: 0;
+    bottom: unset !important;
   }
 
 
@@ -6400,8 +6401,7 @@ transform: translate(-50%,-50%);
 
   .bannersHome .card-min-img .card-img:hover .layerHover{
     font-size: clamp(.85rem,1vw,1rem);
-    height: auto !important;
-    min-height: 44px !important;
+    height: 100% !important;
   }
 
   .cars-container .card .card-title a{
