@@ -4582,15 +4582,19 @@ transform: translate(-50%,-50%);
     justify-content: center;
   }
 
-      /* brand page */
-      #js-product-list .products {
-        padding: 1rem;
-      }
-    
-      .products-sort-order{
-        padding: 2rem 0;
-        max-width: 400px;
-      }
+  /* brand page */
+  #js-product-list .products {
+    padding: 1rem;
+  }
+
+  .products-sort-order{
+    padding: 2rem 0;
+    max-width: 400px;
+  }
+
+  .right-side .features_productdetails{
+    flex-direction: column;
+  }
 }
 
 /* small tablet */
