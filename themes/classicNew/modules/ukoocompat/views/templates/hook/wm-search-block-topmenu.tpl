@@ -20,7 +20,7 @@
             <input type="hidden" id="multiFilter_root_page" name="root_page" value=""/>
 -->
                     <div style="display: none;">
-                        <form id="ukoocompat_my_cars_custom_form" action="/{$lang_iso}/module/ukoocompat/listing" method="POST"> 
+                        <form id="ukoocompat_my_cars_custom_form" action="/{$lang_iso}/module/ukoocompat/listing" method="GET"> 
                             <input type="hidden" name="id_search" value="1"> 
                             <input type="hidden" name="id_search3" value="1"> 
                             <input type="hidden" name="id_lang" value="{Context::getContext()->language->id|escape:'html':'UTF-8'}">
@@ -44,7 +44,7 @@
                     {if $page_name =='index'}
                         <div style="display: none;">
                             
-                            <form id="ukoocompat_clear_my_cars_custom_form" action="/{$lang_iso}/module/ukoocompat/listing" method="POST"> 
+                            <form id="ukoocompat_clear_my_cars_custom_form" action="/{$lang_iso}/module/ukoocompat/listing" method="GET"> 
                                 <input type="hidden" name="id_search" value="1"> 
                                 <input type="hidden" name="id_search3" value="1"> 
                                 <input type="hidden" name="id_lang" value="{Context::getContext()->language->id|escape:'html':'UTF-8'}">

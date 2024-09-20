@@ -45,7 +45,7 @@
 
           {block name='hook_home'}
             <div style="display: none;">
-              <form id="ukoocompat_my_cars_custom_form" action="/en/module/ukoocompat/listing" method="POST"> 
+              <form id="ukoocompat_my_cars_custom_form" action="/en/module/ukoocompat/listing" method="GET"> 
                 <input type="hidden" name="id_search" value="1"> 
                 <input type="hidden" name="id_search3" value="1"> 
                 <input type="hidden" name="id_lang" value="1"> 
