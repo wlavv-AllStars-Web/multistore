@@ -609,7 +609,7 @@ main {
         height: 46px;
         border-bottom: 1px dashed #0d254020;
     }
-    #mobile_top_menu_wrapper .js-top-menu-bottom > div > a,p, .btn-brandsMobile{
+    #mobile_top_menu_wrapper .js-top-menu-bottom > div > a,  #mobile_top_menu_wrapper .js-top-menu-bottom > div > p{
         padding: 0.625rem;
         color: #0d2540;
         font-weight: 600;
@@ -619,6 +619,18 @@ main {
         align-items: center;
         margin-bottom: 0;
         width: fit-content;
+        text-transform: uppercase;
+    }
+
+    #mobile_top_menu_wrapper .js-top-menu-bottom > div > .btn-brandsMobile{
+      padding: 0.625rem;
+        color: #0d2540;
+        font-weight: 600;
+        font-size: 1em;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
         text-transform: uppercase;
     }
 
@@ -756,7 +768,7 @@ main {
 
     .activeBtnBrands{
       background: #103054;
-      color: #fff;
+      color: #fff !important;
       border-bottom: 4px solid #fff;
     }
 
