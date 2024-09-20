@@ -302,7 +302,8 @@ class CmsControllerCore extends FrontController
 
             $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
 
-            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, 'pauloallstarsweb@gmail.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, '
+info@euromuscleparts.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
             $this->context->smarty->assign(array( 'email_sent' => 1 ));
             Tools::redirect($this->context->link->getCMSLink(53));
         }
@@ -339,7 +340,8 @@ class CmsControllerCore extends FrontController
                 $var_list['{cv}'] = '/upload/' . $filename;
             }
 
-            Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'pauloallstarsweb@gmail.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+            Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  '
+info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
             $this->context->smarty->assign(array( 'email_sent' => 2 ));
             
         }else{
@@ -399,13 +401,15 @@ class CmsControllerCore extends FrontController
                 $error = 1;
             }else{
             
-                Mail::Send($this->context->language->id, 'become_dealer', 'BECOME A DEALER', $var_list,  'pauloallstarsweb@gmail.com', 'BECOME A DEALER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                Mail::Send($this->context->language->id, 'become_dealer', 'BECOME A DEALER', $var_list,  '
+info@euromuscleparts.com', 'BECOME A DEALER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
                 $this->context->smarty->assign(array( 'email_sent' => 1 ));
             
             }
     
         }elseif (Tools::getValue('type') == 'becomesupplier') {
-            Mail::Send($this->context->language->id, 'become_supplier', 'BECOME A SUPPLIER', $var_list, 'pauloallstarsweb@gmail.com', 'BECOME A SUPPLIER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+            Mail::Send($this->context->language->id, 'become_supplier', 'BECOME A SUPPLIER', $var_list, '
+info@euromuscleparts.com', 'BECOME A SUPPLIER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
             $this->context->smarty->assign(array( 'email_sent' => 1 ));
             
         }else{
