@@ -302,11 +302,11 @@ class CmsControllerCore extends FrontController
 
             $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
 
-            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list,  'pauloallstarsweb@gmail.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, 'pauloallstarsweb@gmail.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
             $this->context->smarty->assign(array( 'email_sent' => 1 ));
             Tools::redirect($this->context->link->getCMSLink(53));
         }
-        
+
         if(Tools::getValue('action_job') == "form_job"){
             
             $var_list['{gender}'] = Tools::getValue('gender') == "1" ? "Male" :"Female";
@@ -356,26 +356,26 @@ class CmsControllerCore extends FrontController
                 $annual_sales = [$annual_sales];
             }
 
-        $var_list['{name}'] = Tools::getValue('name');
-        $var_list['{surname}'] = Tools::getValue('surname');
-        $var_list['{company}'] = Tools::getValue('company');
-        $var_list['{company_tva}'] = Tools::getValue('company_tva');
-        $var_list['{email}'] = Tools::getValue('email');
-        $var_list['{phone}'] = Tools::getValue('phone');
-        $var_list['{site}'] = Tools::getValue('site');
-        $var_list['{social}'] = Tools::getValue('social');
-        $var_list['{adresse_line_1}'] = Tools::getValue('adresse_line_1');
-        $var_list['{adresse_line_2}'] = Tools::getValue('adresse_line_2');
-        $var_list['{city}'] = Tools::getValue('city');
-        $var_list['{postal_code}'] = Tools::getValue('postal_code');
-        $var_list['{country}'] = Tools::getValue('country');
-        $var_list['{business_type}'] = implode(', ', $businessType);
-        $var_list['{main_market}'] = implode(', ', $main_market);
-        $var_list['{annual_sales}'] = implode(', ', $annual_sales);
-        $var_list['{supplier_1}'] = Tools::getValue('supplier_1');
-        $var_list['{supplier_2}'] = Tools::getValue('supplier_2');
-        $var_list['{supplier_3}'] = Tools::getValue('supplier_3');
-        $var_list['{observations}'] = Tools::getValue('observations');
+            $var_list['{name}'] = Tools::getValue('name');
+            $var_list['{surname}'] = Tools::getValue('surname');
+            $var_list['{company}'] = Tools::getValue('company');
+            $var_list['{company_tva}'] = Tools::getValue('company_tva');
+            $var_list['{email}'] = Tools::getValue('email');
+            $var_list['{phone}'] = Tools::getValue('phone');
+            $var_list['{site}'] = Tools::getValue('site');
+            $var_list['{social}'] = Tools::getValue('social');
+            $var_list['{adresse_line_1}'] = Tools::getValue('adresse_line_1');
+            $var_list['{adresse_line_2}'] = Tools::getValue('adresse_line_2');
+            $var_list['{city}'] = Tools::getValue('city');
+            $var_list['{postal_code}'] = Tools::getValue('postal_code');
+            $var_list['{country}'] = Tools::getValue('country');
+            $var_list['{business_type}'] = implode(', ', $businessType);
+            $var_list['{main_market}'] = implode(', ', $main_market);
+            $var_list['{annual_sales}'] = implode(', ', $annual_sales);
+            $var_list['{supplier_1}'] = Tools::getValue('supplier_1');
+            $var_list['{supplier_2}'] = Tools::getValue('supplier_2');
+            $var_list['{supplier_3}'] = Tools::getValue('supplier_3');
+            $var_list['{observations}'] = Tools::getValue('observations');
 
 
         if (Tools::getValue('type') == 'becomedealer') {
