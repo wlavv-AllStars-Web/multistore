@@ -21,7 +21,7 @@
 
 
 
-<form id="ukoocompat_search_block_form_1" action="/{$lang_iso}/module/ukoocompat/listing" method="POST"> 
+<form id="ukoocompat_search_block_form_1" action="/{$lang_iso}/module/ukoocompat/listing" method="GET"> 
 
 <input type="hidden" id="temp_multiFilter_news" name="temp_news_compats" value="{$news_compats}"/>
 <input type="hidden" id="temp_multiFilter_order_by" name="orderby" value="{$order_by_compats}"/>
