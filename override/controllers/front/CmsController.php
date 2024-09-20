@@ -287,6 +287,25 @@ class CmsControllerCore extends FrontController
     public function postProcess()
     {
         $error = 0;
+        if(Tools::getValue('action_job') == "form_specificRequest"){
+            $var_list['{firstname}'] = Tools::getValue('firstname');
+            $var_list['{lastname}'] = Tools::getValue('lastname');
+            $var_list['{email}'] = Tools::getValue('email');
+
+            $var_list['{brand}'] = Tools::getValue('brand');
+            $var_list['{model}'] = Tools::getValue('model');
+            $var_list['{type}'] = Tools::getValue('type');
+            $var_list['{version}'] = Tools::getValue('version');
+
+            $var_list['{product_brand}'] = Tools::getValue('product_brand');
+            $var_list['{product_type}'] = Tools::getValue('product_type');
+
+            $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
+
+            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list,  'pauloallstarsweb@gmail.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+            $this->context->smarty->assign(array( 'email_sent' => 1 ));
+            Tools::redirect($this->context->link->getCMSLink(53));
+        }
         
         if(Tools::getValue('action_job') == "form_job"){
             
