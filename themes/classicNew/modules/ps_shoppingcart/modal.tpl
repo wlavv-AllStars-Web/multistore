@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-<div id="blockcart-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="blockcart-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="backdrop-filter: blur(10px);">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -33,9 +33,9 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-5 divide-right">
-            <div class="row">
-              <div class="col-md-6">
+          <div class="col-md-4 divide-right">
+            <div class="row" style="display: flex;flex-direction:column;">
+              <div class="col-md-12">
                 {if $product.default_image}
                   <img
                     src="{$product.default_image.medium.url}"
@@ -44,18 +44,20 @@
                     alt="{$product.default_image.legend}"
                     loading="lazy"
                     class="product-image"
+                    style="max-width: 125px;margin:auto;"
                   >
                 {else}
                   <img
                     src="{$urls.no_picture_image.bySize.medium_default.url}"
                     loading="lazy"
                     class="product-image"
+                    style="max-width: 125px;margin:auto;"
                   />
                 {/if}
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <h6 class="h6 product-name">{$product.name}</h6>
-                <p class="product-price">{$product.price}</p>
+                <p class="product-price" style="color: #103054;">{l s='Price' d='Shop.Theme.Checkout'}: <strong>{$product.price}</strong></p>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 {foreach from=$product.attributes item="property_value" key="property"}
                 <span class="{$property|lower}">{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
@@ -64,7 +66,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <div class="cart-content">
               {if $cart.products_count > 1}
                 <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
@@ -87,9 +89,9 @@
                 <p class="product-tax">{l s='%label%:' sprintf=['%label%' => $cart.subtotals.tax.label] d='Shop.Theme.Global'}&nbsp;<span class="value">{$cart.subtotals.tax.value}</span></p>
               {/if}
               {hook h='displayCartModalContent' product=$product}
-              <div class="cart-content-btn">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
-                <a href="{$order_url}" class="btn btn-primary"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+              <div class="cart-content-btn" style="width: 100%;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100%;font-size: .85rem;">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
+                <a href="{$order_url}" class="btn btn-primary"  style="font-size: .85rem;width: 100%;"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
               </div>
             </div>
           </div>

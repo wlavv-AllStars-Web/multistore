@@ -34,13 +34,35 @@ main {
   display: none;
 }
 
-#form_ets_onepagecheckout button[name="submitCompleteMyOrder"]{
+/* #form_ets_onepagecheckout button[name="submitCompleteMyOrder"]{
   color: #fff !important;
   background: #103054 !important;
 }
 #form_ets_onepagecheckout .btn-primary:hover{
   color: #fff !important;
   background: #103054d4 !important
+} */
+
+.btn-primary{
+  color: #fff !important;
+  background: #103054 !important;
+  font-size: .85rem;
+}
+.btn-primary:hover{
+  color: #fff !important;
+  background: #103054d4 !important;
+}
+
+.btn-secondary{
+  color: #103054 !important;
+  background: #fff !important;
+  border: 2px solid #103054 !important;
+  font-size: .85rem;
+}
+.btn-secondary:hover{
+  color: #fff !important;
+  background: #103054d4 !important;
+  border: 2px solid #103054d4 !important;
 }
 
 @media screen and (max-width:360px){
@@ -292,7 +314,7 @@ main {
   }
 
   .tooltip{
-    z-index: 2;
+    z-index: 2 !important;
   }
 
   .modal.in .modal-dialog{
@@ -2741,12 +2763,6 @@ header.page-header {
 }
 
 
-#blockcart-modal .cart-content-btn .btn-secondary{
-  background: #ee302e !important;
-}
-#blockcart-modal .cart-content-btn .btn-secondary:hover{
-  background: #d32c2a  !important;
-}
 #blockcart-modal .cart-content-btn .btn-primary{
   display: flex;
   align-items: center;
@@ -3252,6 +3268,7 @@ justify-content: center;
   display: inline-block;
   border-bottom: 1px dotted #103054; 
   opacity: 1 !important;/* If you want dots under the hoverable text */
+  z-index: 2 !important;
 }
 
 /* Tooltip text */
@@ -6436,4 +6453,8 @@ transform: translate(-50%,-50%);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+
+#blockcart-modal .product-name{
+  font-size: 1rem;
 }
