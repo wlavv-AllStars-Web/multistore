@@ -378,8 +378,9 @@ body#checkout #header .header-nav {
     font-weight: normal;
     display: flex;
     align-items: center;
-    padding-bottom: 3px;
+    padding-bottom: 0 !important;
     font-size: 14px;
+    margin-bottom: 0;
 }
 .layout.layout_3 .block-additional-info .form-group .col-md-3.form-control-label,
 .layout.layout_3 .block-additional-info .form-group .col-md-8.opc_field_right {
@@ -391,6 +392,7 @@ body#checkout #header .header-nav {
 .delivery-options .delivery-option-2 .left_content {
     text-align: left;
     display: flex;
+    align-items: center;
 }
 .layout.layout_3 .block-additional-info .form-group .col-md-8.opc_field_right {
     width: 100%;
