@@ -4434,9 +4434,6 @@ transform: translate(-50%,-50%);
   color: #103054 !important;
 }
 
-#form_ets_onepagecheckout .row.delivery-option .carrier-name{
-  color: #103054 !important;
-}
 
 .block-onepagecheckout .title-heading svg {
   fill: #103054 !important;
@@ -6515,4 +6512,19 @@ transform: translate(-50%,-50%);
 
 #blockcart-modal .product-name{
   font-size: 1rem;
+}
+
+
+
+/* ets onepage checkout */
+#form_ets_onepagecheckout .row.delivery-option .carrier-name{
+  color: #103054 !important;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.delivery-options .delivery-option-2 .left_content {
+  text-align: left;
+  display: flex;
+  align-items: center !important;
 }
