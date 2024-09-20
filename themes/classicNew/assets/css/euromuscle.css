@@ -1354,6 +1354,8 @@ main {
 
       .product-attachments .attachment{
         padding: 1rem;
+        display: flex;
+        justify-content: center;
       }
 
       #checkout .cart-grid-right {
