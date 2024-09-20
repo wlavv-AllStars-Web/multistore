@@ -1244,10 +1244,10 @@ main {
         object-position: -158px center !important;
       }
       #js-product-list .product.car:hover {
-        outline: 3px solid #103054;
+        outline: 3px solid #103054 !important;
       }
-      #js-product-list .js-product.product:hover {
-        outline: 0 !important;
+      #js-product-list .js-product.product:not(.car):hover {
+        outline: 3px solid #dedede !important;
         border-radius: 0.5rem;
       }
       #js-product-list .product .product-description{
@@ -4603,11 +4603,11 @@ transform: translate(-50%,-50%);
   /* pointer events mobile */
 
   .tabs .nav-tabs .nav-link:hover {
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 
   .js-product.product {
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 }
 
