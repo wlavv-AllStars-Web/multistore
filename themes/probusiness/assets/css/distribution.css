@@ -4383,8 +4383,8 @@ textarea {
   }
 
   .cart-empty {
-    padding: 1rem 0;
-    margin: 0 -1rem;
+    padding: 0;
+    margin: 0;
   }
 
   .cart-empty > div{
@@ -6255,12 +6255,29 @@ textarea {
   }
   /* search bar mobile  */
 
-  #_desktop_top_mobile {
+  /* #_desktop_top_mobile {
     position: relative;
-  }
+  } */
   .header-top .search-widget {
     top: unset !important;
+    /* width: 82% !important;
+    display: flex;
+    position: relative !important; */
   }
+
+  /* #cart #header {
+    width: 100vw;
+  }
+
+  #cart #footer{
+    width: 100vw !important;
+  }
+
+  #cart > * {
+    outline: 1px solid red;
+  } */
+
+  .cart-empty{}
 
   #search_widget .toogle_search_top {
     display: none;
