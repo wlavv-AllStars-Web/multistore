@@ -8742,7 +8742,7 @@ select option {
   width: 90%;
   margin: auto;
   padding-block: 1rem;
-  border-block: 1px solid #dedede;
+  /* border-block: 1px solid #dedede; */
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references table{
