@@ -366,7 +366,7 @@
                       </div>
                       </a>
                     </div>
-                    <div class="col-xs-6 col-sm-4 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 14px;">
+                    <div class="col-xs-6 col-sm-4 text-xs-right" style="min-height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;font-size: 14px;gap: .25rem;">
                         {* <pre>{$order.shipping|print_r}</pre> *}
                         <div style="display: flex;align-items:center;justify-content:end;">
                           {foreach from=$order.shipping item=line}
@@ -411,9 +411,9 @@
                             {foreach from=$orders_detail[$index] item=qty_sent key=key}
                               {if $qty_sent['qty_sent'] != $qty_sent['qty']}
                                 {if $key == 0}
-                                  <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
+                                  <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}" style="display: flex;gap: .5rem;align-items: center;">
                                     <span>{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}</span>
-                                    <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;"></i>
+                                    <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size:1.25rem;"></i>
                                   </div>
                                   <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
                                     <div class="order_detail_qty">
