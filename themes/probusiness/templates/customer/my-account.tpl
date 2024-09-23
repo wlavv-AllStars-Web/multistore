@@ -213,7 +213,7 @@
           {* {include file="customer/statistics_counters.tpl"} *}
 
           {if $orders}
-            <table class="table table-striped table-bordered table-labeled hidden-sm-down">
+            <table class="table table-striped table-bordered table-labeled hidden-md-down">
               <thead class="thead-default">
                 <tr>
                   <th class="text-xs-center">{l s='Date' d='Shop.Theme.Customeraccount'}</th>
@@ -225,13 +225,17 @@
                   <th class="text-xs-center">{l s='Tracking' d='Shop.Theme.Customeraccount'}</th>
                   {* <th class="hidden-md-down">{l s='Payment' d='Shop.Theme.Customeraccount'}</th> *}
                   <th class="text-xs-center">{l s='Invoice' d='Shop.Theme.Customeraccount'}</th>
+                  <th class="text-xs-center">{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}</th>
                   {* <th>&nbsp;</th> *}
                 </tr>
               </thead>
               <tbody>
-            
-              {foreach from=$orders item=order}
-                {* <pre>{print_r($order.shipping,1)}</pre> *}
+
+              
+              {foreach from=$orders item=order key=index name=orderLoop}
+                {* {if $smarty.foreach.orderLoop.iteration == 1}
+                  <pre>{$order.history.current.id_order_state}</pre>
+                {/if} *}
                   <tr data-state="{$order.history.current.id_order_state}">
                     <td class="text-xs-center">{$order.details.order_date|escape:'html':'UTF-8'}</td>
                     <th scope="row" class="link-ref text-xs-center">
@@ -256,7 +260,7 @@
                       {/foreach}
                     </td>
                     {* <pre>{print_r($order.shipping,1)}</pre> *}
-                    <td class="text-xs-center">
+                    <td class="text-xs-center" title="{l s='Tracking' d='Shop.Theme.Customeraccount'}">
                       {foreach from=$order.shipping item=line}
                         
                         {if !empty($line.tracking_number)}
@@ -272,7 +276,7 @@
                       
                       {/foreach}
                     </td>
-                    <td class="text-xs-center">
+                    <td class="text-xs-center" title="{l s='Invoice' d='Shop.Theme.Customeraccount'}">
                       {if $order.details.invoice_url}
                         <a href="{$order.details.invoice_url|escape:'html':'UTF-8'}">
                           {* <i class="material-icons">&#xE415;</i> *}
@@ -282,6 +286,54 @@
                       {else}
                         -
                       {/if}
+                    </td>
+                    <td class="text-xs-center">
+                      <span>
+                      {if $order.history.current.id_order_state == 4}
+                        {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                          {if $qty_sent['qty_sent'] != $qty_sent['qty']}
+                            {if $key == 0}
+                              <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
+                                <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i>
+                              </div>
+                              <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event)">
+                                <div class="order_detail_qty">
+                                  <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
+                                  <i class="fa-solid fa-xmark" style="color: #555;"></i>
+                                  </div>
+                                  <div class="order_references">
+                                    <table>
+                                      <thead>
+                                        <tr>
+                                          <th>Reference</th>
+                                          <th>Quantity Sent</th>
+                                          <th>Quantity Bought</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                                          <tr>
+                                            <td>{$qty_sent['qty_reference']}</td>
+                                            <td>{$qty_sent['qty_sent']}</td>
+                                            <td>{$qty_sent['qty']}</td>
+                                          </tr>
+                                        {/foreach}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            {/if}
+                            
+                          {else}
+                          -
+                          {/if}
+                          
+                        {/foreach}
+                      {else}
+                        -
+                      {/if}
+                      </span>
                     </td>
                     {* <td class="text-xs-center order-actions">
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}" data-link-action="view-order-details">
@@ -296,10 +348,10 @@
               </tbody>
             </table>
         
-            <div class="orders hidden-md-up">
-              {foreach from=$orders item=order}
+            <div class="orders hidden-lg-up">
+              {foreach from=$orders item=order key=index}
                 <div class="order" data-state="{$order.history.current.id_order_state}">
-                  <div class="row" style="display: flex;">
+                  <div class="row">
                     <div class="col-xs-6 col-sm-8 pr-0" >
                       <a href="{$order.details.details_url|escape:'html':'UTF-8'}"><h3>{$order.details.reference|escape:'html':'UTF-8'}</h3>
                       <div class="date" style="color: #555;">{$order.details.order_date|escape:'html':'UTF-8'}</div>
@@ -351,7 +403,58 @@
                         {else}
                           -
                         {/if}
-                      </div>
+                        </div>
+                        <div style="display: flex;align-items:center;justify-content:end;">
+            
+                          <span>
+                          {if $order.history.current.id_order_state == 4}
+                            {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                              {if $qty_sent['qty_sent'] != $qty_sent['qty']}
+                                {if $key == 0}
+                                  <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
+                                    <span>{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}</span>
+                                    <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;"></i>
+                                  </div>
+                                  <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
+                                    <div class="order_detail_qty">
+                                      <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
+                                        <i class="fa-solid fa-xmark" style="color: #555;"></i>
+                                      </div>
+                                      <div class="order_references">
+                                        <table>
+                                          <thead>
+                                            <tr>
+                                              <th colspan="1">Reference</th>
+                                              <th colspan="1">Quantity Sent</th>
+                                              <th colspan="1">Quantity Bought</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                                              <tr>
+                                                <td colspan="1">{$qty_sent['qty_reference']}</td>
+                                                <td colspan="1">{$qty_sent['qty_sent']}</td>
+                                                <td colspan="1">{$qty_sent['qty']}</td>
+                                              </tr>
+                                            {/foreach}
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {/if}
+                                
+                              {else}
+                              -
+                              {/if}
+                              
+                            {/foreach}
+                          {else}
+                            -
+                          {/if}
+                          </span>
+                        
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -363,6 +466,31 @@
             </div>
           {/if}
           <script>
+            function viewMissingProducts(index, el){
+              const order_modal = el.nextElementSibling; 
+                order_modal.classList.add('showOrderDetails')
+            }
+
+            function closeMissingProducts(index, el){
+              console.log(el.parentElement.parentElement)
+              const order_modal = el.parentElement.parentElement; 
+              order_modal.classList.remove('showOrderDetails')
+            }
+
+            function handleModalClick(index, event, el) {
+                const order_modal = el;
+                const excludeElement = el.querySelector(".order_detail_qty");
+                
+                if (order_modal && excludeElement) {
+                    
+                    if (order_modal.contains(event.target) && !excludeElement.contains(event.target)) {
+                        order_modal.classList.remove('showOrderDetails');
+                    }
+                }
+            }
+
+
+
             function findRowTable(state_num) {
               const containerOrders = document.querySelector(".container-orders")
               const rows = document.querySelectorAll("#order_history tbody tr");
@@ -375,7 +503,8 @@
                   inline: 'nearest'
               });
 
-              if(window.screen.width > 767){
+              if(window.screen.width > 992){
+                console.log("aqui")
                 rows.forEach(row => {
                   if (row.getAttribute('data-state') == state_num) {
                     row.style.display = ''; 
@@ -387,9 +516,8 @@
                 });
               }else{
                 rowsM.forEach(row => {
-                  if (row.getAttribute('data-state') == state_num) {
-                    row.style.display = ''; 
-                  }else if(state_num === 0) {
+                  console.log(row, row.getAttribute('data-state'));
+                  if (row.getAttribute('data-state') == state_num || state_num === 0) {
                     row.style.display = ''; 
                   }else {
                     row.style.display = 'none'; 
@@ -403,7 +531,7 @@
               const rows = document.querySelectorAll("#order_history tbody tr");
               const rowsM = document.querySelectorAll("#order_history .orders .order");
 
-              if(window.screen.width > 767){
+              if(window.screen.width > 992){
                 rows.forEach(row => {
                   row.style.display = ''; 
                 });

@@ -1,4 +1,4 @@
-<?php
+p<?php
 
 use PrestaShop\PrestaShop\Adapter\Presenter\Order\OrderPresenter;
 class MyAccountController extends MyAccountControllerCore
@@ -435,13 +435,12 @@ class MyAccountController extends MyAccountControllerCore
             'messages' => self::getNotifications()
         ));
 
-        // echo '<pre>'. print_r(self::ordersByBrand($idCustomer)['brands'],1) .'</pre>';
-        // exit;
-        // echo '<pre>'.print_r($this->getTemplateVarOrders(),1).'</pre>';
-        // exit;
+        
+
 
         $this->context->smarty->assign([
             'orders' => $this->getTemplateVarOrders(),
+            'orders_detail' => $this->getQtySent(),
         ]);
 
         // echo  _PS_THEME_DIR_;
@@ -463,6 +462,39 @@ class MyAccountController extends MyAccountControllerCore
 
         return $orders;
     }
+
+    public function getQtySent() {
+        $orders_detail = [];
+        $customer_orders = Order::getCustomerOrders($this->context->customer->id);
+    
+        foreach ($customer_orders as $customer_order) {
+            $order_details = OrderDetail::getList($customer_order['id_order']); 
+    
+            usort($order_details, function($a, $b) {
+                return $b['id_order_detail'] - $a['id_order_detail'];
+            });
+
+            
+
+            $quantity_sent = [];
+            foreach ($order_details as $detail) {
+                
+                    $quantity_sent[] = [ 
+                        'qty_sent' =>$detail['product_quantity_sent'],
+                        'qty' => $detail['product_quantity'],
+                        'qty_reference' => $detail['product_reference'],
+                    ];
+            }
+
+            $orders_detail[$customer_order['id_order']] =  $quantity_sent;
+        }
+    
+        // echo '<pre>'.print_r($orders_detail,1).'</pre>';
+        // exit;
+    
+        return $orders_detail;
+    }
+    
 
 
     public function lastYearOrders($idCustomer)
