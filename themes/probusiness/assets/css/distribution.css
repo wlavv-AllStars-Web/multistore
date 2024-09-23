@@ -7402,7 +7402,7 @@ textarea {
   /* contact page */
 
   section.contact-form {
-    padding: 1rem;
+    padding: 0;
   }
 
   .contact-form-box{
