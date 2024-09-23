@@ -1,4 +1,4 @@
-p<?php
+<?php
 
 use PrestaShop\PrestaShop\Adapter\Presenter\Order\OrderPresenter;
 class MyAccountController extends MyAccountControllerCore
