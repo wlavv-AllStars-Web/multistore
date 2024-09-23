@@ -424,17 +424,17 @@
                                         <table>
                                           <thead>
                                             <tr>
-                                              <th colspan="1">Reference</th>
-                                              <th colspan="1">Quantity Sent</th>
-                                              <th colspan="1">Quantity Bought</th>
+                                              <th>Reference</th>
+                                              <th>Quantity Sent</th>
+                                              <th>Quantity Bought</th>
                                             </tr>
                                           </thead>
                                           <tbody>
                                             {foreach from=$orders_detail[$index] item=qty_sent key=key}
                                               <tr>
-                                                <td colspan="1">{$qty_sent['qty_reference']}</td>
-                                                <td colspan="1">{$qty_sent['qty_sent']}</td>
-                                                <td colspan="1">{$qty_sent['qty']}</td>
+                                                <td>{$qty_sent['qty_reference']}</td>
+                                                <td>{$qty_sent['qty_sent']}</td>
+                                                <td>{$qty_sent['qty']}</td>
                                               </tr>
                                             {/foreach}
                                           </tbody>
@@ -504,7 +504,6 @@
               });
 
               if(window.screen.width > 992){
-                console.log("aqui")
                 rows.forEach(row => {
                   if (row.getAttribute('data-state') == state_num) {
                     row.style.display = ''; 
