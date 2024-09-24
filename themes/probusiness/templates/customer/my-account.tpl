@@ -498,7 +498,7 @@
             }
 
             function closeMissingProducts(index, el){
-              if(el.classList.contains("btn-primary")){
+              if(el.classList.contains("btn-secondary")){
                 var order_modal = el.parentElement.parentElement.parentElement; 
               }else{
                 var order_modal = el.parentElement.parentElement; 
