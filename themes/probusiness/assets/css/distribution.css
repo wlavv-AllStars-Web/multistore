@@ -7966,6 +7966,88 @@ select option {
   /* #pagenotfound .page-not-found .search-widget, #products .page-not-found .search-widget {
     margin: 0 !important;
   } */
+
+
+  /* modal shipping slip */
+
+  .modal_order_details.showOrderDetails .order_detail_qty{
+    padding: 1rem 0.5rem !important;
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip{
+    text-align: start;
+    width: 95%;
+  }
+  .modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip h4{
+    margin-bottom: 0;
+  }
+
+  .modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip span{
+    color: #0273EB;
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .order_references{
+    width: 100% !important;
+    /* margin: auto; */
+    padding-block: 1rem;
+    /* border-block: 1px solid #dedede; */
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .container-text-shippingSlip{
+    width: 95%;
+    padding: 0.5rem 1rem 1.5rem 1rem;
+    text-align: center;
+  }
+  .modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
+  .modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn button{
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem !important;
+    max-width: 140px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn a{
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem !important;
+    max-width: 140px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .order_references table{
+    width: 100%;
+    margin: auto;
+    background: #f6f6f6;
+    border-radius: 0.25rem;
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .order_references th{
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 2px solid #0273EB;
+    text-align: center;
+    font-size: 13px !important;
+    white-space: nowrap;
+    width: 33.3%;
+  }
+  
+  .modal_order_details.showOrderDetails .order_detail_qty .order_references td{
+    border: 0;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    width: 33.3%;
+    padding: 0.25rem;
+  }
 }
 
 /* tablet pequena */
@@ -8736,18 +8818,49 @@ select option {
   justify-content: center;
   align-items: center;
   border-radius: .25rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip span{
+  color: #0273EB;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references{
-  width: 90%;
-  margin: auto;
+  width: 95%;
+  /* margin: auto; */
   padding-block: 1rem;
   /* border-block: 1px solid #dedede; */
+}
+
+.modal_order_details.showOrderDetails .order_detail_qty .container-text-shippingSlip{
+  width: 95%;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+}
+.modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn button{
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem !important;
+  max-width: 150px;
+  width: 100%;
+}
+.modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn a{
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem !important;
+  max-width: 150px;
+  width: 100%;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references table{
   width: 100%;
   margin: auto;
+  background: #f6f6f6;
+  border-radius: 0.25rem;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references th{
@@ -8767,6 +8880,7 @@ select option {
   font-size: 14px;
   white-space: nowrap;
   width: 33.3%;
+  padding: 0.25rem;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .closeMissingProducts{

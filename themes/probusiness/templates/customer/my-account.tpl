@@ -301,6 +301,9 @@
                                   <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
                                   <i class="fa-solid fa-xmark" style="color: #555;"></i>
                                   </div>
+                                  <div class="title_shipping_slip">
+                                      <h4>Shipping Slip <span>#{$order.details.reference|escape:'html':'UTF-8'}</span></h4>
+                                  </div>
                                   <div class="order_references">
                                     <table>
                                       <thead>
@@ -312,14 +315,25 @@
                                       </thead>
                                       <tbody>
                                         {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                                          {if $qty_sent['qty_sent'] != $qty_sent['qty']}
                                           <tr>
                                             <td>{$qty_sent['qty_reference']}</td>
                                             <td>{$qty_sent['qty_sent']}</td>
                                             <td>{$qty_sent['qty']}</td>
                                           </tr>
+                                          {/if}
                                         {/foreach}
                                       </tbody>
                                     </table>
+                                  </div>
+                                  <div class="container-text-shippingSlip">
+                                        <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum dui vitae massa tincidunt tempor.
+                                        </span>
+                                  </div>
+                                  <div class="container-closeReferences-btn">
+                                      <a class="btn-primary" href="{$order.details.details_url|escape:'html':'UTF-8'}">View Order</a>
+                                      <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                   </div>
                                 </div>
                               </div>
@@ -420,6 +434,9 @@
                                       <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
                                         <i class="fa-solid fa-xmark" style="color: #555;"></i>
                                       </div>
+                                      <div class="title_shipping_slip">
+                                        <h4>Shipping Slip <span>#{$order.details.reference|escape:'html':'UTF-8'}</span></h4>
+                                      </div>
                                       <div class="order_references">
                                         <table>
                                           <thead>
@@ -439,6 +456,15 @@
                                             {/foreach}
                                           </tbody>
                                         </table>
+                                      </div>
+                                      <div class="container-text-shippingSlip">
+                                        <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum dui vitae massa tincidunt tempor.
+                                        </span>
+                                      </div>
+                                      <div class="container-closeReferences-btn">
+                                          <a class="btn-primary" href="{$order.details.details_url|escape:'html':'UTF-8'}">View Order</a>
+                                          <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                       </div>
                                     </div>
                                   </div>
@@ -472,8 +498,11 @@
             }
 
             function closeMissingProducts(index, el){
-              console.log(el.parentElement.parentElement)
-              const order_modal = el.parentElement.parentElement; 
+              if(el.classList.contains("btn-primary")){
+                var order_modal = el.parentElement.parentElement.parentElement; 
+              }else{
+                var order_modal = el.parentElement.parentElement; 
+              }
               order_modal.classList.remove('showOrderDetails')
             }
 
