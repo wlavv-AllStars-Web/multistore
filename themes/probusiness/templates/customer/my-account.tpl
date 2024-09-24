@@ -74,6 +74,10 @@
       <li class="nav-item">
         <a class="nav-link" id="notification-tab" title="{l s="Notifications" d="Shop.Theme.Statistics"}" data-toggle="tab" href="#notification" role="tab" aria-controls="notification" aria-selected="false" style="padding:0.5rem 1rem;" onclick="changeImgBanner(this)"><i class="fa-solid fa-bell"></i></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="quickshop-tab" title="{l s="Quick Shop" d="Shop.Theme.Statistics"}" href="{$link->getPageLink('quickshop', true)}"  style="padding:0.5rem 1rem;"><img src="/img/asd/shopping-cart-fast.png" width="37" /></a>
+      </li>
       {* <li class="setNameTitle" style="width: 100%;display:flex;justify-content: center;font-size:30px;color:#666;font-weight:700;">
         titulo
       </li> *}
@@ -83,7 +87,6 @@
 
       
     </ul>
-
     {* <script>
   document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.nav-link');
@@ -233,9 +236,9 @@
 
               
               {foreach from=$orders item=order key=index name=orderLoop}
-                {* {if $smarty.foreach.orderLoop.iteration == 1}
-                  <pre>{$order.history.current.id_order_state}</pre>
-                {/if} *}
+                 {* {if $smarty.foreach.orderLoop.iteration == 1}
+                  <pre>{$order.details|print_r}</pre>
+                {/if}  *}
                   <tr data-state="{$order.history.current.id_order_state}">
                     <td class="text-xs-center">{$order.details.order_date|escape:'html':'UTF-8'}</td>
                     <th scope="row" class="link-ref text-xs-center">
@@ -315,13 +318,13 @@
                                       </thead>
                                       <tbody>
                                         {foreach from=$orders_detail[$index] item=qty_sent key=key}
-                                          {if $qty_sent['qty_sent'] != $qty_sent['qty']}
+                                          {* {if $qty_sent['qty_sent'] != $qty_sent['qty']} *}
                                           <tr>
                                             <td>{$qty_sent['qty_reference']}</td>
-                                            <td>{$qty_sent['qty_sent']}</td>
+                                            <td>{if $qty_sent['qty_sent'] < $qty_sent['qty']}<span style="color: #f78228;">{$qty_sent['qty_sent']}</span>{else}<span style="color: #0273EB;">{$qty_sent['qty_sent']}</span>{/if}</td>
                                             <td>{$qty_sent['qty']}</td>
                                           </tr>
-                                          {/if}
+                                          {* {/if} *}
                                         {/foreach}
                                       </tbody>
                                     </table>
@@ -332,7 +335,7 @@
                                         </span>
                                   </div>
                                   <div class="container-closeReferences-btn">
-                                      <a class="btn-primary" href="{$order.details.details_url|escape:'html':'UTF-8'}">View Order</a>
+                                      <a class="btn-primary" href="?type=slip&id_order={$index}">Delivery Slip</a>
                                       <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                   </div>
                                 </div>
@@ -450,7 +453,7 @@
                                             {foreach from=$orders_detail[$index] item=qty_sent key=key}
                                               <tr>
                                                 <td>{$qty_sent['qty_reference']}</td>
-                                                <td>{$qty_sent['qty_sent']}</td>
+                                                <td>{if $qty_sent['qty_sent'] < $qty_sent['qty']}<span style="color: #f78228;">{$qty_sent['qty_sent']}</span>{else}<span style="color: #0273EB;">{$qty_sent['qty_sent']}</span>{/if}</td>
                                                 <td>{$qty_sent['qty']}</td>
                                               </tr>
                                             {/foreach}
@@ -463,7 +466,7 @@
                                         </span>
                                       </div>
                                       <div class="container-closeReferences-btn">
-                                          <a class="btn-primary" href="{$order.details.details_url|escape:'html':'UTF-8'}">View Order</a>
+                                          <a class="btn-primary" href="?type=slip&id_order={$index}">Delivery Slip</a>
                                           <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                       </div>
                                     </div>

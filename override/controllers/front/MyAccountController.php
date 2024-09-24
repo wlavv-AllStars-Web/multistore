@@ -59,6 +59,7 @@ class MyAccountController extends MyAccountControllerCore
                 /**
                  * Check if customer select his order.
                  */
+                
                 if (!empty($id_order)) {
                     $order = new Order($id_order);
                     $id_order = (int) $order->id_customer === (int) $customer->id ? $id_order : 0;
@@ -312,9 +313,18 @@ class MyAccountController extends MyAccountControllerCore
     public function initContent()
     {
 
+        // echo '<pre>'.print_r($order->getDeliverySlipsCollection(),1).'</pre>';
+        // exit;
+
         parent::initContent();
 
         // contact form inicion
+        if(Tools::getValue('type') == 'slip'){
+            $order = new Order(Tools::getValue('id_order'));
+            $order_invoice_collection = $order->getDeliverySlipsCollection();
+            $pdf = new PDF($order_invoice_collection, PDF::TEMPLATE_DELIVERY_SLIP, Context::getContext()->smarty);  
+            $pdf->render();
+        }
 
         $email = Tools::safeOutput(Tools::getValue('from',
         ((isset($this->context->cookie) && isset($this->context->cookie->email) && Validate::isEmail($this->context->cookie->email)) ? $this->context->cookie->email : '')));
