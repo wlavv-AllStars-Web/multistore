@@ -544,7 +544,6 @@
                 });
               }else{
                 rowsM.forEach(row => {
-                  console.log(row, row.getAttribute('data-state'));
                   if (row.getAttribute('data-state') == state_num || state_num === 0) {
                     row.style.display = ''; 
                   }else {
