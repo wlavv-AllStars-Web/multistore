@@ -296,7 +296,7 @@
                               <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
                                 <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i>
                               </div>
-                              <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event)">
+                              <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
                                 <div class="order_detail_qty">
                                   <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
                                   <i class="fa-solid fa-xmark" style="color: #555;"></i>
