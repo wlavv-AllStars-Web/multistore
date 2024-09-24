@@ -8822,6 +8822,9 @@ select option {
   padding: 1rem;
 }
 
+.modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip{
+  padding-bottom: 1rem;
+}
 .modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip span{
   color: #0273EB;
 }
@@ -8829,13 +8832,14 @@ select option {
 .modal_order_details.showOrderDetails .order_detail_qty .order_references{
   width: 95%;
   /* margin: auto; */
-  padding-block: 1rem;
+  padding-block: .5rem;
   /* border-block: 1px solid #dedede; */
+  background: #f6f6f6;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .container-text-shippingSlip{
   width: 95%;
-  padding: 0.5rem 1rem 1.5rem 1rem;
+  padding: 1rem;
 }
 .modal_order_details.showOrderDetails .order_detail_qty .container-closeReferences-btn{
   width: 95%;
@@ -8872,6 +8876,7 @@ select option {
   font-size: 14px;
   white-space: nowrap;
   width: 33.3%;
+  padding: 0 12px 12px 12px;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references td{
