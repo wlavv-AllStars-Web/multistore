@@ -8801,8 +8801,48 @@ select option {
   }
 }
 
+.modal_order_details.showOrderDetails {
+  display: flex !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000; /* Valor alto para garantir que está acima de outros elementos */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
 
-.modal_order_details.showOrderDetails{
+.modal_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Prefixo para compatibilidade com Chrome */
+  background: rgba(0, 0, 0, 0.3); /* Cor de sobreposição para o fundo */
+  z-index: 1;
+}
+
+.order_detail_qty {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  min-height: 250px;
+  outline: 2px solid #555;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  z-index: 2; /* Garantir que está acima da camada de fundo */
+}
+
+/* .modal_order_details.showOrderDetails{
   display: flex !important;
   position: fixed;
   top: 50%;
@@ -8830,7 +8870,7 @@ select option {
   border-radius: .25rem;
   flex-direction: column;
   padding: 1rem;
-}
+} */
 
 .modal_order_details.showOrderDetails .order_detail_qty .title_shipping_slip{
   padding-bottom: 1rem;
