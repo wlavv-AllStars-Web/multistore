@@ -4165,7 +4165,7 @@ textarea {
   #checkout .cart_empty .btn.btn-primary:hover{
     background: #fff !important;
     color: #0273EB !important;
-    outline: 1px solid #0273EB;
+    outline: 1px solid #0273EB !important;
   }
 
   .text_mobile{
