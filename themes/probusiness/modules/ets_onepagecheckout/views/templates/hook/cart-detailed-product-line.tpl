@@ -75,7 +75,7 @@
           <a class="label" href="{$product.url}"
             data-id_customization="{$product.id_customization|intval}">{$product.name}</a>
             {foreach from=$product.attributes key="attribute" item="value"}
-              <div class="product-line-info {$attribute|lower}">
+              <div class="attribute {$attribute|lower}">
                 <span class="label">{$attribute}:</span>
                 <span class="value">{$value}</span>
               </div>

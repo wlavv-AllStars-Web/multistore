@@ -2278,6 +2278,16 @@ input[type="number"] {
   color: #333;
   font-weight: 400;
 }
+#checkout .cart_description .attribute{
+  display: flex !important;
+  gap: .5rem;
+  margin-bottom: 0;
+  height: auto;
+}
+#checkout .cart_description .attribute:hover{
+  border: 0;
+}
+
 #checkout .cart_total .product-price {
   font-size: 14px;
   line-height: 17px;
@@ -8858,6 +8868,10 @@ select option {
   border-radius: 0.25rem !important;
   max-width: 150px;
   width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal_order_details.showOrderDetails .order_detail_qty .order_references table{

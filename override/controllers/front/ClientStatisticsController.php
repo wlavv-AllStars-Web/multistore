@@ -22,8 +22,8 @@ class ClientStatisticsControllerCore extends FrontController{
         
         $average = $totalOfOrders / $numberOfOrders;
 
-        echo '<pre>'.print_r(self::bestSellers()['colors'],1).'</pre>';
-        exit;
+        // echo '<pre>'.print_r(self::bestSellers()['colors'],1).'</pre>';
+        // exit;
         
         $this->context->smarty->assign(array(
             'customer' => $this->context->customer,
