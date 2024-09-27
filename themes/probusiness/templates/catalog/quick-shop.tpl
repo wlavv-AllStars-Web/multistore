@@ -19,7 +19,7 @@
                 
 
                 <div class="quick-products-container">
-                    
+                    {* <div class="no-products-yet">No Products Yet.</div> *}
                 </div>
 
                 {* se add another *}
@@ -364,7 +364,7 @@
             top: 100% !important;
             width: 95%;
             left: 50%;
-            border-top: 1px solid #dedede;
+            /* border-top: 1px solid #dedede; */
             transform: translateX(-50%);
         }
         /* SEARCH ERROR */
@@ -418,6 +418,11 @@
             100% { transform: rotate(360deg); }
         }
         /*  */
+
+        .no-products-yet{
+            padding: 1rem;
+        }
+
         .container-quickshop{
           max-width: 1350px;
           width: 100%;
@@ -437,6 +442,7 @@
         .quick-header{
             display: flex;
             border-bottom: 1px solid #dedede;
+            background: #f6f6f6;
         }
         .quickshop-header{
             padding-bottom: 2rem;
@@ -462,10 +468,15 @@
         .quick-products-search{
             display: flex;
             flex-direction: column;
+            background: #f6f6f6;
         }
 
         .productsQS{
             padding: 0 1rem 1rem;
+        }
+
+        .qs-product{
+            background: #fff;
         }
 
         .qs-warning{
@@ -594,6 +605,7 @@
         .quick-products .quick-product-qty {
             flex: 1;
             padding: 0.5rem 1rem;
+            display: flex;
         }
 
         .quick-products .quick-product-qty .quick-product-qty-container{
@@ -628,6 +640,7 @@
 
         .quick-footer{
             border-top: 1px solid #dedede;
+            background: #f6f6f6;
         }
 
         .quick-footer .quick-footer-container{
