@@ -618,7 +618,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         
 
         if($this->context->shop->id == 3){
-            // echo '<pre>'.print_r(count($search['products']),1).'</pre>';
+            // echo '<pre>'.print_r($search['products'],1).'</pre>';
             // exit;
 
             $product = new Product($search['products'][0]['id_product']);
@@ -626,9 +626,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.Tools::getValue('s').'"');
-            if($product_attribute){
-                $search['child_attribute'] = $product_attribute;
-            }
+            // if($product_attribute){
+            //     $search['child_attribute'] = $product_attribute;
+            //     $search['child_reference'] = Tools::getValue('s');
+            // }
 
 
             // echo '<pre>'.print_r($haveCombinations,1).'</pre>';
@@ -638,7 +639,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             // $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
-            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations]);
+            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations, 'child_reference' => Tools::getValue('s')]);
             // $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
         }else{
             $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);

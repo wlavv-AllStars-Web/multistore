@@ -2,7 +2,7 @@
     <div class="qs-warning">
         <p>{l s="Please verify the product reference." d="Shop.Theme.Quickshop"}</p>
     </div>
-{else}
+{/if}
 
 {* <pre>{print_r($child_attribute,1)}</pre> *}
 
@@ -60,7 +60,13 @@
                     {block name='product_name'}
                         <div class="quick-product-description">
                             <p>{$product.name}
-                            -<span>{$product.reference}</span></p>
+                            -<span>
+                            {if $child_reference}
+                                {$child_reference}
+                            {else}
+                                {$product.reference}
+                            {/if}
+                            </span></p>
                         </div>
                 {/block}
                 </div>
@@ -96,4 +102,3 @@
         margin-bottom: 0;
     }
 </style>
-{/if}
