@@ -249,12 +249,14 @@ body #wrapper {
     border-radius: 0 !important;
     outline:1px solid#0273EB;
     outline-offset: -1px;
+    transition: all ease-in-out 250ms;
   }
 
   .btn-primary:hover{
     color: #0273EB !important;
     background: #fff !important;
     outline:1px solid#0273EB;
+    transition: all ease-in-out 250ms;
   }
 
   .btn-primary .shopping-cart{
@@ -262,6 +264,16 @@ body #wrapper {
   }
   .btn-primary.add-to-cart:hover .shopping-cart{
     color: #0273EB !important;
+  }
+
+  .btn-secondary{
+    transition: all ease-in-out 250ms;
+  }
+
+  .btn-secondary:hover{
+    background: #0273EB !important;
+    color: #fff !important;
+    transition: all ease-in-out 250ms;
   }
 
   #blockcart-modal .btn-primary{
@@ -1562,14 +1574,14 @@ form label {
   cursor: pointer;
   background: #fff;
 }
-#menu-client .nav-item:nth-child(8){
+/* #menu-client .nav-item:nth-child(8){
   cursor:unset;
   background: #f7f7f7 !important;
-}
-#menu-client .nav-item:nth-child(8):hover{
+} */
+/* #menu-client .nav-item:nth-child(8):hover{
   cursor:unset;
   background: #f7f7f7 !important;
-}
+} */
 
 #menu-client .nav-item a i {
   font-size: 32px;

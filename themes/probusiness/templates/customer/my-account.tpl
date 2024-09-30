@@ -294,7 +294,7 @@
                       <span>
                       {if $order.history.current.id_order_state == 4}
                         {foreach from=$orders_detail[$index] item=qty_sent key=key}
-                          {if $qty_sent['qty_sent'] != $qty_sent['qty']}
+                          {* {if $qty_sent['qty_sent'] != $qty_sent['qty']} *}
                             {if $key == 0}
                               <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
                                 <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i>
@@ -343,9 +343,9 @@
                               </div>
                             {/if}
                             
-                          {else}
+                          {* {else}
                           -
-                          {/if}
+                          {/if} *}
                           
                         {/foreach}
                       {else}
