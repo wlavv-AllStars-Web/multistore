@@ -25,7 +25,7 @@
                         <p class="product-unit-price sub">{$product.unit_price_full}</p>
                     {/if}
                 {/block}
-                <div> {l s="Your Margin " d="Shop.Theme.ProductList"}: <span style="font-weight: 400;">{$product.price_without_reduction_without_tax - ($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2:".":" "}€ </span></div>
+                <div>{l s="Your Margin " d="Shop.Theme.ProductList"}: <span style="font-weight: 400;">{($product.price_without_reduction_without_tax - ($product.price_without_reduction_without_tax - $product.reduction_without_tax))|number_format:2:".":" "}€ </span></div>
             </div>
           {/if}
         {/block}

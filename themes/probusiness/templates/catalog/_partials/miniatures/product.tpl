@@ -237,7 +237,7 @@
             {hook h='displayProductPriceBlock' product=$product type="old_price"}
             <div class="old_price" style="display: flex;align-items:center;gap:0.5rem;font-size:16px;font-weight:400;justify-content:center;color:#444;">
             {l s="RRP / PVP" d="Shop.Theme.ProductList"}
-            <span class="regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}" style="font-size: 16px;font-weight:600;color:#444;margin-bottom:0;text-decoration: line-through;">{$product.price_without_reduction_without_tax|number_format:2}€</span>
+            <span class="regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}" style="font-size: 16px;font-weight:600;color:#444;margin-bottom:0;text-decoration: line-through;">{$product.price_without_reduction_without_tax|number_format:2:".":" "}€</span>
             </div>
 
           {* {/if} *}
@@ -251,7 +251,7 @@
             {if '' !== $smarty.capture.custom_price}
               {l s="Price" d="Shop.Theme.ProductList"}: {$smarty.capture.custom_price nofilter}
             {else}
-              <span style="font-size:16px;color: #444;text-transform:uppercase;">{l s="Price" d="Shop.Theme.ProductList"}:</span> <span style="font-size: 21px;font-weight:700;color:#0273EB;">{($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2}€</span>
+              <span style="font-size:16px;color: #444;text-transform:uppercase;">{l s="Price" d="Shop.Theme.ProductList"}:</span> <span style="font-size: 21px;font-weight:700;color:#0273EB;">{($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2:".":" "}€</span>
             {/if}
           </span>
           {else}
@@ -260,7 +260,7 @@
             {if '' !== $smarty.capture.custom_price}
               {l s="From" d="Shop.Theme.ProductList"}: {$smarty.capture.custom_price nofilter}
             {else}
-              <span style="font-size:16px;color: #444;text-transform:uppercase;">{l s="From" d="Shop.Theme.ProductList"}:</span> <span style="font-size: 21px;font-weight:700;color:#0273EB;">{($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2}€</span>
+              <span style="font-size:16px;color: #444;text-transform:uppercase;">{l s="From" d="Shop.Theme.ProductList"}:</span> <span style="font-size: 21px;font-weight:700;color:#0273EB;">{($product.price_without_reduction_without_tax - $product.reduction_without_tax)|number_format:2:".":" "}€</span>
             {/if}
           </span>
           {/if}
