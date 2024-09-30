@@ -588,7 +588,7 @@
         .quick-products .quick-product-options .quick-product-option{
             display: flex;
             align-items: center;
-            padding: 0.5rem 0;
+            /* padding: 0.5rem 0; */
         }
         .quick-products .quick-product-options .quick-product-option span{
             width: 20%;

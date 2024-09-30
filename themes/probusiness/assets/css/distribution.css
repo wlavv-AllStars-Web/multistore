@@ -8956,6 +8956,18 @@ select option {
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1500px) {
+  /* qs */
+
+  .quick-product-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .quick-products .quick-product-options .quick-product-option{
+    padding: 0;
+  }
+
   /* .product-add-to-cart .product-quantity{
     flex-direction: column;
     gap: 1rem;
@@ -8976,6 +8988,17 @@ select option {
   .product-add-to-cart .product-quantity .qty .input-group .input-group-btn-vertical{
     position: relative;
   }
+}
+
+/* quickshop */
+.quick-product-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quick-products .quick-product-options .quick-product-option{
+  padding: 0;
 }
 
 .modal_order_details.showOrderDetails {
