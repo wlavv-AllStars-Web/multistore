@@ -576,6 +576,10 @@
             padding: 0 1rem;
         }
 
+        .quick-products .quick-product-details .quick-product-description p {
+            margin: 0;
+        }
+
         .quick-products .quick-product-details .quick-product-description span{
             font-weight: 600;
         }
