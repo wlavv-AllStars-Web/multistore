@@ -8058,6 +8058,37 @@ select option {
     width: 33.3%;
     padding: 0.25rem;
   }
+
+  #quickshop #wrapper{
+    min-height: unset !important;
+  }
+
+  #quickshop-tab img {
+    width: 100%;
+  }
+
+  .container-quickshop{
+    padding-top: 1rem;
+  }
+
+  .quickshop-products-table .quick-header{
+    display: none;
+  }
+
+  .quick-products-search .product-search-input{
+    grid-template-columns: 1fr;
+  }
+  .quick-search-gap{
+    display: none;
+  }
+
+  .productsQS{
+    grid-template-columns: 1fr !important;
+  }
+
+  .quick-products-container .quick-products{
+    display: block;
+  }
 }
 
 /* tablet pequena */

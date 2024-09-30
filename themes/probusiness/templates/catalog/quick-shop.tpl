@@ -364,7 +364,7 @@
             top: 100% !important;
             width: 95%;
             left: 50%;
-            /* border-top: 1px solid #dedede; */
+            border-top: 1px solid #dedede;
             transform: translateX(-50%);
         }
         /* SEARCH ERROR */

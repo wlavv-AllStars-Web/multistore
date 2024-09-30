@@ -19,6 +19,15 @@
 *  International Registered Trademark & Property of ETS-Soft
 *}
 <!-- Block search module TOP -->
+{* {if $urls.current_url == $link->getPageLink('quickshop', true)}
+	<div id="search_widget" class="search-widgets shop-asd" data-search-controller-url="{$link->getPageLink('quickshop', true)}">
+		<form method="get" action="{$link->getPageLink('quickshop', true)}">
+			<input type="hidden" name="controller" value="search">
+			<input type="text" name="s" value="{$search_string}" placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}" aria-label="{l s='Search' d='Shop.Theme.Catalog'}">
+		</form>
+	</div>
+
+{else} *}
 <div id="search_widget" class="col-lg-5 col-md-5 col-sm-12 search-widget" data-search-controller-url="{$search_controller_url|escape:'html':'UTF-8'}">
 	<span class="toogle_search_top">
         <i class="material-icons material-icons-search" ></i>
@@ -33,4 +42,5 @@
     	</form>
     </div>
 </div>
+{* {/if} *}
 <!-- /Block search module TOP -->
