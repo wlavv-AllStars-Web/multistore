@@ -176,18 +176,19 @@
                     <thead class="thead-default" style="text-align: center; background-color: #f0f0f0;font-size: 16px;font-weight:700;">
                         <tr>
                             <td>{l s='Last update' d='Shop.Theme.Actions'}</td>
-                            <td>{l s='Weight' d='Shop.Theme.Checkout'}</td>
                             <td>{l s='Carrier' d='Shop.Theme.Checkout'}</td>
                             <td>{l s='Tracking' d='Shop.Theme.Checkout'}</td>
+                            <td>{l s='Shipping Slip' d='Shop.Theme.Checkout'}</td>
                         </tr>
                     </thead>
                     <tbody>
+                    {* <pre>{$order.details.id|print_r}</pre> *}
                         {foreach from=$order.shipping item=line}
                             <tr style="text-align: center;font-size: 16px;font-weight:400;">
                                 <td>{$line.shipping_date|escape:'html':'UTF-8'}</td>
-                                <td>{$line.weight|number_format:2:".":","} Kg</td>
                                 <td>{$line.carrier_name|escape:'html':'UTF-8'}</td>
                                 <td>{$line.tracking|escape:'html':'UTF-8'}</td>
+                                <td class="order-slip-part"><a href="?controller=order-detail&type=slip&id_order={$order.details.id}"><i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i></a></td>
                             </tr>
                         {/foreach}
                     </tbody>
@@ -204,16 +205,16 @@
                                 <td style="font-weight:400;">{$line.shipping_date|escape:'html':'UTF-8'}</td>
                             </tr>
                             <tr>
-                                <td style="font-weight:600;"><span>{l s='Weight' d='Shop.Theme.Checkout'}</span></td>
-                                <td style="font-weight:400;">{$line.weight|number_format:2:".":","} Kg</td>
-                            </tr>
-                            <tr>
                                 <td style="font-weight:600;"><span>{l s='Carrier' d='Shop.Theme.Checkout'}</span></td>
                                 <td style="font-weight:400;">{$line.carrier_name|escape:'html':'UTF-8'}</td>
                             </tr>
                             <tr>
                                 <td style="font-weight:600;"><span>{l s='Tracking' d='Shop.Theme.Checkout'}</span></td>
                                 <td style="font-weight:400;">{$line.tracking|escape:'html':'UTF-8'}</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:600;"><span>{l s='Shipping Slip' d='Shop.Theme.Checkout'}</span></td>
+                                <td style="font-weight:400;"><a href="?type=slip&id_order="><i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i></a></td>
                             </tr>
                         {/foreach}
                     </tbody>
