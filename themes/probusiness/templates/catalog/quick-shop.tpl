@@ -4,15 +4,15 @@
     {* <pre>{$urls.pages|print_r}</pre> *}
     <div class="container-quickshop">
         <div class="quickshop-header">
-            <h1>Quick Shop</h1>
-            <p>Save time and quickly order your products with our quickshop facility.</p>
+            <h1>{l s="Quick Shop" d="Shop.Theme.Quickshop"}</h1>
+            <p>{l s="Save time and quickly order your products with our quickshop facility." d="Shop.Theme.Quickshop"}</p>
         </div>
         <div class="quickshop-buysection">
             <div class="quickshop-products-table">
                 <div class="quick-header">
-                    <div>Product</div>
-                    <div>Options</div>
-                    <div>Qty</div>
+                    <div>{l s="Product" d="Shop.Theme.Quickshop"}</div>
+                    <div>{l s="Options" d="Shop.Theme.Quickshop"}</div>
+                    <div>{l s="Qty" d="Shop.Theme.Quickshop"}</div>
                 </div>
 
                 {* para cada produto *}
@@ -50,10 +50,10 @@
                 <div class="quick-footer">
                     <div class="quick-footer-container">
                         <div class="quick-footer-left">
-                            <button class="quick-btn-remove-all" onclick="removeAllToCart(this)"><i class="fa-solid fa-xmark"></i><span>Remove All</span></button>
+                            <button class="quick-btn-remove-all" onclick="removeAllToCart(this)"><i class="fa-solid fa-xmark"></i><span>{l s="Remove All" d="Shop.Theme.Quickshop"}</span></button>
                         </div>
                         <div class="quick-footer-right">
-                            <button class="quick-btn-addcart" onclick="addAllToCart(this)" disabled>Proceed to Checkout</button>
+                            <button class="quick-btn-addcart" onclick="addAllToCart(this)" disabled>{l s="Proceed to Checkout" d="Shop.Theme.Quickshop"}</button>
                             {* <button class="quick-btn-checkout">Proceed to Checkout</button> *}
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                     if (json.rendered_products) {
                         resultsContainer.innerHTML = json.rendered_products;
                     } else {
-                        resultsContainer.innerHTML = '<p>No products found</p>';
+                        resultsContainer.innerHTML = '<p></p>';
                     }
 
 
@@ -133,7 +133,7 @@
         const id_attribute_child = document.querySelector(".qs-product").getAttribute("data-child-id-product-attribute");
         btnProceed.removeAttribute("disabled")
 
-        loadingSpinner.style.display = 'block';
+        loadingSpinner.style.display = 'flex';
 
         $.ajax({
             url: link,
@@ -177,6 +177,8 @@
         const token = '{$static_token}'; // Replace with your actual static token
         const productsContainer = document.querySelectorAll('.quick-products-container .quick-products');
         const productsData = [];
+        const loadingSpinner = document.getElementById('loading-spinner'); 
+        loadingSpinner.style.display = 'flex';
 
         const spinner = document.createElement("div");
         spinner.classList.add("spinner-addall")
@@ -259,6 +261,7 @@
                         console.log("last processed")
                         document.querySelector(".spinner-addall").remove();
                         window.location.href = "{$urls.pages.order}";
+                        // loadingSpinner.style.display = 'none';
                     }
                 }
             });
@@ -402,6 +405,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, .3);
         }
 
         .spinner {

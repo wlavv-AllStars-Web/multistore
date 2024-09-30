@@ -1,13 +1,13 @@
 {if count($listing.products) > 5}
     <div class="qs-warning">
-        <p>Please verify the product reference.</p>
+        <p>{l s="Please verify the product reference." d="Shop.Theme.Quickshop"}</p>
     </div>
 {/if}
 {* <pre>{print_r($child_attribute,1)}</pre> *}
 
 <div class="productsQS{if !empty($cssClass)} {$cssClass}{/if}">
     {if empty($listing.products)}
-        <p style="font-size: 1rem;">No products found...</p>
+        <p style="font-size: 1rem;">{l s="No products found..." d="Shop.Theme.Quickshop"}</p>
     {/if}
     {foreach from=$listing.products item="product" key="position"}
         {* {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses} *}
