@@ -296,10 +296,12 @@
                         {foreach from=$orders_detail[$index] item=qty_sent key=key}
                           {* {if $qty_sent['qty_sent'] != $qty_sent['qty']} *}
                             {if $key == 0}
-                              <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}">
+                              {* <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}"> *}
+                              <a href="?type=slip&id_order={$index}">
                                 <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i>
-                              </div>
-                              <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
+                              </a>
+                              {* </div> *}
+                              {* <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
                                 <div class="modal_background"></div>
                                 <div class="order_detail_qty" tabindex="0">
                                   <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
@@ -318,15 +320,15 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        {foreach from=$orders_detail[$index] item=qty_sent key=key}
+                                        {foreach from=$orders_detail[$index] item=qty_sent key=key} *}
                                           {* {if $qty_sent['qty_sent'] != $qty_sent['qty']} *}
-                                          <tr>
+                                          {* <tr>
                                             <td>{$qty_sent['qty_reference']}</td>
                                             <td>{if $qty_sent['qty_sent'] < $qty_sent['qty']}<span style="color: #f78228;">{$qty_sent['qty_sent']}</span>{else}<span style="color: #0273EB;">{$qty_sent['qty_sent']}</span>{/if}</td>
                                             <td>{$qty_sent['qty']}</td>
-                                          </tr>
+                                          </tr> *}
                                           {* {/if} *}
-                                        {/foreach}
+                                        {* {/foreach}
                                       </tbody>
                                     </table>
                                   </div>
@@ -340,7 +342,7 @@
                                       <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                   </div>
                                 </div>
-                              </div>
+                              </div> *}
                             {/if}
                             
                           {* {else}
