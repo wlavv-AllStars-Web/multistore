@@ -610,17 +610,35 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
     {
         $search = $this->getProductSearchVariables();
 
-        $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.Tools::getValue('s').'"');
-        if($product_attribute){
-            $search['child_attribute'] = $product_attribute;
-        }
+        // $product = new Product($search['id_product']);
+        // $haveCombinations = $product->hasAttributes();
+        
 
-        // echo '<pre>'.print_r($search,1).'</pre>';
-        // exit;
+        // $search['hasCombinations'] = $haveCombinations;
+        
 
         if($this->context->shop->id == 3){
+            // echo '<pre>'.print_r(count($search['products']),1).'</pre>';
+            // exit;
+
+            $product = new Product($search['products'][0]['id_product']);
+            $haveCombinations = $product->hasAttributes();
+
+
+            $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.Tools::getValue('s').'"');
+            if($product_attribute){
+                $search['child_attribute'] = $product_attribute;
+            }
+
+
+            // echo '<pre>'.print_r($haveCombinations,1).'</pre>';
+            // echo '<pre>'.print_r($product_attribute+0,1).'</pre>';
+            // exit;
+
+
+
             // $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
-            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0]);
+            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations]);
             // $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
         }else{
             $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
