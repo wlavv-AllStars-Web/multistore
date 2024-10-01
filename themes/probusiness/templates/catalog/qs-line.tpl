@@ -47,6 +47,7 @@
                   data-product-attribute="{$id_attribute_group}"
                   name="group[{$id_attribute_group}]"
                   onchange="handleSelectChange(this)">
+                    <option>Please Select</option>
                   {foreach from=$group.attributes key=id_attribute item=group_attribute}
                     <option value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} selected="selected"{/if}>{$group_attribute.name}</option>
                   {/foreach}
