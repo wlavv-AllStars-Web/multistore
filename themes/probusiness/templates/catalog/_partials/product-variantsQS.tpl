@@ -4,10 +4,10 @@
     {foreach from=$groups key=id_attribute_group item=group}
         {if !empty($group.attributes)}
         <div class="quick-product-option">
-            <span>{$group.name}
-                {foreach from=$group.attributes key=id_attribute item=group_attribute}
+            <span>{$group.name}:
+                {* {foreach from=$group.attributes key=id_attribute item=group_attribute}
                 {if $group_attribute.selected}{$group_attribute.name}{/if}
-                {/foreach}
+                {/foreach} *}
             </span>
             {if $group.group_type == 'select'}
             <select

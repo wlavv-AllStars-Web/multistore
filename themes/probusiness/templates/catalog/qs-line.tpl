@@ -14,29 +14,30 @@
     </div>
     <div class="quick-product-options">
     {* para cada atributo *}
-    
-    {if $product.qs_attributes}
-      {foreach from=$product.qs_attributes item=group}
+    {* <pre>{$product.groups|print_r}</pre> *}
+    {if $product.groups}
+      {* {foreach from=$product.groups item=group}
         <div class="quick-product-option">
             <span class="QS-span-data" name="group[{$group.id_attribute_group}]" value="{$group.id_attribute}">{$group.public_name} :</span>
             <span>{$group.name}</span>
-            {* <select class="select-attr" data-group-id="{$group.group_id}" name="group[{$group.group_id}]">
+            <select class="select-attr" data-group-id="{$group.group_id}" name="group[{$group.group_id}]">
                 {foreach from=$group.options item=option}
                     <option value="{$option.id_attribute}" title="{$option.attribute_name}">
                         {$option.attribute_name}
                     </option>
                 {/foreach}
-            </select> *}
+            </select>
         </div>
-      {/foreach} 
-        {* <div class="product-variants js-product-variants">
+      {/foreach}  *}
+        <div class="product-variants js-product-variants">
         {foreach from=$product.groups key=id_attribute_group item=group}
-            {if !empty($group.attributes)}
+          {* <pre>{$group|print_r}</pre> *}
+            {if !empty($group)}
             <div class="quick-product-option">
-              <span>{$group.name}
-                  {foreach from=$group.attributes key=id_attribute item=group_attribute}
+              <span>{$group.group_name}:
+                  {* {foreach from=$group.attributes key=id_attribute item=group_attribute}
                     {if $group_attribute.selected}{$group_attribute.name}{/if}
-                  {/foreach}
+                  {/foreach} *}
               </span>
               {if $group.group_type == 'select'}
                 <select
@@ -82,7 +83,7 @@
             </div>
             {/if}
           {/foreach}    
-        </div> *}
+        </div>
         {* {foreach from=$product.groups item=group}
             <div class="quick-product-option">
                 <span>{$group.group_name}</span>

@@ -176,6 +176,19 @@ class SearchCore
     public static function find($id_lang, $expr, $page_number = 1, $page_size = 1, $order_by = 'position',
         $order_way = 'desc', $ajax = false, $use_cookie = true, Context $context = null)
     {
+        // paulo quickshop
+        echo $context->shop->id;
+        $URL = $_SERVER['HTTP_REFERER'];
+
+        $parsedUrl = parse_url($URL);
+        $urlPath = $parsedUrl['path']; // Get the path component
+        $urlArray = explode("/", $urlPath); // Split the path into segments
+        $end = end($urlArray);
+
+        // echo $end;
+        // exit;
+
+        // paulo quickshop fim
         if (!$context) {
             $context = Context::getContext();
         }
@@ -201,7 +214,12 @@ class SearchCore
             if (!empty($word) && strlen($word) >= (int)Configuration::get('PS_SEARCH_MINWORDLEN')) {
                 $word = str_replace(array('%', '_'), array('\\%', '\\_'), $word);
                 $start_search = Configuration::get('PS_SEARCH_START') ? '%': '';
-                $end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
+
+                if($end == 'quick-shop'){
+                    $end_search = 1 ? '%': '';
+                }else{
+                    $end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
+                }
 
                 $intersect_array[] = 'SELECT si.id_product
 					FROM '._DB_PREFIX_.'search_word sw

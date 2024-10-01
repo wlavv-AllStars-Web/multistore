@@ -4,20 +4,22 @@
     </div>
 {/if}
 
-{* <pre>{print_r($child_attribute,1)}</pre> *}
+{* <pre>{print_r($listing,1)}</pre> *}
 
 <div class="productsQS{if !empty($cssClass)} {$cssClass}{/if}">
     {if empty($listing.products)}
         <p style="font-size: 1rem;">{l s="No products found..." d="Shop.Theme.Quickshop"}</p>
     {/if}
-    {if $isFather != 0 && $child_attribute == 0 }
+    {* {if $isFather != 0 && $child_attribute == 0 }
         <p style="font-size: 1rem;">{l s="No products found..." d="Shop.Theme.Quickshop"}</p>
-    {else}
+        aqui 2
+    {else} *}
         {foreach from=$listing.products item="product" key="position"}
             {* {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses} *}
+            {* <pre>{print_r($product.id_product_attribute,1)}</pre> *}
             <div class="qs-product" 
             data-id-product="{$product.id_product}" 
-            data-child-id-product-attribute="{$child_attribute}" 
+            data-child-id-product-attribute="{$product.product_attribute_atr}" 
             data-id-product-attribute="{$product.id_product_attribute}" 
         
             style="display: flex;align-items:center;" 
@@ -75,7 +77,7 @@
 
             
         {/foreach}
-    {/if}
+    {* {/if} *}
 </div>
 
 <style>

@@ -618,14 +618,27 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         
 
         if($this->context->shop->id == 3){
-            // echo '<pre>'.print_r($search['products'],1).'</pre>';
+            // echo '<pre>'.print_r($search,1).'</pre>';
             // exit;
 
-            $product = new Product($search['products'][0]['id_product']);
-            $haveCombinations = $product->hasAttributes();
+            // $productsArray = [];
+            // foreach($search['products'] as $product){
+            //     $product = new Product($product['id_product']);
+            //     $productsArray[] = $product;
 
+            // }
 
-            $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.Tools::getValue('s').'"');
+            // $haveCombinations = $product->hasAttributes();
+
+            $searchRef = pSQL(Tools::getValue('s'));
+            // echo 'SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"';
+            // exit;
+            foreach($search['products'] as $product){
+                $product['product_attribute_atr'] = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"');
+            }
+
+            // $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.pSQL(Tools::getValue('s')).'"');
+
             // if($product_attribute){
             //     $search['child_attribute'] = $product_attribute;
             //     $search['child_reference'] = Tools::getValue('s');
@@ -633,13 +646,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             // echo '<pre>'.print_r($haveCombinations,1).'</pre>';
-            // echo '<pre>'.print_r($product_attribute+0,1).'</pre>';
-            // exit;
+            
 
 
 
             // $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
-            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations, 'child_reference' => Tools::getValue('s')]);
+            $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search]);
+            // $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations, 'child_reference' => pSQL(Tools::getValue('s'))]);
             // $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
         }else{
             $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);

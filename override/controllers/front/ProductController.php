@@ -524,8 +524,10 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
 
         $URL = $_SERVER['HTTP_REFERER'];
 
-        $urlarray=explode("/",$URL);
-        $end=$urlarray[count($urlarray)-1];
+        $parsedUrl = parse_url($URL);
+        $urlPath = $parsedUrl['path']; // Get the path component
+        $urlArray = explode("/", $urlPath); // Split the path into segments
+        $end = end($urlArray);
 
         if($end == 'quick-shop'){
             $this->ajaxRender(json_encode([

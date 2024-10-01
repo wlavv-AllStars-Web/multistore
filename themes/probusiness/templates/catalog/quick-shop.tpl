@@ -192,8 +192,9 @@
         // Iterate through each product and gather data
         productsContainer.forEach(item => {
             const idProduct = item.getAttribute("data-id-product");
+            const idProductAttribute = item.getAttribute("data-id-product-attribute");
             const qty = item.querySelector('input[name="qty-product"]').value;
-            const selectedOptions = item.querySelectorAll('.quick-product-option .QS-span-data');
+            const selectedOptions = item.querySelectorAll('.quick-product-option .select-attr');
             let nameGroup = null;
 
             
@@ -203,16 +204,17 @@
 
             // if (selectedOptions) {
 
-                // const selectedIndex = selectedOption.selectedIndex;
-                // selectedValue = selectedOption.options[selectedIndex].value;
-                // nameGroup = selectedOption.getAttribute("name");
+            //     const selectedIndex = selectedOption.selectedIndex;
+            //     selectedValue = selectedOption.options[selectedIndex].value;
+            //     nameGroup = selectedOption.getAttribute("name");
             // }
 
             // Prepare the individual data for each product
             const productData = {
                 token: token,
                 id_product: idProduct,
-                id_customization: 0, // Adjust this value as needed
+                id_product_attribute: idProductAttribute,
+                id_customization: 0,
                 qty: qty,
                 add: 1,
                 action: 'update'
@@ -220,7 +222,7 @@
 
             selectedOptions.forEach(option => {
                 nameGroup = option.getAttribute("name");
-                selectedValue = option.getAttribute("value");
+                selectedValue = option.value;
                 if (nameGroup && selectedValue) {
                     productData[nameGroup] = selectedValue; // Correctly assign the name and value to productData
                 }
@@ -297,13 +299,14 @@
 
 
     function handleSelectChange(e) {
+        console.log(e)
         const selects = e.parentElement.parentElement.querySelectorAll("select")
 
         selects.forEach(select => {
-            select.addEventListener('change', function() {
+            // select.addEventListener('change', function() {
                 console.log('select')
                 // Get dynamic data from relevant elements
-                const productId = this.closest('.quick-products').getAttribute('data-id-product'); // Assuming each product wrapper has the ID
+                const productId = select.closest('.quick-products').getAttribute('data-id-product'); // Assuming each product wrapper has the ID
                 const token = '{$static_token}'; // Replace with actual token variable
                 const idCustomization = 0; // Customization ID if applicable
                 const qty = 1; // Quantity
@@ -341,7 +344,7 @@
                     type: 'post',
                     dataType: 'json',                
                     success: function(json) {
-                        const product_variant = document.querySelector(".product-variants")
+                        const product_variant = select.querySelector(".product-variants")
 
                         product_variant.innerHTML = json.product_variants;
 
@@ -352,7 +355,7 @@
 
                     }
                 });
-            });
+            // });
         });
     }
 
