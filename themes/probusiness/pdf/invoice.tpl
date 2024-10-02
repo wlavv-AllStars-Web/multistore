@@ -71,7 +71,7 @@
 		<!-- Code TVA -->
 		<td colspan="6" class="left">
 
-			{$tax_tab}
+			{* {$tax_tab} *}
 
 		</td>
 		<td colspan="1">&nbsp;</td>
@@ -89,7 +89,7 @@
 		<td colspan="12" height="10">&nbsp;</td>
 	</tr>
 
-	<tr>
+	{* <tr>
 		<td colspan="6" class="left">
 
 			{$payment_tab}
@@ -105,7 +105,7 @@
 
 		</td>
 		<td colspan="1">&nbsp;</td>
-	</tr>
+	</tr> *}
 
 	<tr>
 		<td colspan="12" height="10">&nbsp;</td>

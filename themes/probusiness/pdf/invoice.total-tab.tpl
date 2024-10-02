@@ -24,16 +24,16 @@
  *}
 <table id="total-tab" width="100%">
 
-  <tr>
+  {* <tr>
     <td class="grey" width="50%">
       {l s='Total Products' d='Shop.Pdf' pdf='true'}
     </td>
     <td class="white" width="50%">
       {displayPrice currency=$order->id_currency price=$footer.products_before_discounts_tax_excl}
     </td>
-  </tr>
+  </tr> *}
 
-  {if $footer.product_discounts_tax_excl > 0}
+  {* {if $footer.product_discounts_tax_excl > 0}
 
     <tr>
       <td class="grey" width="50%">
@@ -44,8 +44,8 @@
       </td>
     </tr>
 
-  {/if}
-  {if !$order->isVirtual()}
+  {/if} *}
+  {* {if !$order->isVirtual()}
   <tr>
     <td class="grey" width="50%">
       {l s='Shipping Costs' d='Shop.Pdf' pdf='true'}
@@ -67,9 +67,9 @@
       </td>
       <td class="white">{displayPrice currency=$order->id_currency price=$footer.wrapping_tax_excl}</td>
     </tr>
-  {/if}
+  {/if} *}
 
-  <tr class="bold">
+  {* <tr class="bold">
     <td class="grey">
       {if $isTaxEnabled}
         {l s='Total (Tax excl.)' d='Shop.Pdf' pdf='true'}
@@ -80,9 +80,9 @@
     <td class="white">
       {displayPrice currency=$order->id_currency price=$footer.total_paid_tax_excl}
     </td>
-  </tr>
+  </tr> *}
   {if $isTaxEnabled}
-    {if $footer.total_taxes > 0}
+    {* {if $footer.total_taxes > 0}
       <tr class="bold">
         <td class="grey">
           {l s='Total Tax' d='Shop.Pdf' pdf='true'}
@@ -91,7 +91,7 @@
           {displayPrice currency=$order->id_currency price=$footer.total_taxes}
         </td>
       </tr>
-    {/if}
+    {/if} *}
     <tr class="bold big">
       <td class="grey">
         {l s='Total' d='Shop.Pdf' pdf='true'}

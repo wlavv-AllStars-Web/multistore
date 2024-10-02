@@ -82,6 +82,7 @@
 
 		th.product {
 			border-bottom: 1px solid {$color_border};
+			font-size: 9pt;
 		}
 
 		tr.discount th.header {
@@ -90,6 +91,7 @@
 
 		tr.product td {
 			border-bottom: 1px solid {$color_border_lighter};
+			font-size: 8pt;
 		}
 
 		tr.color_line_even {
@@ -122,7 +124,7 @@
 			height: {$height_header};
 			background-color: {$color_header};
 			vertical-align: middle;
-			text-align: right;
+			text-align: center;
 			font-weight: bold;
 		}
 
