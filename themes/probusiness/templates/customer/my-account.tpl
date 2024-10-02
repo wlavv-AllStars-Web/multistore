@@ -429,13 +429,17 @@
                           <span>
                           {if $order.history.current.id_order_state == 4}
                             {foreach from=$orders_detail[$index] item=qty_sent key=key}
-                              {if $qty_sent['qty_sent'] != $qty_sent['qty']}
+                              {* {if $qty_sent['qty_sent'] != $qty_sent['qty']} *}
                                 {if $key == 0}
-                                  <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}" style="display: flex;gap: .5rem;align-items: center;">
-                                    <span>{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}</span>
-                                    <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size:1.25rem;"></i>
+                                  {* <div onclick="viewMissingProducts({$index},this)" title="{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}" style="display: flex;gap: .5rem;align-items: center;"> *}
+                                  <div>  
+                                    <a href="?type=slip&id_order={$index}" style="display: flex;align-items:center;gap: 0.5rem;">
+                                      <span style="color: #666;">{l s='Shipping Slip' d='Shop.Theme.Customeraccount'}</span>
+                                      <i class="fa-solid fa-clock" style="color: #f78228;cursor:pointer;font-size: 18px;"></i>
+                                    </a>
                                   </div>
-                                  <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
+                                  {* </div> *}
+                                  {* <div class="modal_order_details order_{$index}" style="display: none;" onclick="handleModalClick({$index},event,this)">
                                     <div class="order_detail_qty">
                                       <div class="closeMissingProducts" onclick="closeMissingProducts({$index},this)">
                                         <i class="fa-solid fa-xmark" style="color: #555;"></i>
@@ -473,12 +477,12 @@
                                           <button class="btn-secondary" onclick="closeMissingProducts({$index},this)">Close</button>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> *}
                                 {/if}
                                 
-                              {else}
+                              {* {else}
                               -
-                              {/if}
+                              {/if} *}
                               
                             {/foreach}
                           {else}
