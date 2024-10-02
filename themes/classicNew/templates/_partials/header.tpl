@@ -76,6 +76,7 @@
 
 {block name='header_top'}
   <div class="header-top">
+    {* <pre>{$urls.pages.manufacturer|print_r}</pre> *}
     <div class="container-fluid">
        <div class="row row-mobile" style="position: relative;z-index:1;width:100vw;padding: 1rem;display:flex;align-items:center;">
         <div class="col-md-2 hidden-sm-down" id="_desktop_logo" style="display: flex;justify-content:flex-start;">
@@ -221,7 +222,8 @@ window.addEventListener('scroll', () => {
 });
 
 function openLinkBrands(){
-  window.location.href='/{$currentLanguage->iso_code }/{l s='brands' d='Shop.Theme.Global'}'
+  window.location.href='{$urls.pages.manufacturer}'
+
 }
 
 function closeMenu() {
@@ -360,7 +362,7 @@ btnBrandsMobile.addEventListener('click', () => {
 }
 
 .mainmenuDesktop a {
-  background: #103054;
+  background: #091b2f;
   color: white !important;
   padding: 16px;
   font-size: 1.2rem;
@@ -381,7 +383,7 @@ btnBrandsMobile.addEventListener('click', () => {
 /* drppdown inicio */
 
 .dropbtn {
-  background: #103054;
+  background: #091b2f;
   color: white;
   padding: 16px;
   font-size: 1.2rem;
