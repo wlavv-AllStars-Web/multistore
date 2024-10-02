@@ -29,7 +29,7 @@
                 <div class="qs-product-cover">
                     {block name='product_thumbnail'}
                         {if $product.cover}
-                        <a href="{$product.url}" class="thumbnail product-thumbnail">
+                        {* <a href="{$product.url}" class="thumbnail product-thumbnail"> *}
                             <picture>
                             <img
                                 src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
@@ -41,9 +41,9 @@
                                 style="width:80px;height:80px;"
                             />
                             </picture>
-                        </a>
+                        {* </a> *}
                         {else}
-                        <a href="{$product.url}" class="thumbnail product-thumbnail">
+                        {* <a href="{$product.url}" class="thumbnail product-thumbnail"> *}
                             <picture>
                             <img
                                 src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
@@ -53,7 +53,7 @@
                                 style="width:80px;height:80px;"
                             />
                             </picture>
-                        </a>
+                        {* </a> *}
                         {/if}
                     {/block}
                 </div>
