@@ -2095,7 +2095,7 @@ main {
     }
 
     .footer-container {
-        background: #0d2540;
+        background: #142c46;
         padding-top: 0 !important;
         position: relative;
         font-size: 1rem;
@@ -2201,6 +2201,10 @@ main {
         display: none !important;
       }
 
+      .otherCars .categoryCars {
+        background: #142c46;
+      }
+
       .otherCars .categoryCars .category {
         width: 14vw;
         height: 40vh;
@@ -2209,16 +2213,17 @@ main {
         justify-content: center;
         align-items: center;
         background-color: #fff;
-        border-radius: 15px;
+        border-radius: 0.5rem;
         overflow: hidden;
         position: relative;
         /* transition: all 0.3s ease-in-out; */
         cursor: pointer;
-        border: 2px solid #103054;
+        /* border: 2px solid #103054; */
         min-width: 200px;
+        outline: 2px solid #fff;
       }
       .otherCars .categoryCars .category:hover{
-        border: 2px solid #fff;
+        /* border: 2px solid #fff; */
       }
 
       .otherCars .categoryCars .category img {
@@ -2491,7 +2496,7 @@ main {
   gap: 5px;
   margin-top: 5px;
   margin: auto;
-  background: #d6dbe1a1 !important;
+  background: #fff !important;
   justify-content: center;
   padding: 0.25rem;
 }
@@ -4312,6 +4317,8 @@ a:focus {
   }
   .videosContainer .video{
     width: 616px;
+    border-radius: 0.5rem;
+    overflow: hidden;
   }
   
   .firstDiv {
@@ -6343,13 +6350,15 @@ transform: translate(-50%,-50%);
 
   .bannersHome .card-big {
     margin-bottom: 0;
+    /* border-radius: 0.25rem;
+    overflow: hidden; */
   }
 
   .bannersHome .card-big .layerHover{
     height: auto;
     min-height: 58px;
     padding: 0.5rem;
-    background: rgba(250, 250, 250, 0.6);
+    background: rgba(250, 250, 250, 0.9);
     color: #103054;
     left: 0;
     width: 100%;
@@ -6361,7 +6370,7 @@ transform: translate(-50%,-50%);
     height: auto;
     min-height: 58px;
     padding: 0.5rem;
-    background: rgba(16, 48, 84, 0.6);
+    background: rgba(16, 48, 84, 0.8);
     color: #fff;
     left: 0;
     width: 100%;
