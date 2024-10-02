@@ -91,13 +91,12 @@
 
 </table> *}
 
-
 <div style="font-size: 8pt; color: #444;">
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 9pt;padding:10px 0;">
     	<tr>
-    		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' pdf='true'}</b></th>
+    		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</b></th>
     		<th style="width:20%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>Order Detail</b></th>
-    		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' pdf='true'}</b></th>
+    		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</b></th>
     	</tr>
     	<tr>
     		<td style="width:40%;">{$invoice_address}</td>
@@ -108,11 +107,11 @@
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
     	<tr>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Number' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Date' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order date' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order date' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' d='Shop.Pdf' pdf='true'}</b> </th>
     	</tr>
     	<tr>
     		<td style="width: 20%;"> {$title|escape:'html':'UTF-8'} </td>
@@ -123,7 +122,7 @@
     			{foreach from=$order_invoice->getOrderPaymentCollection() item=payment}
     				<b>{$payment->payment_method}</b>
     			{foreachelse}
-    				{l s='No payment' pdf='true'}
+    				{l s='No payment' d='Shop.Pdf' pdf='true'}
     			{/foreach}
     		</td>
     	</tr>
@@ -131,20 +130,20 @@
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 7pt;">
     	<tr>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Reference' pdf='true'}</b></th>
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' pdf='true'}</b></th> *}
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Product' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' pdf='true'}{l s='(Tax Excl.)' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Tax Rate' pdf='true'}</b></th>
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' pdf='true'} {l s='(Tax Incl.)' pdf='true'}</b></th> *}
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty sent' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Reference' d='Shop.Pdf' pdf='true'}</b></th>
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' d='Shop.Pdf' pdf='true'}</b></th> *}
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Product' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</b></th>
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'} {l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}</b></th> *}
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty sent' d='Shop.Pdf' pdf='true'}</b></th>
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">
-    			<b>{l s='Total' pdf='true'}
+    			<b>{l s='Total' d='Shop.Pdf' pdf='true'}
     			{if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
-    				{l s='(Tax Excl.)' pdf='true'}
+    				{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}
     			{else}
-    				{l s='(Tax Incl.)' pdf='true'}
+    				{l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}
     				
     			{/if}</b>
     		</th>
@@ -235,7 +234,7 @@
     								{/if}
     
     								{if isset($customization.datas[$smarty.const._CUSTOMIZE_FILE_]) && count($customization.datas[$smarty.const._CUSTOMIZE_FILE_]) > 0}
-    									{count($customization.datas[$smarty.const._CUSTOMIZE_FILE_])} {l s='image(s)' pdf='true'}
+    									{count($customization.datas[$smarty.const._CUSTOMIZE_FILE_])} {l s='image(s)' d='Shop.Pdf' pdf='true'}
     								{/if}
     							</blockquote>
     					</td>
@@ -273,31 +272,31 @@
     <table style="width: 100%;padding-top:8px;">
     	{if (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) > 0)}
     	<tr style="">
-    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total (Tax Excl.)' pdf='true'}</td>
+    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total (Tax Excl.)' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products}</td>
     	</tr>
     
     	<!--<tr style="">
-    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total (Tax Incl.)' pdf='true'}</td>
+    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total (Tax Incl.)' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products_wt}</td>
     	</tr>-->
     	{else}
     	<tr style="">
-    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total' pdf='true'}</td>
+    		<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products}</td>
     	</tr>
     	{/if}
     
     	{if $order_invoice->total_discount_tax_incl > 0}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Total Vouchers' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Total Vouchers' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">-{displayPrice currency=$order->id_currency price=($order_invoice->total_discount_tax_incl + $shipping_discount_tax_incl)}</td>
     	</tr>
     	{/if}
     
     	{if $order_invoice->total_wrapping_tax_incl > 0}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Wrapping Cost' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Wrapping Cost' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">
     		{if $tax_excluded_display}
     			{displayPrice currency=$order->id_currency price=$order_invoice->total_wrapping_tax_excl}
@@ -310,7 +309,7 @@
     
     	{if $order_invoice->total_shipping_tax_incl > 0}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Shipping Cost' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Shipping Cost' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">
     			{if $tax_excluded_display}
     				{displayPrice currency=$order->id_currency price=$order_invoice->total_shipping_tax_excl}
@@ -325,19 +324,19 @@
     	
     	{else}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Total Tax' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Total Tax' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl)}</td>
     	</tr>
     	{/if}
     	
     	{if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Total' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Total' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_paid_tax_excl}</td>
     	</tr>
     	{else}
     	<tr style="">
-    		<td style="text-align: right; font-weight: bold">{l s='Total' pdf='true'}</td>
+    		<td style="text-align: right; font-weight: bold">{l s='Total' d='Shop.Pdf' pdf='true'}</td>
     		<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_paid_tax_incl}</td>
     	</tr>
     	{/if}
