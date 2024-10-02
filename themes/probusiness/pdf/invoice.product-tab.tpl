@@ -30,10 +30,10 @@
   {/if}
   <thead>
   <tr>
-    <th class="product header small" width="15%">{l s='Reference' d='Shop.Pdf' pdf='true'}</th>
-    <th class="product header small" width="30%">{l s='Product' d='Shop.Pdf' pdf='true'}</th>
+    <th class="product header small" width="15%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Reference' d='Shop.Pdf' pdf='true'}</th>
+    <th class="product header small" width="30%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Product' d='Shop.Pdf' pdf='true'}</th>
     {if $isTaxEnabled}
-      <th class="product header small" width="15%">{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</th>
+      <th class="product header small" width="15%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</th>
     {/if}
     {* {if isset($layout.before_discount)}
       <th class="product header small" width="{$layout.unit_price_tax_excl.width}%">
@@ -41,12 +41,12 @@
       </th>
     {/if} *}
 
-    <th class="product header-right small" width="15%">
+    <th class="product header-right small" width="15%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">
       {l s='Unit Price' d='Shop.Pdf' pdf='true'}
     {* {if $isTaxEnabled}<br /> {l s='(Tax excl.)' d='Shop.Pdf' pdf='true'}{/if} *}
     </th>
-    <th class="product header small" width="10%">{l s='Qty' d='Shop.Pdf' pdf='true'}</th>
-    <th class="product header-right small" width="15%">
+    <th class="product header small" width="10%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Qty' d='Shop.Pdf' pdf='true'}</th>
+    <th class="product header-right small" width="15%" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">
       {l s='Total' d='Shop.Pdf' pdf='true'}
       {* {if $isTaxEnabled}<br /> {l s='(Tax excl.)' d='Shop.Pdf' pdf='true'}{/if} *}
     </th>

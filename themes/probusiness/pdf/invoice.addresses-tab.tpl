@@ -22,14 +22,15 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table id="addresses-tab" cellspacing="0" cellpadding="0">
+ <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 9pt;padding:10px 0;">
 	<tr>
-		<td width="50%">{if $delivery_address}<span class="bold">{l s='Delivery address' d='Shop.Pdf' pdf='true'}</span><br/><br/>
-				{$delivery_address}
-			{/if}
-		</td>
-		<td width="50%" style="text-align: right;"><span class="bold">{l s='Billing address' d='Shop.Pdf' pdf='true'}</span><br/><br/>
-				{$invoice_address}
-		</td>
+		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</b></th>
+		<th style="width:20%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>Order Detail</b></th>
+		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</b></th>
+	</tr>
+	<tr>
+		<td style="width:40%;">{$invoice_address}</td>
+		<td style="width:20%;"><img style="" src="https://img.freepik.com/free-vector/illustration-barcode_53876-44019.jpg?t=st=1727799293~exp=1727802893~hmac=0f4f0f90db68013b9efcf2ef161bd07e2af0e834ddfe8cad59195916abeac817&w=826"></td>
+		<td style="width:40%; text-align: right;">{$delivery_address}</td>
 	</tr>
 </table>

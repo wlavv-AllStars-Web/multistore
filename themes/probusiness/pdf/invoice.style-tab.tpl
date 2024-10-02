@@ -117,6 +117,7 @@
 			vertical-align: middle;
 			text-align: center;
 			font-weight: bold;
+			/* border-bottom: 1px solid #000; background-color: #CCC; color: #000; */
 		}
 
 		th.header-right {

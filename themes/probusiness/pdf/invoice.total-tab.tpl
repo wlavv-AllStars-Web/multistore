@@ -93,7 +93,7 @@
       </tr>
     {/if} *}
     <tr class="bold big">
-      <td class="grey">
+      <td class="grey" style="background-color: #CCC; color: #000;">
         {l s='Total' d='Shop.Pdf' pdf='true'}
       </td>
       <td class="white">

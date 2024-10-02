@@ -22,14 +22,14 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table id="summary-tab" width="100%">
+<table id="summary-tab" width="100%" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
 	<tr>
-		<th class="header small" valign="middle">{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</th>
-		<th class="header small" valign="middle">{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</th>
-		<th class="header small" valign="middle">{l s='Order Reference' d='Shop.Pdf' pdf='true'}</th>
-		<th class="header small" valign="middle">{l s='Order date' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Order Reference' d='Shop.Pdf' pdf='true'}</th>
+		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Order date' d='Shop.Pdf' pdf='true'}</th>
 		{if $addresses.invoice->vat_number}
-			<th class="header small" valign="middle">{l s='VAT Number' d='Shop.Pdf' pdf='true'}</th>
+			<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='VAT Number' d='Shop.Pdf' pdf='true'}</th>
 		{/if}
 	</tr>
 	<tr>
