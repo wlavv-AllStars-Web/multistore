@@ -35,11 +35,11 @@
     {if $isTaxEnabled}
       <th class="product header small" width="{$layout.tax_code.width + 10}%">{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</th>
     {/if}
-    {if isset($layout.before_discount)}
+    {* {if isset($layout.before_discount)}
       <th class="product header small" width="{$layout.unit_price_tax_excl.width}%">
         {l s='Base price' d='Shop.Pdf' pdf='true'}{if $isTaxEnabled}<br /> {l s='(Tax excl.)' d='Shop.Pdf' pdf='true'}{/if}
       </th>
-    {/if}
+    {/if} *}
 
     <th class="product header-right small" width="{$layout.unit_price_tax_excl.width}%">
       {l s='Unit Price' d='Shop.Pdf' pdf='true'}
@@ -89,7 +89,7 @@
         </td>
       {/if}
 
-      {if isset($layout.before_discount)}
+      {* {if isset($layout.before_discount)}
         <td class="product center">
           {if isset($order_detail.unit_price_tax_excl_before_specific_price)}
             {displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl_before_specific_price}
@@ -97,7 +97,7 @@
             --
           {/if}
         </td>
-      {/if}
+      {/if} *}
 
       <td class="product center">
         {displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl_including_ecotax}
