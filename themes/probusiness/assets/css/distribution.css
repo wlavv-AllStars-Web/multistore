@@ -1574,6 +1574,11 @@ form label {
   cursor: pointer;
   background: #fff;
 }
+
+.order-slip-part a{
+  display: block !important;
+}
+
 /* #menu-client .nav-item:nth-child(8){
   cursor:unset;
   background: #f7f7f7 !important;
@@ -2667,9 +2672,9 @@ body#checkout #cart-summary-product-list img {
 #order-detail .breadcrumb{
   display: none;
 }
-#order-detail #order-infos a{
+/* #order-detail #order-infos a{
   display: none;
-}
+} */
 #order-detail .order-message-form.box{
   display: none;
 }
