@@ -30,7 +30,7 @@
                         <div class="quick-product-search">
                             <form method="get" action="{$link->getPageLink('quickshop', true)}">
                                 <input type="hidden" name="quick-search-product" value="1">
-                                <input type="text" name="qs-product" placeholder="Product Code">
+                                <input type="text" name="qs-product" placeholder="{l s="Product Code" d="Shop.Theme.Quickshop"}">
                                 <div id="loading-spinner-small" style="display: none;">
                                     <div class="spinner-small"></div>
                                 </div>
