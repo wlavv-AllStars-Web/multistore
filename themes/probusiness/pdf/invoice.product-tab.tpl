@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table class="product" width="100%" cellpadding="4" cellspacing="0">
+<table class="product" width="100%" cellpadding="4" cellspacing="0" style="border: 1px solid #CCC;">
 
   {assign var='widthColProduct' value=$layout.product.width}
   {if !$isTaxEnabled}
