@@ -46,7 +46,7 @@
                   data-product-attribute="{$id_attribute_group}"
                   name="group[{$id_attribute_group}]"
                   onchange="handleSelectChange(this)">
-                    <option value="0" data-label-group="{$group.name}" selected>Please Select</option>
+                    <option value="0" data-label-group="{$group.name}" selected>{l s="Please Select" d="Shop.Theme.Quickshop"}</option>
                   {foreach from=$group.attributes key=id_attribute item=group_attribute}
                     <option value="{$id_attribute}" title="{$group_attribute.name}" data-label-group="{$group.name}">{$group_attribute.name}</option>
                   {/foreach}
@@ -98,16 +98,16 @@
         {/foreach}        *}
     {else}
         <div class="no-options-container">
-            <p class="no-options">No options</p>
+            <p class="no-options">{l s="No options" d="Shop.Theme.Quickshop"}</p>
         </div>
     {/if}
     {* fim de atributo *}
     </div>
     <div class="quick-product-qty">
         <div class="quick-product-qty-container">
-            <span>Qty</span>
+            <span>{l s="Qty" d="Shop.Theme.Quickshop"}</span>
             <input type="number" name="qty-product" min="1" value="1">
-            <button class="removeLineQS" onclick="deleteLineQS(this)">Remove</button>
+            <button class="removeLineQS" onclick="deleteLineQS(this)">{l s="Remove" d="Shop.Theme.Quickshop"}</button>
         </div>
     </div>
 </div>

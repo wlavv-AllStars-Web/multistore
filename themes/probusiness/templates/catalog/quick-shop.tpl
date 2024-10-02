@@ -661,8 +661,8 @@
             box-shadow: 0 0 10px 100px #1882A8 inset;
         } */
         .quick-products .quick-product-options .quick-product-option select option:checked{
-            background: #0273EB !important;
-            color: #fff;
+            background: #f6f6f6 !important;
+            color: #0273EB;
         }
 
         .quick-products .quick-product-qty {

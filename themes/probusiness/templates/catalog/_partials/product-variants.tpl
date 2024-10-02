@@ -23,6 +23,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <div class="product-variants js-product-variants">
+{* <pre>{$groups|print_r}</pre> *}
   {foreach from=$groups key=id_attribute_group item=group}
     {if !empty($group.attributes)}
     <div class="clearfix product-variants-item" style="flex-direction: column;text-align:start;width:100%;max-width:300px;margin:1rem auto;">

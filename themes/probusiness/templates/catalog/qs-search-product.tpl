@@ -70,7 +70,7 @@
                             {/if}
                             </span></p>
                             {if count($product.attributes) > 0}
-                            <div class="with-variations">Product with variations.</div>
+                            <div class="with-variations">{l s="Product with variations." d="Shop.Theme.Quickshop"}</div>
                             {/if}
                         </div>
                 {/block}
