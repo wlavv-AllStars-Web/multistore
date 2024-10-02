@@ -28,7 +28,7 @@
 		<td style="width: 30%;">
 			{* <img class="" src="https://asd.euromuscleparts.com/img/asd/logo_asd.jpg" alt="All Stars Distribution" style="width: 350px;height:auto;"> *}
 			<div style="text-align:center;">
-				<img src="https://www.asd.euromuscleparts.com/img/asd/all-stars-distribution-logo_invoice.jpg" style="height:90px; margin: 0 auto;text-align: center; display: inline-flex;" />
+				<img src="https://asd.euromuscleparts.com/img/asd/all-stars-distribution-logo_invoice.jpg" style="height:90px; margin: 0 auto;text-align: center; display: inline-flex;" />
 			</div>
 		</td>
 		<td style="width: 35%;"></td>
