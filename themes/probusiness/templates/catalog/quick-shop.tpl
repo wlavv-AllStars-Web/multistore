@@ -3,6 +3,7 @@
 {block name='content'}
     {* <pre>{$urls.pages|print_r}</pre> *}
     <div class="container-quickshop">
+        <div class="error-msg-QS"></div>
         <div class="quickshop-header">
             <h1>{l s="Quick Shop" d="Shop.Theme.Quickshop"}</h1>
             <p>{l s="Save time and quickly order your products with our quickshop facility." d="Shop.Theme.Quickshop"}</p>
@@ -115,8 +116,8 @@
 
                 },
                 error: function(xhr, status, error) { 
-                    console.log("Error:", status, error);
-                    console.log("Response:", xhr.responseText);
+                    // console.log("Error:", status, error);
+                    // console.log("Response:", xhr.responseText);
 
                 }
             });
@@ -160,8 +161,8 @@
 
             },
             error: function(xhr, status, error) { 
-                console.log("Error:", status, error);
-                console.log("Response:", xhr.responseText);
+                // console.log("Error:", status, error);
+                // console.log("Response:", xhr.responseText);
             },
             complete: function() {
             // Hide the loading spinner after the request is complete
@@ -188,6 +189,8 @@
 
         buttonAdd.appendChild(spinner)
         buttonAdd.setAttribute("disabled",'')
+
+        let hasInvalidOption = false;
 
         // Iterate through each product and gather data
         productsContainer.forEach(item => {
@@ -222,20 +225,36 @@
 
             selectedOptions.forEach(option => {
                 nameGroup = option.getAttribute("name");
+                labelGroup = option.parentElement.getAttribute("aria-label");
                 selectedValue = option.value;
+
+
+                if (selectedValue === "0") {
+                    const errorMessage = document.querySelector(".error-msg-QS")
+                    errorMessage.style.display = "block";
+                    errorMessage.innerText = 'Please select a valid option.';
+                    option.style.outline = "1px solid red";
+
+                    buttonAdd.removeAttribute("disabled");
+                    document.querySelector(".spinner-addall").remove();
+                    loadingSpinner.style.display = 'none';
+                    hasInvalidOption = true;
+                }
+
                 if (nameGroup && selectedValue) {
                     productData[nameGroup] = selectedValue; // Correctly assign the name and value to productData
                 }
             })
 
             
-            // if (nameGroup) {
-            //     productData[nameGroup] = selectedValue;
-            // }
 
-            // Add this product's data to the array
+            
             productsData.push(productData);
         });
+
+        if (hasInvalidOption) {
+            return;
+        }
 
         if (productsData.length === 0) {
             alert("No products to add to cart.");
@@ -249,7 +268,7 @@
                 type: 'POST',
                 data: productData,
                 success: function(response) {
-                    console.log("All products added to cart:", response);
+                    // console.log("All products added to cart:", response);
 
                     // Emit updateCart event to trigger the shopping cart module's logic and update blockcart HTML
                     emitUpdateCartEvent(productData);
@@ -260,7 +279,7 @@
                 },
                 complete: function() {
                     if (index === productsData.length - 1) {
-                        console.log("last processed")
+                        // console.log("last processed")
                         document.querySelector(".spinner-addall").remove();
                         window.location.href = "{$urls.pages.order}";
                         // loadingSpinner.style.display = 'none';
@@ -298,71 +317,97 @@
     }
 
 
+
     function handleSelectChange(e) {
-        console.log(e)
-        const selects = e.parentElement.parentElement.querySelectorAll("select")
+    const selects = e.parentElement.parentElement.querySelectorAll("select");
 
-        selects.forEach(select => {
-            // select.addEventListener('change', function() {
-                console.log('select')
-                // Get dynamic data from relevant elements
-                const productId = select.closest('.quick-products').getAttribute('data-id-product'); // Assuming each product wrapper has the ID
-                const token = '{$static_token}'; // Replace with actual token variable
-                const idCustomization = 0; // Customization ID if applicable
-                const qty = 1; // Quantity
+    // Get dynamic data from relevant elements (assuming all selects belong to the same product)
+    const productId = e.closest('.quick-products').getAttribute('data-id-product'); // Assuming each product wrapper has the ID
+    const token = '{$static_token}'; // Replace with actual token variable
+    const idCustomization = 0; // Customization ID if applicable
+    const qty = 1; // Quantity
 
-                // Gather selected options from all relevant select elements
-                const selectedGroups = {};
-                selects.forEach(select => {
-                    const groupId = select.getAttribute('name'); // Get the group ID from a custom data attribute
-                    const selectedValue = select.value; // Get the selected value
+    const spinner = document.createElement("div");
+    spinner.classList.add("spinner-addall")
+    const spinnerContent = document.createElement("div");
+    spinnerContent.classList.add("spinner-small")
+    spinner.appendChild(spinnerContent)
 
-                    if (groupId) {
-                        selectedGroups[groupId] = selectedValue; // Store the selected value by group ID
-                    }
-                });
+    const optionsSelectProduct = e.closest(".quick-products")
 
-                // Prepare the data object for the AJAX request
-                const productData = {
-                    quickview:"0",
-                    ajax:"1",
-                    action:"refresh",
-                    quantity_wanted:"1",
-                };
+    optionsSelectProduct.appendChild(spinner)
 
-                // Prepare the base URL
-                let url = 'https://asd.local/pt/index.php?controller=product&token='+token+'&id_product='+productId+'&id_customization='+idCustomization+'&qty='+qty;
+    // Gather selected options from all relevant select elements
+    const selectedGroups = {};
+    selects.forEach(select => {
+        const groupId = select.getAttribute('name'); // Get the group ID from a custom data attribute
+        const selectedValue = select.value; // Get the selected value
 
-                // Append selected groups to the URL
-                Object.keys(selectedGroups).forEach(groupId => {
-                    url += '&group['+groupId+']='+selectedGroups[groupId];
-                });
+        if (groupId) {
+            selectedGroups[groupId] = selectedValue; // Store the selected value by group ID
+        }
+    });
 
-                $.ajax({
-                    url: url,
-                    data: productData,
-                    type: 'post',
-                    dataType: 'json',                
-                    success: function(json) {
-                        const product_variant = select.querySelector(".product-variants")
+    // Prepare the data object for the AJAX request
+    const productData = {
+        quickview: "0",
+        ajax: "1",
+        action: "refresh",
+        quantity_wanted: "1",
+    };
 
-                        product_variant.innerHTML = json.product_variants;
+    // Prepare the base URL
+    let url = '{$urls.base_url}{$language.iso_code}/index.php?controller=product&token=' + token + '&id_product=' + productId + '&id_customization=' + idCustomization + '&qty=' + qty;
 
-                    },
-                    error: function(xhr, status, error) { 
-                        console.log("Error:", status, error);
-                        console.log("Response:", xhr.responseText);
+    // Append selected groups to the URL
+    Object.keys(selectedGroups).forEach(groupId => {
+        url += '&group[' + groupId + ']=' + selectedGroups[groupId];
+    });
 
-                    }
-                });
-            // });
-        });
-    }
+    // Send a single AJAX request
+    $.ajax({
+        url: url,
+        data: productData,
+        type: 'post',
+        dataType: 'json',
+        success: function (json) {
+            const product_variant = e.closest(".product-variants");
+            product_variant.innerHTML = json.product_variants;
+            optionsSelectProduct.removeChild(spinner)
+        },
+        error: function (xhr, status, error) {
+            console.log("Error:", status, error);
+            console.log("Response:", xhr.responseText);
+        }
+    });
+}
+
 
 
     </script>
 
     <style>
+        .quick-products .spinner-addall{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0, .3);
+            backdrop-filter: blur(4px);
+        }
+
+        .error-msg-QS{
+            padding: 1rem;
+            outline: 1px solid #f5c6cb;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            background: #f8d7da;
+            color: #721c24;
+            display: none;
+        }
+
         .quick-products::after{
             content: '';
             display: block;
@@ -595,7 +640,7 @@
         .quick-products .quick-product-options .quick-product-option{
             display: flex;
             align-items: center;
-            /* padding: 0.5rem 0; */
+            padding: 0.5rem 0;
         }
         .quick-products .quick-product-options .quick-product-option span{
             width: 20%;
@@ -606,6 +651,8 @@
             background: #fff;
             border-radius: .25rem;
             border: 1px solid #dedede;
+            font-size: 1rem;
+            color: #333;
         }
 
         /* .quick-products .quick-product-options .quick-product-option select option:hover{

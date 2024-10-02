@@ -16,7 +16,7 @@
     {else} *}
         {foreach from=$listing.products item="product" key="position"}
             {* {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses} *}
-            {* <pre>{print_r($product.id_product_attribute,1)}</pre> *}
+            {* <pre>{print_r(count($product.attributes),1)}</pre> *}
             <div class="qs-product" 
             data-id-product="{$product.id_product}" 
             data-child-id-product-attribute="{$product.product_attribute_atr}" 
@@ -64,11 +64,14 @@
                             <p>{$product.name}
                             -<span>
                             {if $child_reference}
-                                {$child_reference}
+                                <span>{$child_reference}</span>
                             {else}
-                                {$product.reference}
+                                <span>{$product.reference}</span>
                             {/if}
                             </span></p>
+                            {if count($product.attributes) > 0}
+                            <div class="with-variations">Product with variations.</div>
+                            {/if}
                         </div>
                 {/block}
                 </div>
@@ -102,5 +105,13 @@
 
     .quick-product-description p{
         margin-bottom: 0;
+    }
+
+    .quick-product-description span{
+        font-weight: 600;
+    }
+
+    .with-variations{
+        color: #0273eb;
     }
 </style>

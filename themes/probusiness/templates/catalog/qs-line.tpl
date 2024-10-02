@@ -2,8 +2,7 @@
 {* <pre>{$product|print_r}</pre> *}
 <div class="quick-products" 
     data-id-product="{$product.id_product}" 
-    data-id-product-attribute="{$product.id_attribute_child}
-">
+    data-id-product-attribute="{$product.id_attribute_child}">
     <div class="quick-product-details">
         <div class="quick-product-img">
             <img src="{$product.product_img}" style="width: 100%;" />
@@ -47,9 +46,9 @@
                   data-product-attribute="{$id_attribute_group}"
                   name="group[{$id_attribute_group}]"
                   onchange="handleSelectChange(this)">
-                    <option>Please Select</option>
+                    <option value="0" data-label-group=="{$group.name}">Please Select</option>
                   {foreach from=$group.attributes key=id_attribute item=group_attribute}
-                    <option value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} selected="selected"{/if}>{$group_attribute.name}</option>
+                    <option value="{$id_attribute}" title="{$group_attribute.name}"{if $group_attribute.selected} selected="selected"{/if} data-label-group=="{$group.name}">{$group_attribute.name}</option>
                   {/foreach}
                 </select>
               {elseif $group.group_type == 'color'}
