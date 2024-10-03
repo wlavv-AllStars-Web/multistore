@@ -1209,7 +1209,8 @@ main {
         position: relative;
         /* transition: all 0.3s ease-in-out; */
         cursor: pointer;
-        border: 2px solid #103054;
+        outline: 3px solid #0e1f31;
+        outline-offset: -1px;
       }
       .otherCars .categoryCars .category:hover{
         border: 2px solid #fff;
@@ -1241,7 +1242,7 @@ main {
       .otherCars .categoryCars .category .model-type-overlay {
         position: absolute;
         color: #fff;
-        background: #103054;
+        background: #0e1f31;
         bottom: -1px;
         width: 100%;
         text-align: center;
@@ -1369,7 +1370,7 @@ main {
       }
 
       .otherCars .categoryCars .category .model-type-overlay {
-        opacity: .8;
+        opacity: 1;
         height: 3rem;
       }
 
@@ -2090,6 +2091,8 @@ main {
       width: 100%;
       max-width: 340px !important;
       min-width: 264px;
+      /* outline: 1px solid #142c46; */
+      border-radius: 0.25rem;
     }
 
     #checkout .header-top-right-desktop #search_widget {
@@ -4700,6 +4703,13 @@ transform: translate(-50%,-50%);
 
   .js-product.product {
     /* pointer-events: none; */
+  }
+
+  .cars-container .cars-cards{
+    display: flex !important;
+  }
+  .cars-container .cars-cards .card{
+    min-width: 100vw;
   }
 }
 
