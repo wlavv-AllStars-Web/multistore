@@ -1,3 +1,11 @@
+::root{
+  --euromus-color-100 : #091b2f;
+  --euromus-color-200 : #142c46;
+  --euromus-color-300 : #ee302e;
+  --euromus-color-400 : #f6f6f6;
+  --euromus-color-500 : #707c88;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -1911,9 +1919,9 @@ main {
     }
 
     .mainmenuDesktop a:hover{
-      background: #fff !important;
+      background: #091b2f !important;
       cursor: pointer;
-      color: #103054 !important;
+      color: #fff !important;
     }
 
 

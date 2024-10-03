@@ -5,7 +5,7 @@
 	<div class="block_content">
 <style>
     .ukoocompat_search_block {
-        background-color: #103054;
+        background-color: #142c46;
         background-image: url(/img/eurmuscle/tire.webp);
         background-repeat: no-repeat;
         background-position: right top;

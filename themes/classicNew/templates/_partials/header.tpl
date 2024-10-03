@@ -362,7 +362,7 @@ btnBrandsMobile.addEventListener('click', () => {
 }
 
 .mainmenuDesktop a {
-  background: #091b2f;
+  background: #142c46;
   color: white !important;
   padding: 16px;
   font-size: 1.2rem;
@@ -375,15 +375,15 @@ btnBrandsMobile.addEventListener('click', () => {
   text-transform: uppercase;
 }
 
-.mainmenuDesktop .activeLinkDesk a{
-  background-color: #fff !important;
-  color: #103054 !important;
-}
+/* .mainmenuDesktop .activeLinkDesk a{
+  background-color: #091b2f !important;
+  color: #fff !important;
+} */
 
 /* drppdown inicio */
 
 .dropbtn {
-  background: #091b2f;
+  background: #142c46;
   color: white;
   padding: 16px;
   font-size: 1.2rem;
@@ -406,7 +406,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content {
   display: none;
   position: absolute;
-  background: #fff;
+  background: #091b2f;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -416,8 +416,8 @@ btnBrandsMobile.addEventListener('click', () => {
   padding: 2rem 0;
 }
 .dropdown:hover .dropbtn {
-  background: #fff;
-  color: #103054;
+  background: #091b2f;
+  color: #fff;
 }
 
 .dropdown:hover .dropdown-content {
@@ -443,7 +443,7 @@ btnBrandsMobile.addEventListener('click', () => {
   background: transparent;
   width: fit-content;
   /* color: #103054 !important; */
-  color: #0b223b !important;
+  color: #fff !important;
   max-width: none !important;
   text-transform: uppercase;
   padding: 5px;
