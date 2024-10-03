@@ -513,12 +513,12 @@
             style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
             <div class="hidden-sm-down" style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;  background: #fff;"></div>
           <div class="otherCars"
-            style="width:100%;display: flex;flex-direction:column;justify-content:center;align-items:center;background:#707c88;">
+            style="width:100%;display: flex;flex-direction:column;justify-content:center;align-items:center;background:#142c46;">
             {* <div class="titleCars" style="text-align: center;padding:3rem 0">
               <h5 style="font-weight: 400;">OTHER</h5>
               <h3>VEHICLE TYPES</h3>
             </div> *}
-            <div class="categoryCars" style="display: flex;justify-content:space-evenly;width:100%;padding:3rem 0;">
+            <div class="categoryCars" style="display: flex;justify-content:space-evenly;width:100%;padding:3rem 1rem;max-width:1920px;gap:1rem;">
             {* <pre>{print_r($language.iso_code,1)}</pre> *}
               {* {foreach from=$categories item=categoryLevel1} *}
                 {foreach from=$cats item=category}

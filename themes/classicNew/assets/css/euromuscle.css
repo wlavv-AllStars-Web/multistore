@@ -6,6 +6,23 @@
   --euromus-color-500 : #707c88;
 }
 
+*:focus-visible{
+  outline: none !important;
+}
+
+.cars-container .cars-cards{
+    width: 100%;
+    display: grid !important;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    padding: 1rem;
+    max-width: 1920px;
+}
+
+.cars-container .card{
+  width: 100% !important;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -75,6 +92,10 @@ main {
 
 #description .product-description p {
   text-transform: initial;
+}
+
+#js-product-list .products .js-product.product.category{
+  height: 100%;
 }
 
 @media screen and (max-width:360px){
@@ -910,12 +931,12 @@ main {
     }
     
 
-    .cars-container .cars-cards{
+    /* .cars-container .cars-cards{
        display: block !important;
     }
     .cars-container .cars-cards .card{
        align-items: center;
-    }
+    } */
 
     .cars-container .card .card-body {
       border: none !important;
@@ -1032,7 +1053,7 @@ main {
     }
 
     .cars-container .cars-cards {
-      display: flex !important;
+      /* display: flex !important; */
       overflow: scroll;
       scroll-snap-type: mandatory;
       scroll-snap-type: x mandatory !important;
@@ -1040,7 +1061,7 @@ main {
     }
 
     .cars-container .cars-cards .card {
-      min-width: 100vw;
+      /* min-width: 100vw; */
       scroll-snap-align: start;
       display: flex;
       align-items: center !important;
@@ -1574,10 +1595,10 @@ main {
     transform: rotate(180deg);
   } */
 
-  .cars-container .cars-cards {
+  /* .cars-container .cars-cards {
     flex-wrap: wrap;
     justify-content: center;
-  }
+  } */
 
   .cars-container .card {
     width: 35%;
@@ -2094,7 +2115,7 @@ main {
     .cars-container .cars-cards{
       /* max-width:1440px; */
       width:100%;
-      display:flex !important;
+      /* display:flex !important; */
       gap: 2rem;
     }
 
@@ -2213,8 +2234,12 @@ main {
         background: #142c46;
       }
 
+      .otherCars .categoryCars .select-list{
+        flex: 1;
+      }
+
       .otherCars .categoryCars .category {
-        width: 14vw;
+        width: 100%;
         height: 40vh;
         display: flex;
         flex-direction: column;
@@ -6378,7 +6403,7 @@ transform: translate(-50%,-50%);
     height: auto;
     min-height: 58px;
     padding: 0.5rem;
-    background: rgba(16, 48, 84, 0.8);
+    background: rgba(16, 48, 84, 0.9);
     color: #fff;
     left: 0;
     width: 100%;
