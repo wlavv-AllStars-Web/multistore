@@ -37,10 +37,10 @@
               >
                 {if $page.type === 'previous'}
                   {* {l s='Previous' d='Shop.Theme.Actions'} *}
-                  <i class="fa-solid fa-angle-left"></i>
+                  <i class="fa-solid fa-angle-left" style="font-weight: unset;"></i>
                 {elseif $page.type === 'next'}
                   {* {l s='Next' d='Shop.Theme.Actions'} *}
-                  <i class="fa-solid fa-angle-right"></i>
+                  <i class="fa-solid fa-angle-right" style="font-weight: unset;"></i>
                 {else}
                   {$page.page|escape:'html':'UTF-8'}
                 {/if}
