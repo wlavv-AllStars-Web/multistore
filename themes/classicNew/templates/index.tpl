@@ -625,11 +625,11 @@ function setCarAndSearch(brand, model, type, version) {
 @media screen and (max-width:767px){
   .categoryCars .category {
   max-height: 291px !important;
-  background: #bfbfbf !important;
+  background: #707c88  !important;
 }
 .categoryCars .category img {
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   height: 100%;
   transform: scale(1.25);
   object-position: 5px;
