@@ -1325,7 +1325,7 @@ main {
         border-radius: 0.5rem;
       }
       #js-product-list .product .product-description{
-        border-bottom: 1px solid #103054;
+        /* border-bottom: 1px solid #103054; */
       }
 
       #js-product-list .product article{
