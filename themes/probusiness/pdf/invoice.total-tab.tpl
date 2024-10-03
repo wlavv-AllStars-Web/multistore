@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table id="total-tab" width="100%">
+<table id="total-tab" width="100%" style="border: 1px solid #CCC; font-size: 8pt;">
 
   {* <tr>
     <td class="grey" width="50%">
