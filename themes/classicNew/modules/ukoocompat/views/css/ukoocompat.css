@@ -28,7 +28,7 @@
 
 .ukoocompat_search_block{
     position: relative;
-    background-color: #142c46;
+    background-color: var(--euromus-color-200);
     background-image: url(/img/eurmuscle/tire.webp);
     background-repeat: no-repeat;
     background-position: right top;
@@ -79,7 +79,7 @@
 }
 
 .ukoocompat_search_block form #ukoocompat_search_block_submit_1{
-    background: #ee302e !important;
+    background: var(--euromus-color-300) !important;
     border-radius: 0.25rem;
     height: 48px;
     font-size: 1rem;
