@@ -67,7 +67,7 @@
             </div>
             {$HOOK_HOME nofilter}
 
-            <div class="lines-tablet" style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;"></div>
+            <div class="lines-tablet" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;"></div>
             
             <div class="bannersHome">
               {foreach from=$desktop['icones_50'] item=item key=key name=name }
@@ -162,7 +162,7 @@
               {/foreach}
             </div>
 
-            <div class="lines-tablet" style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;"></div>
+            <div class="lines-tablet" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;"></div>
             
             <div class="bannersHomeMobile">
             {foreach from=$mobile item=mobileItem key=mobilekey name=mobilename}
@@ -204,7 +204,7 @@
             {* cars *}
 
             <div class="hidden-md-up"
-  style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
+  style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;background: #fff;"></div>
 
 <div class="cars-container">
   <div class="cars-cards col-12">
@@ -510,8 +510,8 @@
             {* categories *}
 
             <div class="hidden-md-up"
-            style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
-            <div class="hidden-sm-down" style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;  background: #fff;"></div>
+            style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;background: #fff;"></div>
+            <div class="hidden-sm-down" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;  background: #fff;"></div>
           <div class="otherCars"
             style="width:100%;display: flex;flex-direction:column;justify-content:center;align-items:center;background:#142c46;">
             {* <div class="titleCars" style="text-align: center;padding:3rem 0">
@@ -549,7 +549,7 @@
           </div>
 
             {* videos *}
-            <div style="border-top:4px solid #103054;border-bottom:4px solid #ee302e;padding-block:2px;width: 100%;background: #fff;"></div>
+            <div style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;background: #fff;"></div>
 {*             
               <div class="videosContainer">
               {foreach $desktop['icones_videos'] AS $key => $icon}
@@ -625,7 +625,7 @@ function setCarAndSearch(brand, model, type, version) {
 @media screen and (max-width:767px){
   .categoryCars .category {
   max-height: 291px !important;
-  background: #707c88  !important;
+  background: var(--euromus-color-500)  !important;
 }
 .categoryCars .category img {
   width: 100%;
