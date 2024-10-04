@@ -34,7 +34,17 @@
     {/block}
 
     {block name='page_content_container'}
+      {* {$link->getPageLink('registration',true)}
+      {$urls.current_url} *}
+      {* <pre>{$urls|print_r}</pre> *}
+      
+      {if $urls.current_url == $link->getPageLink('authentication',true)}
+      <div id="content" class="page-content page-content-login card card-block" >
+      {elseif  $urls.current_url == $link->getPageLink('password',true)}
+      <div id="content" class="page-content page-content-password card card-block" >
+      {else}
       <div id="content" class="page-content card card-block" >
+      {/if}
         {block name='page_content_top'}{/block}
         {block name='page_content'}
           <!-- Page content -->

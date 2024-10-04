@@ -46,7 +46,8 @@
       </div>
     {else}
       <a
-        href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}"
+        {* href="{$urls.pages.authentication}?back={$urls.current_url|urlencode}" *}
+        href="{$urls.pages.authentication}"
         title="{l s='Log in to your customer account' d='Shop.Theme.Customeraccount'}"
         rel="nofollow"
       >

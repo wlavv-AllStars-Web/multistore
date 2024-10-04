@@ -4387,6 +4387,47 @@ a:focus {
   height: 295px;
 }
 
+#password #wrapper {
+  max-width: 600px;
+  margin: auto;
+}
+
+.forgotten-password .form-fields .center-email-fields{
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.page-content-login{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.forgotten-password .form-fields label.required{
+  width: 80%;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0;
+  margin: auto;
+}
+
+.forgotten-password .form-fields .email{
+  width: 80%;
+  margin: auto;
+}
+
+.forgotten-password .form-fields .center-email-fields button{
+  width: 80%;
+  margin: auto;
+}
+
+.page-content-password{
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+}
+
+.page-content-password .send-renew-password-link{
+  text-align: center;
+}
 
 
 @media screen and (min-width:1920px) {
@@ -4421,6 +4462,8 @@ a:focus {
 @media screen and (max-width:1640px) {
   .videosContainer .video{
     width: 462px;
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
 
 .firstDiv {
@@ -4444,6 +4487,8 @@ a:focus {
   
   .videosContainer .video{
       width: 390px;
+      border-radius: 0.25rem;
+      overflow: hidden;
   }
 
   .firstDiv {
@@ -4470,6 +4515,8 @@ a:focus {
 
   .videosContainer .video {
       width: 95vw;
+      border-radius: 0.25rem;
+      overflow: hidden;
    }
 
   .firstDiv {
