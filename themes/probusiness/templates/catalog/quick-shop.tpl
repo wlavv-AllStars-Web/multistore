@@ -572,6 +572,10 @@
             outline: #0273EB solid 2px;
         }
 
+        .quick-product-options:has(.no-options-container) {
+            background: #ccc;
+        }
+
         .no-options-container{
             height: 100%;
             display: flex;
