@@ -74,9 +74,9 @@
 			{* {$tax_tab} *}
 
 		</td>
-		<td colspan="1">&nbsp;</td>
+		{* <td colspan="1">&nbsp;</td> *}
 		<!-- Calcule TVA -->
-		<td colspan="5" rowspan="5" class="right">
+		<td colspan="6" rowspan="5" class="right">
 
 			{$total_tab}
 
@@ -124,6 +124,12 @@
 
 		</td>
 	</tr>
+
+	{* <tr>
+		<td style="width: 100%;text-align:center;padding-top:20px;">
+			<p>All Wholesale Sales are Final with no returns or refunds.</p>
+		</td>
+	</tr> *}
 
 	<!-- Hook -->
 	{if isset($HOOK_DISPLAY_PDF)}
