@@ -4484,6 +4484,10 @@ a:focus {
 }
 
 @media screen and (max-width:700px) {
+
+  #checkout #form_ets_onepagecheckout input{
+    font-size: 16px;
+  }
   
   .videosContainer .video{
       width: 390px;
