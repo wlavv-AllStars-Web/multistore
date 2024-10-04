@@ -98,7 +98,7 @@
         {/foreach}        *}
     {else}
         <div class="no-options-container">
-            <p class="no-options">{l s="No options" d="Shop.Theme.Quickshop"}</p>
+            {* <p class="no-options">{l s="No options" d="Shop.Theme.Quickshop"}</p> *}
         </div>
     {/if}
     {* fim de atributo *}
