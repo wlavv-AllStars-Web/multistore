@@ -6,6 +6,8 @@
   --euromus-color-500 : #707c88;
 }
 
+
+
 /* #motion-demo {
   offset-path: path("M20,20 C20,100 200,0 200,100");
   animation: move 3000ms infinite linear;
@@ -1236,7 +1238,7 @@ main {
         position: relative;
         /* transition: all 0.3s ease-in-out; */
         cursor: pointer;
-        outline: 3px solid #0e1f31;
+        outline: 3px solid #fff;
         outline-offset: -1px;
       }
       .otherCars .categoryCars .category:hover{
@@ -4393,6 +4395,7 @@ a:focus {
     width: 616px;
     border-radius: 0.5rem;
     overflow: hidden;
+    cursor: pointer;
   }
   
   .firstDiv {
@@ -6454,8 +6457,8 @@ transform: translate(-50%,-50%);
     height: auto;
     min-height: 58px;
     padding: 0.5rem;
-    background: rgba(250, 250, 250, 0.9);
-    color: #103054;
+    background-color: rgba(20, 44, 70, 0.8);
+    color: #fff;
     left: 0;
     width: 100%;
     display: flex;
