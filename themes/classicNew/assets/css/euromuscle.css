@@ -1239,7 +1239,7 @@ main {
         /* transition: all 0.3s ease-in-out; */
         cursor: pointer;
         outline: 3px solid #fff;
-        outline-offset: -1px;
+        outline-offset: 0px;
       }
       .otherCars .categoryCars .category:hover{
         border: 2px solid #fff;
