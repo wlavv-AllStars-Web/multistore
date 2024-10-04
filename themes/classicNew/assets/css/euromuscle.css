@@ -453,7 +453,7 @@ main {
 
   /*  */
   #content-wrapper .contact-form{
-    padding: 1rem !important;
+    padding: 0rem !important;
     margin-top: 2rem !important;
   }
   #content-wrapper .contact-form .form-fields .form-group:nth-child(1){
