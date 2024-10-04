@@ -25,7 +25,7 @@
  <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 9pt;padding:10px 0;">
 	<tr>
 		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</b></th>
-		<th style="width:20%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>Order Detail</b></th>
+		<th style="width:20%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>{l s='Order Detail' d='Shop.Pdf' pdf='true' }</b></th>
 		<th style="width:40%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</b></th>
 	</tr>
 	<tr>
