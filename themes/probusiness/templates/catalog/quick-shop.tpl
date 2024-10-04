@@ -54,7 +54,7 @@
                             <button class="quick-btn-remove-all" onclick="removeAllToCart(this)"><i class="fa-solid fa-xmark"></i><span>{l s="Remove All" d="Shop.Theme.Quickshop"}</span></button>
                         </div>
                         <div class="quick-footer-right">
-                            <button class="quick-btn-addcart" onclick="addAllToCart(this)" disabled>{l s="Proceed to Checkout" d="Shop.Theme.Quickshop"}</button>
+                            <button class="quick-btn-addcart" onclick="addAllToCart(this)" disabled>{l s="Confirm the order" d="Shop.Theme.Quickshop"}</button>
                             {* <button class="quick-btn-checkout">Proceed to Checkout</button> *}
                         </div>
                     </div>
