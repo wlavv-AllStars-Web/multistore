@@ -30,13 +30,13 @@
 
 {else}
   {* <pre>{$field|print_r}</pre> *}
-  <div class="form-group row {if !empty($field.errors)}has-error{/if}" style="display: flex;flex-direction:column;justify-content:center;align-items:center;">
+  <div class="form-group  {if !empty($field.errors)}has-error{/if}" style="display: flex;flex-direction:column;justify-content:center;align-items:center;">
     <label class="col-md-10 form-control-label{if $field.required} required{/if}" for="field-{$field.name}" style="text-align:left">
       {if $field.type !== 'checkbox'}
         {$field.label}
       {/if}
     </label>
-    <div class="col-md-10 js-input-column{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
+    <div class="col-md-12 js-input-column{if ($field.type === 'radio-buttons')} form-control-valign{/if}" style="width: 100%;">
 
       {if $field.type === 'select'}
 
