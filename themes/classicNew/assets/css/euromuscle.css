@@ -3147,10 +3147,11 @@ Roboto, Oxygen-Sans, Ubuntu, Cantarell,
     text-align: center;
     font-weight: 600;
     /* min-height: 314px; */
+    color: var(--euromus-color-200);
 }
 
 .text_partners .title_company {
-  color: #103054;
+  color: var(--euromus-color-100);
   font-weight: 700;
   text-transform: uppercase;
 }
