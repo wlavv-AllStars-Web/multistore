@@ -4,6 +4,7 @@
   --euromus-color-300 : #ee302e;
   --euromus-color-400 : #f6f6f6;
   --euromus-color-500 : #707c88;
+  --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 
@@ -29,6 +30,54 @@
   100% { offset-distance: 100%;}
 } */
 
+#pagenotfound .page-not-found, #products .page-not-found{
+  max-width: 570px;
+  padding: 1rem;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  overflow: auto;
+  font-size: 0.875rem;
+  color: #7a7a7a;
+  background: #fff;
+  box-shadow: var(--euromus-shadow);
+  border-radius: 0.25rem;
+  width: 100%;
+  text-align: center;
+}
+
+#pagenotfound .page-not-found h4, #products .page-not-found h4{
+  font-weight: 700;
+  color: var(--euromus-color-200);
+  font-size: 1.1rem;
+}
+
+#pagenotfound .page-not-found a, #products .page-not-found a{
+  font-weight: 600;
+  color: var(--euromus-color-500);
+  padding-top: 1rem;
+  margin-left: auto;
+  display: flex;
+  width: fit-content;
+  text-decoration: underline;
+}
+#pagenotfound .page-not-found a:hover, #products .page-not-found a:hover{
+  text-decoration: underline;
+  color: var(--euromus-color-200);
+}
+
+#pagenotfound .page-not-found .searchbarInput {
+  background: #f1f1f1 !important;
+  min-width: 264px;
+}
+
+#products .page-not-found .searchbarInput {
+  background: #f1f1f1 !important;
+}
+
+
+#search #wrapper {
+  background: none !important;
+}
 
 *:focus-visible{
   outline: none !important;
@@ -4225,9 +4274,9 @@ body#checkout section.checkout-step .address-selector {
 #manufacturer #wrapper {
   background: #fff !important;
 }
-#search #wrapper {
+/* #search #wrapper {
   background: #fff !important;
-}
+} */
 /* #category #wrapper {
   background: #fff !important;
 } */
