@@ -600,7 +600,7 @@ main {
     display: flex;
     flex-direction: column;
     background: #e6e6e6;
-    color: #103054;
+    color: var(--euromus-color-200);
     border-radius: 0.5rem;
   }
   #terms img{
@@ -611,10 +611,13 @@ main {
     padding: 1.5rem;
   }
   #terms .terms-content .terms-line{
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    color: var(--euromus-color-600);
   }
   #terms .terms-content .terms-line b,#terms .terms-content .terms-line h2{
-    color: var(--euromus-color-300)
+    color: var(--euromus-color-200);
+    display: flex;
+    font-size: 1.1rem;
   }
 
     #header .header-nav {
@@ -1797,7 +1800,7 @@ main {
   display: flex;
   flex-direction: column;
   background: var(--euromus-color-400);
-  color: #103054;
+  color: var(--euromus-color-600);
   border-radius: 0.5rem;
 }
 #terms img{
@@ -1808,10 +1811,18 @@ main {
   padding: 1rem 2rem;
 }
 #terms .terms-content .terms-line{
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 #terms .terms-content .terms-line b,#terms .terms-content .terms-line h2{
-  color: var(--euromus-color-300);
+  color: var(--euromus-color-200);
+  margin-bottom: .5rem;
+}
+
+#terms .terms-content .terms-line br{
+  display: flex;
+  margin-bottom: 1rem;
 }
 
 }
@@ -1842,7 +1853,7 @@ main {
       display: flex;
       flex-direction: column;
       background: var(--euromus-color-400);
-      color: #103054;
+      color: var(--euromus-color-200);
       border-radius: 0.5rem;
     }
     #terms img{
@@ -1853,10 +1864,19 @@ main {
       padding: 1rem 6rem;
     }
     #terms .terms-content .terms-line{
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      color: var(--euromus-color-600);
+    }
+
+    #terms .terms-content .terms-line br{
       margin-bottom: 1rem;
     }
+
     #terms .terms-content .terms-line b,#terms .terms-content .terms-line h2{
-      color: var(--euromus-color-300);
+      color: var(--euromus-color-200);
+      margin-bottom: 1rem;
     }
 
     .cms-id-52 .linesHeaderDesktop {
@@ -1994,10 +2014,20 @@ main {
     }
   }
 
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: 1500px) and (max-width: 1800px) {
     #footer_sub_menu_12 {
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr) )!important;
+    }
   }
+
+  @media screen and (min-width: 1800px) {
+    #footer_sub_menu_12 {
+      grid-template-columns: repeat(4, 1fr )!important;
+    }
+
+    #footer .footer-container .container-md {
+      max-width: 1920px;
+    }
   }
 
 
