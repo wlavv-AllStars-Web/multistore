@@ -1998,6 +1998,29 @@ main {
           font-family: Open Sans, sans-serif;
         }
 
+        .shipping_address_form{
+          border-radius: 0.25rem;
+        }
+
+        .shipping_address_form #use_shipping_address{
+          border-radius: 0.25rem !important;
+        }
+        .shipping_address_form #use_invoice_address{
+          border-radius: 0.25rem !important;
+        }
+
+        .shipping_address input{
+          border-radius: 0.25rem;
+        }
+        .shipping_address select{
+          border-radius: 0.25rem;
+        }
+        .invoice_address input{
+          border-radius: 0.25rem;
+        }
+        .invoice_address select{
+          border-radius: 0.25rem;
+        }
   }
 
   #scrollToTopBtn {
