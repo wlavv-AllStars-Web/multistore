@@ -1991,6 +1991,13 @@ main {
         .block-onepagecheckout.block-payment .title-heading{
           margin-bottom: 0;
         }
+
+
+        #delivery-addresses select#use_shipping_address, #invoice-addresses select#use_invoice_address{
+          background: #fff !important;
+          font-family: Open Sans, sans-serif;
+        }
+
   }
 
   #scrollToTopBtn {
