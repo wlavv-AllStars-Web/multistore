@@ -152,6 +152,7 @@ main {
   color: #fff !important;
   background: var(--euromus-color-200)!important;
   font-size: .85rem;
+  border-radius: 0.25rem;
 }
 .btn-primary:hover{
   color: #fff !important;
@@ -2132,6 +2133,29 @@ main {
       height: 24px;
       display: flex !important;
     }
+
+    #_desktop_language_selector .language-selector .dropdown-menu li{
+      gap: .5rem;
+      padding: 0 .5rem;
+    }
+
+    #_desktop_language_selector .language-selector .dropdown-menu li:hover{
+      background: #f6f6f6;
+    }
+
+    #_desktop_language_selector .language-selector .dropdown-menu li img{
+      width: 24px;
+      height: 16px;
+    }
+
+    #_desktop_language_selector .language-selector .dropdown-menu a{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .25rem 0;
+    }
+
+
     #_desktop_language_selector .language-selector:hover span{
       color: var(--euromus-color-300);
     }
