@@ -6,6 +6,7 @@
 img/
 !img/
 var/
+modules/autoupgrade/
 
 # Cache
 /cache/*
@@ -175,3 +176,4 @@ themes/default-bootstrap/modules/*/mails/*
 /vendor/
 /web/bundles/
 
+node_modules
