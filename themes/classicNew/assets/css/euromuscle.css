@@ -2584,7 +2584,7 @@ main {
   height: 180px;
   max-width: 334px;
   width: 100%;
-  filter: drop-shadow(10px 8px 15px var(--euromus-color-100));
+  filter: drop-shadow(10px 6px 18px var(--euromus-color-200));
 }
 
 .cars-container .card .card-body .card-text{
