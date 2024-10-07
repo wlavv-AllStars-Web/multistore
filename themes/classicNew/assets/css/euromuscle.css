@@ -4,6 +4,8 @@
   --euromus-color-300 : #ee302e;
   --euromus-color-400 : #f6f6f6;
   --euromus-color-500 : #707c88;
+  --euromus-color-600 : #51606f;
+  --euromus-color-700 : #dedede;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -1386,7 +1388,7 @@ main {
         padding: 0;
         overflow: hidden;
         /* outline: 3px solid #103054; */
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         height: 266px;
         max-width: 300px;
         margin: auto;
@@ -2000,7 +2002,7 @@ main {
       padding: 0;
       overflow: hidden;
       /* outline: 3px solid #103054; */
-      border-radius: 0.5rem;
+      border-radius: 0.25rem;
       max-width: 340px;
     }
     #js-product-list .product article{
@@ -2856,7 +2858,7 @@ header.page-header {
 }
 
 #login-form .forgot-password a{
-  color: #103054;
+  color: var(--euromus-color-500);
 }
 #login-form .forgot-password a:hover{
   color: var(--euromus-color-300);
@@ -2866,8 +2868,25 @@ header.page-header {
   background: #103054;
 }
 
+#authentication .page-header{
+  max-width: 640px;
+  margin: 2rem auto;
+}
+
+#authentication .page-content-login{
+  border-radius: 0.25rem;
+}
+
+#authentication #login-form .form-control-label {
+  width: 100%;
+}
+
+#authentication .input-group .input-group-btn > .btn[data-action="show-password"] {
+  background: var(--euromus-color-500);
+}
+
 #authentication .no-account a {
-  color: #103054;
+  color: var(--euromus-color-500);
 }
 #authentication .no-account a:hover {
   color: var(--euromus-color-300);
@@ -3997,6 +4016,10 @@ justify-content: center;
   background: var(--euromus-color-400);
 }
 
+.brands-sort .select-title, .products-sort-order .select-title, .suppliers-sort .select-title{
+  border-radius: 0.25rem;
+}
+
 #tab-content p {
   font-weight: 500 !important;
   color: #484848 !important;
@@ -4275,9 +4298,9 @@ body#checkout section.checkout-step .address-selector {
   max-width: 1440px;
   width: 100%;
 }
-#manufacturer #wrapper {
+/* #manufacturer #wrapper {
   background: #fff !important;
-}
+} */
 /* #search #wrapper {
   background: #fff !important;
 } */
@@ -4299,13 +4322,14 @@ body#checkout section.checkout-step .address-selector {
   justify-content: center;
 }
 #js-product-list .js-product.product{
-  outline: 3px solid #dedede;
+  outline: 2px solid var(--euromus-color-700);
+  box-shadow: var(--euromus-shadow);
   /* outline: 3px solid #103054;
   border-radius: 0.5rem; */
 }
 #js-product-list .js-product.product:hover {
   outline: 3px solid var(--euromus-color-300);
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 #module-ukoocompat-listing .product-price-and-shipping .price::after {
   content: '€';
