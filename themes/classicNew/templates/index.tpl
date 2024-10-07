@@ -67,7 +67,7 @@
             </div>
             {$HOOK_HOME nofilter}
 
-            <div class="lines-tablet" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;"></div>
+            <div class="lines-tablet" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;transform: rotate(180deg);"></div>
             
             <div class="bannersHome">
               {foreach from=$desktop['icones_50'] item=item key=key name=name }
@@ -518,7 +518,7 @@
               <h5 style="font-weight: 400;">OTHER</h5>
               <h3>VEHICLE TYPES</h3>
             </div> *}
-            <div class="categoryCars" style="display: flex;justify-content:space-evenly;width:100%;padding:3rem 1rem;max-width:1920px;gap:1rem;">
+            <div class="categoryCars" style="display: grid;width:100%;padding:3rem 1rem;max-width:1920px;gap:2rem;grid-template-columns: repeat(auto-fit,minmax(250px,1fr));">
             {* <pre>{print_r($language.iso_code,1)}</pre> *}
               {* {foreach from=$categories item=categoryLevel1} *}
                 {foreach from=$cats item=category}
@@ -576,8 +576,8 @@
                       <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                     </div>
                   </div>
-                  <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$icon.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy">
+                  <div  class="iframeClass" style="display: none;">
+                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$icon.youtube_code}?autoplay=0&mute=0&rel=0&controls=1" loading="lazy">
                     </iframe>
                   </div>
                 </div>

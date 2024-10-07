@@ -1614,6 +1614,7 @@ main {
   #_desktop_user_info .user-info a {
     display: flex;
     align-items: center;
+    gap: .5rem;
   }
   #_desktop_user_info .user-info a i{
     line-height: 100% !important;
@@ -2057,7 +2058,7 @@ main {
     }
 
     #_desktop_user_info .user-info a i {
-      font-size: 46px !important;
+      font-size: 28px !important;
     }
 
     #_desktop_user_info span {
@@ -2395,6 +2396,7 @@ main {
 #_desktop_user_info .user-info a{
   display: flex;
   align-items: center;
+  gap:0.5rem;
 }
 #_desktop_user_info .user-info a{
   color: #103054;
@@ -2427,7 +2429,7 @@ main {
   background-color: var(--euromus-color-500);
 }
 .cars-container #accordion .show{
-  background-color: #103054;
+  background-color: var(--euromus-color-200);
   border-radius: 13px;
 }
 
@@ -2461,7 +2463,7 @@ main {
   margin:0.5rem 0;
 }
 .cars-container .card .card-body .card-text .card-link a {
-  font-weight: 400;
+  font-weight: 600;
   color: var(--euromus-color-400); 
   /* font-family: 'Roboto', Arial,Helvetica,sans-serif; */
 }
@@ -2475,8 +2477,8 @@ main {
 
 .cars-container .card .btn{
   border-radius: 4px;
-  border: 2px solid #103054;
-  background: #0d2540;
+  border: 2px solid var(--euromus-color-100);
+  background: var(--euromus-color-200);
   color: #fff !important;
   max-width: 154px;
   box-shadow: 2px 3px 9px rgba(0, 0, 0, 0.5);
@@ -2508,6 +2510,7 @@ main {
   height: 180px;
   max-width: 334px;
   width: 100%;
+  filter: drop-shadow(10px 6px 15px var(--euromus-color-100));
 }
 
 .cars-container .card .card-body .card-text{
@@ -2527,11 +2530,12 @@ main {
   margin-bottom: 1rem;
 }
 .cars-container .card .card-body .card-text .card-link a{
-  font-size: 16px ;
+  font-size: 1.1rem ;
 }
 .cars-container .card .card-body .card-text .card-link span{
-  font-size: 14px !important;
+  font-size: 1rem !important;
   color: var(--euromus-color-300);
+  font-weight: 600;
 }
 
 .cars-container .card-header {
