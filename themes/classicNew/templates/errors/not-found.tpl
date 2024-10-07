@@ -36,7 +36,7 @@
     {block name='search'}
       {hook h='displaySearch'}
     {/block}
-    <a href="/">Back to the store.</a>
+    {* <a href="/">Back to the store.</a> *}
     {block name='hook_not_found'}
       {hook h='displayNotFound'}
     {/block}
