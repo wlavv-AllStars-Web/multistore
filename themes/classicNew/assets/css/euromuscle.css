@@ -1134,7 +1134,7 @@ main {
     }
 
     .cars-container .cars-cards {
-      /* display: flex !important; */
+      display: flex !important;
       overflow: scroll;
       scroll-snap-type: mandatory;
       scroll-snap-type: x mandatory !important;
@@ -1142,7 +1142,7 @@ main {
     }
 
     .cars-container .cars-cards .card {
-      /* min-width: 100vw; */
+      min-width: 100vw;
       scroll-snap-align: start;
       display: flex;
       align-items: center !important;
@@ -1277,6 +1277,7 @@ main {
         width: 100% !important;
         padding: 0.5rem;
         gap: 2rem;
+        justify-content: center;
       }
 
       .otherCars .categoryCars .category {
@@ -4027,7 +4028,16 @@ justify-content: center;
 } */
 .tabs .nav-tabs .nav-link.active{
   color: var(--euromus-color-200)!important;
+  border-bottom: var(--euromus-color-200) 3px solid;
 }
+.tabs .nav-tabs .nav-link.active:hover{
+  color: var(--euromus-color-200)!important;
+  border-bottom: var(--euromus-color-200) 3px solid;
+}
+.tabs .nav-tabs .nav-link:hover{
+  border-bottom: var(--euromus-color-600) 3px solid;
+}
+
 .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
   background: var(--euromus-color-400);
 }
@@ -4042,6 +4052,18 @@ justify-content: center;
 
 .brands-sort .select-title, .products-sort-order .select-title, .suppliers-sort .select-title{
   border-radius: 0.25rem;
+}
+
+.column_tabs #product_brand h4{
+  color: var(--euromus-color-200);
+}
+
+.column_tabs #product_brand div:not(.banner-tabs){
+  color: var(--euromus-color-600);
+}
+
+#product .tabs #tab-content p {
+  font-size: 1rem;
 }
 
 #tab-content p {
@@ -6775,8 +6797,18 @@ transform: translate(-50%,-50%);
   outline: 3px solid var(--euromus-color-400);
 }
 
-.product-images > li.thumb-container .thumb.selected, .product-images > li.thumb-container .thumb:hover{
+.product-images > li.thumb-container .thumb.selected{
   outline: var(--euromus-color-300) 3px solid !important;
+  border: 0 !important;
+}
+
+.product-images > li.thumb-container .thumb.selected:hover{
+  outline: var(--euromus-color-300) 3px solid !important;
+  border: 0 !important;
+}
+
+.product-images > li.thumb-container .thumb:hover{
+  outline: var(--euromus-color-500) 3px solid !important;
   border: 0 !important;
 }
 
