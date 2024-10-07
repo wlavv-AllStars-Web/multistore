@@ -19,7 +19,7 @@
 <div class="title yes_invoice_address" style="display:none">{l s='Delivery address' mod='ets_onepagecheckout'}</div>
 {if $list_address}
     {if $use_address}
-        <div class="form-group col-lg-4 ">
+        <div class="form-group col-lg-4">
             <label class="col-md-4 form-control-label required"> {l s='Use address' mod='ets_onepagecheckout'} </label>
             <div class="col-md-8 opc_field_right">
                 <div class="shipping_address_form">
