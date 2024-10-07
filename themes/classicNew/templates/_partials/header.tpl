@@ -181,7 +181,7 @@
           {/foreach}    *}
             
   
-            <div style="border-top:2px solid #103054;border-bottom:2px solid #ee302e;padding-block:1px;width: 100%;
+            <div style="border-top:2px solid #103054;border-bottom:2px solid #ee302e;padding-block:1px;width: 100%;background:#fff;
             height: 2px;
             position: absolute;
             bottom: 0;"></div>
