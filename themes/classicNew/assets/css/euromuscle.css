@@ -2471,7 +2471,7 @@ main {
   gap:0.5rem;
 }
 #_desktop_user_info .user-info a{
-  color: #103054;
+  color: var(--euromus-color-200);
 }
 
 #_desktop_user_info .user-info a:hover {
