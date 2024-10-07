@@ -28,12 +28,8 @@
 {assign var="name_manufacturer" value=$listing['products'][0]['manufacturer_name']}
 {assign var="id_manufacturer" value=$listing['products'][0]['id_manufacturer']}
 
- {if $smarty.server.REQUEST_URI == "/en/new-products"}
-  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_en.webp?t=123"  style="width:100%;"/></div>
-  {elseif  $smarty.server.REQUEST_URI === "/es/novos-produtos"}
-  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_es.webp?t=123"  style="width:100%;"/></div>
-  {elseif $smarty.server.REQUEST_URI === "/fr/nouveaux-produits"}
-  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_fr.webp?t=123"  style="width:100%;"/></div>
+ {if $urls.current_url == "{$urls.pages.new_products}"}
+  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
  {/if}
 <div id="js-product-list-top" class="row products-selection" style="display: flex;align-items:center;gap:0rem;margin-bottom: 3rem;">
 
@@ -45,22 +41,34 @@
       </span>
     </div> *}
   {else}
-
+    {* {$urls.current_url}
+    <br>
+    {$link->getCategoryLink(226)} *}
     <div class="col-lg-5 hidden-sm-down total-products pt-0">
-    {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/new-products" || $smarty.server.REQUEST_URI === "/es/novos-produtos" || $smarty.server.REQUEST_URI === "/fr/nouveaux-produits"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(15)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='CLEARANCE' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(10)}"}
+    {if $urls.current_url == "{$urls.pages.new_products}"}
+      {* <div style="width: fit-content;padding: 0.5rem 1rem;background: var(--euromus-color-800);border-radius: 0.5rem;outline: 2px solid var(--euromus-color-200);">
+        <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2>
+      </div> *}
+    {elseif $urls.current_url === "{$link->getCategoryLink(226)}"}
+      <div style="width: fit-content;padding: 0.25rem 1rem;background: var(--euromus-color-800);border-radius: 0.25rem;outline: 1px solid var(--euromus-color-200);min-width: 340px;text-align:center;">
+        <h2 style="color: var(--euromus-color-200);font-size: 1.5rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;line-height: normal;">{l s='Clearance' d='Shop.Theme.Catalog'}</h2>
+      </div>
+    {elseif $urls.current_url === "{$link->getCategoryLink(221)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(9)}"}
+
+      {* <div style="width: fit-content;padding: 0.5rem 1rem;background: var(--euromus-color-800);border-radius: 0.5rem;outline: 2px solid var(--euromus-color-200);">
+        <img src="/img/eurmuscle/bannersHome/truck.webp" style="width: 100%;max-width:180px;">
+        <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2>
+      </div> *}
+
+    {elseif $urls.current_url === "{$link->getCategoryLink(220)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='4X4' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(11)}"}
+    {elseif $urls.current_url === "{$link->getCategoryLink(222)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='CLASSICS' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(12)}"}
+    {elseif $urls.current_url === "{$link->getCategoryLink(223)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='MODERN' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $smarty.server.REQUEST_URI === "{$link->getCategoryLink(13)}"}
-      <h2 style="text-transform: uppercase;color:#103054">{l s='TOOLS' d='Shop.Theme.Catalog'}</h2>
+    {elseif $urls.current_url === "{$link->getCategoryLink(224)}"}
+      {* <h2 style="text-transform: uppercase;color:#103054">{l s='TOOLS' d='Shop.Theme.Catalog'}</h2> *}
     {/if}
     {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       {* <pre>{$urls|print_r}</pre> *}
