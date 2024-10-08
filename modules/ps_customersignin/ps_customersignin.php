@@ -75,14 +75,11 @@ class Ps_CustomerSignIn extends Module implements WidgetInterface
         $logged = $this->context->customer->isLogged();
 
         if ($logged) {
-            $customerfirstName = explode(" ", trim($this->context->customer->firstname));
-            $customerLastName = explode(" ", trim($this->context->customer->lastname));
-
             $customerName = $this->getTranslator()->trans(
                 '%firstname% %lastname%',
                 [
-                    '%firstname%' => $customerfirstName[0],
-                    '%lastname%' => end($customerLastName),
+                    '%firstname%' => $this->context->customer->firstname,
+                    '%lastname%' => $this->context->customer->lastname,
                 ],
                 'Modules.Customersignin.Admin'
             );
