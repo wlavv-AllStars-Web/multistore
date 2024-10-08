@@ -170,7 +170,7 @@
     	{if $order_detail.unit_price_tax_excl > 0}
     	{cycle values=' ,#EEE' assign=bgcolor}
     	<tr style="{$deleted_row}">
-    		<td style="text-align: left;">
+    		<td style="text-align: center;">
     			{if !empty($order_detail.product_reference)}
     				{$order_detail.product_reference}
     			{else}
@@ -194,7 +194,7 @@
 
     		{* </td> *}
     		
-    		<td style="text-align: left;">{$order_detail.product_name}</td>
+    		<td style="text-align: center;">{$order_detail.product_name}</td>
     	
     		<!-- unit price tax excluded is mandatory -->
     		{* <td style="text-align: center;">
