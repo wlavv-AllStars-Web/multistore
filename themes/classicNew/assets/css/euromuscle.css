@@ -7,6 +7,7 @@
   --euromus-color-600 : #51606f;
   --euromus-color-700 : #dedede;
   --euromus-color-800 : #1030543d;
+  --euromus-color-text : #4e5053;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -253,6 +254,27 @@ main {
   border: 1px solid var(--euromus-color-500);
   background: #f6f6f6;
   color: var(--euromus-color-600);
+}
+
+#module-psgdpr-gdpr #content {
+  background: transparent;
+}
+
+#module-psgdpr-gdpr #content .page_content div{
+  background: var(--euromus-color-700);
+}
+
+#module-psgdpr-gdpr #content .page_content div h2{
+  color: var(--euromus-color-text);
+}
+
+#module-psgdpr-gdpr #content .page_content div p{
+  color: var(--euromus-color-text);
+  font-weight: 500;
+}
+
+a:focus{
+  color: var(--euromus-color-text);
 }
 
 @media screen and (max-width:360px){
