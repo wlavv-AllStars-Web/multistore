@@ -30,7 +30,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class Ps_CustomerSignIn extends Module implements WidgetInterface
+class Ps_CustomerSignInOverride extends Ps_CustomerSignIn
 {
     /**
      * @var string Name of the module running on PS 1.6.x. Used for data migration.
