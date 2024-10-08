@@ -3655,7 +3655,7 @@ color: #103054;
 }
 
 #legal .legal-line {
-color: #103054;
+color: var(--euromus-color-text);
 }
 
 #legal {
@@ -3677,12 +3677,13 @@ gap: 2rem;
 }
 
 #legal .legal-content b {
-color: var(--euromus-color-300);
+color: var(--euromus-color-200);
 }
 
 .legal-footer{
 display: flex;
 justify-content: space-between;
+color: var(--euromus-color-text);
 }
 
 .legal-footer-header {
