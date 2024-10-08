@@ -107,38 +107,48 @@
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
     	<tr>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th>
+			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th>
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order date' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Status' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Carrier' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Tracking' d='Shop.Pdf' pdf='true'}</b> </th>
+
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</b> </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' d='Shop.Pdf' pdf='true'}</b> </th> *}
     	</tr>
     	<tr>
-    		<td style="width: 20%;"> {$title|escape:'html':'UTF-8'} </td>
-    		<td style="width: 20%;"> {dateFormat date=$order->invoice_date full=0} </td>
-    		<td style="width: 20%;"> {$order->getUniqReference()} </td>
+			<td style="width: 20%;"> {$order->getUniqReference()} </td>
     		<td style="width: 20%;"> {$order->date_add|date_format:"%d-%m-%Y %H:%M"} </td>
+    		<td style="width: 20%;">{$current_state}</td>
+    		<td style="width: 20%;">{$carrier->name}</td>
+    		<td style="width: 20%;">{$tracking_number}</td>
+
+    		{* <td style="width: 20%;"> {$title|escape:'html':'UTF-8'} </td>
+    		<td style="width: 20%;"> {dateFormat date=$order->invoice_date full=0} </td>
     		<td style="width: 20%;">
     			{foreach from=$order_invoice->getOrderPaymentCollection() item=payment}
     				<b>{$payment->payment_method}</b>
     			{foreachelse}
     				{l s='No payment' d='Shop.Pdf' pdf='true'}
     			{/foreach}
-    		</td>
+    		</td> *}
     	</tr>
     </table>
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 7pt;">
     	<tr>
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Reference' d='Shop.Pdf' pdf='true'}</b></th>
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' d='Shop.Pdf' pdf='true'}</b></th> *}
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Product' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</b></th>
+			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Ordered' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Shipped' d='Shop.Pdf' pdf='true'}</b></th>
+
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' d='Shop.Pdf' pdf='true'}</b></th> *}
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</b></th> *}
     		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'} {l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}</b></th> *}
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Qty sent' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">
+    		
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">
     			<b>{l s='Total' d='Shop.Pdf' pdf='true'}
     			{if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
     				{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}
@@ -146,7 +156,7 @@
     				{l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}
     				
     			{/if}</b>
-    		</th>
+    		</th> *}
     	</tr>
     	<!-- PRODUCTS -->
     	{foreach $order_details as $order_detail}
@@ -187,19 +197,19 @@
     		<td style="text-align: left;">{$order_detail.product_name}</td>
     	
     		<!-- unit price tax excluded is mandatory -->
-    		<td style="text-align: center;">
+    		{* <td style="text-align: center;">
     			{displayPrice currency=$order->id_currency price=$order_detail.unit_price_tax_excl}
-    		</td>
+    		</td> *}
     
     		<!--Valor real do imposto-->
-    		<td style="text-align: center;">
+    		{* <td style="text-align: center;"> *}
     		{* {if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
     			---
     		{else}
     			{displayPrice currency=$order->id_currency price=($order_detail.unit_price_tax_incl - $order_detail.unit_price_tax_excl)}
     		{/if} *}
-				{$order_detail.tax_rate|number_format:0}%
-    		</td>
+				{* {$order_detail.tax_rate|number_format:0}%
+    		</td> *}
     		
     		{* <td style="text-align: center;">
     		{if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
@@ -210,15 +220,15 @@
     		</td> *}
     		<td style="text-align: center;">{$order_detail.product_quantity}</td>
     		<td style="text-align: center;">{$order_detail.product_quantity_sent}</td>
-    		<td style="text-align: right;">
+    		{* <td style="text-align: right;">
     		{if $tax_excluded_display}
     			{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_excl}
     		{else}
     			{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_incl}
     		{/if}
-    		</td>
+    		</td> *}
     	</tr>
-    		{foreach $order_detail.customizedDatas as $customizationPerAddress}
+    		{* {foreach $order_detail.customizedDatas as $customizationPerAddress}
     			{foreach $customizationPerAddress as $customizationId => $customization}
     				<tr style="line-height:6px;background-color:{$bgcolor}; ">
     					<td style="line-height:3px; text-align: left; width: 60%; vertical-align: top">
@@ -244,13 +254,13 @@
     					<td style="width: 15%; text-align: right;"></td>
     				</tr>
     			{/foreach}
-    		{/foreach}
+    		{/foreach} *}
     		{/if}
     	{/foreach}
     	<!-- END PRODUCTS -->
     
     	<!-- CART RULES -->
-    	{assign var="shipping_discount_tax_incl" value="0"}
+    	{* {assign var="shipping_discount_tax_incl" value="0"}
     	{foreach $cart_rules as $cart_rule}
     	{cycle values='#FFF,#DDD' assign=bgcolor}
     		<tr style="line-height:6px;background-color:{$bgcolor}; text-align:right;">
@@ -266,11 +276,11 @@
     				{/if}
     			</td>
     		</tr>
-    	{/foreach}
+    	{/foreach} *}
     	<!-- END CART RULES -->
     </table>
 
-	<table style="padding-top: 10px;">
+	{* <table style="padding-top: 10px;">
 		<tr>
 			<td style="width: 50%;">
 			</td>
@@ -281,13 +291,13 @@
 					<tr>
 						<td style="width: 60%; text-align: right; font-weight: bold;background-color: #f0f0f0; color: #000;">{l s='Product Total (Tax Excl.)' d='Shop.Pdf' pdf='true'}</td>
 						<td style="width: 40%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products}</td>
-					</tr>
+					</tr> *}
 				
 					<!--<tr style="">
 						<td style="width: 85%; text-align: right; font-weight: bold">{l s='Product Total (Tax Incl.)' d='Shop.Pdf' pdf='true'}</td>
 						<td style="width: 15%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products_wt}</td>
 					</tr>-->
-					{else}
+					{* {else}
 					<tr style="">
 						<td style="width: 60%; text-align: right; font-weight: bold">{l s='Product Total' d='Shop.Pdf' pdf='true'}</td>
 						<td style="width: 40%; text-align: right;">{displayPrice currency=$order->id_currency price=$order_invoice->total_products}</td>
@@ -350,7 +360,7 @@
 				</table>
 			</td>
 		</tr>
-	</table>
+	</table> *}
     
     
     

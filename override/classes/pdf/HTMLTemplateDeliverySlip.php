@@ -127,6 +127,10 @@ class HTMLTemplateDeliverySlipCore extends HTMLTemplate
                 }
                 $order_detail['housing'] =  Db::getInstance()->getValue('SELECT housing FROM ps_product WHERE id_product="'.$order_detail['product_id'].'"');
                 // $housing =  Db::getInstance()->getValue('SELECT housing FROM ps_product WHERE id_product="'.$order_detail['product_id'].'"');
+
+
+                // echo '<pre>'.print_r($order_detail,1).'</pre>';
+                // exit;
             }
         }
 
@@ -142,6 +146,16 @@ class HTMLTemplateDeliverySlipCore extends HTMLTemplate
         //     $housing =  Db::getInstance()->getRow('SELECT location FROM ps_product WHERE id_product="'.$order_details['product_id'].'"');
         // }
 
+        // echo '<pre>'.print_r($this->order->id,1).'</pre>';
+        //         exit;
+
+        $current_state = Db::getInstance()->getValue('SELECT psl.name FROM ps_orders as po LEFT JOIN ps_order_state_lang as psl ON po.current_state = psl.id_order_state  WHERE psl.id_order_state="'.$this->order->current_state.'" AND psl.id_lang='.Context::getContext()->language->id);
+
+        $tracking_number = Db::getInstance()->getValue('SELECT tracking_number FROM ps_order_carrier WHERE id_order ="'.$this->order->id.'"');
+
+        // echo '<pre>'.print_r($order_details,1).'</pre>';
+        //         exit;
+
 
         $this->smarty->assign([
             'order' => $this->order,
@@ -151,6 +165,8 @@ class HTMLTemplateDeliverySlipCore extends HTMLTemplate
             'addresses' => array('invoice' => $invoice_address, 'delivery' => $delivery_address),
             'order_invoice' => $this->order_invoice,
             'carrier' => $carrier,
+            'current_state' => $current_state,
+            'tracking_number' => $tracking_number,
             // 'housing' => $housing,
             'display_product_images' => Configuration::get('PS_PDF_IMG_DELIVERY'),
         ]);
