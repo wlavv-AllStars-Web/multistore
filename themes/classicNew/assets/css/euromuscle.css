@@ -186,6 +186,28 @@ main {
   width: 100%;
 }
 
+#addresses .grid-container-addresses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+#addresses .grid-container-addresses .address-customer{
+  width: 100%;
+}
+
+#addresses .grid-container-addresses .address-customer .address{
+  height: 100%;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#addresses .grid-container-addresses .address-customer .address .address-body{
+  flex: 1;
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;

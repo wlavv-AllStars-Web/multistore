@@ -30,13 +30,15 @@
 
 {block name='page_content'}
   {if $customer.addresses}
+    <div class="grid-container-addresses">
     {foreach $customer.addresses as $address}
-      <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6 px-0 address-customer">
       {block name='customer_address'}
         {include file='customer/_partials/block-address.tpl' address=$address}
       {/block}
       </div>
     {/foreach}
+    </div>
   {else}
     <div class="alert alert-info" role="alert" data-alert="info">
       {l s='No addresses are available.' d='Shop.Notifications.Success'} <a href="{$urls.pages.address}" title="{l s='Add a new address' d='Shop.Theme.Actions'}">{l s='Add a new address' d='Shop.Theme.Actions'}</a>
