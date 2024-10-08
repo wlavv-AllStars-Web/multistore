@@ -83,7 +83,7 @@
   </tr> *}
   {if $isTaxEnabled}
     {if $footer.total_taxes > 0}
-      <tr class="bold">
+      <tr class="">
         <td class="grey">
           {l s='Total Tax' d='Shop.Pdf' pdf='true'}
         </td>
