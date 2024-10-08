@@ -208,6 +208,53 @@ main {
   flex: 1;
 }
 
+#identity #customer-form .form-control-label{
+  width: 100%;
+}
+
+#history #content{
+  background: transparent;
+}
+
+#history #content table{
+  border: 0;
+  outline: 1px solid var(--euromus-color-800);
+  box-shadow: var(--euromus-shadow);
+  background: #f6f6f6;
+}
+
+#history #content table thead{
+  background: var(--euromus-color-700);
+}
+
+#history #content table thead th{
+  background: var(--euromus-color-800);
+  border: 1px solid var(--euromus-color-500);
+  font-weight: 700;
+  color: var(--euromus-color-200);
+}
+
+#history #content table tbody td {
+  border: 1px solid var(--euromus-color-500);
+  background: #f6f6f6;
+  color: var(--euromus-color-600);
+}
+
+#history #content table tbody td a{
+  color: var(--euromus-color-600);
+  text-decoration: underline;
+}
+#history #content table tbody td a:hover{
+  color: var(--euromus-color-200);
+  text-decoration: underline;
+}
+
+#history #content table tbody th {
+  border: 1px solid var(--euromus-color-500);
+  background: #f6f6f6;
+  color: var(--euromus-color-600);
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
