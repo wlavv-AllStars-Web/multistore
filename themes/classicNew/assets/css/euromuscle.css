@@ -6,6 +6,7 @@
   --euromus-color-500 : #707c88;
   --euromus-color-600 : #51606f;
   --euromus-color-700 : #dedede;
+  --euromus-color-800 : #1030543d;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -177,6 +178,12 @@ main {
 
 #js-product-list .products .js-product.product.category{
   height: 100%;
+}
+
+/* new address page */
+
+#address .address-form .form-control-label {
+  width: 100%;
 }
 
 @media screen and (max-width:360px){

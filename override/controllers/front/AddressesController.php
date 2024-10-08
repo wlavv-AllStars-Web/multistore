@@ -56,7 +56,12 @@ class AddressesControllerCore extends FrontController
     public function initContent()
     {
         parent::initContent();
-        Tools::redirect('my-account'); 
+
+        // para All Stars Distributio
+        if($this->context->shop->id == 3){
+            Tools::redirect('my-account'); 
+        }
+
         // adicionado
         $total = 0;
         $multiple_addresses_formated = array();

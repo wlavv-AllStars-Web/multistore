@@ -47,7 +47,12 @@ class AddressControllerCore extends FrontController
     public function init()
     {
         parent::init();
-        Tools::redirect('my-account'); 
+
+        // para All Stars Distribution
+        if($this->context->shop->id == 3){
+            Tools::redirect('my-account'); 
+        }
+
         $this->address_form = $this->makeAddressForm();
         $this->context->smarty->assign('address_form', $this->address_form->getProxy());
     }
