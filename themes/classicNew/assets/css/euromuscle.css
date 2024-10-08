@@ -277,6 +277,10 @@ a:focus{
   color: var(--euromus-color-text);
 }
 
+#cms #content-wrapper{
+  font-family: "Open Sans", sans-serif !important;
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
@@ -3469,14 +3473,14 @@ Roboto, Oxygen-Sans, Ubuntu, Cantarell,
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     /* min-height: 314px; */
-    color: var(--euromus-color-200);
+    color: var(--euromus-color-text);
     flex: 1;
 }
 
 .text_partners .title_company {
-  color: var(--euromus-color-300);
+  color: var(--euromus-color-200);
   font-weight: 700;
   text-transform: uppercase;
 }
