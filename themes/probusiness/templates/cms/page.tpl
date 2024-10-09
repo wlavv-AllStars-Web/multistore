@@ -1140,18 +1140,20 @@
               {* ups *}
               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 p-3">
               <div class="card_partners">
-              <div class="image_container_partners"><img class="image_partners" src="/img/asd/Content_pages/partners/ups_logo.webp" alt="ups_logo.jpg?v=1" width="300" height="240" /></div>
+              <div class="image_container_partners"><img class="image_partners" src="/img/asd/Content_pages/partners/ups_logo.jpg" alt="ups_logo.jpg?v=1" width="300" height="240" /></div>
               <div class="text_partners">{l s='UPS' d='Shop.Theme.Partners'}</div>
               <div class="button_container_partners"><a href="https://www.ups.com" target="_blank" class="button_partners" rel="noreferrer noopener"> {l s='Website' d='Shop.Theme.Partners'}</a></div>
               </div>
               </div>
 
-              {* tnt *}
+              {* nacex *}
               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 p-3">
               <div class="card_partners">
-              <div class="image_container_partners"><img class="image_partners" src="/img/asd/Content_pages/partners/tnt_logo.jpg" alt="tnt_logo" width="300" height="240" /></div>
-              <div class="text_partners">{l s='TNT Express is an international courier delivery services company founded in the Netherlands in 2011 and now a subsidiary of FedEx. TNT offers road and air delivery services in Europe, the region of the Asia Pacific, the Americas, the Middle East, and Africa.' d='Shop.Theme.Partners'}</div>
-              <div class="button_container_partners"><a href="https://www.tnt.com" target="_blank" class="button_partners" rel="noreferrer noopener"> {l s='Website' d='Shop.Theme.Partners'}</a></div>
+              <div class="image_container_partners"><img class="image_partners" src="/img/asd/Content_pages/partners/nacex_logo.jpg" alt="nacex_logo" width="300" height="240" /></div>
+              <div class="text_partners">{l s='Since it was set up in 1995, NACEX, part of Grupo Logista, has specialised in providing express courier services for parcels and documents sent between businesses (B2B) and individuals (B2C) and offers a wide range of national, international and value-added services that cover the most demanding delivery requirements in the market.
+              NACEX has consolidated an exclusive franchise network in Spain, Portugal, Andorra and Benelux that guarantees full geographical coverage, thanks to latest-generation technological tools that allow, among other things, real-time shipment monitoring, and thanks to industry-leading customer communication systems.
+              ' d='Shop.Theme.Partners'}</div>
+              <div class="button_container_partners"><a href="https://www.nacex.com" target="_blank" class="button_partners" rel="noreferrer noopener"> {l s='Website' d='Shop.Theme.Partners'}</a></div>
               </div>
               </div>
 
