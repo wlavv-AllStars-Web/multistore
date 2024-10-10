@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "PrestaShop\\Module\\AsGroup\\": "src/",  
+      "Prestashop\\WkAlterKpiDuplicate\\": "modules/asgroup/Kpi/" 
+    }
+  }
+}

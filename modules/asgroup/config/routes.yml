@@ -1,0 +1,7 @@
+asgroup_admin_orders_mark_order:
+  path: asgroup/{orderId}/mark-order
+  methods: [POST]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\DemoOrderController::markOrderAction
+  requirements:
+      orderId: \d+
