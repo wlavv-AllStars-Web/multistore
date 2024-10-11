@@ -295,7 +295,7 @@
                       aria-controls="product-details"
                       {if !$product.description} aria-selected="true"{/if}>{l s='WARRANTY' d='Shop.Theme.Catalog'}</a>
                   </li>
-                  <li class="nav-item">
+                  {* <li class="nav-item">
                     <a
                       class="nav-link"
                       data-toggle="tab"
@@ -303,7 +303,7 @@
                       role="tab"
                       aria-controls="product-details"
                       {if !$product.description} aria-selected="true"{/if}>{$product.manufacturer_name}</a>
-                  </li>
+                  </li> *}
                 </ul>
         
                 {* tabs content *}
@@ -454,14 +454,14 @@
                   </div>
                   <p>Product Warranty</p>
                  </div>
-                 <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
-                  <div class="banner-tabs" >
-                      <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
-                  </div>
-                  <h4 style="padding: 1rem;">Product Manufacturer</h4>
-                  <div style="padding: 1rem;">{$product_manufacturer->description|strip_tags|replace:'<p>':''|replace:'</p>':''}</div>
+                 {* <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
+                    <div class="banner-tabs" >
+                        <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                    </div>
+                    <h4 style="padding: 1rem;">Product Manufacturer</h4>
+                    <div style="padding: 1rem;">{$product_manufacturer->description|strip_tags|replace:'<p>':''|replace:'</p>':''}</div> *}
                   {* <pre>{print_r($product_manufacturer->description,1)}</pre> *}
-                 </div>
+                 {* </div> *}
         
               </div>
               </div>

@@ -129,32 +129,39 @@ final class OrderGridDefinitionFactory extends AbstractGridDefinitionFactory
     /**
      * {@inheritdoc}
      */
-    protected function getGridActions()
+    protected function getRowActions(): RowActionCollection
     {
-        return (new GridActionCollection())
-            ->add(
-                (new LinkGridAction('export'))
-                    ->setName($this->trans('Export', [], 'Admin.Actions'))
-                    ->setIcon('cloud_download')
-                    ->setOptions([
-                        'route' => 'admin_orders_export',
-                    ])
-            )
-            ->add(
-                (new SimpleGridAction('common_refresh_list'))
-                    ->setName($this->trans('Refresh list', [], 'Admin.Advparameters.Feature'))
-                    ->setIcon('refresh')
-            )
-            ->add(
-                (new SimpleGridAction('common_show_query'))
-                    ->setName($this->trans('Show SQL query', [], 'Admin.Actions'))
-                    ->setIcon('code')
-            )
-            ->add(
-                (new SimpleGridAction('common_export_sql_manager'))
-                    ->setName($this->trans('Export to SQL Manager', [], 'Admin.Actions'))
-                    ->setIcon('storage')
-            );
+        
+        $rowActionCollection = new RowActionCollection();
+
+        $rowActionCollection->add(
+            (new LinkRowAction('view'))
+                ->setName($this->trans('View', [], 'Admin.Actions'))
+                ->setIcon('visibility')
+                ->setOptions([
+                    'route' => 'admin_orders_view',
+                    'route_param_name' => 'orderId',
+                    'route_param_field' => 'id_order',
+                ])
+        );
+
+        $rowActionCollection->add(
+            (new LinkRowAction('edit'))
+                ->setName($this->trans('Edit', [], 'Admin.Actions'))
+                ->setIcon('edit')
+                ->setOptions([
+                    'route' => 'admin_orders_edit',
+                    'route_param_name' => 'orderId',
+                    'route_param_field' => 'id_order',
+                ])
+        );
+
+        // If you want to remove these actions, do not add them to the collection.
+        // If you want to keep the 'view' and 'edit' actions, uncomment them above.
+
+        // Return the customized RowActionCollection
+        return $rowActionCollection;
     }
+    
 
 }

@@ -17,8 +17,17 @@ use PrestaShop\PrestaShop\Core\Grid\Column\ColumnInterface;
 use PrestaShop\PrestaShop\Core\Grid\Column\Type\Common\DataColumn;
 use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinitionInterface;
 use PrestaShop\PrestaShop\Core\Grid\Exception\ColumnNotFoundException;
-
+use Doctrine\DBAL\Query\QueryBuilder;
+use PrestaShop\AsGroup\Grid\Definition\Factory\CustomOrderGridDefinitionFactory;
+use PrestaShop\AsGroup\Grid\Definition\Factory\OrderGridDefinitionFactory;
+use PrestaShop\PrestaShop\Core\Grid\Action\Row\RowActionCollection;
+use PrestaShop\PrestaShop\Core\Grid\Action\Row\Type\LinkRowAction;
+use PrestaShop\PrestaShop\Core\Grid\Query\OrderQueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+use PrestaShop\PrestaShop\Core\Grid\Action\GridActionCollection;
+use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinition;
+
 
 
 class AsGroup extends Module
@@ -47,6 +56,7 @@ class AsGroup extends Module
             $this->registerHook(['actionProductFormBuilderModifier']) &&
             $this->registerHook(['actionProductSave']) &&
             $this->registerHook('actionOrdersKpiRowModifier') &&
+            $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier')&&
             $this->registerHook('actionOrderGridQueryBuilderModifier');
@@ -60,7 +70,8 @@ class AsGroup extends Module
 
     public function hookActionAdminControllerSetMedia()
     {
-        $this->context->controller->addCss($this->_path . 'views/css/kpi.css');
+        $this->context->controller->addCss('/modules/asgroup/views/css/kpi.css');
+        $this->context->controller->addJS('/modules/asgroup/views/js/orders.js');
     }
      
 
@@ -92,6 +103,13 @@ class AsGroup extends Module
         $params['kpis'][] = new AGCustomKpi(); 
     }
 
+    public function hookActionCustomersKpiRowModifier($params)
+    {
+        $params['kpis'] = [];
+
+        $params['kpis'][] = new AGCustomKpi(); 
+    }
+
     public function hookActionOrderGridDefinitionModifier(array $params): void
     {
         error_log('hookActionOrderGridDefinitionModifier called');
@@ -104,7 +122,7 @@ class AsGroup extends Module
         ->addAfter(
             'reference', // Adding after the 'total_paid' column
             (new \PrestaShop\PrestaShop\Core\Grid\Column\Type\DataColumn('product_reference'))
-                ->setName($this->l('Product Ref'))
+                ->setName($this->l('Products'))
                 ->setOptions([
                     'field' => 'product_reference', // This field will be populated later
                 ])
@@ -117,7 +135,7 @@ class AsGroup extends Module
             ->setTypeOptions([
                 'required' => false,
                 'attr' => [
-                    'placeholder' => $this->trans('Search reference', [], 'Admin.Actions'),
+                    'placeholder' => $this->trans('Search product ref', [], 'Admin.Actions'),
                 ],
             ])
             ->setAssociatedColumn('product_reference')
@@ -126,6 +144,31 @@ class AsGroup extends Module
         
         $orderGridDefinition->getColumns()->remove('new');
         $orderGridDefinition->getColumns()->remove('shop_name');
+
+        // $orderGridDefinition->getGridActions()
+        //     ->add((new Delete('subscribe'))
+        //     ->setName($this->trans('Subscribe', [], 'Admin.Actions'))
+        //     ->setIcon('mail')
+        //     ->setOptions([
+        //         'route' => 'admin_customer_subscribe',
+        //         'route_param_name' => 'customerId',
+        //         'route_param_field' => 'id_customer',
+        //         'confirm_message' => $this->trans(
+        //             'Subscribe to newsletter?',
+        //             [],
+        //             'Admin.Notifications.Warning'
+        //         ),
+        //     ])
+        // );
+
+        // $rowActionCollection = CustomOrderGridDefinitionFactory::getRowActions();
+        
+        // echo '<pre>'.$orderGridDefinition.'</pre>';
+        // exit;
+        // $orderGridDefinition->remove('print_invoice');
+        // $orderGridDefinition->OrderGridDefinitionFactory->remove('print_invoice');
+        // $rowActionCollection->remove('print_delivery_slip');
+        // $rowActionCollection->remove('view');
     }
 
     public function hookActionOrderGridQueryBuilderModifier(array $params): void
@@ -135,14 +178,44 @@ class AsGroup extends Module
         /** @var DoctrineQueryBuilder $searchQueryBuilder */
         $searchQueryBuilder = $params['search_query_builder'];
 
-        $searchQueryBuilder->addSelect('GROUP_CONCAT(od.product_reference SEPARATOR ", ") AS product_reference')
-            ->leftJoin(
-                'o', // alias for order table
-                _DB_PREFIX_ . 'order_detail', // table name
-                'od', // alias for order_detail table
-                'od.id_order = o.id_order' // join condition
-            );
-    }
+        $filters = $params['search_criteria']->getFilters();
 
+        // echo '<pre>'.print_r($filters,true).'</pre>';
+        // exit;
+
+
+        
+
+        $searchQueryBuilder->innerJoin(
+            'o', // alias for order table
+            _DB_PREFIX_ . 'order_detail', // table name
+            'od', // alias for order_detail table
+            'od.id_order = o.id_order' // join condition
+        );
+
+        $searchQueryBuilder->addSelect('GROUP_CONCAT(od.product_reference SEPARATOR ", ") AS product_reference');
+
+        // echo '<pre>'.print_r($searchQueryBuilder,true).'</pre>';
+        // exit;
+
+        // Apply filtering if product_reference is set in the filters
+        $likeComparisonFilters = [
+            'reference' => 'o.`reference`',
+            'product_reference' => 'od.`product_reference`'
+        ];
+
+       
+        
+        foreach ($filters as $filterName => $filterValue) {
+            if (array_key_exists($filterName, $likeComparisonFilters)) {
+                $alias = $likeComparisonFilters[$filterName];
+                // echo '<pre>'.print_r(,true).'</pre>';
+                // exit;
+                    $searchQueryBuilder->andWhere("$alias LIKE :$filterName")
+                        ->setParameter($filterName, '%' . $filterValue . '%');
+            }
+        }
+
+    }
 
 }

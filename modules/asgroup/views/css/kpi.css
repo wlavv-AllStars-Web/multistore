@@ -1,3 +1,7 @@
 .kpi-refresh {
     display: none !important;
 }
+
+.btn-group-action {
+    display: none;
+}

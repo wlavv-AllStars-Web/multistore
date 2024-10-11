@@ -138,10 +138,10 @@
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 7pt;">
     	<tr>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Reference' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Product' d='Shop.Pdf' pdf='true'}</b></th>
-			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Ordered' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center; "><b>{l s='Shipped' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:25%;"><b>{l s='Reference' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:45%;"><b>{l s='Product' d='Shop.Pdf' pdf='true'}</b></th>
+			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;"><b>{l s='Ordered' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;"><b>{l s='Shipped' d='Shop.Pdf' pdf='true'}</b></th>
 
     		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' d='Shop.Pdf' pdf='true'}</b></th> *}
     		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</b></th>
@@ -219,7 +219,12 @@
     		{/if}
     		</td> *}
     		<td style="text-align: center;">{$order_detail.product_quantity}</td>
-    		<td style="text-align: center;">{$order_detail.product_quantity_sent}</td>
+
+			{if $order_detail.product_quantity_sent < $order_detail.product_quantity}
+    			<td style="display:inherit;text-align: center;background-color: #f1aeb5;vertical-align: middle;color: #000;">{$order_detail.product_quantity_sent}</td>
+			{else}
+				<td style="text-align: center;">{$order_detail.product_quantity_sent}</td>
+			{/if}
     		{* <td style="text-align: right;">
     		{if $tax_excluded_display}
     			{displayPrice currency=$order->id_currency price=$order_detail.total_price_tax_excl}
