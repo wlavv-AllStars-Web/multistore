@@ -107,7 +107,7 @@
     <br><br>
     <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
     	<tr>
-			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th>
+			{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th> *}
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order date' d='Shop.Pdf' pdf='true'}</b> </th>
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Status' d='Shop.Pdf' pdf='true'}</b> </th>
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Carrier' d='Shop.Pdf' pdf='true'}</b> </th>
@@ -118,11 +118,11 @@
     		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' d='Shop.Pdf' pdf='true'}</b> </th> *}
     	</tr>
     	<tr>
-			<td style="width: 20%;"> {$order->getUniqReference()} </td>
-    		<td style="width: 20%;"> {$order->date_add|date_format:"%d-%m-%Y %H:%M"} </td>
-    		<td style="width: 20%;">{$current_state}</td>
-    		<td style="width: 20%;">{$carrier->name}</td>
-    		<td style="width: 20%;">{$tracking_number}</td>
+			{* <td style="width: 20%;"> {$order->getUniqReference()} </td> *}
+    		<td style="width: 25%;"> {$order->date_add|date_format:"%d-%m-%Y %H:%M"} </td>
+    		<td style="width: 25%;">{$current_state}</td>
+    		<td style="width: 25%;">{$carrier->name}</td>
+    		<td style="width: 25%;">{$tracking_number}</td>
 
     		{* <td style="width: 20%;"> {$title|escape:'html':'UTF-8'} </td>
     		<td style="width: 20%;"> {dateFormat date=$order->invoice_date full=0} </td>
