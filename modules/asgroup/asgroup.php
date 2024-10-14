@@ -194,7 +194,7 @@ class AsGroup extends Module
 
         
 
-        $searchQueryBuilder->innerJoin(
+        $searchQueryBuilder->leftJoin(
             'o', // alias for order table
             _DB_PREFIX_ . 'order_detail', // table name
             'od', // alias for order_detail table
@@ -206,6 +206,7 @@ class AsGroup extends Module
         // echo '<pre>'.print_r($searchQueryBuilder,true).'</pre>';
         // exit;
 
+        $searchQueryBuilder->groupBy('o.id_order');
         // Apply filtering if product_reference is set in the filters
         $likeComparisonFilters = [
             'reference' => 'o.`reference`',
