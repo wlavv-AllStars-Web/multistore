@@ -28,6 +28,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use PrestaShop\PrestaShop\Core\Grid\Action\GridActionCollection;
 use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinition;
 
+use PrestaShopBundle\Controller\Admin\Sell\Order\ActionsBarButton;
+
 
 
 class AsGroup extends Module
@@ -58,8 +60,10 @@ class AsGroup extends Module
             $this->registerHook('actionOrdersKpiRowModifier') &&
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
-            $this->registerHook('actionOrderGridDefinitionModifier')&&
-            $this->registerHook('actionOrderGridQueryBuilderModifier');
+            $this->registerHook('actionOrderGridDefinitionModifier') &&
+            $this->registerHook('actionOrderGridQueryBuilderModifier') &&
+            // $this->registerHook('displayOrderPreview') &&
+            $this->registerHook('actionGetAdminOrderButtons');
     }
     
     /**
@@ -161,6 +165,10 @@ class AsGroup extends Module
         //     ])
         // );
 
+        // echo '<pre>'.print_r(Context::getContext()->shop->current,true).'</pre>';
+        // echo '<pre>'.print_r(Context::getContext()->shop,true).'</pre>';
+        // exit;
+
         // $rowActionCollection = CustomOrderGridDefinitionFactory::getRowActions();
         
         // echo '<pre>'.$orderGridDefinition.'</pre>';
@@ -217,5 +225,54 @@ class AsGroup extends Module
         }
 
     }
+
+    public function hookActionGetAdminOrderButtons(array $params)
+    {
+        $order = new Order($params['id_order']);
+        /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router $router */
+        $router = $this->get('router');
+        /** @var ActionsBarButtonsCollection $bar */
+        $bar = $params['actions_bar_buttons_collection'];
+        $createAnOrderUrl = $router->generate('admin_orders_create');
+        // $bar->add(
+        //     new ActionsBarButton(
+        //         'btn-info', ['href' => $createAnOrderUrl], 'Create an order'
+        //     )
+        // );
+        // $viewCustomerUrl = $router->generate('admin_customers_view', ['customerId'=> (int)$order->id_customer]);
+        // $bar->add(
+        //     new ActionsBarButton(
+        //         'btn-secondary', ['href' => $viewCustomerUrl], 'View customer'
+        //     )
+        // );
+        // $shopLink =  'https://asd.local/';
+        // // echo '<pre>'.print_r($shopLink).'</pre>';
+        // $bar->add(
+        //     new ActionsBarButton(
+        //         'btn-link', ['href' => $shopLink], 'Go to Shop'
+        //     )
+        // );
+        // $productLink =  Context::getContext()->link->getAdminLink('AdminProducts');
+        // $bar->add(
+        //     new ActionsBarButton(
+        //         'btn-dark', ['href' => $productLink], 'Go to Catalog'
+        //     )
+        // );        
+    }
+
+    // public function hookdisplayOrderPreview(array $params)
+    // {
+    //     // $router = $this->get('router');
+
+    //     $html = '
+    //     <div class="custom-order-preview">
+    //         <h3>Custom Order Preview</h3>
+    //         <p>Order ID: <pre>' . $params['orderId'] . '</pre></p>
+    //         <p>Custom content here...</p>
+    //     </div>
+    // ';
+
+    // return $this->display(__FILE__, 'views/templates/hook/order_preview.tpl');
+    // }
 
 }

@@ -99,14 +99,14 @@ use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\Reference;
             TextType::class,
             [
                 // you can remove the label if you dont need it by passing 'label' => false
-                'label' => $this->translator->trans('Youtube Code', [], 'Modules.WkDemo.Admin'),
+                'label' => $this->translator->trans('Youtube Code', [], 'Modules.ASGroup.Admin'),
                 // customize label by any html attribute
                 'label_attr' => [
                     'title' => 'h2',
                     'class' => 'text-info',
                 ],
                 'attr' => [
-                    'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.WkDemo.Admin'),
+                    'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.ASGroup.Admin'),
                 ],
                 // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
                 'data' => $data['youtube_code'] ,
