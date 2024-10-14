@@ -61,9 +61,9 @@ class AsGroup extends Module
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier') &&
-            $this->registerHook('actionOrderGridQueryBuilderModifier') &&
+            $this->registerHook('actionOrderGridQueryBuilderModifier') ;
             // $this->registerHook('displayOrderPreview') &&
-            $this->registerHook('actionGetAdminOrderButtons');
+            // $this->registerHook('actionGetAdminOrderButtons');
     }
     
     /**
@@ -226,14 +226,14 @@ class AsGroup extends Module
 
     }
 
-    public function hookActionGetAdminOrderButtons(array $params)
-    {
-        $order = new Order($params['id_order']);
-        /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router $router */
-        $router = $this->get('router');
-        /** @var ActionsBarButtonsCollection $bar */
-        $bar = $params['actions_bar_buttons_collection'];
-        $createAnOrderUrl = $router->generate('admin_orders_create');
+    // public function hookActionGetAdminOrderButtons(array $params)
+    // {
+        // $order = new Order($params['id_order']);
+
+        // $router = $this->get('router');
+
+        // $bar = $params['actions_bar_buttons_collection'];
+        // $createAnOrderUrl = $router->generate('admin_orders_create');
         // $bar->add(
         //     new ActionsBarButton(
         //         'btn-info', ['href' => $createAnOrderUrl], 'Create an order'
@@ -258,7 +258,7 @@ class AsGroup extends Module
         //         'btn-dark', ['href' => $productLink], 'Go to Catalog'
         //     )
         // );        
-    }
+    // }
 
     // public function hookdisplayOrderPreview(array $params)
     // {
