@@ -5,3 +5,7 @@
 .adminorders .btn-group-action {
     display: none;
 }
+
+.adminorders #order_new{
+    display: none;
+}
