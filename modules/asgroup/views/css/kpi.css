@@ -9,3 +9,7 @@
 .adminorders #order_new{
     display: none;
 }
+
+.adminorders .form-group.row.type-choice{
+    display: none;
+}
