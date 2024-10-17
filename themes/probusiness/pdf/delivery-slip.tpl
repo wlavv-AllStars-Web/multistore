@@ -92,11 +92,11 @@
 </table> *}
 
 <div style="font-size: 8pt; color: #444;">
-    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 9pt;padding:10px 0;">
+    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt;padding:10px 0;font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;">
     	<tr>
-    		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</b></th>
-    		<th style="width:30%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>{l s='Order Detail' d='Shop.Pdf' pdf='true' }</b></th>
-    		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Billing Address' d='Shop.Pdf' pdf='true' }</th>
+    		<th style="width:30%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;">{l s='Order Detail' d='Shop.Pdf' pdf='true' }</th>
+    		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;">{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</th>
     	</tr>
     	<tr>
     		<td style="width:35%;">{$invoice_address}</td>
@@ -105,17 +105,17 @@
     	</tr>
     </table>
     <br><br>
-    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
+    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;">
     	<tr>
-			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order Reference' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Order date' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Status' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Carrier' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Tracking' d='Shop.Pdf' pdf='true'}</b> </th>
+			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Order Reference' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Order date' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Status' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Carrier' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Tracking' d='Shop.Pdf' pdf='true'} </th>
 
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</b> </th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> <b>{l s='Payment Method' d='Shop.Pdf' pdf='true'}</b> </th> *}
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Invoice Number' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Invoice Date' d='Shop.Pdf' pdf='true'} </th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;"> {l s='Payment Method' d='Shop.Pdf' pdf='true'} </th> *}
     	</tr>
     	<tr>
 			<td style="width: 20%;"> {$order->getUniqReference()} </td>
@@ -128,7 +128,7 @@
     		<td style="width: 20%;"> {dateFormat date=$order->invoice_date full=0} </td>
     		<td style="width: 20%;">
     			{foreach from=$order_invoice->getOrderPaymentCollection() item=payment}
-    				<b>{$payment->payment_method}</b>
+    				{$payment->payment_method}
     			{foreachelse}
     				{l s='No payment' d='Shop.Pdf' pdf='true'}
     			{/foreach}
@@ -136,26 +136,26 @@
     	</tr>
     </table>
     <br><br>
-    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 7pt;">
+    <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;">
     	<tr>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:25%;"><b>{l s='Reference' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:45%;"><b>{l s='Product' d='Shop.Pdf' pdf='true'}</b></th>
-			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;"><b>{l s='Ordered' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;"><b>{l s='Shipped' d='Shop.Pdf' pdf='true'}</b></th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:25%;">{l s='Reference' d='Shop.Pdf' pdf='true'}</th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;width:45%;">{l s='Product' d='Shop.Pdf' pdf='true'}</th>
+			<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;">{l s='Ordered' d='Shop.Pdf' pdf='true'}</th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;width:15%;">{l s='Shipped' d='Shop.Pdf' pdf='true'}</th>
 
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> <b>{l s='Housing' d='Shop.Pdf' pdf='true'}</b></th> *}
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</b></th>
-    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</b></th> *}
-    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "><b>{l s='Unit Price' d='Shop.Pdf' pdf='true'} {l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}</b></th> *}
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; "> {l s='Housing' d='Shop.Pdf' pdf='true'}</th> *}
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">{l s='Unit Price' d='Shop.Pdf' pdf='true'}{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}</th>
+    		<th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">{l s='Tax Rate' d='Shop.Pdf' pdf='true'}</th> *}
+    		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">{l s='Unit Price' d='Shop.Pdf' pdf='true'} {l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}</th> *}
     		
     		{* <th style="border-bottom: 1px solid #000; background-color: #CCC; color: #000; ">
-    			<b>{l s='Total' d='Shop.Pdf' pdf='true'}
+    			{l s='Total' d='Shop.Pdf' pdf='true'}
     			{if $tax_excluded_display || (($order_invoice->total_paid_tax_incl - $order_invoice->total_paid_tax_excl) <= 0)}
     				{l s='(Tax Excl.)' d='Shop.Pdf' pdf='true'}
     			{else}
     				{l s='(Tax Incl.)' d='Shop.Pdf' pdf='true'}
     				
-    			{/if}</b>
+    			{/if}
     		</th> *}
     	</tr>
     	<!-- PRODUCTS -->
@@ -376,7 +376,7 @@
     </td>
     </tr>
     </table>-->
-    <table style="width: 100%; text-align: left; font-size: 8pt;">
+    <table style="width: 100%; text-align: left; font-size: 8pt;font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;">
     <tr>
     <td>
     {if isset($free_text) && Customer::getDefaultGroupId($order->id_customer)==5}

@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table id="summary-tab" width="100%" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;">
+<table id="summary-tab" width="100%" style="width: 100%; text-align: center; border: 1px solid #CCC; font-size: 8pt;padding:5px;">
 	<tr>
 		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Invoice Number' d='Shop.Pdf' pdf='true'}</th>
 		<th class="header small" valign="middle" style="border-bottom: 1px solid #000; background-color: #CCC; color: #000;">{l s='Invoice Date' d='Shop.Pdf' pdf='true'}</th>
@@ -33,10 +33,10 @@
 		{/if}
 	</tr>
 	<tr>
-		<td class="center small white">{$title|escape:'html':'UTF-8'}</td>
-		<td class="center small white">{dateFormat date=$order->invoice_date full=0}</td>
-		<td class="center small white">{$order->getUniqReference()}</td>
-		<td class="center small white">{dateFormat date=$order->date_add full=0}</td>
+		<td class="center small white" style="font-size: 8pt;">{$title|escape:'html':'UTF-8'}</td>
+		<td class="center small white" style="font-size: 8pt;">{dateFormat date=$order->invoice_date full=0}</td>
+		<td class="center small white" style="font-size: 8pt;">{$order->getUniqReference()}</td>
+		<td class="center small white" style="font-size: 8pt;">{dateFormat date=$order->date_add full=0}</td>
 		{if $addresses.invoice->vat_number}
 			<td class="center small white">
 				{$addresses.invoice->vat_number}

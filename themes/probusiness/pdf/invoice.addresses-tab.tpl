@@ -22,11 +22,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
- <table cellpadding="4" cellspacing="0" style="width: 100%; text-align: left; font-size: 9pt;padding:10px 0;">
+ <table cellpadding="4" cellspacing="0" style="width: 100%;font-size: 8px;padding:10px 0;font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;">
 	<tr>
-		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000;"><b>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</b></th>
-		<th style="width:30%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;"><b>{l s='Order Detail' d='Shop.Pdf' pdf='true' }</b></th>
-		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;"><b>{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</b></th>
+		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: left;font-weight:light;font-size: 8px;"><>{l s='Billing Address' d='Shop.Pdf' pdf='true' }</th>
+		<th style="width:30%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: center;font-weight:light;font-size: 8px;">{l s='Order Detail' d='Shop.Pdf' pdf='true' }</th>
+		<th style="width:35%; border: 1px solid #CCC; border-bottom: 1px solid #000; background-color: #CCC; color: #000; text-align: right;font-size: 8px;font-weight:lighter;">{l s='Delivery Address' d='Shop.Pdf' pdf='true'}</th>
 	</tr>
 	<tr>
 		<td style="width:35%;">{$invoice_address}</td>
