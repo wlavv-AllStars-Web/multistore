@@ -22,7 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table class="product" width="100%" cellpadding="4" cellspacing="0" style="border: 1px solid #CCC;">
+<table class="product" width="100%" cellpadding="4" cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;border: 1px solid #ccc;">
 
   {assign var='widthColProduct' value=$layout.product.width}
   {if !$isTaxEnabled}
@@ -53,7 +53,7 @@
   </tr>
   </thead>
 
-  <tbody>
+  <tbody style="font-size: 8pt;">
 
   <!-- PRODUCTS -->
   {foreach $order_details as $order_detail}
