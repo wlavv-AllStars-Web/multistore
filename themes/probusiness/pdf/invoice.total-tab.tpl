@@ -22,10 +22,10 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *}
-<table id="total-tab" width="100%" style="border: 1px solid #CCC; font-size: 8pt;">
+<table id="total-tab" width="100%" style="border: 1px solid #CCC; font-size: 8pt;padding:5px">
 
   <tr>
-    <td class="grey" width="50%">
+    <td class="grey" width="50%" style="border-right: 1px solid #CCC;">
       {l s='Total Products (Tax Excl.)' d='Shop.Pdf' pdf='true'}
     </td>
     <td class="white" width="50%">
@@ -84,7 +84,7 @@
   {if $isTaxEnabled}
     {if $footer.total_taxes > 0}
       <tr class="">
-        <td class="grey">
+        <td class="grey" style="border-right: 1px solid #CCC;">
           {l s='Total Tax' d='Shop.Pdf' pdf='true'}
         </td>
         <td class="white">
@@ -93,7 +93,7 @@
       </tr>
     {/if}
     <tr class="bold big">
-      <td class="grey" style="background-color: #CCC; color: #000;">
+      <td class="grey" style="background-color: #CCC; color: #000;border-right: 1px solid #CCC;">
         {l s='Total' d='Shop.Pdf' pdf='true'}
       </td>
       <td class="white">
