@@ -28,7 +28,7 @@
     <td class="grey" width="50%" style="border-right: 1px solid #CCC;">
       {l s='Total Products (Tax Excl.)' d='Shop.Pdf' pdf='true'}
     </td>
-    <td class="white" width="50%">
+    <td class="white" width="50%" style="text-align: right;">
       {displayPrice currency=$order->id_currency price=$footer.products_before_discounts_tax_excl}
     </td>
   </tr> 
@@ -87,7 +87,7 @@
         <td class="grey" style="border-right: 1px solid #CCC;">
           {l s='Total Tax' d='Shop.Pdf' pdf='true'}
         </td>
-        <td class="white">
+        <td class="white" style="text-align: right;">
           {displayPrice currency=$order->id_currency price=$footer.total_taxes}
         </td>
       </tr>
@@ -96,7 +96,7 @@
       <td class="grey" style="background-color: #CCC; color: #000;border-right: 1px solid #CCC;">
         {l s='Total' d='Shop.Pdf' pdf='true'}
       </td>
-      <td class="white">
+      <td class="white" style="text-align: right;">
         {displayPrice currency=$order->id_currency price=$footer.total_paid_tax_incl}
       </td>
     </tr>
