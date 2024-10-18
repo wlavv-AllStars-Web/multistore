@@ -30,10 +30,14 @@ use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinition;
 
 use PrestaShopBundle\Controller\Admin\Sell\Order\ActionsBarButton;
 
-
+use PrestaShop\PrestaShop\Core\Grid\Filter\Filter;
+use PrestaShop\PrestaShop\Core\Form\FormInterface; // If you use forms
+use PrestaShop\PrestaShop\Core\Grid\Column\Type\ImageColumn;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AsGroup extends Module
 {
+    protected $toolbar_btn = [];
     
     public function __construct()
     {
@@ -61,6 +65,11 @@ class AsGroup extends Module
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier') &&
+            $this->registerHook('actionOrderGridDataBefore') &&
+            $this->registerHook('actionOrderGridDataModifier') &&
+            // $this->registerHook('actionGetAdminToolbarButtons') &&
+            // $this->registerHook('displayAdminOrderCreateExtraButtons') &&
+            // $this->registerHook('displayAdminOrder') &&
             $this->registerHook('actionOrderGridQueryBuilderModifier') ;
             // $this->registerHook('displayOrderPreview') &&
             // $this->registerHook('actionGetAdminOrderButtons');
@@ -78,6 +87,7 @@ class AsGroup extends Module
         $this->context->controller->addJS('/modules/asgroup/views/js/orders.js');
     }
      
+    // add input youtube code Product page in BO 
 
     public function hookActionProductFormBuilderModifier(array $params): void
     {
@@ -100,6 +110,12 @@ class AsGroup extends Module
         ], 'id_product = ' . $idWkProduct);
     }
 
+
+    // ----------
+
+    // orders page BO
+
+
     public function hookActionOrdersKpiRowModifier($params)
     {
         $params['kpis'] = [];
@@ -114,6 +130,7 @@ class AsGroup extends Module
         $params['kpis'][] = new AGCustomKpi(); 
     }
 
+
     public function hookActionOrderGridDefinitionModifier(array $params): void
     {
         error_log('hookActionOrderGridDefinitionModifier called');
@@ -124,11 +141,25 @@ class AsGroup extends Module
         $orderGridDefinition
         ->getColumns()
         ->addAfter(
+            'total_paid_tax_incl',
+            (new DataColumn('payment_id'))
+                ->setName($this->l('Payment'))
+                ->setOptions([
+                    'field' => 'payment_id',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                ])
+        );
+
+        $orderGridDefinition
+        ->getColumns()
+        ->addAfter(
             'reference', // Adding after the 'total_paid' column
-            (new \PrestaShop\PrestaShop\Core\Grid\Column\Type\DataColumn('product_reference'))
+            (new DataColumn('product_reference'))
                 ->setName($this->l('Products'))
                 ->setOptions([
-                    'field' => 'product_reference', // This field will be populated later
+                    'field' => 'product_reference',
                 ])
         );
 
@@ -145,39 +176,77 @@ class AsGroup extends Module
             ->setAssociatedColumn('product_reference')
         );
 
-        
-        $orderGridDefinition->getColumns()->remove('new');
-        $orderGridDefinition->getColumns()->remove('shop_name');
+        $choices[$this->l('Bank Transfer')] = 1;
+        $choices[$this->l('Credit Card')] = 2;
 
-        // $orderGridDefinition->getGridActions()
-        //     ->add((new Delete('subscribe'))
-        //     ->setName($this->trans('Subscribe', [], 'Admin.Actions'))
-        //     ->setIcon('mail')
-        //     ->setOptions([
-        //         'route' => 'admin_customer_subscribe',
-        //         'route_param_name' => 'customerId',
-        //         'route_param_field' => 'id_customer',
-        //         'confirm_message' => $this->trans(
-        //             'Subscribe to newsletter?',
-        //             [],
-        //             'Admin.Notifications.Warning'
-        //         ),
+
+        $orderGridDefinition
+        ->getFilters()
+        ->add((new Filter('payment_id', ChoiceType::class))
+            ->setTypeOptions([
+                'required' => false,
+                'choices' => $choices,
+                'translation_domain' => false,
+            ])
+            ->setAssociatedColumn('payment_id')
+            );
+                
+        // $orderGridDefinition
+        // ->getFilters()
+        // ->add(
+        //     (new Filter('payment_id', TextType::class))
+        //     ->setTypeOptions([
+        //         'required' => false,
+        //         'attr' => [
+        //             'placeholder' => $this->trans('Payment', [], 'Admin.Actions'),
+        //         ],
+        //         'choices' => $choices,
         //     ])
+        //     ->setAssociatedColumn('payment_id')
         // );
 
-        // echo '<pre>'.print_r(Context::getContext()->shop->current,true).'</pre>';
-        // echo '<pre>'.print_r(Context::getContext()->shop,true).'</pre>';
-        // exit;
 
-        // $rowActionCollection = CustomOrderGridDefinitionFactory::getRowActions();
-        
-        // echo '<pre>'.$orderGridDefinition.'</pre>';
-        // exit;
-        // $orderGridDefinition->remove('print_invoice');
-        // $orderGridDefinition->OrderGridDefinitionFactory->remove('print_invoice');
-        // $rowActionCollection->remove('print_delivery_slip');
-        // $rowActionCollection->remove('view');
+
+        $columns = $orderGridDefinition->getColumns();
+        $columns->remove('new')
+                ->remove('payment')
+                ->remove('shop_name');
+
+        $filters = $orderGridDefinition->getFilters();
+        $filters->remove('new')
+                ->remove('payment')
+                ->remove('shop_name');
+
+
+
+
     }
+
+    // public function hookActionOrderGridDataModifier(array $params)
+    // {
+    //     // Check if 'data' exists in the parameters
+    //     if (isset($params['data'])) {
+            
+    //         $data = $params['data']; // This contains the rows fetched from the database
+
+    //         foreach ($data as &$row) {
+    //             // Modify the 'payment' field to display images based on payment_id
+    //             switch ($row['payment_id']) {
+    //                 case 1:
+    //                     $row['payment'] = '<img src="path/to/image1.png" alt="Payment Image 1" style="width: 50px; height: auto;" />';
+    //                     break;
+    //                 case 2:
+    //                     $row['payment'] = '<img src="path/to/image2.png" alt="Payment Image 2" style="width: 50px; height: auto;" />';
+    //                     break;
+    //                 default:
+    //                     $row['payment'] = '<img src="path/to/default_image.png" alt="Default Payment Image" style="width: 50px; height: auto;" />';
+    //                     break;
+    //             }
+    //         }
+    //     } else {
+    //         error_log('Warning: Undefined array key "data" in hookActionOrderGridDataModifier.');
+    //     }
+    // }
 
     public function hookActionOrderGridQueryBuilderModifier(array $params): void
     {
@@ -188,7 +257,7 @@ class AsGroup extends Module
 
         $filters = $params['search_criteria']->getFilters();
 
-        // echo '<pre>'.print_r($filters,true).'</pre>';
+        // echo '<pre>'.print_r(Context::getContext()->shop->id,true).'</pre>';
         // exit;
 
 
@@ -203,6 +272,20 @@ class AsGroup extends Module
 
         $searchQueryBuilder->addSelect('GROUP_CONCAT(od.product_reference SEPARATOR ", ") AS product_reference');
 
+        if(Context::getContext()->shop->id == 3){
+        $imageCard = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/card.webp');
+        $imageBank = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/bank.webp');
+
+            $searchQueryBuilder->addSelect(
+                '(CASE WHEN o.payment_id IS NULL THEN "Error"
+                WHEN o.payment_id = 1 THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
+                WHEN o.payment_id = 2 THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
+                END) AS payment_id'
+                // 'o.payment_id AS payment_id'
+            );
+
+        }
+
         // echo '<pre>'.print_r($searchQueryBuilder,true).'</pre>';
         // exit;
 
@@ -210,56 +293,84 @@ class AsGroup extends Module
         // Apply filtering if product_reference is set in the filters
         $likeComparisonFilters = [
             'reference' => 'o.`reference`',
-            'product_reference' => 'od.`product_reference`'
+            'product_reference' => 'od.`product_reference`',
+            // 'payment_id' => 'o.payment_id`'
         ];
 
+
+        // echo '<pre>'.print_r($searchQueryBuilder->addSelect('o.payment_id AS payment_id'),true).'</pre>';
+        // exit;
        
-        
+
         foreach ($filters as $filterName => $filterValue) {
             if (array_key_exists($filterName, $likeComparisonFilters)) {
                 $alias = $likeComparisonFilters[$filterName];
-                // echo '<pre>'.print_r(,true).'</pre>';
-                // exit;
                     $searchQueryBuilder->andWhere("$alias LIKE :$filterName")
                         ->setParameter($filterName, '%' . $filterValue . '%');
+            }
+
+            if ($filterName === 'payment_id' && !empty($filterValue)) {
+                $searchQueryBuilder->andWhere('o.payment_id = :payment_id')
+                    ->setParameter('payment_id', $filterValue);
             }
         }
 
     }
 
-    // public function hookActionGetAdminOrderButtons(array $params)
-    // {
-        // $order = new Order($params['id_order']);
+    
 
-        // $router = $this->get('router');
+// order-grid-actions-button
+    public function hookActionGetAdminOrderButtons(array $params)
+    {
+        $order = new Order($params['id_order']);
 
-        // $bar = $params['actions_bar_buttons_collection'];
-        // $createAnOrderUrl = $router->generate('admin_orders_create');
+        $router = $this->get('router');
+
+        $bar = $params['actions_bar_buttons_collection'];
+        $createAnOrderUrl = $router->generate('admin_orders_create');
+
+        $eanInputHtml = '<input type="text" name="ean" placeholder="Enter EAN" />';
+        $bar->add(new ActionsBarButton(
+            'btn-input', 
+            ['html' => $eanInputHtml], // Directly inject HTML
+            ''
+        ));
+
         // $bar->add(
         //     new ActionsBarButton(
         //         'btn-info', ['href' => $createAnOrderUrl], 'Create an order'
         //     )
         // );
+
         // $viewCustomerUrl = $router->generate('admin_customers_view', ['customerId'=> (int)$order->id_customer]);
         // $bar->add(
         //     new ActionsBarButton(
         //         'btn-secondary', ['href' => $viewCustomerUrl], 'View customer'
         //     )
         // );
+
+
+
         // $shopLink =  'https://asd.local/';
-        // // echo '<pre>'.print_r($shopLink).'</pre>';
         // $bar->add(
         //     new ActionsBarButton(
         //         'btn-link', ['href' => $shopLink], 'Go to Shop'
         //     )
         // );
+
         // $productLink =  Context::getContext()->link->getAdminLink('AdminProducts');
         // $bar->add(
         //     new ActionsBarButton(
         //         'btn-dark', ['href' => $productLink], 'Go to Catalog'
         //     )
-        // );        
-    // }
+        // );
+        
+        // echo '<pre>'.print_r($params['actions_bar_buttons_collection'],true).'</pre>';
+        // exit;
+    }
+
+
+
 
     // public function hookdisplayOrderPreview(array $params)
     // {

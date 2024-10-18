@@ -1,16 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <module>
     <name>asgroup</name>
-    <displayName><![CDATA[As Group]]></displayName>
-    <description><![CDATA[
-        AsGroup module for modifications in the backoffice, including product form customization and KPI display.
-    ]]></description>
-    <version>1.0.0</version>
-    <author>All Stars Group</author>
-    <tab>front_office_features</tab>
+    <displayName><![CDATA[AsGroup]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[AsGroup module for modifications in the backoffice.]]></description>
+    <author><![CDATA[]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>0</is_configurable>
     <need_instance>0</need_instance>
-    <is_configurable>1</is_configurable>
-    <ps_versions_compliancy>
-        <version>8.1</version>
-    </ps_versions_compliancy>
 </module>

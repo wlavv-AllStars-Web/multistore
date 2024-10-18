@@ -28,6 +28,7 @@ final class AGCustomKpi implements KpiInterface
             $shopId = "0";
         }
 
+
        $imageUrl = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/'.$shopId.'.png');
 
        error_log('Image URL: ' . $imageUrl); 

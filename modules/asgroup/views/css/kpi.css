@@ -13,3 +13,87 @@
 .adminorders .form-group.row.type-choice{
     display: none;
 }
+
+.adminorders #order_grid_table th[data-column-id="orders_bulk"]{
+    display: none;
+}
+.adminorders #order_grid_table td[data-column-id="orders_bulk"]{
+    display: none;
+}
+.adminorders #order_grid_table td.column-orders_bulk{
+    display: none;
+}
+
+.adminorders #order_grid_table tbody td{
+    height: 55px;
+}
+.adminorders #order_grid_table tbody td.column-actions{
+    display: none;
+}
+.adminorders #order_grid_table tbody td.column-payment{
+    text-align: center !important;
+}
+
+
+.adminorders #order_grid_table thead td[data-column-id="actions"]{
+    display: none;
+}
+.adminorders #order_grid_table thead th[data-column-id="actions"]{
+    display: none;
+}
+
+.adminorders .column-product_reference{
+    width: 20%;
+}
+
+.custom-button-container{
+    width: 100%;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: end;
+}
+
+
+
+/* order detail page */
+.adminorders #customerCard{
+    display: none;
+}
+
+.adminorders .card[data-role="message-card"]{
+    display: none;
+}
+
+.adminorders #order-view-page .left-column{
+    display: none;
+}
+.adminorders #order-view-page .right-column{
+    width: 100%;
+    max-width: unset;
+    flex: unset;
+}
+
+
+
+/* preview order */
+
+.preview-row .order-preview-content .col-5{
+    width: 30%;
+    flex: unset;
+    padding: 0;
+}
+
+.preview-row .order-preview-content .col-7{
+    width: 70%;
+    flex: unset;
+    padding: 0;
+    max-width: unset;
+}
+
+.preview-row .order-preview-content .col-5 .col-1{
+    display: none !important;
+}
+
+.preview-row .order-preview-content i{
+    display: none !important;
+}
