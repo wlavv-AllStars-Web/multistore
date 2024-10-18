@@ -176,8 +176,17 @@ class AsGroup extends Module
             ->setAssociatedColumn('product_reference')
         );
 
-        $choices[$this->l('Bank Transfer')] = 1;
-        $choices[$this->l('Credit Card')] = 2;
+        if(Context::getContext()->shop->id == 2){
+            $choices[$this->l('Bank Transfer')] = 1;
+            $choices[$this->l('Credit Card')] = 2;
+        }else{
+            $choices[$this->l('Bank Transfer')] = 'ps_wirepayment';
+            $choices[$this->l('Ingenico')] = 'ogone';
+            $choices[$this->l('Paypal')] = 'paypal';
+            $choices[$this->l('Alma')] = 'alma';
+        }
+
+
 
 
         $orderGridDefinition
@@ -272,18 +281,32 @@ class AsGroup extends Module
 
         $searchQueryBuilder->addSelect('GROUP_CONCAT(od.product_reference SEPARATOR ", ") AS product_reference');
 
-        if(Context::getContext()->shop->id == 3){
         $imageCard = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/card.webp');
         $imageBank = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/bank.webp');
+        $imageAlma = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/alma.webp');
+        $imagePaypal = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/paypal.webp');
+
+        if(Context::getContext()->shop->id == 2){
 
             $searchQueryBuilder->addSelect(
                 '(CASE WHEN o.payment_id IS NULL THEN "Error"
                 WHEN o.payment_id = 1 THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
                 WHEN o.payment_id = 2 THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
                 END) AS payment_id'
-                // 'o.payment_id AS payment_id'
+
             );
 
+        }else{
+
+            $searchQueryBuilder->addSelect(
+                '(CASE WHEN o.module IS NULL THEN "Error"
+                WHEN o.module = "ps_wirepayment" THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
+                WHEN o.module = "ogone" THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
+                WHEN o.module = "alma" THEN CONCAT("<img src=\"'.$imageAlma.'\" style=\"width: 50px; height: auto;\" />")
+                WHEN o.module = "paypal" THEN CONCAT("<img src=\"'.$imagePaypal.'\" style=\"width: 50px; height: auto;\" />")
+                END) AS payment_id'
+                // 'o.payment_id AS payment_id'
+            );
         }
 
         // echo '<pre>'.print_r($searchQueryBuilder,true).'</pre>';
@@ -309,9 +332,16 @@ class AsGroup extends Module
                         ->setParameter($filterName, '%' . $filterValue . '%');
             }
 
-            if ($filterName === 'payment_id' && !empty($filterValue)) {
-                $searchQueryBuilder->andWhere('o.payment_id = :payment_id')
-                    ->setParameter('payment_id', $filterValue);
+            if(Context::getContext()->shop->id == 2){
+                if ($filterName === 'payment_id' && !empty($filterValue)) {
+                    $searchQueryBuilder->andWhere('o.payment_id = :payment_id')
+                        ->setParameter('payment_id', $filterValue);
+                }
+            }else{
+                if ($filterName === 'payment_id' && !empty($filterValue)) {
+                    $searchQueryBuilder->andWhere('o.module = :payment_id')
+                        ->setParameter('payment_id', $filterValue);
+                }
             }
         }
 
