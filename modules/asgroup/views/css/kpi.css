@@ -110,6 +110,10 @@
     margin-bottom: 0 !important;
 }
 
+#view_order_payments_block .card-body{
+    padding: 0 .625rem;
+}
+
 .add-form-payment-line{
     display: none;
     transition: all ease-in-out 250ms;
@@ -137,11 +141,12 @@
     background: #f3f3f3;
 }
 
-.add-payment-details-btn{
-
-}
-
 #order-view-page .info-block{
     margin-bottom: 1.5rem;
     background-color: #fff !important;
+}
+
+
+.alert.alert-warning .close i{
+    position: unset;
 }
