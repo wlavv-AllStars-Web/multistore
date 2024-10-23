@@ -150,3 +150,16 @@
 .alert.alert-warning .close i{
     position: unset;
 }
+
+#order_grid_panel .card-body .btn-group{
+    display: flex;
+    align-items: center;
+}
+
+#order_grid_panel .card-body .btn-group .js-bulk-actions-btn{
+    display: flex;
+    align-items: center;
+    width: 180px;
+    justify-content: space-evenly;
+    height: 39px
+}

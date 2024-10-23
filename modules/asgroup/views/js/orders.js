@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
     // Create a div container for the buttons
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('custom-button-container'); // Add a class for styling if needed
@@ -38,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Append the button container after the .btn-group element
     const btnGroup = document.querySelector("#order_grid_panel .card-body .btn-group");
     if (btnGroup) {
-        btnGroup.insertAdjacentElement("afterend", buttonContainer);
+        // btnGroup.insertAdjacentElement("afterend", buttonContainer);
+        btnGroup.appendChild(buttonContainer);
     } else {
         console.log(".btn_group not found");
     }
