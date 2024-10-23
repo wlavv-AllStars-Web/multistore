@@ -33,9 +33,12 @@
     {% endif %}
   </td> -->
   <td class="cellProductName">
+    <p class="mb-0">{{ product.reference }}</p>
+  </td>
+  <td class="cellProductName">
     <a href="{{ path('admin_product_form', {'id': product.id}) }}">
       <p class="mb-0 productName">{{ product.name }}</p>
-      {% if product.reference %}
+     {# {% if product.reference %}
         <p class="mb-0 productReference">
           {{ 'Reference number:'|trans({}, 'Admin.Orderscustomers.Feature') }}
           {{ product.reference }}
@@ -46,7 +49,7 @@
           {{ 'Supplier reference:'|trans({}, 'Admin.Orderscustomers.Feature') }}
           {{ product.supplierReference }}
         </p>
-      {% endif %}
+      {% endif %} #}
     </a>
     {% if product.type == constant('PrestaShop\\PrestaShop\\Core\\Domain\\Order\\QueryResult\\OrderProductForViewing::TYPE_PACK') and product.customizations is null %}
       <span class="btn-product-pack-modal d-print-none" data-toggle="modal" data-target="#product-pack-modal" data-pack-items="{{ product.packItems|json_encode }}">
