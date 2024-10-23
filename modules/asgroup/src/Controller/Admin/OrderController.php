@@ -540,6 +540,16 @@ class OrderController extends FrameworkBundleAdminController
 
             $orderProductForViewing->qty_sent = $qtySent ? (int)$qtySent : 0;
             
+
+            $orderCombinationid = $orderProductForViewing->getCombinationId();
+
+            $sqlCombination = 'SELECT reference 
+            FROM ' . _DB_PREFIX_ . 'product_attribute 
+            WHERE id_product_attribute = ' . (string)$orderCombinationid;
+
+            $reference_combination = GlobalDb::getInstance()->getValue($sqlCombination);
+
+            $orderProductForViewing->reference_combination = $reference_combination ? (string)$reference_combination : '';
             // echo '<pre>'.print_r($orderProductForViewing,1).'</pre>';
             // exit;
         }
@@ -785,6 +795,7 @@ class OrderController extends FrameworkBundleAdminController
         $addedGridRows = '';
         foreach ($newProducts as $newProduct) {
             $addedGridRows .= $this->renderView('@PrestaShop/Admin/Sell/Order/Order/Blocks/View/product.html.twig', [
+            // $addedGridRows .= $this->renderView('@Modules/AsGroup/Views/PrestaShop/Admin/Sell/Order/Order/Blocks/View/product.html.twig', [
                 'orderForViewing' => $orderForViewing,
                 'product' => $newProduct,
                 'isColumnLocationDisplayed' => $newProduct->getLocation() !== '',
