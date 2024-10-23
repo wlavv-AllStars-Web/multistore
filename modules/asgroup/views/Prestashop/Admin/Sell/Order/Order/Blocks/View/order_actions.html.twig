@@ -81,7 +81,7 @@
     </form>
   {% endif %}
 
-  <form class="order-actions-print">
+  {#<form class="order-actions-print">
     <div class="input-group">
       <button type="button" class="btn btn-action js-print-order-view-page">
         <i class="material-icons" aria-hidden="true">print</i>
@@ -100,7 +100,7 @@
         </a>
       </div>
     </form>
-  {% endif %}
+  {% endif %} #}
 
   {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/extra_order_button_actions.html.twig' %}
 
@@ -128,5 +128,11 @@
         {{ 'Partial refund'|trans({}, 'Admin.Orderscustomers.Feature') }}
       </button>
   {% endif %}
+
+  <div class="d-inline-block ml-2">
+    <div class="input-group" style="display:flex;">
+        <input type="text" name="ean" placeholder="Enter EAN" class="form-control" />
+    </div>
+  </div>
 
   {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/order_navigation.html.twig' %}

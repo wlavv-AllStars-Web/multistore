@@ -79,36 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const partialRefundDisplay = document.querySelector('.partial-refund-display'); // Adjust the selector to match your button bar
-
-    if (partialRefundDisplay) {
-        // Create the input field
-        const inputDiv = document.createElement('div');
-        inputDiv.classList.add('d-inline-block', 'ml-2');
-        inputDiv.innerHTML = `
-            <div class="input-group">
-                <input type="text" name="ean" placeholder="Enter EAN" class="form-control" />
-            </div>
-        `;
-
-        
-        partialRefundDisplay.insertAdjacentElement('afterend', inputDiv);
-
-        // REMOVE PRINT ORDER
-        const printOrderButton = document.querySelector('.js-print-order-view-page'); // Adjust this selector as necessary
-        if (printOrderButton) {
-            printOrderButton.parentElement.remove(); // Removes the print button
-        }
-
-        // REMOVE VIEW DELIVERY SLIP
-        const deliveryslip = document.querySelector('.order-actions-delivery')
-        if(deliveryslip) {
-            deliveryslip.remove()
-        }
-
-    }
-
-    // add event click on paymnet
 
     const addPayment = document.querySelector(".add-payment-details-btn")
 
