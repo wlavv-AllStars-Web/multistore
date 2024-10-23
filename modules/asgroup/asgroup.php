@@ -24,6 +24,8 @@ use PrestaShop\PrestaShop\Core\Grid\Action\Row\RowActionCollection;
 use PrestaShop\PrestaShop\Core\Grid\Action\Row\Type\LinkRowAction;
 use PrestaShop\PrestaShop\Core\Grid\Query\OrderQueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 use PrestaShop\PrestaShop\Core\Grid\Action\GridActionCollection;
 use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinition;
@@ -65,12 +67,15 @@ class AsGroup extends Module
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier') &&
-            $this->registerHook('actionOrderGridDataBefore') &&
-            $this->registerHook('actionOrderGridDataModifier') &&
+            $this->registerHook('actionAdminOrdersControllerSaveBefore') &&
+            // $this->registerHook('actionAdminOrdersControllerView') &&
+            // $this->registerHook('actionAdminOrderControllerSave') &&
+            // $this->registerHook('actionOrderGridDataBefore') &&
+            // $this->registerHook('actionOrderGridDataModifier') &&
             // $this->registerHook('actionGetAdminToolbarButtons') &&
             // $this->registerHook('displayAdminOrderCreateExtraButtons') &&
             // $this->registerHook('displayAdminOrder') &&
-            $this->registerHook('actionOrderGridQueryBuilderModifier') ;
+            $this->registerHook('actionOrderGridQueryBuilderModifier');
             // $this->registerHook('displayOrderPreview') &&
             // $this->registerHook('actionGetAdminOrderButtons');
     }
@@ -347,74 +352,33 @@ class AsGroup extends Module
 
     }
 
-    
+    // modules/asgroup/asgroup.php
 
-// order-grid-actions-button
-    public function hookActionGetAdminOrderButtons(array $params)
+    public function getCustomerData($customerId)
     {
-        $order = new Order($params['id_order']);
-
-        $router = $this->get('router');
-
-        $bar = $params['actions_bar_buttons_collection'];
-        $createAnOrderUrl = $router->generate('admin_orders_create');
-
-        $eanInputHtml = '<input type="text" name="ean" placeholder="Enter EAN" />';
-        $bar->add(new ActionsBarButton(
-            'btn-input', 
-            ['html' => $eanInputHtml], // Directly inject HTML
-            ''
-        ));
-
-        // $bar->add(
-        //     new ActionsBarButton(
-        //         'btn-info', ['href' => $createAnOrderUrl], 'Create an order'
-        //     )
-        // );
-
-        // $viewCustomerUrl = $router->generate('admin_customers_view', ['customerId'=> (int)$order->id_customer]);
-        // $bar->add(
-        //     new ActionsBarButton(
-        //         'btn-secondary', ['href' => $viewCustomerUrl], 'View customer'
-        //     )
-        // );
-
-
-
-        // $shopLink =  'https://asd.local/';
-        // $bar->add(
-        //     new ActionsBarButton(
-        //         'btn-link', ['href' => $shopLink], 'Go to Shop'
-        //     )
-        // );
-
-        // $productLink =  Context::getContext()->link->getAdminLink('AdminProducts');
-        // $bar->add(
-        //     new ActionsBarButton(
-        //         'btn-dark', ['href' => $productLink], 'Go to Catalog'
-        //     )
-        // );
-        
-        // echo '<pre>'.print_r($params['actions_bar_buttons_collection'],true).'</pre>';
-        // exit;
+        $sql = 'SELECT * FROM ' . _DB_PREFIX_ . 'customer WHERE id_customer = ' . (int)$customerId;
+    
+        return Db::getInstance()->getRow($sql);
     }
+    
+    public function hookActionAdminOrdersControllerSaveBefore($params)
+    {
+        $orderId = (int)$params['id_order'];
 
+        // Fetch the order using PrestaShop Order class
+        $order = new \Order($orderId);
 
+        if ($order->id) {
+            // Get customer data
+            $customerData = $this->getCustomerData($order->id_customer);
 
+            if ($customerData) {
+                $idDefaultGroup = $customerData['id_default_group'];
 
-    // public function hookdisplayOrderPreview(array $params)
-    // {
-    //     // $router = $this->get('router');
-
-    //     $html = '
-    //     <div class="custom-order-preview">
-    //         <h3>Custom Order Preview</h3>
-    //         <p>Order ID: <pre>' . $params['orderId'] . '</pre></p>
-    //         <p>Custom content here...</p>
-    //     </div>
-    // ';
-
-    // return $this->display(__FILE__, 'views/templates/hook/order_preview.tpl');
-    // }
+                // Assign to the Smarty context
+                $this->context->smarty->assign('idDefaultGroup', $idDefaultGroup);
+            }
+        }
+    }
 
 }

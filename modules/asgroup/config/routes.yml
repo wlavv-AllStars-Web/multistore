@@ -5,3 +5,28 @@ asgroup_admin_orders_mark_order:
     _controller: PrestaShop\Module\AsGroup\Controller\DemoOrderController::markOrderAction
   requirements:
       orderId: \d+
+
+admin_orders_view:
+  path: /{orderId}/view
+  methods: [ GET, POST ]
+  defaults:
+    _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::viewAction'
+    _legacy_controller: AdminOrders
+    _legacy_link: AdminOrders:vieworder
+    _legacy_parameters:
+      id_order: orderId
+  options:
+    expose: true
+  requirements:
+    orderId: \d+
+
+admin_orders_add_product:
+  path: /{orderId}/products
+  methods: [ POST ]
+  defaults:
+    _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::addProductAction'
+    _legacy_controller: AdminOrders
+  requirements:
+    orderId: \d+
+  options:
+    expose: true

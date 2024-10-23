@@ -102,3 +102,46 @@
 .adminorders .column-payment_id{
     text-align: center !important;
 }
+
+
+/* ORDER DETAILS */
+
+#view_order_payments_block .form-group{
+    margin-bottom: 0 !important;
+}
+
+.add-form-payment-line{
+    display: none;
+    transition: all ease-in-out 250ms;
+}
+
+.order-status-web{
+    display: none;
+    height: 0;
+    transition: all ease-in-out 250ms;
+    visibility: hidden;
+}
+.order-status-web.show_status{
+    display: block;
+    height: auto;
+    transition: all ease-in-out 250ms;
+    visibility: visible;
+}
+
+.btn.history-status{
+    background:#fff;
+    margin-right: .5rem;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+}
+.btn.history-status:hover{
+    background: #f3f3f3;
+}
+
+.add-payment-details-btn{
+
+}
+
+#order-view-page .info-block{
+    margin-bottom: 1.5rem;
+    background-color: #fff !important;
+}
