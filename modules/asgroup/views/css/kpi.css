@@ -119,6 +119,10 @@
     transition: all ease-in-out 250ms;
 }
 
+#historyTabContent .card-header{
+    background: #fff;
+}
+
 .order-status-web{
     /* display: none; */
     max-height: 0;
