@@ -129,10 +129,12 @@
       </button>
   {% endif %}
 
-  <div class="d-inline-block ml-2">
+  {% if orderForViewing.history.currentOrderStatusId == 3 %}
+  <div class="d-inline-block ml-auto">
     <div class="input-group" style="display:flex;">
         <input type="text" name="ean" placeholder="Enter EAN" class="form-control" />
     </div>
   </div>
+  {% endif %}
 
-  {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/order_navigation.html.twig' %}
+  {# {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/order_navigation.html.twig' %} #}
