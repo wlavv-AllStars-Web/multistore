@@ -2484,10 +2484,12 @@ class OrderCore extends ObjectModel
      */
     public function getIdOrderCarrier()
     {
+
         return (int) Db::getInstance()->getValue('
                 SELECT `id_order_carrier`
                 FROM `' . _DB_PREFIX_ . 'order_carrier`
-                WHERE `id_order` = ' . (int) $this->id);
+                WHERE `id_order` = ' . (int) $this->id .'
+                ORDER BY `date_add` DESC');
     }
 
     public static function sortDocuments($a, $b)
@@ -2513,7 +2515,40 @@ class OrderCore extends ObjectModel
 
         $orderCarrier = new OrderCarrier($idOrderCarrier);
 
+        // pre($orderCarrier);
         return $orderCarrier->tracking_number;
+    }
+
+    // asgroup carrier name
+    public function getCarrierName()
+    {
+        $idOrderCarrier = $this->getIdOrderCarrier();
+
+        $sqlCarrierName = '
+        SELECT c.name
+        FROM '. _DB_PREFIX_.'carrier AS c
+        LEFT JOIN '. _DB_PREFIX_.'order_carrier AS oc
+        ON oc.id_carrier = c.id_carrier
+        WHERE oc.id_order_carrier ='.$idOrderCarrier;
+
+        $carrierName = Db::getInstance()->getValue($sqlCarrierName);
+
+        return $carrierName;
+    }
+
+    // asgroup carrier name
+    public function getLastDeliverySlipDate()
+    {
+        $idOrderCarrier = $this->getIdOrderCarrier();
+
+        $sqldeliverySlipDate = '
+        SELECT oc.date_add
+        FROM '. _DB_PREFIX_.'order_carrier AS oc
+        WHERE oc.id_order_carrier ='.$idOrderCarrier;
+
+        $deliverySlipDate = Db::getInstance()->getValue($sqldeliverySlipDate);
+
+        return $deliverySlipDate;
     }
 
     public function setWsShippingNumber($shipping_number)
