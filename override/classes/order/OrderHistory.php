@@ -206,7 +206,7 @@ class OrderHistoryCore extends ObjectModel
                 $manager = StockManagerFactory::getManager();
             }
 
-            if($this->context->shop->id != 3){
+            if($order->id_shop != 3){
                 $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED')];
             }else{
                 $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED'), Configuration::get('PS_OS_BANKWIRE')];
