@@ -544,10 +544,19 @@ class OrderDetailCore extends ObjectModel
      */
     protected function updateProductQuantityInStock($product, $orderStateId): void
     {
-        $dismissOrderStateIds = Configuration::getMultiple([
-            'PS_OS_CANCELED',
-            'PS_OS_ERROR',
-        ]);
+        if($this->context->shop->id != 3){
+            $dismissOrderStateIds = Configuration::getMultiple([
+                'PS_OS_CANCELED',
+                'PS_OS_ERROR',
+            ]);
+        }else{
+            $dismissOrderStateIds = Configuration::getMultiple([
+                'PS_OS_CANCELED',
+                'PS_OS_ERROR',
+                'PS_OS_WAITING_PAYMENT'
+            ]);
+        }
+
         if (in_array($orderStateId, $dismissOrderStateIds)) {
             return;
         }

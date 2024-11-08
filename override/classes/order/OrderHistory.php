@@ -206,7 +206,11 @@ class OrderHistoryCore extends ObjectModel
                 $manager = StockManagerFactory::getManager();
             }
 
-            $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED')];
+            if($this->context->shop->id != 3){
+                $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED')];
+            }else{
+                $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED'), Configuration::get('PS_OS_BANKWIRE')];
+            }
 
             $employee = null;
             if (!(int) $this->id_employee || !Validate::isLoadedObject(($employee = new Employee((int) $this->id_employee)))) {
@@ -224,6 +228,7 @@ class OrderHistoryCore extends ObjectModel
             // foreach products of the order
             foreach ($order->getProductsDetail() as $product) {
                 if (Validate::isLoadedObject($old_os)) {
+                    // pre(in_array($old_os->id, $error_or_canceled_statuses));
                     // if becoming logable => adds sale
                     if ($new_os->logable && !$old_os->logable) {
                         ProductSale::addProductSale($product['product_id'], $product['product_quantity']);
@@ -610,8 +615,10 @@ class OrderHistoryCore extends ObjectModel
             $product_var_tpl_list = [];
             foreach ($product_list as $product) {
                 
-                /**echo '<pre>' . print_r($product, 1) . '</pre>';
-                exit;**/
+                // echo '<pre>' . print_r($product, 1) . '</pre>';
+                // exit;
+
+
                 $price = Product::getPriceStatic((int) $product['id_product'], false, ($product['product_attribute_id'] ? (int) $product['product_attribute_id'] : null), 6, null, false, true, $product['product_quantity'], false, (int) $order->id_customer, (int) $order->id_cart, (int) $order->{Configuration::get('PS_TAX_ADDRESS_TYPE')}, $specific_price, true, true, null, true, $product['id_customization']);
                 if($this->context->shop->id == 3){
                     $price_wt = $product['product_price'];
