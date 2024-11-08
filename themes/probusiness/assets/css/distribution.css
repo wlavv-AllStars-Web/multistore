@@ -161,6 +161,7 @@ body::-ms-scrollbar-thumb:hover {
 #products .page-not-found {
   display: flex;
   flex-direction: column;
+  margin-top: 2rem !important;
 }
 
 html,
@@ -2984,6 +2985,7 @@ textarea {
 }
 .page-not-found #search_widget{
   width: 100% !important;
+  margin: 0 !important;
 }
 
 /* client statistics */
