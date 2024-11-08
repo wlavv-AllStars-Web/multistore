@@ -119,10 +119,10 @@
     	</tr>
     	<tr>
 			<td style="width: 20%;"> {$order->getUniqReference()} </td>
-    		<td style="width: 20%;"> {$order->date_add|date_format:"%d-%m-%Y %H:%M"} </td>
+    		<td style="width: 20%;"> {$order->getLastDeliverySlipDate()|date_format:"%d-%m-%Y %H:%M"} </td>
     		<td style="width: 20%;">{$current_state}</td>
-    		<td style="width: 20%;">{$carrier->name}</td>
-    		<td style="width: 20%;">{$tracking_number}</td>
+    		<td style="width: 20%;">{$order->getCarrierName()}</td>
+    		<td style="width: 20%;">{$order->getShippingNumber()}</td>
 
     		{* <td style="width: 20%;"> {$title|escape:'html':'UTF-8'} </td>
     		<td style="width: 20%;"> {dateFormat date=$order->invoice_date full=0} </td>
