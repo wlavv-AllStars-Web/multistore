@@ -266,15 +266,17 @@
                     <td class="text-xs-center" title="{l s='Tracking' d='Shop.Theme.Customeraccount'}">
                       {foreach from=$order.shipping item=line}
                         
+                        <div style="display: flex;flex-direction:column;">
                         {if !empty($line.tracking_number)}
-                          <a href="{$line.url}" style="color: #0273eb;">
-                              {$line.tracking}
-                          </a>
+                          <div style="color: #0273eb;display:flex;align-items:center;gap:.5rem;justify-content:center;">
+                            <i class="material-icons">local_shipping</i>  {$line.tracking}
+                          </div>
                         {else}
                             <span style="color: #333;">
-                                {$line.tracking}
+                            {$line.tracking}
                             </span>
                         {/if}
+                        </div>
                       
                       
                       {/foreach}
