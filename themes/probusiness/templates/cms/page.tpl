@@ -1457,11 +1457,11 @@
                     </div>
                     <div class="form-group col-lg-4 col-md-6  col-sm-12">
                       <label for="address_line_1">{l s='Address Line 1' d='Shop.Theme.Career'}<span style="color:#ee302e;">*</span></label>
-                      <input type="tel" class="form-control" id="address_line_1" placeholder="Apartment, studio, or floor" name="address_line_1" required>
+                      <input type="tel" class="form-control" id="address_line_1" placeholder="" name="address_line_1" required>
                     </div>
                     <div class="form-group col-lg-4  col-md-6  col-sm-12">
                       <label for="address_line_2">{l s='Address Line 2' d='Shop.Theme.Career'}</label>
-                      <input type="text" class="form-control" id="address_line_2" placeholder="Apartment, studio, or floor" name="address_line_2">
+                      <input type="text" class="form-control" id="address_line_2" placeholder="" name="address_line_2">
                     </div>
                   
                     <div class="form-group col-lg-4 col-md-6 col-sm-12 ">
