@@ -206,6 +206,8 @@ class OrderHistoryCore extends ObjectModel
                 $manager = StockManagerFactory::getManager();
             }
 
+            // ASGROUP remove stock only on payment accepted
+
             if($order->id_shop != 3){
                 $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED')];
             }else{
@@ -777,7 +779,7 @@ class OrderHistoryCore extends ObjectModel
             '{total_shipping_tax_incl}' => Tools::getContextLocale($this->context)->formatPrice($order->total_shipping_tax_incl, $currency->iso_code),
             '{total_tax_paid}' => Tools::getContextLocale($this->context)->formatPrice(($order->total_paid_tax_incl - $order->total_paid_tax_excl), $currency->iso_code),
             '{recycled_packaging_label}' => $order->recyclable ? $this->trans('Yes', [], 'Shop.Theme.Global') : $this->trans('No', [], 'Shop.Theme.Global'),
-            '{message}' => $order->getFirstMessage(),
+            '{message}' => $order->getFirstMessage() ? $order->getFirstMessage() : '---',
             
             '{note}' => $this->getNote($order->id),
             '{message_payment}' => $this->getMessage($order->payment_id,$order->reference,$order->id_lang),
