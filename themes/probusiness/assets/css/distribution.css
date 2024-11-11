@@ -2132,6 +2132,11 @@ input[type="number"] {
   background: #fff;
 }
 
+#contact .form-control-label{
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 #product .right_column_product .brand_logo {
   filter: grayscale(1);
 }
