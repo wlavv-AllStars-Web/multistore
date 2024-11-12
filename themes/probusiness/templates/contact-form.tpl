@@ -42,10 +42,15 @@
     </div>
 {/if}
 
+  <div class="col-lg-12 px-0 banner-myaccount" style="padding-bottom: 2rem;">
+    <img class="p-img" src="/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp" alt="account_banner" style="width: 100%;" />
+  </div>
   <div style="background-color: #fff;">
     {* <img alt="contact" src="/img/asd/Content_pages/contact/contact_{$language.iso_code}.webp" class="img-responsive" style="margin:0 auto;width:100%"> *}
 
-    <div style="display:flex;">
+
+
+    {* <div style="display:flex;">
         <ul class="nav nav-tabs" id="menu-client" role="tablist" style="display: flex;align-items:center;background-color: #f7f7f7; border: 1px solid #d8d8d8; height: 55px;margin-top: 20px;">
             <li class="nav-item">
                 <a class="nav-link" title="{l s="Orders history" d="Shop.Theme.Statistics"}" id="order_history-tab"  onclick="openShippingtab('{$urls.pages.my_account}','order_history')"role="tab" aria-controls="order_history" aria-selected="false" style="padding:0.5rem 1rem;" ><i class="fa fa-list-ol website_blue font-size-40"></i></a>
@@ -69,11 +74,11 @@
             <li class="nav-item">
                 <a class="nav-link" id="notification-tab" title="{l s="Notifications" d="Shop.Theme.Statistics"}"  onclick="openShippingtab('{$urls.pages.my_account}','notification')" role="tab" aria-controls="notification" aria-selected="false" style="padding:0.5rem 1rem;" ><i class="fa-solid fa-bell"></i></a>
             </li>
-            {* <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
+             <li class="nav-item" style="display:flex;justify-content: end;flex:1;">
                 <a class="nav-link" id="logout-tab"  href="/?mylogout="><i class="fa-solid fa-lock-open"></i></a>
-            </li> *}
+            </li> 
         </ul>
-    </div>
+    </div> *}
 
     <form action="{$request_uri}" method="post" class="contact-form-box" enctype="multipart/form-data" style="max-width:1350px; margin:2rem auto; background-color:#fff; box-shadow: none;">
         <div class="spacer-20"></div>

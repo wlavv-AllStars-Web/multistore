@@ -4271,6 +4271,21 @@ textarea {
   }
 }
 @media screen and (max-width: 768px) {
+    /* contact page */
+
+    #contact #contact-form-group .name_field  {
+      padding: 0px 1rem !important;
+    }
+    #contact #contact-form-group .lastname_field  {
+      padding: 1rem !important;
+    }
+    #contact #contact-form-group .email_field  {
+      padding: 0px 1rem !important;
+    }
+    #contact #contact-form-group > div:last-child {
+      padding: 0px 1rem !important;
+    }
+    /*  */
 
   .order-states-container {
     display: grid;
@@ -8528,6 +8543,19 @@ select option {
 }
 
 @media screen and (min-width: 769px) and (max-width: 992px) {
+  /* contact page */
+
+  #contact #contact-form-group .name_field  {
+    padding: 0px;
+  }
+  #contact #contact-form-group .lastname_field  {
+    padding: 0px;
+  }
+  #contact #contact-form-group .email_field  {
+    padding: 0px;
+  }
+
+
   /* quickshop */
 
   .container-quickshop{
