@@ -41,22 +41,27 @@
 </style>
 
 {if $manufacturer.bike_parts == 1}
+
+{assign var="id_category" value="{if $smarty.get.id_category}{$smarty.get.id_category}{else}{/if}"}
+
+
 <div style="display: flex;width: 100%; text-align: center;margin: 0 auto; background-color: #fff;">
 
 {* {$link->getCategoryLink($id_category)|escape:'html':'UTF-8'} *}
     {* {if Context::getContext()->isMobile()} *}
         <a href="{$link->getManufacturerLink($manufacturer.id)}" class="btnCar mobile">
-            <img id="car" {if (!isset($id_category)) || ($id_category != 17) } src="/img/asd/Content_pages/bike/icon_carM_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} src="/img/asd/Content_pages/bike/icon_carM_{$language.iso_code}_normal.webp" {/if}>
+            <img id="car" {if (!isset($id_category)) || ($id_category != 17) } class="carhover"  src="/img/asd/Content_pages/bike/icon_carM_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} class="car-nothover" src="/img/asd/Content_pages/bike/icon_carM_{$language.iso_code}_normal.webp" {/if}>
         </a> 
         <a href="{$smarty.server.SCRIPT_URI}?id_category=17" class="btnBike mobile" >
-            <img id="bike" {if isset($id_category) && ($id_category == 17)  } src="/img/asd/Content_pages/bike/icon_bikeM_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} src="/img/asd/Content_pages/bike/icon_bikeM_{$language.iso_code}_normal.webp" {/if}>
+            <img id="bike" {if isset($id_category) && ($id_category == 17)  } class="carhover"  src="/img/asd/Content_pages/bike/icon_bikeM_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} class="car-nothover" src="/img/asd/Content_pages/bike/icon_bikeM_{$language.iso_code}_normal.webp" {/if}>
         </a> 
     {* {else} *}
         <a href="{$link->getManufacturerLink($manufacturer.id)}" class="btnCar desktop">
-            <img id="car" {if (!isset($id_category)) || ($id_category != 17) } src="/img/asd/Content_pages/bike/icon_car_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} src="/img/asd/Content_pages/bike/icon_car_{$language.iso_code}_normal.webp" {/if}>
+            <img id="car" {if (!isset($id_category)) || ($id_category != 17) } class="carhover" src="/img/asd/Content_pages/bike/icon_car_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else}class="car-nothover" src="/img/asd/Content_pages/bike/icon_car_{$language.iso_code}_normal.webp" {/if}>
         </a> 
         <a href="{$smarty.server.SCRIPT_URI}?id_category=17" class="btnBike desktop" >
-            <img id="bike" {if isset($id_category) && ($id_category == 17)  } src="/img/asd/Content_pages/bike/icon_bike_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else} src="/img/asd/Content_pages/bike/icon_bike_{$language.iso_code}_normal.webp" {/if}>
+            <img id="bike" {if isset($id_category) && ($id_category == 17)  } class="carhover" src="/img/asd/Content_pages/bike/icon_bike_{$language.iso_code}_hover.webp" style="background-color: #0076E7;" {else}
+            class="car-nothover" src="/img/asd/Content_pages/bike/icon_bike_{$language.iso_code}_normal.webp" {/if}>
         </a> 
     {* {/if} *}
 </div>
