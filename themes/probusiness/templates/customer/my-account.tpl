@@ -711,8 +711,10 @@
                                 />
                                   {* <img style="max-height:125px;margin: 0 auto" class="replace-2x img-responsive" src="{$product.image_path}" alt="{$product['name']}" title="{$product.name}" itemprop="image"/> *}
                               </div>
-                              <div style="border-top: 1px solid #C8C8C8; font-size: 14px; color: #666;padding: 5px;">{$product.name|truncate:25}</div>
-                              <div style="font-size: 14px; color: #666;">{$product.reference|truncate:25}</div>
+                              <div class="product-name-statistics-container" >
+                                <div class="product-name-statistics" >{$product.name}</div>
+                              </div>
+                              {* <div style="font-size: 14px; color: #666;">{$product.reference|truncate:25}</div> *}
                           </a>
                       </div>
                   </div>
@@ -739,7 +741,7 @@
 
                             <img
                             src="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer, 'thumb')}"
-                            alt="{$product.name|truncate:30:'...'}"
+                            alt="{$product.name}"
                             loading="lazy"
                             data-full-size-image-url="{$link->getImageLink($product.reference, $product.id_image, null, 'jpg', $product.id_product, $product.id_manufacturer)}"
                             width="125"
@@ -747,9 +749,9 @@
                             style="width:125px;height:auto;"
                             />
                           </div>
-                          <div style="border-top: 1px solid #C8C8C8; height: 45px; font-size: 14px; color: #666;overflow: hidden;display:flex;align-items:center;">
-                              <div style=" width: 50px;height: 100%;line-height: 30px;font-size: 20px;background-color: #fff;padding: 10px;border-right: 1px solid #c8c8c8; text-align: center;">{$product['number']}</div> 
-                              <div style="padding: 5px;">{$product['name']|truncate:25}</div>
+                          <div class="product-name-statistics-container" >
+                              {* <div style=" width: 50px;height: 100%;line-height: 30px;font-size: 20px;background-color: #fff;padding: 10px;border-right: 1px solid #c8c8c8; text-align: center;">{$product['number']}</div>  *}
+                              <div class="product-name-statistics">{$product['name']}</div>
                           </div>
                       </a>
                   </div>
