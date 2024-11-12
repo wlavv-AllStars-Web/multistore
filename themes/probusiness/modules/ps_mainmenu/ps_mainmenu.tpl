@@ -105,12 +105,13 @@
     </ul>
   {/if}
 {/function}
-  {* <pre>{$categories[2]|print_r}</pre> *}
+
+  {* <pre>{$urls|print_r}</pre> *}
 <div style="width: 80vw;" class="menu js-top-menu position-static formula row" id="_desktop_top_menu_desktop">
   {if Context::getContext()->customer->logged}
     <ul style="width:100%; display:flex; justify-content: space-between; margin-bottom:4px;overflow:hidden;" class="top-menu colu" id="top-menu" data-depth="0">
       <li style="width: 100%" class="mxsz cms-page" id="cms-page-23">
-          <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 700;line-height:50px;" class="bortextalign dropdown-item {if $showNotificationBall ===1} ball_notification{/if}" href="{$link->getPageLink('myaccount', true)}" data-depth="0">
+          <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 700;line-height:50px;" class="bortextalign dropdown-item {if $showNotificationBall ===1} ball_notification{/if}" href="{$urls.pages.my_account}" data-depth="0">
             <span>
             {l s='My Account' d='Shop.Theme.Menu'}
             </span>
