@@ -1564,10 +1564,10 @@ form label {
 
 
 .product-name-statistics-container{
-  border-top: 1px solid #C8C8C8; height: 50px; font-size: 14px; color: #666;overflow: hidden;display:flex;justify-content: center;padding: 0 .5rem;
+  border-top: 1px solid #C8C8C8; height: 67px; font-size: 14px; color: #666;overflow: hidden;display:flex;justify-content: center;padding: 0.5rem .85rem;
 }
 
-.product-name-statisticsr{
+.product-name-statistics{
   display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;max-height: 50px;
 }
 /* #my-account table tbody tr:nth-child(2n){
