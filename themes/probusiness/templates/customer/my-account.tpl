@@ -691,7 +691,6 @@
               {l s='Last viewed products' d="Shop.Theme.Statistics"}
             </div>
             <div class="last-viewed-products">
-            {debug}
             {* {hook h='displayReassurance' mod='ps_viewedproduct'} *}
               {if count($lastViewedProducts) > 0}
                   {foreach $lastViewedProducts As $k => $product}
