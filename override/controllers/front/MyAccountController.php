@@ -810,13 +810,15 @@ class MyAccountController extends MyAccountControllerCore
         $products = array();
         foreach($last_viewed_ids AS $id){
             if($id != ''){
-            $sql = "SELECT ". _DB_PREFIX_ ."manufacturer.name AS brand, ". _DB_PREFIX_ ."product_lang.name AS name, ". _DB_PREFIX_ ."product.reference, ". _DB_PREFIX_ ."product.id_product AS id_product, ". _DB_PREFIX_ ."product_lang.description_short AS description_short, ". _DB_PREFIX_ ."manufacturer.id_manufacturer AS id_manufacturer
+            $sql = "SELECT ". _DB_PREFIX_ ."manufacturer.name AS brand, ". _DB_PREFIX_ ."product_lang.name AS name, ". _DB_PREFIX_ ."product.reference, ". _DB_PREFIX_ ."product.id_product AS id_product, ". _DB_PREFIX_ ."product_lang.description_short AS description_short, ". _DB_PREFIX_ ."manufacturer.id_manufacturer AS id_manufacturer,". _DB_PREFIX_ ."product_lang.link_rewrite AS link_rewrite, cl.link_rewrite AS link_category
                     FROM ". _DB_PREFIX_ ."product
                     LEFT JOIN ". _DB_PREFIX_ ."product_lang
                     ON ". _DB_PREFIX_ ."product_lang.id_product = ". _DB_PREFIX_ ."product.id_product 
                     LEFT JOIN ". _DB_PREFIX_ ."manufacturer
                     ON ". _DB_PREFIX_ ."manufacturer.id_manufacturer = ". _DB_PREFIX_ ."product.id_manufacturer 
-                    WHERE ". _DB_PREFIX_ ."product.id_product =" . $id . " AND ". _DB_PREFIX_ ."product_lang.id_lang = ". $this->context->language->id . " AND ". _DB_PREFIX_ ."product_lang.id_shop =".$this->context->shop->id;
+                    LEFT JOIN ". _DB_PREFIX_."category_lang AS cl
+                    ON "._DB_PREFIX_."product.id_category_default = cl.id_category
+                    WHERE ". _DB_PREFIX_ ."product.id_product =" . $id . " AND ". _DB_PREFIX_ ."product_lang.id_lang = ". $this->context->language->id . " AND ". _DB_PREFIX_ ."product_lang.id_shop =".$this->context->shop->id ." AND cl.id_lang = ".$this->context->language->id;
             
             // echo '<pre>'.print_r($sql,1).'</pre>';
             // exit;
@@ -836,10 +838,13 @@ class MyAccountController extends MyAccountControllerCore
             // exit;
 
             $cleanedPath = str_replace($_SERVER['SERVER_NAME'], '', $parsedUrl);
+            
+            $link_product = $link->getProductLink($id);
 
             // Add the image path to the product details array
             if ($productDetails) {
                 $productDetails['image_path'] = $cleanedPath;
+                $productDetails['link_product'] = $link_product;
                 $products[] = $productDetails;
             }
             }
@@ -863,7 +868,7 @@ class MyAccountController extends MyAccountControllerCore
             ON ". _DB_PREFIX_ ."product_lang.id_product = ". _DB_PREFIX_ ."product.id_product 
             LEFT JOIN ". _DB_PREFIX_ ."manufacturer
             ON ". _DB_PREFIX_ ."manufacturer.id_manufacturer = ". _DB_PREFIX_ ."product.id_manufacturer 
-            WHERE ". _DB_PREFIX_ ."orders.id_customer =" . $idCustomer . " AND ". _DB_PREFIX_ ."product_lang.id_lang = ". $this->context->language->id . " AND  ". _DB_PREFIX_ ."product_lang.id_shop=". $this->context->shop->id . " GROUP BY ". _DB_PREFIX_ ."order_detail.product_id ORDER BY number DESC 
+            WHERE ". _DB_PREFIX_ ."orders.id_customer =" . $idCustomer . " AND ". _DB_PREFIX_ ."product.active = 1 AND ". _DB_PREFIX_ ."product_lang.id_lang = ". $this->context->language->id . " AND  ". _DB_PREFIX_ ."product_lang.id_shop=". $this->context->shop->id . " GROUP BY ". _DB_PREFIX_ ."order_detail.product_id ORDER BY number DESC 
             LIMIT 4 ";
 
             // echo $sql;
@@ -887,9 +892,12 @@ class MyAccountController extends MyAccountControllerCore
             // exit;
 
             $cleanedPath = str_replace($_SERVER['SERVER_NAME'], '', $parsedUrl);
+
+            $link_product = $link->getProductLink($product['id_product']);
         
             // Add the image path to the product details
             $product['image_path'] = $cleanedPath;
+            $product['link_product'] = $link_product;
         
             // Add the modified product details to the products array
             $products[] = $product;
@@ -909,6 +917,7 @@ class MyAccountController extends MyAccountControllerCore
             FROM ". _DB_PREFIX_ ."order_detail
             WHERE id_order > 0
             AND product_reference NOT LIKE 'SHIPPING-%'
+            AND product_reference NOT LIKE 'ccFee'
             GROUP BY product_id
             ORDER BY product_quantity DESC
             LIMIT 12";

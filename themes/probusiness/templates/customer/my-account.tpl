@@ -691,12 +691,14 @@
               {l s='Last viewed products' d="Shop.Theme.Statistics"}
             </div>
             <div class="last-viewed-products">
+            {debug}
             {* {hook h='displayReassurance' mod='ps_viewedproduct'} *}
               {if count($lastViewedProducts) > 0}
                   {foreach $lastViewedProducts As $k => $product}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 1rem; {if $k == 0} padding-left: 0px; {/if} {if $k == 3} padding-right: 0px; {/if}">
                     <div class="statistics_container" style="padding: 0; margin: 0;overflow: hidden;">
-                        <a class="product_img_link"	href="https://www.all-stars-distribution.com/{$product['id_product']}-product.html" title="{$product['name']}" itemprop="url" style="width: 100%; text-align: center;">
+                        {* <a class="product_img_link"	href="{$urls.base_url}{$product.link_category}/{$product.id_product}" title="{$product['name']}" itemprop="url" style="width: 100%; text-align: center;"> *}
+                        <a class="product_img_link"	href="{$product.link_product}" title="{$product['name']}" itemprop="url" style="width: 100%; text-align: center;">
                               <div style="background-color: white;display: flex;justify-content:center;">
                               {* {$product|print_r} *}
 
@@ -736,7 +738,7 @@
               {foreach $mostBoughtProducts As $j => $product}
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 1rem; {if $j == 0} padding-left: 0px; {/if} {if $j == 3} padding-right: 0px; {/if}">
                 <div class="statistics_container" style="padding: 0; margin: 0px;">
-                    <a class="product_img_link"	href="https://www.all-stars-distribution.com/{$product['id_product']}-product.html" title="{$product['name']}" itemprop="url" style="width: 100%; text-align: center;">
+                    <a class="product_img_link"	href="{$product.link_product}" title="{$product['name']}" itemprop="url" style="width: 100%; text-align: center;">
                           <div style="background-color: white;display: flex;justify-content:center;">
 
                             <img
