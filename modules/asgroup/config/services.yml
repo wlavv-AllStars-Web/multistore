@@ -4,3 +4,45 @@ services:
     public: true
     arguments:
       $formBuilderModifier: '@form.form_builder_modifier'
+  
+
+  
+  form.type.sell.product.combination_item_type.custom:
+    class: PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\Combination\CombinationItemType
+    decorates: form.type.sell.product.combination_item_type  # Decorate the core service
+    decoration_inner_name: form.type.sell.product.combination_item_type.inner
+    arguments:
+      - '@translator'
+      - "@=service('prestashop.adapter.legacy.context').getLanguages()"
+      - '@=service("prestashop.adapter.data_provider.currency").getDefaultCurrency()'
+      - '@prestashop.adapter.feature.multistore'
+      - '@=service("prestashop.adapter.legacy.context").getContext().shop.id'
+      - '@form.type.sell.product.combination_item_type.inner'  # Reference to the original service if needed
+    public: true
+    tags:
+      - { name: form.type }
+
+
+
+
+
+  prestashop.adapter.order.refund.order_slip_creator:
+    class: PrestaShop\Module\AsGroup\OrderSlipCreator
+    arguments:
+      - '@prestashop.adapter.legacy.configuration'
+      - '@translator'
+
+  # PrestaShop\Module\AsGroup\Controller\Admin\OrderController:
+  #   autowire: true
+  #   public: true
+  #   tags:
+  #     - { name: 'controller.service_arguments' }
+  #   arguments:
+  prestashop.adapter.product.repository:
+    alias: PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository
+    public: true
+
+  PrestaShop\Module\AsGroup\Controller\Admin\ProductController:
+    public: true
+    arguments:
+      - '@prestashop.adapter.product.repository'

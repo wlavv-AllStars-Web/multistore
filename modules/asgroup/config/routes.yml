@@ -6,6 +6,15 @@ asgroup_admin_orders_mark_order:
   requirements:
       orderId: \d+
 
+admin_orders_index:
+  path: /sell/orders/
+  methods: [GET, POST]
+  defaults:
+    _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::indexAction' 
+    _legacy_controller: 'AdminOrders'
+    _legacy_link: 'AdminOrders'
+    _disable_module_prefix: true
+
 admin_orders_view:
   path: /{orderId}/view
   methods: [ GET, POST ]
@@ -15,18 +24,289 @@ admin_orders_view:
     _legacy_link: AdminOrders:vieworder
     _legacy_parameters:
       id_order: orderId
+    _disable_module_prefix: true
   options:
     expose: true
   requirements:
     orderId: \d+
 
+
 admin_orders_add_product:
-  path: /{orderId}/products
-  methods: [ POST ]
+  path: /sell/orders/{orderId}/products
+  methods: [POST]
   defaults:
     _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::addProductAction'
     _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
   requirements:
     orderId: \d+
   options:
     expose: true
+
+admin_orders_update_product:
+  path: /sell/orders/{orderId}/products/{orderDetailId}
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::updateProductAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+    orderDetailId: \d+
+  options:
+    expose: true
+
+admin_orders_delete_product:
+  path: /sell/orders/{orderId}/products/{orderDetailId}/delete
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::deleteProductAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+    orderDetailId: \d+
+  options:
+    expose: true
+
+admin_orders_get_products:
+  path: /sell/orders/{orderId}/products
+  methods: [ GET ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::getProductsListAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+  options:
+    expose: true
+
+admin_orders_partial_refund:
+  path: /sell/orders/{orderId}/partial-refund
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::partialRefundAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+  options:
+    expose: true
+  
+admin_orders_update_shipping:
+  path: /{orderId}/shipping
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::updateShippingAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+
+admin_orders_get_shipping:
+  path: /{orderId}/shipping
+  methods: [ GET ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::getShippingAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+  options:
+    expose: true
+
+admin_orders_add_line_carrier:
+  path: /{orderId}/shipping/add-line
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::addNewLineCarrierAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+
+admin_orders_delete_line_carrier:
+  path: /{orderId}/shipping/delete-line
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\OrderController::deleteLineCarrierAction
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true 
+  requirements:
+    orderId: \d+
+
+# product controller
+# _products_v2:
+#   resource: "/"
+#   prefix: /
+
+admin_products_index:
+  path: /sell/catalog/products-v2
+  methods: [ GET ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\ProductController::indexAction
+    _legacy_controller: AdminProducts
+    _disable_module_prefix: true
+
+admin_products_search:
+  path: /sell/catalog/products-v2
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\ProductController::searchGridAction
+    _legacy_controller: AdminProducts
+    _disable_module_prefix: true
+
+admin_products_edit:
+  path:  /sell/catalog/products-v2/{productId}/edit
+  methods: [ GET, POST, PATCH ]
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\ProductController::editAction
+    _legacy_controller: AdminProducts
+    _legacy_link:
+      - AdminProducts:updateproduct
+      - AdminProducts:update
+    _legacy_parameters:
+      id_product: productId
+    _disable_module_prefix: true
+  requirements:
+    productId: \d+
+  options:
+    expose: true
+
+
+# combination controller
+
+admin_products_combinations:
+  path: /sell/catalog/products-v2/{productId}/combinations
+  methods: [ GET ]
+  options:
+    expose: true
+  defaults:
+    _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::getListAction
+    _legacy_controller: AdminProducts
+    _disable_module_prefix: true
+
+# admin_products_combinations_update_combination_from_listing:
+#   path: /sell/catalog/products-v2/combinations/{productId}/update-combination-from-listing
+#   methods: [ PATCH ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::updateCombinationFromListingAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     combinationId: \d+
+
+
+# admin_products_combinations_ids:
+#   path: /{productId}/combinations/ids
+#   methods: [ GET ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::getCombinationIdsAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+
+# admin_products_combinations_edit_combination:
+#   path: /combinations/{combinationId}/edit
+#   methods: [ GET, POST ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::editAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     combinationId: \d+
+
+# admin_products_combinations_bulk_combination_form:
+#   path: /{productId}/combinations/bulk-form
+#   methods: [ GET, PATCH ]
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::bulkEditFormAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#     requirements:
+#       productId: \d+
+
+# admin_products_combinations_bulk_edit_combination:
+#   path: /{productId}/combinations/bulk-edit
+#   methods: [ PATCH ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::bulkEditAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     productId: \d+
+
+# admin_products_combinations_delete_combination:
+#   path: /combinations/{combinationId}/delete/{shopId}
+#   methods: [ DELETE ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::deleteAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#     shopId: null
+#   requirements:
+#     combinationId: \d+
+#     shopId: \d+
+
+# admin_products_combinations_bulk_delete:
+#   path: /{productId}/combinations/bulk-delete/{shopId}
+#   methods: [ POST ]
+#   options:
+#     expose: true
+#   defaults:
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::bulkDeleteAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#     shopId: null
+#   requirements:
+#     productId: \d+
+#     shopId: \d+
+
+# admin_products_attribute_groups:
+#   path: /{productId}/attribute-groups/{shopId}
+#   methods: [ GET ]
+#   options:
+#     expose: true
+#   defaults:
+#     shopId: null
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::getAttributeGroupsAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     shopId: \d+
+
+# admin_all_attribute_groups:
+#   path: /all-attribute-groups/{shopId}
+#   methods: [ GET ]
+#   options:
+#     expose: true
+#   defaults:
+#     shopId: null
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::getAllAttributeGroupsAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     shopId: \d+
+
+# admin_products_combinations_generate:
+#   path: /generate-combinations/{productId}/{shopId}
+#   methods: [ POST ]
+#   options:
+#     expose: true
+#   defaults:
+#     shopId: null
+#     _controller: PrestaShop\Module\AsGroup\Controller\Admin\CombinationController::generateCombinationsAction
+#     _legacy_controller: AdminProducts
+#     _disable_module_prefix: true
+#   requirements:
+#     productId: \d+
+#     shopId: \d+
