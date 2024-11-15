@@ -15,7 +15,7 @@ use Db;
 use PrestaShop\PrestaShop\Core\ConstraintValidator\Constraints\TypedRegex;
 use Symfony\Component\Validator\Constraints\Length;
 use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\Reference;
-
+use PrestaShopBundle\Form\Admin\Type\IconButtonType;
 
     class ProductFormModifier
 {
@@ -114,25 +114,52 @@ use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\Reference;
                 'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
             ]
         );
-        // $pricingTabFormBuilder = $productFormBuilder->get('pricing');
+
+        // print ean btn
+        $detailsTabFormBuilder = $productFormBuilder->get('details');
+
+        $this->formBuilderModifier->addBefore(
+            $detailsTabFormBuilder,
+            'references',
+            'print_ean',
+            IconButtonType::class, 
+            [
+                'label' => $this->translator->trans('', [],'Modules.ASGroup.Admin'),
+                'icon' => 'local_printshop',
+                'attr' => [
+                    'class' => 'btn-primary print_ean_btn ml-auto',
+                    'onclick' => 'generateEan()'
+                ],
+            ]
+        );
+
+
+// custom ean input on tab details
+
+
+        // tab combinations ean
+
+        // $combinationsTabFormBuilder = $productFormBuilder->get('combinations');
+
         // $this->formBuilderModifier->addAfter(
-        //     $pricingTabFormBuilder,
-        //     'wholesale_price',
-        //     'demo_module_pricing_field',
+        //     $combinationsTabFormBuilder,
+        //     'name',  // You can also add it after any other existing field
+        //     'ean13',   // New field name
         //     TextType::class,
         //     [
-        //         // you can remove the label if you dont need it by passing 'label' => false
-        //         'label' => $this->translator->trans('Extra price for demo', [], 'Modules.WkDemo.Admin'),
-        //         // customize label by any html attribute
+        //         'label' => $this->translator->trans('Custom EAN-13',[], 'Modules.ASGroup.Admin'),
         //         'label_attr' => [
         //             'title' => 'h2',
         //             'class' => 'text-info',
         //         ],
         //         'attr' => [
-        //             'placeholder' => $this->translator->trans('0', [], 'Modules.WkDemo.Admin'),
+        //             'placeholder' => $this->translator->trans('Enter EAN-13 code', [], 'Modules.ASGroup.Admin'),
         //         ],
-        //         // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-        //         'data' => $data['price'],
+        //         'constraints' => [
+        //             new TypedRegex(TypedRegex::TYPE_EAN_13),
+        //             new Length(['max' => 13]),
+        //         ],
+        //         'data' => $data['ean13'] ?? '',
         //         'empty_data' => '',
         //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
         //     ]
