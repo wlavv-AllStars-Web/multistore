@@ -53,26 +53,49 @@
     justify-content: end;
 }
 
+#order_grid_panel .bulkactions-orders-custom {
+    display: flex;
+}
+
+.bulkactions-orders-custom .custom-button-container div{
+    display: flex;
+    gap: 0.5rem;
+}
+
 
 
 /* order detail page */
-.adminorders #customerCard{
-    display: none;
-}
 
 .adminorders .card[data-role="message-card"]{
     display: none;
 }
 
-.adminorders #order-view-page .left-column{
-    display: none;
-}
+
 .adminorders #order-view-page .right-column{
     width: 100%;
     max-width: unset;
     flex: unset;
 }
 
+#update_order_shipping_tracking_number{
+    display: none;
+}
+#shipping-grid-table #update_order_shipping_tracking_number{
+    display: block;
+}
+
+.shipping-container-asd .card-body .form-group{
+    margin-bottom: 0 !important;
+}
+
+.btns-action-shipping-asg {
+    display: flex;
+    align-items: center;
+}
+
+.btn-delete-shipping-line i:hover {
+    color: #ff766c !important;
+}
 
 
 /* preview order */
@@ -136,6 +159,33 @@
     padding: 0 .9375rem;
 }
 
+#view_order_payments_block{
+    max-height: 0;
+    transition: 600ms max-height ease;
+    visibility: hidden;
+    margin-block: 0 !important;
+}
+#view_order_payments_block.show_payment{
+    max-height: 500px;
+    visibility: visible;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+#view_order_note_block{
+    max-height: 0;
+    transition: 600ms max-height ease;
+    visibility: hidden;
+    margin-block: 0 !important;
+}
+#view_order_note_block.show_note{
+    max-height: 500px;
+    visibility: visible;
+    margin-block: 0 !important;
+}
+
+
+
 .btn.history-status{
     background:#fff;
     margin-right: .5rem;
@@ -148,8 +198,14 @@
 #order-view-page .info-block{
     margin-bottom: 1.5rem;
     background-color: #fff !important;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+    border-radius: 0.25rem;
 }
 
+
+#order-view-page .card-body .info-block {
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.16);
+}
 
 .alert.alert-warning .close i{
     position: unset;
@@ -166,4 +222,218 @@
     width: 180px;
     justify-content: space-evenly;
     height: 39px
+}
+
+#product_form_open_help{
+    display: none !important;
+}
+
+.cellProductTaxes .form-control-label{
+    display: none !important;
+}
+
+.nav-shipping-asd{
+    gap: 1rem;
+    padding: 1rem !important;
+    /* border-radius: .25rem; */
+}
+
+.shipping-container-asd{
+    border-radius: .25rem;
+}
+
+.nav-shipping-asd a.nav-link {
+    width: 150px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #2121;
+    border-radius: .25rem;
+}
+
+.nav-shipping-asd a.nav-link:hover {
+    border: 2px solid #ccc;
+}
+
+.nav-shipping-asd a.nav-link.active {
+    border: 2px solid #4fa4ff;
+    background-color: #c9e3ff;
+}
+
+.tab-content-asd-shipping{
+    padding: 0;
+    border: 0 !important;
+}
+
+.tab-content-asd-shipping #dpdTabContent{
+    border: 1px solid #dbe6e9;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+}
+.tab-content-asd-shipping #nacexTabContent{
+    border: 1px solid #dbe6e9;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+}
+.tab-content-asd-shipping #upsTabContent{
+    border: 1px solid #dbe6e9;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.06);
+}
+#customerCard{
+    margin: 0;
+    height: 100%;
+}
+
+#customerCard .card-body{
+    padding: 0;
+}
+
+#customerCard .card-body .info-block{
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+/* nacex */
+
+#nacexTabContent .nacex-container-shipping {
+    display: block;
+    padding: 0;
+}
+
+#nacexTabContent .webvizo {
+    display: none;
+}
+
+.nacex-container-shipping {
+    display: none;
+}
+
+
+/* ups */
+
+#upsTabContent .webvizo {
+    display: none;
+}
+
+#upsTabContent .webvizo:first-of-type {
+    display: flex;
+}
+
+#generate_ups_shipping_label_form .panel{
+    height: unset !important;
+    margin: 0 !important;
+}
+#generate_ups_shipping_label_form #hide_show_ups{
+    display: none !important;
+}
+#generate_ups_shipping_label_form #expand_ups{
+    cursor: default;
+    border-bottom: 0;
+}
+
+
+/* modal dpd */
+.modal-dpd-asgroup-container{
+    display: none;
+}
+.modal-dpd-asgroup-container.show{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-dpd-asgroup{
+    width: 600px;
+    height: 400px;
+    background: #fff;
+    border-radius: .25rem;
+    padding: 1rem;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.modal-dpd-asgroup .modal-dpd-asgroup-body{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+.modal-dpd-asgroup .modal-dpd-asgroup-footer{
+    display: flex;
+}
+
+
+#orderShippingDPD:hover{
+    cursor: pointer;
+}
+
+#shipping-grid-table .input-error {
+    outline: 2px solid red;
+}
+
+#shipping-grid-table .show-validation {
+    display: block;
+    position: absolute;
+    bottom: 0;
+}
+
+#shipping-grid-table .carrier-weight{
+    position: relative;
+}
+
+#shipping-grid-table td{
+    padding: 1rem 0.4rem;
+}
+
+
+.alert-success i {
+    position: unset !important;
+}
+
+.shipping-notsaved-asgroup {
+    display: none;
+}
+.shipping-notsaved-asgroup.show {
+    display: block;
+}
+
+
+/* product backoffice */
+
+.container-ean-btn{
+    display: flex;
+    gap:.5rem;
+}
+
+.barcode {
+    background-image: url("../img/barcode.svg");
+    background-repeat: no-repeat;
+    background-size: contain; 
+    display: inline-block;    
+    width: auto;         
+    height: 28px; 
+}
+
+.barcode-white {
+    background-image: url("../img/barcode-white.svg");
+    background-repeat: no-repeat;
+    background-size: contain; 
+    display: inline-block;    
+    width: 34px;         
+    height: auto; 
 }
