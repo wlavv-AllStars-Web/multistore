@@ -750,13 +750,13 @@ if(elementsToclick){
 
 // show socials footer
 
-function showSocials(){
-  const socials = document.querySelector("#footer_sub_menu_4 .socials-footer")
-  socials.classList.toggle("desktop");
+function showSocials(e){
+  const socials = e.parentElement.nextElementSibling
+  socials.classList.toggle("show");
 }
 
 function dropdownFlags() {
-  const flags = document.querySelector(".menu-languageselector.mobile #_desktop_language_selector.mobile .language-selector-wrapper")
+  const flags = document.querySelector(".menu-languageselector-mobile")
   flags.classList.toggle("showLang")
 }
 
@@ -825,9 +825,9 @@ if(btnBrandsMobile && contentBrands){
 }
 
 function dropdownSearch(){
-  const search = document.querySelector(".menu-searchbar .search-widget.mobile #searchbar")
+  const search = document.querySelector(".menu-searchbar")
   search.style.display = search.style.display === 'none' ? 'flex' : 'none'
-
+  document.querySelector(".menu-searchbar #searchbar input[name='s']").focus({ focusVisible: true });
 }
 
 
@@ -856,4 +856,9 @@ function changeImgComments() {
   }else{
     img.setAttribute("src","/img/asm/click.png")
   }
+}
+
+function toggleFooter(e) {
+  const target = e.getAttribute("data-target")
+  document.querySelector("footer #footer_sub_menu_4").classList.toggle("collapse")
 }

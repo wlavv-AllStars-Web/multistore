@@ -99,49 +99,52 @@
               <div class="cards-menuLink">
                 <div class="card-news" onclick="window.location = '{$link->getPageLink('new-products', true)}';"></div>
                 <div class="card-brands" onclick="window.location = '{$link->getPageLink('manufacturer', true)}';"></div>
+                <div class="card-wheels" onclick="window.location = '{$link->getPageLink('manufacturer', true)}';"></div>
               </div>
             </div>
             
+            <div class="card-container-homepage">
+              {foreach from=$mobile item=mobileItem key=mobilekey name=mobilename}
+                {assign var="url" value=$mobileItem["image_{$currentLanguageIso}"]}
+                {assign var="numberString" value="`$url`"|regex_replace:"/.*\/(\d+)_(\d+)_(\d+)_(\d+)_.*$/":"$1,$2,$3,$4"}
+                {assign var="linkBrand" value=$mobileItem["link"]}
 
-            {foreach from=$mobile item=mobileItem key=mobilekey name=mobilename}
-              {assign var="url" value=$mobileItem["image_{$currentLanguageIso}"]}
-              {assign var="numberString" value="`$url`"|regex_replace:"/.*\/(\d+)_(\d+)_(\d+)_(\d+)_.*$/":"$1,$2,$3,$4"}
-              {assign var="linkBrand" value=$mobileItem["link"]}
-
-              
-
-              {if $numberString != $url}
-                {assign var="numbers" value=[]}
-                  {assign var="numbers" value=explode(",", $numberString)}
-              {/if}
+                
 
                 {if $numberString != $url}
-                <a class="card-img card-itemMobile" style="cursor: pointer; position: relative;"
-                onclick="setCarAndSearch({$numbers[0]},{$numbers[1]},{$numbers[2]},{$numbers[3]})">
-                {elseif $linkBrand != ''}
-                  {if $linkBrand|is_numeric}
-                    <a class="card-itemMobile" href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
+                  {assign var="numbers" value=[]}
+                    {assign var="numbers" value=explode(",", $numberString)}
+                {/if}
+
+                  {if $numberString != $url}
+                  <a class="card-img card-itemMobile" style="cursor: pointer; position: relative;"
+                  onclick="setCarAndSearch({$numbers[0]},{$numbers[1]},{$numbers[2]},{$numbers[3]})">
+                  {elseif $linkBrand != ''}
+                    {if $linkBrand|is_numeric}
+                      <a class="card-itemMobile" href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
+                    {else}
+                      <a class="card-itemMobile" href="/{$currentLanguageIso}/brand/{$linkBrand}" style="position: relative;">
+                    {/if}
                   {else}
-                    <a class="card-itemMobile" href="/{$currentLanguageIso}/brand/{$linkBrand}" style="position: relative;">
+                    <a class="card-itemMobile" style="position: relative;">
                   {/if}
-                {else}
-                  <a class="card-itemMobile" style="position: relative;">
-                {/if}
 
-                  <img src="{$mobileItem["image_{$currentLanguageIso}"]}" style="width: 100%;" loading="lazy" alt="banner{$mobilekey}"/>
-                  <div class="layerHovermobile">{$mobileItem["title_{$currentLanguageIso}"]}</div>
+                    <img src="{$mobileItem["image_{$currentLanguageIso}"]}" style="width: 100%;" loading="lazy" alt="banner{$mobilekey}"/>
+                    {* <div class="layerHovermobile">{$mobileItem["title_{$currentLanguageIso}"]}</div> *}
 
-                {if isset($numbers)}
-                </a>
-                {elseif $linkBrand != ''}
+                  {if isset($numbers)}
                   </a>
-                {/if}
-                
+                  {elseif $linkBrand != ''}
+                  </a>
+                  {/if}
+                  
               {/foreach}
+            
 
-              {hook h='displayFooter' mod='ps_linklist'}
+            </div>
+
+            {hook h='displayFooter' mod='ps_linklist'}
           
-          </div>
 
 
         {/block}

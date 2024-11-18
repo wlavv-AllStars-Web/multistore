@@ -1,6 +1,6 @@
 
 
- <div class="desktop" id="_desktop_language_selector">
+ <div id="_desktop_language_selector">
    <div style="display-flex;" class="language-selector-wrapper">
   {*   <span style="color: white;" id="language-selector-label" class="hidden-md-up">{l s='Language:' d='Shop.Theme.Global'}</span> *}
      <div class="language-selector dropdown js-dropdown">
@@ -21,7 +21,7 @@
    </div>
  </div>
 
- <div class="mobile" id="_desktop_language_selector">
+ <div id="_mobile_language_selector">
    <div class="language-selector-wrapper">
        <ul aria-labelledby="language-selector-label ">
          {foreach from=$languages item=language}

@@ -75,6 +75,29 @@
                             </div>
             			</div>
 
+            			<div class="ukoocompat_search_block_filter-mobile filter_{$filter->id|intval}" style="float:left; width:100%;">
+            				<div class="brands-desk ukoocompat_search_block_filter_filter {if count($filter->criteria) > 1}brand-logos{/if}" style="margin: 0 auto;display: flex;">
+                                <div class="">
+                                    {if !isset($filter->disabled) || $filter->disabled|intval != 1}
+                                        {foreach from=$filter->criteria item=criterion}
+                                            
+                                            {if $criterion['id_ukoocompat_filter'] == 1}    
+                                                <div style="float: left;text-align: center;height: 160px;" class="car_item_image" >
+                                                    {if $criterion['id'] == ''}
+                                                    <img src="/img/homepage/brands/undefined.png" style="width: 105px;margin: 0 auto;" onclick="hideMyCars($(this), {$criterion['id']})" class="selected_item">
+                                                    {else}
+                                                    <img src="/img/homepage/brands/{$criterion['id']}.png" style="width: 105px;margin: 0 auto;" onclick="hideMyCars($(this), {$criterion['id']})" class="selected_item">
+                                                    {/if}
+                                                    <div style="text-transform: uppercase;font-weight: bolder;font-size: 12px;">{$criterion['value']}</div>
+                                                </div>
+                                            {else}
+                                            {/if}
+                                        {/foreach}
+                                    {/if}
+                                </div>
+                            </div>
+            			</div>
+
                     {/if}
                 {/foreach}
                 

@@ -8,7 +8,7 @@
         {/if}
         <div class="row">
       <div class="col-md-6 col-lg-12 wrapper">
-        <div class="title clearfix hidden-md-up" data-target="#footer_sub_menu_{$linkBlock.id}" data-toggle="collapse">
+        <div class="title clearfix hidden-md-up" data-target="#footer_sub_menu_{$linkBlock.id}" data-toggle="collapse" onclick="toggleFooter(this)">
           <span class="h3">{$linkBlock.title}</span>
           <span class="float-xs-right">
             <span class="navbar-toggler collapse-icons">
@@ -34,10 +34,10 @@
             </li>
           {/foreach}
           <li class="mobile">
-            <a onclick="showSocials()">Social Media</a>
+            <a onclick="showSocials(this)">Social Media</a>
           </li>
 
-            <li class="socials-footer desktop col-lg-2">
+            <li class="socials-footer col-lg-2">
               <div style="display: flex;">
               <a title="Facebook" aria-label="Facebook" id="footer_facebook" class="social-icon" style="margin-right: 5px;" href="https://www.facebook.com/all-stars-motorsport" target="_NEW"> 
                 <img class="desktop" alt="Facebook" src="https://www.all-stars-motorsport.com/img/facebook.png" style="width: 30px; height: 30px;" onmouseover="this.src='https://www.all-stars-motorsport.com/img/facebook2.png'" onmouseout="this.src='https://www.all-stars-motorsport.com/img/facebook.png' "> 

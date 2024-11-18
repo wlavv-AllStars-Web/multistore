@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div id="search_widget" class="search-widget desktop" data-search-controller-url="{$search_controller_url}">
+<div id="search_widget" class="search-widget search-widget-desktop" data-search-controller-url="{$search_controller_url}">
 	{* <span class="search_icon_toogle"> *}
         {* <i class="material-icons-search"></i></span> *}
     <form method="get" action="{$search_controller_url}" class="d-none d-lg-flex active" style="background-color: #fff;width:max-content;">
@@ -36,12 +36,12 @@
 	</form>
 </div>
 
-<div id="search_widget" class="search-widget mobile" data-search-controller-url="{$search_controller_url}" >
-  <div id="searchbar" style="display: none;">
+<div id="search_widget" class="search-widget search-widget-mobile" data-search-controller-url="{$search_controller_url}" >
+  <div id="searchbar">
 	<form class="active mobile d-lg-none" method="get" action="{$search_controller_url}" >
 		<input type="hidden" name="controller" value="search">
-		<input type="text" name="s" value="{$search_string}" placeholder="{l s='Buscar' d='Shop.Theme.Catalog'}" style="width: 100%; height: 44px; border: 0px; padding-left: 12px;">
-		<button type="submit" style="border-radius: 0;   background-color: #dd1312;   border: 0px;   padding-left: 17px;   padding-right: 17px;">
+		<input type="text" name="s" value="{$search_string}" placeholder="{l s='Buscar' d='Shop.Theme.Catalog'}">
+		<button type="submit">
 			<i class="fa-solid fa-magnifying-glass"></i>
 			{* {l s='Search' d='Shop.Theme.Catalog'} *}
 		</button>

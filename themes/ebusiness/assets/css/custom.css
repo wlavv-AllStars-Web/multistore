@@ -9,15 +9,8 @@ body{
   overflow-x: hidden;
 }
 
-.mobile {
-  display: none;
-}
 
-.desktop{
-  display: flex;
-}
-
-#content-wrapper > .container {
+.container {
   max-width: 1920px !important;
   width: 100%;
 }
@@ -27,6 +20,17 @@ body{
 }
 
 /* header.tpl */
+.alma-options-header {
+  font-size:14px;
+  font-weight:500;
+  padding: 0px 10px;
+  color: white; 
+  text-transform: uppercase;
+  margin: 0 auto;
+  line-height: 2;
+  /* float: right; */
+}
+
 #_desktop_logo a{
     display: flex;
     justify-content: center;
@@ -63,10 +67,6 @@ body{
   top: 50%;
 }
 
-.menu-searchbar{
-  display: none;
-}
-
 
 #search_widget.mobile{
   display: none;
@@ -98,8 +98,151 @@ body{
 	.search-widget form button[type="submit"] {
 		position: unset !important;
 	}
+
+  .mobile {
+    display: flex;
+  }
+  .desktop{
+    display: none;
+  }
+
+  .menu-languageselector-mobile{
+    display: none;
+  }
+
+  #_desktop_language_selector{
+    display: none;
+  }
+
+  .menu-languageselector-mobile.showLang{
+    display: flex;
+  }
+
+  #_mobile_language_selector{
+    width: 100%;
+  }
+
+  #_mobile_language_selector .language-selector-wrapper{
+    padding: .5rem;
+    background: #d9d9d9;
+  }
+
+  #_mobile_language_selector .language-selector-wrapper ul{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .languageMobile{
+    color: #fff;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  #_desktop_cart{
+    padding-right: 1rem;
+  }
+
+  #_desktop_cart a{
+    position: relative;
+  }
+
+  #_desktop_cart .fa-cart-shopping {
+    font-size: 20px !important;
+  }
+
+  #_desktop_cart .cart-products-label {
+    font-size: 1rem;
+    position: absolute;
+    right: -7px;
+    bottom: -5px;
+    background: #333;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    line-height: 16px;
+  }
+
+  #header .user-info a.user-info-account::before{
+    width: 0;
+  }
+
+  .search-widget-mobile{
+    width: 100%;
+    background: #d9d9d9;
+    padding: .25rem;
+    justify-content: center;
+    display: flex;
+  }
+
+  .search-widget-mobile #searchbar{
+    display: flex;
+    max-width: 350px;
+    width: 100%;
+  }
+
+  .search-widget-mobile #searchbar form{
+    position: unset;
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+  }
+
+  .search-widget-mobile #searchbar form input{
+    background: #d9d9d9;
+    width: 100%;
+    color: #333;
+  }
+
+  .search-widget-mobile #searchbar form button{
+    background: #d9d9d9;
+    border: 0px;   
+    padding-left: 17px;   
+    padding-right: 17px;
+    border-radius: 0;
+  }
+  .search-widget-mobile #searchbar form button:hover i{
+    color: var(--asm-color);
+  }
+
+  .search-widget-mobile #searchbar form button i{
+    color: #333;
+  }
+
+
+  .menu-searchbar{
+    display: none;
+  }
+
+  /* home content */
+  .swiper-container{
+    display: none;
+  }
+
 }
+
+
 @media (min-width: 992px){
+  .mobile {
+    display: none;
+  }
+  .desktop{
+    display: flex;
+  }
+
+  .menu-searchbar{
+    display: none;
+  }
+
+  .menu-languageselector-mobile{
+    display: none;
+  }
+
+  #_mobile_language_selector {
+    display: none;
+  }
+
 	#searchbar {
 		display: none;
 	}
@@ -117,6 +260,14 @@ body{
     width: 456px !important;
     border: 2px solid white; 
   }
+
+  #_desktop_language_selector{
+    padding-right: 3rem;
+  }
+
+  .search-widget-desktop{
+    position: relative;
+  }
 }
 
 
@@ -124,23 +275,36 @@ body{
 
 #header .header-nav .user-info {
     margin: 0;
+    height: 100%;
+}
+
+@media screen and (max-width:991px) {
+  .user-info{
+    /* margin-bottom: 0!important; */
+    font-size: 1.5rem;
+    margin: 0;
   }
-  @media screen and (max-width:991px) {
-    .user-info{
-      /* margin-bottom: 0!important; */
-      font-size: 1.5rem;
-      margin: 0;
-    }
-    #_desktop_user_info::before{
-      content: none;
-    }
-    .user-info i {
-      font-size: 1.25rem;
-    }
+  #_desktop_user_info::before{
+    content: none;
   }
+  .user-info i {
+    font-size: 1.25rem;
+  }
+
+  #scrollToTopBtn{
+    z-index: 9999;
+  }
+}
 
   /* ps_shoppingcart.tpl */
 
+
+  @media (min-width: 768px) {
+    .ukoocompat_search_block_filter-mobile{
+      display: none;
+    }
+    
+  }
 
   @media (max-width: 767px) {
     #header .header-nav .blockcart {
@@ -152,18 +316,290 @@ body{
     
   }
 
+
+  @media screen and (min-width: 768px) and (max-width:992px) {
+    #index {
+      background: #5c5c5c !important;
+    }
+
+    .bannersHomeMobile .footer-asm{
+      display: none;
+    }
+
+    #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a{
+      text-align: start;
+      font-size: 1rem;
+    }
+
+    #footer_sub_menu_4{
+      display: flex;
+    }
+    #footer_sub_menu_4.collapse{
+      display: flex !important;
+    }
+
+    footer .footer_after{
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    footer .footer_after .rights_footer{
+      flex-direction: column;
+    }
+
+    footer .socials-footer{
+      display: flex;
+    }
+    footer .socials-footer.show{
+      display: flex;
+    }
+
+    footer .footer-asm .links {
+      width: 100%;
+      max-width: unset;
+    }
+    footer .footer-asm .links .wrapper {
+      width: 100%;
+      flex: 1;
+      max-width: unset;
+    }
+
+    footer #footer_sub_menu_4 {
+      gap: .5rem;
+    }
+
+    footer #footer_sub_menu_4 li {
+      flex: 1;
+      min-width: 20%;
+      /* max-width: 25%; */
+      margin-top: 0;
+      padding: 0.5rem 1rem;
+      /* background: #5c5c5c; */
+      border-radius: .25rem;
+      text-align: center;
+    }
+
+    footer #footer_sub_menu_4 li a{
+      padding: 0;
+      width: 100%;
+      text-align: start;
+    }
+
+    footer #footer_sub_menu_4 li.mobile{
+      display: none;
+    }
+
+    footer #footer_sub_menu_4 li.socials-footer{
+      min-width: 100%;
+      justify-content: center;
+      align-items: center;
+      background: #222;
+    }
+
+    #_desktop_top_menu {
+      display: flex !important;
+    }
+
+    .banner_50{
+      outline: 2px solid #111;
+    }
+
+    .videosContainer .video .iframeClass iframe{
+      min-height: unset !important;
+    }
+  }
+
+  @media screen and (min-width: 564px) and (max-width:768px) {
+    #index{
+      background: #5c5c5c !important;
+    }
+
+    .bannersHome{
+      display: none;
+    }
+
+    .bannersHomeMobile{
+      display: flex !important;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    #ukoocompat_search_block_1 {
+      display: none;
+    }
+
+    
+    .cards-menu{
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      padding: .5rem;
+    }
+    .card-yourcar{
+      height: 111px;
+      width: 100%;
+      background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=93721499");
+      background-position: center;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px;
+      background-size: contain;
+      border-radius: 0.25rem;
+    }
+    .cards-menuLink{
+      display: flex;
+      gap: 1rem;
+    }
+    .card-news{
+      flex: 1;
+      height: 111px;
+      /* max-width: 185px; */
+      max-height: 185px;
+      background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
+      background-position: center;
+      background-size: cover;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px;
+      border-radius: 0.25rem;
+    }
+    .card-brands{
+      flex: 1;
+      height: 111px;
+      /* max-width: 185px; */
+      max-height: 185px;
+      background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
+      background-position: center;
+      background-size: cover;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px;
+      border-radius: 0.25rem;
+    }
+
+    .card-wheels{
+      flex: 1;
+      height: 111px;
+      /* max-width: 185px; */
+      max-height: 185px;
+      background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+      background-position: center;
+      background-size: cover;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px; 
+      border-radius: 0.25rem;
+    }
+
+    .card-container-homepage {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0 .5rem 1rem .5rem;
+    }
+
+    .card-container-homepage .card-itemMobile{
+      flex: 1;
+      min-width: 250px;
+      border-radius: .25rem;
+      outline: 2px solid #111;
+      outline-offset: -2px;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      overflow: hidden;
+    }
+
+    .ukoocompat_search_block.show-menu-cars{
+      display: flex !important;
+    }
+
+    .ukoocompat_search_block{
+      background: #5c5c5c;
+      padding: 0;
+    }
+
+    .ukoocompat_search_block_filter{
+      display: none !important;
+    }
+
+    .ukoocompat_search_block_filter-mobile{
+      display: flex;
+      padding: 0;
+    }
+
+    .ukoocompat_search_block_filter-mobile .car_item_image{
+      width: 20%;
+    }
+
+
+    .bannersHomeMobile .footer-asm{
+      display: none;
+    }
+
+    #footer_sub_menu_4{
+      display: flex;
+    }
+    #footer_sub_menu_4.collapse{
+      display: none !important;
+    }
+
+    footer .footer_after{
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    footer .footer_after .rights_footer{
+      flex-direction: column;
+    }
+
+    footer .socials-footer{
+      display: none;
+    }
+    footer .socials-footer.show{
+      display: flex;
+    }
+
+    footer #footer_sub_menu_4 {
+      gap: .5rem;
+    }
+
+    footer #footer_sub_menu_4 li {
+      flex: 1;
+      min-width: 25%;
+      /* max-width: 25%; */
+      margin-top: 0;
+      padding: 1rem;
+      background: #5c5c5c;
+      border-radius: .25rem;
+      text-align: center;
+    }
+
+    footer #footer_sub_menu_4 li a{
+      padding: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer #footer_sub_menu_4 li.socials-footer{
+      min-width: 100%;
+      justify-content: center;
+      align-items: center;
+      background: #222;
+    }
+
+  }
+
   @media (max-width: 564px) {
 
 
     .menu-searchbar{
-      display: block;
+      display: none;
     }
 
-    .menu-searchbar .search-widget.mobile{
+    .menu-searchbar .search-widget-mobile{
       position: unset;
       float: unset;
     }
-    .menu-searchbar .search-widget.mobile #searchbar{
+    .menu-searchbar .search-widget-mobile #searchbar{
       width: 100%;
     }
 
@@ -178,7 +614,7 @@ body{
     .menu-languageselector .language-selector-wrapper{
       display: none !important;
     }
-    .menu-languageselector .language-selector-wrapper.showLang{
+    .menu-languageselector-mobile .language-selector-wrapper.showLang{
       display: flex !important;
       justify-content: center;
       flex-direction: row;
@@ -277,10 +713,11 @@ body{
 
     .footer-asm .title{
       background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//info_en.webp?t=1781861638");
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       height: 90px;
-
+      outline: 2px solid #111;
+      outline-offset: -2px;
     }
 
     .footer-asm .title span{
@@ -442,42 +879,75 @@ body{
       gap: 1rem;
     }
     .card-yourcar{
-      height: 89px;
+      height: 100%;
+      min-height: 111px;
       width: 100%;
+      min-width: 180px;
       background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=1597494218");
       background-position: center;
       box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
-      border: 1px solid #666;
+      outline: 2px solid #111;
+      outline-offset: -2px; 
       background-size: cover;
       border-radius: 0.25rem;
     }
     .cards-menuLink{
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
     }
     .card-news{
       flex: 1;
-      height: 185px;
-      max-width: 185px;
-      max-height: 185px;
+      height: 100%;
+      min-height: 111px;
+      min-width: 120px;
       background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
       background-position: center;
       background-size: cover;
       box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
-      border: 1px solid #666;
+      outline: 2px solid #111;
+      outline-offset: -2px; 
       border-radius: 0.25rem;
     }
     .card-brands{
       flex: 1;
-      height: 185px;
-      max-width: 185px;
-      max-height: 185px;
+      height: 100%;
+      min-height: 111px;
+      min-width: 120px;
       background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
       background-position: center;
       background-size: cover;
       box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
-      border: 1px solid #666;
+      outline: 2px solid #111;
+      outline-offset: -2px; 
       border-radius: 0.25rem;
+    }
+
+    .card-wheels{
+      flex: 1;
+      height: 100%;
+      min-height: 111px;
+      min-width: 120px;
+
+      background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+      background-position: center;
+      background-size: cover;
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px; 
+      border-radius: 0.25rem;
+    }
+
+    .card-container-homepage {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-container-homepage .card-itemMobile{
+      box-shadow: 1px 1px 8px 0 rgba(0,0,0,.5);
+      outline: 2px solid #111;
+      outline-offset: -2px; 
     }
   
     #manufacturer .products-sort-order {
@@ -946,7 +1416,7 @@ body{
 
   /* ps_banner.tpl */
   #index{
-    background: #121212 !important;
+    background: #121212;
   }
   @media screen and (min-width:768px){
 
@@ -2231,6 +2701,7 @@ transform: rotate(135deg);
   justify-content: center;
   width: 100%;
   font-size: 1.25rem;
+  text-transform: uppercase;
 }
 
 #_desktop_top_menu .list-menu-desktop li:hover{
@@ -2273,6 +2744,7 @@ transform: rotate(135deg);
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a{
   padding: .5rem 1rem;
+  text-transform: capitalize;
 }
 
  .dropdown-menu.menu-logos{

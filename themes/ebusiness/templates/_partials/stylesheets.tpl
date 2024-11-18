@@ -27,7 +27,7 @@
 {/foreach}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="{$urls.css_url}font-elegant.css" type="text/css" media="all" />
-<link rel="stylesheet" href="{$urls.css_url}mycss.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{$urls.css_url}custom.css" type="text/css" media="all" />
 <link href="{$urls.css_url}cmsASM.css" rel="stylesheet" type="text/css" media="all"/>
 
   
