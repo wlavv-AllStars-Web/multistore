@@ -2868,10 +2868,10 @@ transform: rotate(135deg);
   color: #fff !important;
 }
 #_desktop_top_menu .list-menu-desktop li:nth-child(3):hover a{
-  /* background: #dc271d; */
+  background: var(--asm-color-100);
   color: #fff !important;
-  outline: 1px solid #fff;
-  outline-offset: -1px;
+  /* outline: 1px solid #fff;
+  outline-offset: -1px; */
 }
 
 
