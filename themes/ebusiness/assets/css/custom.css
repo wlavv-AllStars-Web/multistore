@@ -3476,6 +3476,13 @@ body #main {
   color: #333;
 }
 
+#products .page-not-found, #pagenotfound .page-not-found{
+  box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.3) !important;
+}
+.page-not-found h1{
+  color: #111;
+}
+
 /* scroll bar */
 
 ::-webkit-scrollbar {

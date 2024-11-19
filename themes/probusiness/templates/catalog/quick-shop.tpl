@@ -5,8 +5,9 @@
     <div class="container-quickshop">
         <div class="error-msg-QS"></div>
         <div class="quickshop-header">
-            <h1>{l s="Quick Shop" d="Shop.Theme.Quickshop"}</h1>
-            <p>{l s="Save time and quickly order your products with our quickshop facility." d="Shop.Theme.Quickshop"}</p>
+            {* <h1>{l s="Quick Shop" d="Shop.Theme.Quickshop"}</h1>
+            <p>{l s="Save time and quickly order your products with our quickshop facility." d="Shop.Theme.Quickshop"}</p> *}
+            <img src="/img/asd/Content_pages/quickshop/quickshop_en.webp" alt="banner quick-shop"/>
         </div>
         <div class="quickshop-buysection">
             <div class="quickshop-products-table">
@@ -503,6 +504,11 @@
         }
         .quickshop-header{
             padding-bottom: 2rem;
+        }
+
+        .quickshop-header img{
+            width: 100%;
+            max-width: 1350px;
         }
 
         .quickshop-header h1 {
