@@ -51,115 +51,68 @@
           {assign var="youtube_shipping" value="UVpWbaECK-0"}
           {assign var="youtube_newsletter" value="ycQJs64knkk"}
           {assign var="youtube_contact" value="n44oNOA8tjQ"}
-      {/if}
-      <div id="user-help" class="row">
-        <div class="user-help-header"><img src="https://www.all-stars-motorsport.com/img/cms/Mobile_pages/faqs/faq_{$language.iso_code}.jpg?v=1" alt="faq_{$language.iso_code}.jpg?v=1" /></div>
-        <div class="user-help-content">
-            <div class="card-user">
-                <div class="element-to-click">
-                    <a href="https://www.youtube.com/watch?v={$youtube_availability}" class="card-link"> 
-                        <img
-                            id="image_thumb_tut" src="https://www.allstarsmotorsport.com/img/cms/FAQs/product_availability.jpg"
-                            alt="product_availability.jpg" />
-                    </a>
-                    <div class="play"><img src="https://www.allstarsmotorsport.com/img/youtube_play.png"/></div>
-                    <div class="card-description">
-                        <h2>{l s='Product availability' d='Shop.Theme.UserHelp'}</h2>
-                    </div>
-                </div>
-                <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$youtube_availability}?autoplay=0&mute=1&rel=0" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-            <div class="card-user">
-                <div class="element-to-click">
-                    <a href="https://www.youtube.com/watch?v={$youtube_compat}" class="card-link">
-                        <img
-                            src="https://www.allstarsmotorsport.com/img/cms/FAQs/product_compatibility.jpg" alt="product_compatibility.jpg" />
-                    </a>
-                    <div class="play"><img src="https://www.allstarsmotorsport.com/img/youtube_play.png"/></div>
-                    <div class="card-description">
-                        <h2>{l s='Product compatibility' d='Shop.Theme.UserHelp'}</h2>
-                    </div>
-                </div>
-                <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$youtube_compat}?autoplay=0&mute=1&rel=0" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-            <div class="card-user">
-                <div class="element-to-click">
-                    <a href="https://www.youtube.com/watch?v={$youtube_shipping}" class="card-link"> <img
-                            src="https://www.allstarsmotorsport.com/img/cms/FAQs/product_shipping.jpg" alt="product_shipping.jpg" />
-                    </a>
-                    <div class="play"><img src="https://www.allstarsmotorsport.com/img/youtube_play.png"/></div>
-                    <div class="card-description">
-                        <h2>{l s='Product shipping' d='Shop.Theme.UserHelp'}</h2>
-                    </div>
-                </div>
-                <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$youtube_shipping}?autoplay=0&mute=1&rel=0" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-            <div class="card-user">
-                <div class="element-to-click">
-                    <a href="https://www.youtube.com/watch?v={$youtube_newsletter}" class="card-link"> <img
-                            src="https://www.all-stars-motorsport.com/img/cms/FAQs/newsletter.jpg" alt="product_shipping.jpg" />
-                    </a>
-                    <div class="play">
-                        <img src="https://www.allstarsmotorsport.com/img/youtube_play.png"/></div>
-                    <div class="card-description">
-                        <h2>{l s='Newsletter' d='Shop.Theme.UserHelp'}</h2>
-                    </div>
-                </div>
-                <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$youtube_newsletter}?autoplay=0&mute=1&rel=0" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-            <div class="card-user">
-                <div class="element-to-click">
-                    <a href="https://www.youtube.com/watch?v={$youtube_contact}" class="card-link"> <img
-                            src="https://www.all-stars-motorsport.com/img/cms/FAQs/CONTACT.jpg" alt="product_shipping.jpg" />
-                    </a>
-                    <div class="play"><img src="https://www.allstarsmotorsport.com/img/youtube_play.png"/></div>
-                    <div class="card-description">
-                        <h2>{l s='Contact' d='Shop.Theme.UserHelp'}</h2>
-                    </div>
-                </div>
-                <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$youtube_contact}?autoplay=0&mute=1&rel=0" loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-      </div>
-    {else}
-      {$cms.content nofilter}
+        {/if}
+    {/if}
+
+ 
+    {$cms.content nofilter}
+
+    {if $cms.id == 30}
+        <script>
+            const classIframe = document.querySelectorAll(".user-help-content .iframeClass")
+
+            classIframe.forEach(element => {
+                const parentCard = element.parentElement
+
+                const iframe = document.createElement("iframe")
+                iframe.setAttribute("allowfullscreen","allowfullscreen")
+                iframe.setAttribute("frameborder","0")
+                iframe.setAttribute("loading","lazy")
+
+                if(parentCard.classList.contains("card-availability")){
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_availability}?autoplay=0&mute=1&rel=0")
+                }
+                else if(parentCard.classList.contains("card-compatibility")){
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_compat}?autoplay=0&mute=1&rel=0")
+                }
+                else if(parentCard.classList.contains("card-shipping")){
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_shipping}?autoplay=0&mute=1&rel=0")
+                }
+                else if(parentCard.classList.contains("card-newsletter")){
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_newsletter}?autoplay=0&mute=1&rel=0")
+                }
+                else if(parentCard.classList.contains("card-contact")){
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_contact}?autoplay=0&mute=1&rel=0")
+                }
+                
+                element.appendChild(iframe)
+            });
+
+            function playhoverFunction(e) {
+                const playDiv = e.previousElementSibling;
+
+                if (playDiv) {
+                    const imageElement = playDiv.querySelector('.image_play');
+                    const currentSrc = imageElement.getAttribute('src');
+                    
+                    const newSrc = currentSrc.includes('hover') ? '/img/youtube_play.png' : '/img/youtube_play_hover.png';
+                    imageElement.setAttribute('src', newSrc);
+                    
+                }
+            }
+
+        </script>
     {/if}
 
 
 
 <script>
-function playhoverFunction(e) {
-  const playDiv = e.previousElementSibling;
 
-  if (playDiv) {
-    const imageElement = playDiv.querySelector('.image_play');
-    const currentSrc = imageElement.getAttribute('src');
-    
-      const newSrc = currentSrc.includes('hover') ? '/img/youtube_play.png' : '/img/youtube_play_hover.png';
-      imageElement.setAttribute('src', newSrc);
-    
-  }
-}
 
-function openYoutubeLink(videoId) {
-        var youtubeLink = "https://www.youtube.com/watch?v=" + videoId;
-        window.open(youtubeLink, "_blank");
-}
+// function openYoutubeLink(videoId) {
+//         var youtubeLink = "https://www.youtube.com/watch?v=" + videoId;
+//         window.open(youtubeLink, "_blank");
+// }
 
 </script>
 

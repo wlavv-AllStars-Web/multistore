@@ -742,7 +742,7 @@ const elementsToclick = document.querySelectorAll('.element-to-click')
 if(elementsToclick){
     elementsToclick.forEach(element  => {
         element.addEventListener('click', () => {
-            element.nextElementSibling.style.display='block';
+            element.nextElementSibling.classList.add("show");
             element.style.display='none';
         })
     })
