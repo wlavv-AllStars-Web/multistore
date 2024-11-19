@@ -2868,7 +2868,7 @@ transform: rotate(135deg);
   color: #fff !important;
 }
 #_desktop_top_menu .list-menu-desktop li:nth-child(3):hover a{
-  background: var(--asm-color-100);
+  background: #d53f38c7;
   color: #fff !important;
   /* outline: 1px solid #fff;
   outline-offset: -1px; */
@@ -3468,4 +3468,10 @@ body #main {
 #your_garage_container .myCars .brand-model span{
   background: transparent;
   color: #fff !important;
+}
+
+
+#manufacturer-description p {
+  text-align: center;
+  color: #333;
 }
