@@ -173,14 +173,14 @@
               <input class="btn" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="background: white; color: var(--color-red); margin-bottom: 1rem;">
           </div>
 
-          <div class="whatsapp-contancts desktop">
+          <div class="whatsapp-contancts">
             <div style="display:flex;align-items:center;justify-content:end;">
               <div style="display:flex;align-items:center;justify-content:center;margin-right:1rem;">
                   <img src="https://www.all-stars-motorsport.com/img/whatsapp_search.png" style="width: 50px; height: 50px;padding:3px;margin-left:1rem;" alt="Whatsapp">
               <!--    <h3 style="margin: 0;font-weight:bolder;"><span style="color: #007a12;">Whatsapp</span></h3> -->
               </div>
               
-              <div style="padding: 1rem;display:flex;">
+              <div style="padding: 0 1rem;display:flex;">
                   <a class="social-icon-whatsapp-number" style="margin-right: 8px;display:flex;align-items:center;gap:0.5rem;padding: 0.5rem 8px;" href="https://wa.me/+351912201753" target="_blank">
                       <img src="https://www.all-stars-motorsport.com/img/en_flag_emails.jpg" width="34" height="auto" style="border-radius:5px;" alt="Whatsapp">
                       <p class="number_whatsapp_header" style="width:fit-content;margin:0;font-weight:bold;color: #282828;font-size:1rem;margin-left:1rem;text-decoration: 2px underline #282828;">+351 912 201 753</p>
@@ -200,7 +200,7 @@
             </div>
           </div>
 
-          <div class=" whatsapp-mobile mobile">
+          {* <div class=" whatsapp-mobile mobile">
             <div>
               <a class="social-icon-whatsapp-number" style="margin-right: 8px;display:flex;align-items:center;gap:0.5rem;padding: 0.5rem 8px;" href="https://wa.me/+351912201753" target="_blank">
                   <img src="https://www.all-stars-motorsport.com/img/en_flag_emails.jpg" width="34" height="auto" style="border-radius:5px;" alt="Whatsapp">
@@ -218,7 +218,7 @@
                   <p class="number_whatsapp_header" style="width:fit-content;margin:0;font-weight:bold;color: #282828;font-size:1rem;margin-left:1rem;text-decoration: 2px underline #282828;">+33 0651871788</p>
               </a>
             </div>
-          </div>
+          </div> *}
 
         </footer>
       {/if}
