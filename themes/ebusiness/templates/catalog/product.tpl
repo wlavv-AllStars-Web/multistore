@@ -357,7 +357,7 @@
                          <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
                            <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
