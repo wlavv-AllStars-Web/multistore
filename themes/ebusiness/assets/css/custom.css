@@ -3475,3 +3475,61 @@ body #main {
   text-align: center;
   color: #333;
 }
+
+/* scroll bar */
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #222; /* Color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar handle */
+  /* border-radius: 10px;  */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666; /* Color of the scrollbar handle on hover */
+}
+
+/* Firefox */
+html {
+  scrollbar-width: normal; /* Scrollbar width */
+  scrollbar-color: #666 #222; /* Scrollbar handle and track color */
+}
+
+/* Older versions of Internet Explorer and Edge */
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Autohiding scrollbar */
+}
+
+body::-ms-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+body::-ms-scrollbar-track {
+  background: #222; /* Color of the scrollbar track */
+}
+
+body::-ms-scrollbar-thumb {
+  background-color: #666; /* Color of the scrollbar handle */
+  /* border-radius: 10px;  */
+  border: 3px solid #262627; 
+}
+
+body::-ms-scrollbar-thumb:hover {
+  background: #6a6a6b; /* Color of the scrollbar handle on hover */
+}
+
+
+.btn-default {
+  background: #e9e9ed !important;
+  color: #000 !important;
+}
+.btn-default:hover {
+  background: #d0d0d7 !important;
+  color: #000 !important;
+}
