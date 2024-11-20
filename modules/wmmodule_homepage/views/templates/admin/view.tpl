@@ -122,9 +122,6 @@
     $("#select_mini_33").on("change",  function () { setModal(33, 3, $(this), 'miniature' ) });
     $("#select_mini_34").on("change",  function () { setModal(34, 3, $(this), 'miniature' ) });
 
-    $("#select_mini_43").on("change",  function () { setModal(43, 3, $(this), 'miniature' ) });
-    $("#select_mini_44").on("change",  function () { setModal(44, 3, $(this), 'miniature' ) });
-    $("#select_mini_45").on("change",  function () { setModal(45, 3, $(this), 'miniature' ) });
     
     $(document).on("click","#uploadSubmitButton", function(){
         var dataForm = new FormData($('#uploadForm')[0]);
@@ -148,12 +145,14 @@
         $('#'+imadeID).prop('src', '/modules/wmmodule_homepage/views/images/check_upload_'+index+'.gif');
     }
     
-    function setModal(id_image, type, selectElement, element,id_shop){
+    function setModal(id_image, type, selectElement, element, id_shop){
 
         let id_element = 0;
 
+        console.log(element)
 
         if(element === undefined){
+
             if($('#select_brand_' + id_image).val() == ''){
                 element = 'compatibility';
                 id_element = $('#select_car_' + id_image).val();
@@ -164,10 +163,14 @@
                 let element_array = elementComponent.split("_");
                 id_element = element_array[0];
             }else{
+                console.log("aqui")
                 element = 'video';
                 if(id_image == 16) id_element = 1;
                 if(id_image == 17) id_element = 2;
                 if(id_image == 18) id_element = 3;
+                if(id_image == 46) id_element = 1;
+                if(id_image == 47) id_element = 2;
+                if(id_image == 48) id_element = 3;
             }
         }else if(element === 'manufacturer'){
             document.getElementById('select_car_' + id_image).selectedIndex = 0;
