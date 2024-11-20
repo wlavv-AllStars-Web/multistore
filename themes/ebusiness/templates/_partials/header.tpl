@@ -134,24 +134,11 @@
 
     <div class="menu d-none d-lg-flex col-12 js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">  
       <ul class="list-menu-desktop">
-        {* <li>
+        <li>
           <a href="/">Home</a> 
-        </li> *}
+        </li>
         <li>
           <a href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
-        </li>
-
-        <li class="dropdown brands-drop">
-          <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
-          <ul class="dropdown-menu-brands">
-          {foreach from=$manufacturers item=$manufacturer }
-            <li class="col-lg-3">
-              <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
-                {$manufacturer.name}
-              </a>
-            </li>
-          {/foreach}
-          </ul>
         </li>
 
         <li {if $page.page_name =='index'}class="dropdown" {/if}>
@@ -188,6 +175,19 @@
                   {hook h="displayHome" mod="ukoocompat"}
               </div>
           {/if}
+        </li>
+
+        <li class="dropdown brands-drop">
+          <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
+          <ul class="dropdown-menu-brands">
+          {foreach from=$manufacturers item=$manufacturer }
+            <li class="col-lg-3">
+              <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
+                {$manufacturer.name}
+              </a>
+            </li>
+          {/foreach}
+          </ul>
         </li>
         {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
         <li><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>

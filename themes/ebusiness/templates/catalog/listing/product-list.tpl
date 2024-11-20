@@ -130,9 +130,11 @@
   }
 
   .hiddenTextDescription {
-      overflow: hidden;
-      height:54px;
-      transition:height ease-in 1s;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     }
     .visibleTextDescription {
       overflow: visible;
@@ -140,17 +142,26 @@
       transition:height ease-in 1s;
     }
 
-  .show-more{
+    .show-more{
         border:0;
         background:none;
         color: var(--asm-color);
-        margin:2rem 0;
+        padding: 1rem;
         font-size:1.25rem;
     }
 
     .description_box{
       max-height: 171px;
-  overflow: hidden;
+      overflow: hidden;
+    }
+
+    .description_box .description{
+      max-width: 1500px;
+      width: 100%;
+    }
+
+    .description_box .show-more:focus{
+      outline: none !important;
     }
   </style>
 
