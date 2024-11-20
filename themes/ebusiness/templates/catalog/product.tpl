@@ -105,7 +105,7 @@
 
             <div class="subtitles-details-left">
               <div class="details-reference"><b>Reference:</b> {$product.reference}</div>
-              <div>EC Approved: <span>No</span></div>
+              <div class="details-ec"><b>EC Approved:</b> <span class="not-aproved">No</span></div>
             </div>
 
             <div class="subtitles-details-right">
@@ -118,17 +118,17 @@
                   
                   {elseif $product.availability == 'last_remaining_items'}
                     {* <i class="material-icons product-last-items">&#xE002;</i> *}
-                    <div style="font-weight: 700;">Availability: <span style="background: #ff9a52;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
+                    <div>Availability: <span style="background: #ff9a52;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
                     {else}
                       {* <i class="material-icons product-unavailable">&#xE14B;</i> *}
-                      <div style="font-weight: 700;">Availability: <span style="background: #ee302e;color:#f2f2f2;padding: 0.25rem 1rem;">{$product.availability_message}</span>
+                      <div>Availability: <span style="background: #ee302e;color:#f2f2f2;padding: 0.25rem 1rem;">{$product.availability_message}</span>
                       <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
                         <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
                       </div>
                       </div>
                     {/if}
                 {else}
-                  <div style="font-weight: 700;">Availability: 
+                  <div >Availability: 
                     <span style="background: #88f941;color: #3a3a34;padding: 0.25rem 0.5rem;font-size:14px;font-weight: 600;">In Stock</span>
                     <div class="tooltip" onclick="OpenTooltip(this)" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
                       <div class="tooltiptext">This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later</div>
@@ -369,7 +369,7 @@
                            </div>
                          </div>
                          {/if}
-                         <smalL style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</smalL>
+                         <small style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</small>
                      </div>
                      {* {if $product.features}
                        <div class="product_features">

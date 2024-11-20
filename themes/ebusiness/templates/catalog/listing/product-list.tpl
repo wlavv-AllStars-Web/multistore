@@ -27,11 +27,6 @@
 {block name='content'}
   <section id="main" style="width: 100%;">
 {* <pre>{$urls|print_r}</pre> *}
-  {if $urls.current_url === $urls.pages.new_products}
-    <div class="banner_news" style="max-width: 1350px;width:100%;margin:auto;">
-      <img src="https://www.all-stars-motorsport.com/img/app_icons/news_en.webp?t=3" style="width:100%"/>
-    </div>
-  {/if}
 
   {* {if $smarty.server.REQUEST_URI == '/en/brand/' }
     brand
@@ -66,6 +61,12 @@
         {/if}
       {/if}
       
+    </div>
+  {/if}
+  
+  {if $page.page_name == 'new-products'}
+    <div class="banner_news" style="max-width: 1350px;width:100%;margin:auto;">
+      <img src="https://www.all-stars-motorsport.com/img/app_icons/news_en.webp?t=3" style="width:100%"/>
     </div>
   {/if}
 

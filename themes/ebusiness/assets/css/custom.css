@@ -2300,6 +2300,7 @@ color:#ffffff;
   display: inline-block;
   border-bottom: 1px dotted #103054; 
   opacity: 1 !important;/* If you want dots under the hoverable text */
+  z-index: 1;
 }
 
 /* Tooltip text */
@@ -2358,8 +2359,31 @@ color:#ffffff;
 }
 
 .right-side .h1{
-  color: var(--asm-color);
+  color: #222;
+  font-weight: 700;
   text-align: center;
+  text-transform: capitalize;
+}
+
+.product-prices{
+  display: flex;
+  align-items: end;
+}
+
+.product-quantity #quantity_wanted{
+  z-index: 1;
+}
+
+.product-price .regular-price {
+  color: #222 !important;
+  font-weight: 400;
+}
+
+
+.has-discount.product-price{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .right-side .subtitles-details {
@@ -2492,6 +2516,11 @@ color:#ffffff;
 .product-add-to-cart.js-product-add-to-cart .product-quantity .add .add-to-cart{
   width: 100%;
 }
+
+.add-to-cart i {
+  border-right: 0;
+}
+
 #product #wrapper .container{
   width: 100%;
   max-width: unset;
@@ -2584,6 +2613,20 @@ color:#ffffff;
 .details-reference{
   margin-bottom: 0 !important;
 }
+.details-reference b{
+  color: #222;
+  font-weight: 600;
+}
+
+.details-ec b{
+  color: #222;
+  font-weight: 600;
+}
+
+.details-ec .not-aproved{
+  color: var(--asm-color);
+}
+
 .subtitles-details-right{
   display: flex;
   flex-direction: column;
@@ -2593,6 +2636,8 @@ color:#ffffff;
 
 #product-availability{
   padding-top: 0;
+  font-weight: 600 !important;
+  color: #222;
 }
 
 .real-picture{
@@ -2667,6 +2712,7 @@ transform: rotate(135deg);
   align-items: center;
   background: #B7B7B7;
   color: #333;
+  z-index: 1;
 }
 
 .left-side #content .scroll-box-arrows .right {
@@ -2679,6 +2725,7 @@ transform: rotate(135deg);
   align-items: center;
   background: #B7B7B7;
   color: #333;
+  z-index: 1;
 }
 
 .images-container.js-images-container .js-qv-mask.mask .product-images{
@@ -2886,6 +2933,7 @@ transform: rotate(135deg);
   background: #f6f6f6;
   border-bottom: 2px solid var(--asm-color);
   padding: 0.5rem 0;
+  z-index: 9999;
 }
 /* #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-logos{
   display: none;

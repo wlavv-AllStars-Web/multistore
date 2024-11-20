@@ -102,7 +102,7 @@
               
             <a
             rel="nofollow"
-            href="/{$category.id_category}-{$category.link_rewrite}"
+            href="{$link->getCategoryLink($category.id_category)}"
             class="select-list "
           >
             {$category.name}
