@@ -42,7 +42,6 @@ class IndexController extends IndexControllerCore
             $this->context->smarty->assign('mobile', $homepage_mobile);
         }
 
-        parent::initContent();
 
         if($this->id_shop === 2){
             $action = Tools::getValue('action', '');
@@ -52,7 +51,7 @@ class IndexController extends IndexControllerCore
                 exit;
             }else{
                 if(isset($this->context->customer->id)){
-                    $my_cars = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."ASM_ukoo_customer WHERE id_customer = " . $this->context->customer->id);
+                    $my_cars = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_ukoo_customer WHERE id_customer = " . $this->context->customer->id);
                 }else{
                     $my_cars = [];
                 }
@@ -73,6 +72,7 @@ class IndexController extends IndexControllerCore
                     'icones_videos' => $icon_videos
                 ];
 
+
                 $this->context->smarty->assign('myCars', $my_cars);
         
                 $this->context->smarty->assign('desktop', $homepage_desktop);
@@ -81,6 +81,7 @@ class IndexController extends IndexControllerCore
         }
 
 
+        parent::initContent();
 
 
         $this->context->smarty->assign([
@@ -199,7 +200,7 @@ class IndexController extends IndexControllerCore
                 $cars = Db::getInstance()->executeS($sql);
 
                 foreach($cars AS $car){
-                
+
                     $brand   = Db::getInstance()->getValue('SELECT value FROM '._DB_PREFIX_.'ukoocompat_criterion_lang WHERE id_lang='.$idLang.' AND id_ukoocompat_criterion=' . $car['id_filter_value_1']);
                     $model   = Db::getInstance()->getValue('SELECT value FROM '._DB_PREFIX_.'ukoocompat_criterion_lang WHERE id_lang='.$idLang.' AND id_ukoocompat_criterion=' . $car['id_filter_value_2']);
                     $version = Db::getInstance()->getValue('SELECT value FROM '._DB_PREFIX_.'ukoocompat_criterion_lang WHERE id_lang='.$idLang.' AND id_ukoocompat_criterion=' . $car['id_filter_value_3']);
@@ -213,12 +214,12 @@ class IndexController extends IndexControllerCore
                         'brand'      => $brand,
                         'model'      => $model,
                         'type'       => $version,
-                        'version'    => $type
+                        'version'    => $type,
+
                     ];
                     
                 }
             }
-        
         
         
 
