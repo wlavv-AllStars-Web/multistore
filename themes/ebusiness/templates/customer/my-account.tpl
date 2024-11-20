@@ -111,18 +111,18 @@
 
       <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-flex">
       
-      <div class="tvaNumber" style="display: flex;flex-direction: column;margin-bottom: 1.875rem !important;justify-content: center;padding:0 1rem;
-      align-items: center;
-      box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);width:100%;">
-        <h3>{l s='TVA number (Only for companies)' d='Shop.Theme.CustomerAccount'} :</h3>
-        <form method="post" class="input-group" style="display:flex;flex-wrap: nowrap;padding-left: 0px;padding-right:0px;gap:0.5rem;">
-          <input type="text" name="vat_number" class="form-control" placeholder="TVA number" aria-label="TVA number" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
-          </div>
-        </form>
-        <small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
-      </div>
+        <div class="tvaNumber" style="display: flex;flex-direction: column;margin-bottom: 1.875rem !important;justify-content: center;padding:0 1rem;
+        align-items: center;
+        box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);width:100%;">
+          <h3>{l s='TVA number (Only for companies)' d='Shop.Theme.CustomerAccount'} :</h3>
+          <form method="post" class="input-group" style="display:flex;flex-wrap: nowrap;padding-left: 0px;padding-right:0px;gap:0.5rem;">
+            <input type="text" name="vat_number" class="form-control" placeholder="TVA number" aria-label="TVA number" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
+            </div>
+          </form>
+          <small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
+        </div>
       </div>
       
 
@@ -130,11 +130,11 @@
         {hook h='displayCustomerAccount'}
       {/block}
 
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
+      {* <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
         <div class="link-item" style="box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
           <button type="button" class="btn" style="width: 200px;height:60px;border-radius:0.5rem;">{l s='Back to homepage' d='Shop.Theme.CustomerAccount'}</button>
         </div>
-      </div>
+      </div> *}
 
     </div>
   </div>

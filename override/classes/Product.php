@@ -256,6 +256,8 @@ class ProductCore extends ObjectModel
     /** @var string youtube_code */
     public $youtube_code;
 
+    public $difficulty;
+
 
     /**
      * @var float Base price of the product
@@ -471,6 +473,7 @@ class ProductCore extends ObjectModel
             'quantity_discount' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
             'ean13' => ['type' => self::TYPE_STRING, 'validate' => 'isEan13', 'size' => Ean13::MAX_LENGTH],
             'youtube_code' => ['type' => self::TYPE_STRING, 'size' => 50],
+            'difficulty' => ['type' => self::TYPE_INT],
             'isbn' => ['type' => self::TYPE_STRING, 'validate' => 'isIsbn', 'size' => Isbn::MAX_LENGTH],
             'upc' => ['type' => self::TYPE_STRING, 'validate' => 'isUpc', 'size' => Upc::MAX_LENGTH],
             'mpn' => ['type' => self::TYPE_STRING, 'validate' => 'isMpn', 'size' => ProductSettings::MAX_MPN_LENGTH],

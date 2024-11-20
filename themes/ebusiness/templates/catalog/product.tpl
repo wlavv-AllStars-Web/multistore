@@ -268,20 +268,30 @@
                      <a
                        class="nav-link"
                        data-toggle="tab"
-                       href="#product-installation"
-                       role="tab"
-                       aria-controls="product-installation"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
-                   </li>
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
                        href="#compatibilities"
                        role="tab"
                        aria-controls="product-details"
                        {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
                    </li>
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product_shipping"
+                       role="tab"
+                       aria-controls="product-details"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product-installation"
+                       role="tab"
+                       aria-controls="product-installation"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   
                    {* {if $product.attachments}
                      <li class="nav-item">
                        <a
@@ -302,15 +312,8 @@
                          aria-controls="extra-{$extraKey}">{$extra.title}</a>
                      </li>
                    {/foreach}
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#product_shipping"
-                       role="tab"
-                       aria-controls="product-details"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
-                   </li>
+
+                   {if $product_manufacturer->warranty}
                    <li class="nav-item">
                      <a
                        class="nav-link"
@@ -320,6 +323,8 @@
                        aria-controls="product-details"
                        {if !$product.description} aria-selected="true"{/if}>{l s='Warranty' d='Shop.Theme.Catalog'}</a>
                    </li>
+                  {/if}
+                  
                    <li class="nav-item">
                      <a
                        class="nav-link"
@@ -349,7 +354,7 @@
                      <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
                      </div>
-                     <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem">
+                     <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
                        {block name='product_description'}
                          <div class="product-description">{$product.description nofilter}</div>
                        {/block}
@@ -435,7 +440,26 @@
                      <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
                      </div>
-                    <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div>
+                    {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
+
+                    <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Brand</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Version</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Audi</td>
+                          <td>A3</td>
+                          <td>8V / 8.5V - 12-20</td>
+                          <td>2.0 TFSI - 190 / 220</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
          
                   {* {block name='product_details'}
@@ -467,12 +491,33 @@
                         </section>
                       </div>
                     {else}
+
+                      
                       
                        <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                          <div class="banner-tabs" >
                            <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                          </div>
-                         <p class="tab">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
+                         {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
+                          <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
+                          <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
+                          <div class="difficulty-level">
+                                  <span>Difficulty Level:</span>
+                                  <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
+                            </div>
+                         </div> *}
+
+                        <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
+    								        <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
+                              <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">No Instructions</h4>
+                              <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
+                              <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
+                                  <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
+                                  <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                              </div>
+                            </div>
+                        </div>
+
                        </div>
                     {/if}
                   {/block}
@@ -497,7 +542,12 @@
                    <div class="banner-tabs" >
                      <img src="https://www.all-stars-motorsport.com/img/app_icons/warranty_en.webp" />
                    </div>
-                   <p class="tab">Product Warranty</p>
+                   {* <pre>{$product_manufacturer|print_r}</pre> *}
+                   <div style="max-width: 1350px;margin:auto;">
+                    {if $product_manufacturer->warranty}
+                      <p class="tab" style="color: #333;">{$product_manufacturer->warranty}</p>
+                    {/if}
+                   </div>
                   </div>
 
                   <div  class="tab-pane fade in" id="product_askquestion"  role="tabpanel">
@@ -580,15 +630,15 @@
 </div>
 
  
-<div class="complementary-products-flag">
-Complementary Products
-</div>
+  <div class="complementary-products-flag">
+    Complementary Products
+  </div>
  
      {block name='product_accessories'}
        {if $accessories}
          <section class="product-accessories clearfix">
            {* <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p> *}
-           <div class="products desktop">
+           <div class="products d-sm-none d-block">
              {foreach from=$accessories item="product_accessory" key="position"}
                {if $position < 4}
                  {block name='product_miniature'}
@@ -598,7 +648,7 @@ Complementary Products
              {/foreach}
            </div>
 
-           <div class="swiper products-mobile mobile">
+           <div class="swiper products-mobile d-md-none d-lg-none d-xl-none">
             <div class="swiper-wrapper">
              {foreach from=$accessories item="product_accessory" key="position"}
                {if $position < 4}

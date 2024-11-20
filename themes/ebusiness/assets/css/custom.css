@@ -297,6 +297,18 @@ body{
   .thumbnail-container{
     width: 456px !important;
     border: 2px solid white; 
+    overflow: hidden;
+  }
+
+  .thead-dark th{
+    background: #e7e7e7 !important;
+    color: #333 !important;
+    font-weight: 600;
+  }
+
+  .table-compats tbody td {
+    color: #333 !important;
+    font-weight: 500;
   }
 
   #_desktop_language_selector{
@@ -2670,7 +2682,7 @@ color:#ffffff;
 .section_tabs_video .tabs .nav-tabs .nav-item a{
   color: #fff;
   background: transparent;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .tab-content{

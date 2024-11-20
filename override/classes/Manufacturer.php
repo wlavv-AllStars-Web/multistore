@@ -86,6 +86,8 @@ class ManufacturerCore extends ObjectModel
     public $info_updated;
     public $youtube;
 
+    public $warranty;
+
     /**
      * @see ObjectModel::$definition
      */
@@ -106,6 +108,7 @@ class ManufacturerCore extends ObjectModel
             'meta_title' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255],
             'meta_description' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 512],
             'meta_keywords' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName'],
+            'warranty' => ['type' => self::TYPE_STRING, 'lang' => true, 'size' => 512],
 
             // custom fields
             'bike_parts' => ['type' => self::TYPE_INT],
@@ -434,6 +437,7 @@ class ManufacturerCore extends ObjectModel
         $id_category = null;
         if(Tools::getValue('id_category', 0) != 0) $id_category = Tools::getValue('id_category');
         $sql_category = ' AND p.`id_category_default` NOT IN(16, 17)';
+
 
         if($id_category == 17){
             $sql_category = ' AND p.`id_category_default`=17';
