@@ -20,7 +20,9 @@
                         {assign var=id_manufacturer value="_"|explode:$icons_33['link']}
                         <input type="hidden" id="homepage_manufacturer_id_manufacturer_{$icons_33['id']}" name="homepage_manufacturer_id_manufacturer[{$icons_33['id']}]" value="{$id_manufacturer[0]}">
                         <input type="hidden" id="homepage_manufacturer_id_{$icons_33['id']}" name="homepage_manufacturer_id[{$icons_33['id']}]" value="">
-                        <img id="image_{$icons_33['id']}" inputparentcard="1" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')">
+                        <img id="image_{$icons_33['id']}" inputparentcard="1" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" 
+                            {if $currentShop == 1} onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')" 
+                            {else} onclick="setModal({$icons_33['id']},3,$('#select_brand_{$icons_33['id']}'))" {/if}>
                         
                         {if $currentShop != 1}
                         <div style="display:flex;">
