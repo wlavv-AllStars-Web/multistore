@@ -19,16 +19,25 @@ body{
   width: 100%;
 }
 
+.right-nav{
+  height: 38px;
+}
+
 /* header.tpl */
 .alma-options-header {
-  font-size:14px;
-  font-weight:500;
+  font-weight:600;
   padding: 0px 10px;
   color: white; 
   text-transform: uppercase;
   margin: 0 auto;
-  line-height: 2;
-  /* float: right; */
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#header .header-nav .blockcart a:hover{
+  color: var(--asm-color) !important;
 }
 
 #_desktop_logo a{
@@ -91,6 +100,11 @@ body{
 #products{
   display: flex;
   flex-direction: column;
+}
+
+#header .user-info a.user-info-account::before{
+  width: 0;
+  display: none !important;
 }
 
 
@@ -167,6 +181,7 @@ body{
 
   #header .user-info a.user-info-account::before{
     width: 0;
+    display: none !important;
   }
 
   .search-widget-mobile{
@@ -224,6 +239,29 @@ body{
 
 
 @media (min-width: 992px){
+  #header .header-nav .user-info {
+    padding: 0 1rem 0 3rem;
+  }
+  #header .header-nav .user-info .user-info-account{
+    height: 38px;
+    padding: 0 1rem !important;
+  }
+
+  .left-nav .social-icon{
+    padding: 0px 1rem;
+  }
+  .left-nav .social-icon img{
+    margin-left: 0 !important;
+  }
+
+  .alma-options-header {
+    font-size: 15px;
+  }
+  .alma-options-header:hover {
+    background: #121212;
+    color: var(--asm-color) !important;
+  }
+
   .mobile {
     display: none;
   }
@@ -263,7 +301,23 @@ body{
 
   #_desktop_language_selector{
     padding-right: 3rem;
+    height: 38px;
+    display: flex;
+    align-items: center;
   }
+
+  #_desktop_language_selector .language-selector-wrapper{
+    height: 100%;
+  }
+
+  #_desktop_language_selector .language-selector{
+    height: 100%;
+  }
+
+  #_desktop_language_selector .btn-unstyle{
+    height: 100%;
+  }
+
 
   .search-widget-desktop{
     position: relative;
@@ -1430,12 +1484,16 @@ body{
     padding: 1px 1px 1px 4px;
     border-radius: 3px;
   }
-  .user-info-account{padding: 1px 1px 1px 4px;}
+
+
   .user-info-account:hover{
     background: #121212;
-    padding: 1px 1px 1px 4px;
-    border-radius: 3px;
   }
+
+  .user-info-account:hover i{
+    color: var(--asm-color) !important;
+  }
+
   #my-account #wrapper #main{
     width: 100%;
   }
@@ -1735,7 +1793,7 @@ color:#ffffff;
 .iconeees {
   color: var(--asm-color);
   font-size: 47px;
-  background: #000;
+  background: #121212;
   height: 43px;
   border-radius: 10px;
     }
@@ -1768,27 +1826,27 @@ color:#ffffff;
 .lgh:hover {
   color: var(--asm-color)!important;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #121212; 
 }
 .lgh:focus {
   color: var(--asm-color)!important;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #121212; 
 }
 .lgh:active {
   color: var(--asm-color)!important;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #121212; 
 }
 .open {
   color: var(--asm-color)!important;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #121212; 
 }
 .open span {
   color: var(--asm-color)!important;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #121212; 
 }
 .languageimg{
   height: 75%;
@@ -1980,7 +2038,7 @@ color:#ffffff;
   }
 
   .swiper-pagination-bullet-active {
-    background: var(--asm-color);
+    background: var(--asm-color) !important;
   }
 
   .products-sort-order{
@@ -2163,7 +2221,7 @@ color:#ffffff;
     z-index: 2;
     padding: 0;
     /* border-bottom: 1px solid #fff; */
-    background-color: #000;
+    background-color: #121212;
   }
   #top-menu {
     display: flex;
@@ -2183,7 +2241,7 @@ color:#ffffff;
   }
   #top-menu li a:hover{
       background: #fff;
-      color: #000;
+      color: #121212;
   }
 
   .menu-link:nth-child(1) a:hover,
@@ -2191,7 +2249,7 @@ color:#ffffff;
   .menu-link:nth-child(4) a:hover,
   .menu-link:nth-child(5) a:hover {
     background: #fff;
-    color: #000 !important;
+    color: #121212 !important;
   }
   
 
@@ -2641,7 +2699,7 @@ color:#ffffff;
 }
 
 .real-picture{
-  color: #000;
+  color: #121212;
   background: #B7B7B7;
   text-transform: uppercase;
   padding: 9px 0 7px;
@@ -3596,9 +3654,9 @@ body::-ms-scrollbar-thumb:hover {
 
 .btn-default {
   background: #e9e9ed !important;
-  color: #000 !important;
+  color: #121212 !important;
 }
 .btn-default:hover {
   background: #d0d0d7 !important;
-  color: #000 !important;
+  color: #121212 !important;
 }
