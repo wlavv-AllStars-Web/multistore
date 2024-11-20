@@ -47,7 +47,7 @@
  {/block}
  
  {block name='content'}
-
+  {* <pre>{$product|print_r}</pre> *}
  
    <section id="main">
      <meta content="{$product.url}">
