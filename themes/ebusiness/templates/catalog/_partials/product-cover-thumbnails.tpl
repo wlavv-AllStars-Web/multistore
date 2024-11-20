@@ -28,8 +28,8 @@
    <div class="product-cover">
      {if $product.default_image}
        <picture>
-         {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
-         {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
+         {* {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+         {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if} *}
          <img
            class="js-qv-product-cover img-fluid"
            src="{$product.default_image.bySize.large_default.url}"
@@ -45,9 +45,9 @@
           
          >
        </picture>
-       <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+       {* <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
          <i class="material-icons zoom-in">search</i>
-       </div>
+       </div> *}
      {else}
        <picture>
          {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
@@ -101,6 +101,7 @@
                loading="lazy"
                width="{$product.default_image.bySize.small_default.width}"
                height="{$product.default_image.bySize.small_default.height}"
+                onclick="setImageCover(this)"
              >
            </picture>
          </li>
