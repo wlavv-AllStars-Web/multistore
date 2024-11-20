@@ -1498,11 +1498,12 @@ body{
     padding: 0;
     height: 100%;
     display: flex !important;
+    align-items: center;
   }
 
   .logout:hover{
     background: #121212;
-    padding: 1px 1px 1px 4px;
+    padding: 0;
     border-radius: 3px;
   }
 
