@@ -38,6 +38,10 @@
       <div style="max-width:1350px;margin:auto;">
         <img class="p-img" src="/img/asd/Content_pages/news/news_{$language.iso_code}.webp" style="width: 100%;" alt="news_banner"/>
       </div>
+      {elseif $page.page_name == 'search'}
+        <div class="header-searchpage">
+          <img src="/img/asd/Content_pages/search/results_{$language.iso_code}.webp" />
+        </div>
       {/if}
     {/block}
 

@@ -3003,6 +3003,20 @@ textarea {
   margin: 0 !important;
 }
 
+.header-searchpage {
+  margin: auto;
+  max-width: 1350px;
+  margin-bottom: 2rem;
+}
+.header-searchpage img {
+  width: 100%;
+}
+
+#products .products-selection {
+  max-width: 1350px;
+  margin: auto;
+  width: 100%;
+}
 /* client statistics */
 
 .title-clientstatistics {
@@ -9238,3 +9252,25 @@ select option {
 .modal_order_details{
   display: none;
 }
+
+/* dev experimental */
+
+/* .quickshop-modal{
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  outline: 3px solid #0273eb;
+  background: #fff;
+}
+
+.quickshop-modal:hover{
+  box-shadow: rgba(0, 10, 0, 0.24) 0px 3px 8px;
+} */
