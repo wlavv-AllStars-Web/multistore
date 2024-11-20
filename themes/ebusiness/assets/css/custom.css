@@ -1495,7 +1495,7 @@ body{
 
   /* page.tpl */
   .logout{
-    padding: 0;
+    padding: 0 1rem;
     height: 100%;
     display: flex !important;
     align-items: center;
@@ -1503,7 +1503,7 @@ body{
 
   .logout:hover{
     background: #121212;
-    padding: 0;
+    padding: 0 1rem;
     border-radius: 3px;
   }
 
