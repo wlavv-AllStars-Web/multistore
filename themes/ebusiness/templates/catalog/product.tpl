@@ -324,7 +324,7 @@
                        {if !$product.description} aria-selected="true"{/if}>{l s='Warranty' d='Shop.Theme.Catalog'}</a>
                    </li>
                   {/if}
-                  
+
                    <li class="nav-item">
                      <a
                        class="nav-link"
@@ -510,11 +510,13 @@
                         <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
     								        <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
                               <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">No Instructions</h4>
+                            {if $product.difficulty > 0}
                               <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                               <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
                                   <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
                                   <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                               </div>
+                            {/if}
                             </div>
                         </div>
 
