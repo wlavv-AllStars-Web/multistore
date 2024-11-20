@@ -49,8 +49,10 @@
             <div style="width: 100%;">
                 <img style="width: 100%;" src="/modules/wmmodule_homepage/views/images/header{$currentShop}.png"> 
             </div>
+
+            {if $currentShop == 1}
             <div class="bannersHome">
-            
+
                 {foreach $array_icons_50 AS $index_50 => $icons_50 }
                 <div class="card-img-container">
                     <div class="card-big">
@@ -83,6 +85,8 @@
                     </div>    
                 </div>
                 {/foreach}
+
+
             </div>
             {* <div style="width: 100%;">
                 <img id="preview_image_1" src="{$bb}" style="overflow: hidden;border: 1px solid #999;width: 100%;"> 
@@ -138,6 +142,45 @@
                 </div>
               {/foreach}
                 </div>
+
+            {/if}
+
+            {if $currentShop == 2}
+
+                <div class="slider-oneimage" style="width: 100%;">
+                    <img src="{$banners[0]['image_en']}" style="width: 100%;" />
+                </div>
+
+                <div class="banners_50" style="display: flex;gap:.5rem;">
+                    {foreach from=$array_icons_50 item=item key=key name=name}
+                    <div class="banner_50"  style="flex: 1;">
+                        <img src="{$item['image_en']}"  style="width: 100%;height:auto;"/>
+                    </div>
+                    {/foreach}
+                </div>
+
+                <div class="banners_33" style="display: flex;gap:.5rem;">
+                    {foreach from=$array_icons_33 item=item key=key name=name}
+                    <div class="banner_33" style="flex: 1;">
+                        <img src="{$item['image_en']}"  style="width: 100%;height:auto;"/>
+                    </div>
+                    {/foreach}
+                </div>
+
+                <div class="videosContainer" style="  flex-direction: row;">
+                    {foreach $array_videos AS $index => $video}
+                        <div class="video3 video">
+                        <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">
+                        <img id="preview_image_{$video['id']}"  src="{$video["image_{$currentLanguageIso}"]}"/>
+                            <div class="play">
+                            <img class="image_play" alt="video player" src="/img/youtube_play.png" />
+                            </div>
+                        </div>
+                        </div>
+                    {/foreach}
+                </div>
+            {/if}
+
 
             <div style="width: 100%;">
                 <img style="width: 100%;" src="/modules/wmmodule_homepage/views/images/footer{$currentShop}.png"> 
