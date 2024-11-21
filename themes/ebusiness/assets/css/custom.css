@@ -2380,7 +2380,7 @@ color:#ffffff;
   }
 
   #product-modal{
-    max-width: 60dvw;
+    max-width: 1200px;
     width: 100%;
     position: fixed;
     top: 50%;

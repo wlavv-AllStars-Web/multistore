@@ -66,16 +66,17 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    color: #000;
+    color: #fff;
     z-index: 999;
     width: 2rem;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #dedede;
-    cursor:pointer;
+    background: #222;
+    cursor: pointer;
     border-radius: .5rem;
+    outline: 2px solid var(--asm-color);
 
   " onclick="closeModalProductImages()">
     <i class="material-icons">close</i>
