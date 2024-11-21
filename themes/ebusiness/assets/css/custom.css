@@ -2647,7 +2647,7 @@ ul {
   width: 80%;
   position: relative;
   overflow: hidden;
-  margin-left: 20px;
+  margin: 0 20px;
 }
 
 .images-container.js-images-container
