@@ -45,9 +45,9 @@
           
          >
        </picture>
-       {* <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
-         <i class="material-icons zoom-in">search</i>
-       </div> *}
+       <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+         {* <i class="material-icons zoom-in">search</i> *}
+       </div>
      {else}
        <picture>
          {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
