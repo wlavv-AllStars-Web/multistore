@@ -2318,12 +2318,19 @@ ul {
   max-width: 125px;
   width: 100%;
 
-  margin: 0;width:20%;
+  margin: 0 1rem 0 0 !important;
+  width: 90px;
 }
 
 .mySwiper-thumb-images .js-thumb-container{
   border: 1px solid #dedede;
   overflow: hidden;
+  height: 100%;
+}
+
+.mySwiper-thumb-images .js-thumb-container img {
+  height: 100%;
+  width: auto;
 }
 
 .mySwiper-thumb-images .js-thumb-container:hover {
@@ -2386,6 +2393,11 @@ ul {
   height: 100%;
   width: 100%;
 }
+
+.product-container .left-side #content {
+  max-height: 490px;
+}
+
 
 #product-modal {
   max-width: 1200px;
@@ -2474,9 +2486,9 @@ ul {
   overflow: hidden; */
 }
 
-.row.product-container.js-product-container .left-side {
+/* .row.product-container.js-product-container .left-side {
   height: 60vh;
-}
+} */
 
 .left-side #content {
   height: 100%;
