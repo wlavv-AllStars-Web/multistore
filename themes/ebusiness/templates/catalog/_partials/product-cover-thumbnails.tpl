@@ -77,7 +77,7 @@
  {/block}
 
  {block name='product_images'}
-   <div class="js-qv-mask mask">
+   {* <div class="js-qv-mask mask">
      <ul class="product-images js-qv-product-images" >
        {foreach from=$product.images item=image key=key}
          {if $key < 5}
@@ -101,14 +101,65 @@
                loading="lazy"
                width="{$product.default_image.bySize.small_default.width}"
                height="{$product.default_image.bySize.small_default.height}"
-                {* onclick="setImageCover(this)" *}
              >
            </picture>
          </li>
          {/if}
        {/foreach}
      </ul>
-   </div>
+   </div> *}
+
+   <div class="swiper mySwiper-thumb-images">
+    <div class="swiper-wrapper">
+      {foreach from=$product.images item=image key=key}
+        <div class="swiper-slide">
+          <li class="js-thumb-container">
+          <picture>
+             {if !empty($image.bySize.medium_default.sources.avif)}<source srcset="{$image.bySize.medium_default.sources.avif}" type="image/avif">{/if}
+             {if !empty($image.bySize.medium_default.sources.webp)}<source srcset="{$image.bySize.medium_default.sources.webp}" type="image/webp">{/if}
+             <img
+               class="thumb js-thumb {if $image.id_image == $product.default_image.id_image} selected js-thumb-selected {/if}"
+               data-image-medium-src="{$image.bySize.large_default.url}"
+               {if !empty($image.bySize.large_default.sources)}data-image-medium-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
+               data-image-large-src="{$image.bySize.large_default.url}"
+               {if !empty($image.bySize.large_default.sources)}data-image-large-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
+               src="{$image.bySize.medium_default.url}"
+               {if !empty($image.legend)}
+                 alt="{$image.legend}"
+                 title="{$image.legend}"
+               {else}
+                 alt="{$product.name}"
+               {/if}
+               loading="lazy"
+               width="{$product.default_image.bySize.medium_default.width}"
+               height="{$product.default_image.bySize.medium_default.height}"
+             >
+           </picture>
+          </li>
+        </div>
+      {/foreach}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    {* <div class="swiper-pagination"></div> *}
+  </div>
+
+  <script>
+    var swiper = new Swiper(".mySwiper-thumb-images", {
+      direction: "vertical",
+      slidesPerView: 5,
+      spaceBetween: 10,
+      mousewheel: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
  {/block}
 {hook h='displayAfterProductThumbs' product=$product}
 </div>
