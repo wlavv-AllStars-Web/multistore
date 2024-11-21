@@ -120,7 +120,8 @@
         function closeModalProductImages() {
           document.querySelector("#product-modal").style.display="none"
           document.querySelector(".modal-backdrop").remove()
-
+          document.querySelector("#product").classList.remove("modal-open")
+          document.querySelector("#product").style.padding = "0";
         }
        </script>
     </div>
