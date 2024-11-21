@@ -2322,8 +2322,8 @@ ul {
 }
 
 .mySwiper-thumb-images .js-thumb-container{
-  outline: 1px solid #dedede;
-  outline-offset: -3px;
+  border: 1px solid #dedede;
+  overflow: hidden;
 }
 
 .mySwiper-thumb-images .js-thumb-container:hover {
