@@ -49,6 +49,13 @@
             {/if}
           {/if*}
         </div>
+        <div class="tax-shipping-delivery-label">
+        {if $configuration.display_taxes_label}
+          {$product.labels.tax_long}
+        {/if}
+        {hook h='displayProductPriceBlock' product=$product type="price"}
+        {hook h='displayProductPriceBlock' product=$product type="after_price"}
+      </div>
         
         {block name='product_unit_price'}
           {if $displayUnitPrice}
@@ -83,12 +90,6 @@
 
     {hook h='displayProductPriceBlock' product=$product type="weight" hook_origin='product_sheet'}
 
-    <div class="tax-shipping-delivery-label">
-      {if $configuration.display_taxes_label}
-        {$product.labels.tax_long}
-      {/if}
-      {hook h='displayProductPriceBlock' product=$product type="price"}
-      {hook h='displayProductPriceBlock' product=$product type="after_price"}
-    </div>
+
   </div>
 {/if}
