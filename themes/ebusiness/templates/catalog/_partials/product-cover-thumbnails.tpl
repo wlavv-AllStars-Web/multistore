@@ -68,7 +68,7 @@
       <span style="color: white;"> - 25%</span>  
      
       </div>
-    {/if}
+      {/if}
 
     <div class="real-picture" >
       Real Picture
@@ -101,7 +101,7 @@
                loading="lazy"
                width="{$product.default_image.bySize.small_default.width}"
                height="{$product.default_image.bySize.small_default.height}"
-                onclick="setImageCover(this)"
+                {* onclick="setImageCover(this)" *}
              >
            </picture>
          </li>

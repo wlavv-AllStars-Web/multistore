@@ -64,11 +64,11 @@
     </div>
   {/if}
   
-  {if $page.page_name == 'new-products'}
+  {* {if $page.page_name == 'new-products'}
     <div class="banner_news" style="max-width: 1350px;width:100%;margin:auto;">
       <img src="https://www.all-stars-motorsport.com/img/app_icons/news_en.webp?t=3" style="width:100%"/>
     </div>
-  {/if}
+  {/if} *}
 
   {* {substr($urls.current_url, 0, 25)}
   {$urls.pages.brands} *}
@@ -112,9 +112,9 @@
         </div>
 
       {else}
-
-        {include file='errors/not-found.tpl'}
-
+        <div class="page-product-notfound">
+          {include file='errors/not-found.tpl'}
+        </div>
       {/if}
     </div>
 

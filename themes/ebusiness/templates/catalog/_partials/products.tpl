@@ -51,6 +51,14 @@
       </article>
     {/if}
 
+    {if $page.page_name == 'new-products'}
+      <article id="banner-news" class="d-flex justify-content-center col-lg-3">
+        <div>
+          <h1>Novidades</h1>
+        </div>
+      </article>
+    {/if}
+
     {foreach from=$listing.products item="product"}
         {* <pre>{$product|print_r}</pre> *}
         {block name='product_miniature'}

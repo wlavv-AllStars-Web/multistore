@@ -100,27 +100,33 @@
  
            {assign var="linkPayment" value=$link->getCMSLink(47)}
            {assign var="manufacturers" value=Manufacturer::getManufacturers()}
- 
+{*  
            <div class="subtitles-details">
 
-            <div class="subtitles-details-left">
-              <div class="details-reference"><b>Reference:</b> {$product.reference}</div>
-              <div class="details-ec"><b>EC Approved:</b> <span class="not-aproved">No</span></div>
-            </div>
+            {block name='product_details'}
+              {include file='catalog/_partials/product-details.tpl'}
+            {/block} *}
 
-            <div class="subtitles-details-right">
+            {* <div class="subtitles-details-left">
+              <div class="details-reference product-reference"><b>Reference:</b> {$product.reference_to_display}</div>
+              <div class="details-ec"><b>EC Approved:</b> <span class="not-aproved">No</span></div>
+            </div> *}
+
+
+
+            {* <div class="subtitles-details-right">
             {block name='product_availability'}
                
               <span id="product-availability" class="js-product-availability" >
                 {if $product.show_availability && $product.availability_message}
                   {if $product.availability == 'available'}
-                  {* <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i> *}
+            
                   
                   {elseif $product.availability == 'last_remaining_items'}
-                    {* <i class="material-icons product-last-items">&#xE002;</i> *}
+                   
                     <div>Availability: <span style="background: #ff9a52;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
                     {else}
-                      {* <i class="material-icons product-unavailable">&#xE14B;</i> *}
+                   
                       <div>Availability: <span style="background: #ee302e;color:#f2f2f2;padding: 0.25rem 1rem;">{$product.availability_message}</span>
                       <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
                         <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
@@ -142,9 +148,9 @@
                   const tooltipText = element.querySelector(".tooltiptext");
                   tooltipText.style.visibility = "visible";
                   document.body.addEventListener("click", function(event) {
-                      // Check if the click is outside the tooltip
+                     
                       if (!tooltip.contains(event.target)) {
-                          // If outside, hide the tooltip
+                         
                           tooltipText.style.visibility = "hidden";
                       }
                   });
@@ -154,7 +160,11 @@
               <div>Shipped from EU</div>
             </div>
 
-           </div>
+           </div> *}
+
+           {block name='product_details'}
+            {include file='catalog/_partials/product-details.tpl'}
+          {/block}
            
  
            <div class="product-information">
@@ -578,45 +588,7 @@
              {/block}
  
              </div>
-             {* {if !empty($product.youtube_code)}
-             <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
-               <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
-                 <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                 <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
-                   <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
-                     <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
-                   </div>
-                 </div>
-                 <div  class="iframeClass"  style="display:none;height:318px">
-                   <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
-                   </iframe>
-                 </div>
-               </div>
-             </div>
-             {/if} *}
-           {* fim tabs *}
-           {* <script>
-           addEventListener("DOMContentLoaded", (event) => {
-             const videoProduct =  document.querySelector(".column_video .video");
-             const imgPlay = document.querySelector(".image_play")
              
-               videoProduct.addEventListener('mouseover', () => {
-                 imgPlay.setAttribute('src', "/img/youtube_play_hover.png")
-               });
-               videoProduct.addEventListener('mouseleave', () => {
-                 imgPlay.setAttribute('src', "/img/youtube_play.png")
-               });
-             
-           });
-           </script> *}
-           <script>
-          //  document.addEventListener("DOMContentLoaded", (event) => {
-          //    const arrowsImgs = document.querySelector(".scroll-box-arrows")
-          //    if(screen.width < 600){
-          //      arrowsImgs.style.display = "none";
-          //    }
-          //  })
-           </script>
  </div>
 
  <div class="desktop" style="padding: 0.5rem 1rem; background:#333;width:100%;color: #fff;">
