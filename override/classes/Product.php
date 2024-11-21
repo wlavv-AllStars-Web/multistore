@@ -253,10 +253,14 @@ class ProductCore extends ObjectModel
     /** @var int temporary or saved object */
     public $state = self::STATE_SAVED;
 
+    // ALL STARS
+
     /** @var string youtube_code */
     public $youtube_code;
 
     public $difficulty;
+
+    public $ec_approved;
 
 
     /**
@@ -508,6 +512,7 @@ class ProductCore extends ObjectModel
                 // This default value should be replaced with ProductType::TYPE_STANDARD in 179 when the v2 page is fully migrated
                 'default' => ProductType::TYPE_UNDEFINED,
             ],
+            'ec_approved' => ['type' => self::TYPE_INT],
 
             /* Shop fields */
             'id_category_default' => ['type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'],

@@ -8,7 +8,7 @@
 
             <div class="subtitles-details-left">
               <div class="details-reference product-reference"><b>Reference:</b> {$product.reference_to_display}</div>
-              <div class="details-ec"><b>EC Approved:</b> <span class="not-aproved">No</span></div>
+              <div class="details-ec"><b>EC Approved:</b> {if $product.ec_approved > 0}<span class="aproved">Yes</span>{else}<span class="not-aproved">No</span>{/if}</div>
             </div>
 
 

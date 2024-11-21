@@ -2769,6 +2769,9 @@ color:#ffffff;
 .details-ec .not-aproved{
   color: var(--asm-color);
 }
+.details-ec .aproved{
+  color: green;
+}
 
 .subtitles-details-right{
   display: flex;
