@@ -34,6 +34,7 @@
             id="quantity_wanted"
             value="{$product.quantity_wanted}"
             class="input-group"
+            min="1"
             {*min="{$product.minimal_quantity}"*}
           />
         </div>
@@ -45,7 +46,7 @@
             {l s='Add to cart' d='Shop.Theme.Actions'}
           </button>
           
-          {block name='product_availability'}
+          {* {block name='product_availability'}
             <span id="product-availability">
               {if $product.show_availability && $product.availability_message}
                 {if $product.availability == 'available'}
@@ -58,7 +59,7 @@
                 {$product.availability_message}
               {/if}
             </span>
-          {/block}
+          {/block} *}
         </div>
         {hook h='displayProductActions'  product=$product}
       </div>
