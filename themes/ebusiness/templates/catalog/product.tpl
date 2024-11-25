@@ -589,7 +589,7 @@
                   
                    </form>
                   </div>
-{debug}
+
                </div>
                </div>
              {/block}
