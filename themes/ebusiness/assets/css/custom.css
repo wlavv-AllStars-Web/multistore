@@ -2158,6 +2158,20 @@ ul {
 }
 
 /* customer sign in  */
+.login-form .help-block li {
+  background-color: var(--asm-color) !important;
+}
+
+
+#login-form .form-group{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+#login-form .form-group label{
+  text-align: start;
+}
 
 .login-form,
 .register_form {
@@ -2165,6 +2179,33 @@ ul {
   padding: 1rem !important;
 }
 
+
+/* registe page */
+#customer-form {
+  max-width: 1350px;
+  margin: auto;
+}
+
+#customer-form section .form-group:last-child .col-md-6 .custom-checkbox{
+  display: flex;
+  gap: .25rem;
+}
+#customer-form section .form-group:last-child .col-md-6 .custom-checkbox span{
+  width: 1.25rem;
+}
+
+#customer-form .form-footer {
+  width: 50%;
+  margin: auto;
+}
+
+#customer-form .help-block li {
+  background: #fff;
+  color: var(--asm-color);
+  margin: 0;
+  padding: 0 1rem;
+  text-align: start;
+}
 /* header */
 
 .user-info-account {
@@ -3615,6 +3656,20 @@ body #main {
 }
 
 /* modal cart */
+#blockcart-modal.modal.in {
+  background: rgba(0,0,0,.5);
+}
+
+#blockcart-modal .modal-dialog{
+  top: 50%;
+  bottom: unset;
+  left: 50%;
+  right: unset;
+  transform: translate(-50%,-50%);
+  margin: unset;
+  border-radius: .25rem;
+}
+
 #blockcart-modal .modal-dialog .modal-content {
   border: 0;
 }
@@ -3623,14 +3678,29 @@ body #main {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  background: var(--asm-color-100) !important;
+  background: var(--asm-color) !important;
+  border-radius: 0 !important;
 }
 #blockcart-modal .modal-dialog .modal-header .close {
   padding: 0 1rem;
   margin: 0;
-  color: #111;
-  opacity: 0.7 !important;
+  color: #fff !important;
+  opacity: 0.9 !important;
 }
+
+#blockcart-modal .modal-dialog .modal-header .close:hover{
+  opacity: .7 !important;
+}
+
+#blockcart-modal .product-name{
+  color: var(--asm-color);
+  font-weight: 600;
+}
+
+#blockcart-modal button,#blockcart-modal a {
+  height: 38px;
+}
+
 /* modal comments */
 
 #post-product-comment-modal .modal-dialog .modal-header {
@@ -3865,6 +3935,12 @@ body::-ms-scrollbar-thumb:hover {
 
 .tab-description .product-description{
   color: #222;
+}
+
+
+.container-alert-askquestion{
+  max-width: 1350px;
+  margin: 1rem auto;
 }
 
 .container_ask_successfull{
