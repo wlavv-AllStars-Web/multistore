@@ -480,6 +480,58 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
      */
     public function postProcess()
     {
+        if(Tools::isSubmit('product_askquestion')) {
+            // pre($_POST);
+            // exit;
+
+            $var_list['{name_customer}'] = Tools::getValue('name_customer');
+            $var_list['{email_customer}'] = Tools::getValue('email_customer');
+            $var_list['{question_customer}'] = Tools::getValue('question_customer');
+            $var_list['{id_product}'] = Tools::getValue('id_product');
+
+            if(Tools::getValue('id_shop') == 1) {
+                $var_list['{shop}'] = 'Euromuscleparts';
+            }else if(Tools::getValue('id_shop') == 2) {
+                $var_list['{shop}'] = 'All Stars Motorsport';
+            }else if(Tools::getValue('id_shop') == 3) {
+                $var_list['{shop}'] = 'All Stars Distribution';
+            }else{
+                $var_list['{shop}'] = 'EuroRider';
+            }
+
+            if(Tools::getValue('id_lang') == 2) {
+                $var_list['{lang}'] = 'English';
+            }else if(Tools::getValue('id_lang') == 4){
+                $var_list['{lang}'] = 'Espanhol';
+            }else if(Tools::getValue('id_lang') == 5){
+                $var_list['{lang}'] = 'Francês';
+            }else{
+                $var_list['{lang}'] = 'Qualquer';
+            }
+
+
+            Mail::Send(
+                $this->context->language->id, 
+                'product_question', 
+                'Product Question', 
+                $var_list, 
+                // 'info@euromuscleparts.com', 
+                'pauloallstarsweb@gmail.com', 
+                'Product Question', 
+                null, 
+                null, 
+                null, 
+                null, 
+                _PS_MAIL_DIR_, 
+                false, 
+                null, 
+                null, 
+                $var_list['{email_customer}']
+            );
+
+            $this->context->smarty->assign(array( 'email_sent' => 1 ));
+        }
+
         if (Tools::isSubmit('submitCustomizedData')) {
             // If cart has not been saved, we need to do it so that customization fields can have an id_cart
             // We check that the cookie exists first to avoid ghost carts
@@ -528,6 +580,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
         $urlPath = $parsedUrl['path']; // Get the path component
         $urlArray = explode("/", $urlPath); // Split the path into segments
         $end = end($urlArray);
+        
 
         if($end == 'quick-shop'){
             $this->ajaxRender(json_encode([

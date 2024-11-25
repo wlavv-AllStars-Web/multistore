@@ -407,7 +407,7 @@
                          <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
                            <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
@@ -567,22 +567,29 @@
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/faq_en.webp" />
                    </div>
                    
-                   <form class="form-askquestion col-lg-9 tab">
+                   <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name">
+                  <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
                     </div>
                     <div class="form-group">
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your question."></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your question." name="question_customer"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                      <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+											<input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+											<input type="hidden" name="product_askquestion" value="1">
+											<input type="hidden" name="id_product" value="{$product.id}">
+											<input type="hidden" name="category" value="">
+                    </button>
                   
                    </form>
                   </div>
-         
+{debug}
                </div>
                </div>
              {/block}
@@ -600,7 +607,7 @@
     <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
   </div>
   
-  {hook h='displayFooterProduct' product=$product category=$category}
+  {hook h='displayFooterProduct' mod='productcomments' product=$product category=$category}
 </div>
 
  
