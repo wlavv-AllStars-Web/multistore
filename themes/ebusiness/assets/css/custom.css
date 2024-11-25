@@ -3837,9 +3837,125 @@ body::-ms-scrollbar-thumb:hover {
   width: 100%;
 }
 
+#banner-wheels {
+  margin-bottom: 30px;
+}
+#banner-wheels div {
+  background: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .page-product-notfound {
   min-height: 49dvh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.tab-description {
+  padding: 2rem 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tab-description .product-description{
+  color: #222;
+}
+
+.container_ask_successfull{
+  width: 100%;max-width:1350px;margin:auto;padding: 2rem 0;
+}
+
+.question_buble{
+  background: var(--asm-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: .25rem;
+  position: relative;
+}
+
+.question_buble::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: rotate(45deg) translateX(-50%);
+  background: var(--asm-color);
+}
+
+.question-success-icon{
+  font-size: 4rem;
+}
+
+.question-success-title{
+  color: #fff !important;
+}
+
+.close-question{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.close-question:hover{
+  opacity: .8;
+}
+
+.question-success-msg{
+  text-align: center;padding:2rem 0;
+  color: #333;
+}
+
+.btn_close_message_ask{
+  display: flex;
+  width: fit-content;
+  min-width:250px;
+  height: 40px;
+  background: var(--asm-color);
+  color: #fff;
+  padding: .5rem 1rem;
+  margin: auto;
+  justify-content:center;
+  align-items: center;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+.btn_close_message_ask:hover{
+  opacity: .8;
+}
+
+.form-askquestion .form-group{
+  display: flex;
+}
+
+.form-askquestion .input-group-text{
+  background: #f6f6f6;
+  border-right: 0;
+  border-radius: .25rem 0 0 .25rem;
+}
+
+/* .form-askquestion input[name="name_customer"] {
+  border-left: 0 !important;
+}
+.form-askquestion input[name="name_customer"]::before {
+  content: '';
+  width: 1px;
+  height: 80%;
+  background: #333;
+  
+} */
+

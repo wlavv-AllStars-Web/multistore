@@ -52,6 +52,13 @@
    <section id="main">
      <meta content="{$product.url}">
      {* <pre style="background: #fff;">{$product|print_r}</pre> *}
+     {if $email_sent == 1}
+      <div class="container-alert-askquestion">
+      <div class="alert alert-success" role="alert">
+        Question sent successfully!
+      </div>
+      </div>
+     {/if}
      <div class="row product-container js-product-container">
         <div class="col-md-6 left-side desktop">
          {block name='page_content_container'}
@@ -566,12 +573,36 @@
                    <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/faq_en.webp" />
                    </div>
+
+                   {if $email_sent == 1}
+                    <div class="container_ask_successfull">
+                      <div class="question_buble">
+
+                        <i class="material-icons question-success-icon">check_circle</i>
+                        <h1 class="question-success-title">IMPRESSIONNANT!</h1>
+                        <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
+                      </div>
+                      <div class="question-success-msg" >Please, check your mailbox from time to time. We will respond you as soon as possible.</div>
+                      <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
+                        Close
+                      </div>
+                    </div>
+
+                  {else}
+                   
                    
                    <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
+
                     <div class="form-group">
-                  <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
+                      </div>
+                      <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
                     </div>
                     <div class="form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
+                      </div>
                       <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
                     </div>
                     <div class="form-group">
@@ -588,6 +619,7 @@
                     </button>
                   
                    </form>
+                  {/if}
                   </div>
 
                </div>
