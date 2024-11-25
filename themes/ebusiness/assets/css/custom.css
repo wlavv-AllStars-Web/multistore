@@ -4024,14 +4024,163 @@ body::-ms-scrollbar-thumb:hover {
   border-radius: .25rem 0 0 .25rem;
 }
 
-/* .form-askquestion input[name="name_customer"] {
-  border-left: 0 !important;
+#form_ets_onepagecheckout {
+  width: 100%;
+  font-family: Lato, 'Open Sans', sans-serif;
+  margin-bottom: 0;
 }
-.form-askquestion input[name="name_customer"]::before {
-  content: '';
-  width: 1px;
-  height: 80%;
-  background: #333;
-  
-} */
 
+#form_ets_onepagecheckout #ets_onepagecheckout{
+  width: 100%;
+  max-width: 1350px;
+  margin: auto;
+}
+
+#form_ets_onepagecheckout .block-onepagecheckout .title-heading {
+  border-top: 3px solid var(--asm-color);
+  color: #333 !important;
+}
+
+
+#delivery-addresses select#use_shipping_address, 
+#invoice-addresses select#use_invoice_address {
+  background: #fff !important;
+}
+
+#form_ets_onepagecheckout .ets_opc_select option:hover{
+  cursor: pointer;
+}
+
+#form_ets_onepagecheckout .form-control:focus {
+  box-shadow: 0 0 0 0.2rem var(--asm-color);
+}
+
+#form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart{
+  padding: 0;
+}
+#form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart .title-heading  {
+  margin: 0;
+}
+
+#form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart .cart-items .cart-item{
+  border: 0;
+  padding-bottom: 0;
+}
+
+.block-onepagecheckout.block-shopping-cart .product-line-grid-body{
+  gap: 0 !important;
+}
+
+#form_ets_onepagecheckout .product-line-grid-right .bootstrap-touchspin{
+  width: unset;
+}
+
+#checkout .cart-grid-body .form-control {
+  background: #fff;
+}
+
+#form_ets_onepagecheckout .product-price, .product-line-info .current-price .price{
+  color: #333 !important;
+}
+
+#form_ets_onepagecheckout .product-line-grid-right .cart-line-product-actions, #form_ets_onepagecheckout .product-line-grid-right .product-price{
+  color: #333 !important;
+}
+
+#form_ets_onepagecheckout .product-line-grid-right .product-price{
+  font-weight: 600;
+}
+
+#ets_onepagecheckout a svg {
+  fill: var(--asm-color) !important;
+}
+
+#ets_onepagecheckout a svg:hover {
+  fill: rgba(221, 19, 18, .5) !important;
+}
+
+#form_ets_onepagecheckout #cart-subtotal-products{
+  display: flex !important;
+  justify-content: space-between;
+}
+#form_ets_onepagecheckout #cart-subtotal-shipping{
+  display: flex !important;
+  justify-content: space-between;
+}
+
+#form_ets_onepagecheckout #cart-subtotal-shipping div{
+  display: none;
+}
+
+#form_ets_onepagecheckout .card-block.cart-summary-totals .cart-summary-line{
+  background: #fff !important;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+#form_ets_onepagecheckout .card-block.cart-summary-totals .cart-summary-line span{
+  color: #333;
+}
+
+#form_ets_onepagecheckout .cart-detailed-totals {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+#ets_onepagecheckout .checkout .btn {
+  background-color: #333 !important;
+}
+#ets_onepagecheckout .checkout .btn:hover {
+  background-color: #444 !important;
+}
+
+#ets_onepagecheckout .block-customer .myaccount a {
+  color: #111;
+  font-weight: 600;
+}
+
+#ets_onepagecheckout .block-customer .myaccount a:hover {
+  color: var(--asm-color) !important;
+  font-weight: 600;
+}
+
+#ets_onepagecheckout .list-header-products{
+  text-align: center;
+}
+
+#form_ets_onepagecheckout .product_info_name {
+  text-align: center;
+}
+#form_ets_onepagecheckout .attribute {
+  text-align: center;
+}
+#form_ets_onepagecheckout .form_total_price {
+  text-align: center;
+}
+
+
+#form_ets_onepagecheckout .product-line-grid-body .product-price.has-discount .product-discount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#form_ets_onepagecheckout .product-line-grid-body .product-price.has-discount .product-discount .regular-price{
+  margin: 0;
+  font-size: 15px;
+
+}
+#form_ets_onepagecheckout .product-line-grid-body .product-price.has-discount .product-discount .discount-percentage{
+  margin: 0;
+}
+
+#checkout #onepagecheckout-information-errros {
+  width: 100%;
+  max-width: 1350px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+#checkout #onepagecheckout-information-errros .module_error{
+  border-radius: .25rem;
+}
