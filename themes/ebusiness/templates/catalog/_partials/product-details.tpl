@@ -16,16 +16,16 @@
             <div class="subtitles-details-right">
             {block name='product_availability'}
                
-              <span id="product-availability" class="js-product-availability" >
+              {* <span id="product-availability" class="js-product-availability" >
                 {if $product.show_availability && $product.availability_message}
+                  {$availability_date}
                   {if $product.availability == 'available'}
-                  {* <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i> *}
                   
                   {elseif $product.availability == 'last_remaining_items'}
-                    {* <i class="material-icons product-last-items">&#xE002;</i> *}
+                   
                     <div>Availability: <span style="background: #ff9a52;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
                     {else}
-                      {* <i class="material-icons product-unavailable">&#xE14B;</i> *}
+                      
                       <div>Availability: <span style="background: #ee302e;color:#f2f2f2;padding: 0.25rem 1rem;">{$product.availability_message}</span>
                       <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
                         <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
@@ -40,7 +40,32 @@
                     </div>
                   </div>
                 {/if}
-              </span>
+              </span> *}
+
+              {block name='product_availability'}
+
+                <span id="product-availability">
+{* <pre>{$combinations|print_r}</pre> *}
+                  {if $product.show_availability && $product.availability_message}
+                    {if $product.availability == 'available'}
+                      {if $product.quantity < 1}
+                        <div>Shipped within:
+                          <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
+                            <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
+                          </div>
+                          <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$product.availability_message}</span>
+                        </div>
+                      {else}
+                        <div>Availability: <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
+                      {/if}
+                    {elseif $product.availability == 'last_remaining_items'}
+                      <i class="material-icons product-last-items">&#xE002;</i>
+                    {else}
+                      <i class="material-icons product-unavailable">block</i>
+                    {/if}
+                  {/if}
+                </span>
+              {/block}
 
             {/block}
               <div>Shipped from EU</div>
