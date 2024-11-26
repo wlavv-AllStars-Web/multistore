@@ -4184,3 +4184,56 @@ body::-ms-scrollbar-thumb:hover {
 #checkout #onepagecheckout-information-errros .module_error{
   border-radius: .25rem;
 }
+
+
+/* order confirmation */
+
+#order-confirmation #main{
+  min-height: 49dvh;
+}
+
+#order-confirmation main section{
+  max-width: 1350px;
+  margin: auto !important;
+  width: 100%;
+}
+
+#order-confirmation #content-hook_order_confirmation {
+  border: 0;
+}
+
+#order-confirmation #content-hook_order_confirmation .col-md-12{
+  text-align: center;
+}
+
+#order-confirmation #content-hook_order_confirmation .card-title{
+  justify-content: center;
+}
+
+#order-confirmation .back-to-orders .btn-orders {
+  display: flex;
+  margin: 2rem auto;
+  background: #333;
+  color: #fff;
+  max-width: 300px;
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+}
+
+#order-confirmation .back-to-orders .btn-orders:hover{
+  opacity: .7;
+  cursor: pointer;
+}
+
+/* order history */
+
+#history #main {
+  min-height: 49dvh;
+}
+
+#history #content h6 {
+  font-weight: 600;
+  font-size: 1rem;
+  border-bottom: 3px solid #dedede;
+  padding-bottom: 1.25rem;
+}

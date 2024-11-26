@@ -42,7 +42,7 @@
     <div class="card-block">
       <div class="row">
 
-        {block name='order_confirmation_table'}
+        {* {block name='order_confirmation_table'}
           {include
             file='checkout/_partials/order-confirmation-table.tpl'
             products=$order.products
@@ -51,26 +51,39 @@
             labels=$order.labels
             add_product_link=false
           }
-        {/block}
+        {/block} *}
+        {* <pre>{$order->getTotals()|print_r}</pre> *}
+        {assign var="order_totals" value=$order->getTotals()}
 
         {block name='order_details'}
-          <div id="order-details" class="col-md-4">
-            <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3>
-            <ul>
-              <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
-              <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
-              {if !$order.details.is_virtual}
-                <li>
-                  {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
-                  <em>{$order.carrier.delay}</em>
-                </li>
-              {/if}
-              {if $order.details.recyclable}
-                <li>  
-                  <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
-                </li>
-              {/if}
-            </ul>
+          <div style="display: flex;flex-direction:column;gap:1rem;">
+            <div>
+              <p>Encore merci d'avoir choisi ALL STARS MOTORSPORT</p>
+              <p>Votre commande a été enrefistrée et les instructions de paiment par virement bancaire ont été envoyées à votre adress e-mail.</p>
+            </div>
+            <div id="order-details">
+              {* <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3> *}
+              <ul style="padding: 0;">
+                <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
+                <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
+                <li>{l s='A payer: %payment%' d='Shop.Theme.Checkout' sprintf=['%payment%' => $order_totals['total']['value']]}</li>
+                {* {if !$order.details.is_virtual}
+                  <li>
+                    {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
+                    <em>{$order.carrier.delay}</em>
+                  </li>
+                {/if} *}
+                {if $order.details.recyclable}
+                  <li>  
+                    <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
+                  </li>
+                {/if}
+              </ul>
+            </div>
+            <div>
+              <h4>Information importante:</h4>
+              <p>Les virements bancaires relatifs aux commandes réalisées sur notre plateforme ALL STARS MOTORSPORT doivent etre exclusivement effectués vers notre compte dont les coordonnées vous seront communiquée par mail dans les prochaines secondes.</p>
+            </div>
           </div>
         {/block}
 
@@ -78,7 +91,7 @@
     </div>
   </section>
 
-  {block name='hook_payment_return'}
+  {* {block name='hook_payment_return'}
     {if ! empty($HOOK_PAYMENT_RETURN)}
     <section id="content-hook_payment_return" class="card definition-list">
       <div class="card-block">
@@ -90,7 +103,7 @@
       </div>
     </section>
     {/if}
-  {/block}
+  {/block} *}
 
   {if !$registered_customer_exists}
     {block name='account_transformation_form'}
@@ -105,6 +118,12 @@
   {block name='hook_order_confirmation_1'}
     {hook h='displayOrderConfirmation1'}
   {/block}
+
+  {* <pre>{$urls|print_r}</pre> *}
+
+  <section class="back-to-orders">
+    <a class="btn-orders" href="{$urls.pages.history}">Voir l'historique de vos commandes</a>
+  </section>
 
   {* {block name='hook_order_confirmation_2'}
     <section id="content-hook-order-confirmation-footer">
