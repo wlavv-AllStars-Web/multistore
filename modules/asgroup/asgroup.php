@@ -137,25 +137,32 @@ class AsGroup extends Module
 
         if (is_array($productData) && isset($productData['description']['youtube_code'])){
             $youtube_code = $productData['description']['youtube_code'];
-            $youtube_code2 = $productData['description']['youtube_2'];
             $idProduct = $params['id_product'];
             // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
             Db::getInstance()->update('product', [
                 'youtube_code' => pSQL($youtube_code),
-                'youtube_2' => pSQL($youtube_code2),
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or youtube_code is not set.');
         }
 
-        if (is_array($productData) && isset($productData['description']['youtube_2']) ){
-            $youtube_code = $productData['description']['youtube_code'];
-            $youtube_code2 = $productData['description']['youtube_2'];
+        if (is_array($productData) && isset($productData['description']['youtube_code2']) ){
+            $youtube_code2 = $productData['description']['youtube_code2'];
             $idProduct = $params['id_product'];
             // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
             Db::getInstance()->update('product', [
-                'youtube_code' => pSQL($youtube_code),
                 'youtube_2' => pSQL($youtube_code2),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or youtube_2 is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['hs_code']) ){
+            $hs_code = $productData['description']['hs_code'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'nc' => pSQL($hs_code),
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or youtube_2 is not set.');
