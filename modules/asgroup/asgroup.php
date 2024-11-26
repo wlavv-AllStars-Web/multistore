@@ -35,6 +35,7 @@ use PrestaShopBundle\Controller\Admin\Sell\Order\ActionsBarButton;
 use PrestaShop\PrestaShop\Core\Grid\Filter\Filter;
 use PrestaShop\PrestaShop\Core\Form\FormInterface; // If you use forms
 use PrestaShop\PrestaShop\Core\Grid\Column\Type\ImageColumn;
+use PrestaShopBundle\Form\Admin\Type\SwitchType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AsGroup extends Module
@@ -62,6 +63,7 @@ class AsGroup extends Module
         return parent::install() &&
             // $this->registerHook(['displayHome']) &&
             $this->registerHook(['actionProductFormBuilderModifier']) &&
+            $this->registerHook(['actionManufacturerFormBuilderModifier']) &&
             $this->registerHook(['actionProductSave']) &&
             $this->registerHook('actionOrdersKpiRowModifier') &&
             $this->registerHook('actionCustomersKpiRowModifier') &&
@@ -100,17 +102,19 @@ class AsGroup extends Module
      
     // add input youtube code Product page in BO 
 
-    // public function hookActionManufacturerFormBuilderModifier(array $params): void
-    // {
-    //     /** @var ProductFormModifier $productFormModifier */
-    //     $productId = isset($params['id']) ? new ProductId((int) $params['id']) : null;
-    //     if ($productId) {
-    //         $productFormModifier = $this->get(ProductFormModifier::class);
-    //         $productFormModifier->modify($productId, $params['form_builder']);
-    //     } else {
-    //         error_log('Product ID is not set or invalid.');
-    //     }
-    // }
+        public function hookActionManufacturerFormBuilderModifier(array $params)
+        {
+            /** @var FormBuilderInterface $formBuilder */
+            $formBuilder = $params['form_builder'];
+            $formBuilder->add('is_highlighted', SwitchType::class, [
+                'label' => $this->getTranslator()->trans('Hightlight', [], 'Modules.Extramanufacturer'),
+                'required' => false,
+            ]);                        
+            
+            $params['data']['is_highlighted'] = 1;
+
+            $formBuilder->setData($params['data']);
+        }
 
     public function hookActionProductFormBuilderModifier(array $params): void
     {
@@ -131,7 +135,7 @@ class AsGroup extends Module
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
 
-        if (is_array($productData) && isset($productData['description']['youtube_code']) && isset($productData['description']['youtube_2']) ){
+        if (is_array($productData) && isset($productData['description']['youtube_code'])){
             $youtube_code = $productData['description']['youtube_code'];
             $youtube_code2 = $productData['description']['youtube_2'];
             $idProduct = $params['id_product'];
@@ -142,6 +146,19 @@ class AsGroup extends Module
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or youtube_code is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['youtube_2']) ){
+            $youtube_code = $productData['description']['youtube_code'];
+            $youtube_code2 = $productData['description']['youtube_2'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'youtube_code' => pSQL($youtube_code),
+                'youtube_2' => pSQL($youtube_code2),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or youtube_2 is not set.');
         }
 
         if (is_array($productData) && isset($productData['shipping']['dim_verify'])){
