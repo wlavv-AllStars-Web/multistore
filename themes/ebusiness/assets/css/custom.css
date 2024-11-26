@@ -4237,3 +4237,49 @@ body::-ms-scrollbar-thumb:hover {
   border-bottom: 3px solid #dedede;
   padding-bottom: 1.25rem;
 }
+
+#history table th {
+  color: #333;
+}
+#history table td a:hover{
+  color: var(--asm-color) !important;
+}
+
+#history .orders.mobile-table-orders{
+  padding-bottom: 2rem;
+}
+
+#history .orders.mobile-table-orders .order:nth-child(even){
+  background: #f6f6f6;
+}
+
+#history .orders.mobile-table-orders .order .row{
+  flex-direction: unset;
+}
+
+#history .orders.mobile-table-orders .order h3{
+  color: #333;
+}
+
+#history .orders.mobile-table-orders .order .right-side-order{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-around;
+}
+
+#history .account-link.btn-primary{
+  display: flex;
+  max-width: 300px;
+  min-width: fit-content;
+  /* width: 100%; */
+  color: #fff;
+  align-items: center;
+}
+
+.container-btns-myaccount{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: 1rem 0;
+}

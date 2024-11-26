@@ -32,26 +32,31 @@
   <h6>{l s='Here are the orders you\'ve placed since your account was created.' d='Shop.Theme.CustomerAccount'}</h6>
 
   {if $orders}
-    <table class="table table-striped table-bordered table-labeled hidden-sm-down">
+    <table class="table table-striped table-bordered table-labeled hidden-md-down">
       <thead class="thead-default">
         <tr>
-          <th>{l s='Order reference' d='Shop.Theme.Checkout'}</th>
-          <th>{l s='Date' d='Shop.Theme.Checkout'}</th>
-          <th>{l s='Total price' d='Shop.Theme.Checkout'}</th>
-          <th class="hidden-md-down">{l s='Payment' d='Shop.Theme.Checkout'}</th>
-          <th class="hidden-md-down">{l s='Status' d='Shop.Theme.Checkout'}</th>
-          <th>{l s='Invoice' d='Shop.Theme.Checkout'}</th>
-          <th>&nbsp;</th>
+          <th class="text-center">{l s='Date' d='Shop.Theme.Checkout'}</th>
+          <th class="text-center">{l s='Order reference' d='Shop.Theme.Checkout'}</th>
+          <th class="text-center">{l s='Total price' d='Shop.Theme.Checkout'}</th>
+          <th class="text-center">{l s='Status' d='Shop.Theme.Checkout'}</th>
+          {* <th class="hidden-md-down">{l s='Payment' d='Shop.Theme.Checkout'}</th> *}
+          <th class="text-center">{l s='Carrier' d='Shop.Theme.Customeraccount'}</th>
+          <th class="text-center">{l s='Tracking' d='Shop.Theme.Customeraccount'}</th>
+          <th class="text-center">{l s='Invoice' d='Shop.Theme.Checkout'}</th>
+          {* <th>&nbsp;</th> *}
         </tr>
       </thead>
       <tbody>
         {foreach from=$orders item=order}
           <tr>
-            <th scope="row">{$order.details.reference}</th>
-            <td>{$order.details.order_date}</td>
-            <td class="text-xs-right">{$order.totals.total.value}</td>
-            <td class="hidden-md-down">{$order.details.payment}</td>
-            <td>
+            <td class="text-center">{$order.details.order_date}</td>  
+            <td scope="row" class="text-center">
+              <a href="{$order.details.details_url}">
+                {$order.details.reference}
+              </a>
+            </td>
+            <td class="text-center">{$order.totals.total.value}</td>
+            <td  class="text-center">
               <span
                 class="label label-pill {$order.history.current.contrast}"
                 style="background-color:{$order.history.current.color}"
@@ -59,27 +64,51 @@
                 {$order.history.current.ostate_name}
               </span>
             </td>
-            <td class="text-xs-center hidden-md-down">
+            {* <td class="hidden-md-down">{$order.details.payment}</td> *}
+            <td  class="text-center">
+              {foreach from=$order.shipping item=line}
+                {$line.carrier_name}
+              {/foreach}
+            </td>
+            <td class="text-center" title="{l s='Tracking' d='Shop.Theme.Customeraccount'}">
+              {foreach from=$order.shipping item=line}
+                
+                <div style="display: flex;flex-direction:column;">
+                {if !empty($line.tracking_number)}
+                  <div style="color: #0273eb;display:flex;align-items:center;gap:.5rem;justify-content:center;">
+                    <i class="material-icons">local_shipping</i>  {$line.tracking}
+                  </div>
+                {else}
+                    <span style="color: #333;">
+                    {$line.tracking}
+                    </span>
+                {/if}
+                </div>
+              
+              
+              {/foreach}
+            </td>
+            <td class="text-center">
               {if $order.details.invoice_url}
                 <a href="{$order.details.invoice_url}"><i class="material-icons">&#xE415;</i></a>
               {else}
                 -
               {/if}
             </td>
-            <td class="text-xs-center order-actions">
+            {* <td class="text-xs-center order-actions">
               <a href="{$order.details.details_url}" data-link-action="view-order-details">
                 {l s='Details' d='Shop.Theme.CustomerAccount'}
               </a>
               {if $order.details.reorder_url}
                 <a href="{$order.details.reorder_url}">{l s='Reorder' d='Shop.Theme.Actions'}</a>
               {/if}
-            </td>
+            </td> *}
           </tr>
         {/foreach}
       </tbody>
     </table>
 
-    <div class="orders hidden-md-up">
+    <div class="orders hidden-lg-up mobile-table-orders">
       {foreach from=$orders item=order}
         <div class="order">
           <div class="row">
@@ -96,7 +125,7 @@
                 </span>
               </div>
             </div>
-            <div class="col-xs-2 text-xs-right">
+            <div class="col-xs-2 text-xs-right right-side-order">
                 <div>
                   <a href="{$order.details.details_url}" data-link-action="view-order-details" title="{l s='Details' d='Shop.Theme.CustomerAccount'}">
                     <i class="material-icons">&#xE8B6;</i>

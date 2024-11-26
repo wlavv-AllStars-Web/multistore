@@ -1,7 +1,7 @@
 
 
- <div id="_desktop_language_selector">
-   <div style="display-flex;" class="language-selector-wrapper">
+ <div id="_desktop_language_selector" class="hidden-md-down">
+   <div style="display-flex;" class="language-selector-wrapper ">
   {*   <span style="color: white;" id="language-selector-label" class="hidden-md-up">{l s='Language:' d='Shop.Theme.Global'}</span> *}
      <div class="language-selector dropdown js-dropdown">
        <div data-toggle="dropdown" class=" btn-unstyle lang lgh"  style="display: flex;flex-direction:row;align-items:center;gap:5px;"  aria-haspopup="true" aria-expanded="false" aria-label="{l s='Language dropdown' d='Shop.Theme.Global'}">
@@ -21,7 +21,7 @@
    </div>
  </div>
 
- <div id="_mobile_language_selector">
+ <div id="_mobile_language_selector" class="hidden-lg-up">
    <div class="language-selector-wrapper">
        <ul aria-labelledby="language-selector-label ">
          {foreach from=$languages item=language}

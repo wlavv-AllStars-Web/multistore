@@ -79,7 +79,12 @@ class AsGroup extends Module
             // $this->registerHook('displayOrderPreview') &&
             // $this->registerHook('actionGetAdminOrderButtons');
     }
-    
+
+    public function initContent()
+    {
+        parent::initContent();
+        // your own code
+    }
     /**
      * Modify product form builder
      *
@@ -89,30 +94,110 @@ class AsGroup extends Module
     public function hookActionAdminControllerSetMedia()
     {
         $this->context->controller->addCss('/modules/asgroup/views/css/kpi.css');
+        $this->context->controller->addCss('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=barcode');
         $this->context->controller->addJS('/modules/asgroup/views/js/orders.js');
     }
      
     // add input youtube code Product page in BO 
 
+    // public function hookActionManufacturerFormBuilderModifier(array $params): void
+    // {
+    //     /** @var ProductFormModifier $productFormModifier */
+    //     $productId = isset($params['id']) ? new ProductId((int) $params['id']) : null;
+    //     if ($productId) {
+    //         $productFormModifier = $this->get(ProductFormModifier::class);
+    //         $productFormModifier->modify($productId, $params['form_builder']);
+    //     } else {
+    //         error_log('Product ID is not set or invalid.');
+    //     }
+    // }
+
     public function hookActionProductFormBuilderModifier(array $params): void
     {
         /** @var ProductFormModifier $productFormModifier */
-        $productFormModifier = $this->get(ProductFormModifier::class);
         $productId = isset($params['id']) ? new ProductId((int) $params['id']) : null;
-        $productFormModifier->modify($productId, $params['form_builder']);
+        if ($productId) {
+            $productFormModifier = $this->get(ProductFormModifier::class);
+            $productFormModifier->modify($productId, $params['form_builder']);
+        } else {
+            error_log('Product ID is not set or invalid.');
+        }
     }
 
     public function hookActionProductSave(array $params): void
     {
+        // error_log('hookActionProductSave params: ' . print_r($params, true));
         // Please write your logic and operation and save the data as per your need
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
-        $youtube_code = $productData['description']['youtube_code'];
-        $idWkProduct = $params['id_product'];
-        // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
-        Db::getInstance()->update('product', [
-            'youtube_code' => pSQL($youtube_code),
-        ], 'id_product = ' . $idWkProduct);
+
+        if (is_array($productData) && isset($productData['description']['youtube_code']) && isset($productData['description']['youtube_2']) ){
+            $youtube_code = $productData['description']['youtube_code'];
+            $youtube_code2 = $productData['description']['youtube_2'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'youtube_code' => pSQL($youtube_code),
+                'youtube_2' => pSQL($youtube_code2),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or youtube_code is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['shipping']['dim_verify'])){
+            $dim_verify = $productData['shipping']['dim_verify'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'dim_verify' => pSQL($dim_verify),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or dim_verify is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['wmdeprecated'])){
+            $wmdeprecated = $productData['description']['wmdeprecated'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'wmdeprecated' => pSQL($wmdeprecated),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or wmdeprecated is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['not_to_order'])){
+            $not_to_order = $productData['description']['not_to_order'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'not_to_order' => pSQL($not_to_order),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or not_to_order is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['difficulty'])){
+            $difficulty = $productData['description']['difficulty'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'difficulty' => pSQL($difficulty),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or difficulty is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['disallow_stock'])){
+            $disallow_stock = $productData['description']['disallow_stock'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'disallow_stock' => pSQL($disallow_stock),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or disallow_stock is not set.');
+        }
     }
 
 
@@ -379,6 +464,15 @@ class AsGroup extends Module
                 $this->context->smarty->assign('idDefaultGroup', $idDefaultGroup);
             }
         }
+    }
+
+    public function ajaxProcessUpdateOrderTracking()
+    {
+        $var1 = Tools::getValue('order_id');
+
+        echo $var1;
+        exit;
+        // your action code ....
     }
 
 }
