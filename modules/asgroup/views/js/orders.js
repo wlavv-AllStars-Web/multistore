@@ -441,7 +441,7 @@ function searchTracking(tracking) {
 
     const token = document.querySelector("body.adminorders").getAttribute("data-token")
 
-    const trackingUrl = `/admineuromus1/index.php/sell/orders/?_token=a${token}&tracking=${tracking}`
+    const trackingUrl = `/admineuromus1/index.php/sell/orders/?_token=${token}&tracking=${tracking}`
 
     fetch(trackingUrl, {
             method: 'GET',
