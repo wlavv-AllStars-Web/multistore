@@ -439,7 +439,9 @@ function searchOrderByTracking(e) {
 
 function searchTracking(tracking) {
 
-    const trackingUrl = `/admineuromus1/index.php/sell/orders/?_token=aSmxHBT_IWCLDJRDudsZ58xrQlRjtORlT3asa6x8tUk&tracking=${tracking}`
+    const token = document.querySelector("body.adminorders").getAttribute("data-token")
+
+    const trackingUrl = `/admineuromus1/index.php/sell/orders/?_token=a${token}&tracking=${tracking}`
 
     fetch(trackingUrl, {
             method: 'GET',
