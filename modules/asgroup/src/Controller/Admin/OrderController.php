@@ -2,6 +2,7 @@
 
 namespace PrestaShop\Module\AsGroup\Controller\Admin;
 
+use Context;
 use PrestaShopBundle\Controller\Admin\Sell\Order\OrderController as BaseOrderController;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
@@ -98,7 +99,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Tools;
 
 class OrderController extends FrameworkBundleAdminController
 {
@@ -129,6 +130,34 @@ class OrderController extends FrameworkBundleAdminController
 
         $changeOrderStatusesForm = $this->createForm(ChangeOrdersStatusType::class);
 
+        $trackingNumber = $request->query->get('tracking');
+
+        if($trackingNumber){
+            $sql = 'SELECT * FROM ' . _DB_PREFIX_ . 'order_carrier WHERE tracking_number = "' . pSQL($trackingNumber) . '"';
+            $orderCarrier = GlobalDb::getInstance()->getRow($sql);
+
+            if ($orderCarrier) {
+                // If order carrier is found, retrieve the associated order
+                // $orderCarrier['id_order'];
+
+                // return $this->redirectToRoute('admin_orders_view', [
+                //     'orderId' => $orderCarrier['id_order']
+                // ]);
+
+                return $this->json(['response' => 
+                $this->redirectToRoute('admin_orders_view', [
+                    'orderId' => $orderCarrier['id_order']
+                ])
+                ], 200);
+        
+            } else {
+                $this->addFlash('error', 'No order found for this tracking number.');
+                return $this->json(['error' => 'No order found for this tracking number'], 404);
+            }
+        }
+        // echo $trackingNumber;
+        // exit;
+    
         return $this->render(
             '@PrestaShop/Admin/Sell/Order/Order/index.html.twig',
             [
@@ -408,6 +437,7 @@ class OrderController extends FrameworkBundleAdminController
             return $this->redirectToRoute('admin_orders_index');
         }
 
+
         $formFactory = $this->get('form.factory');
         $updateOrderStatusForm = $formFactory->createNamed(
             'update_order_status',
@@ -499,7 +529,7 @@ class OrderController extends FrameworkBundleAdminController
             return $this->redirectToRoute('admin_orders_index');
         }
 
-        $this->handleOutOfStockProduct($orderForViewing);
+        // $this->handleOutOfStockProduct($orderForViewing);
 
         $merchandiseReturnEnabled = (bool) $this->configuration->get('PS_ORDER_RETURN');
 
@@ -550,11 +580,114 @@ class OrderController extends FrameworkBundleAdminController
             $reference_combination = GlobalDb::getInstance()->getValue($sqlCombination);
 
             $orderProductForViewing->reference_combination = $reference_combination ? (string)$reference_combination : '';
-            // echo '<pre>'.print_r($orderProductForViewing,1).'</pre>';
+
+            $sqlCombinationLang = 'SELECT agl.name AS attr_group, al.name AS attr_name
+            FROM ' . _DB_PREFIX_ . 'product_attribute_combination AS pac
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute AS a
+            ON pac.id_attribute = a.id_attribute
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_group_lang AS agl
+            ON a.id_attribute_group = agl.id_attribute_group
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_lang AS al
+            ON a.id_attribute = al.id_attribute
+            WHERE pac.id_product_attribute =' . $orderCombinationid . ' 
+            AND agl.id_lang = 2 
+            AND al.id_lang = 2';
+
+            $variations_product = GlobalDb::getInstance()->executeS($sqlCombinationLang);
+            // echo '<pre>'.print_r($variations_product,1).'</pre>';
             // exit;
+            $orderProductForViewing->variations_product = $variations_product;
         }
-        // echo '<pre>'.print_r($orderForViewing,1).'</pre>';
-        // exit;
+
+        // Get the shipping budget value
+        $sql = 'SELECT shipping_budget 
+        FROM ' . _DB_PREFIX_ . 'order_carrier 
+        WHERE id_order = ' . (int)$orderId;
+
+        
+        $shipping_budget = GlobalDb::getInstance()->getValue($sql);
+
+        $orderForViewing->shipping_budget = $shipping_budget ? (float)$shipping_budget : '';
+
+        // get selected carrier shipping
+        $sqlSelectedCarrier = 'SELECT id_carrier AS selected_carrier 
+        FROM ' . _DB_PREFIX_ . 'order_carrier 
+        WHERE id_order = ' . (int)$orderId;
+
+        
+        $selectedCarrier = GlobalDb::getInstance()->getValue($sqlSelectedCarrier);
+
+        $orderForViewing->selectedCarrier = $selectedCarrier;
+
+        // select lines shipping
+
+        $sqlLinesShipping = 'SELECT *
+        FROM '. _DB_PREFIX_.'order_carrier
+        WHERE id_order = ' . (int)$orderId.'
+        ORDER BY date_add DESC';
+
+
+
+        $lines_shipping = GlobalDb::getInstance()->executeS($sqlLinesShipping);
+
+        // pre($lines_shipping);
+
+        $orderForViewing->lines_shipping = $lines_shipping;
+
+
+        // $shopContext = new \PrestaShop\PrestaShop\Adapter\Shop\Context();
+        // $id_shop = (int)$shopContext->getContextShopID(); 
+        // // echo (int)$shopContext->getContextShopID(); 
+
+        // if($id_shop != $orderForViewing->getShopId()){
+        //     $id_shop = $shopContext->setShopContext($orderForViewing->getShopId());
+
+        //     // echo (int)$shopContext->getContextShopID(); 
+        //     // echo '<pre>'.print_r($orderForViewing->getShopId(),1).'</pre>';
+            
+        //     $orderViewUrl = $this->generateUrl('admin_orders_view', [
+        //         'orderId' => $orderId,
+        //     ]);
+
+        //     $orderViewUrl .= '&setShopContext=s-' . $orderForViewing->getShopId();
+        //     // echo $orderViewUrl;
+        //     // exit;
+        //     // return $this->redirectToRoute('admin_orders_view', [
+        //     // 'orderId' => $orderId,
+        //     // ]);
+        //     return $this->render('@PrestaShop/Admin/Sell/Order/Order/view.html.twig', [
+        //         'showContentHeader' => true,
+        //         'enableSidebar' => true,
+        //         'orderCurrency' => $orderCurrency,
+        //         'meta_title' => $metatitle,
+        //         'help_link' => $this->generateSidebarLink($request->attributes->get('_legacy_controller')),
+        //         'orderForViewing' => $orderForViewing,
+        //         'addOrderCartRuleForm' => $addOrderCartRuleForm->createView(),
+        //         'updateOrderStatusForm' => $updateOrderStatusForm->createView(),
+        //         'updateOrderStatusActionBarForm' => $updateOrderStatusActionBarForm->createView(),
+        //         'addOrderPaymentForm' => $addOrderPaymentForm->createView(),
+        //         'changeOrderCurrencyForm' => $changeOrderCurrencyForm->createView(),
+        //         'privateNoteForm' => $privateNoteForm ? $privateNoteForm->createView() : null,
+        //         'updateOrderShippingForm' => $updateOrderShippingForm->createView(),
+        //         'cancelProductForm' => $cancelProductForm->createView(),
+        //         'invoiceManagementIsEnabled' => $orderForViewing->isInvoiceManagementIsEnabled(),
+        //         'changeOrderAddressForm' => $changeOrderAddressForm ? $changeOrderAddressForm->createView() : null,
+        //         'orderMessageForm' => $orderMessageForm->createView(),
+        //         'addProductRowForm' => $addProductRowForm->createView(),
+        //         'editProductRowForm' => $editProductRowForm->createView(),
+        //         'backOfficeOrderButtons' => $backOfficeOrderButtons,
+        //         'merchandiseReturnEnabled' => $merchandiseReturnEnabled,
+        //         'priceSpecification' => $this->getContextLocale()->getPriceSpecification($orderCurrency->iso_code)->toArray(),
+        //         'previousOrderId' => $orderSiblingProvider->getPreviousOrderId($orderId),
+        //         'nextOrderId' => $orderSiblingProvider->getNextOrderId($orderId),
+        //         'paginationNum' => $paginationNum,
+        //         'paginationNumOptions' => $paginationNumOptions,
+        //         'isAvailableQuantityDisplayed' => $this->configuration->getBoolean('PS_STOCK_MANAGEMENT'),
+        //         'internalNoteForm' => $internalNoteForm->createView(),
+        //         'url_redirect' => $orderViewUrl,
+        //     ]);
+            
+        // }
    
 
         return $this->render('@PrestaShop/Admin/Sell/Order/Order/view.html.twig', [
@@ -586,6 +719,7 @@ class OrderController extends FrameworkBundleAdminController
             'paginationNumOptions' => $paginationNumOptions,
             'isAvailableQuantityDisplayed' => $this->configuration->getBoolean('PS_STOCK_MANAGEMENT'),
             'internalNoteForm' => $internalNoteForm->createView(),
+            'url_redirect' => null,
         ]);
     }
 
@@ -604,6 +738,8 @@ class OrderController extends FrameworkBundleAdminController
      */
     public function partialRefundAction(int $orderId, Request $request)
     {
+        // echo 'partial refund paulo';
+        // exit;
         $formBuilder = $this->get('prestashop.core.form.identifiable_object.builder.cancel_product_form_builder');
         $formHandler = $this->get('prestashop.core.form.identifiable_object.partial_refund_form_handler');
         $form = $formBuilder->getFormFor($orderId);
@@ -730,10 +866,19 @@ class OrderController extends FrameworkBundleAdminController
         /** @var OrderForViewing $orderForViewing */
         $orderForViewing = $this->getQueryBus()->handle(new GetOrderForViewing($orderId, QuerySorting::DESC));
 
+        $ccFeeExists = false;
+        
         $previousProducts = [];
         foreach ($orderForViewing->getProducts()->getProducts() as $orderProductForViewing) {
+            if ($orderProductForViewing->getId() === 18104) {
+                $ccFeeExists = true;
+                break;
+            }
             $previousProducts[$orderProductForViewing->getOrderDetailId()] = $orderProductForViewing;
         }
+
+        // pre($previousProducts);
+        // pre((int) $request->get('invoice_id'));
 
         $invoiceId = (int) $request->get('invoice_id');
         try {
@@ -770,6 +915,30 @@ class OrderController extends FrameworkBundleAdminController
             );
         }
 
+        if( $this->getContext()->shop->id == 3 ){
+            $price_tax_incl = $request->get('price_tax_incl');
+            $price_tax_excl = $request->get('price_tax_excl');
+            $reference  = \Db::getInstance()->getValue("SELECT reference FROM ps_product WHERE id_product=" . $request->get('product_id'));
+            $payment_id = \Db::getInstance()->getValue("SELECT payment_id FROM ps_orders WHERE id_order=" . $orderId);
+
+            if( ( $payment_id == 2 ) && ( str_contains($reference, 'SHIPPING-') && !$ccFeeExists) ){
+                /** ADD FEE **/
+                $sql = "SELECT sum(total_price_tax_incl) AS total_price_tax_incl,  sum(total_price_tax_excl) AS total_price_tax_excl FROM ps_order_detail WHERE id_order=" . $orderId . " AND product_id<>18104";
+                $order_value = (object)\Db::getInstance()->getRow($sql);
+                $price_tax_incl = round($order_value->total_price_tax_incl*0.01, 2);
+                $price_tax_excl = round($order_value->total_price_tax_excl*0.01, 2);
+                $addProductCommand = AddProductToOrderCommand::withNewInvoice(
+                    $orderId,
+                    18104,
+                    0,
+                    $price_tax_incl,
+                    $price_tax_excl,
+                    1
+                );
+                $this->getCommandBus()->handle($addProductCommand);
+            }
+        }
+
         /**
          * Returning the products list view is not required since we reload the whole list
          * We keep it for now to avoid Breaking Change
@@ -779,12 +948,51 @@ class OrderController extends FrameworkBundleAdminController
 
         $updatedProducts = [];
         foreach ($orderForViewing->getProducts()->getProducts() as $orderProductForViewing) {
-            echo '<pre>'.print_r($orderProductForViewing,1).'</pre>';
-            exit;
+
+            $orderDetailId = $orderProductForViewing->getOrderDetailId();
+
+            $sql = 'SELECT product_quantity_sent 
+            FROM ' . _DB_PREFIX_ . 'order_detail 
+            WHERE id_order_detail = ' . (int)$orderDetailId;
+
+            $qtySent = GlobalDb::getInstance()->getValue($sql);
+
+            $orderProductForViewing->qty_sent = $qtySent ? (int)$qtySent : 0;
+            
+
+            $orderCombinationid = $orderProductForViewing->getCombinationId();
+
+            $sqlCombination = 'SELECT reference 
+            FROM ' . _DB_PREFIX_ . 'product_attribute 
+            WHERE id_product_attribute = ' . (string)$orderCombinationid;
+
+            $reference_combination = GlobalDb::getInstance()->getValue($sqlCombination);
+
+            $orderProductForViewing->reference_combination = $reference_combination ? (string)$reference_combination : '';
+
+            $sqlCombinationLang = 'SELECT agl.name AS attr_group, al.name AS attr_name
+            FROM ' . _DB_PREFIX_ . 'product_attribute_combination AS pac
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute AS a
+            ON pac.id_attribute = a.id_attribute
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_group_lang AS agl
+            ON a.id_attribute_group = agl.id_attribute_group
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_lang AS al
+            ON a.id_attribute = al.id_attribute
+            WHERE pac.id_product_attribute =' . $orderCombinationid . ' 
+            AND agl.id_lang = 2 
+            AND al.id_lang = 2';
+
+            $variations_product = GlobalDb::getInstance()->executeS($sqlCombinationLang);
+            // echo '<pre>'.print_r($variations_product,1).'</pre>';
+            // exit;
+            $orderProductForViewing->variations_product = $variations_product;
+
             $updatedProducts[$orderProductForViewing->getOrderDetailId()] = $orderProductForViewing;
         }
 
         $newProducts = array_diff_key($updatedProducts, $previousProducts);
+        // echo '<pre>'.print_r($newProducts,1).'</pre>';
+        // exit;
 
         $formBuilder = $this->get('prestashop.core.form.identifiable_object.builder.cancel_product_form_builder');
         $cancelProductForm = $formBuilder->getFormFor($orderId);
@@ -794,6 +1002,13 @@ class OrderController extends FrameworkBundleAdminController
 
         $addedGridRows = '';
         foreach ($newProducts as $newProduct) {
+
+            // asgroup
+
+            // echo '<pre>'.print_r($newProduct,1).'</pre>';
+            // exit;
+            // fim
+
             $addedGridRows .= $this->renderView('@PrestaShop/Admin/Sell/Order/Order/Blocks/View/product.html.twig', [
             // $addedGridRows .= $this->renderView('@Modules/AsGroup/Views/PrestaShop/Admin/Sell/Order/Order/Blocks/View/product.html.twig', [
                 'orderForViewing' => $orderForViewing,
@@ -889,17 +1104,26 @@ class OrderController extends FrameworkBundleAdminController
      * @param int $orderId
      */
     public function getShippingAction(int $orderId)
-    {
-        /** @var OrderForViewing $orderForViewing */
-        $orderForViewing = $this->getQueryBus()->handle(new GetOrderForViewing($orderId));
+{
+    /** @var OrderForViewing $orderForViewing */
+    $orderForViewing = $this->getQueryBus()->handle(new GetOrderForViewing($orderId));
 
-        return $this->json([
-            'total' => count($orderForViewing->getShipping()->getCarriers()),
-            'html' => $this->render('@PrestaShop/Admin/Sell/Order/Order/Blocks/View/shipping.html.twig', [
-                'orderForViewing' => $orderForViewing,
-            ])->getContent(),
-        ]);
-    }
+    $sql = 'SELECT shipping_budget 
+    FROM ' . _DB_PREFIX_ . 'order_carrier 
+    WHERE id_order = ' . (int)$orderId;
+
+    // Get the shipping budget value
+    $shipping_budget = GlobalDb::getInstance()->getValue($sql);
+
+    $orderForViewing->shipping_budget = $shipping_budget;
+
+    return $this->json([
+        'total' => count($orderForViewing->getShipping()->getCarriers()),
+        'html' => $this->render('@PrestaShop/Admin/Sell/Order/Order/Blocks/View/shipping.html.twig', [
+            'orderForViewing' => $orderForViewing,
+        ])->getContent(),
+    ]);
+}
 
     /**
      * @AdminSecurity(
@@ -916,13 +1140,57 @@ class OrderController extends FrameworkBundleAdminController
      */
     public function updateShippingAction(int $orderId, Request $request): RedirectResponse
     {
+        // echo Tools::getValue('update_order_shipping[shipping_cost]');
+        $shipping_budget = $_POST['update_order_shipping']['shipping_cost'];
+        $shipping_weight = $_POST['update_order_shipping']['shipping_weight'];
+        $shipping_carrier = $_POST['update_order_shipping']['new_carrier_id'];
+        $shipping_tracking = $_POST['update_order_shipping']['tracking_number'];
+        $current_order_carrier_id = $_POST['update_order_shipping']['current_order_carrier_id'];
+        // echo '<pre>'.print_r($_POST['update_order_shipping'],1).'</pre>';
+        // exit;
+        if($shipping_budget){
+            $sqlbudget = 'UPDATE ps_order_carrier
+            SET shipping_budget ='.$shipping_budget.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqlbudget);
+        }
+
+        if($shipping_weight){
+            $sqlweight = 'UPDATE ps_order_carrier
+            SET weight ='.$shipping_weight.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqlweight);
+        }
+
+        if($shipping_carrier){
+            $sqlcarrier = 'UPDATE ps_order_carrier
+            SET id_carrier ='.$shipping_carrier.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqlcarrier);
+        }
+
+        if($shipping_tracking){
+            $sqltracking = 'UPDATE ps_order_carrier
+            SET tracking_number ='.$shipping_tracking.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqltracking);
+        }
+
+        
         $form = $this->createForm(UpdateOrderShippingType::class, [], [
             'order_id' => $orderId,
         ]);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+
+
 
             try {
                 $this->getCommandBus()->handle(
@@ -933,6 +1201,8 @@ class OrderController extends FrameworkBundleAdminController
                         $data['tracking_number']
                     )
                 );
+
+
 
                 $this->addFlash('success', $this->trans('Successful update', 'Admin.Notifications.Success'));
             } catch (TransistEmailSendingException $e) {
@@ -1024,6 +1294,8 @@ class OrderController extends FrameworkBundleAdminController
      */
     public function updateProductAction(int $orderId, int $orderDetailId, Request $request): Response
     {
+        // echo 'aqui';
+        // exit;
         try {
             $this->getCommandBus()->handle(
                 new UpdateProductInOrderCommand(
@@ -1051,6 +1323,48 @@ class OrderController extends FrameworkBundleAdminController
         //     // You can replace this with the actual logic to retrieve qty_sent
         //     $product['qty_sent'] = $this->getQtySentForProduct($product->getOrderDetailId());
         // }
+        foreach ($products as &$product) {
+
+            $orderDetailId = $product->getOrderDetailId();
+
+            $sql = 'SELECT product_quantity_sent 
+            FROM ' . _DB_PREFIX_ . 'order_detail 
+            WHERE id_order_detail = ' . (int)$orderDetailId;
+
+            $qtySent = GlobalDb::getInstance()->getValue($sql);
+
+            $product->qty_sent = $qtySent ? (int)$qtySent : 0;
+            
+
+            $orderCombinationid = $product->getCombinationId();
+
+            $sqlCombination = 'SELECT reference 
+            FROM ' . _DB_PREFIX_ . 'product_attribute 
+            WHERE id_product_attribute = ' . (string)$orderCombinationid;
+
+            $reference_combination = GlobalDb::getInstance()->getValue($sqlCombination);
+
+            $product->reference_combination = $reference_combination ? (string)$reference_combination : '';
+
+            $sqlCombinationLang = 'SELECT agl.name AS attr_group, al.name AS attr_name
+            FROM ' . _DB_PREFIX_ . 'product_attribute_combination AS pac
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute AS a
+            ON pac.id_attribute = a.id_attribute
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_group_lang AS agl
+            ON a.id_attribute_group = agl.id_attribute_group
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_lang AS al
+            ON a.id_attribute = al.id_attribute
+            WHERE pac.id_product_attribute =' . $orderCombinationid . ' 
+            AND agl.id_lang = 2 
+            AND al.id_lang = 2';
+
+            $variations_product = GlobalDb::getInstance()->executeS($sqlCombinationLang);
+            // echo '<pre>'.print_r($variations_product,1).'</pre>';
+            // exit;
+            $product->variations_product = $variations_product;
+
+        }
+
 
         $product = array_reduce($products, function ($result, OrderProductForViewing $item) use ($orderDetailId) {
             return $item->getOrderDetailId() == $orderDetailId ? $item : $result;
@@ -1509,6 +1823,8 @@ class OrderController extends FrameworkBundleAdminController
      */
     public function deleteProductAction(int $orderId, int $orderDetailId): JsonResponse
     {
+        // echo 'delete function';
+        // exit;
         try {
             $this->getCommandBus()->handle(
                 new DeleteProductFromOrderCommand($orderId, $orderDetailId)
@@ -1618,16 +1934,64 @@ class OrderController extends FrameworkBundleAdminController
         $isColumnLocationDisplayed = false;
         $isColumnRefundedDisplayed = false;
 
+
         foreach (array_slice($orderForViewing->getProducts()->getProducts(), $paginationNum) as $product) {
+
             if (!empty($product->getLocation())) {
                 $isColumnLocationDisplayed = true;
             }
             if ($product->getQuantityRefunded() > 0) {
                 $isColumnRefundedDisplayed = true;
             }
+
         }
 
-        echo '<pre>'.print_r($orderForViewing,1).'</pre>';
+        foreach ($orderForViewing->getProducts()->getProducts() as $product) {
+
+            $orderDetailId = $product->getOrderDetailId();
+
+            $sql = 'SELECT product_quantity_sent 
+            FROM ' . _DB_PREFIX_ . 'order_detail 
+            WHERE id_order_detail = ' . (int)$orderDetailId;
+
+            $qtySent = GlobalDb::getInstance()->getValue($sql);
+
+            $product->qty_sent = $qtySent ? (int)$qtySent : 0;
+            
+
+            $orderCombinationid = $product->getCombinationId();
+
+            $sqlCombination = 'SELECT reference 
+            FROM ' . _DB_PREFIX_ . 'product_attribute 
+            WHERE id_product_attribute = ' . (string)$orderCombinationid;
+
+            $reference_combination = GlobalDb::getInstance()->getValue($sqlCombination);
+
+            $product->reference_combination = $reference_combination ? (string)$reference_combination : '';
+
+            $sqlCombinationLang = 'SELECT agl.name AS attr_group, al.name AS attr_name
+            FROM ' . _DB_PREFIX_ . 'product_attribute_combination AS pac
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute AS a
+            ON pac.id_attribute = a.id_attribute
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_group_lang AS agl
+            ON a.id_attribute_group = agl.id_attribute_group
+            LEFT JOIN '. _DB_PREFIX_ . 'attribute_lang AS al
+            ON a.id_attribute = al.id_attribute
+            WHERE pac.id_product_attribute =' . $orderCombinationid . ' 
+            AND agl.id_lang = 2 
+            AND al.id_lang = 2';
+
+            $variations_product = GlobalDb::getInstance()->executeS($sqlCombinationLang);
+            // echo '<pre>'.print_r($variations_product,1).'</pre>';
+            // exit;
+            $product->variations_product = $variations_product;
+
+
+            // echo '<pre>'.print_r($orderForViewing->getProducts()->getProducts(),1).'</pre>';
+            // exit;
+        }
+        
+        // echo '<pre>'.print_r($orderForViewing->getProducts()->getProducts(),1).'</pre>';
         // exit;
 
         return $this->render('@PrestaShop/Admin/Sell/Order/Order/Blocks/View/product_list.html.twig', [
@@ -1635,6 +1999,7 @@ class OrderController extends FrameworkBundleAdminController
             'cancelProductForm' => $cancelProductForm->createView(),
             'orderCurrency' => $orderCurrency,
             'paginationNum' => $paginationNum,
+            // 'productsData' => $productsData,
             'isColumnLocationDisplayed' => $isColumnLocationDisplayed,
             'isColumnRefundedDisplayed' => $isColumnRefundedDisplayed,
             'isAvailableQuantityDisplayed' => $this->configuration->getBoolean('PS_STOCK_MANAGEMENT'),
@@ -2147,4 +2512,60 @@ class OrderController extends FrameworkBundleAdminController
             ],
         ];
     }
+
+    public function addNewLineCarrierAction(int $orderId) {
+
+        $existingCarrier = GlobalDb::getInstance()->getRow('SELECT * FROM ' . _DB_PREFIX_ . 'order_carrier WHERE id_order = ' . (int) $orderId);
+
+        
+
+        // Define the new carrier data based on existing carrier or new values
+        $newCarrierData = [
+            'id_order' => (int) $orderId,
+            'id_carrier' => $existingCarrier ? (int) $existingCarrier['id_carrier'] : 1,  // Example: reusing carrier id
+            'id_order_invoice' => $existingCarrier ? (int) $existingCarrier['id_order_invoice'] : 0,  // Adjust if necessary
+            'weight' => null,  // Example weight, or calculate as needed
+            'shipping_cost_tax_excl' => null,  // Example cost
+            'shipping_cost_tax_incl' => null,  // Example cost with tax
+            'tracking_number' => '',  // Example tracking code
+            'date_add' => date('Y-m-d H:i:s'),
+            'shipping_budget' => null,
+        ];
+
+        // echo '<pre>'.print_r($newCarrierData,1).'</pre>';
+        // exit;
+
+        // Insert the new record into the order_carrier table
+        $inserted = GlobalDb::getInstance()->insert('order_carrier', $newCarrierData);
+
+        // Check if insertion was successful and return feedback
+        if ($inserted) {
+            $redirectUrl = $this->generateUrl('admin_orders_view', ['orderId' => $orderId]);
+            return new RedirectResponse($redirectUrl);
+        } else {
+            echo 'Failed to add new carrier line for Order ID: ' . $orderId;
+        }
+
+    }
+
+    public function deleteLineCarrierAction(int $orderId, Request $request) {
+        $data = json_decode($request->getContent(), true);
+
+        $orderIdCarrier = $data['orderIdCarrier'] ?? null;
+
+        if (!$orderIdCarrier) {
+            return new JsonResponse(['error' => 'Missing orderIdCarrier'], 400);
+        }
+
+        $sqlDeleteLine = 'DELETE FROM ps_order_carrier WHERE id_order_carrier ='.$orderIdCarrier;
+
+        $deletedLine = GlobalDb::getInstance()->execute($sqlDeleteLine);
+
+        if ($deletedLine) {
+            return new JsonResponse(['success' => true, 'message' => 'Carrier line deleted successfully']);
+        } else {
+            return new JsonResponse(['error' => 'Failed to delete carrier line'], 500);
+        }
+    }
+
 }

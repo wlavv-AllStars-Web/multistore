@@ -62,6 +62,24 @@
     gap: 0.5rem;
 }
 
+.tracking_input{
+    position: relative;
+    height: fit-content;
+}
+
+.tracking_not_found{
+    display: none;
+    color: red;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+}
+.tracking_not_found.showTrackingAlert{
+    display: block;
+    color: red;
+}
+
 
 
 /* order detail page */
