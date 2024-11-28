@@ -26,7 +26,7 @@ use PrestaShop\PrestaShop\Core\Grid\Query\OrderQueryBuilder;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
-
+use PrestaShop\PrestaShop\Core\Domain\Manufacturer\ValueObject\ManufacturerId;
 use PrestaShop\PrestaShop\Core\Grid\Action\GridActionCollection;
 use PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinition;
 
@@ -65,6 +65,8 @@ class AsGroup extends Module
             $this->registerHook(['actionProductFormBuilderModifier']) &&
             $this->registerHook(['actionManufacturerFormBuilderModifier']) &&
             $this->registerHook(['actionProductSave']) &&
+            // $this->registerHook(['actionManufacturerSave']) &&
+            $this->registerHook('actionObjectManufacturerUpdateAfter') &&
             $this->registerHook('actionOrdersKpiRowModifier') &&
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
@@ -102,19 +104,97 @@ class AsGroup extends Module
      
     // add input youtube code Product page in BO 
 
-        public function hookActionManufacturerFormBuilderModifier(array $params)
-        {
-            /** @var FormBuilderInterface $formBuilder */
-            $formBuilder = $params['form_builder'];
-            $formBuilder->add('is_highlighted', SwitchType::class, [
-                'label' => $this->getTranslator()->trans('Hightlight', [], 'Modules.Extramanufacturer'),
-                'required' => false,
-            ]);                        
-            
-            $params['data']['is_highlighted'] = 1;
+    public function hookActionManufacturerFormBuilderModifier(array $params)
+    {
+        $manufacturerId = isset($params['id']) ? (int) $params['id'] : null;
 
-            $formBuilder->setData($params['data']);
+        if ($manufacturerId) {
+            $sql = 'SELECT youtube
+                    FROM `' . _DB_PREFIX_ . 'manufacturer`
+                    WHERE id_manufacturer = ' . (int) $manufacturerId;
+            $youtubeValue = Db::getInstance()->getValue($sql); 
         }
+
+
+        /** @var FormBuilderInterface $formBuilder */
+        $formBuilder = $params['form_builder'];
+        $formBuilder->add(
+            'youtube', 
+            TextType::class,
+            [
+                // you can remove the label if you dont need it by passing 'label' => false
+                'label' => $this->trans('Youtube Code', [], 'Modules.ASGroup.Admin'),
+                'required' => false,
+                'data' => $youtubeValue,
+            ]
+        );
+
+        
+
+        // $manufacturerData = Tools::getValue('manufacturer');
+
+        
+        // if ($manufacturerData) {
+
+
+        //     if (isset($manufacturerData['youtube'])){
+
+        //         $youtube_code = $manufacturerData['youtube'];
+
+        //         $result = Db::getInstance()->update(
+        //             'manufacturer', 
+        //             ['youtube' => pSQL($youtube_code)], 
+        //             'id_manufacturer = ' . (int) $manufacturerId
+        //         );
+                
+        //         if (!$result) {
+        //             error_log('Update Error: ' . Db::getInstance()->getMsgError());
+        //         } else {
+        //             error_log('Manufacturer updated successfully.');
+        //         }
+
+        //     }else{
+        //         error_log('Product data is not valid or youtube_code is not set.');
+        //     }
+        // }
+
+    }
+
+    public function hookActionObjectManufacturerUpdateAfter(array $params)
+    {
+        $manufacturer = $params['object'];
+        // Get the manufacturer object that was updated
+        $manufacturerId = $manufacturer->id;
+        
+        // Get the YouTube code from the form submission
+        $manufacturerData = Tools::getValue('manufacturer');
+        $youtube_code = $manufacturerData['youtube']; 
+
+        // echo '<pre>'.print_r($manufacturerData,true).'</pre>';
+        // echo $manufacturer->id;
+        // echo $youtube_code;
+        // exit;
+        // If the YouTube code is set, update it in the database
+        if ($youtube_code) {
+            // Sanitize and update the manufacturer YouTube field
+            $sql = 'UPDATE `' . _DB_PREFIX_ . 'manufacturer`
+                    SET youtube = "' . pSQL($youtube_code) . '"
+                    WHERE id_manufacturer = ' . (int) $manufacturerId;
+            
+            // Execute the query
+            $result = Db::getInstance()->execute($sql);
+    
+            if (!$result) {
+                error_log('Failed to update YouTube code for manufacturer ID: ' . $manufacturerId);
+            } else {
+                error_log('YouTube code updated successfully for manufacturer ID: ' . $manufacturerId);
+            }
+        } else {
+            error_log('YouTube code is not set for manufacturer ID: ' . $manufacturerId);
+        }
+    }
+    
+
 
     public function hookActionProductFormBuilderModifier(array $params): void
     {

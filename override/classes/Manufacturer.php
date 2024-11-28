@@ -86,6 +86,7 @@ class ManufacturerCore extends ObjectModel
     public $info_updated;
     public $youtube;
 
+
     public $warranty;
 
     /**
@@ -100,6 +101,7 @@ class ManufacturerCore extends ObjectModel
             'active' => ['type' => self::TYPE_BOOL],
             'date_add' => ['type' => self::TYPE_DATE],
             'date_upd' => ['type' => self::TYPE_DATE],
+
             
 
             /* Lang fields */
@@ -121,14 +123,14 @@ class ManufacturerCore extends ObjectModel
             'logos' => ['type' => self::TYPE_INT],
             'logos_update' => ['type' => self::TYPE_DATE],
             'facebook' => ['type' => self::TYPE_INT],
-            'facebook_url' => ['type' => self::TYPE_STRING], 'size' => 75,
+            'facebook_url' => ['type' => self::TYPE_STRING, 'size' => 75],
             'facebook_update' => ['type' => self::TYPE_DATE],
             'site' => ['type' => self::TYPE_INT],
-            'site_url' => ['type' => self::TYPE_STRING], 'size' => 75,
+            'site_url' => ['type' => self::TYPE_STRING, 'size' => 75],
             'site_update' => ['type' => self::TYPE_DATE],
             'info' => ['type' => self::TYPE_INT],
             'info_updated' => ['type' => self::TYPE_DATE],
-            'youtube' => ['type' => self::TYPE_STRING], 'size' => 15,
+            'youtube' => ['type' => self::TYPE_STRING, 'size' => 15],
         ],
     ];
 
