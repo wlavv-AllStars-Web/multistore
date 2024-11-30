@@ -3864,6 +3864,10 @@ body #main {
   min-height: 54dvh;
 }
 
+#pagenotfound #wrapper #main{
+  padding: 1rem;
+}
+
 #products .page-not-found,
 #pagenotfound .page-not-found {
   /* box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.3) !important; */
