@@ -4001,6 +4001,42 @@ body::-ms-scrollbar-thumb:hover {
   width: 100%;
 }
 
+.wheels-btn:hover{
+  opacity: .8;
+  cursor: pointer;
+}
+
+.wheels-search-container{
+  flex-direction: column;
+  align-items: start;
+  text-align: start;
+  padding: 1rem;
+}
+
+.wheels-search-container-item{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: start;
+  padding: 1rem;
+}
+
+
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
 .page-product-notfound {
   min-height: 49dvh;
   display: flex;
