@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>checkvat</name>
+	<displayName><![CDATA[Check VAT]]></displayName>
+	<version><![CDATA[1.6]]></version>
+	<description><![CDATA[Adds an addon to check VAT]]></description>
+	<author><![CDATA[www.coeos.pro]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to remove your module &quot;controller VAT&quot; ?]]></confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>
