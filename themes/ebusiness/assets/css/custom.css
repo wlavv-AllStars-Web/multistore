@@ -1534,6 +1534,18 @@ body {
   opacity: .6;
 }
 
+.page-addresses #main{
+  padding: 1rem;
+}
+.page-addresses .page-content{
+  padding: 1rem;
+  border: 0;
+}
+.page-addresses .address .address-footer{
+  display: flex;
+  justify-content: end;
+}
+
 
 /* linkblok.tpl */
 
@@ -3758,10 +3770,10 @@ body #main {
 }
 
 #my-cars .page-footer a {
-  color: #333;
+  color: #fff;
 }
 #my-cars .page-footer a:hover {
-  color: var(--asm-color);
+  color: #fff;
 }
 
 #your_garage_container {

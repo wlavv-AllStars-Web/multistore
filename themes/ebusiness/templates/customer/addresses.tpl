@@ -29,13 +29,15 @@
 {/block}
 
 {block name='page_content'}
+  <div class="container-customer-addresses">
   {foreach $customer.addresses as $address}
-    <div class="col-lg-12 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-6 col-sm-6">
     {block name='customer_address'}
       {include file='customer/_partials/block-address.tpl' address=$address}
     {/block}
     </div>
   {/foreach}
+  </div>
   <div class="clearfix"></div>
   <div class="addresses-footer">
     <a href="{$urls.pages.address}" data-link-action="add-address">

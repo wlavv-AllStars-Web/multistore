@@ -111,7 +111,7 @@
         </span>
       </a> *}
 
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-flex">
+      {* <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-flex">
       
         <div class="tvaNumber" style="display: flex;flex-direction: column;margin-bottom: 1.875rem !important;justify-content: center;padding:0 1rem;
         align-items: center;
@@ -122,10 +122,11 @@
             <div class="input-group-append">
               <button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
             </div>
+            <input type="hidden" name="action" value="check_vat" >
           </form>
           <small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
         </div>
-      </div>
+      </div> *}
       
 
       {block name='display_customer_account'}
@@ -159,35 +160,6 @@
 
   {$HOOK_CUSTOMER_IDENTITY_FORM}
 
-  <script>
-    $('input[name="vat_number"]').next('input').prop('disabled', true);
 
-    $('input[name="vat_number"]').focusout(function(){
-        
-    $.ajax({
-            type: "POST",
-            dataType: 'text',
-            headers: { "cache-control": "no-cache" },
-            url: "/index.php?controller=addresses",
-            data: {
-                'action' : 'check_vat',
-                'vatnumber' : $('input[name="vat_number"]').val()
-            },
-            success: function(msg){
-                
-              if(msg == 1){
-                  $('input[name="vat_number"]').css('border-color', 'black'); 
-                  $('input[name="vat_number"]').next('input').prop('disabled', false);
-              }else{
-                  $('input[name="vat_number"]').css('border-color', 'red'); 
-                  alert("Inserted VAT Number is invalid for your country, please verify!");
-                  $('input[name="vat_number"]').next('input').prop('disabled', true);   
-                  $('input[name="vat_number"]').value = "";   
-                  $('input[name="vat_number"]').attr('value', '');  
-              }
-            }
-          });
-    });
-  </script>
 
 {* {/if} *}
