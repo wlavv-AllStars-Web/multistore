@@ -3754,10 +3754,15 @@ body #main {
 
 #my-cars main #wrapper .container {
   max-width: unset !important;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
+
 #my-cars #content {
   border: 0;
+}
+
+#my-cars #main {
+  padding: 1rem;
 }
 
 #my-cars .car_container {
@@ -3769,12 +3774,12 @@ body #main {
   border-radius: 0.25rem !important;
 }
 
-#my-cars .page-footer a {
+/* #my-cars .page-footer a {
   color: #fff;
 }
 #my-cars .page-footer a:hover {
   color: #fff;
-}
+} */
 
 #your_garage_container {
   display: flex;
