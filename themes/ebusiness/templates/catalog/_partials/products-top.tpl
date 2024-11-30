@@ -28,6 +28,106 @@
   <span><i class="fa-solid fa-filter"></i></span>
   <span>Apply Filters</span>
 </div>
+{if $page.body_classes['category-Wheels']} 
+
+  <div id="js-product-list-top" class="products-selection category-wheels-top">
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Brand' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Bolt Pattern' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Diameter' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Width' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Offset' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby">
+    <div class="row sort-by-row">
+      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {l s='Color' d='Shop.Theme.Actions'}
+          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+        </a>
+        <div class="dropdown-menu">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" box-sortby wheels-accessories-filter">
+    <div class="" style="display: flex;justify-content:center;align-items:center;height:100%;">
+      <div class="">
+        <a class="select-title" href='https://www.all-stars-motorsport.com/en/549-wheels-accessories'>
+        {l s='Wheels Accessories' d='Shop.Theme.Actions'}
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+  </div>
+
+{else}
+
+
+
 <div id="js-product-list-top" class="products-selection">
 
   {* <div class="col-md-6 hidden-sm-down total-products"> *}
@@ -117,28 +217,12 @@
   {* bybrand *}
   <div class=" box-sortby col-md-3">
     <div class="row sort-by-row">
-      {* <div class="col-sm-3 col-xs-4 hidden-md-up filter-button">
-        <button id="search_filter_toggler" class="btn btn-secondary">
-          {l s='Filter' d='Shop.Theme.Actions'}
-        </button>
-      </div> *}
-
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
         <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {l s='By Brand' d='Shop.Theme.Actions'}
-          {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
-          {* {foreach from=$listing.sort_orders item=sort_order} *}
-            {* <a
-              rel="nofollow"
-              href="{$sort_order.url}"
-              class="select-list {['current' => $sort_order.current, 'js-search-link' => true]|classnames}"
-            >
-              {$sort_order.label}
-            </a> *}
-          {* {/foreach} *}
         </div>
       </div>
     </div>
@@ -190,6 +274,8 @@
     </div>
   </div>
 
+
+
   {* <div class="col-sm-12 hidden-md-up text-xs-center showing">
     {l s='Showing %from%-%to% of %total% item(s)' d='Shop.Theme.Catalog' sprintf=[
     '%from%' => $listing.pagination.items_shown_from ,
@@ -198,6 +284,7 @@
     ]}
   </div> *}
   </div>
+{/if}
   <style>
     #manufacturer .products-selection {
       display: flex;

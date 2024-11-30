@@ -2123,6 +2123,37 @@ ul {
   margin: auto;
 }
 
+#js-product-list-top.category-wheels-top{
+  max-width: unset !important;
+  margin: auto;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+#js-product-list-top.category-wheels-top .wheels-accessories-filter {
+  margin-top: 1rem;
+  background: #333;
+}
+
+#js-product-list-top.category-wheels-top .wheels-accessories-filter a{
+  font-weight: 600;
+  transition: all ease-in-out 150ms;
+}
+
+#js-product-list-top.category-wheels-top .wheels-accessories-filter:hover {
+  cursor: pointer;
+  background: var(--asm-color);
+}
+#js-product-list-top.category-wheels-top .wheels-accessories-filter a:hover{
+  color: #fff !important;
+}
+
+#js-product-list-top.category-wheels-top .box-sortby {
+  width: 14.28%;
+}
+
+
 .breadcrumb_wrapper .breadcrumb {
   margin-bottom: 0;
 }
