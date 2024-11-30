@@ -141,7 +141,7 @@
       {block name='product_name'}
         {* <h4 class="h3 product-title"  itemprop="name"><a style="color: black;" href="{$product.url}">{$product.name|truncate:30:'...'}</a></h4> *}
         <div style="display:flex;align-items:flex-start;justify-content: space-between;">
-          <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem; margin-top:11px;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
+          <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem;margin:0;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
           <div class="add_to_cart_button" style="margin-right: 1rem;">
 
           <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
@@ -155,6 +155,7 @@
                     data-button-action="add-to-cart"
                     data-dismiss="modal"
                     type="submit"
+                    style="margin-top: 0;"
                     {* {if !$product.add_to_cart_url}
                       disabled
                     {/if} *}
@@ -172,12 +173,12 @@
         <div class="short_description" style="color: black;">{$product.description_short|truncate:100:'...' nofilter}</div>
       {/if}
       
-      <div class="hook-reviews">
-	      {hook h='displayProductListReviews' product=$product}
-	  </div>
+      {* <div class="hook-reviews"> *}
+	      {* {hook h='displayProductListReviews' product=$product} *}
+	  {* </div> *}
 
     {if count($product['attributes']) > 0}
-    <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;margin-top: 5px;">
+    <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
       {l s='More variations available' d='Shop.Theme.Actions'}
     </div>
     {else}
