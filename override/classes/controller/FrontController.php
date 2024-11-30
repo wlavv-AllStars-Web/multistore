@@ -990,7 +990,7 @@ class FrontControllerCore extends Controller
     public function setMedia()
     {
         $this->registerStylesheet('theme-main', '/assets/css/theme.css', ['media' => 'all', 'priority' => 50]);
-        $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 1000]);
+        $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 51]);
 
         if ($this->context->language->is_rtl) {
             $this->registerStylesheet('theme-rtl', '/assets/css/rtl.css', ['media' => 'all', 'priority' => 900]);
@@ -1001,6 +1001,8 @@ class FrontControllerCore extends Controller
         }
         $this->registerJavascript('theme-main', '/assets/js/theme.js', ['position' => 'bottom', 'priority' => 50]);
         $this->registerJavascript('theme-custom', '/assets/js/custom.js', ['position' => 'bottom', 'priority' => 1000]);
+
+        // $this->registerJavascript('theme-jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', ['position' => 'bottom', 'priority' => 1000]);
 
         $assets = $this->context->shop->theme->getPageSpecificAssets($this->php_self);
         if (!empty($assets)) {
