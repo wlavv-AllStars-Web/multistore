@@ -55,5 +55,19 @@ class MyCarsControllerCore extends FrontController
             
         }
     }
+
+    public function getBreadcrumbLinks()
+    {
+        $breadcrumb = parent::getBreadcrumbLinks();
+
+        $breadcrumb['links'][] = $this->addMyAccountToBreadcrumb();
+
+        $breadcrumb['links'][] = [
+            'title' => $this->trans('My cars', [], 'Shop.Theme.Customeraccount'),
+            'url' => $this->context->link->getPageLink('my-cars'),
+        ];
+
+        return $breadcrumb;
+    }
     
 }
