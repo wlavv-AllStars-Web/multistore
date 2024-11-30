@@ -1525,6 +1525,16 @@ body {
   color: var(--asm-color) !important;
 }
 
+#my-account .page-content  .links a:hover i{
+  color: #333 !important;
+}
+#my-account .page-content  .links a:hover .link-item{
+  color: #333 !important;
+  background: #f6f6f6;
+}
+
+
+
 
 #customer-form input:not(:disabled) {
   color: #333;
