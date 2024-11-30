@@ -59,6 +59,22 @@
       </article>
     {/if}
 
+    {if $page.body_classes['category-Wheels']}
+      <article id="banner-wheels" class="d-flex justify-content-center col-lg-3">
+        <div style="display: flex;flex-direction:column;justify-content:space-between;">
+          <div style="display:flex;justify-content:center;padding:.5rem 1rem;background: #ddd;">
+            <h1 style="margin-bottom: 0;font-weight:600;">WHEELS</h1>
+          </div>
+          <img class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/rims.png" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
+          <div style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;">
+            <a href="https://www.wheel-size.com/size/" style="color: #fff;font-weight:600;">NEED HELP WITH YOUR WHEELS DETAILS?</a>
+          </div>
+        </div>
+      </article>
+    {/if}
+
+    {* <pre>{$page|print_r}</pre> *}
+
     {foreach from=$listing.products item="product"}
         {* <pre>{$product|print_r}</pre> *}
         {block name='product_miniature'}
