@@ -34,6 +34,15 @@
   <div class="row">
     <div class="links">
 
+      {if !$configuration.is_catalog}
+        <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="history-link" href="{$urls.pages.history}">
+          <span class="link-item">
+            <i class="fa-solid fa-list"></i>
+            {l s='Order history and details' d='Shop.Theme.CustomerAccount'}
+          </span>
+        </a>
+      {/if}
+
       <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$urls.pages.identity}">
         <span class="link-item">
           <i class="material-icons">&#xE853;</i>
@@ -57,23 +66,16 @@
         </a>
       {/if}
 
-      {if !$configuration.is_catalog}
-        <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="history-link" href="{$urls.pages.history}">
-          <span class="link-item">
-            <i class="fa-solid fa-list"></i>
-            {l s='Order history and details' d='Shop.Theme.CustomerAccount'}
-          </span>
-        </a>
-      {/if}
+      
 
-      {if !$configuration.is_catalog}
+      {* {if !$configuration.is_catalog}
         <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="order-slips-link" href="{$urls.pages.order_slip}">
           <span class="link-item">
             <i class="material-icons">&#xE8B0;</i>
             {l s='Credit slips' d='Shop.Theme.CustomerAccount'}
           </span>
         </a>
-      {/if}
+      {/if} *}
 
       {if $configuration.voucher_enabled && !$configuration.is_catalog}
         <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="discounts-link" href="{$urls.pages.discount}">
@@ -102,12 +104,12 @@
         </span>
       </a>
 
-      <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$logout_url}">
+      {* <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$logout_url}">
         <span class="link-item">
           <i class="fa-solid fa-lock"></i>
           {l s='Logout' d='Shop.Theme.CustomerAccount'}
         </span>
-      </a>
+      </a> *}
 
       <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-flex">
       

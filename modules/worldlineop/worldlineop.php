@@ -232,7 +232,7 @@ class Worldlineop extends PaymentModule
      */
     public function hookCustomerAccount($params)
     {
-        return $this->display(__FILE__, '/views/templates/front/hookCustomerAccount.tpl');
+        // return $this->display(__FILE__, '/views/templates/front/hookCustomerAccount.tpl');
     }
 
     /**
