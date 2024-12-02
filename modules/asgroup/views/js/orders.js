@@ -187,7 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             selectNacex.addEventListener("change", (e) => {
                 const selectedValue = e.target.value;
-                console.log(`Selected value: ${selectedValue}`);
+                
+                selectNacex.style.outline = 'none'
 
                 const targetSelect = document.querySelector("#nacex_tip_ser");
 
@@ -525,6 +526,18 @@ function carrierGenerateExpedition(e){
 
     const form = document.querySelector("form[name='update_order_shipping']")
     const navTabs =  document.querySelectorAll(".nav-shipping-asd .nav-item")
+
+    const orderWeightTR = document.querySelectorAll("#shipping-grid-table tbody tr")[0] 
+    let orderWeightInput,orderWeightInputValidation,orderWeight,orderWeightValue,btnsave,alertShippingNotSaved;
+    if(orderWeightTR){
+        orderWeightInput = orderWeightTR.querySelector("input[name='update_order_shipping[shipping_weight]']")
+        orderWeightInputValidation = orderWeightTR.querySelector(".carrier-weight .invalid-feedback")
+        orderWeight = orderWeightTR.querySelector(".carrier-weight input").getAttribute("value")
+        orderWeightValue = orderWeightTR.querySelector(".carrier-weight input").value
+        btnsave =  orderWeightTR.querySelector(".btns-action-shipping-asg .btn-link")
+        alertShippingNotSaved = document.querySelector(".shipping-notsaved-asgroup")
+    }
+
     let isActive = false;
     let idSelected = '';
 
@@ -543,6 +556,33 @@ function carrierGenerateExpedition(e){
         console.log(idSelected)
         if(idSelected == 'orderShippingNACEX'){
             // document.querySelector("input[name='submitputexpedicion']").click()
+            const selectNacex = document.querySelector(".nav-item-select-nacex #select-nacex")
+            const weightInputValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").value;
+            const weightValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").getAttribute("value");
+
+            if(selectNacex.value == 'default'){
+                selectNacex.style.outline = "2px solid red"
+            }
+
+            if(weightValue == 0 && weightValue == weightInputValue){
+                orderWeightInput.classList.add("input-error");
+                orderWeightInputValidation.classList.add("show-validation")
+                orderWeightInput.focus()
+
+                orderWeightInput.addEventListener("blur", () => {
+                    orderWeightInput.classList.remove("input-error");
+                    orderWeightInputValidation.classList.remove("show-validation")
+                });
+            }
+
+            if(weightInputValue != weightValue){
+                form.submit();
+            }
+
+            if(selectNacex.value != 'default' && weightValue > 0 && weightInputValue == weightValue) {
+                document.querySelector("input[name='submitputexpedicion']").click()
+            }
+
         }else if(idSelected == 'orderShippingUPS'){
             // document.querySelector("#generate_shipping_label").click()
         }else if(idSelected == 'orderShippingDPD'){
