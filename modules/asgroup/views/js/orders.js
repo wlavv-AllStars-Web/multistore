@@ -580,7 +580,7 @@ function carrierGenerateExpedition(e){
             }
 
             if(selectNacex.value != 'default' && weightValue > 0 && weightInputValue == weightValue) {
-                document.querySelector("input[name='submitputexpedicion']").click()
+                // document.querySelector("input[name='submitputexpedicion']").click()
             }
 
         }else if(idSelected == 'orderShippingUPS'){
