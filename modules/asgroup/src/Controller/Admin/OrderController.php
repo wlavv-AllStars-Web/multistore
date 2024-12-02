@@ -2,6 +2,7 @@
 
 namespace PrestaShop\Module\AsGroup\Controller\Admin;
 
+use AsGroup;
 use Context;
 use PrestaShopBundle\Controller\Admin\Sell\Order\OrderController as BaseOrderController;
 use Symfony\Component\HttpFoundation\Response;
@@ -689,6 +690,9 @@ class OrderController extends FrameworkBundleAdminController
             
         // }
    
+        $modules = \Hook::getHookModuleExecList('displayAdminOrder');
+
+
 
         return $this->render('@PrestaShop/Admin/Sell/Order/Order/view.html.twig', [
             'showContentHeader' => true,
@@ -720,6 +724,7 @@ class OrderController extends FrameworkBundleAdminController
             'isAvailableQuantityDisplayed' => $this->configuration->getBoolean('PS_STOCK_MANAGEMENT'),
             'internalNoteForm' => $internalNoteForm->createView(),
             'url_redirect' => null,
+            'modules_carrier' => $modules ? $modules : null,
         ]);
     }
 
@@ -1142,6 +1147,9 @@ class OrderController extends FrameworkBundleAdminController
     {
         // echo Tools::getValue('update_order_shipping[shipping_cost]');
         $shipping_budget = $_POST['update_order_shipping']['shipping_cost'];
+        $shipping_width = $_POST['update_order_shipping']['shipping_width'];
+        $shipping_height = $_POST['update_order_shipping']['shipping_height'];
+        $shipping_depth = $_POST['update_order_shipping']['shipping_depth'];
         $shipping_weight = $_POST['update_order_shipping']['shipping_weight'];
         $shipping_carrier = $_POST['update_order_shipping']['new_carrier_id'];
         $shipping_tracking = $_POST['update_order_shipping']['tracking_number'];
@@ -1154,6 +1162,28 @@ class OrderController extends FrameworkBundleAdminController
             WHERE id_order_carrier ='.$current_order_carrier_id;
 
             GlobalDb::getInstance()->execute($sqlbudget);
+        }
+
+        if($shipping_width){
+            $sqlwidth = 'UPDATE ps_order_carrier
+            SET width ='.$shipping_width.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqlwidth);
+        }
+        if($shipping_height){
+            $sqlheight = 'UPDATE ps_order_carrier
+            SET height ='.$shipping_height.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqlheight);
+        }
+        if($shipping_depth){
+            $sqldepth = 'UPDATE ps_order_carrier
+            SET depth ='.$shipping_depth.'
+            WHERE id_order_carrier ='.$current_order_carrier_id;
+
+            GlobalDb::getInstance()->execute($sqldepth);
         }
 
         if($shipping_weight){
@@ -2567,5 +2597,6 @@ class OrderController extends FrameworkBundleAdminController
             return new JsonResponse(['error' => 'Failed to delete carrier line'], 500);
         }
     }
+
 
 }

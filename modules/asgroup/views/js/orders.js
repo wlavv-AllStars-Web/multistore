@@ -161,9 +161,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // modal dpd
 
+    
+
     const dpdButton = document.querySelector("#orderShippingDPD");
+    const nacexButton = document.querySelector("#orderShippingNACEX");
+    const upsButton = document.querySelector("#orderShippingUPS");
     // const modalContainer = document.querySelector(".modal-dpd-asgroup-container");
     // const modalContent = document.querySelector(".modal-dpd-asgroup");
+    if(nacexButton){
+        nacexButton.addEventListener("click", () => {
+            const  estimated = document.querySelector(".nav-item-estimated")
+            const  generate = document.querySelector(".nav-item-generate")
+            estimated.style.display = "none"
+            generate.style.display = "none"
+
+            const selectNacexContainer = document.querySelector(".nav-item-select-nacex")
+            selectNacexContainer.style.display = "block"
+
+            // const selectServices = document.querySelector("#nacex_tip_ser")
+            // const clonedSelectServices = selectServices.cloneNode(true);
+            // clonedSelectServices.id = "nacex_tip_ser_cloned"
+
+            // selectNacex.appendChild(clonedSelectServices)
+            const selectNacex = document.querySelector(".nav-item-select-nacex #select-nacex")
+
+            selectNacex.addEventListener("change", (e) => {
+                const selectedValue = e.target.value;
+                console.log(`Selected value: ${selectedValue}`);
+
+                const targetSelect = document.querySelector("#nacex_tip_ser");
+
+                if (targetSelect) {
+                    // Find the option with the same value and set it as selected
+                    const matchingOption = targetSelect.querySelector(`option[value="${selectedValue}"]`);
+                    if (matchingOption) {
+                        targetSelect.value = selectedValue; // Synchronize selection
+                    } else {
+                        console.error("Matching option not found in the target select");
+                    }
+                } else {
+                    console.error("Target select element not found");
+                }
+            })
+
+            document.querySelector("#nacex_bul").setAttribute("value", 1)
+            
+        })
+    }
+
+    if(upsButton){
+        upsButton.addEventListener("click", () => {
+            const  estimated = document.querySelector(".nav-item-estimated")
+            const  generate = document.querySelector(".nav-item-generate")
+            estimated.style.display = "block"
+            generate.style.display = "block"
+
+            const selectNacex = document.querySelector(".nav-item-select-nacex")
+            selectNacex.style.display = "none"
+        })
+    }
+
     if(dpdButton){
         dpdButton.addEventListener("click", () => {
             const orderID = document.querySelector("#shipping-grid-table").getAttribute("orderid")
@@ -462,4 +519,39 @@ function searchTracking(tracking) {
         .catch(error => {
             document.querySelector(".tracking_not_found").classList.add('showTrackingAlert')
         });
+}
+
+function carrierGenerateExpedition(e){
+
+    const form = document.querySelector("form[name='update_order_shipping']")
+    const navTabs =  document.querySelectorAll(".nav-shipping-asd .nav-item")
+    let isActive = false;
+    let idSelected = '';
+
+    navTabs.forEach((item) => {
+        const link = item.querySelector(".nav-link")
+        // Check if the item has the class "active"
+        if (link.classList.contains("active")) {
+            // Perform some action
+            idSelected =  item.querySelector("a").getAttribute("id")
+            // Example action: Add another class or change text
+            isActive = true;
+        }
+    });
+
+    if(isActive){
+        console.log(idSelected)
+        if(idSelected == 'orderShippingNACEX'){
+            // document.querySelector("input[name='submitputexpedicion']").click()
+        }else if(idSelected == 'orderShippingUPS'){
+            // document.querySelector("#generate_shipping_label").click()
+        }else if(idSelected == 'orderShippingDPD'){
+            form.submit();
+        }
+    }else{
+        console.log("not active")
+        form.submit();
+    }
+
+
 }
