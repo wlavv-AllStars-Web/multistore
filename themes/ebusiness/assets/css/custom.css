@@ -4553,3 +4553,11 @@ body::-ms-scrollbar-thumb:hover {
   color: #333;
   background: #f6f6f6;
 }
+
+
+
+/* ets onepage checkout */
+
+.block-onepagecheckout.block-shopping-cart .current-price{
+  text-align: center;
+}
