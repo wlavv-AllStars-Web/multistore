@@ -74,43 +74,45 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const wheelsBtn = document.querySelector(".wheels-btn")
 
-  wheelsBtn.addEventListener("click", async (e) => {
+  if(wheelsBtn){
+    wheelsBtn.addEventListener("click", async (e) => {
 
-    const title = document.getElementById('wheels-title');
-    title.textContent = "SELECT YOUR WHEELS";
+      const title = document.getElementById('wheels-title');
+      title.textContent = "SELECT YOUR WHEELS";
 
-    const image = document.getElementById('wheels-image');
-    if (image) {
-      image.classList.add('fade-out');
-      image.addEventListener('animationend', function() {
-        image.remove(); 
-      });
-    }
-
-    wheelsBtn.querySelector("span").textContent = "Filter"
-
-    try {
-      const response = await fetch(
-        `${window.location.href}?ajax=1&action=getWheelsTemplate`
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch the template');
+      const image = document.getElementById('wheels-image');
+      if (image) {
+        image.classList.add('fade-out');
+        image.addEventListener('animationend', function() {
+          image.remove(); 
+        });
       }
-      const jsonResponse = await response.json(); // Parse JSON response
 
-      if (jsonResponse.success) {
-        const article = document.getElementById("banner-wheels");
-        const wheelsSelectors = document.querySelector(".wheels-selectors");
+      wheelsBtn.querySelector("span").textContent = "Filter"
 
-        // Set the parsed template content as HTML
-        wheelsSelectors.innerHTML = jsonResponse.template;
-      } else {
-        console.error("Template loading error:", jsonResponse.message);
+      try {
+        const response = await fetch(
+          `${window.location.href}?ajax=1&action=getWheelsTemplate`
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch the template');
+        }
+        const jsonResponse = await response.json(); // Parse JSON response
+
+        if (jsonResponse.success) {
+          const article = document.getElementById("banner-wheels");
+          const wheelsSelectors = document.querySelector(".wheels-selectors");
+
+          // Set the parsed template content as HTML
+          wheelsSelectors.innerHTML = jsonResponse.template;
+        } else {
+          console.error("Template loading error:", jsonResponse.message);
+        }
+      } catch (error) {
+        console.error('Error fetching the template:', error);
       }
-    } catch (error) {
-      console.error('Error fetching the template:', error);
-    }
-  })
+    })
+  }
 
 });
   
