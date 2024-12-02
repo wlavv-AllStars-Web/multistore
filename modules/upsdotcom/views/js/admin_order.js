@@ -72,7 +72,7 @@ function init_ups() {
         save_settings('package_information', '_packages_information_form');
     });
 
-    $('#upsTabContent #estime_postage').click(function () {
+    $('.nav-item-estimated #estime_postage').click(function () {
         get_postage();
     }).trigger('click');
 
