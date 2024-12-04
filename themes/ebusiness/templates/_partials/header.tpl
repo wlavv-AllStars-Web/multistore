@@ -103,31 +103,47 @@
 
 {/block}
 
+
 {block name='header_top'}
   <div class="menu-login-mobile">
-    <form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box">
-      <h3 class="page-subheading">{l s='Already registered?'}</h3>
-      <div class="form_content clearfix">
-        <div class="form-group">
-          <label for="email">{l s='Email address'}</label>
-          <input class="is_required validate account_input form-control" data-validate="isEmail" type="email" id="email" name="email" value="{if isset($smarty.post.email)}{$smarty.post.email|stripslashes}{/if}" />
+    <form id="login-form" action="{$urls.pages.authentication}" method="post">  
+        <h3 class="page-subheading">{l s='Already registered?'}</h3> 
+        <div class="form-group col">
+          <div class="email_icon header-icon">
+            <input type="hidden" name="back" value="my-account">
+            <i class="fa fa-user"></i>
+          </div>
+          <input class="form-control whtbl" name="email" type="email" value="{$smarty.post.email}" required placeholder="{l s="Email" d='Shop.Theme.Actions'}">
         </div>
-        <div class="form-group">
-          <label for="passwd">{l s='Password'}</label>
-          <input class="is_required validate account_input form-control" type="password" data-validate="isPasswd" id="passwd" name="passwd" value="" />
+        <div class="form-group col">
+            <div class="unlock_icon header-icon">
+              <i class="fa fa-unlock"></i>
+            </div>
+            <input class="form-control js-child-focus js-visible-password whtbl" name="password" type="password" value="" required placeholder="{l s="Password" d='Shop.Theme.Actions'}">
         </div>
-        <p class="lost_password form-group"><a href="{$link->getPageLink('password')|escape:'html':'UTF-8'}" title="{l s='Recover your forgotten password'}" rel="nofollow">{l s='Forgot your password?'}</a></p>
-        <p class="submit">
-          {if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
-          <button type="submit" id="SubmitLogin" name="SubmitLogin" class="button btn btn-default button-medium">
-            <span>
-              <i class="icon-lock left"></i>
-              {l s='Sign in'}
-            </span>
-          </button>
-        </p>
+        <div class="form-group col">
+          <div>
+            <a href="{$urls.pages.password}" rel="nofollow">
+              {l s='Forgot your password?' d='Shop.Theme.Actions'}
+            </a>
+          </div>
+        </div>             
+        <div class="form-group col" >
+          <input type="hidden" name="submitLogin" value="1">           
+          <button id="sender" class="btn btn-primary form-control-submit whtbl" data-link-action="sign-in" type="submit">
+          {l s="Login" d='Shop.Theme.Actions'}
+          </button>                
+        </div>          
+      </form> 
+      <div class="separator-login"></div>
+      <div>
+        <div class="form-group col" >
+          <input type="hidden" name="submitLogin" value="1">           
+          <a class="btn btn-secondary form-control-submit whtbl" href="{$urls.pages.register}" data-link-action="display-register-form" type="submit">
+          {l s="Register" d='Shop.Theme.Actions'}
+          </a>                
+        </div>
       </div>
-    </form>
   </div>
   <div class="menu-languageselector-mobile">
     {hook h='displayNav2' mod='ps_languageselector'}
