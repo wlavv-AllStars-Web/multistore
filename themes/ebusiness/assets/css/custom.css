@@ -4628,7 +4628,7 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 .menu-login-mobile .form_content .form-group .lost_password a{
-  color: #333;
+  color: #333 !important;
 }
 .menu-login-mobile .form_content .form-group .lost_password a:focus{
   color: var(--asm-color);
