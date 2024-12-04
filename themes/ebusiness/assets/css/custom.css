@@ -4611,38 +4611,51 @@ body::-ms-scrollbar-thumb:hover {
 
 .menu-login-mobile.showLogin{
   display: flex !important;
-}
-
-.menu-login-mobile .form_content {
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.menu-login-mobile .form_content .form-group {
+.menu-login-mobile #login-form {
   width: 100%;
+  padding: 1rem 1rem 0 1rem;
 }
 
-.menu-login-mobile .form_content .lost_password{
+.menu-login-mobile #login-form h3{
   text-align: center;
 }
 
-.menu-login-mobile .form_content .lost_password a{
-  color: #333 !important;
-}
-.menu-login-mobile .form_content .lost_password a:focus{
-  color: var(--asm-color);
-}
-
-.menu-login-mobile #login_form {
-  width: 100%;
-  padding: 1rem;
-}
-
-.menu-login-mobile #login_form h3{
-  text-align: center;
-}
-
-.menu-login-mobile #login_form input {
+.menu-login-mobile #login-form input {
   background: #dedede;
+}
+
+.menu-login-mobile #login-form .form-group{
+  display: flex;
+  flex-direction: unset !important;
+}
+
+.menu-login-mobile #login-form a{
+  color: #333;
+}
+
+.menu-login-mobile #login-form .header-icon{
+  width: 50px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+}
+
+.menu-login-mobile #login-form .header-icon i {
+  color: #fff;
+}
+
+.menu-login-mobile .btn-secondary{
+  margin: 1rem 0;
+}
+
+.menu-login-mobile .separator-login {
+  height: 2px;
+  width: 80%;
+  background: #333;
 }
