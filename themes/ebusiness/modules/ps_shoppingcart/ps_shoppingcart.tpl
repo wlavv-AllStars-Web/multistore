@@ -107,6 +107,7 @@
 
           {/if}
         {/if}
+        {* {debug} *}
         <div class="cart-wishlist-action">
           <a class="cart-wishlist-checkout" href="{$order_url|escape:'html':'UTF-8'}">{l s='Check Out' d='Shop.Theme.Actions'}</a>
         </div>

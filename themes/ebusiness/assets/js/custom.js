@@ -157,6 +157,11 @@ function dropdownFlags() {
   flags.classList.toggle("showLang")
 }
 
+function toggleMyaccountLogin(){
+  const containerLoginMobile = document.querySelector(".menu-login-mobile")
+  containerLoginMobile.classList.toggle("showLogin")
+}
+
 
 function dropdownLogos(e){
   

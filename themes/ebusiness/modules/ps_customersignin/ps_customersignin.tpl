@@ -13,34 +13,18 @@
       </a>
       
     {else}
-      <a class="user-info-account" href="{$urls['pages']['authentication']}" style="display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;" title="{l s='Log in to your customer account' d='Shop.Theme.CustomerAccount'}" rel="nofollow" >
+      <a class="d-desktop" href="{$urls['pages']['authentication']}" style="display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;" title="{l    s='Log in to your customer account' d='Shop.Theme.CustomerAccount'}" rel="nofollow" >
         <i class="fa-solid fa-user" style="color:#fff"></i>
         <span class="d-none d-lg-block" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.Actions'}</span>
       </a>
+
+      <div class="d-mobile" onclick="toggleMyaccountLogin()" style="display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;" title="{l    s='Log in to your customer account' d='Shop.Theme.CustomerAccount'}" >
+        <i class="fa-solid fa-user" style="color:#fff"></i>
+        <span class="d-none d-lg-block" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.Actions'}</span>
+      </div>
         
         {* <span style="border-right: 1px solid #fff; margin-top: 9px;   height: 21px;   display: inline-block;" > *}
     </span>
     {/if}
   </div>
 </div>
-
-<style>
-@media screen and (max-width:991px){
-  .user-info{
-      display: flex;align-items:center;gap:2rem;
-    }
-  .user-info-account {
-    display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;
-  }
-}
-
-@media screen and (min-width:992px){
-    .user-info{
-      display: flex;align-items:center;padding-left: 3rem;gap:2rem;
-    }
-
-  .user-info-account {
-    display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;
-  }
-}
-</style>
