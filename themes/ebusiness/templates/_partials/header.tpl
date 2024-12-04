@@ -157,7 +157,7 @@
        <div class="row">
         <div class="col-xs-12 col-lg-4 d-flex justify-content-sm-center justify-content-lg-start p-0" id="_desktop_logo">
           <a href="{$urls.base_url}">
-            <img class="logo img-responsive" src="{if isset($tc_dev_mode) && $tc_dev_mode && isset($logo_url)&&$logo_url}{$logo_url}{else}{$shop.logo}{/if}" alt="{$shop.name}" style="max-width: 180px;
+            <img class="logo img-responsive" src="https://www.all-stars-motorsport.com/img/asm10.webp?t=11" style="max-width: 180px;
               padding: 0px;
               margin: 20px 45px;">
           </a>
