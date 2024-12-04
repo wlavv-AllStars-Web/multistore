@@ -4623,14 +4623,14 @@ body::-ms-scrollbar-thumb:hover {
   width: 100%;
 }
 
-.menu-login-mobile .form_content .form-group .lost_password{
+.menu-login-mobile .form_content .lost_password{
   text-align: center;
 }
 
-.menu-login-mobile .form_content .form-group .lost_password a{
+.menu-login-mobile .form_content .lost_password a{
   color: #333 !important;
 }
-.menu-login-mobile .form_content .form-group .lost_password a:focus{
+.menu-login-mobile .form_content .lost_password a:focus{
   color: var(--asm-color);
 }
 
