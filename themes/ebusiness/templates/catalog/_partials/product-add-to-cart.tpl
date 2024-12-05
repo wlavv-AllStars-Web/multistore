@@ -26,20 +26,36 @@
   {if !$configuration.is_catalog}
     <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
     {block name='product_quantity'}
-      <div class="product-quantity">
+      <div class="product-quantity clearfix">
         <div class="qty">
           <input
             type="text"
             name="qty"
             id="quantity_wanted"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            {if $product.quantity_wanted}
             value="{$product.quantity_wanted}"
-            class="input-group"
+            min="{$product.minimal_quantity}"
+            {else}
+            value="1"
             min="1"
-            {*min="{$product.minimal_quantity}"*}
-          />
+            {/if}
+            class="input-group"
+            aria-label="{l s='Quantity' d='Shop.Theme.Actions'}"
+            style="font-size: 16px;"
+          >
         </div>
         <div class="add">
-          <button class="btn btn-primary add-to-cart" data-button-action="add-to-cart" type="submit">
+          <button 
+            class="btn btn-primary" 
+            data-button-action="add-to-cart" 
+            type="submit"
+            {if !$product.add_to_cart_url}
+              disabled
+            {/if}
+            style="height: 100%;"
+            >
             {*<i class="material-icons shopping-cart">&#xE547;</i>*}
             {* <i class="fa fa-shopping-cart"></i> *}
             <i class="material-icons">shopping_cart</i>
