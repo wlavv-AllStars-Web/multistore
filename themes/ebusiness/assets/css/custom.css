@@ -776,6 +776,27 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  /* producar add to cart */
+  .product-add-to-cart{
+    width: 100%;
+  }
+
+  .product-add-to-cart .product-quantity {
+    width: 100%;
+  }
+
+  .product-add-to-cart .product-quantity .add{
+    max-width: unset;
+    width: 100%;
+  }
+
+  .product-add-to-cart .product-quantity .add button{
+    width: 100%;
+  }
+
+
+
   .header-top .logo{
     padding: .5rem !important;
     margin: 0 !important;
@@ -3385,6 +3406,7 @@ ul {
 .product-actions .control-label {
   text-transform: inherit;
   text-align: right;
+  min-width: fit-content !important;
 }
 
 .nav-tabs .nav-item:not(:last-child) .nav-link {
