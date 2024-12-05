@@ -776,6 +776,17 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* addresses update */
+
+  #address .form-control-label {
+    text-align: start;
+  }
+
+  #address .form-footer button{
+    width: 100%;
+  }
+
+  /*  */
 
   .page-my-account #content .links a span.link-item {
     min-height: 180px;
