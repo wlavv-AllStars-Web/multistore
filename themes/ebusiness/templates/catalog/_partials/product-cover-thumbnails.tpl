@@ -23,24 +23,26 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 
- <div class="d-mobile">
-           <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-            {foreach from=$product.images item=item key=key name=name}
-              <div class="swiper-slide">
-                <img src="{$item.bySize.large_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
-              </div>
-            {/foreach}
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-          </div>
- </div>
 
- <div class="images-container js-images-container d-desktop" >
+ <div class="images-container js-images-container" >
  {block name='product_cover'}
-   <div class="product-cover">
+  
+  <div class="d-mobile">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+      {foreach from=$product.images item=item key=key name=name}
+        <div class="swiper-slide">
+          <img src="{$item.bySize.large_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
+        </div>
+      {/foreach}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+   <div class="product-cover d-desktop">
      {if $product.default_image}
        <picture>
          {* {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
@@ -124,7 +126,7 @@
      </ul>
    </div> *}
 
-   <div class="swiper mySwiper-thumb-images">
+   <div class="swiper mySwiper-thumb-images d-desktop">
     <div class="swiper-wrapper">
       {foreach from=$product.images item=image key=key}
         <div class="swiper-slide">
