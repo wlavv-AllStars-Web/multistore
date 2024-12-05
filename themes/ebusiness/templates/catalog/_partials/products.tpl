@@ -53,9 +53,12 @@
 
     {if $page.page_name == 'new-products'}
       <article id="banner-news" class="d-flex justify-content-center col-lg-3">
-        <div>
-          <h1>Novidades</h1>
+        <div class="banner-news-img">
+          <img src="https://www.all-stars-motorsport.com/img/app_icons/news_icon_en.webp" />
         </div>
+        {* <div class="banner-news-title">
+          <h1>Novidades</h1>
+        </div> *}
       </article>
     {/if}
 

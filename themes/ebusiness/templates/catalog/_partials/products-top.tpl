@@ -24,6 +24,10 @@
  *}  
 
 {* <pre>{print_r($brand,1)}</pre> *}
+<div class="d-mobile count-products">
+{count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
+</div>
+
 <div class="btn-toggleFilters mobile" onclick="toggleFilters()">
   <span><i class="fa-solid fa-filter"></i></span>
   <span>Apply Filters</span>

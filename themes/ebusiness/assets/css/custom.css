@@ -752,6 +752,11 @@ body {
 }
 
 @media (max-width: 563px) {
+  .header-top .logo{
+    padding: .5rem !important;
+    margin: 0 !important;
+  }
+
   .d-mobile{
     display: flex !important;
   }
@@ -759,6 +764,50 @@ body {
     display: none !important;
   }
 
+  /* new products */
+  #new-products #main {
+    background: #dedede;
+    padding: 0;
+  }
+
+  #new-products #main #productList{
+    padding: 1rem;
+  }
+
+  #new-products #main .btn-toggleFilters {
+    margin: 0rem;
+    padding: .85rem 1rem;
+    border-radius: 0;
+  }
+
+
+  #new-products #main #banner-news{
+    padding: 0;
+    min-height: 349px;
+  }
+
+  #new-products #main #banner-news-img{
+    background: #fff;
+    border-radius: .25rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  .product-miniature {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  #new-products #js-product-list{
+    margin-top: 1rem;
+  }
+
+  .count-products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 1rem;
+    color: #333;
+  }
   /* cms payment  */
 
   #cms-payment {
