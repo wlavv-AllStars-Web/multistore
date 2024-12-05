@@ -779,6 +779,9 @@ body {
 
   .btn-primary {
     padding: .5rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   /*  */
 
