@@ -778,6 +778,28 @@ body {
     display: none !important;
   }
 
+  /* sort products */
+
+  .products-sort-order {
+    border-radius: .25rem;
+  }
+
+  .products-sort-order .select-title{
+    border-radius: .25rem;
+    background: #333;
+    color: #fff !important;
+  }
+
+  .products-sort-order .dropdown-menu{
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 0 0 .25rem .25rem;
+  }
+
+  .products-sort-order .select-list:hover{
+    background: #666;
+  }
+
   /* new products */
   #new-products #main {
     background: #dedede;
