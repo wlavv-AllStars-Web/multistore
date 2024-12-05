@@ -1061,9 +1061,15 @@ body {
   }
 
   .product-miniature .thumbnail-container .product-description .product-title{
-    max-width: unset;
-    text-align: center;
-    padding: .5rem;
+    max-width: unset !important;
+    text-align: center !important;
+    padding: .5rem !important;
+  }
+
+  .product-price-and-shipping{
+    padding: .5rem 1rem !important;
+    height: unset !important;
+    min-width: calc(100% - 30%) !important;
   }
 
   .container-imgs-mobile {
