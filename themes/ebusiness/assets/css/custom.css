@@ -227,6 +227,7 @@ body {
   .swiper-container {
     display: none;
   }
+
 }
 
 @media (min-width: 992px) {
@@ -365,6 +366,14 @@ body {
 
   #scrollToTopBtn {
     display: none !important;
+  }
+
+  #new-products #main .banner-news-img{
+    height: 349px;
+  }
+
+  #new-products #main .banner-news-img img{
+    height: 100%;
   }
 }
 
