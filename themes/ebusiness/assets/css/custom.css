@@ -779,7 +779,26 @@ body {
 
   /* myaccount page */
 
+  #logout-link .link-item {
+    width: 100%;
+  }
 
+  #check_vat {
+    padding: 2rem 1rem !important;
+  }
+
+  #my-account .container > .row {
+    margin-top: 0 !important;
+  }
+
+  #my-account #main {
+    background: #f6f6f6;
+    padding: 2rem 1rem;
+  }
+
+  #my-account #main #content > p {
+    /* background: #f6f6f6; */
+  }
 
   /* producar add to cart */
   .product-add-to-cart{
