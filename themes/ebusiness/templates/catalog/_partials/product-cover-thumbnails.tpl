@@ -41,6 +41,7 @@
       <div class="swiper-pagination"></div>
     </div>
   </div>
+  
 
    <div class="product-cover d-desktop">
      {if $product.default_image}
@@ -91,6 +92,7 @@
       Real Picture
     </div>
    </div>
+
  {/block}
 
  {block name='product_images'}
@@ -174,6 +176,19 @@
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+    });
+
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
       },
     });
   </script>
