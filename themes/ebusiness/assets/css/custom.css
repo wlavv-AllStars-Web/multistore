@@ -777,6 +777,12 @@ body {
 
 @media (max-width: 563px) {
 
+  /* order history */
+
+  #history #main {
+    min-height: 76dvh;
+  }
+
   /* myaccount page */
 
   #logout-link .link-item {
