@@ -780,7 +780,7 @@ body {
   /* order history */
 
   #history .orders.mobile-table-orders  {
-    min-height: 51dvh;
+    min-height: 51dvh !important;
   }
 
   /* myaccount page */
