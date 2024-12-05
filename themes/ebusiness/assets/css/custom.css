@@ -22,6 +22,15 @@ body {
   height: 38px;
 }
 
+/* cartwishlist */
+.cart-hover-content{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.cart-wishlist-checkout:hover{
+  background-color: #333 !important;
+}
+
 /* header.tpl */
 .alma-options-header {
   font-weight: 600;
