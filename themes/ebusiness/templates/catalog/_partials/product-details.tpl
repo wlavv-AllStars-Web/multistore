@@ -9,6 +9,13 @@
             <div class="subtitles-details-left">
               <div class="details-reference product-reference"><b>Reference:</b> {$product.reference_to_display}</div>
               <div class="details-ec"><b>EC Approved:</b> {if $product.ec_approved > 0}<span class="aproved">Yes</span>{else}<span class="not-aproved">No</span>{/if}</div>
+              <div class="details-product-availability d-mobile">
+                <b>Availability:</b> 
+                <span class="available">In Stock</span>
+                <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
+                  <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
+                </div>
+              </div>
             </div>
 
 

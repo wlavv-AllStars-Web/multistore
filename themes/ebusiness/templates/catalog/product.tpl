@@ -87,7 +87,7 @@
             <div class="swiper-wrapper">
             {foreach from=$product.images item=item key=key name=name}
               <div class="swiper-slide">
-                <img src="{$item.bySize.medium_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
+                <img src="{$item.bySize.large_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
               </div>
             {/foreach}
             </div>
@@ -263,6 +263,73 @@
        </div>
      </div>
 
+     <div class="d-mobile description-product-mobile">
+      {if $product.description}
+        <div class="banner-tabs" >
+          <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+        </div>
+        <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
+          {block name='product_description'}
+            <div class="product-description">{$product.description nofilter}</div>
+          {/block}
+          {if !empty($product.youtube_code)}
+            <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
+              <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
+                <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                  <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                    <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                  </div>
+                </div>
+                <div  class="iframeClass"  style="display:none;height:318px">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+            {/if}
+            <small style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</small>
+        </div>
+        {* {if $product.features}
+          <div class="product_features">
+              {foreach from=$product.features item=feature}
+                <div style="padding: 0.5rem 1rem;"><b>{$feature.name}:</b> {$feature.value}</div>
+              {/foreach}
+            </div>
+            {/if} *}
+      {else}
+        <div class="banner-tabs" >
+          <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+        </div>
+        <div class="tab-description tab" style="display: flex;">
+          {block name='product_description'}
+            <div class="product-description" style="{if empty($product.youtube_code)}width:90%;{else}width: 60%;{/if}">
+              <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
+            </div>
+          {/block}
+          {if !empty($product.youtube_code)}
+            <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+              <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
+                <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                  <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                    <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                  </div>
+                </div>
+                <div  class="iframeClass"  style="display:none;height:318px">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+            {/if}
+          {* fim tabs *}
+          
+        </div>
+
+      {/if}
+     </div>
+
  <div class="section_tabs_video" style="display: flex;{if empty($product.youtube_code)}justify-content:center;{/if}">
              {* inicio tabs *}
              <div class="column_tabs" style="width:100%">
@@ -271,7 +338,7 @@
                <div class="tabs" style="background: #f6f6f6;margin-top:0;">
                  <ul class="nav nav-tabs" role="tablist">
                    {* {if $product.description} *}
-                     <li class="nav-item">
+                     <li class="nav-item d-desktop">
                         <a
                           class="nav-link active js-product-nav-active"
                           data-toggle="tab"
@@ -459,24 +526,27 @@
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
-                    <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">Brand</th>
-                          <th scope="col">Model</th>
-                          <th scope="col">Type</th>
-                          <th scope="col">Version</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Audi</td>
-                          <td>A3</td>
-                          <td>8V / 8.5V - 12-20</td>
-                          <td>2.0 TFSI - 190 / 220</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="container-table-compats">
+                      {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+                      <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Version</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Audi</td>
+                            <td>A3</td>
+                            <td>8V / 8.5V - 12-20</td>
+                            <td>2.0 TFSI - 190 / 220</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
          
                   {* {block name='product_details'}
@@ -620,6 +690,15 @@
                   
                    </form>
                   {/if}
+                  </div>
+
+                  <div class="tab-pane fade in" id="product_reviews"  role="tabpanel">
+                    <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+                    </div>
+                    <div class="banner-content">
+                      <h1>Reviews</h1>
+                    </div>
                   </div>
 
                </div>
