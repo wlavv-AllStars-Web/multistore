@@ -3406,7 +3406,7 @@ ul {
 .product-actions .control-label {
   text-transform: inherit;
   text-align: right;
-  min-width: fit-content !important;
+  min-width: unset !important;
 }
 
 .nav-tabs .nav-item:not(:last-child) .nav-link {
