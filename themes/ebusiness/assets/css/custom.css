@@ -777,6 +777,9 @@ body {
 
 @media (max-width: 563px) {
 
+  .btn-primary {
+    padding: .5rem !important;
+  }
   /*  */
 
   #module-psgdpr-gdpr #main {
