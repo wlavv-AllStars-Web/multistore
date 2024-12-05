@@ -800,6 +800,31 @@ body {
     background: #666;
   }
 
+  /* wheels product list */
+  #category #main {
+    background: #dedede;
+    padding: 0;
+  }
+
+  #category #main #productList{
+    padding: 1rem;
+  }
+
+  #category #banner-wheels {
+    padding: 0;
+  }
+
+  #category #banner-wheels .banner-wheels-container{
+    border-radius: .25rem;
+    overflow: hidden;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  #category #banner-wheels .banner-wheels-container #wheels-image{
+    padding: 0 !important;
+    max-width: 350px !important;
+  }
+
   /* new products */
   #new-products #main {
     background: #dedede;

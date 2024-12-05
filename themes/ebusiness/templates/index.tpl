@@ -99,7 +99,7 @@
               <div class="cards-menuLink">
                 <div class="card-news" onclick="window.location = '{$link->getPageLink('new-products', true)}';"></div>
                 <div class="card-brands" onclick="window.location = '{$link->getPageLink('manufacturer', true)}';"></div>
-                <div class="card-wheels" onclick="window.location = '{$link->getPageLink('manufacturer', true)}';"></div>
+                <div class="card-wheels" onclick="window.location = '{$link->getCategoryLink(227)}';"></div>
               </div>
             </div>
             
