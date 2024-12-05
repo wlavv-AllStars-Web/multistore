@@ -781,6 +781,10 @@ body {
     min-height: 180px;
   }
 
+  #my-account .page-content .links a:hover .link-item{
+    background: #fff;
+  }
+
   .btn-primary {
     padding: .5rem !important;
     display: flex;
