@@ -83,7 +83,7 @@
          <div class="container-imgs-mobile mobile">
          <h1>{$product.name}</h1>
          {block name='page_content'}
-          <div class="swiper mySwiper">
+          {* <div class="swiper mySwiper">
             <div class="swiper-wrapper">
             {foreach from=$product.images item=item key=key name=name}
               <div class="swiper-slide">
@@ -94,7 +94,10 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
-          </div>
+          </div> *}
+          {block name='product_cover_thumbnails'}
+            {include file='catalog/_partials/product-cover-thumbnails.tpl'}
+          {/block}
         {/block}
          </div>
 
