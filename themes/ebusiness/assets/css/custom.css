@@ -777,6 +777,10 @@ body {
 
 @media (max-width: 563px) {
 
+  .page-my-account #content .links a span.link-item {
+    min-height: 180px;
+  }
+
   .btn-primary {
     padding: .5rem !important;
     display: flex;
