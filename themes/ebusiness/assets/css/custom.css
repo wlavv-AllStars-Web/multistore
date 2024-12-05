@@ -1747,6 +1747,10 @@ body {
 
 }
 
+.swiper-pagination-fraction {
+  display: none !important;
+}
+
 /* ps_languageselector */
 
 .language-selector:hover {
