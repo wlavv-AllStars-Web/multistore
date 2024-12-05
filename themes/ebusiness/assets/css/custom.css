@@ -1189,7 +1189,7 @@ body {
     padding: 0.5rem 1rem;
   }
   .container-imgs-mobile .swiper {
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
 
