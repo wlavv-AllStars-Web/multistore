@@ -142,29 +142,29 @@
         {* <h4 class="h3 product-title"  itemprop="name"><a style="color: black;" href="{$product.url}">{$product.name|truncate:30:'...'}</a></h4> *}
         <div style="display:flex;align-items:flex-start;justify-content: space-between;">
           <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem;margin:0;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
-          <div class="add_to_cart_button" style="margin-right: 1rem;">
+          <div class="add_to_cart_button d-desktop" style="margin-right: 1rem;">
 
-          <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
-                  <input type="hidden" name="token" value="{$static_token}">
-                  <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
-                  <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
+            <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
+                    <input type="hidden" name="token" value="{$static_token}">
+                    <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
+                    <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
 
-                  <div class="add">
-                  <button
-                    class="btn btn-primary add-to-cart"
-                    data-button-action="add-to-cart"
-                    data-dismiss="modal"
-                    type="submit"
-                    style="margin-top: 0;"
-                    {* {if !$product.add_to_cart_url}
-                      disabled
-                    {/if} *}
-                  >
-                    <i class="material-icons shopping-cart">&#xE547;</i>
-    
-                  </button>
-                </div>
-          </form>
+                    <div class="add">
+                    <button
+                      class="btn btn-primary add-to-cart"
+                      data-button-action="add-to-cart"
+                      data-dismiss="modal"
+                      type="submit"
+                      style="margin-top: 0;"
+                      {* {if !$product.add_to_cart_url}
+                        disabled
+                      {/if} *}
+                    >
+                      <i class="material-icons shopping-cart">&#xE547;</i>
+      
+                    </button>
+                  </div>
+            </form>
 
           </div>
          </div>
@@ -184,6 +184,32 @@
     {else}
       <div class="variantionsProductList" style="min-height:17px"></div>
     {/if}
+
+    <div class="add_to_cart_button-mobile d-mobile">
+
+      <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
+              <input type="hidden" name="token" value="{$static_token}">
+              <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
+              <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
+
+              <div class="add">
+              <button
+                class="btn btn-primary add-to-cart"
+                data-button-action="add-to-cart"
+                data-dismiss="modal"
+                type="submit"
+                style="margin-top: 0;"
+                {* {if !$product.add_to_cart_url}
+                  disabled
+                {/if} *}
+              >
+                {* <i class="material-icons shopping-cart">&#xE547;</i> *}
+                {l s="Add to cart" d="Shop.Theme.ProductList"}
+              </button>
+            </div>
+      </form>
+
+    </div>
     
 
     {if str_contains($product['category'] ,'clearance')}
