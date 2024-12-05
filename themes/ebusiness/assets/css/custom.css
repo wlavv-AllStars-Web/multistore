@@ -297,6 +297,7 @@ body {
     width: 456px !important;
     border: 2px solid white;
     overflow: hidden;
+    height: 366px !important;
   }
 
   .thead-dark th {
@@ -369,11 +370,15 @@ body {
   }
 
   #new-products #main .banner-news-img{
-    height: 349px;
+    height: 366px;
   }
 
   #new-products #main .banner-news-img img{
     height: 100%;
+  }
+
+  .product-price-and-shipping{
+    padding: 0 1rem;
   }
 }
 
