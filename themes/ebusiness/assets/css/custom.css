@@ -786,6 +786,12 @@ body {
     width: 100%;
   }
 
+  /* addresses */
+
+  #addresses .container-customer-addresses {
+    min-height: 49dvh;
+  }
+
   /*  */
 
   .page-my-account #content .links a span.link-item {
