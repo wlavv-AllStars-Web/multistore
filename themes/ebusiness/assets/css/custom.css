@@ -785,6 +785,11 @@ body {
     background: #fff !important;
   }
 
+  #my-account .page-content .links a:hover i {
+    color: var(--asm-color) !important;
+  }
+
+
   .btn-primary {
     padding: .5rem !important;
     display: flex;
