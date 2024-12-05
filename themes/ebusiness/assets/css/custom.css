@@ -777,6 +777,51 @@ body {
 
 @media (max-width: 563px) {
 
+  /*  */
+
+  #module-psgdpr-gdpr #main {
+    padding: 1rem;
+  }
+
+  .container-btns-psgdprinfo17 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* personal info */
+
+  #identity #content-wrapper {
+    background: #f6f6f6;
+  }
+
+  #identity #content-wrapper #content {
+    background: #f6f6f6;
+  }
+
+  #identity #customer-form .form-control-label{
+    text-align: start;
+  }
+
+  #identity #customer-form .form-footer{
+    width: 100%;
+  }
+
+  #identity #customer-form footer button{
+    width: 100%;
+  }
+
+  .container-btns-myaccount a:first-child {
+    flex: 1;
+    text-align: center;
+  }
+
+  .container-btns-myaccount a:last-child{
+    margin-right: 0;
+    flex: .5;
+    text-align: center;
+  }
+
   /* order history */
 
   #history .orders.mobile-table-orders  {
