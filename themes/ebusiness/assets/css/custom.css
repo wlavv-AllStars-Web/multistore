@@ -782,7 +782,7 @@ body {
   }
 
   #my-account .page-content .links a:hover .link-item{
-    background: #fff;
+    background: #fff !important;
   }
 
   .btn-primary {
