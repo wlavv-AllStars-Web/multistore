@@ -104,12 +104,7 @@
         </span>
       </a>
 
-      {* <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$logout_url}">
-        <span class="link-item">
-          <i class="fa-solid fa-lock"></i>
-          {l s='Logout' d='Shop.Theme.CustomerAccount'}
-        </span>
-      </a> *}
+
 
       {* <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-flex">
       
@@ -127,17 +122,24 @@
           <small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
         </div>
       </div> *}
-      
+      <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-mobile" id="logout-link" href="{$logout_url}">
+        <span class="link-item">
+          <i class="fa-solid fa-lock"></i>
+          {l s='Logout' d='Shop.Theme.CustomerAccount'}
+        </span>
+      </a>
 
       {block name='display_customer_account'}
         {hook h='displayCustomerAccount'}
       {/block}
 
-      {* <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
-        <div class="link-item" style="box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
-          <button type="button" class="btn" style="width: 200px;height:60px;border-radius:0.5rem;">{l s='Back to homepage' d='Shop.Theme.CustomerAccount'}</button>
+
+
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
+        <div class="link-item" style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
+          <button type="button" class="btn" style="width: 200px;height:60px;border-radius:0.5rem;box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);">{l s='Back to homepage' d='Shop.Theme.CustomerAccount'}</button>
         </div>
-      </div> *}
+      </div>
 
     </div>
   </div>
