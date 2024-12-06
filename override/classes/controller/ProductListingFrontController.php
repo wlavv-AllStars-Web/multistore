@@ -307,9 +307,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // the controller generates the query...
         $query = $this->getProductSearchQuery();
 
+
+
         // ...modules decide if they can handle it (first one that can is used)
         $provider = $this->getProductSearchProviderFromModules($query);
-
         // if no module wants to do the query, then the core feature is used
         if (null === $provider) {
             $provider = $this->getDefaultProductSearchProvider();
@@ -407,6 +408,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $query,
             $result
         );
+
+        // pre($query->getSortOrder()->toString());
 
         // prepare the sort orders
         // note that, again, the product controller is sort-orders

@@ -482,6 +482,8 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
     {
         if(Tools::isSubmit('product_askquestion')) {
             // pre($_POST);
+
+            // echo $this->context->language->id;
             // exit;
 
             $var_list['{name_customer}'] = Tools::getValue('name_customer');
@@ -511,7 +513,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
 
 
             Mail::Send(
-                $this->context->language->id, 
+                Tools::getValue('id_lang'), 
                 'product_question', 
                 'Product Question', 
                 $var_list, 

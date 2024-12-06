@@ -111,6 +111,28 @@ class HistoryControllerCore extends FrontController
         return $url_to_invoice;
     }
 
+    public static function getUrlToDeliverySlip($order=null, $context=null)
+    {
+        echo '<pre>'.print_r($order).'</pre>';
+        exit;
+        $currentLanguage = $context->language;
+        $orderLanguage = new Language((int) $order->id_lang);
+        $context->language = $orderLanguage;
+        $context->getTranslator()->setLocale($orderLanguage->locale);
+        $invoice = $order->getInvoicesCollection();
+        $file_attachement = [];
+
+        if ($order->delivery_number) {
+            $pdf = new PDF($invoice, PDF::TEMPLATE_DELIVERY_SLIP, $context->smarty);
+            $file_attachement['delivery']['content'] = $pdf->render(false);
+            $file_attachement['delivery']['name'] = $pdf->getFilename();
+            $file_attachement['delivery']['mime'] = 'application/pdf';
+        }
+
+        $context->language = $currentLanguage;
+        $context->getTranslator()->setLocale($currentLanguage->locale);
+    }
+
     /**
      * Generates a URL to reorder a given order
      *

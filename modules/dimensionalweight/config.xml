@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>dimensionalweight</name>
+	<displayName><![CDATA[Dimensional Weight]]></displayName>
+	<version><![CDATA[1.1.4]]></version>
+	<description><![CDATA[Apply the concept of Dimensional Weight to establish a minimum charge for the cubic space a package occupies.]]></description>
+	<author><![CDATA[EMMELOGIS di Massa Roberto]]></author>
+	<tab><![CDATA[shipping_logistics]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to uninistall this module? All configuration settings will be lost]]></confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

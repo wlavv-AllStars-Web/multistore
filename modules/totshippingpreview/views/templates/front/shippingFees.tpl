@@ -31,11 +31,14 @@
 *}
 
 <table class="totselectzone__table">
-    <tr class="totselectzone__row--head">
-        <th id="logo-shipping" class="has-image"></th>
-        <th id="carrier-shipping">{l s='Carrier' mod='totshippingpreview'}</th>
-        <th>{l s='Fee' mod='totshippingpreview'}</th>
-    </tr>
+    <thead  class="thead-dark">
+        <tr class="totselectzone__row--head">
+            <th id="logo-shipping" class="has-image"></th>
+            <th id="carrier-shipping">{l s='Carrier' mod='totshippingpreview'}</th>
+            <th>{l s='Fee' mod='totshippingpreview'}</th>
+        </tr>
+    </thead>
+    <tbody>
     {foreach from=$shipping_fee key=carrier item=carrier_value name=carrier_table}
         {if $carrier_value.fees >= 0 && $carrier_value.wm_id != 765 && $carrier_value.wm_id != 752 && $carrier_value.wm_id != 768}
             <tr class="{if $smarty.foreach.carrier_table.first}totselectzone__row--first {elseif $smarty.foreach.carrier_table.first}totselectzone__row--last {/if}{if $smarty.foreach.carrier_table.index % 2 == 0}totselectzone__row--odd {/if}">
@@ -45,6 +48,7 @@
             </tr>
         {/if}
     {/foreach}
+    </tbody>
 </table>
 
 <style>

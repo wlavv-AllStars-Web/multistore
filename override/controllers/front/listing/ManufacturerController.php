@@ -45,4 +45,19 @@ class ManufacturerController extends ManufacturerControllerCore
 
         return $manufacturers_for_display;
     }
+    // public function getTemplateVarManufacturers(): array
+    // {
+    //     $manufacturers = Manufacturer::getManufacturers(true, $this->context->language->id);
+
+    //     foreach ($manufacturers as &$manufacturer) {
+    //         $manufacturer = $this->manufacturerPresenter->present(
+    //             $manufacturer,
+    //             $this->context->language
+    //         );
+    //     }
+
+    //     pre($manufacturers);
+
+    //     return $manufacturers;
+    // }
 }

@@ -160,7 +160,9 @@ class OrderDetailControllerCore extends FrontController
 
         if(Tools::getValue('type') == 'slip'){
             $order = new Order(Tools::getValue('id_order'));
+            
             $order_invoice_collection = $order->getDeliverySlipsCollection();
+            // pre($order->getCarrierName()->date_add);
             $pdf = new PDF($order_invoice_collection, PDF::TEMPLATE_DELIVERY_SLIP, Context::getContext()->smarty);  
             $pdf->render();
         }

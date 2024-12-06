@@ -227,6 +227,15 @@ class MyAccountController extends MyAccountControllerCore
             $iso_code = ($iso_code == 'GR') ? 'EL' : $iso_code;
 
             echo ($vat_iso_code != $iso_code) ? 0 : 1;
+            // $this->redirectWithNotifications($this->getCurrentURL());
+
+            // if($vat_iso_code != $iso_code){
+            //     $this->errors[] = $this->trans('Could not update your information, you cannot edit "Siret" or "Company".', [], 'Shop.Notifications.Error');
+
+            //     $this->redirectWithNotifications($this->getCurrentURL());
+            // }else{
+            //     $this->redirectWithNotifications($this->getCurrentURL());
+            // }
             exit;
         }
 

@@ -1,6 +1,6 @@
-{* <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> *}
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{* {debug} *}
 <div id="totshippingpreview-info">
     {if $origin_country}
         <p><label>{l s='Country of origin : ' mod='totshippingpreview'}</label> {$origin_country|escape:'html':'UTF-8'}</p>
@@ -49,6 +49,7 @@
 {/if}
 
 <script type="text/javascript">
+console.log("totshipping")
     var txtoriginal = "{$totTxtCol|escape:'html':'UTF-8'}";
     var bgoriginal = "{$totBgCol|escape:'html':'UTF-8'}";
     var txthover = "{$totTxtColHov|escape:'html':'UTF-8'}";

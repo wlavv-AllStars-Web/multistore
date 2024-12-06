@@ -1,28 +1,10 @@
 <?php
-/**
- * Copyright ETS Software Technology Co., Ltd
- *
- * NOTICE OF LICENSE
- *
- * This file is not open source! Each license that you purchased is only available for 1 website only.
- * If you want to use this file on more websites (or projects), you need to purchase additional licenses.
- * You are not allowed to redistribute, resell, lease, license, sub-license or offer our resources to any third party.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future.
- *
- * @author ETS Software Technology Co., Ltd
- * @copyright  ETS Software Technology Co., Ltd
- * @license    Valid for 1 website (or project) for each purchase of license
- */
 if (!defined('_PS_VERSION_')) { exit; }
 class Carrier extends CarrierCore
 {
     /*
     * module: ets_onepagecheckout
-    * date: 2024-07-23 11:39:51
+    * date: 2024-11-21 17:55:06
     * version: 2.7.9
     */
     public static function getAvailableCarrierList(Product $product, $id_warehouse, $id_address_delivery = null, $id_shop = null, $cart = null, &$error = array())
@@ -142,4 +124,133 @@ class Carrier extends CarrierCore
         }
         return $carrier_list;
     }
+    /*
+    * module: totshippingpreview
+    * date: 2024-12-06 14:25:52
+    * version: 1.3.0
+    */
+    public function add($autodate = true, $null_values = false)
+    {
+        if ($this->position <= 0) {
+            $this->position = Carrier::getHigherPosition() + 1;
+        }
+        if (!parent::add($autodate, $null_values) || !Validate::isLoadedObject($this)) {
+            return false;
+        }
+        if (!$count = Db::getInstance()->getValue('SELECT count(`id_carrier`) FROM `'._DB_PREFIX_.$this->def['table'].'` WHERE `deleted` = 0')) {
+            return false;
+        }
+        if ($count == 1) {
+            Configuration::updateValue('PS_CARRIER_DEFAULT', (int)$this->id);
+        }
+        Db::getInstance()->execute('UPDATE `'._DB_PREFIX_.$this->def['table'].'` SET `id_reference` = '.$this->id.' WHERE `id_carrier` = '.$this->id);
+        $data = array(
+            'id_totshippingpreview_carrier' => $this->id,
+            'mindays' => Tools::getValue('mindays')!='' ? (int) Tools::getValue('mindays'): null,
+            'maxdays' => Tools::getValue('maxdays')!='' ? (int) Tools::getValue('maxdays'): null,
+        );
+        DB::getInstance()->insert('totshippingpreview_carrier', $data);
+        return true;
+    }
+
+
+    public static function getCarriersForOrder($id_zone, $groups = null, $cart = null, &$error = array())
+	{
+		include_once(_PS_ROOT_DIR_.'/modules/dimensionalweight/dimensionalweight.php');
+
+		/* Instanciate the Dimensional Weight module and check if active */
+		$dimensionalweight = new dimensionalweight();
+		if (!$dimensionalweight->active)
+			return parent::getCarriersForOrder($id_zone, $groups, $cart);
+
+		$context = Context::getContext();
+		$id_lang = $context->language->id;
+		if (is_null($cart))
+			$cart = $context->cart;
+
+		if (isset($context->currency))
+			$id_currency = $context->currency->id;
+
+		if (is_array($groups) && !empty($groups))
+			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, $groups, self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE);
+		else
+			$result = Carrier::getCarriers($id_lang, true, false, (int)$id_zone, array(Configuration::get('PS_UNIDENTIFIED_GROUP')), self::PS_CARRIERS_AND_CARRIER_MODULES_NEED_RANGE);
+		$results_array = array();
+
+		foreach ($result as $k => $row)
+		{
+			$carrier = new Carrier((int)$row['id_carrier']);
+			$shipping_method = $carrier->getShippingMethod();
+			if ($shipping_method != Carrier::SHIPPING_METHOD_FREE)
+			{
+
+				// Get only carriers that are compliant with shipping method
+				if (($shipping_method == Carrier::SHIPPING_METHOD_WEIGHT && $carrier->getMaxDeliveryPriceByWeight($id_zone) === false))
+				{
+					$error[$carrier->id] = Carrier::SHIPPING_WEIGHT_EXCEPTION;
+					unset($result[$k]);
+					continue;
+				}
+				if (($shipping_method == Carrier::SHIPPING_METHOD_PRICE && $carrier->getMaxDeliveryPriceByPrice($id_zone) === false))
+				{
+					$error[$carrier->id] = Carrier::SHIPPING_PRICE_EXCEPTION;
+					unset($result[$k]);
+					continue;
+				}
+
+				// If out-of-range behavior carrier is set on "Desactivate carrier"
+				if ($row['range_behavior'])
+				{
+					// Get id zone
+					if (!$id_zone)
+							$id_zone = Country::getIdZone(Country::getDefaultCountryId());
+
+
+					// Get only carriers that have a range compatible with cart
+					if ($shipping_method == Carrier::SHIPPING_METHOD_WEIGHT
+						&& (!Carrier::checkDeliveryPriceByWeight($row['id_carrier'], $cart->getTotalWeight(null, $row['id_carrier']), $id_zone)))
+					{
+						$error[$carrier->id] = Carrier::SHIPPING_WEIGHT_EXCEPTION;
+						unset($result[$k]);
+						continue;
+					}
+
+					if ($shipping_method == Carrier::SHIPPING_METHOD_PRICE
+						&& (!Carrier::checkDeliveryPriceByPrice($row['id_carrier'], $cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $id_currency)))
+					{
+						$error[$carrier->id] = Carrier::SHIPPING_PRICE_EXCEPTION;
+						unset($result[$k]);
+						continue;
+					}
+				}
+			}
+
+			$row['name'] = (strval($row['name']) != '0' ? $row['name'] : Configuration::get('PS_SHOP_NAME'));
+			$row['price'] = ($shipping_method == Carrier::SHIPPING_METHOD_FREE ? 0 : $cart->getPackageShippingCost((int)$row['id_carrier'], true, null, null, $id_zone));
+			$row['price_tax_exc'] = ($shipping_method == Carrier::SHIPPING_METHOD_FREE ? 0 : $cart->getPackageShippingCost((int)$row['id_carrier'], false, null, null, $id_zone));
+			$row['img'] = file_exists(_PS_SHIP_IMG_DIR_.(int)$row['id_carrier'].'.jpg') ? _THEME_SHIP_DIR_.(int)$row['id_carrier'].'.jpg' : '';
+
+			// If price is false, then the carrier is unavailable (carrier module)
+			if ($row['price'] === false)
+			{
+				unset($result[$k]);
+				continue;
+			}
+			$results_array[] = $row;
+		}
+
+		// if we have to sort carriers by price
+		$prices = array();
+		if (Configuration::get('PS_CARRIER_DEFAULT_SORT') == Carrier::SORT_BY_PRICE)
+		{
+			foreach ($results_array as $r)
+				$prices[] = $r['price'];
+			if (Configuration::get('PS_CARRIER_DEFAULT_ORDER') == Carrier::SORT_BY_ASC)
+				array_multisort($prices, SORT_ASC, SORT_NUMERIC, $results_array);
+			else
+				array_multisort($prices, SORT_DESC, SORT_NUMERIC, $results_array);
+		}
+
+		return $results_array;
+	}
 }

@@ -43,8 +43,8 @@ class QuickShopControllerCore extends ProductListingFrontController{
             // Fetch product or do whatever you need with this data
             $QSproduct = new Product($productId);
             $attributes = $QSproduct->getAttributeCombinations($this->context->language->id);
-            // echo '<pre>' . print_r($attributes, 1) . '</pre>';
-            // exit;
+
+            
             // // Initialize the grouped attributes array
             $groupedAttributes = [];
 
@@ -52,6 +52,11 @@ class QuickShopControllerCore extends ProductListingFrontController{
             foreach ($attributes as $attribute) {
                 $groupId = $attribute['id_attribute_group']; // Get the group ID
                 $groupName = $attribute['group_name']; // Get the group name
+
+                // echo '<pre>' . print_r($attribute, 1) . '</pre>';
+                // exit;
+                // echo '<pre>' . print_r($QSproduct->getAttributesParams($productId,$attribute['id_product_attribute']), 1) . '</pre>';
+                
             
                 // Initialize the group if it doesn't exist
                 if (!isset($groupedAttributes[$groupId])) {
@@ -84,6 +89,7 @@ class QuickShopControllerCore extends ProductListingFrontController{
                 // Also keep track of the quantity for each attribute
                 $groupedAttributes[$groupId]['attributes_quantity'][$attribute['id_attribute']] = $attribute['quantity'] ?? 0;
             }
+            // exit;
             // echo '<pre>' . print_r($groupedAttributes, 1) . '</pre>';
             // exit;
             // // At this point, $groupedAttributes is structured similarly to your original $groups

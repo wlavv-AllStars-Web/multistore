@@ -544,6 +544,8 @@ class OrderDetailCore extends ObjectModel
      */
     protected function updateProductQuantityInStock($product, $orderStateId): void
     {
+
+        // ASGROUP PS_OS_WAITING_PAYMENT ("Awaiting payment") to not remove stock of product if in that order state. Only on ASDistribution
         if($this->context->shop->id != 3){
             $dismissOrderStateIds = Configuration::getMultiple([
                 'PS_OS_CANCELED',

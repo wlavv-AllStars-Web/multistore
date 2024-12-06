@@ -1005,16 +1005,22 @@ class OrderCore extends ObjectModel
             return [];
         }
 
+        
+
         foreach ($res as $key => $val) {
+            // pre($val);
+            
             // In case order creation crashed midway some data might be absent
             $orderState = !empty($val['id_order_state']) ? $indexedOrderStates[$val['id_order_state']] : null;
             $res[$key]['order_state'] = $orderState['name'] ?? null;
             $res[$key]['invoice'] = $orderState['invoice'] ?? null;
             $res[$key]['order_state_color'] = $orderState['color'] ?? null;
         }
+       
 
         return $res;
     }
+
 
     public static function getOrdersIdByDate($date_from, $date_to, $id_customer = null, $type = null)
     {
@@ -1653,10 +1659,56 @@ class OrderCore extends ObjectModel
 
     public function getTotalWeight()
     {
-        $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('
-        SELECT SUM(product_weight * product_quantity)
-        FROM ' . _DB_PREFIX_ . 'order_detail
-        WHERE id_order = ' . (int) $this->id);
+        // Check if the 'dimensionalweight' module is active
+        if (Module::isEnabled('dimensionalweight')) {
+            // If the module is active, use the dimensional weight calculation
+            include_once(_PS_ROOT_DIR_.'/modules/dimensionalweight/dimensionalweight.php');
+
+            /* Instanciate the Dimensional Weight module and check if active */
+            $dimensionalweight = new DimensionalWeight();
+            // if (!$dimensionalweight->active){
+            // 	return parent::getTotalWeight();
+            // }
+            $id_carrier = 0;
+
+            $order_carrier = new OrderCarrier((int)$this->getIdOrderCarrier());
+            if (Validate::isLoadedObject($order_carrier)){
+                $id_carrier = $order_carrier->id_carrier;
+            }else{
+                $id_carrier = $this->id_carrier;
+            }
+            $total_weight = 0;
+
+            $dim_weight_params = $dimensionalweight->getCarrierRuleWithIdCarrier($id_carrier);
+
+            $products_details = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('
+            SELECT product_id, product_quantity, product_weight
+            FROM '._DB_PREFIX_.'order_detail
+            WHERE id_order = '.(int)$this->id);
+
+            foreach ($products_details as $product_details)
+            {
+
+                $product_dimensions = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
+                                    SELECT width, height, depth
+                                    FROM '._DB_PREFIX_.'product
+                                    WHERE id_product = '.(int)$product_details['product_id']);
+
+                if (!empty($dim_weight_params))
+                {
+                    $dim_weight = (($product_dimensions['width'] * $product_dimensions['height'] * $product_dimensions['depth']) / $dim_weight_params['factor']);
+                    $weight = ($dim_weight > $product_details['product_weight'] ? $dim_weight : $product_details['product_weight']);
+                    $total_weight += $weight * $product_details['product_quantity'];
+                }
+                else
+                    $total_weight += $product_details['product_weight'] * $product_details['product_quantity'];
+            }
+        } else {
+            $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('
+            SELECT SUM(product_weight * product_quantity)
+            FROM ' . _DB_PREFIX_ . 'order_detail
+            WHERE id_order = ' . (int) $this->id);
+        }
 
         return (float) $result;
     }
@@ -2484,12 +2536,20 @@ class OrderCore extends ObjectModel
      */
     public function getIdOrderCarrier()
     {
+        if (Module::isEnabled('dimensionalweight')) {
+		    return (int)Db::getInstance()->getValue('
+				SELECT `id_order_carrier`
+				FROM `'._DB_PREFIX_.'order_carrier`
+				WHERE `id_order` = '.(int)$this->id);
+        }else{
+            return (int) Db::getInstance()->getValue('
+                    SELECT `id_order_carrier`
+                    FROM `' . _DB_PREFIX_ . 'order_carrier`
+                    WHERE `id_order` = ' . (int) $this->id .'
+                    ORDER BY `date_add` DESC');
 
-        return (int) Db::getInstance()->getValue('
-                SELECT `id_order_carrier`
-                FROM `' . _DB_PREFIX_ . 'order_carrier`
-                WHERE `id_order` = ' . (int) $this->id .'
-                ORDER BY `date_add` DESC');
+        }
+
     }
 
     public static function sortDocuments($a, $b)

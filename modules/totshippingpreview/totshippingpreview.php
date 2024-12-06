@@ -104,6 +104,7 @@ class TotShippingPreview extends Module
             || !$this->registerHook('displayAdminProductsExtra')
             || !$this->registerHook('actionCarrierUpdate')
             || !$this->registerHook('actionProductUpdate')
+            || !$this->registerHook('actionAdminControllerSetMedia')
             || !$this->registerHook('backOfficeHeader')) {
             return false;
         }
@@ -195,12 +196,20 @@ class TotShippingPreview extends Module
             || !$this->unregisterHook('header')
             || !$this->unregisterHook('displayAdminProductsExtra')
             || !$this->unregisterHook('actionProductUpdate')
+            || !$this->registerHook('actionAdminControllerSetMedia')
             || !$this->unregisterHook('backOfficeHeader')) {
             return false;
         }
 
         return true;
     }
+
+    public function hookActionAdminControllerSetMedia()
+    {
+        $this->context->controller->addCss('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+        $this->context->controller->addJS('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
+    }
+     
 
     ############################################################################################################
     # Configuration part
@@ -540,14 +549,25 @@ class TotShippingPreview extends Module
             Configuration::updateValue('TOTSP_BG_COL_HOV', $bghov);
             Configuration::updateValue('TOTSP_BTN_TXT', $txtlang);
 
-            $img = $_FILES['tot_pic']['tmp_name'];
-            $img_name = $_FILES['tot_pic']['name'];
+            $img = $_FILES['tot_pic']['tmp_name'] ?? null;
+            $img_name = $_FILES['tot_pic']['name'] ?? null;
 
-            if (ImageManager::isRealImage($img) && ImageManager::validateUpload($img)) {
-                $img_dir = dirname(__FILE__).'/views/img/';
-                if (move_uploaded_file($img, $img_dir.$img_name)) {
-                    Configuration::updateValue('TOTSP_BTN_PIC', $img_name);
+            if ($img && is_uploaded_file($img)) {
+                if (ImageManager::isRealImage($img) && ImageManager::validateUpload($img)) {
+                    $img_dir = dirname(__FILE__) . '/views/img/';
+                    if (move_uploaded_file($img, $img_dir . $img_name)) {
+                        Configuration::updateValue('TOTSP_BTN_PIC', $img_name);
+                    } else {
+                        // Handle move_uploaded_file failure
+                        error_log('Failed to move uploaded file to destination directory.');
+                    }
+                } else {
+                    // Handle validation failure
+                    error_log('Uploaded file is not a valid image.');
                 }
+            } else {
+                // Handle empty or missing file
+                error_log('No file uploaded or file path is invalid.');
             }
         }
     }
@@ -779,6 +799,9 @@ class TotShippingPreview extends Module
 
             $shipping_preview = new ShippingPreview($result_id);
 
+            // print_r($shipping_preview,1);
+            // exit;
+
 
             if (!$cart) {
                 $product = new product($id_product);
@@ -908,6 +931,7 @@ class TotShippingPreview extends Module
                 $delivery_country = $shipping_preview->delivery_country[$this->context->language->id];
                 
                 $origin_country = $shipping_preview->origin_country[$this->context->language->id];
+
             } else {
                 $delivery_country = ($shipping_preview->delivery_country[$this->context->language->id] != '' ? $shipping_preview->delivery_country[$this->context->language->id] : $shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')]);
                 
