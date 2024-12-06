@@ -625,8 +625,7 @@
                      <img src="https://www.all-stars-motorsport.com/img/app_icons/shipping_en.webp" />
                    </div>
                     <div class="tab">
-                      Shipping options
-                      {$zone}
+                      {hook h='extraRight' mod='totshippingpreview'}
                     </div>
                   </div>
 
