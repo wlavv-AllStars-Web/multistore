@@ -1208,6 +1208,12 @@ width: 100%;
     min-width: 500px;
   }
 
+  .page-cms-29 .rte .col-sm-4 strong{
+    color: #333;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
   .page-cms-29 a img {
     max-width: 600px;
   }
