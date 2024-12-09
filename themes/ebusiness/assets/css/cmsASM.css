@@ -16,19 +16,19 @@
   margin: 0;
 }
 
-.cars-container {
+.cms-id-28 .cars-container {
   justify-content: center;
 }
 
-.hover_for_text:hover div{
+.cms-id-28 .hover_for_text:hover div{
   opacity: 1 !important;
 }
 
-.ourcars .cars-container .car-container .hover_for_text{
+.cms-id-28 .ourcars .cars-container .car-container .hover_for_text{
   position:  relative !important;
 }
 
-.ourcars .cars-container .car-container .hover_for_text a {
+.cms-id-28 .ourcars .cars-container .car-container .hover_for_text a {
   display: none;
   position: absolute;
   top: 0;
@@ -38,32 +38,32 @@
   backdrop-filter: blur(10px);
 }
 
-.hover_for_text:hover div h2 {
+.cms-id-28 .hover_for_text:hover div h2 {
   color: var(--white);
 }
 
-.car-container strong {
+.cms-id-28 .car-container strong {
   font-weight: 600 !important;
 }
 
-.car-container {
+.cms-id-28 .car-container {
   min-width: 475px;
   /* position: relative; */
 }
 
-.car-container > div{
+.cms-id-28 .car-container > div{
   /* position: absolute; */
   /* display: none; */
   justify-content: center;
   align-items: center;
 }
 
-.car-container > div h2{
+.cms-id-28 .car-container > div h2{
   padding: 0 !important;
   color: #fff;
 }
 
-.car-container:hover a {
+.cms-id-28 .car-container:hover a {
   display: flex !important;
   justify-content: center;
   align-items: center;
