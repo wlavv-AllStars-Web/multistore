@@ -101,10 +101,11 @@ class TotShippingPreview extends Module
         if (!$this->registerHook('extraRight')
             || !$this->registerHook('shoppingCart')
             || !$this->registerHook('header')
-            || !$this->registerHook('displayAdminProductsExtra')
+            || !$this->registerHook('displayAdminProductContentProduct')
+            // || !$this->registerHook('displayAdminProductsExtra')
             || !$this->registerHook('actionCarrierUpdate')
             || !$this->registerHook('actionProductUpdate')
-            || !$this->registerHook('actionAdminControllerSetMedia')
+            // || !$this->registerHook('actionAdminControllerSetMedia')
             || !$this->registerHook('backOfficeHeader')) {
             return false;
         }
@@ -194,9 +195,10 @@ class TotShippingPreview extends Module
         if (!$this->unregisterHook('extraRight')
             || !$this->unregisterHook('shoppingCart')
             || !$this->unregisterHook('header')
-            || !$this->unregisterHook('displayAdminProductsExtra')
+            || !$this->unregisterHook('displayAdminProductContentProduct')
+            // || !$this->unregisterHook('displayAdminProductsExtra')
             || !$this->unregisterHook('actionProductUpdate')
-            || !$this->registerHook('actionAdminControllerSetMedia')
+            // || !$this->unregisterHook('actionAdminControllerSetMedia')
             || !$this->unregisterHook('backOfficeHeader')) {
             return false;
         }
@@ -204,11 +206,11 @@ class TotShippingPreview extends Module
         return true;
     }
 
-    public function hookActionAdminControllerSetMedia()
-    {
-        $this->context->controller->addCss('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
-        $this->context->controller->addJS('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
-    }
+    // public function hookActionAdminControllerSetMedia()
+    // {
+    //     $this->context->controller->addCss('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+    //     $this->context->controller->addJS('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
+    // }
      
 
     ############################################################################################################
@@ -649,9 +651,11 @@ class TotShippingPreview extends Module
      * @param $params
      * @return string
      */
-    public function hookDisplayAdminProductsExtra($params)
+    // public function hookDisplayAdminProductsExtra($params)
+    public function hookDisplayAdminProductContentProduct($params)
     {
         $cookie = $this->context->cookie;
+
         $this->allow_employee_form_lang = (int)Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG');
         if ($this->allow_employee_form_lang && !$cookie->employee_form_lang) {
             $cookie->employee_form_lang = (int)Configuration::get('PS_LANG_DEFAULT');
@@ -673,7 +677,12 @@ class TotShippingPreview extends Module
         $sql->where('t.id_product = '.Tools::getValue('id_product'));
         $result_id = Db::getInstance()->getValue($sql);
 
+        // echo '<pre>'.print_r($result_id,1).'</pre>';
+        // exit;
+
         $shipping_preview = new ShippingPreview($result_id);
+
+
 
         if (version_compare(_PS_VERSION_, '1.6', '>')) {
             $ps = 1;
@@ -1149,7 +1158,7 @@ class TotShippingPreview extends Module
         $this->id_product = $id_product;
         $this->id_product_attribute = $id_product_attribute;
         $this->total_price = $total_price;
-	$this->quantity = (int)$quantity;
+	    $this->quantity = (int)$quantity;
     }
 
     public function displayPreview($id_zone, $id_product, $quantity = null)
@@ -1157,6 +1166,8 @@ class TotShippingPreview extends Module
         $product = new Product($id_product);
         
         $total_price = $product->getPrice();
+
+        // echo '<pre>'.print_r($product->getCarriers(),1).'</pre>';
 
         if ($this->cart == 0) {
             $carriers = $product->getCarriers();
