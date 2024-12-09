@@ -16,8 +16,26 @@
   margin: 0;
 }
 
+.cars-container {
+  justify-content: center;
+}
+
 .hover_for_text:hover div{
   opacity: 1 !important;
+}
+
+.ourcars .cars-container .car-container .hover_for_text{
+  position:  relative !important;
+}
+
+.ourcars .cars-container .car-container .hover_for_text a {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
 }
 
 .hover_for_text:hover div h2 {
@@ -26,6 +44,29 @@
 
 .car-container strong {
   font-weight: 600 !important;
+}
+
+.car-container {
+  min-width: 475px;
+  /* position: relative; */
+}
+
+.car-container > div{
+  /* position: absolute; */
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+}
+
+.car-container > div h2{
+  padding: 0 !important;
+  color: #fff;
+}
+
+.car-container:hover a {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -100,7 +141,7 @@
 
 /* galleries css */
 
-#galleries {
+  #galleries {
     max-width: 1440px;
     background: transparent none repeat scroll 0 0;
     padding: 0 !important;
@@ -115,13 +156,21 @@
     padding: 0 !important;
     width: 100%;
     background: #d9d9db;
+    flex-wrap: wrap;
   
   }
   
   .galleries_content > .col-lg-6 {
     padding: 0 !important;
+    min-width: 373px;
+    display: flex;
+    justify-content: center;
   }
 
+  .galleries_content img {
+    width: 100%;
+    max-width: 720px;
+  }
 
   /* terms */
 
