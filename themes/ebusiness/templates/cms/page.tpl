@@ -102,6 +102,41 @@
             }
 
         </script>
+    {elseif $cms.id == 28}
+        <script>
+            const cmsLinks = {
+                64: "{$link->getCMSLink(64)}",
+                65: "{$link->getCMSLink(65)}",
+                66: "{$link->getCMSLink(66)}",
+                67: "{$link->getCMSLink(67)}",
+                68: "{$link->getCMSLink(68)}",
+                69: "{$link->getCMSLink(69)}",
+                70: "{$link->getCMSLink(70)}",
+                71: "{$link->getCMSLink(71)}",
+                72: "{$link->getCMSLink(72)}",
+                73: "{$link->getCMSLink(73)}",
+                74: "{$link->getCMSLink(74)}",
+                75: "{$link->getCMSLink(75)}",
+                76: "{$link->getCMSLink(76)}",
+                77: "{$link->getCMSLink(77)}",
+                78: "{$link->getCMSLink(78)}",
+                79: "{$link->getCMSLink(79)}",
+                80: "{$link->getCMSLink(80)}",
+                81: "{$link->getCMSLink(81)}",
+                82: "{$link->getCMSLink(82)}",
+                83: "{$link->getCMSLink(83)}",
+            };
+
+            const cars = document.querySelectorAll(".car-container")
+
+            cars.forEach((element) => {
+                const aTag = element.querySelector("a")
+                aTag.removeAttribute("href")
+                const carID = aTag.getAttribute("class").split("-")[1]
+                element.querySelector("a").setAttribute("href", cmsLinks[carID])
+            })
+
+        </script>
     {/if}
 
 
