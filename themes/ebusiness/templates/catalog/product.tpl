@@ -715,7 +715,7 @@
  Reviews
  </div> *}
 
- <div  class="desktop" id="product_reviews" style="padding:1rem 0;display:flex;flex-direction:column;">
+ <div  class="desktop" id="product_reviews" style="padding:0;display:flex;flex-direction:column;">
 
   {block name='product_reviews'}
     {hook h='displayFooterProduct' product=$product}
