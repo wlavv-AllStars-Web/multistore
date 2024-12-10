@@ -44,7 +44,7 @@
             <tr class="{if $smarty.foreach.carrier_table.first}totselectzone__row--first {elseif $smarty.foreach.carrier_table.first}totselectzone__row--last {/if}{if $smarty.foreach.carrier_table.index % 2 == 0}totselectzone__row--odd {/if}">
                 <td class="has-image">{if $carrier_value.logo}<img src="{$carrier_value.logo|escape:'html':'UTF-8'}" alt="{$carrier|escape:'html':'UTF-8'}" style="height: 65px; width: 65px;">{/if}</td>
                 <td>{$carrier|escape:'html':'UTF-8'} - {$carrier_value.delay|escape:'html':'UTF-8'}</td>
-                <td class="fees">{if $carrier_value.fees > 0}{$carrier_value.fees|escape:'htmlall':'UTF-8'} {$currency->sign|escape:'htmlall':'UTF-8'}{elseif $carrier_value.fees == 0}{l s='Free' mod='totshippingpreview'}{/if}</td>
+                <td class="fees">{if $carrier_value.fees > 0}{$carrier_value.fees|escape:'htmlall':'UTF-8'}€ {elseif $carrier_value.fees == 0}{l s='Free' mod='totshippingpreview'}{/if}</td>
             </tr>
         {/if}
     {/foreach}
