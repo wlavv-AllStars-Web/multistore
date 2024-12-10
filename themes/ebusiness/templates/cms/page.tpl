@@ -213,7 +213,7 @@
         <style>
             .modal-imgs-car{
                 display: none !important;
-                position: absolute;
+                position: fixed;
                 z-index: 99;
                 top: 0;
                 left: 0;
