@@ -711,16 +711,17 @@
              
  </div>
 
- <div class="desktop" style="padding: 0.5rem 1rem; background:#333;width:100%;color: #fff;">
+ {* <div class="desktop" style="padding: 0.5rem 1rem; background:#333;width:100%;color: #fff;">
  Reviews
- </div>
+ </div> *}
 
  <div  class="desktop" id="product_reviews" style="padding:1rem 0;display:flex;flex-direction:column;">
-  <div class="banner-tabs" >
-    <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
-  </div>
+
+  {block name='product_reviews'}
+    {hook h='displayFooterProduct' product=$product}
+  {/block}
   
-  {hook h='displayFooterProduct' mod='productcomments' product=$product category=$category}
+  {* {hook h='displayFooterProduct' mod='productcomments' product=$product category=$category} *}
 </div>
 
  
