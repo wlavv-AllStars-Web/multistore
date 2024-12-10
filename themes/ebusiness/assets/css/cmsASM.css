@@ -1287,6 +1287,24 @@ width: 100%;
   }
 
   @media screen and (max-width: 768px) {
+    .cms-id-28 .car-container {
+      min-width: 100%;
+      max-width: 100dvw;
+      width: 100% !important;
+      flex: 1;
+    }
+    .ourcars .cars-container .car-container .hover_for_text{
+      height: fit-content !important;
+    }
+
+    .ourcars .cars-container .car-container .hover_for_text a{
+      display: block !important;
+      height: 100% !important;
+      color: transparent !important;
+      backdrop-filter: none !important;
+      background-image: none !important;
+    }
+
     .page-car h1 b{
       font-size: 1.85rem;
       padding-bottom: 2rem;
