@@ -137,6 +137,113 @@
             })
 
         </script>
+    {elseif $cms.id == 64 || $cms.id == 65 ||  $cms.id == 66}
+        <script>
+
+            const content = document.querySelector(".page-car")
+
+            const containerModal = document.createElement("div")
+            containerModal.classList.add("modal-imgs-car")
+
+            const swiperContainer = document.createElement("div")
+            swiperContainer.classList.add("swiper")
+            swiperContainer.classList.add("mySwiperCar")
+
+            containerModal.appendChild(swiperContainer)
+
+            const swiperWrapper = document.createElement("div")
+            swiperWrapper.classList.add("swiper-wrapper")
+
+            swiperContainer.appendChild(swiperWrapper)
+
+
+            const imgs = document.querySelectorAll(".page-car img")
+
+            imgs.forEach((img) => {
+                const slide = document.createElement("div")
+                slide.classList.add("swiper-slide")
+
+                const imgContent = document.createElement("img")
+                const src = img.getAttribute("src")
+
+                imgContent.setAttribute("src", src)
+
+                slide.appendChild(imgContent)
+
+                swiperWrapper.appendChild(slide)
+
+                img.addEventListener("click", (e) => {
+                    containerModal.classList.toggle("show-imgs")
+                })
+            })
+
+            const right = document.createElement("div")
+            right.classList.add("swiper-button-next")
+
+            const left = document.createElement("div")
+            left.classList.add("swiper-button-prev")
+
+            swiperContainer.appendChild(right)
+            swiperContainer.appendChild(left)
+
+            content.appendChild(containerModal)
+
+                // Click outside logic
+            containerModal.addEventListener("click", (event) => {
+                // Check if the click is outside the modal
+                if (
+                    containerModal.classList.contains("show-imgs") &&
+                    !swiperContainer.contains(event.target) // Click not inside .mySwiperCar
+                ) {
+                    containerModal.classList.remove("show-imgs");
+                }
+            });
+        </script>
+
+        <script>
+            var swiperCarImgs = new Swiper(".mySwiperCar", {
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+        </script>
+        <style>
+            .modal-imgs-car{
+                display: none !important;
+                position: absolute;
+                z-index: 99;
+                top: 0;
+                left: 0;
+                width: 100dvw;
+                height: 100dvh;
+                background: rgba(0, 0, 0, .5);
+                backdrop-filter: blur(4px);
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-imgs-car.show-imgs{
+                display: flex !important;
+            }
+
+            .mySwiperCar{
+                width: 620px;
+                height: fit-content;
+                background: #fff;
+            }
+
+            .mySwiperCar .swiper-slide img {
+                max-width: 620px;
+            }
+
+
+
+        </style>
     {/if}
 
 
