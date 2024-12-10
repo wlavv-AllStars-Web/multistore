@@ -211,21 +211,7 @@
 
         </script>
         <style>
-            .modal-imgs-car{
-                display: none !important;
-                position: fixed;
-                z-index: 99;
-                top: 0;
-                left: 0;
-                width: 100dvw;
-                height: 100dvh;
-                background: rgba(0, 0, 0, .5);
-                backdrop-filter: blur(4px);
 
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
 
             .modal-imgs-car.show-imgs{
                 display: flex !important;
