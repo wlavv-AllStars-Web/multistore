@@ -1222,6 +1222,11 @@ width: 100%;
     display: none !important;
   }
 
+  .page-car{
+    display: flex;
+    padding: 1rem;
+  }
+
   .page-car > div:nth-child(1) {
     padding: 0 4rem;
   }
