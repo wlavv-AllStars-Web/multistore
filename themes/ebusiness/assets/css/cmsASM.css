@@ -1293,7 +1293,7 @@ width: 100%;
   .page-car > div:nth-child(2) .row > div{
     flex: 1;
     min-width: 301px;
-    max-width: 403px;
+    max-width: 394px;
   }
 
   .mySwiperCar .swiper-button-next, .mySwiperCar .swiper-button-prev {
