@@ -22,32 +22,30 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{* {$categories[0]['id_shop']} *}
-{assign var="current_shop" value=Context::getContext()->shop->id}
 
-{* <pre>{$current_shop|print_r}</pre> *}
-
-<div id="empty-product-comment" class="product-comment-list-item">
-  {if $post_allowed}
-    {if $current_shop === 2}
-      <div>
-        <p>No reviews yet</p>
-        <span>*</span>
-        <p>Write your comment here</p>
-      </div>
-      <div>
-        <a id="new_comment_tab_btn_" class="btn-comment-big post-product-comment" style="width:fit-content !important;" onmouseover="changeImgComments()" onmouseout="changeImgComments()">
-            <img id="clickReviewDesktop" src="/img/asm/click.png" alt="Click to review" style="width: 150px; transform: scale(1);">  
-        </a>
-      </div>
-    {else}
-      <button class="btn btn-comment btn-comment-big post-product-comment">
+{if $nb_comments != 0 || $post_allowed}
+<div class="product-comments-additional-info">
+  {if $nb_comments == 0}
+    {if $post_allowed}
+      <button class="btn btn-comment post-product-comment">
         <i class="material-icons edit" data-icon="edit"></i>
-        {l s='Be the first to write your review' d='Modules.Productcomments.Shop'}
+        {l s='Write your review' d='Modules.Productcomments.Shop'}
       </button>
     {/if}
   {else}
-    {l s='No customer reviews for the moment.' d='Modules.Productcomments.Shop'}
+    {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade}
+    <div class="additional-links">
+      <a class="link-comment" href="#product-comments-list-header">
+        <i class="material-icons chat" data-icon="chat"></i>
+        {l s='Read user reviews' d='Modules.Productcomments.Shop'} ({$nb_comments})
+      </a>
+      {if $post_allowed}
+        <a class="link-comment post-product-comment" href="#product-comments-list-header">
+          <i class="material-icons edit" data-icon="edit"></i>
+          {l s='Write your review' d='Modules.Productcomments.Shop'}
+        </a>
+      {/if}
+    </div>
   {/if}
 </div>
-
+{/if}

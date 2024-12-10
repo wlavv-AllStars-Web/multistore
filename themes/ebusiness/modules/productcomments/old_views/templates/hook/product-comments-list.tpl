@@ -27,20 +27,12 @@
   var productCommentAbuseReportErrorMessage = '{l|escape:'javascript' s='Sorry, your abuse report cannot be sent.' d='Modules.Productcomments.Shop'}';
 </script>
 
-<div id="product-comments-list-header" style="padding: 0.5rem 1rem;
-  background: #333;
-  width: 100%;
-  margin-bottom: 1rem;
-  color: #fff;">
+<div id="product-comments-list-header">
   <div class="comments-nb">
     <i class="material-icons chat" data-icon="chat"></i>
     {l s='Comments' d='Modules.Productcomments.Shop'} ({$nb_comments})
   </div>
   {include file='module:productcomments/views/templates/hook/average-grade-stars.tpl' grade=$average_grade}
-</div>
-
-<div class="banner-tabs" >
-  <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
 </div>
 
 {include file='module:productcomments/views/templates/hook/product-comment-item-prototype.tpl' assign="comment_prototype"}
