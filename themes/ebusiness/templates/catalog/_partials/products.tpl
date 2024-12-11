@@ -68,12 +68,43 @@
           {* <div class="banner-wheels-title" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #ddd;">
             <h1 id="wheels-title" style="margin-bottom: 0;font-weight:600;">WHEELS</h1>
           </div> *}
-          <div class="wheels-selectors">
-            <img id="wheels-image" class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/wheels_en.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" onclick="$('.flip-card-inner').css('transform', 'rotateY(180deg)');">
+                <div style="flex-direction:column;justify-content:space-between;">
+                  <div class="wheels-selectors">
+                    <img id="wheels-image" class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/wheels_en.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
+                  </div>
+                  <div class="wheels-btn" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;">
+                    <span style="color: #fff;font-weight:600;">NEED HELP WITH YOUR WHEELS DETAILS?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                  <div style="padding: 20px; display: block;background-color: #efefef;border: 1px solid #000;box-shadow: 0px 4px 4px #777;">
+                    <div style="color: black; font-weight: bolder; font-size: 22px;padding: 20px 0;">SELECT YOUR CAR CONFIGURATION</div>
+                    <div style="padding: 10px; ">
+                      <select id="carBrandWheels" class="form-control" style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModelData()">
+                          <option value="0"> BRAND </option>
+                          
+                      </select>
+                    </div>
+                    <div style="padding: 10px;">
+                      <select id="carModelWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForYearData()" disabled="disabled"> <option> MODEL </option> </select>
+                    </div>
+                    <div style="padding: 10px;">
+                      <select id="carYearWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModificationsData()" disabled="disabled"> <option> YEAR </option> </select>
+                    </div>
+                    <div style="padding: 10px;">
+                      <select id="carModificationsWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" disabled="disabled"> <option> MODIFICATIONS </option> </select>
+                    </div>
+                    <div style="padding: 10px;display: none;" id="carSpecs"></div>
+                    <div style="height: 25px; width: 100%; background-color: #efefef;"></div>
+                    </div>
+              </div>
+            </div>
           </div>
-          <div class="wheels-btn" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;">
-            <span style="color: #fff;font-weight:600;">NEED HELP WITH YOUR WHEELS DETAILS?</span>
-          </div>
+
         </div>
       </article>
     {/if}
