@@ -49,15 +49,14 @@
         {/block}
       </header>
       
-      
-      {block name='notifications'}
-        {include file='_partials/notifications.tpl'}
-      {/block}
+    
       <div id="wrapper" {if isset($tc_config.YBC_TC_LAYOUT) && $tc_config.YBC_TC_LAYOUT == 'LayoutHome1'}class="maincontent_v1"{/if}>
         {block name='breadcrumb'}
             {include file='_partials/breadcrumb.tpl'}
-           
-          {/block}
+        {/block}
+        {block name='notifications'}
+          {include file='_partials/notifications.tpl'}
+        {/block}
         
         {if $page.page_name != 'index'}
         <div class="container">

@@ -4634,6 +4634,17 @@ body::-ms-scrollbar-thumb:hover {
   background: #f2f2f2;
 }
 
+.alert {
+  text-align: center;
+}
+
+.block-onepagecheckout .bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down::before {
+  color: #333 !important;
+}
+.block-onepagecheckout .bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up::before{
+  color: #333 !important;
+}
+
 #form_ets_onepagecheckout i.ets_checkbox{
   border: 1px solid #fff;
   background-color: #fff;
