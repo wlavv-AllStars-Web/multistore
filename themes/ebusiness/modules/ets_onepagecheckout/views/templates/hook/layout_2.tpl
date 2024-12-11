@@ -94,11 +94,13 @@
                     </span>
                     {l s='Address' mod='ets_onepagecheckout'}
                 </div>
-                <div id="delivery-addresses" class="address-selector js-address-selector">
-                    {$shipping_address nofilter}
-                </div>
-                <div id="invoice-addresses" class="address-selector js-address-selector" style="display:none">
-                    {$invoice_address nofilter}
+                <div class="container-addresses d-flex">
+                    <div id="delivery-addresses" class="address-selector js-address-selector">
+                        {$shipping_address nofilter}
+                    </div>
+                    <div id="invoice-addresses" class="address-selector js-address-selector" style="display:none">
+                        {$invoice_address nofilter}
+                    </div>
                 </div>
             </div>
             <div {if !$shipping_methods} style="display:none"{/if}>

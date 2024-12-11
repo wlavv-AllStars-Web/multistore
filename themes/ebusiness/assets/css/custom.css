@@ -4698,6 +4698,28 @@ body::-ms-scrollbar-thumb:hover {
   background: #333;
 }
 
+
+#form_ets_onepagecheckout .container-addresses > div {
+  flex: 1;
+}
+
+#form_ets_onepagecheckout .container-addresses #invoice-addresses .title{
+  color: #333;
+}
+
+.block-onepagecheckout .custom-radio input[type="radio"]:checked + span {
+  background-color: #333 !important;
+}
+
+#form_ets_onepagecheckout .row.delivery-option .left_content{
+  align-items: center;
+}
+
+#form_ets_onepagecheckout .row.delivery-option .carrier-name {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 /* customer block */
 
 .type-checkout-options li label input:checked + span, .type-checkout-options li label:hover span {
