@@ -18,17 +18,17 @@
 *}
 <div class="cart-overview js-cart" data-refresh-url="{$link->getModuleLink('ets_onepagecheckout','order',['ajax' => true, 'action' => 'refresh'])|escape:'html':'UTF-8'}">
     {if isset($cart.products) &&  $cart.products}
-    <div class="list-header-products col-lg-12">
-      <div class="col-lg-1 pl-0"></div>
+    <div class="list-header-products col-lg-12" style="background: #d9d9d9;padding: .5rem 1rem;">
+      <div class="col-lg-1 pl-0">{l s="Product" d="Shop.Theme.Checkout"}</div>
       <div class="col-lg-6 pl-0">
-        <div class="col-lg-6">Product</div>
-        <div class="col-lg-4">Option</div>
-        <div class="col-lg-2">Price</div>
+        <div class="col-lg-6">{l s="Description" d="Shop.Theme.Checkout"}</div>
+        <div class="col-lg-4">{l s="Availability" d="Shop.Theme.Checkout"}</div>
+        <div class="col-lg-2">{l s="Unit Price" d="Shop.Theme.Checkout"}</div>
       </div>
       <div class="col-lg-5 px-4">
         <div class="col-md-10 px-0">
-          <div class="col-md-6">Quantity</div>
-          <div class="col-md-6 pl-5 pr-0">Total</div>
+          <div class="col-md-6">{l s="Quantity" d="Shop.Theme.Checkout"}</div>
+          <div class="col-md-6 pl-5 pr-0">{l s="Total" d="Shop.Theme.Checkout"}</div>
         </div>
         <div class="col-md-2"></div>
       </div>

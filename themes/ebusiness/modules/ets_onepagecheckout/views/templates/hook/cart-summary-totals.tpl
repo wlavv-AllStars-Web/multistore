@@ -23,6 +23,7 @@
         <span class="value sub">{$cart.subtotals.tax.value|escape:'html':'UTF-8'}</span>
       </div>
     {/if}
+
     <div class="cart-summary-line cart-total">
       {if isset($configuration.taxes_enabled) && $configuration.taxes_enabled}
         {if isset($configuration.display_prices_tax_incl) && $configuration.display_prices_tax_incl}

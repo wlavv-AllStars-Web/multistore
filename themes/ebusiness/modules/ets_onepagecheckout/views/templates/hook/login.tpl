@@ -137,6 +137,7 @@
     <div class="form-group row type-checkout-option opc_hasaccount create sugguest" style="display:none;">
         <p>{l s='Already have an account?' mod='ets_onepagecheckout'} <label for="type-checkout-options-1"><a>{l s='Log in instead!' mod='ets_onepagecheckout'}</a></label></p>
     </div>
+
     <div id="customer-login" class="type-checkout-option login guest create">
         <div class="form-group row type-checkout-option login" style="display:none;">
             <label class="form-control-label required {if $opc_layout=='layout_3'}col-md-12{else}col-md-4{/if}">{l s='Email' mod='ets_onepagecheckout'}</label>
@@ -144,6 +145,7 @@
                 <input name="customer_login[email]" id="customer_login_email" class="form-control validate is_required" type="text" data-validate="isEmail" data-validate-errors="{l s='Email is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='Email is required' mod='ets_onepagecheckout' js=1}"/>
             </div>
         </div>
+
         <div class="form-group row type-checkout-option login" style="display:none;">
             <label class="form-control-label required {if $opc_layout=='layout_3'}col-md-12{else}col-md-4{/if}">{l s='Password' mod='ets_onepagecheckout'}</label>
             <div class="{if $opc_layout=='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
@@ -184,7 +186,7 @@
             {/if}
             {if $opc_layout=='layout_2'}
                 <div class="form-group row type-checkout-option guest" style="display:none;">
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-xs-12 col-sm-12">
                         <div class="row">
                             <label class="col-md-4 form-control-label required"> {l s='First name' mod='ets_onepagecheckout'}</label>
                             <div class="col-md-8 opc_field_right">
@@ -192,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-xs-12 col-sm-12">
                         <div class="row">
                             <label class="col-md-4 form-control-label required"> {l s='Last name' mod='ets_onepagecheckout'}</label>
                             <div class="col-md-8 opc_field_right">
@@ -373,7 +375,7 @@
         {/if}
         {if $opc_layout=='layout_2'}
             <div class="form-group row type-checkout-option create " style="display:none;">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-12">
                     <div class="row">
                         <label class="col-md-4 form-control-label required"> {l s='First name' mod='ets_onepagecheckout'}</label>
                         <div class="col-md-8 opc_field_right">
@@ -381,7 +383,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+            </div> 
+            <div class="form-group row type-checkout-option create " style="display:none;">
+                <div class="col-xs-12 col-sm-12">
                     <div class="row">
                         <label class="col-md-4 form-control-label required"> {l s='Last name' mod='ets_onepagecheckout'}</label>
                         <div class="col-md-8 opc_field_right">
@@ -406,43 +410,48 @@
         {/if}
 
         <div class="form-group row type-checkout-option create " style="display:none;">
-            <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label required"> {l s='Email' mod='ets_onepagecheckout'}</label>
-            <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
-                <input id="customer_create_email" class="form-control validate is_required" data-validate="isEmail" data-validate-errors="{l s='Email is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='Email is required' mod='ets_onepagecheckout' js=1}" name="customer_create[email]" value="" type="email" />
+            <div class="col-xs-12 col-sm-12 d-flex">
+                <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label required"> {l s='Email' mod='ets_onepagecheckout'}</label>
+                <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
+                    <input id="customer_create_email" class="form-control validate is_required" data-validate="isEmail" data-validate-errors="{l s='Email is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='Email is required' mod='ets_onepagecheckout' js=1}" name="customer_create[email]" value="" type="email" />
+                </div>
             </div>
         </div>
         {if isset($isps18) && $isps18}
         <div class="field-password-policy">
             <div class="form-group row type-checkout-option create " style="display:none;">
-                <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label required" for="field-password">
-                    {l s='Password' mod='ets_onepagecheckout'}
-                </label>
-                <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right js-input-column">
-                    <div class="input-group js-parent-focus">
-                        <input id="customer_create_password" class="form-control js-child-focus js-visible-password validate is_required{if isset($isps18) && $isps18} is18{/if}" name="customer_create[password]" aria-label="Password input"{if isset($PS_SECURITY_PASSWORD_POLICY_MINIMUM_LENGTH)} data-minlength="{$PS_SECURITY_PASSWORD_POLICY_MINIMUM_LENGTH|intval}"{/if}{if isset($PS_SECURITY_PASSWORD_POLICY_MAXIMUM_LENGTH)} data-maxlength="{$PS_SECURITY_PASSWORD_POLICY_MAXIMUM_LENGTH|intval}"{/if}{if isset($PS_SECURITY_PASSWORD_POLICY_MINIMUM_SCORE)} data-minscore="{$PS_SECURITY_PASSWORD_POLICY_MINIMUM_SCORE|intval}"{/if} value="" pattern=".{literal}{5,}{/literal}" type="password" data-required-errors="{l s='Password is required' mod='ets_onepagecheckout' js=1}">
-                    </div>
-                    <div>
-                        <div class="password-strength-feedback mt-3" style="display: none;">
-                            <div class="progress-container">
-                                <div class="progress mb-1">
-                                    <div class="progress-bar" role="progressbar" value="50" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="col-xs-12 col-sm-12 d-flex">
+                    <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label required" for="field-password">
+                        {l s='Password' mod='ets_onepagecheckout'}
+                    </label>
+                    <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right js-input-column">
+                        <div class="input-group js-parent-focus">
+                            <input id="customer_create_password" class="form-control js-child-focus js-visible-password validate is_required{if isset($isps18) && $isps18} is18{/if}" name="customer_create[password]" aria-label="Password input"{if isset($PS_SECURITY_PASSWORD_POLICY_MINIMUM_LENGTH)} data-minlength="{$PS_SECURITY_PASSWORD_POLICY_MINIMUM_LENGTH|intval}"{/if}{if isset($PS_SECURITY_PASSWORD_POLICY_MAXIMUM_LENGTH)} data-maxlength="{$PS_SECURITY_PASSWORD_POLICY_MAXIMUM_LENGTH|intval}"{/if}{if isset($PS_SECURITY_PASSWORD_POLICY_MINIMUM_SCORE)} data-minscore="{$PS_SECURITY_PASSWORD_POLICY_MINIMUM_SCORE|intval}"{/if} value="" pattern=".{literal}{5,}{/literal}" type="password" data-required-errors="{l s='Password is required' mod='ets_onepagecheckout' js=1}">
+                        </div>
+                        <div>
+                            <div class="password-strength-feedback mt-3" style="display: none;">
+                                <div class="progress-container">
+                                    <div class="progress mb-1">
+                                        <div class="progress-bar" role="progressbar" value="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="password-strength-text"></div>
-                            <div class="password-requirements">
-                                <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' mod='ets_onepagecheckout' js=1}">
-                                    <i class="material-icons">check_circle</i>
-                                    <span>{l s='Enter a password between 8 and 72 characters' mod='ets_onepagecheckout'}</span>
-                                </p>
-                                <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' mod='ets_onepagecheckout' js=1}">
-                                    <i class="material-icons">check_circle</i>
-                                    <span>{l s='The minimum score must be: Strong' mod='ets_onepagecheckout'}</span>
-                                </p>
+                                <div class="password-strength-text"></div>
+                                <div class="password-requirements">
+                                    <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' mod='ets_onepagecheckout' js=1}">
+                                        <i class="material-icons">check_circle</i>
+                                        <span>{l s='Enter a password between 8 and 72 characters' mod='ets_onepagecheckout'}</span>
+                                    </p>
+                                    <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' mod='ets_onepagecheckout' js=1}">
+                                        <i class="material-icons">check_circle</i>
+                                        <span>{l s='The minimum score must be: Strong' mod='ets_onepagecheckout'}</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 form-control-comment">
+                    <div class="col-md-3 form-control-comment">
+                    </div>
+                
                 </div>
             </div>
         </div>

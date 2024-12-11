@@ -16,6 +16,7 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
+{* <pre>{$product|print_r}</pre> *}
 <div class="product-line-grid">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-lg-1 col-md-3 col-xs-4">
@@ -30,17 +31,30 @@
 
   <!--  product left body: description -->
   <div class="product-line-grid-body col-lg-6 col-md-4 col-xs-8">
-    <div class="product-line-info product_info_name {if isset($product.attributes) && $product.attributes}col-lg-6{else}col-lg-10{/if}">
+
+    <div class="product-line-info product_info_name col-lg-6">
       <a class="label" href="{$product.url|escape:'html':'UTF-8'}" data-id_customization="{$product.id_customization|intval}">{$product.name|escape:'html':'UTF-8'}</a>
-    </div>
       {if isset($product.attributes) && $product.attributes}
         {foreach from=$product.attributes key="attribute" item="value"}
-          <div class="product-line-info attribute col-lg-4">
+          <div class="product-line-info attribute">
             <span class="label">{$attribute|escape:'html':'UTF-8'}:</span>
             <span class="value">{$value|escape:'html':'UTF-8'}</span>
           </div>
         {/foreach}
       {/if}
+    </div>
+
+    <div class="col-lg-4">
+      <div class="cart-container-availability">
+        <div class="availability-message">
+          {$product.availability_message}
+        </div>
+        <div class="availability-tip">
+          <i class="material-icons" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">help</i>
+        </div>
+      </div>
+    </div>
+
     <div class="hidden_mobile product-line-info col-lg-2 product-price h5 {if $product.has_discount}has-discount{/if}">
       {if $product.has_discount}
         <div class="product-discount">

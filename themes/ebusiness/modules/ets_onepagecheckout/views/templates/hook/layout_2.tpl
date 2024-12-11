@@ -19,17 +19,74 @@
 <form id="form_ets_onepagecheckout" class="layout layout_2" action="{$link->getModuleLink('ets_onepagecheckout','order')|escape:'html':'UTF-8'}" method="post">
     <div id="ets_onepagecheckout" class=" row">
         <div class="onepagecheckout-left col-lg-12">
-            <div class="block-onepagecheckout block-customer ">
+
+            <!-- block products -->
+
+            <div class="block-onepagecheckout block-shopping-cart">
                 <div class="title-heading">
-                    <span class="ets_icon_svg">
-                        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1536 1399q0 109-62.5 187t-150.5 78h-854q-88 0-150.5-78t-62.5-187q0-85 8.5-160.5t31.5-152 58.5-131 94-89 134.5-34.5q131 128 313 128t313-128q76 0 134.5 34.5t94 89 58.5 131 31.5 152 8.5 160.5zm-256-887q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"/></svg>
-                    </span>
-                    {l s='Your account' mod='ets_onepagecheckout'}
+                        <span class="ets_icon_svg">
+                            <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 1536q0 52-38 90t-90 38-90-38-38-90 38-90 90-38 90 38 38 90zm896 0q0 52-38 90t-90 38-90-38-38-90 38-90 90-38 90 38 38 90zm128-1088v512q0 24-16.5 42.5t-40.5 21.5l-1044 122q13 60 13 70 0 16-24 64h920q26 0 45 19t19 45-19 45-45 19h-1024q-26 0-45-19t-19-45q0-11 8-31.5t16-36 21.5-40 15.5-29.5l-177-823h-204q-26 0-45-19t-19-45 19-45 45-19h256q16 0 28.5 6.5t19.5 15.5 13 24.5 8 26 5.5 29.5 4.5 26h1201q26 0 45 19t19 45z"/></svg>
+                        </span>
+                    {l s='Shopping cart' mod='ets_onepagecheckout'}
                 </div>
+                {if $ETS_OPC_SHOW_SHIPPING}
+                    <div class="alert alert-info buy_more_fee_shipping" style="display:none">
+                        {l s='Add' mod='ets_onepagecheckout'} <strong></strong> {l s='more to your order to get free shipping' mod='ets_onepagecheckout'}
+                        <div class="box_more_fee_shipping">
+                            <span class="start">{displayPrice price =0}</span>
+                            <div class="box_shipping_free">
+                                <div class="box_total_cart"></div>
+                            </div>
+                            <span class="end">10$</span>
+                        </div>
+                    </div>
+
+                {/if}
                 <div class="block-content">
-                    {include file='module:ets_onepagecheckout/views/templates/hook/login.tpl'}
+                    {$shipping_cart nofilter}
                 </div>
             </div>
+
+            <!-- block accept terms -->
+
+            {if Configuration::get('PS_CONDITIONS')}
+                <div id="conditions-to-approve" method="GET">
+                    <ul>
+                        <li>
+                            <div class="float-xs-left">
+                                <span class="checkbox ets_checkinput">
+                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
+                                </span>
+                            </div>
+                            <div class="condition-label">
+                                <label class="js-terms required" for="conditions_to_approve">
+                                    {l s='I agree to the' mod='ets_onepagecheckout'} <a href="{$link->getCMSLink(Configuration::get('PS_CONDITIONS_CMS_ID'))|escape:'html':'UTF-8'}" id="cta-terms-and-conditions-0">{l s='terms of service' mod='ets_onepagecheckout'}</a> {l s='and will adhere to them unconditionally.' mod='ets_onepagecheckout'}
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            {/if}
+
+            <!-- block customer -->
+
+            {if !$checkout_customer->logged}
+                <div class="block-onepagecheckout block-customer ">
+                    <div class="title-heading">
+                        <span class="ets_icon_svg">
+                            <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1536 1399q0 109-62.5 187t-150.5 78h-854q-88 0-150.5-78t-62.5-187q0-85 8.5-160.5t31.5-152 58.5-131 94-89 134.5-34.5q131 128 313 128t313-128q76 0 134.5 34.5t94 89 58.5 131 31.5 152 8.5 160.5zm-256-887q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"/></svg>
+                        </span>
+                        {l s='Your account' mod='ets_onepagecheckout'}
+                    </div>
+                    <div class="block-content">
+                        {include file='module:ets_onepagecheckout/views/templates/hook/login.tpl'}
+                    </div>
+                </div>
+            {/if}
+
+
+            <!-- block address -->
+
             <div class="block-onepagecheckout block-address">
                 <div class="title-heading">
                     <span class="ets_icon_svg">
@@ -97,30 +154,9 @@
                     </div>
                 </div>
             {/if}
-            <div class="block-onepagecheckout block-shopping-cart">
-                <div class="title-heading">
-                        <span class="ets_icon_svg">
-                            <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 1536q0 52-38 90t-90 38-90-38-38-90 38-90 90-38 90 38 38 90zm896 0q0 52-38 90t-90 38-90-38-38-90 38-90 90-38 90 38 38 90zm128-1088v512q0 24-16.5 42.5t-40.5 21.5l-1044 122q13 60 13 70 0 16-24 64h920q26 0 45 19t19 45-19 45-45 19h-1024q-26 0-45-19t-19-45q0-11 8-31.5t16-36 21.5-40 15.5-29.5l-177-823h-204q-26 0-45-19t-19-45 19-45 45-19h256q16 0 28.5 6.5t19.5 15.5 13 24.5 8 26 5.5 29.5 4.5 26h1201q26 0 45 19t19 45z"/></svg>
-                        </span>
-                    {l s='Shopping cart' mod='ets_onepagecheckout'}
-                </div>
-                {if $ETS_OPC_SHOW_SHIPPING}
-                    <div class="alert alert-info buy_more_fee_shipping" style="display:none">
-                        {l s='Add' mod='ets_onepagecheckout'} <strong></strong> {l s='more to your order to get free shipping' mod='ets_onepagecheckout'}
-                        <div class="box_more_fee_shipping">
-                            <span class="start">{displayPrice price =0}</span>
-                            <div class="box_shipping_free">
-                                <div class="box_total_cart"></div>
-                            </div>
-                            <span class="end">10$</span>
-                        </div>
-                    </div>
 
-                {/if}
-                <div class="block-content">
-                    {$shipping_cart nofilter}
-                </div>
-            </div>
+
+
             <div class="cart-grid-body">
                 {$html_gift_products nofilter}
             </div>
@@ -181,24 +217,7 @@
                     </div>
                 </div>
             {/if}
-            {if Configuration::get('PS_CONDITIONS')}
-                <div id="conditions-to-approve" method="GET">
-                    <ul>
-                        <li>
-                            <div class="float-xs-left">
-                                <span class="checkbox ets_checkinput">
-                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
-                                </span>
-                            </div>
-                            <div class="condition-label">
-                                <label class="js-terms required" for="conditions_to_approve">
-                                    {l s='I agree to the' mod='ets_onepagecheckout'} <a href="{$link->getCMSLink(Configuration::get('PS_CONDITIONS_CMS_ID'))|escape:'html':'UTF-8'}" id="cta-terms-and-conditions-0">{l s='terms of service' mod='ets_onepagecheckout'}</a> {l s='and will adhere to them unconditionally.' mod='ets_onepagecheckout'}
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            {/if}
+
             <div class="checkout card-block">
                 <div class="text-center">
                     <button class="btn btn-primary" name="submitCompleteMyOrder"{if $isAvailable} disabled=""{/if}>{l s='Complete my order' mod='ets_onepagecheckout'}</button>
