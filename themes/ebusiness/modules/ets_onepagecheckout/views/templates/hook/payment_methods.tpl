@@ -42,7 +42,7 @@
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             
                                                 <div class="ets_payment_method">
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;">
+                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;">
                                                         <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}" style="display: flex;justify-content:center;align-items:center;">
                                                             <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" />
                                                         </label>
