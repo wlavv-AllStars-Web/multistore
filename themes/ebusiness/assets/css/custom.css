@@ -4663,6 +4663,13 @@ body::-ms-scrollbar-thumb:hover {
   100% { transform: rotate(360deg); }
 }
 
+.btn_update_address_container .btn_update_address:hover{
+  background: #222 !important;
+}
+
+#form_ets_onepagecheckout button[name='submitCompleteMyOrder']:hover {
+background: #222 !important;
+}
 
 .alert {
   text-align: center;
@@ -4875,11 +4882,11 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 #ets_onepagecheckout .checkout .btn {
-  background-color: #333 !important;
-}
-#ets_onepagecheckout .checkout .btn:hover {
   background-color: #444 !important;
 }
+/* #ets_onepagecheckout .checkout .btn:hover {
+  background-color: #444 !important;
+} */
 
 #ets_onepagecheckout .block-customer .myaccount a {
   color: #111;
@@ -4923,7 +4930,7 @@ body::-ms-scrollbar-thumb:hover {
 #checkout #onepagecheckout-information-errros {
   width: 100%;
   max-width: 1350px;
-  margin: 1rem auto;
+  margin: 1rem auto !important;
   padding: 0 1rem;
 }
 
