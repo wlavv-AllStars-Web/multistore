@@ -42,9 +42,10 @@
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             
                                                 <div class="ets_payment_method">
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;">
+                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;">
                                                         <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}" style="display: flex;justify-content:center;align-items:center;">
-                                                            <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" />
+                                                            {* <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" /> *}
+                                                            <span style="font-size: 1.5rem;display: flex;line-height: normal;" class="badge badge-dark">{if $key == 0}3X{else}4X{/if}</span>
                                                         </label>
                                                         <span class="custom-radio float-xs-left" style="display: none;">
                                                             {* <input id="{$module.id|escape:'html':'UTF-8'}"
@@ -163,7 +164,8 @@
                             </div>
                         {else}
                             <div class="ets_payment_method" style="{if $payment_selected==$module.module_name}outline:2px solid #333;border-radius: .25rem;{/if}">
-                                <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;">
+                                <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" 
+                                style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
                                         style="max-width: 120px !important;width: 100%;" />
@@ -194,10 +196,10 @@
                                     </label>
                                 </div>
                             
-                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:block"{else}style="display: none;"{/if}>
+                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:none"{else}style="display: none;"{/if}>
                                     {$module.additionalInformation nofilter}
                                 </div>
-                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:block"{else}style="display: none;"{/if}>
+                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
                                     {if $module.form}
                                         {$module.form nofilter}
                                     {else}
