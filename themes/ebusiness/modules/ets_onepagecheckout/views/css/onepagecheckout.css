@@ -885,6 +885,11 @@ form#form_ets_onepagecheckout.layout_1 .block-onepagecheckout.block-additional-i
   margin: 1rem 0;
 }
 
+.payment_method_selected{
+  outline: 2px solid #333 !important;
+  border-radius: .25rem;
+}
+
 body#checkout .ets_payment_method .additional-information {
     margin-left: 0;
     padding-left: 20px;
@@ -905,9 +910,9 @@ body#checkout .ets_payment_method .additional-information {
 .block-onepagecheckout .payment-options > .alert {
   max-width: calc(100% - 15px);
 }
-div#ets_onepagecheckout, div#ets_onepagecheckout * {
+/* div#ets_onepagecheckout, div#ets_onepagecheckout * {
   outline: none!important;
-}
+} */
 .block-onepagecheckout .product-line-grid .product-line-grid-body {
   /* width: calc(58% - 100px); */
   font-size: 14px;
@@ -1367,9 +1372,9 @@ label[for="use_another_address_for_invoice"] input,
 .checkbox input{
   cursor: pointer;
 }
-form#form_ets_onepagecheckout, form#form_ets_onepagecheckout * {
+/* form#form_ets_onepagecheckout, form#form_ets_onepagecheckout * {
   outline: none!important;
-}
+} */
 .shipping_address_form {
   border: 1px solid #b1ced4;
 }

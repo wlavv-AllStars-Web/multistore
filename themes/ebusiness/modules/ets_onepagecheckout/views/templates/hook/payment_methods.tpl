@@ -42,7 +42,7 @@
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             
                                                 <div class="ets_payment_method">
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;">
+                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;"  onclick="setPaymentClick(this)">
                                                         <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}" style="display: flex;justify-content:center;align-items:center;">
                                                             {* <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" /> *}
                                                             <span style="font-size: 1.5rem;display: flex;line-height: normal;" class="badge badge-dark">{if $key == 0}3X{else}4X{/if}</span>
@@ -102,7 +102,7 @@
                             {/if}
                         {elseif $module_name == 'worldlineop'}
                             {assign var="number_part" value=$module.logo|regex_replace:'/.*\/([0-9]+)\.svg$/':'$1'}
-                        <div class="ets_payment_method" style="{if $payment_selected==$module.module_name}outline:2px solid #333;border-radius: .25rem;{/if}">
+                        <div class="ets_payment_method" onclick="setPaymentClick(this)">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         {if $number_part == 3}
@@ -144,9 +144,9 @@
                                     </label>
                                 </div>
                             
-                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
+                                {* <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
                                     {$module.additionalInformation nofilter}
-                                </div>
+                                </div> *}
                                 <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
                                     {if $module.form}
                                         {$module.form nofilter}
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         {else}
-                            <div class="ets_payment_method" style="{if $payment_selected==$module.module_name}outline:2px solid #333;border-radius: .25rem;{/if}">
+                            <div class="ets_payment_method"  onclick="setPaymentClick(this)">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" 
                                 style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
@@ -196,9 +196,9 @@
                                     </label>
                                 </div>
                             
-                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:none"{else}style="display: none;"{/if}>
+                                {* <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:none"{else}style="display: none;"{/if}>
                                     {$module.additionalInformation nofilter}
-                                </div>
+                                </div> *}
                                 <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
                                     {if $module.form}
                                         {$module.form nofilter}
@@ -224,3 +224,14 @@
         {hook h='displayPaymentByBinaries'}
     </div>
 </section>
+
+<script>
+
+    function setPaymentClick(e) {
+        const payment_methods = document.querySelectorAll("#checkout-payment-step .payment-options .ets_payment_method")
+        payment_methods.forEach((m) => m.classList.remove("payment_method_selected"));
+
+        e.classList.add("payment_method_selected");
+    }
+
+</script>
