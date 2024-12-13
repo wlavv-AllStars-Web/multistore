@@ -862,6 +862,7 @@ form#form_ets_onepagecheckout.layout_1 .block-onepagecheckout.block-additional-i
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .ets_payment_method:hover {
     background: #f2f2f2;

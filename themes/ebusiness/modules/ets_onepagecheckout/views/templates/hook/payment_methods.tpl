@@ -31,7 +31,7 @@
                             {assign var="url_parts" value=$module.action|regex_replace:'/.*key=([^&]+)$/':'$1'}
 
                             {if $url_parts == 'general_3_0_0'}
-                                <div style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;justify-content:center;">
+                                <div class="ets_payment_method" style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;justify-content:center;">
                                 <div class="" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                     <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}.png" />
                                 </div>
@@ -143,10 +143,10 @@
                                     </label>
                                 </div>
                             
-                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:block"{else}style="display: none;"{/if}>
+                                <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
                                     {$module.additionalInformation nofilter}
                                 </div>
-                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:block"{else}style="display: none;"{/if}>
+                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name} style="display: none;">
                                     {if $module.form}
                                         {$module.form nofilter}
                                     {else}
