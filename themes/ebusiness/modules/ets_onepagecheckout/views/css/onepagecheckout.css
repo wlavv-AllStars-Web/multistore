@@ -405,6 +405,7 @@ body#checkout #header .header-nav {
   max-width: 60px!important;
   margin-bottom: 0 !important;
   height: auto!important;
+  max-height: 80px;
 }
 #form_ets_onepagecheckout .row.delivery-option .row > div > div {
   padding-left: 0;
