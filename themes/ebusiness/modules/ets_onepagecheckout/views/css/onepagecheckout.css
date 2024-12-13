@@ -401,9 +401,9 @@ body#checkout #header .header-nav {
 .payment-option img,
 .js-additional-information img,
 .block-onepagecheckout .payment-desc img {
-  margin-right: 8px;
+  margin-right: 0 !important;
   max-width: 60px!important;
-  margin-bottom: 5px;
+  margin-bottom: 0 !important;
   height: auto!important;
 }
 #form_ets_onepagecheckout .row.delivery-option .row > div > div {
@@ -859,9 +859,12 @@ form#form_ets_onepagecheckout.layout_1 .block-onepagecheckout.block-additional-i
 }
 .ets_payment_method {
     padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .ets_payment_method:hover {
-    background: #fafafa;
+    background: #f2f2f2;
 }
 body#checkout .ets_payment_method .additional-information {
     margin-left: 0;
