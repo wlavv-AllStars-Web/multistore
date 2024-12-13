@@ -146,7 +146,7 @@
                                 <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
                                     {$module.additionalInformation nofilter}
                                 </div>
-                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name} style="display: none;">
+                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
                                     {if $module.form}
                                         {$module.form nofilter}
                                     {else}
