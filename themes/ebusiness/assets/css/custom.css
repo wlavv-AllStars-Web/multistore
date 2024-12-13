@@ -4938,6 +4938,9 @@ background: #222 !important;
   border-radius: .25rem;
 }
 
+select.form-control:not([size]):not([multiple]){
+  height: 36px;
+}
 
 /* order confirmation */
 
