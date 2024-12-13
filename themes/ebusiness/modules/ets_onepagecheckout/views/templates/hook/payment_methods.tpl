@@ -31,7 +31,7 @@
                             {assign var="url_parts" value=$module.action|regex_replace:'/.*key=([^&]+)$/':'$1'}
 
                             {if $url_parts == 'general_3_0_0'}
-                                <div style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;">
+                                <div style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;justify-content:center;">
                                 <div class="" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                     <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}.png" />
                                 </div>
