@@ -441,6 +441,10 @@ body#checkout #header .header-nav {
 .block-onepagecheckout.block-payment .content {
     padding: 0!important;
 }
+.block-onepagecheckout.block-payment .title-heading {
+  margin-bottom: 0;
+}
+
 .block-onepagecheckout.block-shopping-cart {
   margin-bottom: 30px;
   padding-left: 15px;
@@ -868,6 +872,19 @@ form#form_ets_onepagecheckout.layout_1 .block-onepagecheckout.block-additional-i
 .ets_payment_method:hover {
     background: #f2f2f2;
 }
+
+.block-onepagecheckout .title-heading{
+  margin-bottom: 0 !important;
+}
+
+.block-onepagecheckout.block-shipping .block-content{
+  padding: 1rem;
+}
+
+.btn_update_address_container{
+  margin: 1rem 0;
+}
+
 body#checkout .ets_payment_method .additional-information {
     margin-left: 0;
     padding-left: 20px;
@@ -883,7 +900,7 @@ body#checkout .ets_payment_method .additional-information {
 }
 .block-onepagecheckout .payment-options {
   font-size: 14px;
-  padding: 0 0 15px 15px;
+  padding: 3rem 1rem !important;
 }
 .block-onepagecheckout .payment-options > .alert {
   max-width: calc(100% - 15px);
