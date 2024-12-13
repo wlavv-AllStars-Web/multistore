@@ -21,7 +21,7 @@
 <section id="checkout-payment-step" class="checkout-step -current -reachable js-current-step">
     <div class="content">
         {hook h='displayPaymentTop'}
-        <div class="payment-options" style="display: flex;padding: 1rem;">
+        <div class="payment-options" style="display: flex;padding: 1rem;gap:1rem;">
             <form></form>
             {if $payment_methods}
                 {foreach from=$payment_methods key='module_name' item='payment_method'}
