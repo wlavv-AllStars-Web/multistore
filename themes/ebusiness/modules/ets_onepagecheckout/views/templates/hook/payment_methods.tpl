@@ -21,7 +21,7 @@
 <section id="checkout-payment-step" class="checkout-step -current -reachable js-current-step">
     <div class="content">
         {hook h='displayPaymentTop'}
-        <div class="payment-options" style="display: flex;">
+        <div class="payment-options" style="display: flex;padding: 1rem;">
             <form></form>
             {if $payment_methods}
                 {foreach from=$payment_methods key='module_name' item='payment_method'}
@@ -101,7 +101,7 @@
                             {/if}
                         {elseif $module_name == 'worldlineop'}
                             {assign var="number_part" value=$module.logo|regex_replace:'/.*\/([0-9]+)\.svg$/':'$1'}
-                            <div class="ets_payment_method">
+                        <div class="ets_payment_method" style="{if $payment_selected==$module.module_name}outline:2px solid #333;border-radius: .25rem;{/if}">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         {if $number_part == 3}
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                         {else}
-                            <div class="ets_payment_method">
+                            <div class="ets_payment_method" style="{if $payment_selected==$module.module_name}outline:2px solid #333;border-radius: .25rem;{/if}">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
