@@ -4942,6 +4942,7 @@ select.form-control:not([size]):not([multiple]){
   height: 36px;
 }
 
+
 /* order confirmation */
 
 #order-confirmation #main{
@@ -5301,4 +5302,14 @@ select.form-control:not([size]):not([multiple]){
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
+}
+
+.products-sort-order .select-list:hover{
+  background: #444;
+}
+
+.products-sort-order .dropdown-menu {
+  width: 100%;
+  background: none repeat scroll 0 0 #d9d9d9;
+  border-radius: 0 0 .25rem .25rem;
 }
