@@ -10,7 +10,7 @@
             <input type="hidden" id="multiFilter_news" name="news_compats" value="{(isset($news_compats)) ? $news_compats : 0 }"/>
             <input type="hidden" id="multiFilter_order_by" name="order_by_compats" value="{(isset($order_by_compats)) ? $order_by_compats : 'position' }"/>
             <input type="hidden" id="multiFilter_order_by_orientation" name="order_by_orientation_compats" value="{(isset($order_by_orientation_compats)) ? $order_by_orientation_compats : 'desc' }"/>
-            <input type="hidden" id="multiFilter_id_manufacturer" name="id_manufacturer_compats" value="{(isset($id_manufacturer_compats)) ? $id_manufacturer_compats : '' }"/>
+            <input type="hidden" id="multiFilter_id_manufacturer" name="id_manufacturer_compats" value="{(isset($id_manufacturer_compats)) ? $id_manufacturer_compats : 0 }"/>
             <input type="hidden" id="multiFilter_nr_items" name="nr_items_compats" value="{(isset($nr_items_compats)) ? $nr_items_compats : 20 }"/>
             <input type="hidden" id="multiFilter_n_items" name="n" value="{(isset($nr_items_compats)) ? $nr_items_compats : 20 }"/>
             <input type="hidden" id="multiFilter_page_number" name="p" value="{(isset($p)) ? $p : 1 }"/>

@@ -26,7 +26,18 @@
 
 {block name='content'}
   <section id="main" style="width: 100%;">
-{* <pre>{$urls|print_r}</pre> *}
+
+  <input type="hidden" id="temp_multiFilter_news" name="temp_news_compats" value="{$news_compats}"/>
+  <input type="hidden" id="temp_multiFilter_order_by" name="temp_order_by_compats" value="{$order_by_compats}"/>
+  <input type="hidden" id="temp_multiFilter_order_by_orientation" name="temp_order_by_orientation_compats" value="{$order_by_orientation_compats}"/>
+  <input type="hidden" id="temp_multiFilter_id_manufacturer" name="temp_id_manufacturer_compats" value="{$manufacturer.id}"/>
+  <input type="hidden" id="temp_multiFilter_nr_items" name="temp_nr_items_compats" value="{$nr_items_compats}"/>
+  <input type="hidden" id="temp_multiFilter_page_number" name="temp_p" value="{$p}"/>
+  <input type="hidden" id="temp_multiFilter_id_category" name="temp_id_category" value="{$id_category}"/>
+  <input type="hidden" id="selected_filter_4" name="selected_filter_4" value="{$selected_filter_4}"/>
+  <input type="hidden" id="temp_multiFilter_root_page" name="temp_root_file" value="{$root_page}"/>
+  {* {debug} *}
+{* <pre>{$brand|print_r}</pre> *}
 
   {* {if $smarty.server.REQUEST_URI == '/en/brand/' }
     brand
@@ -48,7 +59,7 @@
           {$manufacturer.short_description nofilter}
         {/if}
         </div>
-      {else}
+      {elseif !empty($manufacturer.description)}
         {if strlen($manufacturer.description) > 550}
         <div class="description" style="display: flex;flex-direction:column">
           <div id="manufacturer-description" class="text_description hiddenTextDescription">{$manufacturer.description nofilter}</div>
@@ -59,6 +70,12 @@
             <div id="manufacturer-description">{$manufacturer.description nofilter}</div>
           </div>
         {/if}
+      {else}
+        <div>
+          {block name='product_list_top'}
+            {include file='catalog/_partials/products-top.tpl' listing=$listing}
+          {/block}
+        </div>
       {/if}
       
     </div>
@@ -111,6 +128,15 @@
           {/block}
         </div>
 
+      {elseif $n_array}
+        <div>
+          {block name='product_list_top'}
+            {include file='catalog/_partials/products-top.tpl' listing=$listing}
+          {/block}
+        </div>
+        <div class="page-product-notfound">
+          {include file='errors/not-found.tpl'}
+        </div>
       {else}
         <div class="page-product-notfound">
           {include file='errors/not-found.tpl'}

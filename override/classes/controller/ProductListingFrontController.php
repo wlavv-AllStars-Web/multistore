@@ -23,6 +23,8 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
+
+use DoctrineExtensions\Query\Mysql\Field;
 use PrestaShop\PrestaShop\Core\Product\Search\Facet;
 use PrestaShop\PrestaShop\Core\Product\Search\FacetsRendererInterface;
 use PrestaShop\PrestaShop\Core\Product\Search\Pagination;
@@ -31,6 +33,8 @@ use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchProviderInterface;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchResult;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
+use PrestaShopBundle\Controller\Admin\Sell\Catalog\CategoryController;
+use PrestaShopBundle\Controller\Api\CategoryController as ApiCategoryController;
 
 /**
  * This class is the base class for all front-end "product listing" controllers,
@@ -309,6 +313,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
 
+
+
         // ...modules decide if they can handle it (first one that can is used)
         $provider = $this->getProductSearchProviderFromModules($query);
         // if no module wants to do the query, then the core feature is used
@@ -316,9 +322,25 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $provider = $this->getDefaultProductSearchProvider();
         }
 
+
         $resultsPerPage = (int) Tools::getValue('resultsPerPage');
         if ($resultsPerPage <= 0) {
             $resultsPerPage = Configuration::get('PS_PRODUCTS_PER_PAGE');
+        }
+
+        // pre(Tools::getAllValues());
+        if(Tools::getValue('n')){
+            $resultsPerPage = Tools::getValue('n');
+        }
+
+        if(Tools::getValue('id_category_layered')){
+            $query
+            ->setIdCategory(Tools::getValue('id_category_layered'));
+        }
+
+        if(Tools::getValue('id_manufacturer_layered')){
+            $query
+            ->setIdManufacturer(Tools::getValue('id_manufacturer_layered'));
         }
 
         // we need to set a few parameters from back-end preferences
@@ -327,15 +349,30 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             ->setPage(max((int) Tools::getValue('page'), 1))
         ;
 
-        // set the sort order if provided in the URL
-        if (($encodedSortOrder = Tools::getValue('order'))) {
+
+        if(Tools::getValue('orderby')){
+            $encodedSortOrder = 'product.'.Tools::getValue('orderby').'.'.strtolower(Tools::getValue('orderway'));
+            // pre($encodedSortOrder);
             $query->setSortOrder(SortOrder::newFromString(
                 $encodedSortOrder
             ));
         }
 
+        // set the sort order if provided in the URL
+        if (($encodedSortOrder = Tools::getValue('order'))) {
+            
+            $query->setSortOrder(SortOrder::newFromString(
+                $encodedSortOrder
+            ));
+        }
+
+        // pre(Tools::getValue('q'));
+
+
         // get the parameters containing the encoded facets from the URL
         $encodedFacets = Tools::getValue('q');
+
+        // pre($encodedFacets);
 
         /*
          * The controller is agnostic of facets.
@@ -346,6 +383,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
          */
 
         $query->setEncodedFacets($encodedFacets);
+
+
 
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
@@ -360,6 +399,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $query
         );
 
+        // pre($result);
+
 
         Hook::exec('actionProductSearchProviderRunQueryAfter', [
             'query' => $query,
@@ -370,6 +411,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $this->disablePriceControls($result);
         }
 
+        // pre($result->getProducts());
+
+        // pre($$query->getSortOrder());
         // sort order is useful for template,
         // add it if undefined - it should be the same one
         // as for the query anyway
@@ -381,6 +425,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         $products = $this->prepareMultipleProductsForTemplate(
             $result->getProducts()
         );
+
+        // pre(count($products));
 
 
         // render the facets
@@ -409,7 +455,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $result
         );
 
-        // pre($query->getSortOrder()->toString());
 
         // prepare the sort orders
         // note that, again, the product controller is sort-orders
@@ -432,25 +477,312 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
         }
 
-        $searchVariables = [
-            'result' => $result,
-            'label' => $this->getListingLabel(),
-            'products' => $products,
-            'sort_orders' => $sort_orders,
-            'sort_selected' => $sort_selected,
-            'pagination' => $pagination,
-            'rendered_facets' => $rendered_facets,
-            'rendered_active_filters' => $rendered_active_filters,
-            'js_enabled' => $this->ajax,
-            'current_url' => $this->updateQueryString([
-                'q' => $result->getEncodedFacets(),
-            ]),
-        ];
+        // asm wheels
+
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products'){
+
+            // pre($query);
+
+            if($query->getQueryType()){
+                $type = $query->getQueryType();
+            }
+
+            if($query->getIdCategory()){
+                $category = $query->getIdCategory();
+            }
+
+            if($query->getIdManufacturer()){
+                $manufacturer = $query->getIdManufacturer();
+            }
+            
+            if($query->getIdSupplier()){
+                $supplier = $query->getIdSupplier();
+            }
+
+            if($query->getResultsPerPage()){
+                $resultsPerPage = $query->getResultsPerPage();
+            }
+
+            if($query->getSortOrder()){
+                $sortOrder = $query->getSortOrder();
+            }
+
+
+
+            // Fetch category and manufacturer IDs from the query object
+            $category = (int) $query->getIdCategory(); 
+            $manufacturer = (int) $query->getIdManufacturer(); 
+
+            $sql = 'SELECT ps_product.id_product, ps_product.price
+            FROM ps_product
+            LEFT JOIN ps_product_shop ON ps_product.id_product = ps_product_shop.id_product
+            LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
+            WHERE ps_product.active = 1
+            AND ps_product_shop.id_shop = 2';
+                
+            if($category > 0) {
+                $sql .= ' AND ps_product.id_category_default = ' . $category;
+            }
+
+            if ($manufacturer > 0) {
+                $sql .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+            }
+
+            if(!empty($type) && $type == 'new-products'){
+                $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT');
+                $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
+                $sql .= ' AND ps_product.date_add >= "' . pSQL($newProductDate) . '"';
+            }
+
+            if($query->getSortOrder()){
+                $sortOrder = $query->getSortOrder(); 
+                // pre($sortOrder);
+                if ($sortOrder->getField() === 'price') {
+                    $sql .= ' ORDER BY ps_product.price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'name') {
+                    $sql .= ' ORDER BY ps_product_lang.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'reference') {
+                    $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'sales') {
+                    $sql .= ' ORDER BY ps_product.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                }
+            }
+
+
+            if($query->getResultsPerPage()) {
+                $sql .= ' LIMIT '.$query->getResultsPerPage();
+            }
+
+            // pre($sql);
+
+            $productsQuery = Db::getInstance()->ExecuteS($sql);
+
+            $products = $this->prepareMultipleProductsForTemplate(
+                $productsQuery
+            );
+
+            // if(count($products) == 0){
+
+            // }
+            // pre($products);
+
+        //     if($this->category->id == 227){
+
+        //     $filters = Tools::getValue('filters');
+            
+        //     $brand_api = CategoryControllerCore::apiCall('brand');
+
+        //     foreach($brand_api->data AS $brand){       
+        //         $car_brands[$brand->slug] = $brand->name_en;
+        //     }
+
+        //     $this->context->smarty->assign('car_brands', $car_brands);
+            
+
+
+        //     if(strlen($filters) > 0 ){
+        //         $features = explode('|', $filters);
+        //         $arr = array();
+                
+        //         foreach( $features AS $feature){
+        //             $current_features = explode(':', $feature);
+        //             $arr[$current_features[0]][] = $current_features[1];
+        //         }
+                
+        //         $flatted = self::combinarArrays($arr);
+                
+        //         foreach($flatted AS $flatted_options){
+                    
+        //             $product_options_temp = array();
+        //             foreach($flatted_options AS $key => $option){
+                        
+        //                 $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
+                    
+        //                 foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
+        //             }
+                    
+        //             $total_option = count($flatted_options);
+        //             foreach($product_options_temp AS $key_product =>$found_option){
+        //                 if($found_option == $total_option) $product_options[]=$key_product;
+        //             }
+        //         }
+        //     } 
+
+
+
+        //     $selected_filter_feature = [];
+        //     $selected_features = null;
+        //     $selected_id_values = null;
+
+        //     if(strlen($filters) > 0){
+        //         $selected_filter = explode('|',$filters);
+                
+        //         foreach($selected_filter AS $selected_option){
+                    
+        //             $selected_feature = explode(':',$selected_option);
+                    
+        //             $selected_id_values[] = $selected_feature[1];
+                    
+        //             $sqlFeature =  'SELECT name 
+        //                             FROM ps_feature_lang 
+        //                             LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
+        //                             WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
+        //                             AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
+        //                             AND ps_feature_lang.id_feature=' . $selected_feature[0];
+                    
+        //             $feature_group = Db::getInstance()->getValue($sqlFeature);
+                    
+        //             $sqlFeatureValue = 'SELECT value 
+        //                                 FROM ps_feature_value_lang 
+        //                                 LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
+        //                                 WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
+        //                                 AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
+        //                                 AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1];
+                    
+        //             $feature_value = Db::getInstance()->getValue($sqlFeatureValue);
+
+        //             $selected_filter_feature[] = $selected_feature[0];
+                    
+        //             $selected_features[] = [
+        //                 'combination' => $selected_option,
+        //                 'feature' => $feature_group,
+        //                 'value' => $feature_value
+        //             ];
+        //         }                
+                
+        //     }
+
+
+        //     $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN ( 227 )';
+        //     pre($sql_products_of_category);
+
+        //     if(count($product_options) > 0 ){
+        //         $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
+        //     }elseif(count($ids_products) > 0 ){
+        //         $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
+        //     }
+
+        //     $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
+            
+
+        //     $ids_prods = array();
+        //     $features  = array();
+
+        //     foreach($products_227 AS $product_227) $ids_prods[] = $products_227['id_product'];
+
+        //     $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
+
+        //     foreach($features_category AS $f_category){
+
+        //         $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' AND id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value ORDER BY id_feature');
+
+        //         $features[] = [
+        //             'id_feature' => $f_category['id_feature'],
+        //             'name' => $f_category['name'],
+        //             'quantity' => $f_category['nr_repeat'],
+        //             'values' => $features_value
+        //             ];
+        //     }
+            
+        //     $this->context->smarty->assign('asw_features', $features);
+        //     $this->context->smarty->assign('have_selected_features', count($selected_features));
+        //     $this->context->smarty->assign('selected_features', $selected_features);
+        //     $this->context->smarty->assign('selected_values', $selected_id_values);
+
+        //     }
+            $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
+
+
+            $this->context->smarty->assign([
+                'nb_products'       => $pagination['total_items'],
+                'n_array' => $n_array,
+            ]);
+
+            // Loop through each sorting option
+            foreach ($sort_orders as &$order) {
+                // Generate the order URL using the setOrder() function
+                $order['url'] = '';
+                $order['value'] = $order['field'].':'.$order['direction'];
+            }
+            
+            
+            $pagination['total_items'] = count($products);
+
+            if($query->getResultsPerPage() && (count($products) >= $query->getResultsPerPage())){
+                $pagination['items_shown_to'] = $query->getResultsPerPage();
+            }
+
+            if($query->getResultsPerPage() && (count($products) < $query->getResultsPerPage())){
+                $pagination['items_shown_to'] = count($products);
+            }
+
+            // pre($pagination);
+
+            $searchVariables = [
+                'result' => $result,
+                'label' => $this->getListingLabel(),
+                'products' => $products,
+                'sort_orders' => $sort_orders,
+                'sort_selected' => $sort_selected,
+                'pagination' => $pagination,
+                'rendered_facets' => $rendered_facets,
+                'rendered_active_filters' => $rendered_active_filters,
+                'js_enabled' => $this->ajax,
+                'current_url' => $this->updateQueryString([
+                    'q' => $result->getEncodedFacets(),
+                ]),
+            ];
+
+        }else{
+
+            $searchVariables = [
+                'result' => $result,
+                'label' => $this->getListingLabel(),
+                'products' => $products,
+                'sort_orders' => $sort_orders,
+                'sort_selected' => $sort_selected,
+                'pagination' => $pagination,
+                'rendered_facets' => $rendered_facets,
+                'rendered_active_filters' => $rendered_active_filters,
+                'js_enabled' => $this->ajax,
+                'current_url' => $this->updateQueryString([
+                    'q' => $result->getEncodedFacets(),
+                ]),
+            ];
+        }
+
+        // pre($sort_orders);
+        // pre($sort_selected);
+
+        // pre($searchVariables);
 
         Hook::exec('filterProductSearch', ['searchVariables' => &$searchVariables]);
         Hook::exec('actionProductSearchAfter', $searchVariables);
 
         return $searchVariables;
+    }
+
+    private static function combinarArrays($arrays) {
+        // Inicia o resultado com um array vazio para gerar combinações
+        $result = [[]];
+    
+        // Percorre cada array na lista de arrays
+        foreach ($arrays as $array) {
+            $novoResultado = [];
+    
+            // Adiciona cada item do array atual a cada combinação já existente no resultado
+            foreach ($result as $combination) {
+                foreach ($array as $item) {
+                    $novoResultado[] = array_merge($combination, [$item]);
+                }
+            }
+    
+            // Atualiza o resultado com as novas combinações geradas
+            $result = $novoResultado;
+        }
+    
+        return $result;
     }
 
     /**
@@ -585,6 +917,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
     {
         $search = $this->getProductSearchVariables();
 
+        // pre(Tools::getAllValues());
         
         $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
         $rendered_products = $this->render('catalog/_partials/products', ['listing' => $search]);
@@ -707,6 +1040,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
      */
     protected function doProductSearch($template, $params = [], $locale = null)
     {   
+        
         if ($this->ajax) {
             ob_end_clean();
             header('Content-Type: application/json');
@@ -719,6 +1053,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             return;
         } else {
             $variables = $this->getProductSearchVariables();
+            // pre($variables);
             $this->context->smarty->assign([
                 'listing' => $variables,
             ]);

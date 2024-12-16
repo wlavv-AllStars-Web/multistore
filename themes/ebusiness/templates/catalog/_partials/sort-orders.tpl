@@ -25,7 +25,9 @@
 {* <span class="hidden-sm-down sort-by">{l s='Sort by:' d='Shop.Theme'}</span> *}
 <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
   <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  {l s='Sort By' d='Shop.Theme.Actions'}
+  <span id="name_sort_by">
+    {l s='Sort By' d='Shop.Theme.Actions'}
+  </span>
     {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
     <i class="material-icons pull-xs-right">arrow_drop_down</i>
   </a>
@@ -33,8 +35,10 @@
     {foreach from=$listing.sort_orders item=sort_order}
       <a
         rel="nofollow"
-        href="{$sort_order.url}"
-        class="select-list {['current' => $sort_order.current, 'js-search-link' => true]|classnames}"
+        {* href="{$sort_order.url}" *}
+        onclick="setOrder(this)"
+        value="{$sort_order.value}"
+        class="select-list {['current' => $sort_order.current, 'js-search-link' => false]|classnames}"
       >
         {$sort_order.label}
       </a>

@@ -23,6 +23,11 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}  
 
+<div class="wm-hiddencompats" style="display:none;">
+  {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
+  {else} {hook h="displayUkooCompatBlock"}
+  {/if}
+</div>
 {* <pre>{print_r($brand,1)}</pre> *}
 <div class="d-mobile count-products">
 {count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
@@ -39,11 +44,12 @@
   <div class=" box-sortby">
     <div class="row sort-by-row">
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {l s='Brand' d='Shop.Theme.Actions'}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
+        </div>
         <div class="dropdown-menu">
+
         </div>
       </div>
     </div>
@@ -196,21 +202,30 @@
 
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
         <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='By Category' d='Shop.Theme.Actions'}
+          <span id="name_category">
+            {l s='By Category' d='Shop.Theme.Actions'}
+          </span>
           {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
         {foreach from=$categories[2] item=categoryLevel1}
           {foreach from=$categoryLevel1 item=category}
+            <div 
+              id="category_element_{$category['id_category']}" 
+              onclick="setCategory({$category['id_category']})"
+              class="select-list"
+            >
+                {$category['name']}
+            </div>
               
-            <a
+            {* <a
             rel="nofollow"
             href="{$link->getCategoryLink($category.id_category)}"
             class="select-list "
           >
             {$category.name}
-          </a>
+          </a> *}
           {/foreach}
         {/foreach}
         </div>
@@ -219,14 +234,24 @@
   </div>
 
   {* bybrand *}
+
   <div class=" box-sortby col-md-3">
     <div class="row sort-by-row">
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
         <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='By Brand' d='Shop.Theme.Actions'}
+          <span id="name_brand">
+          
+            {l s='By Brand' d='Shop.Theme.Actions'}
+          </span>
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+        {foreach $manufacturers AS $manufacturer}
+            <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
+                  class="select-list js-search-link"
+                  onclick="setManufacturer($(this), {$manufacturer['id_manufacturer']})">{$manufacturer['name']}
+            </div>
+        {/foreach}
         </div>
       </div>
     </div>
@@ -248,6 +273,13 @@
     </div>
   </div>
 
+
+  
+  {if $page['page_name'] == 'new-products'}
+    {assign var='requestPage' value=$link->getPaginationLink(false, false, false, false, true, false)}
+		{assign var='requestNb' value=$link->getPaginationLink('new-products', false, true, false, false, true)}
+  {/if}
+  {* <pre>{$requestNb|print_r}</pre> *}
   {* bypage *}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
@@ -258,21 +290,17 @@
       </div> *}
 
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='By Page' d='Shop.Theme.Actions'}
+        <a  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span  id="name_items_per_page">{l s='By Page' d='Shop.Theme.Actions'}</span>
           {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
-        <div class="dropdown-menu">
-          {* {foreach from=$listing.sort_orders item=sort_order} *}
-            {* <a
-              rel="nofollow"
-              href="{$sort_order.url}"
-              class="select-list {['current' => $sort_order.current, 'js-search-link' => true]|classnames}"
-            >
-              {$sort_order.label}
-            </a> *}
-          {* {/foreach} *}
+        <div class="dropdown-menu dropdown-perpage" onchange="setProductsPerPage('change')">
+          <form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="wm-hiddennbr nbrItemPage" style="width:100%;">
+            {foreach from=$n_array item=nValue}
+              <div class="select-list"  value="{$nValue|escape:'html':'UTF-8'}" {if $nb_products == $nValue}selected="selected"{/if}>{$nValue|escape:'html':'UTF-8'}</div>
+            {/foreach}
+          </form>
         </div>
       </div>
     </div>
@@ -289,6 +317,32 @@
   </div> *}
   </div>
 {/if}
+{include file='catalog/_partials/setFilterData.tpl'}
+{include file='catalog/_partials/getDataFromUrl.tpl'}
+
+  <script>
+      $('document').ready(function () {
+
+      disable_cursor_hover();
+      $('#nb_item').unbind('change');
+      getDataFromUrl();
+
+      });
+
+      function disable_cursor_hover(){
+        if($('#manufacturer').length > 0) {
+            $('.wmbtnlayered_brand').css('cursor', 'none');
+            $('.wmbtnlayered_brand > a').css('cursor', 'none');
+            $('#multiFilter_id_manufacturer').val($('#id_current_manufacturer').val());
+        }
+        if($('#category').length > 0) {
+            $('.wmbtnlayered_category').css('cursor', 'none');
+            $('.wmbtnlayered_category > a').css('cursor', 'none');
+            $('#multiFilter_id_category').val($('#id_current_category').val());
+        }
+    }
+  </script>
+
   <style>
     #manufacturer .products-selection {
       display: flex;

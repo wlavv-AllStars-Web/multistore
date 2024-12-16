@@ -2326,11 +2326,11 @@ body {
   cursor: pointer;
   background-color: #121212;
 }
-.open span {
+/* .open span {
   color: var(--asm-color) !important;
   cursor: pointer;
   background-color: #121212;
-}
+} */
 .languageimg {
   height: 75%;
   width: auto;
@@ -2339,6 +2339,15 @@ body {
 }
 .selector ::before {
   display: none;
+}
+
+.products-sort-order .select-list {
+  color: #333 !important;
+}
+
+.products-sort-order .select-list.current {
+  background: #444;
+  color: #fff !important;
 }
 
 .dropdown-item {
@@ -5313,4 +5322,9 @@ select.form-control:not([size]):not([multiple]){
   background: none repeat scroll 0 0 #d9d9d9;
   border-radius: 0 0 .25rem .25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.products-sort-order .dropdown-menu{
+  overflow-y: auto;
+  max-height: 360px;
 }
