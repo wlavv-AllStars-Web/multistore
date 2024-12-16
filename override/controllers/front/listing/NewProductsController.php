@@ -24,6 +24,7 @@
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
 use PrestaShop\PrestaShop\Adapter\NewProducts\NewProductsProductSearchProvider;
+use PrestaShop\PrestaShop\Core\Product\Search\Pagination;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
 
@@ -57,6 +58,23 @@ class NewProductsControllerCore extends ProductListingFrontController
     public function initContent()
     {
         parent::initContent();
+
+        if($this->context->shop->id == 2) {
+            // $this->assignProductList();
+            $ukooObj = new UkooCompat();
+            $ukooData = $ukooObj->hookDisplayCompat(null);
+            $manufacturerOBJ = new Manufacturer();
+            $manufacturers = $manufacturerOBJ->getManufacturers();
+
+            // $getData = Tools::getAllValues();
+
+            $this->context->smarty->assign([
+                'category' => $categoryVar,
+                'manufacturers'        => $manufacturers,
+                // 'p' => $getData['p'],
+                'ukoodata'             => $ukooData,
+            ]);
+        }
 
         $this->doProductSearch('catalog/listing/new-products', ['entity' => 'new-products']);
     }
