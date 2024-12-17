@@ -49,7 +49,7 @@
             {foreach $selected_features AS $selected}
                 {if $selected.feature == $feature.name}
                     {assign var="is_selected" value=true}
-                    <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: red; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
+                    <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
                 {/if}
             {/foreach}
 

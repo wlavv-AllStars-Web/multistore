@@ -5344,7 +5344,7 @@ select.form-control:not([size]):not([multiple]){
 }
 
 .btn-remove-filter-wheel:hover{
-  color: #333 !important;
+  color: var(--asm-color) !important;
   transition: all ease-in-out 150ms;
 }
 
