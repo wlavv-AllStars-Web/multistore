@@ -137,29 +137,43 @@
 
     // functions remove filters
 
-    function removeOrderParametersAndReload(){
+    function removeOrderParametersAndReload(event){
+        if (event) {
+            event.stopPropagation();
+        }
         $('#productsSortForm').remove();
         let alteredURL = removeParam("orderby", document.URL);
         redirectTo(removeParam("orderway", alteredURL));
     }
 
-    function removeItemPerPageParametersAndReload(){
+    function removeItemPerPageParametersAndReload(event){
+        if (event) {
+            event.stopPropagation();
+        }
         $('.wm-hiddennbr').remove();
         redirectTo(removeParam("n", document.URL));
     }
 
-    function removeCategoryParametersAndReload(){
+    function removeCategoryParametersAndReload(event){
+        if (event) {
+            event.stopPropagation();
+        }
         $('.wm-hiddenCategoryMenu').remove();
         redirectTo(removeParam("id_category_layered", document.URL));
     }
 
-    function removeCategoryParametersAndReloadUkoo(){
-        
+    function removeCategoryParametersAndReloadUkoo(event){
+        if (event) {
+            event.stopPropagation();
+        }
         $('#multiFilter_id_category').val(0);
         $('#ukoocompat_search_block_form_1').submit();
     }
 
-    function removeManufacturerParametersAndReload(){
+    function removeManufacturerParametersAndReload(event){
+        if (event) {
+            event.stopPropagation();
+        }
         $('.wm-hiddenlayered').remove();
         redirectTo(removeParam("id_manufacturer_layered", document.URL));
     }
