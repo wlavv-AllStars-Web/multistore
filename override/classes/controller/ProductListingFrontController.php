@@ -550,7 +550,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-            
+
             $sql .= 'GROUP BY ps_product.id_product';
 
             if($query->getResultsPerPage()) {
@@ -574,7 +574,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $productsQuery
             );
 
-            if($category == 227){
+            if($category == 227 && !($query->getQueryType() == 'new-products')){
 
             $filters = Tools::getValue('filters');
 
