@@ -2883,7 +2883,7 @@ ul {
 /* galleries cars */
 
 .ourcars .cars-container .car-container .hover_for_text {
-  height: 291px !important;
+  height: auto !important;
   overflow: hidden;
 }
 .ourcars .cars-container .car-container .hover_for_text img {
@@ -4216,7 +4216,7 @@ body #main {
 
 /* modal cart */
 #blockcart-modal.modal.in {
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,.1);
 }
 
 #blockcart-modal .modal-dialog{
@@ -4237,7 +4237,7 @@ body #main {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  background: var(--asm-color) !important;
+  background: #222 !important;
   border-radius: 0 !important;
 }
 #blockcart-modal .modal-dialog .modal-header .close {

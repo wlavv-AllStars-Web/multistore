@@ -47,7 +47,7 @@
 }
 
 .cms-id-28 .car-container {
-  min-width: 475px;
+  min-width: 300px;
   /* position: relative; */
 }
 
@@ -67,6 +67,13 @@
   display: flex !important;
   justify-content: center;
   align-items: center;
+}
+
+.cms-id-28 .car-container .hover_for_text {
+  height: auto !important;
+}
+.cms-id-28 .car-container .hover_for_text a {
+  height: 100% !important;
 }
 
 
