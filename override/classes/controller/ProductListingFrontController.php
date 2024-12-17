@@ -550,11 +550,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-
+            
+            $sql .= 'GROUP BY ps_product.id_product';
 
             if($query->getResultsPerPage()) {
                 $sql .= ' LIMIT '.$query->getResultsPerPage();
             }
+
+            
 
             // pre($sql);
 
