@@ -49,14 +49,14 @@
             {foreach $selected_features AS $selected}
                 {if $selected.feature == $feature.name}
                     {assign var="is_selected" value=true}
-                    <i class="fa fa-times remove_filter_fa" aria-hidden="true" style="color: red; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')"></i>
+                    <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: red; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
                 {/if}
             {/foreach}
 
             <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
             {foreach $feature['values'] AS $value}
               {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
-              {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .5rem;min-width: 55px;background: #222;">{$value['value']}</span>{/if}
+              {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: #444;">{$value['value']}</span>{/if}
             {/foreach}
             {if !$is_selected}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>

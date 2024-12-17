@@ -5338,3 +5338,12 @@ select.form-control:not([size]):not([multiple]){
   justify-content: space-between;
   padding: 0 1rem!important;
 }
+
+.btn-remove-filter-wheel{
+  border-radius: 50%;
+}
+
+.btn-remove-filter-wheel:hover{
+  outline: 2px solid #333;
+  outline-offset: -1px;
+}
