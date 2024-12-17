@@ -56,7 +56,7 @@
             <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
             {foreach $feature['values'] AS $value}
               {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
-              {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: #444;">{$value['value']}</span>{/if}
+              {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);">{$value['value']}</span>{/if}
             {/foreach}
             {if !$is_selected}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>
@@ -71,7 +71,7 @@
                   <input type="checkbox" class="form-check-input" id="{$feature['value']}_{$value['id_feature']}"
                     {if $value['checked'] == 1} checked="checked" onclick="removeFilterFeatures('{$value['id_feature']}:{$value['id_feature_value']}')" 
                     {else} onclick="filterFeatures({$value['id_feature']},{$value['id_feature_value']})" {/if}>
-                  <label class="form-check-label" for="{$feature['value']}_{$value['id_feature']}">{$value['value']}</label>
+                  <label class="form-check-label" for="{$feature['value']}_{$value['id_feature']}" style="width: 100%;text-align:start;">{$value['value']}</label>
                 </div>
               {* {else}
                 <div class="form-group form-check">

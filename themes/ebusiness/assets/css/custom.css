@@ -5347,3 +5347,13 @@ select.form-control:not([size]):not([multiple]){
   color: #333 !important;
   transition: all ease-in-out 150ms;
 }
+
+.products-sort-order .form-group.form-check:hover {
+  background: #333;
+} 
+.products-sort-order .form-group.form-check:hover label{
+  color: #fff;
+} 
+.products-sort-order .form-group.form-check:hover input:checked{
+  background-color: red;
+} 
