@@ -40,17 +40,28 @@
 {if $page.body_classes['category-Wheels']} 
 
   <div id="js-product-list-top" class="products-selection category-wheels-top">
-  {foreach $asw_features AS $feature}
+  {foreach $asw_features AS $feature key=key}
     <div class=" box-sortby">
       <div class="row sort-by-row">
         <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
           <div class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="featuresName">{$feature['name']}</span>
-          {foreach $feature['values'] AS $value}
+            {assign var="is_selected" value=false}
+            {foreach $selected_features AS $selected}
+                {if $selected.feature == $feature.name}
+                    {assign var="is_selected" value=true}
+                    <i class="fa fa-times remove_filter_fa" aria-hidden="true" style="color: red; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')"></i>
+                {/if}
+            {/foreach}
+
+            <span class="featuresName">{$feature['name']}</span>
+            {foreach $feature['values'] AS $value}
               {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
             {/foreach}
-            <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            {if !$is_selected}
+              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            {/if}
           </div>
+          {if !$is_selected}
           <div class="dropdown-menu">
             {foreach $feature['values'] AS $value}
               {* <pre>{$value|print_r}</pre> *}
@@ -69,6 +80,7 @@
               {/if} *}
             {/foreach}
           </div>
+          {/if}
         </div>
       </div>
     </div>

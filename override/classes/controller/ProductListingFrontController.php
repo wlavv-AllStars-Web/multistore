@@ -725,9 +725,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             
 
+            // pre($selected_features);
 
-
-            // pre($features);
             
             $this->context->smarty->assign('asw_features', $features);
             $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
