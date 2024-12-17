@@ -68,10 +68,10 @@
               {* <pre>{$value|print_r}</pre> *}
               {* {if !in_array($value['id_feature_value'], $selected_values)} *}
                 <div class="form-group form-check" style="margin-bottom: 0;padding: .5rem 2rem;">
-                  <input type="checkbox" class="form-check-input" id="{$feature['name']}_{$value['id_feature']}"
+                  <input type="checkbox" class="form-check-input" id="{$feature['name']}_{$value['id_feature_value']}"
                     {if $value['checked'] == 1} checked="checked" onclick="removeFilterFeatures('{$value['id_feature']}:{$value['id_feature_value']}')" 
                     {else} onclick="filterFeatures({$value['id_feature']},{$value['id_feature_value']})" {/if}>
-                  <label class="form-check-label" for="{$feature['name']}_{$value['id_feature']}" style="width: 100%;text-align:start;">{$value['value']}</label>
+                  <label class="form-check-label" for="{$feature['name']}_{$value['id_feature_value']}" style="width: 100%;text-align:start;">{$value['value']}</label>
                 </div>
               {* {else}
                 <div class="form-group form-check">
