@@ -158,8 +158,10 @@
         </div>
       {/foreach}
     </div>
+    {if $product.images|count >= 6}
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    {/if}
     {* <div class="swiper-pagination"></div> *}
   </div>
 

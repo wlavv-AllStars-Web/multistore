@@ -133,7 +133,7 @@
     {/block}
 
     {block name='product_features'}
-      {if $product.features}
+      {* {if $product.features}
         <section class="product-features">
           <h3 class="h6">{l s='Data sheet' d='Shop.Theme.Catalog'}</h3>
           <dl class="data-sheet">
@@ -143,7 +143,7 @@
             {/foreach}
           </dl>
         </section>
-      {/if}
+      {/if} *}
     {/block}
 
     {* if product have specific references, a table will be added to product details section *}
