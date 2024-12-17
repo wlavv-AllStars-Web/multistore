@@ -478,8 +478,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         // asm wheels
-
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products'){
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category'){
 
             // pre($query);
 
@@ -513,15 +512,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $category = (int) $query->getIdCategory(); 
             $manufacturer = (int) $query->getIdManufacturer(); 
 
+            // pre($query);
+
             $sql = 'SELECT ps_product.id_product, ps_product.price
             FROM ps_product
             LEFT JOIN ps_product_shop ON ps_product.id_product = ps_product_shop.id_product
             LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
+            LEFT JOIN ps_category_product ON ps_product.id_product = ps_category_product.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
             WHERE ps_product.active = 1
             AND ps_product_shop.id_shop = 2';
                 
             if($category > 0) {
-                $sql .= ' AND ps_product.id_category_default = ' . $category;
+                $sql .= ' AND ps_category_product.id_category = ' . $category;
             }
 
             if ($manufacturer > 0) {
@@ -555,20 +557,23 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // pre($sql);
 
-            $productsQuery = Db::getInstance()->ExecuteS($sql);
 
-            $products = $this->prepareMultipleProductsForTemplate(
-                $productsQuery
-            );
 
             // if(count($products) == 0){
 
             // }
             // pre($products);
 
-        //     if($this->category->id == 227){
+            $productsQuery = Db::getInstance()->ExecuteS($sql);
 
-        //     $filters = Tools::getValue('filters');
+            $products = $this->prepareMultipleProductsForTemplate(
+                $productsQuery
+            );
+
+            if($category == 227){
+
+            $filters = Tools::getValue('filters');
+
             
         //     $brand_api = CategoryControllerCore::apiCall('brand');
 
@@ -580,116 +585,164 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             
 
 
-        //     if(strlen($filters) > 0 ){
-        //         $features = explode('|', $filters);
-        //         $arr = array();
+            if(strlen($filters) > 0 ){
+                $features = explode('|', $filters);
+                $arr = array();
                 
-        //         foreach( $features AS $feature){
-        //             $current_features = explode(':', $feature);
-        //             $arr[$current_features[0]][] = $current_features[1];
-        //         }
+                foreach( $features AS $feature){
+                    $current_features = explode(':', $feature);
+                    $arr[$current_features[0]][] = $current_features[1];
+                }
                 
-        //         $flatted = self::combinarArrays($arr);
+                $flatted = self::combinarArrays($arr);
                 
-        //         foreach($flatted AS $flatted_options){
+                foreach($flatted AS $flatted_options){
                     
-        //             $product_options_temp = array();
-        //             foreach($flatted_options AS $key => $option){
+                    $product_options_temp = array();
+                    foreach($flatted_options AS $key => $option){
                         
-        //                 $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
+                        $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
                     
-        //                 foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
-        //             }
+                        foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
+                    }
                     
-        //             $total_option = count($flatted_options);
-        //             foreach($product_options_temp AS $key_product =>$found_option){
-        //                 if($found_option == $total_option) $product_options[]=$key_product;
-        //             }
-        //         }
-        //     } 
+                    $total_option = count($flatted_options);
+                    foreach($product_options_temp AS $key_product =>$found_option){
+                        if($found_option == $total_option) $product_options[]=$key_product;
+                    }
+                }
+            } 
 
 
 
-        //     $selected_filter_feature = [];
-        //     $selected_features = null;
-        //     $selected_id_values = null;
+            $selected_filter_feature = [];
+            $selected_features = null;
+            $selected_id_values = null;
 
-        //     if(strlen($filters) > 0){
-        //         $selected_filter = explode('|',$filters);
+            if(strlen($filters) > 0){
+                $selected_filter = explode('|',$filters);
                 
-        //         foreach($selected_filter AS $selected_option){
+                foreach($selected_filter AS $selected_option){
                     
-        //             $selected_feature = explode(':',$selected_option);
+                    $selected_feature = explode(':',$selected_option);
                     
-        //             $selected_id_values[] = $selected_feature[1];
+                    $selected_id_values[] = $selected_feature[1];
                     
-        //             $sqlFeature =  'SELECT name 
-        //                             FROM ps_feature_lang 
-        //                             LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
-        //                             WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
-        //                             AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
-        //                             AND ps_feature_lang.id_feature=' . $selected_feature[0];
+                    $sqlFeature =  'SELECT name 
+                                    FROM ps_feature_lang 
+                                    LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
+                                    WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
+                                    AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
+                                    AND ps_feature_lang.id_feature=' . $selected_feature[0];
                     
-        //             $feature_group = Db::getInstance()->getValue($sqlFeature);
+                    $feature_group = Db::getInstance()->getValue($sqlFeature);
                     
-        //             $sqlFeatureValue = 'SELECT value 
-        //                                 FROM ps_feature_value_lang 
-        //                                 LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
-        //                                 WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
-        //                                 AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
-        //                                 AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1];
+                    $sqlFeatureValue = 'SELECT value 
+                                        FROM ps_feature_value_lang 
+                                        LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
+                                        WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
+                                        AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' ) 
+                                        AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1];
                     
-        //             $feature_value = Db::getInstance()->getValue($sqlFeatureValue);
+                    $feature_value = Db::getInstance()->getValue($sqlFeatureValue);
 
-        //             $selected_filter_feature[] = $selected_feature[0];
+                    $selected_filter_feature[] = $selected_feature[0];
                     
-        //             $selected_features[] = [
-        //                 'combination' => $selected_option,
-        //                 'feature' => $feature_group,
-        //                 'value' => $feature_value
-        //             ];
-        //         }                
+                    $selected_features[] = [
+                        'combination' => $selected_option,
+                        'feature' => $feature_group,
+                        'value' => $feature_value
+                    ];
+                }                
                 
-        //     }
+            }
 
 
-        //     $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN ( 227 )';
-        //     pre($sql_products_of_category);
+            $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN ( 227 )';
+            // pre($sql_products_of_category);
+            if($product_options){
+                if(count($product_options) > 0 ){
+                    $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
+                }
+            }
+            // elseif(count($ids_products) > 0 ){
+            //     $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
+            // }
 
-        //     if(count($product_options) > 0 ){
-        //         $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
-        //     }elseif(count($ids_products) > 0 ){
-        //         $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
-        //     }
-
-        //     $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
+            $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
             
 
-        //     $ids_prods = array();
-        //     $features  = array();
+            $ids_prods = array();
+            $features  = array();
 
-        //     foreach($products_227 AS $product_227) $ids_prods[] = $products_227['id_product'];
+            foreach($products_227 AS $product_227) $ids_prods[] = $product_227['id_product'];
 
-        //     $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
+            $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
 
-        //     foreach($features_category AS $f_category){
 
-        //         $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' AND id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value ORDER BY id_feature');
 
-        //         $features[] = [
-        //             'id_feature' => $f_category['id_feature'],
-        //             'name' => $f_category['name'],
-        //             'quantity' => $f_category['nr_repeat'],
-        //             'values' => $features_value
-        //             ];
-        //     }
+            foreach($features_category AS $f_category){
+
+                $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' AND id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value ORDER BY id_feature');
+
+                $features[] = [
+                    'id_feature' => $f_category['id_feature'],
+                    'name' => $f_category['name'],
+                    'quantity' => $f_category['nr_repeat'],
+                    'values' => $features_value
+                    ];
+            }
+
+            if ($selected_features) {
+                foreach ($features as &$feature) {
+                    foreach ($feature['values'] as &$value) {
+                        $value['checked'] = 0; // Default checked value
+                        
+                        foreach ($selected_features as $selected) {
+                            $combination = "{$value['id_feature']}:{$value['id_feature_value']}";
             
-        //     $this->context->smarty->assign('asw_features', $features);
-        //     $this->context->smarty->assign('have_selected_features', count($selected_features));
-        //     $this->context->smarty->assign('selected_features', $selected_features);
-        //     $this->context->smarty->assign('selected_values', $selected_id_values);
+                            // Check if the feature is "Brand"
+                            if ($feature['name'] === 'Brand') {
+                                $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name="' . $value["value"] . '"';
+                                
+                                $brandImg = Db::getInstance()->getValue($sqlBrandImg);
+            
+                                // Add img field to $value
+                                $value['img'] = $brandImg 
+                                    ? "/img/asm/wheels/" . $brandImg . ".webp?t=3" 
+                                    : null; // Add null or fallback URL if brandImg is not found
+                            }
+            
+                            // Set checked if combination matches
+                            if ($combination === $selected['combination']) {
+                                $value['checked'] = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                unset($feature, $value); // Break reference
+            }
+            
 
-        //     }
+
+
+            // pre($features);
+            
+            $this->context->smarty->assign('asw_features', $features);
+            $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
+            $this->context->smarty->assign('selected_features', $selected_features);
+            $this->context->smarty->assign('selected_values', $selected_id_values);
+
+            $products = $this->prepareMultipleProductsForTemplate(
+                $products_227
+            );
+
+            }
+
+
+
+
             $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
             $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
 

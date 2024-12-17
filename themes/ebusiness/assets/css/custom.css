@@ -5322,9 +5322,19 @@ select.form-control:not([size]):not([multiple]){
   background: none repeat scroll 0 0 #d9d9d9;
   border-radius: 0 0 .25rem .25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 2px solid #333;
 }
 
 .products-sort-order .dropdown-menu{
   overflow-y: auto;
   max-height: 360px;
+  padding-bottom: 0;
+}
+
+.products-sort-order .select-title {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem!important;
 }

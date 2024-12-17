@@ -40,21 +40,40 @@
 {if $page.body_classes['category-Wheels']} 
 
   <div id="js-product-list-top" class="products-selection category-wheels-top">
-
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <div class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Brand' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </div>
-        <div class="dropdown-menu">
-
+  {foreach $asw_features AS $feature}
+    <div class=" box-sortby">
+      <div class="row sort-by-row">
+        <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+          <div class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="featuresName">{$feature['name']}</span>
+          {foreach $feature['values'] AS $value}
+              {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
+            {/foreach}
+            <i class="material-icons pull-xs-right">arrow_drop_down</i>
+          </div>
+          <div class="dropdown-menu">
+            {foreach $feature['values'] AS $value}
+              {* <pre>{$value|print_r}</pre> *}
+              {* {if !in_array($value['id_feature_value'], $selected_values)} *}
+                <div class="form-group form-check" style="margin-bottom: 0;padding: .5rem 2rem;">
+                  <input type="checkbox" class="form-check-input" id="{$feature['value']}_{$value['id_feature']}"
+                    {if $value['checked'] == 1} checked="checked" onclick="removeFilterFeatures('{$value['id_feature']}:{$value['id_feature_value']}')" 
+                    {else} onclick="filterFeatures({$value['id_feature']},{$value['id_feature_value']})" {/if}>
+                  <label class="form-check-label" for="{$feature['value']}_{$value['id_feature']}">{$value['value']}</label>
+                </div>
+              {* {else}
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="manufacturer_{$feature['id_feature']}" onclick="removeFilterFeatures('{$feature['id_feature']}:{$value['id_feature_value']}')">
+                  <label class="form-check-label" for="manufacturer_{$feature['id_feature']}">{$feature['quantity']} {$feature['value']}</label>
+                </div>
+              {/if} *}
+            {/foreach}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  {/foreach}
+<!--
   <div class=" box-sortby">
     <div class="row sort-by-row">
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
@@ -63,6 +82,14 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+          {foreach $asw_features[1]['values'] AS $bolt}
+              <div  id="manufacturer_{$bolt['value']}" 
+                    onclick="filterFeatures({$bolt['id_feature']},{$bolt['id_feature_value']})"
+                    class="select-list js-search-link"
+              >
+              {$bolt['value']}
+              </div>
+          {/foreach}
         </div>
       </div>
     </div>
@@ -76,6 +103,14 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+        {foreach $asw_features[2]['values'] AS $diameter}
+            <div  id="manufacturer_{$diameter['value']}" 
+                  onclick="filterFeatures({$diameter['id_feature']},{$diameter['id_feature_value']})"
+                  class="select-list js-search-link"
+            >
+            {$diameter['value']}
+            </div>
+        {/foreach}
         </div>
       </div>
     </div>
@@ -89,6 +124,14 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+        {foreach $asw_features[3]['values'] AS $width}
+            <div  id="manufacturer_{$width['value']}" 
+                  onclick="filterFeatures({$width['id_feature']},{$width['id_feature_value']})"
+                  class="select-list js-search-link"
+            >
+            {$width['value']}
+            </div>
+        {/foreach}
         </div>
       </div>
     </div>
@@ -102,6 +145,14 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+        {foreach $asw_features[4]['values'] AS $offset}
+            <div  id="manufacturer_{$offset['value']}" 
+                  onclick="filterFeatures({$offset['id_feature']},{$offset['id_feature_value']})"
+                  class="select-list js-search-link"
+            >
+            {$offset['value']}
+            </div>
+        {/foreach}
         </div>
       </div>
     </div>
@@ -115,11 +166,19 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+        {foreach $asw_features[5]['values'] AS $color}
+            <div  id="manufacturer_{$color['value']}" 
+                  onclick="filterFeatures({$color['id_feature']},{$color['id_feature_value']})"
+                  class="select-list js-search-link"
+            >
+            {$color['value']}
+            </div>
+        {/foreach}
         </div>
       </div>
     </div>
   </div>
-
+ -->
   <div class=" box-sortby wheels-accessories-filter">
     <div class="" style="display: flex;justify-content:center;align-items:center;height:100%;">
       <div class="">
@@ -246,6 +305,7 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
+
         {foreach $manufacturers AS $manufacturer}
             <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
                   class="select-list js-search-link"
