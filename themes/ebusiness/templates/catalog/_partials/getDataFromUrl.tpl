@@ -104,7 +104,7 @@
         $('#name_items_per_page').html('<b style="color:red;">' + nrItems + '</b><span style="color: #444;font-size: 0.85rem;"> {l s="Per Page"}</span>' + deleteHtmlNrItems);
 
         if ($('body#category').length > 0) {
-            category_name = $('.cat-name').text();
+            category_name = document.querySelector("nav.breadcrumb li:last-child a span").textContent
             idCategory =  $('[name="id_category_layered"]').val();
         }else{
             category_name = $('#category_element_' + idCategory).text();
