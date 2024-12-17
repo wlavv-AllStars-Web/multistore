@@ -518,6 +518,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             FROM ps_product
             LEFT JOIN ps_product_shop ON ps_product.id_product = ps_product_shop.id_product
             LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
+            LEFT JOIN ps_product_sale ON ps_product.id_product = ps_product_sale.id_product 
             LEFT JOIN ps_category_product ON ps_product.id_product = ps_category_product.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
             WHERE ps_product.active = 1
             AND ps_product_shop.id_shop = 2';
@@ -546,7 +547,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 } elseif ($sortOrder->getField() === 'reference') {
                     $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'sales') {
-                    $sql .= ' ORDER BY ps_product.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
 
@@ -574,6 +575,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $filters = Tools::getValue('filters');
 
+            // pre($filters);
             
         //     $brand_api = CategoryControllerCore::apiCall('brand');
 
@@ -588,19 +590,20 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             if(strlen($filters) > 0 ){
                 $features = explode('|', $filters);
                 $arr = array();
-                
                 foreach( $features AS $feature){
                     $current_features = explode(':', $feature);
                     $arr[$current_features[0]][] = $current_features[1];
                 }
+
                 
                 $flatted = self::combinarArrays($arr);
+
                 
                 foreach($flatted AS $flatted_options){
                     
                     $product_options_temp = array();
                     foreach($flatted_options AS $key => $option){
-                        
+                        // pre($option);
                         $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
                     
                         foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
@@ -725,7 +728,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             
 
-            // pre($selected_features);
+            // pre($features);
 
             
             $this->context->smarty->assign('asw_features', $features);

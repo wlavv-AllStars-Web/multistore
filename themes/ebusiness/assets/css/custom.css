@@ -5339,6 +5339,10 @@ select.form-control:not([size]):not([multiple]){
   padding: 0 0 0 1rem!important;
 }
 
+.products-sort-order .select-title span {
+  width: 100%;
+}
+
 .btn-remove-filter-wheel{
   border-radius: 50%;
 }
