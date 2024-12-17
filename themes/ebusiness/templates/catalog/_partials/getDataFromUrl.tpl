@@ -101,7 +101,7 @@
  
         }
         $('#name_sort_by').html('{l s="Sort By"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>' + deleteHtmlParameters);
-        $('#name_items_per_page').html('<b style="color:red;">' + nrItems + '</b><span style="color: #444;font-size: 0.85rem;"> {l s="Per Page"}</span>' + deleteHtmlNrItems);
+        $('#name_items_per_page').html('{l s="Per Page"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>' + deleteHtmlNrItems);
 
         if ($('body#category').length > 0) {
             category_name = document.querySelector("nav.breadcrumb li:last-child a span").textContent
@@ -110,13 +110,13 @@
             category_name = $('#category_element_' + idCategory).text();
         }
         // console.log(deleteHtmlCategory)
-        $('#name_category').html('{l s="By Category"} <span style="color:#444;">' + category_name + '</span>' + deleteHtmlCategory);
+        $('#name_category').html('{l s="By Category"} <span style="color:#444;font-size: 0.85rem;">' + category_name + '</span>' + deleteHtmlCategory);
 
         if ($('body#manufacturer').length > 0) { manufacturer = $('#id_current_manufacturer_name').val();
         }else{
             manufacturer = $('#manufacturer_' + idManufacturer).text();
         }
-        $('#name_brand').html(deleteHtmlManufacturers + '{l s="By Brand"} <span style="color:#444;">' + manufacturer + '</span>');
+        $('#name_brand').html(deleteHtmlManufacturers + '{l s="By Brand"} <span style="color:#444;font-size: 0.85rem;">' + manufacturer + '</span>');
 
         if(news == 1){
             $('#multiFilter_news').val(1);
@@ -187,6 +187,6 @@
     }
 
     function deleteHtml(functionName){
-        return '<div onclick="' + functionName + '()" class="pull-left remove_filter_fa_holder"><i class="fa fa-times remove_filter_fa" aria-hidden="true"></i></div>';
+        return '<div onclick="' + functionName + '()" class="pull-left btn-remove-filter-wheel"><i class="material-icons">cancel</i></div>';
     }
 </script>

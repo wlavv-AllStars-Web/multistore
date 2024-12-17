@@ -5345,6 +5345,7 @@ select.form-control:not([size]):not([multiple]){
 
 .btn-remove-filter-wheel{
   border-radius: 50%;
+  color: #333 !important;
 }
 
 .btn-remove-filter-wheel:hover{
