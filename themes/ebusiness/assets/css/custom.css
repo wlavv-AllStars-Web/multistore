@@ -5336,7 +5336,7 @@ select.form-control:not([size]):not([multiple]){
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem!important;
+  padding: 0 0 0 1rem!important;
 }
 
 .btn-remove-filter-wheel{
