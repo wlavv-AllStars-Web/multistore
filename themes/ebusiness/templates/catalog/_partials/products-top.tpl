@@ -157,6 +157,7 @@
   </select> *}
 
 
+
   {* <pre>{print_r($attribute_groups,1)}</pre> *}
   {* bycategory *}
   <div class="box-sortby col-md-3">
@@ -173,29 +174,26 @@
             {l s='By Category' d='Shop.Theme.Actions'}
           </span>
           {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
+          {if !$page.body_classes['category-id-228']}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
+          {/if}
         </a>
-        <div class="dropdown-menu">
-        {foreach from=$categories[2] item=categoryLevel1}
-          {foreach from=$categoryLevel1 item=category}
-            <div 
-              id="category_element_{$category['id_category']}" 
-              onclick="setCategory({$category['id_category']})"
-              class="select-list"
-            >
-                {$category['name']}
-            </div>
-              
-            {* <a
-            rel="nofollow"
-            href="{$link->getCategoryLink($category.id_category)}"
-            class="select-list "
-          >
-            {$category.name}
-          </a> *}
+        {if !$page.body_classes['category-id-228']}
+          <div class="dropdown-menu">
+          {foreach from=$categories[2] item=categoryLevel1}
+            {foreach from=$categoryLevel1 item=category}
+              <div 
+                id="category_element_{$category['id_category']}" 
+                onclick="setCategory({$category['id_category']})"
+                class="select-list"
+              >
+                  {$category['name']}
+              </div>
+
+            {/foreach}
           {/foreach}
-        {/foreach}
-        </div>
+          </div>
+        {/if}
       </div>
     </div>
   </div>
