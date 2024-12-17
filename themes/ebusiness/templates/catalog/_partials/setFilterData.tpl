@@ -202,4 +202,54 @@
         }
         return rtn;
     }
+
+
+    // wheels functions
+
+    function filterFeatures(id_feature, id_feature_value){
+
+        const { host, hostname, href, origin, pathname, port, protocol, search } = window.location;
+        
+        let new_request = window.location.href;
+        
+        if( search.includes('?') ){
+            if( !search.includes( id_feature + ':' + id_feature_value ) ){
+                new_request = window.location.href + '|' + id_feature + ':' + id_feature_value;
+            }
+        }else{	                
+            new_request = window.location.href + '?filters=' + id_feature + ':' + id_feature_value;
+        }
+        
+        window.location.href = new_request;
+    }
+
+    function removeFilterFeatures( option ){
+
+        const { host, hostname, href, origin, pathname, port, protocol, search } = window.location;
+        
+        current_request = window.location.href;
+        new_request = window.location.href;
+        
+        if( search.includes(option) ){
+            
+            if( search.includes('=' + option) ){   
+                if( search.includes('=' + option + '|') ){
+                    new_request = current_request.replace( option + '|', '');
+                }else{	              
+                    new_request = current_request.replace( '?filters=' + option, '');
+                }
+            }else{	   
+                if( search.includes(option + '|') ){
+                    new_request = current_request.replace( option + '|', '');
+                }else{	                
+                    new_request = current_request.replace( '|' + option, '');
+                }
+            }
+            
+        }else{	      
+            new_request = current_request.replace( 'filters=' + option + '&', '');
+        }
+        
+        window.location.href = new_request;
+    }
 </script>
