@@ -551,7 +551,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
             }
 
-            $sql .= 'GROUP BY ps_product.id_product';
+            $sql .= ' GROUP BY ps_product.id_product';
 
             if($query->getResultsPerPage()) {
                 $sql .= ' LIMIT '.$query->getResultsPerPage();
