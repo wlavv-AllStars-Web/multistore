@@ -86,117 +86,12 @@
       </div>
     </div>
   {/foreach}
-<!--
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Bolt Pattern' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
-        <div class="dropdown-menu">
-          {foreach $asw_features[1]['values'] AS $bolt}
-              <div  id="manufacturer_{$bolt['value']}" 
-                    onclick="filterFeatures({$bolt['id_feature']},{$bolt['id_feature_value']})"
-                    class="select-list js-search-link"
-              >
-              {$bolt['value']}
-              </div>
-          {/foreach}
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Diameter' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
-        <div class="dropdown-menu">
-        {foreach $asw_features[2]['values'] AS $diameter}
-            <div  id="manufacturer_{$diameter['value']}" 
-                  onclick="filterFeatures({$diameter['id_feature']},{$diameter['id_feature_value']})"
-                  class="select-list js-search-link"
-            >
-            {$diameter['value']}
-            </div>
-        {/foreach}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Width' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
-        <div class="dropdown-menu">
-        {foreach $asw_features[3]['values'] AS $width}
-            <div  id="manufacturer_{$width['value']}" 
-                  onclick="filterFeatures({$width['id_feature']},{$width['id_feature_value']})"
-                  class="select-list js-search-link"
-            >
-            {$width['value']}
-            </div>
-        {/foreach}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Offset' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
-        <div class="dropdown-menu">
-        {foreach $asw_features[4]['values'] AS $offset}
-            <div  id="manufacturer_{$offset['value']}" 
-                  onclick="filterFeatures({$offset['id_feature']},{$offset['id_feature_value']})"
-                  class="select-list js-search-link"
-            >
-            {$offset['value']}
-            </div>
-        {/foreach}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class=" box-sortby">
-    <div class="row sort-by-row">
-      <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-        <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {l s='Color' d='Shop.Theme.Actions'}
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
-        </a>
-        <div class="dropdown-menu">
-        {foreach $asw_features[5]['values'] AS $color}
-            <div  id="manufacturer_{$color['value']}" 
-                  onclick="filterFeatures({$color['id_feature']},{$color['id_feature_value']})"
-                  class="select-list js-search-link"
-            >
-            {$color['value']}
-            </div>
-        {/foreach}
-        </div>
-      </div>
-    </div>
-  </div>
- -->
   <div class=" box-sortby wheels-accessories-filter">
     <div class="" style="display: flex;justify-content:center;align-items:center;height:100%;">
       <div class="">
-        <a class="select-title" href='https://www.all-stars-motorsport.com/en/549-wheels-accessories'>
-        {l s='Wheels Accessories' d='Shop.Theme.Actions'}
+        <a class="select-title" href='{$link->getCategoryLink(228)}'>
+          {l s='Wheels Accessories' d='Shop.Theme.Actions'}
         </a>
       </div>
     </div>
