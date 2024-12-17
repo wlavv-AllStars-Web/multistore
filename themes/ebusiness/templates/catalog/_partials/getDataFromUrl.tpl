@@ -187,6 +187,6 @@
     }
 
     function deleteHtml(functionName){
-        return '<div onclick="' + functionName + '()" class="pull-left btn-remove-filter-wheel"><i class="material-icons">cancel</i></div>';
+        return '<div onclick="' + functionName + '(event)" class="pull-left btn-remove-filter-wheel"><i class="material-icons">cancel</i></div>';
     }
 </script>
