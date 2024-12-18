@@ -46,23 +46,38 @@
         <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
           <div class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {assign var="is_selected" value=false}
-            {foreach $selected_features AS $selected}
-                {if $selected.feature == $feature.name}
-                    {assign var="is_selected" value=true}
-                    <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
+            {if isset($selected_features[$feature.name])}
+              {assign var="is_selected" value=true}
+            {/if}
+              
+            {if $is_selected}
+            <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
+            {/if}
+
+            <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
+
+            {assign var="countChecked" value=0}
+            {foreach $feature['values'] AS $value}
+                {if $value['checked'] == 1}
+                    {assign var="countChecked" value=$countChecked+1}
                 {/if}
             {/foreach}
 
-            <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
-            {foreach $feature['values'] AS $value}
-              {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
-              {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: 55px;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
-            {/foreach}
-            {if !$is_selected}
-              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            {if $countChecked == 1}
+              {foreach $feature['values'] AS $value}
+                {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
+                {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: 55px;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
+              {/foreach}
+            {elseif $countChecked > 1}
+              <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem">{$countChecked} selected</span>
             {/if}
+
+            {* {if !$is_selected} *}
+              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            {* {/if} *}
+
           </div>
-          {if !$is_selected}
+          {* {if !$is_selected} *}
           <div class="dropdown-menu">
             {foreach $feature['values'] AS $value}
               {* <pre>{$value|print_r}</pre> *}
@@ -81,7 +96,7 @@
               {/if} *}
             {/foreach}
           </div>
-          {/if}
+          {* {/if} *}
         </div>
       </div>
     </div>
