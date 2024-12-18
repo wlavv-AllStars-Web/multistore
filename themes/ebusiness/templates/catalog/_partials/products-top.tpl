@@ -69,7 +69,7 @@
                 {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: 55px;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
               {/foreach}
             {elseif $countChecked > 1}
-              <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem">{$countChecked} selected</span>
+              <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem;max-width: 60px;">{$countChecked} filters</span>
             {/if}
 
             {* {if !$is_selected} *}

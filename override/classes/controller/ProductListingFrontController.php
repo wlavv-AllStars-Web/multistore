@@ -765,13 +765,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             
             
-
-            // pre($features);
             
             $this->context->smarty->assign('asw_features', $features);
             $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
             $this->context->smarty->assign('selected_features', $selected_features);
             $this->context->smarty->assign('selected_values', $selected_id_values);
+
+            // After filtering, check if product_options is empty
+            if (empty($product_options)) {
+            // Assign a flag to indicate no products are available
+            $this->context->smarty->assign('no_products', true);
+
+            }
+            
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $products_227

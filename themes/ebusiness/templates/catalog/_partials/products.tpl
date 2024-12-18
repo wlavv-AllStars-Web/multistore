@@ -25,7 +25,7 @@
  <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
 {* {debug} *}
 <div id="js-product-list">
-  <div class="products row" id="productList" style="margin-right: auto;">
+  <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">
     {if isset($filter_1) && isset($filter_3)}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-lg-3" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product" style="background: #282828;display:flex;flex-direction: column;padding:2rem 1rem !important;border-radius:0.25rem;margin-bottom: 2rem;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
@@ -111,12 +111,31 @@
 
     {* <pre>{$page|print_r}</pre> *}
 
-    {foreach from=$listing.products item="product"}
-        {* <pre>{$product|print_r}</pre> *}
-        {block name='product_miniature'}
-            {include file='catalog/_partials/miniatures/product.tpl' product=$product}
-        {/block}
-    {/foreach}
+    {if $no_products}
+      <div style="
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: #222;
+        text-transform: capitalize;
+        margin-bottom: 30px;
+      ">
+        <div class="container-not-found-filters" style="text-align: center;">
+          <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);">error_outline</i>
+          <h1 style="font-weight: 600;font-size: 2rem;">No Result Found</h1>
+          <span style="font-size: 1.25rem;color: #555;">We can't find any item matching your search</span>
+        </div>
+      </div>
+    {else}
+      {foreach from=$listing.products item="product"}
+          {* <pre>{$product|print_r}</pre> *}
+          {block name='product_miniature'}
+              {include file='catalog/_partials/miniatures/product.tpl' product=$product}
+          {/block}
+      {/foreach}
+    {/if}
 
 
   {* <pre>{$listing|print_r}</pre> *}
