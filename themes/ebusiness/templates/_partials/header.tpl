@@ -173,7 +173,7 @@
     </div>
     {* menu *}
 
-    <div class="menu d-none d-lg-flex col-12 js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">  
+    <div class="menu d-none d-lg-flex col-12 js-top-menu position-static hidden-sm-down d-desktop" id="_desktop_top_menu">  
       <ul class="list-menu-desktop">
         <li>
           <a href="/">Home</a> 
@@ -234,8 +234,86 @@
         <li><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
         <li><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
       </ul>
-    <div class="clearfix"></div> 
+    
+      <div class="clearfix"></div> 
     </div>
+
+    <div class="d-mobile mobile-menu">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;background-color: #333 !important;">
+        <div style="display: flex;width: 100%;justify-content:space-between;">
+          {* <a class="navbar-brand" href="#">Navbar w/ text</a> *}
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;color: #fff;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li class="">
+              <a class=""  href="/">Home</a> 
+            </li>
+            <li class="">
+              <a class=""  href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
+            </li>
+
+            <li class=" {if $page.page_name =='index'}dropdown{/if}">
+                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >Your Car</a>
+                  <div class="dropdown-menu menu-logos">
+              {if $page.page_name =='index'}
+                {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
+                  <div id="your_garage_container" style="text-align: center;margin: 0 auto;display: none;">
+                        <h2 id="openMyCars" style="cursor: pointer;">{l s='Your Garage' d='Shop.Theme.Homepage'}</h2>
+                        <div class="cars-container">
+                      {foreach $myCars AS $car}
+                          <div style="width: 190px; float: left;margin: 20px;font-size: 18px; line-height: 2;text-align: center;" class="myCars">
+                              <div onclick="setCarAndSearch({$car['id_brand']}, {$car['id_model']}, {$car['id_type']}, {$car['id_version']})" style="cursor: pointer;">
+                                  {assign var=check_path value="/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png"}
+                                  {if !file_exists($check_path) }
+                                      <img class="img-responsive" src="/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png" style="margin: 0 auto;width: 300px; pointer-events: none;">
+                                    {else}
+                                      <img class="img-responsive" src="/img/homepage/models/unknown.png" style="margin: 0 auto;width: 300px; cursor: pointer;">
+                                    {/if}
+                              </div>
+                              <div>
+                                  <div class="spacer-10"></div>
+                                  <div class="brand-model" onclick="setCarAndSearch({$car['id_brand']}, {$car['id_model']}, {$car['id_type']}, {$car['id_version']})" style="cursor: pointer;">
+                                      <div><span>{$car['brand']}</span> <span>{$car['model']}</span> </div>	                
+                                  </div>
+                                </div>
+                          </div>
+                          
+                      {/foreach}
+                        </div>
+                  </div>
+                {/if}
+                  
+                      {hook h="displayHome" mod="ukoocompat"}
+                  </div>
+              {/if}
+            </li>
+
+            <li class="dropdown brands-drop">
+              <div class="btn"  type="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</div>
+              <ul class="dropdown-menu-brands dropdown-menu">
+              {foreach from=$manufacturers item=$manufacturer }
+                <li class="col-lg-3">
+                  <a class="dropdown-item" href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
+                    {$manufacturer.name}
+                  </a>
+                </li>
+              {/foreach}
+              </ul>
+            </li>
+            {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
+            <li class="nav-item"><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
+            <li class="nav-item"><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+
 {* {debug} *}
 {* <pre>{$customer|print_r}</pre> *}
 
