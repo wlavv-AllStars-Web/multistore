@@ -5691,25 +5691,50 @@ input[type="checkbox"]:checked::after {
     gap: .25rem;
   }
 
-  .mobile-menu .navbar-nav li{
+  .mobile-menu .navbar-nav > li{
     padding: .5rem 1rem;
     background: #666;
     border-radius: .25rem;
   }
 
-  .mobile-menu .navbar-nav li .btn {
+  .mobile-menu .navbar-nav > li .btn {
     padding: 0;
     color: #fff;
   }
 
-  .mobile-menu .navbar-nav li a{
+  .mobile-menu .navbar-nav > li a{
     display: flex;
     justify-content: center;
     width: 100%;
     color: #fff;
   }
 
+  .mobile-menu .navbar-nav > li.dropdown.brands-drop.open {
+    outline: 2px solid var(--asm-color);
+    outline-offset: -2px;
+    background: #222;
+  }
+
+  .mobile-menu .navbar-nav > li .dropdown-menu-brands  {
+    background-color: transparent !important;
+    border-radius: .25rem;
+    border: 0 !important;
+  }
+
+  .mobile-menu .navbar-nav > li .dropdown-menu-brands > li {
+    padding: .5rem;
+  }
+
+  .mobile-menu .navbar-nav > li .dropdown-menu-brands > li a img {
+    background-color: #fff;
+    border-radius: .25rem;
+  }
+
   #index .mobile-menu {
     display: none !important;
+  }
+
+  .sort-by-row .select-title > span > span {
+    color:var(--asm-color) !important;
   }
 }
