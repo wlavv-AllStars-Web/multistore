@@ -696,9 +696,10 @@ body {
     /* height: auto; */
   }
   #productList article .thumbnail-container{
-    width: 100%;
+    width: 100% !important;
     border-radius: .25rem;
     outline: 2px solid #d0d0d0;
+    height: 100% !important;
   }
 
   .product-miniature{
