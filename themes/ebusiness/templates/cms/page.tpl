@@ -137,7 +137,7 @@
             })
 
         </script>
-    {elseif $cms.id == 64 || $cms.id == 65 ||  $cms.id == 66}
+    {elseif $cms.id >= 64 && $cms.id <= 83}
         <script>
 
             const content = document.querySelector(".page-car")
