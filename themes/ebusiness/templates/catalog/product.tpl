@@ -333,7 +333,215 @@
       {/if}
      </div>
 
- <div class="section_tabs_video" style="display: flex;{if empty($product.youtube_code)}justify-content:center;{/if}">
+      <div class="d-mobile section-content-product" style="margin-top: 1rem;flex-direction:column;gap:.25rem;">
+        <div class="container-compat-mobile" style="flex-direction: column;width:100%;">
+          <div class="nav-link" data-toggle="collapse" href="#compatMobile" role="button" aria-expanded="false" aria-controls="compatMobile" style="width: 100%;background: #fff;text-align:center;">
+            {l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}
+          </div>
+        
+          <div class="collapse container-drop" id="compatMobile">
+            
+            <div class="banner-tabs" >
+              <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+            </div>
+                    {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
+
+            <div class="container-table-compats">
+              {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+              <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Version</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Audi</td>
+                    <td>A3</td>
+                    <td>8V / 8.5V - 12-20</td>
+                    <td>2.0 TFSI - 190 / 220</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
+          </div>
+        </div>
+        
+        <div class="container-shipping-mobile" style="flex-direction: column;width:100%;">
+          <div class="nav-link" data-toggle="collapse" href="#shippingMobile" role="button" aria-expanded="false" aria-controls="shippingMobile" style="width: 100%;background: #fff;text-align:center;">
+            {l s='SHIPPING' d='Shop.Theme.Catalog'}
+          </div>
+        
+          <div class="collapse container-drop" id="shippingMobile">
+            
+            <div class="banner-tabs" >
+              <img src="https://www.all-stars-motorsport.com/img/app_icons/shipping_en.webp" />
+            </div>
+            <div class="tab">
+              {hook h='extraRight' mod='totshippingpreview'}
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="container-instructions-mobile" style="flex-direction: column;width:100%;">
+          <div class="nav-link" data-toggle="collapse" href="#instructionsMobile" role="button" aria-expanded="false" aria-controls="instructionsMobile" style="width: 100%;background: #fff;text-align:center;">
+            {l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}
+          </div>
+        
+          <div class="collapse container-drop" id="instructionsMobile">
+            
+          {block name='product_attachments'}
+            {if $product.attachments}
+             <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+                <div class="banner-tabs" >
+                  <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                </div>
+                <section class="product-attachments tab">
+                  {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
+                  {foreach from=$product.attachments item=attachment}
+                    <div class="attachment">
+                      {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
+                      {* <p>{$attachment.description}</p> *}
+                      <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                        {l s='Download Instructions' d='Shop.Theme.Actions'}
+                      </a>
+
+                      <div class="difficulty-level">
+                        <span>Difficulty Level:</span>
+                        <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" />
+                      </div>
+                    </div>
+                  {/foreach}
+                </section>
+              </div>
+            {else}
+
+              
+              
+               <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+                 <div class="banner-tabs" >
+                   <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                 </div>
+                 {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
+                  <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
+                  <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
+                  <div class="difficulty-level">
+                          <span>Difficulty Level:</span>
+                          <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
+                    </div>
+                 </div> *}
+
+                <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
+                      <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">No Instructions</h4>
+                    {if $product.difficulty > 0}
+                      <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
+                      <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
+                          <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
+                          <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                      </div>
+                    {/if}
+                    </div>
+                </div>
+
+               </div>
+            {/if}
+          {/block}
+
+          </div>
+        </div>
+
+        <div class="container-askquestion-mobile" style="flex-direction: column;width:100%;">
+          <div class="nav-link" data-toggle="collapse" href="#askquestionMobile" role="button" aria-expanded="false" aria-controls="askquestionMobile" style="width: 100%;background: #fff;text-align:center;">
+            {l s='ASK A QUESTION' d='Shop.Theme.Catalog'}
+          </div>
+        
+          <div class="collapse container-drop" id="askquestionMobile">
+            
+            <div class="banner-tabs" >
+                <img src="https://www.all-stars-motorsport.com/img/app_icons/faq_en.webp" />
+            </div>
+
+            {if $email_sent == 1}
+              <div class="container_ask_successfull">
+                <div class="question_buble">
+
+                  <i class="material-icons question-success-icon">check_circle</i>
+                  <h1 class="question-success-title">IMPRESSIONNANT!</h1>
+                  <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
+                </div>
+                <div class="question-success-msg" >Please, check your mailbox from time to time. We will respond you as soon as possible.</div>
+                <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
+                  Close
+                </div>
+              </div>
+
+            {else}
+              
+              
+              <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
+
+              <div class="form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
+                </div>
+                <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
+              </div>
+              <div class="form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
+                </div>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your question." name="question_customer"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Submit
+                <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+                <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+                <input type="hidden" name="product_askquestion" value="1">
+                <input type="hidden" name="id_product" value="{$product.id}">
+                <input type="hidden" name="category" value="">
+              </button>
+            
+              </form>
+            {/if}
+
+          </div>
+        </div>
+
+        <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
+          <div class="nav-link" data-toggle="collapse" href="#reviewsMobile" role="button" aria-expanded="false" aria-controls="reviewsMobile" style="width: 100%;background: #fff;text-align:center;">
+            {l s='Reviews' d='Shop.Theme.Catalog'}
+          </div>
+        
+          <div class="collapse container-drop" id="reviewsMobile">
+            
+          {* <div class="banner-tabs" >
+              <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+          </div> *}
+          <div class="banner-content">
+            {block name='product_reviews'}
+              {hook h='displayFooterProduct' product=$product}
+            {/block}
+          </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section_tabs_video d-desktop" style="display: flex;{if empty($product.youtube_code)}justify-content:center;{/if}">
              {* inicio tabs *}
              <div class="column_tabs" style="width:100%">
              {block name='product_tabs'}
@@ -437,6 +645,7 @@
          
                  <div class="tab-content" id="tab-content">
                   <div class="tab-pane fade in active" id="description" role="tabpanel">
+                  {* <pre>{$product|print_r}</pre> *}
                    {if $product.description}
                      <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
@@ -445,7 +654,8 @@
                        {block name='product_description'}
                          <div class="product-description">{$product.description nofilter}</div>
                        {/block}
-                       {if !empty($product.youtube_code)}
+                       <div class="videos-container" style="display: flex;gap: 1rem;">
+                        {if !empty($product.youtube_code)}
                          <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
                            <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
@@ -460,7 +670,24 @@
                              </div>
                            </div>
                          </div>
-                         {/if}
+                        {/if}
+                        {if !empty($product.youtube_2)}
+                         <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
+                           <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
+                             <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_2}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                               <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                                 <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                               </div>
+                             </div>
+                             <div  class="iframeClass"  style="display:none;height:318px">
+                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_2}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                               </iframe>
+                             </div>
+                           </div>
+                         </div>
+                        {/if}
+                       </div>
                          <small style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</small>
                      </div>
                      {* {if $product.features}
@@ -699,7 +926,9 @@
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
                     </div>
                     <div class="banner-content">
-                      <h1>Reviews</h1>
+                    {block name='product_reviews'}
+                      {hook h='displayFooterProduct' product=$product}
+                    {/block}
                     </div>
                   </div>
 

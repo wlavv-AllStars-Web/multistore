@@ -5743,4 +5743,54 @@ input[type="checkbox"]:checked::after {
   .sort-by-row .select-title > span > span {
     color:var(--asm-color) !important;
   }
+
+  #totselectzone #shipping_zone {
+    width: 100% !important;
+    margin-top: 1rem;
+  }
+  #totselectzone #shipping_zone .select2-container{
+    width: 100% !important;
+  }
+
+  .select2-container--open{
+    width: 92dvw;
+  }
+
+  .totselectzone__table-container {
+    margin-top: 1rem;
+  }
+
+  .totselectzone__table-container thead{
+    color: #333;
+    font-weight: 600 !important;
+  }
+
+  /* instructions */
+
+  #product-installation > div:nth-child(2) > div {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+
+  #product-installation > div:nth-child(2) > div .verticalLign{
+    transform: rotate(90deg);
+  }
+
+  #product-installation > div:nth-child(2) > div .difficulty_content{
+    flex-direction: column;
+  }
+
+
+  /* .section-content-product .nav-link.collapsed{
+    color: #fff !important;
+    background: #333;
+  } */
+  .section-content-product .nav-link{
+    color: #333;
+    background: #fff;
+  }
+
+  .section-content-product .container-drop{
+    background: #f6f6f6;
+  }
 }
