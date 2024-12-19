@@ -5686,6 +5686,10 @@ input[type="checkbox"]:checked::after {
     margin-bottom: 30px;
   }
 
+  .product-miniature:hover {
+    outline: unset !important;
+  }
+
   .mobile-menu .navbar-nav{
     padding: 1rem 0;
     gap: .25rem;
@@ -5700,6 +5704,7 @@ input[type="checkbox"]:checked::after {
   .mobile-menu .navbar-nav > li .btn {
     padding: 0;
     color: #fff;
+    font-size: 1.2rem;
   }
 
   .mobile-menu .navbar-nav > li a{
@@ -5707,6 +5712,7 @@ input[type="checkbox"]:checked::after {
     justify-content: center;
     width: 100%;
     color: #fff;
+    font-size: 1.2rem;
   }
 
   .mobile-menu .navbar-nav > li.dropdown.brands-drop.open {
