@@ -11268,13 +11268,14 @@ li.product-flag.discount {
   width: 100%;
 }
 
-.product-miniature {
+/* .product-miniature {
   margin-bottom: 30px;
   padding: 0 15px;
   position: relative;
   width: 33.33%;
   float: left;
-}
+} */
+
 .regular-price {
   color: #ccc;
   font-size: 18px;
@@ -12821,9 +12822,9 @@ body#index .maincontent_v1 .mls_pag_button:not(.active) {
     #menu-icon .material-icons {
       font-size: 28px;
     }
-    .product-miniature {
+    /* .product-miniature {
       width: 50%;
-    }
+    } */
     .title_currency, .title_lang {
       display: none;
     }
