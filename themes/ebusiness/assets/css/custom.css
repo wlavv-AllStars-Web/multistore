@@ -5785,8 +5785,23 @@ input[type="checkbox"]:checked::after {
   }
 
   .totselectzone__table-container thead{
-    color: #333;
+    color: #fff;
     font-weight: 600 !important;
+    background: #333;
+  }
+
+  .totselectzone__table-container thead th {
+    text-align: center;
+    padding: .5rem 1rem;
+  }
+
+  .totselectzone__table-container tbody{
+    outline: 2px solid #333;
+    outline-offset: -2px;
+  }
+
+  .totselectzone__table-container tbody td {
+    text-align: center;
   }
 
   /* instructions */
@@ -5816,5 +5831,9 @@ input[type="checkbox"]:checked::after {
 
   .section-content-product .container-drop{
     background: #f6f6f6;
+  }
+
+  #askquestionMobile .form-control {
+    border: 1px solid #d0d0d0;
   }
 }
