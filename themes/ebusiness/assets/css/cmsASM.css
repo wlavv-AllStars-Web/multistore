@@ -44,6 +44,13 @@
 
 .cms-id-28 .car-container strong {
   font-weight: 600 !important;
+  color: #333;
+}
+
+.ourcars h4{
+  font-size: 2.5rem;
+  padding-bottom: 2rem;
+  color: #111;
 }
 
 .cms-id-28 .car-container {
