@@ -1464,6 +1464,15 @@ width: 100%;
       padding-bottom: 2rem;
     }
 
+    .page-car a {
+      color: #222;
+      font-weight: 600;
+    }
+    .page-car a:hover {
+      color: var(--asm-color);
+      font-weight: 600;
+    }
+
     .page-car h1{
       font-size: 2rem;
       padding-bottom: 1rem;
