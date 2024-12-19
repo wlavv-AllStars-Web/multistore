@@ -5811,7 +5811,7 @@ input[type="checkbox"]:checked::after {
   } */
   .section-content-product .nav-link{
     color: #fff;
-    background: #333;
+    background: #333 !important;
   }
 
   .section-content-product .container-drop{
