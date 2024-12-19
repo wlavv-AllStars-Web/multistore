@@ -140,6 +140,33 @@
     {elseif $cms.id >= 64 && $cms.id <= 83}
         <script>
 
+            const breadcrumb = document.querySelector(".cms-id-" + {$cms.id} + " .breadcrumb");
+            console.log(breadcrumb);
+
+            const breadcrumbList = breadcrumb.querySelector("ol"); // Select the first <ol> instead of using querySelectorAll
+            console.log(breadcrumbList);
+
+            const breadcrumbItems = breadcrumb.querySelectorAll("ol li");
+            console.log(breadcrumbItems);
+
+            const listLinkPageCars = document.createElement("li");
+
+            const linkPageCars = document.createElement("a");
+
+            const spanPageCars = document.createElement("span");
+            spanPageCars.setAttribute("itemprop","name")
+            spanPageCars.textContent = "{l s='CARS' d='Shop.Theme.Cms'}";
+
+            linkPageCars.setAttribute("href", "{$link->getCMSLink(28)}"); // Use 'href' for links
+            
+            listLinkPageCars.appendChild(linkPageCars);
+
+            linkPageCars.appendChild(spanPageCars);
+
+            const lastBreadcrumbItem = breadcrumbItems[breadcrumbItems.length - 1];
+            breadcrumbList.insertBefore(listLinkPageCars, lastBreadcrumbItem);
+
+
             const content = document.querySelector(".page-car")
 
             const containerModal = document.createElement("div")
