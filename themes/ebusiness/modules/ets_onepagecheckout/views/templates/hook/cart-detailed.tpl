@@ -18,7 +18,7 @@
 *}
 <div class="cart-overview js-cart" data-refresh-url="{$link->getModuleLink('ets_onepagecheckout','order',['ajax' => true, 'action' => 'refresh'])|escape:'html':'UTF-8'}">
     {if isset($cart.products) &&  $cart.products}
-    <div class="list-header-products col-lg-12" style="background: #d9d9d9;padding: .5rem 1rem;">
+    <div class="list-header-products col-lg-12 d-desktop" style="background: #d9d9d9;padding: .5rem 1rem;">
       <div class="col-lg-1 pl-0">{l s="Product" d="Shop.Theme.Checkout"}</div>
       <div class="col-lg-6 pl-0">
         <div class="col-lg-6">{l s="Description" d="Shop.Theme.Checkout"}</div>

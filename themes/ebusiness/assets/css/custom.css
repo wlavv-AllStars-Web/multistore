@@ -5870,4 +5870,91 @@ input[type="checkbox"]:checked::after {
     display: flex;
     padding: 1rem !important;
   }
+
+  /* checkout */
+
+  #form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart .cart-items {
+    padding: 0;
+  }
+
+  #form_ets_onepagecheckout #ets_onepagecheckout .onepagecheckout-left > .block-onepagecheckout:first-child #main {
+    padding: 0;
+  }
+
+  #form_ets_onepagecheckout #ets_onepagecheckout .onepagecheckout-left > .block-onepagecheckout:first-child .remove-from-cart {
+    background: #333;
+    border-radius: 0.25rem;
+    padding: .5rem 1rem;
+    display: flex;
+    width: fit-content;
+    margin: auto;
+  }
+
+  #form_ets_onepagecheckout #ets_onepagecheckout .onepagecheckout-left > .block-onepagecheckout:first-child .remove-from-cart path {
+    fill: #fff;
+  }
+
+  #form_ets_onepagecheckout .cart-items li:nth-child(even) {
+    background: #f6f6f6;
+  }
+
+  #form_ets_onepagecheckout .cart-items .product-discount{
+    background-color: transparent;
+  }
+  #form_ets_onepagecheckout .cart-items .product-discount .regular-price{
+    font-size: .85rem;
+  }
+  #form_ets_onepagecheckout .cart-items .product-discount .discount{
+    background: var(--asm-color-100);
+  }
+  #form_ets_onepagecheckout .cart-items .current-price .price{
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+
+  /* blockcart-modal */
+
+  #blockcart-modal .cart-content{
+    padding: 1rem !important;
+  }
+
+  #blockcart-modal .cart-content .btn.btn-secondary{
+    width: 100%;
+  }
+
+  #blockcart-modal .cart-content .btn.btn-secondary:hover{
+    background: #777;
+  }
+
+  #blockcart-modal .cart-content .btn.btn-primary:active{
+    background-color: #333;
+    border-color: var(--asm-color);
+  }
+
+
+  /* add_to_cart_button-mobile */
+
+  .add_to_cart_button-mobile .btn.btn-outline-primary:active {
+    background-color: #333;
+    border-color: var(--asm-color);
+  }
+  .add_to_cart_button-mobile .btn.btn-outline-primary:focus {
+    box-shadow: none;
+  }
+  .add_to_cart_button-mobile .btn.btn-outline-primary:disabled {
+    color: #fff;
+    background-color: var(--asm-color);
+  }
+
+
+  /* addresses checkout */
+
+  .block-onepagecheckout.block-address .container-addresses {
+    flex-direction: column !important;
+  }
+
+  #form_ets_onepagecheckout .btn-primary[name="submitCompleteMyOrder"] {
+    margin: auto;
+  }
 }
