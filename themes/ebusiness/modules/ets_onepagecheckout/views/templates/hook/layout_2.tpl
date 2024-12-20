@@ -70,7 +70,8 @@
 
             <!-- block customer -->
 
-            {if !$checkout_customer->logged}
+            {* {if !$checkout_customer->logged} *}
+            {if !$customer->is_logged }
                 <div class="block-onepagecheckout block-customer ">
                     <div class="title-heading">
                         <span class="ets_icon_svg">
@@ -94,10 +95,12 @@
                     </span>
                     {l s='Address' mod='ets_onepagecheckout'}
                 </div>
-                {* <pre>{print_r($customer,1)}</pre> *}
+                {* {debug}
+                {$checkout_customer->logged}
+                <pre>{print_r($customer,1)}</pre> *}
                 {* {max(array_keys($customer.addresses))} *}
                 <div class="container-addresses d-flex">
-                    {if $customer.id_default_group != 5}
+                    {if !$customer_group_professional}
                         <div id="delivery-addresses" class="address-selector js-address-selector">
                             {$shipping_address nofilter}
                         </div>
@@ -166,7 +169,7 @@
 
                     {/if}
                 </div>
-                {if $customer.id_default_group == 5}
+                {if $customer_group_professional}
                     <div class="btn_update_address_container" style="padding: 1rem;">
                         <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: #444;color: #fff;">Update my address <i class="material-icons">autorenew</i></a>
                     </div>

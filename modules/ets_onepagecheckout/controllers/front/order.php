@@ -207,6 +207,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }
+
+
         $this->context->smarty->assign(
             array(
                 'path' => $this->module->getBreadCrumb(),
@@ -216,16 +218,21 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
 
             )
         );
-        if($this->module->is17)
+
+        // echo '<pre>'.print_r($this->context->smarty,1).'</pre>';
+
+
+        if($this->module->is17){
             $this->setTemplate('module:'.$this->module->name.'/views/templates/front/onepagecheckout.tpl');      
-        else        
+        }else{        
             $this->setTemplate('onepagecheckout_16.tpl'); 
+        }
     }
+
     public function _initContent()
     {
         $id_customer = ($this->context->customer->id) ? (int)($this->context->customer->id) : 0;
-        
-        
+
         $id_group = null;
         if ($id_customer) {
             $id_group = Customer::getDefaultGroupId((int)$id_customer);
@@ -245,13 +252,21 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             $this->context->cart->id_address_delivery = $id_address;
             $this->context->cart->update();
         }
+
         $list_socials = $this->module->getListSocialLogin();
         $address_field = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD')):array();
         $isAvailable = $this->areProductsAvailable();
         $tax_text = ($tax ? $this->module->l('tax incl','order') : $this->module->l('tax excl','order'));
         $layout = Configuration::get('ETS_OPC_DESIGN_LAYOUT');
-        if(!$layout || !in_array($layout,array('layout_1','layout_2','layout_3','layout_4')))
+        if(!$layout || !in_array($layout,array('layout_1','layout_2','layout_3','layout_4'))){
             $layout = 'layout_1';
+        }
+
+        // echo $layout;
+        // echo 'paulo';
+        // exit;              
+
+            
         $this->context->smarty->assign(
             array(
                 'opc_layout' => $layout,
@@ -294,8 +309,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             )
         );
 
+
         return $this->module->display($this->module->getLocalPath(),'onepagecheckout.tpl');
     }
+
     public function displayBlockAdditionalInfo()
     {
         $fields = Ets_opc_additionalinfo_field::getListField($this->context->language->id,true);
@@ -346,10 +363,11 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // echo '<pre>'.  print_r( $this->context->customer->getAddresses($this->context->language->id),1) . '</pre>';
         // echo $this->context->customer->getAddresses($this->context->language->id)[0]['id_address'];
         $id_address = $this->context->customer->getAddresses($this->context->language->id)[0]['id_address'];
-        // echo $id_address;
+        // pre($this->context->customer->id_default_group == 5 ? true : false);
         // exit;
         $this->context->smarty->assign(
             array(
+                'customer_group_professional' => $this->context->customer->id_default_group == 5 ? true : false,
                 'use_address' => in_array('use_address',$address_field) ? true : false,
                 'use_address_invoice' => in_array('use_address_invoice',$address_field) ? true : false,
                 'address_form' => $this->renderFormAddress('shipping_address',$id_address),
@@ -468,8 +486,13 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             else
                 $id_country = $this->context->country->id ? :(int)Configuration::get('PS_COUNTRY_DEFAULT');
         }
+
         $country = new Country($id_country);
         $delivery_option_list = $this->context->cart->getDeliveryOptionList($country,true);
+
+        // echo '<pre>'.print_r($delivery_option_list,1).'</pre>';
+        // exit;
+
         if($delivery_option_list)
         {
             foreach($delivery_option_list as $id_address => &$option_list)
@@ -2048,6 +2071,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         else{
             $delivery_option = Tools::getValue('delivery_option');
             $payment_option = Tools::getValue('payment-option');
+            $payment_id = Tools::getValue('payment_id');
+
+            // echo '<pre>'.print_r(Tools::getAllValues(),1).'</pre>';
+            // exit;
 
             if((!$delivery_option || !is_array($delivery_option) || !Ets_onepagecheckout::validateArray($delivery_option)) && !$this->context->cart->isVirtualCart())
             {
