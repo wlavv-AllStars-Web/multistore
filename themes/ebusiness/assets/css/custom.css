@@ -5979,4 +5979,8 @@ input[type="checkbox"]:checked::after {
   .block-onepagecheckout input {
     font-size: 1rem !important;
   }
+
+  #form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart .cart-total-action .cart-summary-line.cart-total .value {
+    font-size: 1.2rem !important;
+  }
 }
