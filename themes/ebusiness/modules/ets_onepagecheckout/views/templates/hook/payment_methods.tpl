@@ -28,6 +28,7 @@
                     {foreach from=$payment_method item='module'}
 
                         {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
+                            {$module.action|escape:'html'}
                             {assign var="url_parts" value=$module.action|regex_replace:'/.*key=([^&]+)$/':'$1'}
                             {$url_parts}
                             {if $url_parts == 'general_3_0_0'}
