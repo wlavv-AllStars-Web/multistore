@@ -5957,4 +5957,10 @@ input[type="checkbox"]:checked::after {
   #form_ets_onepagecheckout .btn-primary[name="submitCompleteMyOrder"] {
     margin: auto;
   }
+
+  /* checkout payment */
+
+  .block-onepagecheckout.block-payment .payment-options{
+    flex-direction: column;
+  }
 }
