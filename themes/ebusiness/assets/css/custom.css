@@ -5748,13 +5748,16 @@ input[type="checkbox"]:checked::after {
   .mobile-menu .navbar-nav > li{
     padding: .5rem 1rem;
     background: #666;
-    border-radius: .25rem;
+    /* border-radius: .25rem; */
   }
 
   .mobile-menu .navbar-nav > li .btn {
     padding: 0;
     color: #fff;
     font-size: 1.2rem;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
   }
 
   .mobile-menu .navbar-nav > li a{
@@ -5982,5 +5985,38 @@ input[type="checkbox"]:checked::after {
 
   #form_ets_onepagecheckout .block-onepagecheckout.block-shopping-cart .cart-total-action .cart-summary-line.cart-total .value {
     font-size: 1.2rem !important;
+  }
+
+  /* contact page */
+
+  #contact .form-footer > div:not(.whatsapp-contancts) {
+    width: 100% !important;
+  }
+
+  #contact .contact-form .btn[type="submit"]{
+    width: 100%;
+    height: 38px;
+    background: #444 !important;
+    color: #fff !important;
+  }
+
+  #contact .contact-form .btn[type="submit"]:hover{
+    background: #222 !important;
+  }
+
+  #contact .contact-form .btn[type="submit"]:focus{
+    box-shadow: 0 0 0 0.2rem var(--asm-color);
+  }
+
+  .whatsapp-contancts > div > div:nth-child(2) {
+    display: flex;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 400px !important;
+  }
+
+  .whatsapp-contancts .social-icon-whatsapp-number {
+    margin: 0 !important;
   }
 }
