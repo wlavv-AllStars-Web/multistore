@@ -103,7 +103,7 @@ body .box_more_fee_shipping .box_total_cart {
 .block-onepagecheckout.block-displayReassurance #block-reassurance,
 body#checkout #gift_message,
 .box_more_fee_shipping .box_shipping_free {
-  border: 1px solid ETS_OPC_DESIGN_COLOR3!important;
+  border: 1px solid ETS_OPC_DESIGN_COLOR3;
 }
 .block-onepagecheckout .title-heading,.ets_pr_gift_products .card-block,
 #invoice-addresses .title, #delivery-addresses .title,
