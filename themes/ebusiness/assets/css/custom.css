@@ -5949,6 +5949,13 @@ input[type="checkbox"]:checked::after {
 
 
   /* addresses checkout */
+  .block-onepagecheckout{
+    border: 2px solid #444 !important;
+  }
+
+  .block-onepagecheckout .title-heading{
+    border-radius: 0 !important;
+  }
 
   .block-onepagecheckout.block-address .container-addresses {
     flex-direction: column !important;
