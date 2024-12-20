@@ -25,7 +25,7 @@
 {extends file=$layout}
 
 {block name='content'}
-  <section id="main" style="min-height: 49dvh;display:flex;">
+  <section id="main" class="forbidden-page">
   <div style="
         display: flex;
         flex: 1;

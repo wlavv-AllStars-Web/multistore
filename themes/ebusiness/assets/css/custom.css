@@ -298,6 +298,15 @@ body {
     display: flex !important;
   }
 
+  
+  /* forbidden page */
+
+  .forbidden-page {
+    min-height: 49dvh;
+    display: flex;
+    padding: 1rem;
+  }
+
   #productList {
     padding: 1rem;
     /* gap: 1rem; */
@@ -528,6 +537,14 @@ body {
   .d-desktop{
     display: flex !important;
   }
+
+    /* forbidden page */
+
+    .forbidden-page {
+      min-height: 70dvh;
+      display: flex;
+      padding: 1rem;
+    }
 
   /* menu */
 
@@ -5685,6 +5702,15 @@ input[type="checkbox"]:checked::after {
 /* product list */
 
 @media screen and (min-width: 544px) and (max-width: 768px){
+    
+  /* forbidden page */
+
+  .forbidden-page {
+    min-height: 70dvh;
+    display: flex;
+    padding: 1rem;
+  }
+
   #productList{
     flex-direction: unset !important;
   }
@@ -5835,5 +5861,13 @@ input[type="checkbox"]:checked::after {
 
   #askquestionMobile .form-control {
     border: 1px solid #d0d0d0;
+  }
+
+  /* forbidden page */
+
+  .forbidden-page {
+    min-height: 70dvh;
+    display: flex;
+    padding: 1rem !important;
   }
 }
