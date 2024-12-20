@@ -33,7 +33,7 @@
                             {if $url_parts == 'general_3_0_0'}
                                 <div class="ets_payment_method" style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;justify-content:center;">
                                 <div class="" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                    <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}.png" />
+                                    <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}.png" style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;"/>
                                 </div>
                                 <div class="collapse" id="collapseExample">
                                     <div class="card card-body">
