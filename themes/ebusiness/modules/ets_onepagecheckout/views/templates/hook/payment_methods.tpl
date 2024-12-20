@@ -107,13 +107,13 @@
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         {if $number_part == 3}
                                             <img src="{$module_template_dir}views/img/mastercard.png" 
-                                            style="max-width: 120px !important;width: 100%;" />
+                                            style="max-width: 120px !important;width: 100%;height:auto !important;" />
                                         {elseif $number_part == 1}
                                             <img src="{$module_template_dir}views/img/visa.png" 
-                                            style="max-width: 120px !important;width: 100%;" />
+                                            style="max-width: 120px !important;width: 100%;height:auto !important;" />
                                         {else}
                                             <img src="{$module.logo}" 
-                                            style="max-width: 120px !important;width: 100%;" />
+                                            style="max-width: 120px !important;width: 100%;height:auto !important;" />
                                         {/if}
                                         {* <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
                                         style="max-width: 120px !important;width: 100%;" /> *}
@@ -168,7 +168,7 @@
                                 style="display: flex;flex-direction:column;align-items:center;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
-                                        style="max-width: 120px !important;width: 100%;" />
+                                        style="max-width: 120px !important;width: 100%;height:auto !important;" />
                                     </label>
                                     <span class="custom-radio float-xs-left" style="display: none;">
                                         {* <input id="{$module.id|escape:'html':'UTF-8'}"
