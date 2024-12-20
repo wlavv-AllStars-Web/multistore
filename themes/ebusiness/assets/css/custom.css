@@ -5974,4 +5974,9 @@ input[type="checkbox"]:checked::after {
   .ets_payment_method {
     height: 120px;
   }
+
+
+  .block-onepagecheckout input {
+    font-size: 1rem;
+  }
 }
