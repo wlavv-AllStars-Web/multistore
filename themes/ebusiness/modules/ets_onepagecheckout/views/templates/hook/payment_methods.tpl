@@ -107,13 +107,13 @@
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         {if $number_part == 3}
                                             <img src="{$module_template_dir}views/img/mastercard.png" 
-                                            style="width: auto;height:100% !important;max-height:80px;" />
+                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
                                         {elseif $number_part == 1}
                                             <img src="{$module_template_dir}views/img/visa.png" 
-                                            style="width: auto;height:100% !important;max-height:80px;" />
+                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
                                         {else}
                                             <img src="{$module.logo}" 
-                                            style="width: auto;height:100% !important;max-height:80px;" />
+                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
                                         {/if}
                                         {* <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
                                         style="max-width: 120px !important;width: 100%;" /> *}
@@ -168,7 +168,7 @@
                                 style="display: flex;flex-direction:column;align-items:center;max-width:unset !important;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
-                                        style="width: auto;height:100% !important;max-height:80px;" />
+                                        style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
                                     </label>
                                     <span class="custom-radio float-xs-left" style="display: none;">
                                         {* <input id="{$module.id|escape:'html':'UTF-8'}"
