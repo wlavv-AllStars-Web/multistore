@@ -42,7 +42,7 @@
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             
                                                 <div class="ets_payment_method">
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;"  onclick="setPaymentClick(this)">
+                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;max-width:unset !important;"  onclick="setPaymentClick(this)">
                                                         <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}" style="display: flex;justify-content:center;align-items:center;">
                                                             {* <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" /> *}
                                                             <span style="font-size: 1.5rem;display: flex;line-height: normal;" class="badge badge-dark">{if $key == 0}3X{else}4X{/if}</span>
@@ -103,7 +103,7 @@
                         {elseif $module_name == 'worldlineop'}
                             {assign var="number_part" value=$module.logo|regex_replace:'/.*\/([0-9]+)\.svg$/':'$1'}
                         <div class="ets_payment_method" onclick="setPaymentClick(this)">
-                                <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;">
+                                <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;max-width:unset !important;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         {if $number_part == 3}
                                             <img src="{$module_template_dir}views/img/mastercard.png" 
@@ -165,7 +165,7 @@
                         {else}
                             <div class="ets_payment_method"  onclick="setPaymentClick(this)">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" 
-                                style="display: flex;flex-direction:column;align-items:center;">
+                                style="display: flex;flex-direction:column;align-items:center;max-width:unset !important;">
                                     <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
                                         <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
                                         style="width: auto;height:100% !important;max-height:80px;" />
