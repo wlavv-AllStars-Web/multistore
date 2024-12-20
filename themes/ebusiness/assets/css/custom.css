@@ -5970,4 +5970,8 @@ input[type="checkbox"]:checked::after {
   .block-onepagecheckout.block-payment .payment-options{
     flex-direction: column;
   }
+
+  .ets_payment_method {
+    height: 120px;
+  }
 }
