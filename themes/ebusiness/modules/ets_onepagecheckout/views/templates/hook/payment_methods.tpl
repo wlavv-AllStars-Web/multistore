@@ -29,7 +29,7 @@
 
                         {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             {assign var="url_parts" value=$module.action|regex_replace:'/.*key=([^&]+)$/':'$1'}
-
+                            {$url_parts}
                             {if $url_parts == 'general_3_0_0'}
                                 <div class="ets_payment_method" style="display: flex;flex-direction:column;align-items:center;padding: 10px 15px;justify-content:center;height:unset !important;min-height:120px;">
                                 <div class="" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
