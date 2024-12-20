@@ -25,6 +25,22 @@
 {extends file=$layout}
 
 {block name='content'}
-  <section id="main">
+  <section id="main" style="min-height: 49dvh;display:flex;">
+  <div style="
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: #222;
+        text-transform: capitalize;
+        margin-bottom: 30px;
+      ">
+        <div class="container-not-found-filters" style="text-align: center;">
+          <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);">error_outline</i>
+          <h1 style="font-weight: 600;font-size: 2rem;">{l s="No Result Found" d="Shop.Theme.Forbidden"}</h1>
+          <span style="font-size: 1.25rem;color: #555;">{l s="You do not have access to this category." d="Shop.Theme.Forbidden"}</span>
+        </div>
+      </div>
   </section>
 {/block}

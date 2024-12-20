@@ -95,7 +95,7 @@ class CategoryControllerCore extends ProductListingFrontController
         } elseif (!$this->category->checkAccess($this->context->customer->id)) {
             header('HTTP/1.1 403 Forbidden');
             header('Status: 403 Forbidden');
-            $this->errors[] = $this->trans('You do not have access to this category.', [], 'Shop.Notifications.Error');
+            // $this->errors[] = $this->trans('You do not have access to this category.', [], 'Shop.Notifications.Error');
             $this->setTemplate('errors/forbidden');
 
             return;
@@ -118,10 +118,29 @@ class CategoryControllerCore extends ProductListingFrontController
             $categoryVar = $filteredCategory['object'];
         }
 
-        $this->context->smarty->assign([
-            'category' => $categoryVar,
-            'subcategories' => $this->getTemplateVarSubCategories(),
-        ]);
+        if($this->context->shop->id == 2) {
+            // $this->assignProductList();
+            // $ukooObj = new UkooCompat();
+            // $ukooData = $ukooObj->hookDisplayCompat(null);
+            $manufacturerOBJ = new Manufacturer();
+            $manufacturers = $manufacturerOBJ->getManufacturers();
+
+            // pre($ukooData);
+
+            $this->context->smarty->assign([
+                'category' => $categoryVar,
+                'subcategories' => $this->getTemplateVarSubCategories(),
+                'manufacturers'        => $manufacturers,
+                // 'ukoodata'             => $ukooData,
+            ]);
+        }else{
+            $this->context->smarty->assign([
+                'category' => $categoryVar,
+                'subcategories' => $this->getTemplateVarSubCategories(),
+                // 'ukoodata'             => $ukooData,
+            ]);
+        }
+
     }
 
     /**
@@ -210,6 +229,7 @@ class CategoryControllerCore extends ProductListingFrontController
      */
     protected function getProductSearchQuery()
     {
+        // echo 'paulo';
         $query = new ProductSearchQuery();
         $query
             ->setQueryType('category')
@@ -336,5 +356,117 @@ class CategoryControllerCore extends ProductListingFrontController
             ['%category_name%' => $this->category->name],
             'Shop.Theme.Catalog'
         );
+    }
+
+    public function postProcess(){
+        
+        if( Tools::getValue('wheelsFilter', 0)){
+
+            if( !empty(Tools::getValue('type')) ){
+                $data = self::apiCall( Tools::getValue('type') );
+                
+                if( Tools::getValue('type') == 'info'){
+                    echo $data;
+                }else{
+                    $html = '<select id="' . Tools::getValue('id') . '" style="font-size: 18px; color: #000; width: 80%;text-align: center;" onChange="' . Tools::getValue('function') . '()">';
+                        $html .= '<option value=""> PLEASE SELECT A OPTION </option>';
+                        foreach($data->data AS $item) $html .= '<option value="' . $item->slug . '"> ' . $item->name . ' </option>';
+                    $html .= '</select>';
+                }
+                
+                echo $html;
+            }
+
+            exit;
+        }
+       
+    }
+
+    public static function apiCall($arrayType){
+
+        $key = '9860e1da0926ea371e69f2c19bbb1fe9';
+        $brand = Tools::getValue('brand', 0);
+        $model = Tools::getValue('model', 0);
+        $year  = Tools::getValue('year', 0);
+        $modification = Tools::getValue('modification', 0);
+
+        if($arrayType == 'brand')           $url = 'https://api.wheel-size.com/v2/makes/?region=eudm&user_key=' . $key;
+        if($arrayType == 'model')           $url = 'https://api.wheel-size.com/v2/models/?make='.$brand.'&region=eudm&user_key=' . $key;
+        if($arrayType == 'year')            $url = 'https://api.wheel-size.com/v2/years/?make='.$brand.'&model='.$model.'&region=eudm&user_key=' . $key;
+        if($arrayType == 'modifications')   $url = 'https://api.wheel-size.com/v2/modifications/?make='.$brand.'&model='.$model.'&year='.$year.'&region=eudm&user_key=' . $key;
+        if($arrayType == 'info')            $url = 'https://api.wheel-size.com/v2/search/by_model/?make='.$brand.'&model='.$model.'&year='.$year.'&modification='.$modification.'&region=eudm&user_key=' . $key;
+
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+        $json = curl_exec($ch);
+        curl_close($ch);
+        
+        if($arrayType == 'info'){
+        
+            $data = json_decode($json);
+            
+            $html = '<div style="padding: 10px;" id="carSpecs">';
+                $html.= '<table style="width: 95%;text-align: center;font-size: 16px;color: #fff;margin: 0 auto;margin-top: 10px;border: 1px solid #666;">';
+                    $html .='<tr style="background: #999;text-align: center;">';
+                        $html .='<td style="text-align: center;"></td>';
+                        $html .='<td style="text-align: center;">Bolt pattern</td>';
+                        $html .='<td style="text-align: center;">Diameter</td>';
+                        $html .='<td style="text-align: center;">Width</td>';
+                        $html .='<td style="text-align: center;">Offset</td>';
+                        $html .='<td style="text-align: center;width: 30px;"></td>';
+                    $html .='</tr>';   
+                    
+                    foreach($data->data AS $dataSpecs){
+                        foreach($dataSpecs->wheels AS $wheels){
+                            if($wheels->rear->rim == null){
+                                
+                                $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->front->rim_diameter . '"' ) + 0;
+
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;">';
+                                    $html .='<td style="text-align: center;">ALL</td>';
+                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:' . $boltPattern . '|17:' . $rimDiameter . '\')"></i></td>';
+                                $html .='</tr>';                            
+                            }else{
+                                
+                                $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->front->rim_diameter . '"' ) + 0;
+                                
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;">';
+                                    $html .='<td style="text-align: center;">FRONT</td>';
+                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:|17:\')"></i></td>';
+                                $html .='</tr>'; 
+                                
+                                $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->rear->rim_diameter . '"' ) + 0;
+                                
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;">';
+                                    $html .='<td style="text-align: center;">REAR</td>';
+                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:|17:\')"></i></td>';
+                                $html .='</tr>';                            
+                            }
+                        }
+                    }
+                $html.= '</table>';
+            $html.= '</div>';
+
+            return $html;
+        }
+        
+        return json_decode($json);
     }
 }
