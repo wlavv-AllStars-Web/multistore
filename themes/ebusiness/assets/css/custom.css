@@ -5978,6 +5978,10 @@ input[type="checkbox"]:checked::after {
     height: 120px;
   }
 
+  #checkout-payment-step .payment-options .ets_payment_method #collapseExample .ets_payment_method{
+    height: auto !important;
+  }
+
 
   .block-onepagecheckout input {
     font-size: 1rem !important;
@@ -6018,5 +6022,9 @@ input[type="checkbox"]:checked::after {
 
   .whatsapp-contancts .social-icon-whatsapp-number {
     margin: 0 !important;
+  }
+
+  #banner-wheels .flip-card {
+    min-height: 50dvh;
   }
 }

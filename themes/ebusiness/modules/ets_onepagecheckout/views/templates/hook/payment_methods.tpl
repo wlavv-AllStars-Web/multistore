@@ -16,7 +16,6 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
-
 <div id="checkout-personal-information-step" class="checkout-step -reachable -complete -clickable"></div>
 <section id="checkout-payment-step" class="checkout-step -current -reachable js-current-step">
     <div class="content">
@@ -40,8 +39,8 @@
                                         {foreach from=$payment_method item='module' key=key}
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
                             
-                                                <div class="ets_payment_method">
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;max-width:unset !important;"  onclick="setPaymentClick(this)">
+                                                <div class="ets_payment_method" onclick="setPaymentClick(this)">
+                                                    <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;justify-content:center;justify-content:center;gap:1rem;max-width:unset !important;"  >
                                                         <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}" style="display: flex;justify-content:center;align-items:center;">
                                                             {* <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}_{$key + 3}.png" /> *}
                                                             <span style="font-size: 1.5rem;display: flex;line-height: normal;" class="badge badge-dark">{if $key == 0}3X{else}4X{/if}</span>
