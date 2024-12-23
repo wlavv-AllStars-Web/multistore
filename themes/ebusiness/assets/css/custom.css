@@ -5978,8 +5978,21 @@ input[type="checkbox"]:checked::after {
     height: 120px;
   }
 
+  #checkout-payment-step .payment-options .ets_payment_method #collapseExample .card-body {
+    gap: 1rem;
+  }
+
   #checkout-payment-step .payment-options .ets_payment_method #collapseExample .ets_payment_method{
     height: auto !important;
+    background: #f1f1f1;
+    border-radius: .25rem;
+  }
+  #checkout-payment-step .payment-options .ets_payment_method #collapseExample .ets_payment_method.payment_method_selected{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  #checkout-payment-step .payment-options .ets_payment_method #collapseExample .ets_payment_method label:last-of-type span{
+    color: #343a40;
   }
 
 
