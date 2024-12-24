@@ -145,10 +145,11 @@
 {* {assign var=initialPage value=$listing.pagination.pages[1]['url']}
 {assign var=totalPages value=$listing.pagination.pages_count} *}
 
-
+  {if !$no_products}
   {block name='pagination'}
     {include file='themes/ebusiness/templates/_partials/pagination.tpl' pagination=$listing.pagination}
   {/block}
+  {/if}
 
 </div>
 <script>

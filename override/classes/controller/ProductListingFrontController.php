@@ -577,7 +577,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre($products);
             $product_options = [];
 
-            if($category == 227 && !($query->getQueryType() == 'new-products')){
+        if($category == 227 && !($query->getQueryType() == 'new-products')){
+
 
             $filters = Tools::getValue('filters');
 
@@ -700,7 +701,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // }
 
             $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
-            
+
 
             $ids_prods = array();
             $features  = array();
@@ -710,6 +711,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
 
             $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+
 
 
             foreach($features_category AS $f_category){
@@ -772,18 +774,23 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $this->context->smarty->assign('selected_values', $selected_id_values);
 
             // After filtering, check if product_options is empty
-            if (empty($product_options)) {
-            // Assign a flag to indicate no products are available
-            $this->context->smarty->assign('no_products', true);
+            // if (empty($product_options)) {
+            //     $this->context->smarty->assign('no_products', true);
+            // }
 
-            }
+          
             
-
+            
             $products = $this->prepareMultipleProductsForTemplate(
                 $products_227
             );
-
+            
+            if (empty($products)) {
+                $this->context->smarty->assign('no_products', true);
             }
+            // pre($products);
+
+        }
 
 
 
@@ -815,7 +822,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $pagination['items_shown_to'] = count($products);
             }
 
-            // pre($pagination);
 
             $searchVariables = [
                 'result' => $result,
