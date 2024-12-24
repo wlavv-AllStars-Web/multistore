@@ -404,6 +404,7 @@ $(document).on('click','button[name="submitCustomerLogin"]',function(e){
             }
             else
             {
+                window.location.reload();
                 $('.block-customer .block-content').html(json.customer_block);
                 $('#delivery-addresses').html(json.shipping_address);
                 $('#invoice-addresses').html(json.invoice_address);
@@ -422,6 +423,7 @@ $(document).on('click','button[name="submitCustomerLogin"]',function(e){
         }
     });
 });
+
 $(document).on('click','.button_trigger_submit',function(){
     $('#js-stripe-payment-form').find('button[type="submit"]')[0].click();
 });
