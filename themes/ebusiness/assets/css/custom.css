@@ -533,6 +533,14 @@ body {
   #productList article {
     margin-bottom: 30px;
   }
+
+  .block-onepagecheckout.block-customer .customer-information {
+    padding: 1rem;
+  }
+  .block-onepagecheckout.block-customer #customer-login {
+    max-width: 600px;
+    margin: auto;
+  }
   
 }
 
