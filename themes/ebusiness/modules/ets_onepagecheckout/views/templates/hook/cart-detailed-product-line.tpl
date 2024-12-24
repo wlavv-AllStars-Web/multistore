@@ -50,7 +50,9 @@
           {$product.availability_message}
         </div>
         <div class="availability-tip">
-          <i class="material-icons" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">help</i>
+          <a data-toggle="tooltip" data-placement="top" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">
+            <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
+          </a>
         </div>
       </div>
     </div>
@@ -225,7 +227,10 @@
           {$product.availability_message}
         </div>
         <div class="availability-tip">
-          <i class="material-icons" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">help</i>
+          <a data-toggle="tooltip" data-placement="top" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">
+            <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
+          </a>
+
         </div>
       </div>
     </div>

@@ -60,22 +60,39 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $tax_text = ($tax ? $this->module->l('tax incl','order') : $this->module->l('tax excl','order'));
         $del_product = (int)Tools::getValue('del_product');
     
-    
-        die(json_encode([
-            'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable):'',
-            'cart_detailed' => $this->module->display($this->module->getLocalPath(),'cart-detailed.tpl'),
-            'cart_detailed_totals' => $this->module->display($this->module->getLocalPath(),'cart-detailed-totals.tpl'),
-            'cart_summary_items_subtotal' => $this->module->display($this->module->getLocalPath(),'cart-summary-items-subtotal.tpl'),
-            'cart_summary_totals' => $this->module->display($this->module->getLocalPath(),'cart-summary-totals.tpl'),
-            'cart_detailed_actions' => '',
-            'dir_js' => isset($dir_js) && $del_product ? $dir_js:'',
-            'cart_voucher' => $this->module->display($this->module->getLocalPath(),'cart-voucher.tpl'),
-            'shipping_methods' => $del_product? $this->displayBlockShippingMethods(0,$id_country):'',
-            //'payment_methods' => $del_product ? $this->displayBlockPaymentMethods(0,$id_country):'',
-            'hookDisplayShopLicenseField' => Module::isEnabled('ets_shoplicense') ? Hook::exec('displayShopLicenseField') :'',
-            'is_virtual_cart' => $this->context->cart->isVirtualCart(),
-            'gift_label' => sprintf($this->module->l('I would like my order to be gift wrapped (additional cost of %s %s.)','order'), Tools::displayPrice($this->context->cart->getGiftWrappingPrice($tax,null)),$tax_text),
-        ]));
+        if($this->context->shop->id == 3){
+            die(json_encode([
+                'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable):'',
+                'cart_detailed' => $this->module->display($this->module->getLocalPath(),'cart-detailed.tpl'),
+                'cart_detailed_totals' => $this->module->display($this->module->getLocalPath(),'cart-detailed-totals.tpl'),
+                'cart_summary_items_subtotal' => $this->module->display($this->module->getLocalPath(),'cart-summary-items-subtotal.tpl'),
+                'cart_summary_totals' => $this->module->display($this->module->getLocalPath(),'cart-summary-totals.tpl'),
+                'cart_detailed_actions' => '',
+                'dir_js' => isset($dir_js) && $del_product ? $dir_js:'',
+                'cart_voucher' => $this->module->display($this->module->getLocalPath(),'cart-voucher.tpl'),
+                'shipping_methods' => $del_product? $this->displayBlockShippingMethods(0,$id_country):'',
+                // 'payment_methods' => $del_product ? $this->displayBlockPaymentMethods(0,$id_country):'',
+                'hookDisplayShopLicenseField' => Module::isEnabled('ets_shoplicense') ? Hook::exec('displayShopLicenseField') :'',
+                'is_virtual_cart' => $this->context->cart->isVirtualCart(),
+                'gift_label' => sprintf($this->module->l('I would like my order to be gift wrapped (additional cost of %s %s.)','order'), Tools::displayPrice($this->context->cart->getGiftWrappingPrice($tax,null)),$tax_text),
+            ]));
+        }else{
+            die(json_encode([
+                'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable):'',
+                'cart_detailed' => $this->module->display($this->module->getLocalPath(),'cart-detailed.tpl'),
+                'cart_detailed_totals' => $this->module->display($this->module->getLocalPath(),'cart-detailed-totals.tpl'),
+                'cart_summary_items_subtotal' => $this->module->display($this->module->getLocalPath(),'cart-summary-items-subtotal.tpl'),
+                'cart_summary_totals' => $this->module->display($this->module->getLocalPath(),'cart-summary-totals.tpl'),
+                'cart_detailed_actions' => '',
+                'dir_js' => isset($dir_js) && $del_product ? $dir_js:'',
+                'cart_voucher' => $this->module->display($this->module->getLocalPath(),'cart-voucher.tpl'),
+                'shipping_methods' => $del_product? $this->displayBlockShippingMethods(0,$id_country):'',
+                'payment_methods' => $del_product ? $this->displayBlockPaymentMethods(0,$id_country):'',
+                'hookDisplayShopLicenseField' => Module::isEnabled('ets_shoplicense') ? Hook::exec('displayShopLicenseField') :'',
+                'is_virtual_cart' => $this->context->cart->isVirtualCart(),
+                'gift_label' => sprintf($this->module->l('I would like my order to be gift wrapped (additional cost of %s %s.)','order'), Tools::displayPrice($this->context->cart->getGiftWrappingPrice($tax,null)),$tax_text),
+            ]));
+        }
     }
     public function init()
     {
@@ -169,12 +186,13 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         ); 
         $this->context->smarty->assign(array('page' => $page)); 
         $id_country = (int)Tools::getValue('id_country');
-        if(Tools::isSubmit('submitCustomerLogin'))
+        if(Tools::getValue('submitCustomerLogin'))
         {
             $this->_submitCustomerLogin();
         }
-        if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressFrom'))
+        if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressFrom')){
             $this->displayAjaxAddressForm();
+        }
         if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressStates'))
         {
             $this->displayAjaxAddressStates();
@@ -265,7 +283,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // echo $layout;
         // echo 'paulo';
         // exit;              
-
+// pre($this->displayBlockDeliveryAddress($id_address));
             
         $this->context->smarty->assign(
             array(
@@ -280,7 +298,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 'list_socials' => $list_socials,
                 'customer_logged' => $this->context->customer->logged && !$this->context->customer->is_guest,
                 'is_guest' => Configuration::get('PS_GUEST_CHECKOUT_ENABLED') && $this->context->customer->is_guest,
-                'shipping_address' => $this->displayBlockDeliveryAddress(null),
+                'shipping_address' => $this->displayBlockDeliveryAddress($id_address),
                 'invoice_address' => $this->displayBlockInvoiceAddress($id_address),
                 'checkout_customer' =>$this->context->customer,
                 'customer_block' => $this->displayBlockCustomerInFo(),
@@ -355,28 +373,46 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         }
         return '';
     }
+
     public function displayBlockDeliveryAddress($id_address=0)
     {
         // echo '<pre>'. print_r($this->renderFormAddress('shipping_address',$id_address),1).'</pre>';
-
+        // pre($id_address);
         $address_field = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD')):array();
         // echo '<pre>'.  print_r( $this->context->customer->getAddresses($this->context->language->id),1) . '</pre>';
         // echo $this->context->customer->getAddresses($this->context->language->id)[0]['id_address'];
         $id_address = $this->context->customer->getAddresses($this->context->language->id)[0]['id_address'];
-        // pre($this->context->customer->id_default_group == 5 ? true : false);
-        // exit;
-        $this->context->smarty->assign(
-            array(
-                'customer_group_professional' => $this->context->customer->id_default_group == 5 ? true : false,
+
+
+        if($this->context->customer->logged || $this->context->cookie->logged){
+            $customer_group_professional = $this->context->customer->id_default_group == 5 ? 1 : 0;
+            $this->context->smarty->assign(array(
+                'customer_group_professional' => $customer_group_professional,
                 'use_address' => in_array('use_address',$address_field) ? true : false,
                 'use_address_invoice' => in_array('use_address_invoice',$address_field) ? true : false,
                 'address_form' => $this->renderFormAddress('shipping_address',$id_address),
                 'list_address' => ($this->context->cookie->logged && $this->context->customer->id) || $this->context->customer->logged ? $this->context->customer->getAddresses($this->context->language->id):array(),
                 'id_address' => $id_address, 
-            )
-        );
-        return $this->module->display($this->module->getLocalPath(),'delivery_address.tpl');
+            ));           
+            
+            return $this->module->display($this->module->getLocalPath(),'delivery_address.tpl');
+        }else{
+            $this->context->smarty->assign(
+                array(
+                    // 'customer_group_professional' => $this->context->customer->id_default_group == 5 ? true : false,
+                    'use_address' => in_array('use_address',$address_field) ? true : false,
+                    'use_address_invoice' => in_array('use_address_invoice',$address_field) ? true : false,
+                    'address_form' => $this->renderFormAddress('shipping_address',$id_address),
+                    'list_address' => ($this->context->cookie->logged && $this->context->customer->id) || $this->context->customer->logged ? $this->context->customer->getAddresses($this->context->language->id):array(),
+                    'id_address' => $id_address, 
+                )
+            );
+            return $this->module->display($this->module->getLocalPath(),'delivery_address.tpl');
+        }
+
+        return '';
     }
+
     public function displayBlockInvoiceAddress($id_address=0)
     {
         $address_field = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD')):array();
@@ -544,7 +580,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 'hookDisplayBeforeCarrier' => Hook::exec('displayBeforeCarrier'),
             )
         );
-        return $this->module->display($this->module->getLocalPath(),'shippings.tpl');
+        $output = $this->module->display($this->module->getLocalPath(),'shippings.tpl');
+        return $output;
     }
     public function displayBlockPaymentMethods($id_address=0,$id_country=0)
     {
@@ -565,20 +602,25 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             
             return false;
         } else {
-
             $type_checkout_options = Tools::getValue('type_checkout_options','login');
+
             if(!in_array($type_checkout_options,array('login','guest','create')))
                 $type_checkout_options ='login';
                 
             $payment_methods = Ets_opc_db::getPaymentMethods($id_country,$type_checkout_options);
+            // pre(Configuration::get('ETS_OPC_PAYMENT_DEFAULT'));
+            $payment_selected = $this->context->cookie->ets_opc_payment ?: Configuration::get('ETS_OPC_PAYMENT_DEFAULT');
 
             $this->context->smarty->assign(
                 array(
                     'payment_methods' => $payment_methods,
-                    'payment_selected' => $this->context->cookie->ets_opc_payment ? :Configuration::get('ETS_OPC_PAYMENT_DEFAULT'),
+                    'payment_selected' => $payment_selected,
                 )
             );
-            return $this->module->display($this->module->getLocalPath(),'payment_methods.tpl');
+
+            $output = $this->module->display($this->module->getLocalPath(),'payment_methods.tpl');
+
+            return $output;
         }
     }
     public function displayBlockShippingCart()
@@ -586,6 +628,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $presenter = $this->context->controller->cart_presenter;
         $shouldSeparateGifts = true;
         $presented_cart = $presenter->present($this->context->cart, $shouldSeparateGifts,true);
+
         $this->context->smarty->assign([
             'cart' => $presented_cart,
             'static_token' => Tools::getToken(false),
@@ -615,118 +658,169 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
     }
     public function _submitCustomerLogin()
     {
-        Hook::exec('actionBeforeAuthentication');
-        $passwd = trim(Tools::getValue('password'));
-        $email = trim(Tools::getValue('email'));
-        $field_errors = array();
-        if (empty($email)) {
-            $field_errors[] = array(
-                'field'=> 'customer_login_email',
-                'error' => $this->module->l('Email is required.','order'),                        
-            );
-        } elseif (!Validate::isEmail($email)) {
-            $field_errors[] = array(
-                'field'=> 'customer_login_email',
-                'error' => $this->module->l('Email is not valid.','order'),                        
-            );
-        }
-        if (empty($passwd)) {
-            $field_errors[] = array(
-                'field'=> 'customer_login_password',
-                'error' => $this->module->l('Password is required.','order'),                        
-            );
-        } elseif (method_exists('Validate','isPasswd') && !Validate::isPasswd($passwd)) {
-            $field_errors[] = array(
-                'field'=> 'customer_login_password',
-                'error' => $this->module->l('Password is not valid.','order'),
-            );
-        }
-        if((!Configuration::get('ETS_OPC_LOGIN_CAPTCHA_ENABLED') || $this->checkCaptcha($field_errors)) && !$field_errors) {
-            $customer = new Customer();
-            $authentication = $customer->getByEmail(trim($email), trim($passwd));
-            if (isset($authentication->active) && !$authentication->active) {
-                $this->errors[] = $this->module->l('Your account isn\'t available at this time, please contact us','order');
-            } elseif (!$authentication || !$customer->id) {
-                $this->errors[] = $this->module->l('Authentication failed.','order');
-            } else {
-                $this->context->cookie->id_customer = (int)($customer->id);
-                $this->context->cookie->customer_lastname = $customer->lastname;
-                $this->context->cookie->customer_firstname = $customer->firstname;
-                $this->context->cookie->logged = 1;
-                $customer->logged = 1;
-                $this->context->cookie->is_guest = $customer->isGuest();
-                $this->context->cookie->passwd = $customer->passwd;
-                $this->context->cookie->email = $customer->email;
-                $this->context->customer = $customer;
 
-                if (Configuration::get('PS_CART_FOLLOWING') && (empty($this->context->cookie->id_cart) || Cart::getNbProducts($this->context->cookie->id_cart) == 0) && $id_cart = (int)Cart::lastNoneOrderedCart($this->context->customer->id)) {
-                    $this->context->cart = new Cart($id_cart);
-                } else {
-                    $id_carrier = (int)$this->context->cart->id_carrier;
-                    $this->context->cart->id_carrier = 0;
-                    $this->context->cart->setDeliveryOption(null);
-                    $this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-                    $this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
-                }
-                $this->context->cart->id_customer = (int)$customer->id;
-                $this->context->cart->secure_key = $customer->secure_key;
+        try{
+            Hook::exec('actionAuthenticationBefore');
 
-                if (Tools::isSubmit('ajax') && isset($id_carrier) && $id_carrier) {
-                    $delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
-                    $this->context->cart->setDeliveryOption($delivery_option);
-                }
+            $passwd = trim(Tools::getValue('password'));
+            $email = trim(Tools::getValue('email'));
 
-                $this->context->cart->save();
-                $this->context->cookie->id_cart = (int)$this->context->cart->id;
-                $this->context->cookie->write();
-                $this->context->cart->autosetProductAddress();
-                if(method_exists($this->context,'updateCustomer'))
-                    $this->context->updateCustomer($customer);
-                else
-                    $this->updateContext($customer);
-                Hook::exec('actionAuthentication', array('customer' => $this->context->customer));
-                CartRule::autoRemoveFromCart($this->context);
-                CartRule::autoAddToCart($this->context);
-                Cache::getInstance()->flush();
-            }
-        }
-        if (Tools::isSubmit('ajax')) {
-            if($field_errors)
-            {
-                die(
-                    json_encode(
-                        array(
-                            'hasError' => true,
-                            'field_errors' => $field_errors,
-                            'errors' => $this->module->displayError($this->module->l('Please fill in all required fields with valid information','order')),
-                        )
-                    )
+            $field_errors = array();
+            if (empty($email)) {
+                $field_errors[] = array(
+                    'field'=> 'customer_login_email',
+                    'error' => $this->module->l('Email is required.','order'),                        
+                );
+            } elseif (!Validate::isEmail($email)) {
+                $field_errors[] = array(
+                    'field'=> 'customer_login_email',
+                    'error' => $this->module->l('Email is not valid.','order'),                        
                 );
             }
-            elseif($this->errors)
-            {
-               $return = array(
-                    'hasError' => true,
-                    'errors' => $this->module->displayError($this->errors),
-                ); 
+            if (empty($passwd)) {
+                $field_errors[] = array(
+                    'field'=> 'customer_login_password',
+                    'error' => $this->module->l('Password is required.','order'),                        
+                );
+            } elseif (method_exists('Validate','isPasswd') && !Validate::isPasswd($passwd)) {
+                $field_errors[] = array(
+                    'field'=> 'customer_login_password',
+                    'error' => $this->module->l('Password is not valid.','order'),
+                );
             }
-            else
-            {
-                $id_address = Address::getFirstCustomerAddressId($this->context->customer->id);
+            if((!Configuration::get('ETS_OPC_LOGIN_CAPTCHA_ENABLED') || $this->checkCaptcha($field_errors)) && !$field_errors) {
+                $customer = new Customer();
+                $authentication = $customer->getByEmail(trim($email), trim($passwd));
+
+                // PrestaShopLogger::addLog('Cart ID: ' . $this->context->cart->id, 1);
+                // PrestaShopLogger::addLog('Customer ID: ' . $this->context->customer->id, 1);
+                // PrestaShopLogger::addLog('Email: ' . $email, 1);
+                // PrestaShopLogger::addLog('Request Data: ' . print_r($_POST, true), 1);
+
+                if (isset($authentication->active) && !$authentication->active) {
+                    $this->errors[] = $this->module->l('Your account isn\'t available at this time, please contact us','order');
+                } elseif (!$authentication || !$customer->id) {
+                    $this->errors[] = $this->module->l('Authentication failed.','order');
+                } else {
+
+                    $this->context->cookie->id_customer = (int)($customer->id);
+                    $this->context->cookie->customer_lastname = $customer->lastname;
+                    $this->context->cookie->customer_firstname = $customer->firstname;
+                    $this->context->cookie->logged = 1;
+                    $customer->logged = 1;
+                    $this->context->cookie->is_guest = $customer->isGuest();
+                    $this->context->cookie->passwd = $customer->passwd;
+                    $this->context->cookie->email = $customer->email;
+                    $this->context->customer = $customer;
+                    // pre($this->context->customer);
+                    $this->context->cookie->id_default_group = $customer->id_default_group;
+
+                    // pre($this->context->cookie->id_cart);
+                    
+                    if (Configuration::get('PS_CART_FOLLOWING') && (empty($this->context->cookie->id_cart) || Cart::getNbProducts($this->context->cookie->id_cart) == 0) && $id_cart = (int)Cart::lastNoneOrderedCart($this->context->customer->id)) {
+                        $this->context->cart = new Cart($id_cart);
+                    } else {
+                        // pre((int)$this->context->cart->id_carrier);
+                        $id_carrier = (int)$this->context->cart->id_carrier;
+                        $this->context->cart->id_carrier = 0;
+                        $this->context->cart->setDeliveryOption(null);
+                        $this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+                        $this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+                    }
+
+                    $this->context->cart->id_customer = (int)$customer->id;
+                    $this->context->cart->secure_key = $customer->secure_key;
+                    
+                    if (Tools::isSubmit('ajax') && isset($id_carrier) && $id_carrier) {
+                        $delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
+                        $this->context->cart->setDeliveryOption($delivery_option);
+                    }
+            // pre('paulo');
+                    $this->context->cart->save();
+                    $this->context->cookie->id_cart = (int)$this->context->cart->id;
+                    $this->context->cookie->write();
+                    $this->context->cart->autosetProductAddress();
+
+                    if (method_exists($this->context, 'updateCustomer')) {
+                        $this->context->updateCustomer($customer);
+                    } else {
+                        $this->updateContext($customer);
+                    }
+
+                    Hook::exec('actionAuthentication', array('customer' => $this->context->customer));
+
+                    CartRule::autoRemoveFromCart($this->context);
+                    CartRule::autoAddToCart($this->context);
+
+                    // pre($this->context->cart);
+                    Cache::getInstance()->flush();
+                }
+                // pre($customer);
+            }
+
+            if (Tools::isSubmit('ajax')) {
+
+                if($field_errors)
+                {
+
+                    die(
+                        json_encode(
+                            array(
+                                'hasError' => true,
+                                'field_errors' => $field_errors,
+                                'errors' => $this->module->displayError($this->module->l('Please fill in all required fields with valid information','order')),
+                            )
+                        )
+                    );
+                }
+                elseif($this->errors)
+                {
+
                 $return = array(
-                    'hasError' => false,
-                    'errors' => false,
-                    'invoice_address' => $this->displayBlockInvoiceAddress($id_address),
-                    'shipping_address' => $this->displayBlockDeliveryAddress($id_address),
-                    'customer_block' => $this->displayBlockCustomerInFo(),
-                    'shipping_methods' => $this->displayBlockShippingMethods($id_address),
-                    'payment_methods' => $this->displayBlockPaymentMethods($id_address),
-                    'shipping_cart' => $this->displayBlockShippingCart(),
-                ); 
-            }
-            $this->ajaxDie(json_encode($return));
-        } 
+                        'hasError' => true,
+                        'errors' => $this->module->displayError($this->errors),
+                    ); 
+                }
+                else
+                {
+
+                    $id_address = Address::getFirstCustomerAddressId($this->context->customer->id);
+                    // echo $id_address;
+                    // pre($this->displayBlockDeliveryAddress($id_address));
+                    $return = array(
+                        'hasError' => false,
+                        'errors' => false,
+                        'reload' => true,
+                        'invoice_address' => $this->displayBlockInvoiceAddress($id_address),
+                        'shipping_address' => $this->displayBlockDeliveryAddress($id_address),
+                        'customer_block' => $this->displayBlockCustomerInFo(),
+                        'shipping_methods' => $this->displayBlockShippingMethods($id_address),
+                        'payment_methods' => $this->displayBlockPaymentMethods($id_address),
+                        'shipping_cart' => $this->displayBlockShippingCart(),
+                    ); 
+
+                    // die(
+                    //     json_encode(
+                    //         array(
+                    //             'hasError' => false,
+                    //             'reload' => true,
+                    //         )
+                    //     )
+                    // );
+                }
+
+
+                
+                $this->ajaxDie(json_encode($return));
+            } 
+        } catch (Exception $e){
+            PrestaShopLogger::addLog('Error in _submitCustomerLogin: ' . $e->getMessage(), 3);
+            $this->ajaxDie(json_encode(['hasError' => true, 'errors' => $e->getMessage()]));
+        }
     }
+
+
+
     public function _updateCarrier()
     {
         $id_country = (int)Tools::getValue('id_country');
