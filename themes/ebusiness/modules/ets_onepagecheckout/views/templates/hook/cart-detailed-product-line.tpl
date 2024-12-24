@@ -50,11 +50,28 @@
           {$product.availability_message}
         </div>
         <div class="availability-tip">
-          <a data-toggle="tooltip" data-placement="top" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">
+          <a onmouseenter="showTooltip(this)" onmouseleave="removeTooltip(this)">
             <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
           </a>
+          <div class="availability-tip-message">
+            {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+          </div>
         </div>
       </div>
+      <script>
+        function showTooltip(e) {
+          const btnTooltip = e
+          const tooltip = e.nextElementSibling
+
+          tooltip.classList.add("show-tip")
+        }
+        function removeTooltip(e) {
+          const btnTooltip = e
+          const tooltip = e.nextElementSibling
+
+          tooltip.classList.remove("show-tip")
+        }
+      </script>
     </div>
 
     <div class="hidden_mobile product-line-info col-lg-2 product-price h5 {if $product.has_discount}has-discount{/if}">
@@ -227,12 +244,22 @@
           {$product.availability_message}
         </div>
         <div class="availability-tip">
-          <a data-toggle="tooltip" data-placement="top" title="{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}">
+          <a data-toggle="tooltip" onclick="clickTooltip(this)">
             <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
           </a>
-
+          <div class="availability-tip-message">
+            {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+          </div>
         </div>
       </div>
+      <script>
+        function clickTooltip(e) {
+          const btnTooltip = e
+          const tooltip = e.nextElementSibling
+
+          tooltip.classList.toggle("show-tip")
+        }
+      </script>
     </div>
 
     <div class="text-center">
