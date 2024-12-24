@@ -104,11 +104,13 @@
       {if $listing.products|count}
 
 
+        {* {if !$no_products} *}
         <div>
           {block name='product_list_top'}
             {include file='catalog/_partials/products-top.tpl' listing=$listing}
           {/block}
         </div>
+        {* {/if} *}
 
         {block name='product_list_active_filters'}
           <div class="hidden-sm-down">
@@ -122,11 +124,13 @@
           {/block}
         </div>
 
+ 
         <div>
           {block name='product_list_bottom'}
             {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
           {/block}
         </div>
+
 
       {elseif $n_array}
         <div>
