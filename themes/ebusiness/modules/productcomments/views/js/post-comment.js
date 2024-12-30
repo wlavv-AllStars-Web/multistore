@@ -27,10 +27,17 @@ jQuery(document).ready(function () {
   const $ = jQuery;
   $('body').on('click', '.post-product-comment', function (event) {
     event.preventDefault();
+    // const postCommentModalnew = event.currentTarget
+    // const postCommentModalnew = event.currentTarget.parentElement.parentElement.parentElement.querySelector("#post-product-comment-modal")
     showPostCommentModal();
   });
+  let postCommentModal = ''
+  if(window.screen.width >= 992){
+     postCommentModal = $('#product_reviews.desktop #post-product-comment-modal');
+  }else{
+     postCommentModal = $('#product_reviews #post-product-comment-modal');
+  }
 
-  const postCommentModal = $('#post-product-comment-modal');
   postCommentModal.on('hidden.bs.modal', function () {
     postCommentModal.modal('hide');
     clearPostCommentForm();
