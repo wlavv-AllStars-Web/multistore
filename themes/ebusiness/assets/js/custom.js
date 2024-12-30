@@ -237,7 +237,7 @@ function hoverCart(e) {
 }
 
 function changeImgComments() {
-  const img = document.querySelector("#new_comment_tab_btn_ img")
+  const img = document.querySelector("#product_reviews.desktop #empty-product-comment #new_comment_tab_btn_ img")
   img.style.cursor = "pointer";
   if(img.getAttribute("src") === "/img/asm/click.png"){
     img.setAttribute("src","/img/asm/clickw.png")
