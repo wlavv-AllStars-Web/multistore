@@ -430,7 +430,7 @@ body {
     width: 456px !important;
     border: 2px solid white;
     overflow: hidden;
-    height: 366px !important;
+    height: auto !important;
   }
 
   .thead-dark th {
@@ -503,12 +503,13 @@ body {
   }
 
   #new-products #main .banner-news-img{
-    height: 366px;
+    height: 310px;
+    overflow: hidden;
   }
 
   #new-products #main .banner-news-img img{
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
 
   #products #js-product-list-top {
