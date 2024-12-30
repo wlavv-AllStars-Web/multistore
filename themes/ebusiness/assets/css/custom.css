@@ -336,6 +336,7 @@ body {
     /* outline: 2px solid #d0d0d0; */
     border-radius: .25rem;
     /* height: auto; */
+    min-height: 310px;
   }
   #productList article .thumbnail-container{
     width: 100%;
@@ -547,6 +548,7 @@ body {
 
   #productList article {
     margin-bottom: 30px;
+
   }
 
   .block-onepagecheckout.block-customer .customer-information {
