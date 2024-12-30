@@ -73,7 +73,8 @@
 
             <div class="right-nav" style="display: flex;gap:1rem;align-items:center;">
               <a class="alma-options-header" href="{$link->getCMSLink(5)}">{l s='PAY IN 3 / 4 INSTALLMENTS BY CREDIT CARD - LEARN MORE' d='Shop.Theme.Homepage'}</a>
-              {hook h='displayNav2'}
+              {hook h='displayNav2' mod='ps_shoppingcart'}
+              {hook h='displayNav2' mod='ps_languageselector'}
             </div>
         </div>
     </div>
@@ -145,9 +146,11 @@
         </div>
       </div>
   </div>
-  <div class="menu-languageselector-mobile">
-    {hook h='displayNav2' mod='ps_languageselector'}
-  </div>
+
+    <div class="menu-languageselector-mobile">
+      {hook h='displayNav2' mod='ps_languageselector'}
+    </div>
+  
   <div class="menu-searchbar">
     {hook h='displaySearch'}
   </div>
@@ -239,8 +242,8 @@
     </div>
 
     <div class="d-mobile mobile-menu">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;background-color: #333 !important;">
-        <div style="display: flex;width: 100%;justify-content:space-between;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;background-color: #333 !important;padding:0;">
+        <div style="display: flex;width: 100%;justify-content:space-between;padding: 1rem;">
           {* <a class="navbar-brand" href="#">Navbar w/ text</a> *}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;color: #fff;">
             <span class="navbar-toggler-icon"></span>
@@ -251,13 +254,17 @@
 
 
             <li class="">
+              {* <i class="material-icons">home</i> *}
+              {* <i class="material-icons">contacts</i> *}
               <a class=""  href="/">Home</a> 
             </li>
             <li class="">
+              {* <i class="material-icons">new_releases</i> *}
               <a class=""  href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
             </li>
 
             <li class=" {if $page.page_name =='index'}dropdown{/if}">
+              {* <i class="material-icons">directions_car</i> *}
                 <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >Your Car</a>
                   <div class="dropdown-menu menu-logos">
               {if $page.page_name =='index'}
