@@ -359,6 +359,10 @@ body {
     color: #fff;
   }
 
+  .image_item_product {
+    margin-bottom: .5rem;
+  }
+
   #productList .btn.btn-primary.add-to-cart:focus {
     box-shadow: none !important;
   }
