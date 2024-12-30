@@ -269,7 +269,7 @@
      <div class="d-mobile description-product-mobile">
       {if $product.description}
         <div class="banner-tabs" >
-          <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+          <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
         </div>
         <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
           {block name='product_description'}
@@ -302,7 +302,7 @@
             {/if} *}
       {else}
         <div class="banner-tabs" >
-          <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+          <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
         </div>
         <div class="tab-description tab" style="display: flex;">
           {block name='product_description'}
@@ -342,7 +342,7 @@
           <div class="collapse container-drop" id="compatMobile">
             
             <div class="banner-tabs" >
-              <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+              <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
@@ -381,7 +381,7 @@
           <div class="collapse container-drop" id="shippingMobile">
             
             <div class="banner-tabs" >
-              <img src="https://www.all-stars-motorsport.com/img/app_icons/shipping_en.webp" />
+              <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
             </div>
             <div class="tab">
               {hook h='extraRight' mod='totshippingpreview'}
@@ -400,7 +400,7 @@
             
           {block name='product_attachments'}
             {if $product.attachments}
-             <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+             <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                 <div class="banner-tabs" >
                   <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                 </div>
@@ -426,7 +426,7 @@
 
               
               
-               <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+               <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                  <div class="banner-tabs" >
                    <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                  </div>
@@ -581,9 +581,9 @@
                      <a
                        class="nav-link"
                        data-toggle="tab"
-                       href="#product-installation"
+                       href="#product_instructions"
                        role="tab"
-                       aria-controls="product-installation"
+                       aria-controls="product_instructions"
                        {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
                    </li>
                    
@@ -642,13 +642,13 @@
                  </ul>
          
                  {* tabs content *}
-         
+                 {* {$language['iso_code']} *}
                  <div class="tab-content" id="tab-content">
                   <div class="tab-pane fade in active" id="description" role="tabpanel">
-                  {* <pre>{$product|print_r}</pre> *}
+                  {* {debug} *}
                    {if $product.description}
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                       <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
                      </div>
                      <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
                        {block name='product_description'}
@@ -699,7 +699,7 @@
                          {/if} *}
                    {else}
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                      <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
                      </div>
                      <div class="tab-description tab" style="display: flex;">
                        {block name='product_description'}
@@ -752,7 +752,7 @@
          
                   <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+                       <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
@@ -783,9 +783,9 @@
                     {include file='catalog/_partials/product-details.tpl'}
                   {/block} *}
          
+                  <div class="tab-pane fade in" id="product_instructions" role="tabpanel">
                   {block name='product_attachments'}
                     {if $product.attachments}
-                     <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                         <div class="banner-tabs" >
                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                         </div>
@@ -806,12 +806,8 @@
                             </div>
                           {/foreach}
                         </section>
-                      </div>
                     {else}
 
-                      
-                      
-                       <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                          <div class="banner-tabs" >
                            <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                          </div>
@@ -837,9 +833,10 @@
                             </div>
                         </div>
 
-                       </div>
+                       
                     {/if}
                   {/block}
+                  </div>
          
                   {foreach from=$product.extraContent item=extra key=extraKey}
                   <div class="tab-pane fade in {$extra.attr.class}" id="extra-{$extraKey}" role="tabpanel" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
@@ -849,7 +846,7 @@
          
                   <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
                    <div class="banner-tabs" >
-                     <img src="https://www.all-stars-motorsport.com/img/app_icons/shipping_en.webp" />
+                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
                    </div>
                     <div class="tab">
                       {hook h='extraRight' mod='totshippingpreview'}
