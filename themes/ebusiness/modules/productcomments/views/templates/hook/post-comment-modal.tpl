@@ -37,7 +37,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="post-product-comment-form" action="{$post_comment_url nofilter}" method="POST">
+        <form id="post-product-comment-form" action="{$post_comment_url nofilter}" method="GET">
           <div class="row">
             <div class="col-sm-2">
               {if isset($product) && $product}
@@ -88,11 +88,11 @@
 
           {if !$logged}
             <div class="row">
-              <div class="col-sm-8">
+              <div class="col-sm-8 pl-0">
                 <label class="form-label" for="comment_title">{l s='Title' d='Modules.Productcomments.Shop'}<sup class="required">*</sup></label>
                 <input id="comment_title" name="comment_title" type="text" value=""/>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-4 pr-0">
                 <label class="form-label" for="customer_name">{l s='Your name' d='Modules.Productcomments.Shop'}<sup class="required">*</sup></label>
                 <input id="customer_name" name="customer_name" type="text" value=""/>
               </div>

@@ -520,24 +520,24 @@
           </div>
         </div>
 
-        <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
+        {* <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
           <div class="nav-link" data-toggle="collapse" href="#reviewsMobile" role="button" aria-expanded="false" aria-controls="reviewsMobile" style="width: 100%;background: #fff;text-align:center;">
             {l s='Reviews' d='Shop.Theme.Catalog'}
           </div>
         
           <div class="collapse container-drop" id="reviewsMobile">
             
-          {* <div class="banner-tabs" >
-              <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
-          </div> *}
+
           <div class="banner-content">
-            {block name='product_reviews'}
-              {hook h='displayFooterProduct' product=$product}
+            {block name='product_miniature_item'}
+              {block name='product_reviews'}
+                {hook h='displayFooterProduct' mod='productcomments'  product=$product  category=$category}
+              {/block}
             {/block}
           </div>
 
           </div>
-        </div>
+        </div> *}
 
       </div>
 
@@ -921,7 +921,7 @@
                   {/if}
                   </div>
 
-                  <div class="tab-pane fade in" id="product_reviews"  role="tabpanel">
+                  {* <div class="tab-pane fade in" id="product_reviews"  role="tabpanel">
                     <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
                     </div>
@@ -930,7 +930,7 @@
                       {hook h='displayFooterProduct' product=$product}
                     {/block}
                     </div>
-                  </div>
+                  </div> *}
 
                </div>
                </div>
@@ -945,9 +945,10 @@
  </div> *}
 
  <div  class="desktop" id="product_reviews" style="padding:0;display:flex;flex-direction:column;">
-
-  {block name='product_reviews'}
-    {hook h='displayFooterProduct' product=$product}
+  {block name='product_miniature_item'}
+    {block name='product_reviews'}
+      {hook h='displayFooterProduct' mod='productcomments'  product=$product  category=$category}
+    {/block}
   {/block}
   
   {* {hook h='displayFooterProduct' mod='productcomments' product=$product category=$category} *}
