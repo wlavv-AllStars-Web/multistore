@@ -6416,4 +6416,5 @@ input[type="checkbox"]:checked::after {
 
 .product-accessories .product-miniature .thumbnail-container{
   outline: 1px solid #d8d8d8;
+  outline-offset: -1px;
 }
