@@ -6421,4 +6421,14 @@ input[type="checkbox"]:checked::after {
 
 .product-accessories .swiper-button-next, .product-accessories .swiper-button-prev {
   color: var(--asm-color) !important;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #333;
+  font-size: 13px !important;
+}
+
+.product-accessories .swiper-button-next::after, .product-accessories .swiper-button-prev::after {
+  font-size: 26px !important;
+  font-weight: bold !important;
 }
