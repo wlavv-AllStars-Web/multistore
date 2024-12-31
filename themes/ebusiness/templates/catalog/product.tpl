@@ -81,7 +81,7 @@
          </div>
 
          <div class="container-imgs-mobile mobile">
-         <h1>{$product.name}</h1>
+         {* <h1>{$product.name}</h1> *}
          {block name='page_content'}
           {* <div class="swiper mySwiper">
             <div class="swiper-wrapper">
