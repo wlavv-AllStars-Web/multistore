@@ -6411,6 +6411,7 @@ input[type="checkbox"]:checked::after {
   float: unset;
   max-width: unset;
   margin-top: 1rem;
+  padding: 0 !important;
 }
 
 .product-accessories .product-miniature .thumbnail-container{
