@@ -1,50 +1,45 @@
-/**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- */
-
 jQuery(document).ready(function () {
   const $ = jQuery;
-  $('body').on('click', '.post-product-comment', function (event) {
+  const isDesktop = window.screen.width >= 992;
+
+  console.log('Screen width:', window.screen.width);
+
+  const selectors = {
+    postCommentModal: isDesktop
+      ? '#product_reviews.desktop #post-product-comment-modal'
+      : '.container-reviews-mobile #post-product-comment-modal',
+    commentPostedModal: isDesktop
+      ? '#product_reviews.desktop #product-comment-posted-modal'
+      : '.container-reviews-mobile #product-comment-posted-modal',
+    commentPostErrorModal: isDesktop
+      ? '#product_reviews.desktop #product-comment-post-error'
+      : '.container-reviews-mobile #product-comment-post-error',
+    postProductCommentButton: isDesktop
+      ? '#product_reviews.desktop .post-product-comment'
+      : '.container-reviews-mobile .post-product-comment',
+    commentForm: isDesktop
+      ? '#product_reviews.desktop #post-product-comment-form'
+      : '.container-reviews-mobile #post-product-comment-form',
+    gradeStars: isDesktop
+      ? '#product_reviews.desktop #post-product-comment-modal .grade-stars'
+      : '.container-reviews-mobile #post-product-comment-modal .grade-stars',
+  };
+
+  const postCommentModal = $(selectors.postCommentModal);
+  const commentPostedModal = $(selectors.commentPostedModal);
+  const commentPostErrorModal = $(selectors.commentPostErrorModal);
+
+  // Attach click handler to post-product-comment button
+  $('body').on('click', selectors.postProductCommentButton, function (event) {
     event.preventDefault();
-    // const postCommentModalnew = event.currentTarget
-    // const postCommentModalnew = event.currentTarget.parentElement.parentElement.parentElement.querySelector("#post-product-comment-modal")
+    // console.log('Mobile button clicked'); 
     showPostCommentModal();
   });
-  let postCommentModal = ''
-  if(window.screen.width >= 992){
-     postCommentModal = $('#product_reviews.desktop #post-product-comment-modal');
-  }else{
-     postCommentModal = $('#product_reviews #post-product-comment-modal');
-  }
 
   postCommentModal.on('hidden.bs.modal', function () {
     postCommentModal.modal('hide');
     clearPostCommentForm();
   });
-
-  const commentPostedModal = $('#product-comment-posted-modal');
-  const commentPostErrorModal = $('#product-comment-post-error');
 
   function showPostCommentModal() {
     commentPostedModal.modal('hide');
@@ -68,69 +63,54 @@ jQuery(document).ready(function () {
   }
 
   function clearPostCommentForm() {
-    $('#post-product-comment-form input[type="text"]').val('');
-    $('#post-product-comment-form input[type="text"]').removeClass('valid error');
-    $('#post-product-comment-form textarea').val('');
-    $('#post-product-comment-form textarea').removeClass('valid error');
-    $('#post-product-comment-form .criterion-rating input').val(3).trigger('change');
+    const form = $(selectors.commentForm);
+    form.find('input[type="text"]').val('').removeClass('valid error');
+    form.find('textarea').val('').removeClass('valid error');
+    form.find('.criterion-rating input').val(3).trigger('change');
   }
 
   function initCommentModal() {
-    $('#post-product-comment-modal .grade-stars').rating();
-    $('body').on('click', '.post-product-comment', function (event) {
-      event.preventDefault();
-      showPostCommentModal();
-    });
-
-    $('#post-product-comment-form').on('submit', submitCommentForm);
+    $(selectors.gradeStars).rating();
+    $(selectors.commentForm).on('submit', submitCommentForm);
   }
 
   function submitCommentForm(event) {
     event.preventDefault();
-    var formData = $(this).serializeArray();
-    if (!validateFormData(formData)) {
-      return;
-    }
-    $.post($(this).attr('action'), $(this).serialize(), function(jsonData) {
+    const formData = $(this).serializeArray();
+    if (!validateFormData(formData)) return;
+
+    $.post($(this).attr('action'), $(this).serialize(), function (jsonData) {
       if (jsonData) {
         if (jsonData.success) {
           clearPostCommentForm();
           showCommentPostedModal();
+        } else if (jsonData.errors) {
+          const errorList = jsonData.errors.map(error => `<li>${error}</li>`).join('');
+          showPostErrorModal(`<ul>${errorList}</ul>`);
         } else {
-          if (jsonData.errors) {
-            var errorList = '<ul>';
-            for (var i = 0; i < jsonData.errors.length; ++i) {
-              errorList += '<li>' + jsonData.errors[i] + '</li>';
-            }
-            errorList += '</ul>';
-            showPostErrorModal(errorList);
-          } else {
-            const decodedErrorMessage = $("<div/>").html(jsonData.error).text();
-            showPostErrorModal(decodedErrorMessage);
-          }
+          const decodedErrorMessage = $('<div/>').html(jsonData.error).text();
+          showPostErrorModal(decodedErrorMessage);
         }
       } else {
         showPostErrorModal(productCommentPostErrorMessage);
       }
-    }).fail(function() {
+    }).fail(function () {
       showPostErrorModal(productCommentPostErrorMessage);
     });
   }
 
   function validateFormData(formData) {
-    var isValid = true;
-    formData.forEach(function(formField) {
-      const fieldSelector = '#post-product-comment-form [name="'+formField.name+'"]';
+    let isValid = true;
+    formData.forEach(function (formField) {
+      const fieldSelector = `${selectors.commentForm} [name="${formField.name}"]`;
+      const field = $(fieldSelector);
       if (!formField.value) {
-        $(fieldSelector).addClass('error');
-        $(fieldSelector).removeClass('valid');
+        field.addClass('error').removeClass('valid');
         isValid = false;
       } else {
-        $(fieldSelector).removeClass('error');
-        $(fieldSelector).addClass('valid');
+        field.removeClass('error').addClass('valid');
       }
     });
-
     return isValid;
   }
 

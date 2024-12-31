@@ -520,7 +520,7 @@
           </div>
         </div>
 
-        {* <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
+        <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
           <div class="nav-link" data-toggle="collapse" href="#reviewsMobile" role="button" aria-expanded="false" aria-controls="reviewsMobile" style="width: 100%;background: #fff;text-align:center;">
             {l s='Reviews' d='Shop.Theme.Catalog'}
           </div>
@@ -537,7 +537,7 @@
           </div>
 
           </div>
-        </div> *}
+        </div>
 
       </div>
 
