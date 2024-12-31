@@ -903,7 +903,9 @@ body {
   }
 
   #product .container-table-compats thead th {
-    background-color: #333;
+    background-color: #e7e7e7;
+    color: #333;
+    font-weight: 600;
   }
   #product .tab-content{
     padding: 0;
@@ -1320,7 +1322,8 @@ body {
   }
 
   #compatMobile table thead th {
-    background-color: #333;
+    background-color: #e7e7e7;
+    color: #333;
     font-weight: 600;
   }
 
