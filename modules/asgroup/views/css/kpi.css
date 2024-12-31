@@ -80,6 +80,15 @@
     color: red;
 }
 
+/* products page */
+
+.adminproducts .entity-search-widget .twitter-typeahead .tt-menu{
+    position: unset !important;
+}
+.adminproducts #product_description_related_products .search.search-with-icon::after{
+    display: none !important;
+}
+
 
 
 /* order detail page */
@@ -335,13 +344,13 @@
 
 /* ups */
 
-#upsTabContent .webvizo {
+/* #upsTabContent .webvizo:not(:first-child) {
     display: none;
 }
 
 #upsTabContent .webvizo:first-of-type {
-    display: flex;
-}
+    display: flex !important;
+} */
 
 #generate_ups_shipping_label_form .panel{
     height: unset !important;
