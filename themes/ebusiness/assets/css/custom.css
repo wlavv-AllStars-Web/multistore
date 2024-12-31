@@ -6420,5 +6420,5 @@ input[type="checkbox"]:checked::after {
 }
 
 .product-accessories .swiper-button-next, .product-accessories .swiper-button-prev {
-  background: var(--asm-color) !important;
+  color: var(--asm-color) !important;
 }
