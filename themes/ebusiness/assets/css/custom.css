@@ -918,6 +918,12 @@ body {
   #product .banner-tabs img {
     width: 100%;
   }
+
+  .product-accessories .thumb-container {
+    border-radius: .25rem;
+    outline: 1px solid #d8d8d8;
+    outline-offset: -2px;
+  }
 }
 
 @media screen and (min-width: 564px) and (max-width: 768px) {
