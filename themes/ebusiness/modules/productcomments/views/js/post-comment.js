@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
   const $ = jQuery;
-  const isDesktop = window.screen.width >= 992;
+  const isDesktop = window.screen.width >= 769;
 
   console.log('Screen width:', window.screen.width);
 
