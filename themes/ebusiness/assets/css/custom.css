@@ -6462,6 +6462,6 @@ input[type="checkbox"]:checked::after {
   font-weight: bold !important;
 }
 
-.add_to_cart_button .btn-primary i {
+.product-accessories .add_to_cart_button .btn-primary i {
   padding: 0 !important;
 }
