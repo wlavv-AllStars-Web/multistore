@@ -6418,3 +6418,7 @@ input[type="checkbox"]:checked::after {
   outline: 1px solid #d8d8d8;
   outline-offset: -1px;
 }
+
+.product-accessories .swiper-button-next, .product-accessories .swiper-button-prev {
+  background: var(--asm-color) !important;
+}
