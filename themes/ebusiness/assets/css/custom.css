@@ -620,6 +620,12 @@ body {
     margin: auto;
   }
   
+
+  /* product page */
+
+  .images-container.js-images-container .mySwiper-thumb-images .swiper-slide {
+    width: fit-content;
+  }
 }
 
 /* ps_customersignin.tpl */
