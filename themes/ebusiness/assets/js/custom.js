@@ -21,7 +21,7 @@ var Swipes2 = new Swiper('.products-mobile', {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-  breakpoint: {
+  breakpoints: {
     564: {
       slidesPerView: 2,
       spaceBetween: 20
