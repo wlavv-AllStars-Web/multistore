@@ -526,16 +526,13 @@
           </div>
         
           <div class="collapse container-drop" id="reviewsMobile">
-            
-
-          <div class="banner-content">
-            {block name='product_miniature_item'}
-              {block name='product_reviews'}
-                {hook h='displayFooterProduct' mod='productcomments'  product=$product  category=$category}
+            <div class="banner-content">
+              {block name='product_miniature_item'}
+                {block name='product_reviews'}
+                  {hook h='displayFooterProduct' mod='productcomments'  product=$product  category=$category}
+                {/block}
               {/block}
-            {/block}
-          </div>
-
+            </div>
           </div>
         </div>
 

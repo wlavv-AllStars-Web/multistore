@@ -119,6 +119,63 @@ body {
     display: block !important;
   } */
 
+  #product #main {
+    padding-bottom: 1rem !important;
+  }
+
+/* tabs mobile */
+  .d-mobile.section-content-product .nav-link{
+    text-transform: uppercase;
+  }
+
+  .section-content-product .nav-link{
+    color: #fff;
+    background: #555 !important;
+  }
+
+  .complementary-products-flag{
+    display: none;
+  }
+
+  /* revieews mobile */
+
+  #reviewsMobile #product-comments-list-header {
+    display: none !important;
+  }
+
+  #reviewsMobile #empty-product-comment {
+    background: transparent !important;
+    color: #333;
+  }
+
+  /*  */
+  /* instruction mobile */
+
+  #product_instructions_mobile > div:nth-child(2){
+    min-width: unset !important;
+  }
+
+  #product_instructions_mobile > div:nth-child(2) > div{
+    flex-direction: column-reverse !important;
+  }
+
+  #product_instructions_mobile > div:nth-child(2) > div .difficulty_content{
+    flex-direction: column;
+  }
+
+  #product_instructions_mobile > div:nth-child(2) > div .difficulty_content h4{
+    text-transform: unset !important;
+  }
+
+  #product_instructions_mobile > div:nth-child(2) > div .verticalLign{
+    /* transform: rotate(90deg); */
+    height: 3px !important;
+    width: 80% !important;
+
+  }
+
+  /*  */
+
 
   .user-info {
     display: flex;
@@ -5975,7 +6032,7 @@ input[type="checkbox"]:checked::after {
   } */
   .section-content-product .nav-link{
     color: #fff;
-    background: #333 !important;
+    background: #555 !important;
   }
 
   .section-content-product .container-drop{
