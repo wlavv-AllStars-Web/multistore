@@ -6410,4 +6410,9 @@ input[type="checkbox"]:checked::after {
   width: 100% !important;
   float: unset;
   max-width: unset;
+  margin-top: 1rem;
+}
+
+.product-accessories .product-miniature .thumbnail-container{
+  outline: 1px solid #d8d8d8;
 }
