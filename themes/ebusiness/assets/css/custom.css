@@ -6038,9 +6038,11 @@ input[type="checkbox"]:checked::after {
   }
 
   .product-miniature {
-    width: 100%;
+    width: 50%;
     margin-bottom: 30px;
   }
+
+
 
   
   /* checkout */
@@ -6401,4 +6403,11 @@ input[type="checkbox"]:checked::after {
   #banner-wheels .flip-card {
     min-height: 50dvh;
   }
+}
+
+
+.product-accessories .product-miniature {
+  width: 100% !important;
+  float: unset;
+  max-width: unset;
 }
