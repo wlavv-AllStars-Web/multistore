@@ -956,8 +956,8 @@
      {block name='product_accessories'}
        {if $accessories}
          <section class="product-accessories clearfix">
-           {* <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p> *}
-           <div class="products d-desktop">
+
+           {* <div class="products d-desktop">
              {foreach from=$accessories item="product_accessory" key="position"}
                {if $position < 4}
                  {block name='product_miniature'}
@@ -965,9 +965,9 @@
                  {/block}
                {/if}
              {/foreach}
-           </div>
+           </div> *}
 
-           <div class="swiper products-mobile d-mobile">
+           <div class="swiper products-mobile">
             <div class="swiper-wrapper">
              {foreach from=$accessories item="product_accessory" key="position"}
                {if $position < 4}
