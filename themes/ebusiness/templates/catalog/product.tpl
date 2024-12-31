@@ -1007,8 +1007,8 @@
  {/block}
  
 
- <script>
-    var swiper = new Swiper(".products-mobile", {
+ {* <script>
+    var swiper = new Swiper(".product-accessories .products-mobile", {
       slidesPerView: 3,
       spaceBetween: 30,
       pagination: {
@@ -1016,5 +1016,5 @@
         clickable: true,
       },
     });
-  </script>
+  </script> *}
 

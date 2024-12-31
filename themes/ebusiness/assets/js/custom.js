@@ -21,6 +21,20 @@ var Swipes2 = new Swiper('.products-mobile', {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+  breakpoint: {
+    564: {
+      slidesPerView: 2,
+      spaceBetween: 20
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 20
+    },
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 30
+    }
+  },
   pagination: {
     // el: ".swiper-pagination",
     clickable: true,
