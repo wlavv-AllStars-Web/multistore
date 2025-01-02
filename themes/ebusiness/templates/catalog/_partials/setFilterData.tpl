@@ -245,24 +245,29 @@
         let current_request = window.location.href;
         let new_request = current_request;
 
+
+
         options.forEach((opt) => {
+            // console.log(opt);
 
+            // console.log(current_request.includes(opt))
             // If the filter exists in the search query
-            if (search.includes(opt)) {
-
+            if (current_request.includes(opt)) {
 
                 // If the filter has an '=' sign, i.e., key-value pair
-                if (search.includes('=' + opt)) {
-                    if (search.includes('=' + opt + '|')) {
+                if (current_request.includes('=' + opt)) {
+                    if (current_request.includes('=' + opt + '|')) {
                         // Remove the filter when it is part of a chained query parameter
                         new_request = current_request.replace(opt + '|', '');
+    
                     } else {
                         // Remove the filter when it's directly in the filters
                         new_request = current_request.replace('?filters=' + opt, '');
+    
                     }
                 } else {
                     // If the filter is part of a larger string like 'filters=6:11|5:8'
-                    if (search.includes(opt + '|')) {
+                    if (current_request.includes(opt + '|')) {
                         new_request = current_request.replace(opt + '|', '');
                     } else {
                         new_request = current_request.replace('|' + opt, '');
@@ -277,10 +282,12 @@
             current_request = new_request;
         });
 
+        // console.log('Final new_request:', new_request);
         
         // Optionally update the browser's location if needed
         window.location.href = new_request;
     }
+
 
 
 </script>
