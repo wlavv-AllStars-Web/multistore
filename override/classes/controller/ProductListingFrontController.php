@@ -587,13 +587,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             // pre($product_options);
             
-        //     $brand_api = CategoryControllerCore::apiCall('brand');
+            //     $brand_api = CategoryControllerCore::apiCall('brand');
 
-        //     foreach($brand_api->data AS $brand){       
-        //         $car_brands[$brand->slug] = $brand->name_en;
-        //     }
+            //     foreach($brand_api->data AS $brand){       
+            //         $car_brands[$brand->slug] = $brand->name_en;
+            //     }
 
-        //     $this->context->smarty->assign('car_brands', $car_brands);
+            //     $this->context->smarty->assign('car_brands', $car_brands);
             
 
 
@@ -766,7 +766,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 unset($feature, $value); // Break reference
             }
             
-            
+            // pre($features);
             
             $this->context->smarty->assign('asw_features', $features);
             $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
