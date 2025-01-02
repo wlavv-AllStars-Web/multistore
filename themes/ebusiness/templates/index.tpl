@@ -82,7 +82,7 @@
                     </div>
                   </div>
                   <div  class="iframeClass"  style="display:none">
-                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$icon.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy">
+                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$icon.youtube_code}?autoplay=1&mute=1&rel=0" loading="lazy">
                     </iframe>
                   </div>
                 </div>
