@@ -1,3 +1,9 @@
+<!-- Load jQuery first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 
 <div id="totshippingpreview-info">
@@ -244,6 +250,10 @@
 	width: 30%;
 }
 
+#tot_zone_1 {
+	display: none;
+}
+
 
 
 </style>
@@ -252,72 +262,86 @@
 {* {$ajax_url} *}
 
 
-<script>
-// comecei aqui
-// const selectCountryTitle = document.queryselectorAll(".select2-results__option span").innerText
-// $(document).ready(function() {
-    // if ($('#tot_zone_1').length > 0) {
-    //     console.log('#tot_zone_1 exists. Initializing Select2.');
-    //     $('#tot_zone_1').select2();
-    // } else {
-    //     console.error('Element #tot_zone_1 does not exist.');
-    // }
-// });
+{* <script>
+	let totShippingSelectors = [];
 
-// $(document).ready(function() {
-	$('#tot_zone_1').select2({
-	templateResult: formatOption
-	});
-
-
-	$('#tot_zone_1').one('select2:open', function(e) {
-		$('input.select2-search__field').prop('placeholder', '{l s='Search your country' mod='totshippingpreview'}');
-	});	
-
-	$('#tot_zone_1').on('select2:select', function (e) {
-        console.log("aqui - Select2 change event.");
-    });		
-	
-	var selectfirst = document.querySelector('.select2-selection__rendered')
-	
-
-	function formatOption(option) {
-		if (!option.id) {
-			return option.text;
+	document.addEventListener('DOMContentLoaded', function () {
+		let mobile = ''
+		if( window.screen.width > 768){
+			mobile = 0
+		}else{
+			mobile = 1
 		}
-
-		var icon = $(option.element).data('image');
-		if(icon){
-			var $option = $(
-			'<span><img src="' + icon + '" class="option-icon" /> ' + '<p>' + option.text + '</p>' + '</span>'
-		);
-		}else {
-			var $option = $('<span>' + option.text + '</span>')
+		// comecei aqui
+		if (mobile) {
+			totShippingSelectors.push({ element: document.querySelector("#shippingMobile #tot_zone_1") });
+		} else {
+			totShippingSelectors.push({ element: document.querySelector(".section_tabs_video.d-desktop #tot_zone_1") });
 		}
-		
+		console.log(totShippingSelectors);
+	})
+	// Shared function to initialize Select2 with common options
+	function initializeSelect2(element) {
+		element.select2({
+			templateResult: formatOption
+		});
 
-		return $option;
+		element.one('select2:open', function () {
+			$('input.select2-search__field').prop('placeholder', '{l s="Search your country" mod="totshippingpreview"}');
+		});
+
+		element.on('select2:select', function () {
+			console.log("aqui - Select2 change event.");
+		});
 	}
-	
-	// Update the selected option with the flag image
-	var selectedOption = $('#tot_zone_1').find(':selected');
-	var selectedIcon = selectedOption.data('image');
-	var selectedText = selectedOption.text();
-	var selectedOptionHTML = '<img src="' + selectedIcon + '" class="option-icon" /> ' + selectedText;
-	
-	$('#tot_zone_1').siblings('.select2').find('.select2-selection__rendered').html(selectedOptionHTML);
-	
-	// When an option is selected, update the displayed text
-	$('#tot_zone_1').on('select2:select', function(event) {
-	var icon = event.params.data.element.dataset.image;
-	var newText = '<img src="' + icon + '" class="option-icon" /> ' + event.params.data.text;
-		$(this).siblings('.select2').find('.select2-selection__rendered').html(newText);
+
+	// Initialize Select2 for all selectors
+	totShippingSelectors.forEach(({ element }) => {
+		if (element) initializeSelect2($(element));
 	});
-        // });
-// acabei aqui
+
+	// Format the options for Select2
+	function formatOption(option) {
+		if (!option.id) return option.text;
+
+		const icon = $(option.element).data('image');
+		return icon
+			? $('<span><img src="' + icon + '" class="option-icon" /> <p>' + option.text + '</p></span>')
+			: $('<span>' + option.text + '</span>');
+	}
+
+	// Update the selected option with the flag image
+	function updateSelectedOption(element) {
+		const selectedOption = $(element).find(':selected');
+		const icon = selectedOption.data('image');
+		const text = selectedOption.text();
+		const html = icon
+			? '<img src="' + icon + '" class="option-icon" /> ' + text
+			: text;
+
+		$(element).siblings('.select2').find('.select2-selection__rendered').html(html);
+	}
+
+	// Update selected option for both desktop and mobile
+	totShippingSelectors.forEach(({ element }) => {
+		if (element) {
+			const $element = $(element);
+			updateSelectedOption($element);
+
+			$element.on('select2:select', function (event) {
+				const icon = event.params.data.element.dataset.image;
+				const newText = icon
+					? '<img src="' + icon + '" class="option-icon" /> ' + event.params.data.text
+					: event.params.data.text;
+				$(this).siblings('.select2').find('.select2-selection__rendered').html(newText);
+			});
+		}
+	});
+
+	// acabei aqui
 
 
-// document.addEventListener('DOMContentLoaded', function(){
+	// document.addEventListener('DOMContentLoaded', function(){
 	$('#availability_statut').after($('#js-totshippingpreview-container'));
     $('#availability_statut').after($('#totshippingpreview-info'));
     
@@ -341,7 +365,7 @@
 
     current_controller = "{$current_controller|escape:'htmlall':'UTF-8'}";
 
-
+	totShippingSelectors.forEach(({ element }) => {
 	$('#tot_zone_1').change(function(e){
 		
 		var tot_id_product_attribute = $('#idCombination').val();
@@ -379,6 +403,7 @@
 				}
 			}
 		});
+	});
 	});
 
     $('#quantity_wanted').change(function(){
@@ -418,82 +443,327 @@
 
 	$('#tot_zone_2').on('change', zone2Change);
 
-// });
+	// });
 
-function zone2Change(e) {
+	function zone2Change(e) {
 
-	var tot_id_product_attribute = $('#idCombination').val();
+		var tot_id_product_attribute = $('#idCombination').val();
 
-	totalPrice = $("#our_price_display").attr("content")*$("#quantity_wanted").val();
+		totalPrice = $("#our_price_display").attr("content")*$("#quantity_wanted").val();
 
-	zoneSelected2 = $('#tot_zone_2'+(e.target.type != 'hidden'?' option:selected':''));
+		zoneSelected2 = $('#tot_zone_2'+(e.target.type != 'hidden'?' option:selected':''));
 
-	quantity = $("#quantity_wanted").val();
+		quantity = $("#quantity_wanted").val();
 
-	$.ajax({
-		url: '{$ajax_url|escape:'htmlall':'UTF-8'}',
-		type: 'post',
-		dataType: 'json',
-		data: {
-			'id_zone' : zoneSelected2.attr('data-id-zone'),
-			'id' : zoneSelected2.val(),
-			'zone_name' : zoneSelected2.text(),
-			'id_product' : {$tot_id_product|escape:'htmlall':'UTF-8'},
-			'id_product_attribute' : tot_id_product_attribute ? tot_id_product_attribute : {$tot_id_product_attribute|escape:'htmlall':'UTF-8'},
-			'cart' : {$tot_cart|escape:'htmlall':'UTF-8'},
-			'choice' : '2',
-			'total_price' : totalPrice,
-			'quantity' : quantity
+		$.ajax({
+			url: '{$ajax_url|escape:'htmlall':'UTF-8'}',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				'id_zone' : zoneSelected2.attr('data-id-zone'),
+				'id' : zoneSelected2.val(),
+				'zone_name' : zoneSelected2.text(),
+				'id_product' : {$tot_id_product|escape:'htmlall':'UTF-8'},
+				'id_product_attribute' : tot_id_product_attribute ? tot_id_product_attribute : {$tot_id_product_attribute|escape:'htmlall':'UTF-8'},
+				'cart' : {$tot_cart|escape:'htmlall':'UTF-8'},
+				'choice' : '2',
+				'total_price' : totalPrice,
+				'quantity' : quantity
 
-		},
-		success: function (data) {
-			displayJsonData(data);
-		}
-	});
-}
-
-function displayJsonData(jsonData){
-	$(".totselectzone__table-container").html("");
-	if(jsonData.type == 'tab') {
-		if(jsonData.display) {
-			$(".choice_2").hide();
-		}
-		$('.totselectzone__table-container').html(jsonData.data);
-	} else {
-		$(".choice_2").show();
-
-		$(".choice_2 > .select-wrapper").html("");
-
-		if(Object.keys(jsonData.data).length > 1){
-			$(".choice_2 > .select-wrapper").append('<select name="tot_zone_2" id="tot_zone_2"></select>');
-			$("#tot_zone_2").append('<option value="" selected="selected">{l s='Choose' mod='totshippingpreview'}</option>');
-		}
-
-		for ( i in jsonData.data ) {
-			if(Object.keys(jsonData.data).length > 1) {
-				$("#tot_zone_2").append('<option value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '"><img src="/img/flags/flag_' + jsonData.data[i].id_zone + '.jpg" width="20" height="15">' + jsonData.data[i].name + '</option>');
-			} else {
-				$(".choice_2 > .select-wrapper").append(jsonData.data[i].name + '<input id="tot_zone_2" type="hidden" value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '" />');
+			},
+			success: function (data) {
+				displayJsonData(data);
 			}
-		}
-
-		$('#tot_zone_2').on('change', zone2Change);
+		});
 	}
 
-	// $.fancybox.reposition();
-	// $.fancybox.update();
+	function displayJsonData(jsonData){
+		$(".totselectzone__table-container").html("");
+		if(jsonData.type == 'tab') {
+			if(jsonData.display) {
+				$(".choice_2").hide();
+			}
+			$('.totselectzone__table-container').html(jsonData.data);
+		} else {
+			$(".choice_2").show();
 
-	// $(".totselectzone__table-container img").load(function() {
-	// 	// Reposition fancybox when images load.
-	// 	$.fancybox.reposition();
-	// 	$.fancybox.update();
-	// });
+			$(".choice_2 > .select-wrapper").html("");
 
-	// $('#tot_zone_1, #tot_zone_2').change(function() {
-	// 	$.fancybox.reposition();
-	// 	$.fancybox.update();
-	// });
+			if(Object.keys(jsonData.data).length > 1){
+				$(".choice_2 > .select-wrapper").append('<select name="tot_zone_2" id="tot_zone_2"></select>');
+				$("#tot_zone_2").append('<option value="" selected="selected">{l s='Choose' mod='totshippingpreview'}</option>');
+			}
+
+			for ( i in jsonData.data ) {
+				if(Object.keys(jsonData.data).length > 1) {
+					$("#tot_zone_2").append('<option value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '"><img src="/img/flags/flag_' + jsonData.data[i].id_zone + '.jpg" width="20" height="15">' + jsonData.data[i].name + '</option>');
+				} else {
+					$(".choice_2 > .select-wrapper").append(jsonData.data[i].name + '<input id="tot_zone_2" type="hidden" value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '" />');
+				}
+			}
+
+			$('#tot_zone_2').on('change', zone2Change);
+		}
+
+		// $.fancybox.reposition();
+		// $.fancybox.update();
+
+		// $(".totselectzone__table-container img").load(function() {
+		// 	// Reposition fancybox when images load.
+		// 	$.fancybox.reposition();
+		// 	$.fancybox.update();
+		// });
+
+		// $('#tot_zone_1, #tot_zone_2').change(function() {
+		// 	$.fancybox.reposition();
+		// 	$.fancybox.update();
+		// });
+	}
+
+
+</script> *}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script>
+if (sessionStorage.getItem('scriptExecuted')) {
+// $(document).ready(function () {
+    // var select2Initialized = false;
+
+    // let mobile = '';
+    // if (window.screen.width > 768) {
+    //     mobile = 0;
+    // } else {
+    //     mobile = 1;
+    // }
+
+    // Initialize totShippingSelectors array
+    let totShippingSelectors = [];
+
+    if (document.querySelector("#shippingMobile #tot_zone_1")) {
+        totShippingSelectors.push({ element: document.querySelector("#shippingMobile #tot_zone_1") });
+    }
+
+    if (document.querySelector(".section_tabs_video.d-desktop #tot_zone_1")) {
+        totShippingSelectors.push({ element: document.querySelector(".section_tabs_video.d-desktop #tot_zone_1") });
+    }
+
+    // Debug: Check if selectors are populated correctly
+    console.log(totShippingSelectors);
+
+    // Ensure Select2 is loaded before initialization
+    if (window.jQuery && $.fn.select2) {
+        // Initialize Select2 after totShippingSelectors is populated
+        totShippingSelectors.forEach(({ element }) => {
+            if (element) {
+                initializeSelect2($(element));  // Initialize Select2 on the element
+                console.log("Select2 initialized");
+                // select2Initialized = true;
+            }
+        });
+    } else {
+        console.error('Select2 is not loaded');
+    }
+
+    // Initialize Select2 with common options
+    function initializeSelect2(element) {
+        element.select2({
+            templateResult: formatOption
+        });
+
+        element.one('select2:open', function () {
+            $('input.select2-search__field').prop('placeholder', '{l s="Search your country" mod="totshippingpreview"}');
+        });
+
+        element.on('select2:select', function () {
+            console.log("Select2 change event triggered.");
+        });
+    }
+
+    // Format the options for Select2
+    function formatOption(option) {
+        if (!option.id) return option.text;
+
+        const icon = $(option.element).data('image');
+        return icon
+            ? $('<span><img src="' + icon + '" class="option-icon" /> <p>' + option.text + '</p></span>')
+            : $('<span>' + option.text + '</span>');
+    }
+
+    // Update the selected option with the flag image
+    function updateSelectedOption(element) {
+        const selectedOption = $(element).find(':selected');
+        const icon = selectedOption.data('image');
+        const text = selectedOption.text();
+        const html = icon
+            ? '<img src="' + icon + '" class="option-icon" /> ' + text
+            : text;
+
+        $(element).siblings('.select2').find('.select2-selection__rendered').html(html);
+    }
+
+    // Update selected option for both desktop and mobile
+    totShippingSelectors.forEach(({ element }) => {
+        if (element) {
+            const $element = $(element);
+            updateSelectedOption($element);
+
+            $element.on('select2:select', function (event) {
+                const icon = event.params.data.element.dataset.image;
+                const newText = icon
+                    ? '<img src="' + icon + '" class="option-icon" /> ' + event.params.data.text
+                    : event.params.data.text;
+                $(this).siblings('.select2').find('.select2-selection__rendered').html(newText);
+            });
+        }
+    });
+
+    // Update for quantity changes and zone changes
+	totShippingSelectors.forEach(({ element }) => {
+            if (element) {
+                $(element).on('change', zone1Change);
+            }
+        });
+
+	current_controller = "{$current_controller|escape:'htmlall':'UTF-8'}";
+
+    function zone1Change(e) {
+		console.log(e)
+        var tot_id_product_attribute = $('#idCombination').val();
+        var zoneSelected = $('#tot_zone_1 option:selected');
+        var totalPrice = 0;
+        var quantity = null;
+
+        if (current_controller == "product") {
+            totalPrice = $("#our_price_display").attr("content") * $("#quantity_wanted").val();
+            quantity = $("#quantity_wanted").val();
+        }
+
+        $.ajax({
+            url: '{$ajax_url}',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'id_zone': zoneSelected.attr('data-id-zone'),
+                'id': zoneSelected.val(),
+                'zone_name': zoneSelected.text(),
+                'id_product': {$tot_id_product|escape:'htmlall':'UTF-8'},
+                'id_product_attribute': tot_id_product_attribute ? tot_id_product_attribute : {$tot_id_product_attribute|escape:'htmlall':'UTF-8'},
+                'cart': {$tot_cart|escape:'htmlall':'UTF-8'},
+                'choice': '1',
+                'total_price': totalPrice,
+                'quantity': quantity
+            },
+            success: function (data) {
+                displayJsonData(data);
+                if (Object.keys(data.data).length == 1) {
+                    $("#tot_zone_2").trigger("change");
+                }
+            }
+        });
+    }
+
+    // Update for quantity changes
+    $('#quantity_wanted').change(function () {
+        var tot_id_product_attribute = $('#idCombination').val();
+        var totalPrice = 0;
+        var quantity = null;
+
+        if (current_controller == "product") {
+            quantity = $("#quantity_wanted").val();
+            totalPrice = $("#our_price_display").attr("content") * quantity;
+        }
+
+        $.ajax({
+            url: '{$ajax_url|escape:'htmlall':'UTF-8'}',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'id_zone': zoneSelected.attr('data-id-zone'),
+                'id': zoneSelected.val(),
+                'zone_name': zoneSelected.text(),
+                'id_product': {$tot_id_product|escape:'htmlall':'UTF-8'},
+                'id_product_attribute': tot_id_product_attribute ? tot_id_product_attribute : {$tot_id_product_attribute|escape:'htmlall':'UTF-8'},
+                'cart': {$tot_cart|escape:'htmlall':'UTF-8'},
+                'choice': '1',
+                'total_price': totalPrice,
+                'quantity': quantity
+            },
+            success: function (data) {
+                displayJsonData(data);
+                if (Object.keys(data.data).length == 1) {
+                    $("#tot_zone_2").trigger("change");
+                }
+            }
+        });
+    });
+
+    // Handle second zone change
+    $('#tot_zone_2').on('change', zone2Change);
+
+    function zone2Change(e) {
+        var tot_id_product_attribute = $('#idCombination').val();
+        var totalPrice = $("#our_price_display").attr("content") * $("#quantity_wanted").val();
+        var zoneSelected2 = $('#tot_zone_2' + (e.target.type != 'hidden' ? ' option:selected' : ''));
+        var quantity = $("#quantity_wanted").val();
+
+        $.ajax({
+            url: '{$ajax_url|escape:'htmlall':'UTF-8'}',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'id_zone': zoneSelected2.attr('data-id-zone'),
+                'id': zoneSelected2.val(),
+                'zone_name': zoneSelected2.text(),
+                'id_product': {$tot_id_product|escape:'htmlall':'UTF-8'},
+                'id_product_attribute': tot_id_product_attribute ? tot_id_product_attribute : {$tot_id_product_attribute|escape:'htmlall':'UTF-8'},
+                'cart': {$tot_cart|escape:'htmlall':'UTF-8'},
+                'choice': '2',
+                'total_price': totalPrice,
+                'quantity': quantity
+            },
+            success: function (data) {
+                displayJsonData(data);
+            }
+        });
+    }
+
+    // Function to display the received JSON data
+    function displayJsonData(jsonData) {
+        $(".totselectzone__table-container").html("");
+        if (jsonData.type == 'tab') {
+            if (jsonData.display) {
+                $(".choice_2").hide();
+            }
+            $('.totselectzone__table-container').html(jsonData.data);
+        } else {
+            $(".choice_2").show();
+            $(".choice_2 > .select-wrapper").html("");
+
+            if (Object.keys(jsonData.data).length > 1) {
+                $(".choice_2 > .select-wrapper").append('<select name="tot_zone_2" id="tot_zone_2"></select>');
+                $("#tot_zone_2").append('<option value="" selected="selected">{l s='Choose' mod='totshippingpreview'}</option>');
+            }
+
+            for (var i in jsonData.data) {
+                if (Object.keys(jsonData.data).length > 1) {
+                    $("#tot_zone_2").append('<option value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '"><img src="/img/flags/flag_' + jsonData.data[i].id_zone + '.jpg" width="20" height="15">' + jsonData.data[i].name + '</option>');
+                } else {
+                    $(".choice_2 > .select-wrapper").append(jsonData.data[i].name + '<input id="tot_zone_2" type="hidden" value="' + jsonData.data[i].id + '" data-id-zone="' + jsonData.data[i].id_zone + '" />');
+                }
+            }
+
+            $('#tot_zone_2').on('change', zone2Change);
+        }
+    }
+} else {
+    // Set the sessionStorage flag to ensure the script runs only the second time
+    sessionStorage.setItem('scriptExecuted', 'true');
+    console.log('Script will run on the second load.');
 }
+// });
 
 
 </script>
