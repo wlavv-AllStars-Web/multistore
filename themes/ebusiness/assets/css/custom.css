@@ -632,6 +632,10 @@ body {
   .images-container.js-images-container .mySwiper-thumb-images .swiper-slide {
     width: fit-content;
   }
+
+  #product_shipping #totselectzone {
+    padding-bottom: 1rem;
+  }
 }
 
 /* ps_customersignin.tpl */
@@ -659,7 +663,32 @@ body {
     display: flex !important;
   }
 
-    /* forbidden page */
+  /* tot shipping */
+  #totselectzone #shipping_zone {
+    width: 75% !important; 
+  }
+
+  #totselectzone #shipping_zone .select-wrapper{
+    display: flex;
+    padding: 1rem;
+  }
+
+  #totselectzone #shipping_zone .select-wrapper .select2{
+    margin: auto;
+  }
+
+  .select2-container.select2-container--default.select2-container--open {
+    width: 75% !important;
+  }
+
+  .totselectzone__table th{
+    color: #333;
+    background-color: #d0d0d0;
+    font-weight: 600;
+  }
+  /*  */
+
+  /* forbidden page */
 
     .forbidden-page {
       min-height: 70dvh;
@@ -1377,6 +1406,30 @@ body {
 
   #product .footer_top .links {
     padding: 0;
+  }
+
+  /* tot shipping */
+  #totselectzone #shipping_zone {
+    width: 75% !important; 
+  }
+
+  #totselectzone #shipping_zone .select-wrapper{
+    display: flex;
+    padding: 1rem;
+  }
+
+  #totselectzone #shipping_zone .select-wrapper .select2{
+    margin: auto;
+  }
+
+  .select2-container.select2-container--default.select2-container--open {
+    width: 75% !important;
+  }
+
+  .totselectzone__table th{
+    color: #333;
+    background-color: #d0d0d0;
+    font-weight: 600;
   }
 }
 
@@ -6144,9 +6197,52 @@ input[type="checkbox"]:checked::after {
     flex-direction: column;
   }
 
+    /* tot shipping */
+    #totselectzone #shipping_zone {
+      width: 100% !important; 
+    }
+  
+    #totselectzone #shipping_zone .select-wrapper{
+      display: flex;
+      padding: 1rem;
+    }
+  
+    #totselectzone #shipping_zone .select-wrapper .select2{
+      margin: auto;
+    }
+  
+    .select2-container.select2-container--default.select2-container--open {
+      width: 100% !important;
+    }
+    /*  */
+
 }
 
 @media screen and (max-width: 544px) {
+  /* tot shipping */
+  #totselectzone #shipping_zone {
+    width: 100% !important; 
+  }
+
+  #totselectzone #shipping_zone .select-wrapper{
+    display: flex;
+    padding: 1rem;
+  }
+
+  #totselectzone #shipping_zone .select-wrapper .select2{
+    margin: auto;
+  }
+
+  .select2-container.select2-container--default.select2-container--open {
+    width: 100% !important;
+  }
+  
+  .totselectzone__table th{
+    color: #333;
+    background-color: #d0d0d0;
+    font-weight: 600;
+  }
+  /*  */
   .product-miniature {
     padding: 0;
     margin-bottom: 30px;
