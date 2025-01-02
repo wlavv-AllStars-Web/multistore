@@ -76,13 +76,16 @@
   <div id="_desktop_cart">
   <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" {if $cart.products_count > 0} onmouseover="hoverCart(this)" onmouseout="hoverCart(this)" {/if}  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
     <div class="header">
-      <a rel="nofollow" href="{$order_url|escape:'html':'UTF-8'}">
-        <i class="fa-solid fa-cart-shopping"></i>
+      <a rel="nofollow" {if $cart.products_count > 0}href="{$order_url|escape:'html':'UTF-8'}"{/if}>
+
+      <i class="fa-solid fa-cart-shopping" {if $cart.products_count == 0}style="color:#fff;" {/if}></i>
         {* <span class="cart-products-label">{l s='Shopping Cart' d='Shop.Theme.Checkout'}</span> *}
         {* <span class="cart-products-count">{$cart.products_count|escape:'html':'UTF-8'} {if $cart.products_count > 1}{l s=' Items' d='Shop.Theme.Checkout'}{else}{l s=' Item' d='Shop.Theme.Checkout'}{/if} - {$cart.totals.total.value|escape:'html':'UTF-8'} </span> *}
-        <span class="cart-products-label">{$cart.products_count|escape:'html':'UTF-8'}</span>
+        <span class="cart-products-label" {if $cart.products_count == 0}style="color:#fff;" {/if}>{$cart.products_count|escape:'html':'UTF-8'}</span>
         {* <span class="cart-products-label desktop">{l s='Product' d='Shop.Theme.Asm'}</span> *}
       </a>
+    {if $cart.products_count > 0}
+   
 
       <div class="body cart-hover-content">
         <ul>
@@ -112,6 +115,7 @@
           <a class="cart-wishlist-checkout" href="{$order_url|escape:'html':'UTF-8'}">{l s='Check Out' d='Shop.Theme.Actions'}</a>
         </div>
       </div>
+    {/if}
     </div>
   </div>
 </div>
