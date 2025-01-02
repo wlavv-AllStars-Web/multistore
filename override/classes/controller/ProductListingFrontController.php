@@ -537,6 +537,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $sql .= ' AND ps_product.date_add >= "' . pSQL($newProductDate) . '"';
             }
 
+            $sql .= ' GROUP BY ps_product.id_product';
+
             if($query->getSortOrder()){
                 $sortOrder = $query->getSortOrder(); 
                 // pre($sortOrder);
@@ -551,7 +553,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
             }
 
-            $sql .= ' GROUP BY ps_product.id_product';
+
 
             if($query->getResultsPerPage()) {
                 $sql .= ' LIMIT '.$query->getResultsPerPage();
@@ -574,7 +576,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $productsQuery
             );
 
-            // pre($products);
+            // pre(count($products));
             $product_options = [];
 
         if($category == 227 && !($query->getQueryType() == 'new-products')){
@@ -624,6 +626,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     }
                 }
             }  
+
 
             $selected_filter_feature = [];
             $selected_features = null;
@@ -687,9 +690,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 
             }
 
+            // pre($selected_filter_feature);
+
 
             $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN ( 227 )';
             // pre($sql_products_of_category);
+        
 
             if($product_options){
                 if(count($product_options) > 0 ){
@@ -701,6 +707,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // }
 
             $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
+            // pre($products_227);
 
 
             $ids_prods = array();
@@ -904,6 +911,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                   AND id_feature_value IN (" . implode(',', $values) . ")
             ";
         }
+
+        // pre($subqueries);
     
         // Combina as subconsultas usando INTERSECT
         $query = implode(" INTERSECT ", $subqueries);
