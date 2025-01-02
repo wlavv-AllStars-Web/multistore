@@ -50,6 +50,10 @@ body {
   height: 100%;
 }
 
+#manufacturer nav[data-depth="3"] ol li:nth-child(2) {
+  display: flex;
+}
+
 #header .header-nav .blockcart a:hover {
   color: var(--asm-color) !important;
 }
@@ -6024,6 +6028,13 @@ select.form-control:not([size]):not([multiple]){
 
 .flip-card-back > div {
  height: 100%;
+ display: flex !important;
+ flex-direction: column;
+ padding: 10px !important;
+}
+
+.flip-card-back > div > div:nth-child(1) { 
+  padding: 10px 0 !important;
 }
 
 .flip-card-back {
