@@ -237,33 +237,41 @@
         window.location.href = new_request;
     }
 
-    function removeFilterFeatures( option ){
+    function removeFilterFeatures(option) {
+        const { search } = window.location;
 
-        const { host, hostname, href, origin, pathname, port, protocol, search } = window.location;
-        
-        current_request = window.location.href;
-        new_request = window.location.href;
-        
-        if( search.includes(option) ){
-            
-            if( search.includes('=' + option) ){   
-                if( search.includes('=' + option + '|') ){
-                    new_request = current_request.replace( option + '|', '');
-                }else{	              
-                    new_request = current_request.replace( '?filters=' + option, '');
+        // Split the option into individual values if it contains commas
+        const options = option.includes(',') ? option.split(',') : [option];
+
+        let new_request = window.location.href;
+
+        options.forEach((opt) => {
+            if (search.includes(opt)) {
+                if (search.includes('=' + opt)) {
+                    if (search.includes('=' + opt + '|')) {
+                        // Remove the option when it's followed by a pipe ('|')
+                        new_request = new_request.replace(opt + '|', '');
+                    } else {
+                        // Remove the option when it's a single filter
+                        new_request = new_request.replace('?filters=' + opt, '');
+                    }
+                } else {
+                    if (search.includes(opt + '|')) {
+                        // Remove the option when it's part of a chain
+                        new_request = new_request.replace(opt + '|', '');
+                    } else {
+                        // Remove the option when it's at the end
+                        new_request = new_request.replace('|' + opt, '');
+                    }
                 }
-            }else{	   
-                if( search.includes(option + '|') ){
-                    new_request = current_request.replace( option + '|', '');
-                }else{	                
-                    new_request = current_request.replace( '|' + option, '');
-                }
+            } else {
+                // Remove the option when it's part of the filters query
+                new_request = new_request.replace('filters=' + opt + '&', '');
             }
-            
-        }else{	      
-            new_request = current_request.replace( 'filters=' + option + '&', '');
-        }
-        
+        });
+
+        // Update the URL
         window.location.href = new_request;
     }
+
 </script>

@@ -735,20 +735,29 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             if ($selected_features) {
                 foreach ($features as &$feature) {
+                    // Initialize combined_combinations for this feature
+                    $feature['combined_combinations'] = '';
+            
                     foreach ($feature['values'] as &$value) {
                         $value['checked'] = 0; // Default checked value
-            
+                        
                         // Check if the feature exists in selected features
                         if (isset($selected_features[$feature['name']])) {
+                            $combinations = [];
                             foreach ($selected_features[$feature['name']] as $selected) {
                                 $combination = "{$value['id_feature']}:{$value['id_feature_value']}";
             
                                 // Set checked if combination matches
                                 if ($combination === $selected['combination']) {
                                     $value['checked'] = 1;
-                                    break; // Exit loop early since we found a match
                                 }
+            
+                                // Collect combination for this feature
+                                $combinations[] = $selected['combination'];
                             }
+            
+                            // Assign all combinations to the feature
+                            $feature['combined_combinations'] = implode(',', $combinations);
                         }
             
                         // Additional processing for "Brand" feature
@@ -765,6 +774,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
                 unset($feature, $value); // Break reference
             }
+            
+            
             
             // pre($features);
             

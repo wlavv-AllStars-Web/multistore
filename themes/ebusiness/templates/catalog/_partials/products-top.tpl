@@ -50,8 +50,10 @@
               {assign var="is_selected" value=true}
             {/if}
               
-            {if $is_selected}
-            <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" onclick="removeFilterFeatures('{$selected.combination}')">cancel</i>
+            {if $feature.combined_combinations}
+                {* <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" onclick="removeFilterFeatures('{$selected_features.combination}')">cancel</i> *}
+                <i class="material-icons btn-remove-filter-wheel" aria-hidden="true" style="color: #333; margin-right: 5px;" 
+               onclick="removeFilterFeatures('{$feature.combined_combinations}')">cancel</i>
             {/if}
 
             <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
@@ -78,13 +80,13 @@
 
           </div>
           {* {if !$is_selected} *}
+          {* <pre>{$feature['values']|print_r}</pre> *}
           <div class="dropdown-menu">
             {foreach $feature['values'] AS $value}
-              {* <pre>{$value|print_r}</pre> *}
               {* {if !in_array($value['id_feature_value'], $selected_values)} *}
-                <div class="form-group form-check" style="margin-bottom: 0;padding: .5rem 2rem;">
+                <div class="form-group form-check" style="margin-bottom: 0;padding: .5rem 2rem;display:flex;align-items: end;">
                   <input type="checkbox" class="form-check-input" id="{$feature['name']}_{$value['id_feature_value']}"
-                    {if $value['checked'] == 1} checked="checked" onclick="removeFilterFeatures('{$value['id_feature']}:{$value['id_feature_value']}')" 
+                    {if $value['checked'] == 1} checked="checked" onclick="removeFilterFeatures('{$value['id_feature']}:{$value['value']}')" 
                     {else} onclick="filterFeatures({$value['id_feature']},{$value['id_feature_value']})" {/if}>
                   <label class="form-check-label" for="{$feature['name']}_{$value['id_feature_value']}" style="width: 100%;text-align:start;">{$value['value']}</label>
                 </div>
