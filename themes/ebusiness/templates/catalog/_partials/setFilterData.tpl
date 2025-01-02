@@ -240,38 +240,47 @@
     function removeFilterFeatures(option) {
         const { search } = window.location;
 
-        // Split the option into individual values if it contains commas
         const options = option.includes(',') ? option.split(',') : [option];
 
-        let new_request = window.location.href;
+        let current_request = window.location.href;
+        let new_request = current_request;
 
         options.forEach((opt) => {
+
+            // If the filter exists in the search query
             if (search.includes(opt)) {
+
+
+                // If the filter has an '=' sign, i.e., key-value pair
                 if (search.includes('=' + opt)) {
                     if (search.includes('=' + opt + '|')) {
-                        // Remove the option when it's followed by a pipe ('|')
-                        new_request = new_request.replace(opt + '|', '');
+                        // Remove the filter when it is part of a chained query parameter
+                        new_request = current_request.replace(opt + '|', '');
                     } else {
-                        // Remove the option when it's a single filter
-                        new_request = new_request.replace('?filters=' + opt, '');
+                        // Remove the filter when it's directly in the filters
+                        new_request = current_request.replace('?filters=' + opt, '');
                     }
                 } else {
+                    // If the filter is part of a larger string like 'filters=6:11|5:8'
                     if (search.includes(opt + '|')) {
-                        // Remove the option when it's part of a chain
-                        new_request = new_request.replace(opt + '|', '');
+                        new_request = current_request.replace(opt + '|', '');
                     } else {
-                        // Remove the option when it's at the end
-                        new_request = new_request.replace('|' + opt, '');
+                        new_request = current_request.replace('|' + opt, '');
                     }
                 }
             } else {
-                // Remove the option when it's part of the filters query
-                new_request = new_request.replace('filters=' + opt + '&', '');
+                // If no filters were found, remove the whole key-value pair
+                new_request = current_request.replace('filters=' + opt + '&', '');
             }
+
+            // Make sure to update `current_request` with the latest `new_request` value
+            current_request = new_request;
         });
 
-        // Update the URL
+        
+        // Optionally update the browser's location if needed
         window.location.href = new_request;
     }
+
 
 </script>
