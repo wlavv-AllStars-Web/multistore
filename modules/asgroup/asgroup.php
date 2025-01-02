@@ -84,6 +84,23 @@ class AsGroup extends Module
             // $this->registerHook('actionGetAdminOrderButtons');
     }
 
+    public function uninstall()
+{
+    // Unregister all hooks
+    return parent::uninstall() &&
+        $this->unregisterHook('actionProductFormBuilderModifier') &&
+        $this->unregisterHook('actionManufacturerFormBuilderModifier') &&
+        $this->unregisterHook('actionProductSave') &&
+        $this->unregisterHook('actionObjectManufacturerUpdateAfter') &&
+        $this->unregisterHook('actionOrdersKpiRowModifier') &&
+        $this->unregisterHook('actionCustomersKpiRowModifier') &&
+        $this->unregisterHook('actionAdminControllerSetMedia') &&
+        $this->unregisterHook('actionOrderGridDefinitionModifier') &&
+        $this->unregisterHook('actionAdminOrdersControllerSaveBefore') &&
+        $this->unregisterHook('actionOrderGridQueryBuilderModifier');
+}
+
+
     public function initContent()
     {
         parent::initContent();
@@ -290,6 +307,17 @@ class AsGroup extends Module
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or difficulty is not set.');
+        }
+
+        if (is_array($productData) && isset($productData['description']['ec_approved'])){
+            $ec_approved = $productData['description']['ec_approved'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'ec_approved' => pSQL($ec_approved),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or ec_approved is not set.');
         }
 
         if (is_array($productData) && isset($productData['description']['disallow_stock'])){
@@ -578,5 +606,6 @@ class AsGroup extends Module
         exit;
         // your action code ....
     }
+
 
 }

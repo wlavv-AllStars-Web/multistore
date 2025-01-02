@@ -58,7 +58,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     ): void {
         $idProduct = $productId->getValue();
 
-        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock
+        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved
         FROM
         `' . _DB_PREFIX_ . 'product` 
         WHERE id_product= '.$idProduct;
@@ -76,6 +76,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $data['hs_code'] = $result['nc'];
         $data['difficulty'] = $result['difficulty'];
         $data['disallow_stock'] = $result['disallow_stock'];
+        $data['ec_approved'] = $result['ec_approved'];
         
         $this->modifyDescriptionTab($data, $productFormBuilder);
     }
@@ -222,6 +223,26 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
             'difficulty',
+            'ec_approved',
+            SwitchType::class,
+            [
+                'choices' => [
+                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+                ],
+                'data' => $data['ec_approved'] ,
+                'placeholder' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'label' => $this->translator->trans('Ec approved',[], 'Admin.Catalog.Feature'),
+                'label_help_box' => $this->translator->trans('Ec approved helper.',[], 'Admin.Catalog.Help'),
+            ]
+        );
+
+        $this->formBuilderModifier->addAfter(
+            $descriptionTabFormBuilder,
+            'ec_approved',
             'wmdeprecated',
             SwitchType::class,
             [
