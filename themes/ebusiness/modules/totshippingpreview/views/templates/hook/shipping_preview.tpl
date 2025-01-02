@@ -632,7 +632,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
     function zone1Change(e) {
 		console.log(e)
         var tot_id_product_attribute = $('#idCombination').val();
-        var zoneSelected = $('#tot_zone_1 option:selected');
+        var zoneSelected = $(e.currentTarget).find('option:selected');
         var totalPrice = 0;
         var quantity = null;
 
