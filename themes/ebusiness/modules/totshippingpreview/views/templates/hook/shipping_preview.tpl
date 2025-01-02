@@ -551,7 +551,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
     }
 
     // Debug: Check if selectors are populated correctly
-    console.log(totShippingSelectors);
+    // console.log(totShippingSelectors);
 
     // Ensure Select2 is loaded before initialization
     if (window.jQuery && $.fn.select2) {
@@ -559,12 +559,12 @@ if (sessionStorage.getItem('scriptExecuted')) {
         totShippingSelectors.forEach(({ element }) => {
             if (element) {
                 initializeSelect2($(element));  // Initialize Select2 on the element
-                console.log("Select2 initialized");
+                // console.log("Select2 initialized");
                 // select2Initialized = true;
             }
         });
     } else {
-        console.error('Select2 is not loaded');
+        // console.error('Select2 is not loaded');
     }
 
     // Initialize Select2 with common options
@@ -578,7 +578,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
         });
 
         element.on('select2:select', function () {
-            console.log("Select2 change event triggered.");
+            // console.log("Select2 change event triggered.");
         });
     }
 
@@ -630,7 +630,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
 	current_controller = "{$current_controller|escape:'htmlall':'UTF-8'}";
 
     function zone1Change(e) {
-		console.log(e)
+		// console.log(e)
         var tot_id_product_attribute = $('#idCombination').val();
         var zoneSelected = $(e.currentTarget).find('option:selected');
         var totalPrice = 0;
@@ -761,7 +761,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
 } else {
     // Set the sessionStorage flag to ensure the script runs only the second time
     sessionStorage.setItem('scriptExecuted', 'true');
-    console.log('Script will run on the second load.');
+    // console.log('Script will run on the second load.');
 }
 // });
 
