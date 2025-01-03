@@ -609,56 +609,7 @@ body {
 
   /* product page */
 
-  /* pack */
-  #product.ap5-pack-page .ap5-pack-product-name{
-    text-align: start;
-    padding: 1rem 0;
-  }
 
-  #product.ap5-pack-page .product-information{
-    display: flex;
-    flex-direction: column;
-  }
-
-  #product.ap5-pack-page .reference-title-pack {
-    color: #333;
-  }
-
-  #product.ap5-pack-page #ap5-buy-container{
-    padding: 1rem 0;
-  }
-
-  #product.ap5-pack-page #ap5-price-container .product-prices{
-    margin-top: 0 !important;
-  }
-
-  .ap5-pack-product-price-table-container .current-price .product-price{
-    font-weight: 600;
-    color: #555;
-    font-size: 1rem;
-  }
-
-  .ap5-pack-product-content .line-separator-pack{
-    border-color: var(--asm-color);
-  }
-
-  .ap5-pack-product-name a{
-    color: #333;
-    font-weight: 600;
-  }
-  .ap5-pack-product-name a:hover{
-    color: var(--asm-color);
-    font-weight: 600;
-  }
-
-  .ap5-attributes .product-variants-item .control-label {
-    padding: 0 .5rem;
-    margin: 0;
-  }
-
-
-
-  /*  */
   .section_tabs_video .tab-pane {
     flex-direction: column;
   }

@@ -19,7 +19,7 @@
 				{/if}
 
 				<div id="ap5-pack-product-{$productPack.id_product_pack}"
-					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-6 {if $nbPackProducts != 2} col-md-4{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
+					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4{if $nbPackProducts != 2} col-md-6{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
 
 					<div class="ap5-pack-product-content">
 
@@ -42,7 +42,7 @@
 								</a>
 							</h2>
 
-							<div>
+							<div style="display: flex;flex-direction:column;">
 								<span class="reference-title-pack">SKU:</span>
 								<span class="reference-value-pack-product">{$productPack.presentation.reference_to_display}</span>
 
