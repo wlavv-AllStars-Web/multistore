@@ -807,7 +807,10 @@ class TotShippingPreview extends Module
             $result_id = Db::getInstance()->getValue($sql);
 
             $shipping_preview = new ShippingPreview($result_id);
-
+            if (!$shipping_preview || !$result_id) {
+                // Add error handling if needed
+                return;
+            }
             // print_r($shipping_preview,1);
             // exit;
 
@@ -829,6 +832,10 @@ class TotShippingPreview extends Module
                         (version_compare(_PS_VERSION_, '1.5', '>') ? Carrier::ALL_CARRIERS : 5)
                     );
                 }
+
+                // echo '<pre>'.print_r($carriers,1).'</pre>';
+                // exit;
+
             } else {
                 $carriers = Carrier::getCarriers(
                     $this->context->language->id,
@@ -899,6 +906,9 @@ class TotShippingPreview extends Module
 
                 $carrier_zones = $carrier_obj->getZones();
 
+                // echo '<pre>'.print_r($carrier_zones,1).'</pre>'; 
+                // exit;
+
                 $zone_ids = array();
 
                 foreach ($carrier_zones as $carrier_zone) {
@@ -937,15 +947,18 @@ class TotShippingPreview extends Module
             $max_days_nb = $maxdays + $tot_product_delay;
 
             if ($this->context->language->id == Configuration::get('PS_LANG_DEFAULT')) {
-                $delivery_country = $shipping_preview->delivery_country[$this->context->language->id];
-                
-                $origin_country = $shipping_preview->origin_country[$this->context->language->id];
+                $delivery_country = $shipping_preview->delivery_country[$this->context->language->id] ?? null;
+                $origin_country = $shipping_preview->origin_country[$this->context->language->id] ?? null;
 
             } else {
                 $delivery_country = ($shipping_preview->delivery_country[$this->context->language->id] != '' ? $shipping_preview->delivery_country[$this->context->language->id] : $shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')]);
                 
                 $origin_country = ($shipping_preview->origin_country[$this->context->language->id] != '' ? $shipping_preview->origin_country[$this->context->language->id] : $shipping_preview->origin_country[Configuration::get('PS_LANG_DEFAULT')]);
             }
+
+
+            // $isMobile = isset($params['mobile']) ? (bool)$params['mobile'] : 0;
+
 
             $this->smarty->assign(array(
                 'ajax_url'                    => $this->_path.'views/js/ajax/getshippingfee.php',
@@ -967,6 +980,7 @@ class TotShippingPreview extends Module
                 'min_days_nb' => $min_days_nb,
                 'max_days_nb' => $max_days_nb,
                 'only_min' => $only_min,
+                // 'mobile' => $isMobile,
             ));
 
             // Customization config values
