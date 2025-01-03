@@ -719,15 +719,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
 
-
+            // pre($features_category);
 
             foreach($features_category AS $f_category){
 
-                $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
-                WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
-                GROUP BY ps_feature_value_lang.id_feature_value ORDER BY ps_feature_value.id_feature');
-                // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' LEFT JOIN ps_feature_value ON ps_feature_value.id_feature_value = ps_feature_product.id_feature_value WHERE ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value');
-
+                // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
+                // WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
+                // GROUP BY ps_feature_value_lang.id_feature_value ORDER BY ps_feature_value.id_feature');
+                $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' LEFT JOIN ps_feature_value ON ps_feature_value.id_feature_value = ps_feature_product.id_feature_value WHERE ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value');
+                // pre($features_value);
 
                 $features[] = [
                     'id_feature' => $f_category['id_feature'],
