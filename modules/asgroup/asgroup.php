@@ -287,6 +287,17 @@ class AsGroup extends Module
             error_log('Product data is not valid or wmdeprecated is not set.');
         }
 
+        if (is_array($productData) && isset($productData['details']['housing'])){
+            $housing = $productData['details']['housing'];
+            $idProduct = $params['id_product'];
+
+            Db::getInstance()->update('product', [
+                'housing' => pSQL($housing),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or housing is not set.');
+        }
+
         if (is_array($productData) && isset($productData['description']['not_to_order'])){
             $not_to_order = $productData['description']['not_to_order'];
             $idProduct = $params['id_product'];
@@ -329,6 +340,19 @@ class AsGroup extends Module
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or disallow_stock is not set.');
+        }
+
+        // pre($productData);
+
+        if (is_array($productData) && isset($productData['shipping']['dimensions']['weight'])){
+            $weight = $productData['shipping']['dimensions']['weight'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'weight' => pSQL($weight),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or weight is not set.');
         }
     }
 

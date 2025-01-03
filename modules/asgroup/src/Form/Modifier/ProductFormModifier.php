@@ -58,7 +58,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     ): void {
         $idProduct = $productId->getValue();
 
-        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved
+        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing
         FROM
         `' . _DB_PREFIX_ . 'product` 
         WHERE id_product= '.$idProduct;
@@ -77,6 +77,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $data['difficulty'] = $result['difficulty'];
         $data['disallow_stock'] = $result['disallow_stock'];
         $data['ec_approved'] = $result['ec_approved'];
+        $data['housing'] = $result['housing'];
         
         $this->modifyDescriptionTab($data, $productFormBuilder);
     }
@@ -320,6 +321,31 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
                     'class' => 'btn-secondary print_ean_btn ml-auto',
                     'onclick' => 'generateEan()'
                 ],
+            ]
+        );
+
+
+        $this->formBuilderModifier->addAfter(
+            $detailsTabFormBuilder,
+            'references',
+            'housing',
+            TextType::class,
+            [
+                // you can remove the label if you dont need it by passing 'label' => false
+                'label' => $this->translator->trans('Housing', [], 'Modules.ASGroup.Admin'),
+                // customize label by any html attribute
+                'label_attr' => [
+                    'title' => 'h2',
+                    'class' => 'text-info',
+                ],
+                'attr' => [
+                    'placeholder' => $this->translator->trans('Housing', [], 'Modules.ASGroup.Admin'),
+                    'class' => 'col-md-3',
+                ],
+                // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
+                'data' => $data['housing'] ,
+                'empty_data' => '',
+                'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
             ]
         );
 
