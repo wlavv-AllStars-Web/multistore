@@ -50,7 +50,6 @@
 							</div>
 						{/block}
 
-						{debug}
 						
 						{* <div class="ap5-pack-images-container">
 							{block name='ap5_product_images'}
