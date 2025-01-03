@@ -199,7 +199,7 @@
           <div class="dropdown-menu">
           {foreach from=$categories[2] item=categoryLevel1}
             {foreach from=$categoryLevel1 item=category}
-              {if $category['id_category'] != 16}
+              {if $category['id_category'] != 7}
               <div 
                 id="category_element_{$category['id_category']}" 
                 onclick="setCategory({$category['id_category']})"
