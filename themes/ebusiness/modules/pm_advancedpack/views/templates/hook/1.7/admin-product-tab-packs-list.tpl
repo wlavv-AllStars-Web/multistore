@@ -41,7 +41,7 @@
 								{/foreach}
 									</ul>
 								</div>
-								<hr />
+								<hr class="line-separator-pack"  />
 								<div class="ap5-pack-price-container text-center">
 									{if $packPrice != $packOldPrice}
 										<strong class="ap5-pack-price">{convertPrice price=$packPrice}</strong> - <s class="ap5-pack-old-price">{convertPrice price=$packOldPrice}</s>

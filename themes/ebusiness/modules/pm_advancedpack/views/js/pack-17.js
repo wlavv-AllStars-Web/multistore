@@ -267,9 +267,9 @@ var ap5Plugin = {
 		ap5Plugin.removeLayerLoading(pmAjaxSpinnerTarget);
 		// Create the spinner here
 		$(pmAjaxSpinnerTarget).addClass('ap5-loader-blur').append('<div class="ap5-loader"></div>');
-		$(pmAjaxSpinnerTarget).find('.ap5-loader').each(function() {
-			$(this).css('top', $(pmAjaxSpinnerTarget).outerHeight()/2 - $(this).outerHeight()*1.4);
-		});
+		// $(pmAjaxSpinnerTarget).find('.ap5-loader').each(function() {
+		// 	$(this).css('top', $(pmAjaxSpinnerTarget).outerHeight()/2 - $(this).outerHeight()*1.4);
+		// });
 		return pmAjaxSpinnerTarget;
 	},
 
@@ -286,7 +286,7 @@ var ap5Plugin = {
 			return;
 		}
 		ap5Plugin.log('[ap5Plugin.updatePackTableFromAnchor] Call');
-		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#ap5-product-list'));
+		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
 		$.ajax({
 			type: 'POST',
 			url: ap5_updatePackURL,
@@ -329,7 +329,7 @@ var ap5Plugin = {
 			productPackQuantityList.push(productPackQuantity);
 		});
 
-		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#ap5-product-list'));
+		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
 		$.ajax({
 			type: 'POST',
 			url: ap5_updatePackURL,
@@ -397,7 +397,7 @@ var ap5Plugin = {
 	changeBuyBlock: function(ap5_buyBlockURL, ap5_buyBlockPackPriceContainer) {
 		ap5Plugin.log('[ap5Plugin.changeBuyBlock] Call');
 
-		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#buy_block'));
+		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
 
 		$(document).trigger('ap5-Before-UpdateBuyBlock');
 

@@ -7,9 +7,9 @@
 {/if}
 {assign var='packReductionAmount' value=$productPriceWithoutReduction-$productPrice}
 
-<div id="ap5-buy-block-container" class="{if empty($packDisplayModeSimple)}{if empty($from_quickview)}col-xs-12 col-12 col-sm-4 col-md-3{else}col-xs-12 col-12{/if}{/if}{if $packDeviceIsTablet || $packDeviceIsMobile} ap5-is-mobile{/if}{if (isset($productsPackErrors) && count($productsPackErrors)) || (isset($productsPackFatalErrors) && count($productsPackFatalErrors))} ap5-buy-block-with-errors{/if}">
+<div id="ap5-buy-block-container" class="{if empty($packDisplayModeSimple)}{if empty($from_quickview)}col-xs-12 col-sm-12 col-md-12 d-flex justify-content-center px-0{else}col-xs-12 {/if}{/if}{if $packDeviceIsTablet || $packDeviceIsMobile} ap5-is-mobile{/if}{if (isset($productsPackErrors) && count($productsPackErrors)) || (isset($productsPackFatalErrors) && count($productsPackFatalErrors))} ap5-buy-block-with-errors{/if}">
     {if $product.show_price && !$configuration.is_catalog}
-        <div class="product-actions">
+        <div class="product-actions" style="display: flex;justify-content:center;width:100%;">
             <!-- buy action and errors message -->
             <div id="ap5-buy-container" {if (!$product.allow_oosp && $product.quantity <= 0) || !$product.available_for_order || $configuration.is_catalog} class="unvisible"{/if}>
                 {if isset($productsPackFatalErrors) && count($productsPackFatalErrors)}
@@ -53,7 +53,7 @@
                                     {include file='catalog/_partials/product-add-to-cart.tpl'}
                                 </div>
                             {/block}
-                            {include file='catalog/_partials/product-additional-info.tpl'}
+                            {* {include file='catalog/_partials/product-additional-info.tpl'} *}
                         {/if}
                     </form>
                 {/if}

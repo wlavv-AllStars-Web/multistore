@@ -41,7 +41,7 @@
 									{$productPack.presentation.description_short nofilter}
 								{/if}
 								{if $packShowProductsLongDescription && $productPack.presentation.description}
-									{if $packShowProductsShortDescription && $productPack.presentation.description_short}<hr />{/if}
+									{if $packShowProductsShortDescription && $productPack.presentation.description_short}<hr class="line-separator-pack"  />{/if}
 									{$productPack.presentation.description nofilter}
 								{/if}
 							</div>
@@ -67,12 +67,12 @@
 					{/if}
 				{/block}
 
-				{block name='ap5_products_reviews'}
+				{* {block name='ap5_products_reviews'}
 					{if isset($productPack.gsrReviewsList) && !empty($productPack.gsrReviewsList)}
 					<!-- Reviews from gsnippetsreviews -->
 					<div class="col-xs-12 col-12 col-sm-12 col-md-12 clear ap5-gsnippetsreviews-reviews-container">{$productPack.gsrReviewsList nofilter}</div>
 					{/if}
-				{/block}
+				{/block}  *}
 
 				{block name='ap5_products_customization'}
 					{if $productPack.presentation.customizable && sizeof($productPack.customization.customizationFields)}

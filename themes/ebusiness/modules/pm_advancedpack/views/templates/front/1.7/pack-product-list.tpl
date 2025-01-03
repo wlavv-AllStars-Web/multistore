@@ -92,7 +92,7 @@
 					{/block}
 					</div>
 					{if $productPack.presentation.show_price && $packShowProductsPrice && !$configuration.is_catalog}
-						{if $packShowProductsThumbnails && $packMaxImagesPerProduct > 1}<hr />{/if}
+						{if $packShowProductsThumbnails && $packMaxImagesPerProduct > 1}<hr class="line-separator-pack"  />{/if}
 						<div class="ap5-pack-product-price-table-container product-prices {if $productPack.reduction_amount <= 0} ap5-no-reduction{/if}">
 							{if empty($productsPackForceHideInfoList[$productPack.id_product_pack])}
 							<div class="ap5-pack-product-price-table-cell {if $productPack.reduction_amount > 0} has-discount{/if}">
@@ -170,7 +170,7 @@
 							{/if}
 						</div>
 						{/if}
-					<hr />
+					<hr class="line-separator-pack"  />
 					{* Let's display error list *}
 					{if isset($productsPackErrors[$productPack.id_product_pack]) || isset($productsPackFatalErrors[$productPack.id_product_pack])}
 					{if isset($productsPackFatalErrors[$productPack.id_product_pack])}<div class="ap5-overlay"></div>{/if}

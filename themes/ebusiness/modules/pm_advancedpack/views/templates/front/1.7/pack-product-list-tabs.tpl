@@ -41,7 +41,7 @@
 									{$productPack.presentation.description_short nofilter}
 								{/if}
 								{if $packShowProductsLongDescription && $productPack.presentation.description}
-									{if $packShowProductsShortDescription && $productPack.presentation.description_short}<hr />{/if}
+									{if $packShowProductsShortDescription && $productPack.presentation.description_short}<hr class="line-separator-pack"  />{/if}
 									{$productPack.presentation.description nofilter}
 								{/if}
 							</div>
