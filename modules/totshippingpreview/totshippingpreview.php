@@ -807,10 +807,7 @@ class TotShippingPreview extends Module
             $result_id = Db::getInstance()->getValue($sql);
 
             $shipping_preview = new ShippingPreview($result_id);
-            if (!$shipping_preview || !$result_id) {
-                // Add error handling if needed
-                return;
-            }
+            
             // print_r($shipping_preview,1);
             // exit;
 
