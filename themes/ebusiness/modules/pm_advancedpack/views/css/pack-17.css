@@ -26,7 +26,14 @@
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
-#ap5-product-list.card { flex-flow: row wrap; }
+#ap5-product-list.card { 
+	flex-flow: row wrap; 
+	padding: 0;
+}
+
+#ap5-product-list.card .ap5-pack-product:last-child{ 
+	margin-bottom: 1rem;
+}
 
 .ap5-on-product-page .ap5-pack-product-title {
 }
@@ -89,7 +96,7 @@
 
 	/* Product block */
 	.ap5-pack-product {
-		padding: 15px;
+		padding: 0;
 	}
 	.ap5-on-product-page .ap5-pack-product {
 		padding: 5px 0px;
@@ -97,6 +104,16 @@
 
 	.ap5-pack-product-content {
 		position: relative;
+		display: flex;
+		height: unset !important;
+		max-height: 100px;
+
+	}
+
+	.title-product-list-ap5 {
+		font-size: 1rem;
+		font-weight: 600;
+		color: #fff;
 	}
 
 	.ap5-pack-product.ap5-no-attributes hr:last-child {
@@ -165,9 +182,13 @@
 		/* /Product Title */
 
 		/* Product Image */
-		.ap5-pack-product-image {}
+		.ap5-pack-product-image {
+
+		}
 		.ap5-pack-product-image a {}
-		.ap5-pack-product-image a img {}
+		.ap5-pack-product-image a img {
+			max-width: 100px !important;
+		}
 		/* /Product Image */
 
 		/* Product Thumbnails */
@@ -291,7 +312,7 @@
 		/* Product Prices */
 		.ap5-pack-product-price-table-container {
 			display: table;
-			width: 100%;
+			width: fit-content;
 		}
 		.ap5-pack-product-price-table-container.ap5-no-reduction p {
 			margin-bottom: 0;
@@ -461,6 +482,11 @@
 	  .ap5-pack-product-name a:hover{
 		color: var(--asm-color);
 		font-weight: 600;
+	  }
+
+	  .ap5-attributes .product-variants-item {
+		flex-direction: column;
+		align-items: flex-start;
 	  }
 	
 	  .ap5-attributes .product-variants-item .control-label {

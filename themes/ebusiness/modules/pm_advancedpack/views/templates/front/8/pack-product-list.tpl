@@ -1,6 +1,14 @@
 		<!-- pack product list-->
+
 		<div id="ap5-product-list"
 			class="card ap5-product-list {if empty($from_quickview)}col-xs-12 col-12 col-sm-8 col-md-12{else}col-xs-12 col-12{/if}{if $packAvailableQuantity <= 0} ap5-pack-oos{/if}{if $packDeviceIsTablet || $packDeviceIsMobile} ap5-is-mobile{/if}">
+			<div class="col-lg-12 px-0" style="background: #444;padding-block: .25rem;">
+				<div class="col-lg-2 title-product-list-ap5"></div>
+				<div class="col-lg-3 title-product-list-ap5 px-0">Product</div>
+				<div class="col-lg-2 title-product-list-ap5 px-0">SKU</div>
+				<div class="col-lg-3 title-product-list-ap5">Attributes</div>
+				<div class="col-lg-2 title-product-list-ap5">Price</div>
+			</div>
 			{assign var=nbPackProducts value=count($productsPack)}
 			{foreach from=$productsPack item=productPack}
 				{if !empty($productPack.image.id_image)}
@@ -19,7 +27,7 @@
 				{/if}
 
 				<div id="ap5-pack-product-{$productPack.id_product_pack}"
-					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4{if $nbPackProducts != 2} col-md-6{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
+					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-12{if $nbPackProducts != 2} col-md-6{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
 
 					<div class="ap5-pack-product-content">
 
@@ -34,8 +42,21 @@
 							{/if}
 						{/block}
 
+						<div class="ap5-pack-product-image col-lg-2" style="max-width: 150px;margin:auto;">
+							<a class="no-print" {if empty($from_quickview)}data-toggle="modal"
+								data-target="#ap5-pack-product-{$productPack.id_product_pack}-modal #product-modal" {/if}
+								title="{$productPack.presentation.name}"
+								href="{$pmlink->getImageLink($imageRewrite, $imageIds, $imageFormatProductZoom)}">
+								<img class="img-fluid d-block mx-auto"
+									id="thumb_{$productPack.image.id_image|default:0|intval}"
+									src="{$pmlink->getImageLink($imageRewrite, $imageIds, $imageFormatProductCover)}"
+									alt="{$imageTitle}" title="{$imageTitle}" height="{$imageFormatProductCoverHeight}"
+									width="{$imageFormatProductCoverWidth}" itemprop="image" />
+							</a>
+						</div>
+
 						{block name='ap5_product_name'}
-							<h2 class="ap5-pack-product-name {if $productPack.quantity > 1}title-left{else}title-center{/if}">
+							<h2 class="ap5-pack-product-name col-lg-3 {if $productPack.quantity > 1}title-left{else}title-center{/if}">
 								<a target="_blank" href="{$productPack.presentation.url}" title="{$productPack.presentation.name}"
 									itemprop="url">
 									{$productPack.presentation.name}
@@ -44,10 +65,10 @@
 
 							{* if image *}
 
-							<div class="ap5-pack-product-image" style="max-width: 150px;margin:auto;">
+							{* <div class="ap5-pack-product-image" style="max-width: 150px;margin:auto;">
 								<a class="no-print" {if empty($from_quickview)}data-toggle="modal"
 									data-target="#ap5-pack-product-{$productPack.id_product_pack}-modal #product-modal" {/if}
-									title="{$imageTitle}"
+									title="{$productPack.presentation.name}"
 									href="{$pmlink->getImageLink($imageRewrite, $imageIds, $imageFormatProductZoom)}">
 									<img class="img-fluid d-block mx-auto"
 										id="thumb_{$productPack.image.id_image|default:0|intval}"
@@ -55,15 +76,13 @@
 										alt="{$imageTitle}" title="{$imageTitle}" height="{$imageFormatProductCoverHeight}"
 										width="{$imageFormatProductCoverWidth}" itemprop="image" />
 								</a>
-							</div>
+							</div> *}
 
 							{*  *}
 
-							<div style="display: flex;flex-direction:column;">
-								<span class="reference-title-pack">SKU:</span>
+							<div class="{if !empty($productPack.attributes.groups)}col-lg-2{else}col-lg-5{/if} py-3 px-1" style="display: flex;flex-direction:column;">
+								{* <span class="reference-title-pack">SKU:</span> *}
 								<span class="reference-value-pack-product">{$productPack.presentation.reference_to_display}</span>
-
-								
 							</div>
 						{/block}
 
@@ -148,11 +167,116 @@
 							{/block}
 						</div> *}
 
+						{if !empty($productPack.attributes.groups)}
+						<div class="product-actions col-lg-3">
+							{if $packAllowRemoveProduct && $packShowProductsQuantityWanted}
+								<!-- quantity wanted -->
+								<fieldset id="ap5-quantity-wanted-{$productPack.id_product_pack|intval}"
+									class="attribute_fieldset ap5-attribute-fieldset ap5-quantity-fieldset">
+									<label class="attribute_label"
+										for="quantity_wanted_{$productPack.id_product_pack|intval}">{l s='Quantity' d='Shop.Theme.Catalog'}</label>
+									<div class="attribute_list ap5-attribute-list ap5-quantity-input-container">
+										<input type="text" name="qty_{$productPack.id_product_pack|intval}"
+											id="quantity_wanted_{$productPack.id_product_pack|intval}"
+											value="{$productPack.quantity|intval}"
+											class="ap5-quantity-wanted input-group form-control"
+											data-id-product-pack="{$productPack.id_product_pack|intval}"
+											data-available-quantity="{$packAvailableQuantityList[$productPack.id_product_pack][$productPack.id_product_attribute]|intval}"
+											{if in_array($productPack.id_product_pack, $packExcludeList)} disabled="disabled" {/if} />
+									</div>
+								</fieldset>
+							{/if}
+							{if !empty($productPack.attributes.groups)}
+								<!-- attributes -->
+								<div class="product-variants ap5-attributes py-3"
+									data-id-product-pack="{$productPack.id_product_pack|intval}">
+									{foreach from=$productPack.attributes.groups key=id_attribute_group item=group}
+										{if $group.attributes|@count}
+											{foreach from=$group.attributes key=id_attribute item=group_attribute}
+												{* Force the user-selected attribute to be the default one *}
+												{if isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])}
+													{$group['default'] = $id_attribute}
+												{/if}
+											{/foreach}
+											<div id="ap5-product-variants-item-{$id_attribute_group|intval}"
+												class="clearfix product-variants-item ap5-attribute-fieldset my-0">
+												<span class="control-label">{$group.name}</span>
+												{assign var="groupName" value="group_`$productPack.id_product_pack`_$id_attribute_group"}
+												<div class="attribute_list ap5-attribute-list">
+													{if ($group.group_type == 'select')}
+														<select name="{$groupName}" id="group_{$id_attribute_group|intval}"
+															class="ap5-attribute-select no-print form-control form-control-select"
+															{if in_array($productPack.id_product_pack, $packExcludeList)} disabled="disabled"
+															{/if}>
+															{foreach from=$group.attributes key=id_attribute item=group_attribute}
+																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
+																<option value="{$id_attribute|intval}" {if $ap5_isCurrentSelectedIdAttribute}
+																	selected="selected" {/if} title="{$group_attribute.name}">{$group_attribute.name}
+																</option>
+															{/foreach}
+														</select>
+													{elseif ($group.group_type == 'color')}
+														<ul
+															class="ap5-color-to-pick-list ap5-color-to-pick-list-{$productPack.id_product_pack|intval}-{$id_attribute_group|intval}">
+															{assign var="default_colorpicker" value=""}
+															{foreach from=$group.attributes key=id_attribute item=group_attribute}
+																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
+																<li
+																	class="float-left float-xs-left pull-xs-left input-container{if $ap5_isCurrentSelectedIdAttribute} selected{/if}">
+																	<label aria-label="{$group_attribute.name|escape:'html':'UTF-8'}">
+																		<a href="{$productPack.presentation.url}"
+																			data-id-product-pack="{$productPack.id_product_pack|intval}"
+																			data-id-attribute-group="{$id_attribute_group|intval}"
+																			data-id-attribute="{$id_attribute|intval}"
+																			id="color_{$id_attribute|intval}"
+																			name="{$productPack.attributes.colors.$id_attribute.name}"
+																			class="ap5-color color color_pick{if $ap5_isCurrentSelectedIdAttribute} selected{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} disabled{/if}"
+																			style="background: {$productPack.attributes.colors.$id_attribute.value};"
+																			title="{$productPack.attributes.colors.$id_attribute.name}">
+																			{if $productPack.attributes.colors.$id_attribute.image_exists}
+																				<img src="{$urls.img_col_url}{$id_attribute|intval}.jpg"
+																					alt="{$productPack.attributes.colors.$id_attribute.name}" />
+																			{/if}
+																		</a>
+																	</label>
+																</li>
+																{if $ap5_isCurrentSelectedIdAttribute}
+																	{$default_colorpicker = $id_attribute}
+																{/if}
+															{/foreach}
+														</ul>
+														<input type="hidden"
+															class="color_pick_hidden_{$productPack.id_product_pack|intval}_{$id_attribute_group|intval}"
+															name="{$groupName}" value="{$default_colorpicker|intval}" />
+													{elseif ($group.group_type == 'radio')}
+														<ul>
+															{foreach from=$group.attributes key=id_attribute item=group_attribute}
+																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
+																<li class="input-container float-left float-xs-left pull-xs-left">
+																	<input type="radio" class="input-radio ap5-attribute-radio" name="{$groupName}"
+																		value="{$id_attribute}" {if $ap5_isCurrentSelectedIdAttribute}
+																			checked="checked"
+																			{/if}{if in_array($productPack.id_product_pack, $packExcludeList)}
+																		disabled="disabled" {/if} />
+																	<span class="radio-label">{$group_attribute.name}</span>
+																</li>
+															{/foreach}
+														</ul>
+													{/if}
+												</div> <!-- end attribute_list -->
+											</div>
+										{/if}
+									{/foreach}
+								</div>
+							{/if}
+						</div>
+						{/if}
+
 						{if $productPack.presentation.show_price && $packShowProductsPrice && !$configuration.is_catalog}
 							{* {if $packShowProductsThumbnails && $packMaxImagesPerProduct > 1}
 							<hr class="line-separator-pack" />{/if} *}
 							<div
-								class="ap5-pack-product-price-table-container product-prices {if $productPack.reduction_amount <= 0} ap5-no-reduction{/if}">
+								class="ap5-pack-product-price-table-container product-prices col-lg-2 mt-0{if $productPack.reduction_amount <= 0} ap5-no-reduction{/if}">
 								{if empty($productsPackForceHideInfoList[$productPack.id_product_pack])}
 									<div
 										class="ap5-pack-product-price-table-cell {if $productPack.reduction_amount > 0} has-discount{/if}">
@@ -231,7 +355,7 @@
 								{/if}
 							</div>
 						{/if}
-						<hr class="line-separator-pack"  />
+						{* <hr class="line-separator-pack"  /> *}
 						{* Let's display error list *}
 						{if isset($productsPackErrors[$productPack.id_product_pack]) || isset($productsPackFatalErrors[$productPack.id_product_pack])}
 							{if isset($productsPackFatalErrors[$productPack.id_product_pack])}<div class="ap5-overlay"></div>{/if}
@@ -251,108 +375,7 @@
 								</ol>
 							</div>
 						{/if}
-						<div class="product-actions">
-							{if $packAllowRemoveProduct && $packShowProductsQuantityWanted}
-								<!-- quantity wanted -->
-								<fieldset id="ap5-quantity-wanted-{$productPack.id_product_pack|intval}"
-									class="attribute_fieldset ap5-attribute-fieldset ap5-quantity-fieldset">
-									<label class="attribute_label"
-										for="quantity_wanted_{$productPack.id_product_pack|intval}">{l s='Quantity' d='Shop.Theme.Catalog'}</label>
-									<div class="attribute_list ap5-attribute-list ap5-quantity-input-container">
-										<input type="text" name="qty_{$productPack.id_product_pack|intval}"
-											id="quantity_wanted_{$productPack.id_product_pack|intval}"
-											value="{$productPack.quantity|intval}"
-											class="ap5-quantity-wanted input-group form-control"
-											data-id-product-pack="{$productPack.id_product_pack|intval}"
-											data-available-quantity="{$packAvailableQuantityList[$productPack.id_product_pack][$productPack.id_product_attribute]|intval}"
-											{if in_array($productPack.id_product_pack, $packExcludeList)} disabled="disabled" {/if} />
-									</div>
-								</fieldset>
-							{/if}
-							{if !empty($productPack.attributes.groups)}
-								<!-- attributes -->
-								<div class="product-variants ap5-attributes"
-									data-id-product-pack="{$productPack.id_product_pack|intval}">
-									{foreach from=$productPack.attributes.groups key=id_attribute_group item=group}
-										{if $group.attributes|@count}
-											{foreach from=$group.attributes key=id_attribute item=group_attribute}
-												{* Force the user-selected attribute to be the default one *}
-												{if isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])}
-													{$group['default'] = $id_attribute}
-												{/if}
-											{/foreach}
-											<div id="ap5-product-variants-item-{$id_attribute_group|intval}"
-												class="clearfix product-variants-item ap5-attribute-fieldset">
-												<span class="control-label">{$group.name}</span>
-												{assign var="groupName" value="group_`$productPack.id_product_pack`_$id_attribute_group"}
-												<div class="attribute_list ap5-attribute-list">
-													{if ($group.group_type == 'select')}
-														<select name="{$groupName}" id="group_{$id_attribute_group|intval}"
-															class="ap5-attribute-select no-print form-control form-control-select"
-															{if in_array($productPack.id_product_pack, $packExcludeList)} disabled="disabled"
-															{/if}>
-															{foreach from=$group.attributes key=id_attribute item=group_attribute}
-																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
-																<option value="{$id_attribute|intval}" {if $ap5_isCurrentSelectedIdAttribute}
-																	selected="selected" {/if} title="{$group_attribute.name}">{$group_attribute.name}
-																</option>
-															{/foreach}
-														</select>
-													{elseif ($group.group_type == 'color')}
-														<ul
-															class="ap5-color-to-pick-list ap5-color-to-pick-list-{$productPack.id_product_pack|intval}-{$id_attribute_group|intval}">
-															{assign var="default_colorpicker" value=""}
-															{foreach from=$group.attributes key=id_attribute item=group_attribute}
-																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
-																<li
-																	class="float-left float-xs-left pull-xs-left input-container{if $ap5_isCurrentSelectedIdAttribute} selected{/if}">
-																	<label aria-label="{$group_attribute.name|escape:'html':'UTF-8'}">
-																		<a href="{$productPack.presentation.url}"
-																			data-id-product-pack="{$productPack.id_product_pack|intval}"
-																			data-id-attribute-group="{$id_attribute_group|intval}"
-																			data-id-attribute="{$id_attribute|intval}"
-																			id="color_{$id_attribute|intval}"
-																			name="{$productPack.attributes.colors.$id_attribute.name}"
-																			class="ap5-color color color_pick{if $ap5_isCurrentSelectedIdAttribute} selected{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} disabled{/if}"
-																			style="background: {$productPack.attributes.colors.$id_attribute.value};"
-																			title="{$productPack.attributes.colors.$id_attribute.name}">
-																			{if $productPack.attributes.colors.$id_attribute.image_exists}
-																				<img src="{$urls.img_col_url}{$id_attribute|intval}.jpg"
-																					alt="{$productPack.attributes.colors.$id_attribute.name}" />
-																			{/if}
-																		</a>
-																	</label>
-																</li>
-																{if $ap5_isCurrentSelectedIdAttribute}
-																	{$default_colorpicker = $id_attribute}
-																{/if}
-															{/foreach}
-														</ul>
-														<input type="hidden"
-															class="color_pick_hidden_{$productPack.id_product_pack|intval}_{$id_attribute_group|intval}"
-															name="{$groupName}" value="{$default_colorpicker|intval}" />
-													{elseif ($group.group_type == 'radio')}
-														<ul>
-															{foreach from=$group.attributes key=id_attribute item=group_attribute}
-																{assign var=ap5_isCurrentSelectedIdAttribute value=((isset($productsPackErrors[$productPack.id_product_pack]) && isset($packCompleteAttributesList[$productPack.id_product_pack]) && in_array($id_attribute, $packCompleteAttributesList[$productPack.id_product_pack])) || $group.default == $id_attribute)}
-																<li class="input-container float-left float-xs-left pull-xs-left">
-																	<input type="radio" class="input-radio ap5-attribute-radio" name="{$groupName}"
-																		value="{$id_attribute}" {if $ap5_isCurrentSelectedIdAttribute}
-																			checked="checked"
-																			{/if}{if in_array($productPack.id_product_pack, $packExcludeList)}
-																		disabled="disabled" {/if} />
-																	<span class="radio-label">{$group_attribute.name}</span>
-																</li>
-															{/foreach}
-														</ul>
-													{/if}
-												</div> <!-- end attribute_list -->
-											</div>
-										{/if}
-									{/foreach}
-								</div>
-							{/if}
-						</div>
+
 					</div>
 					{if $packAllowRemoveProduct}
 						{if !in_array($productPack.id_product_pack, $packExcludeList)}
