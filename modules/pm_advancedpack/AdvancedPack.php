@@ -2027,34 +2027,34 @@ class AdvancedPack extends Product
     {
         $packProducts = self::getPackContent($idPack);
         $res = true;
-        $defaultPackImagePath = dirname(__FILE__) . '/views/img/default-pack-image.png';
-        $coverImage = new Image();
-        $coverImage->id_product = (int)$idPack;
-        $coverImage->position = Image::getHighestPosition($idPack) + 1;
-        if ($coverImage->add() && ($new_path = $coverImage->getPathForCreation()) && ImageManager::resize($defaultPackImagePath, $new_path . '.' . $coverImage->image_format)) {
-            foreach (ImageType::getImagesTypes('products') as $imageType) {
-                $res &= ImageManager::resize($defaultPackImagePath, $new_path . '-' . Tools::stripslashes($imageType['name']) . '.' . $coverImage->image_format, $imageType['width'], $imageType['height'], $coverImage->image_format);
-            }
-        }
+        // $defaultPackImagePath = dirname(__FILE__) . '/views/img/default-pack-image.png';
+        // $coverImage = new Image();
+        // $coverImage->id_product = (int)$idPack;
+        // $coverImage->position = Image::getHighestPosition($idPack) + 1;
+        // if ($coverImage->add() && ($new_path = $coverImage->getPathForCreation()) && ImageManager::resize($defaultPackImagePath, $new_path . '.' . $coverImage->image_format)) {
+        //     foreach (ImageType::getImagesTypes('products') as $imageType) {
+        //         $res &= ImageManager::resize($defaultPackImagePath, $new_path . '-' . Tools::stripslashes($imageType['name']) . '.' . $coverImage->image_format, $imageType['width'], $imageType['height'], $coverImage->image_format);
+        //     }
+        // }
         if (AdvancedPackCoreClass::_isFilledArray($packProducts)) {
             foreach ($packProducts as $packProduct) {
                 $res &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'image` i, `' . _DB_PREFIX_ . 'image_shop` i_shop SET i.`cover` = NULL, i_shop.`cover` = NULL WHERE i.`id_image`=i_shop.`id_image` AND i.`id_product` = ' . (int)$idPack);
                 $res &= self::duplicateProductImages($packProduct['id_product'], $idPack);
             }
         }
-        if (Validate::isLoadedObject($coverImage)) {
-            $res &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'image` i, `' . _DB_PREFIX_ . 'image_shop` i_shop SET i.`cover` = NULL, i_shop.`cover` = NULL WHERE i.`id_image`=i_shop.`id_image` AND i.`id_product` = ' . (int)$idPack);
-            $i = 2;
-            $result = Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'image` WHERE `id_product` = ' . (int)$idPack . ' AND `id_image` != ' . (int)$coverImage->id . ' ORDER BY `position`');
-            if ($result) {
-                foreach ($result as $row) {
-                    $res &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'image` SET `position` = ' . (int)$i . ' WHERE `id_image` = ' . (int)$row['id_image']);
-                    $i++;
-                }
-            }
-            $coverImage->cover = true;
-            $coverImage->update();
-        }
+        // if (Validate::isLoadedObject($coverImage)) {
+        //     $res &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'image` i, `' . _DB_PREFIX_ . 'image_shop` i_shop SET i.`cover` = NULL, i_shop.`cover` = NULL WHERE i.`id_image`=i_shop.`id_image` AND i.`id_product` = ' . (int)$idPack);
+        //     $i = 2;
+        //     $result = Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'image` WHERE `id_product` = ' . (int)$idPack . ' AND `id_image` != ' . (int)$coverImage->id . ' ORDER BY `position`');
+        //     if ($result) {
+        //         foreach ($result as $row) {
+        //             $res &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'image` SET `position` = ' . (int)$i . ' WHERE `id_image` = ' . (int)$row['id_image']);
+        //             $i++;
+        //         }
+        //     }
+        //     $coverImage->cover = true;
+        //     $coverImage->update();
+        // }
         return $res;
     }
     protected static function setDefaultPackAttribute($idPack, $idProductAttribute)
