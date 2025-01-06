@@ -454,6 +454,11 @@
 	  #product.ap5-pack-page .product-actions {
 		display: flex;
 		align-items: center;
+	  }
+
+	  #product.ap5-pack-page .ap5-pack-product-content .product-actions {
+		display: flex;
+		align-items: center;
 		background: #fff !important;
 	  }
 	
