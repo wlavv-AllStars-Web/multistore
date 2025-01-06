@@ -508,7 +508,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                     FROM `' . _DB_PREFIX_ . 'product` p
                     ' . Shop::addSqlAssociation('product', 'p') . '
                     LEFT JOIN `' . _DB_PREFIX_ . 'product_lang` pl ON (pl.id_product = p.id_product AND pl.id_lang = ' . (int)Context::getContext()->language->id . Shop::addSqlRestrictionOnLang('pl') . ')
-                    WHERE (pl.name LIKE \'%' . pSQL($query) . '%\' OR p.reference LIKE \'%' . pSQL($query) . '%\')' .
+                    WHERE (pl.name LIKE \'%' . pSQL($query) . '%\' OR p.reference LIKE \'%' . pSQL($query) . '%\' OR p.id_product LIKE \'%' . pSQL($query) . '%\') AND p.active = 1' .
                     (!empty($excludeIds) ? ' AND p.id_product NOT IN (' . $excludeIds . ') ' : ' ') .
                     'AND (p.cache_is_pack IS NULL OR p.cache_is_pack = 0)' .
                     ' GROUP BY p.id_product';

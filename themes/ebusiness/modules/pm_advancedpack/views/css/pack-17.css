@@ -478,6 +478,7 @@
 	  .ap5-pack-product-name a{
 		color: #333;
 		font-weight: 600;
+		font-size: .85rem;
 	  }
 	  .ap5-pack-product-name a:hover{
 		color: var(--asm-color);
