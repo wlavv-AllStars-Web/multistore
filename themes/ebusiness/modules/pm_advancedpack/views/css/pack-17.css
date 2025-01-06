@@ -438,11 +438,23 @@
 		padding: 1rem 0;
 		min-height: unset !important;
 
+		display: flex;
+		align-items: center;
+
+	  }
+
+	  #product.ap5-pack-page .ap5-pack-product-name a {
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 2; /* number of lines to show */
 				line-clamp: 2; 
 		-webkit-box-orient: vertical;
+	  }
+
+	  #product.ap5-pack-page .product-actions {
+		display: flex;
+		align-items: center;
+		background: #fff !important;
 	  }
 	
 	  #product.ap5-pack-page .product-information{
@@ -454,7 +466,7 @@
 		color: #333;
 	  }
 	  #product.ap5-pack-page .reference-value-pack-product {
-		font-size: .85rem;
+		font-size: .8rem;
 	  }
 	
 	  #product.ap5-pack-page #ap5-buy-container{
@@ -477,17 +489,17 @@
 	
 	  .ap5-pack-product-name a{
 		color: #333;
-		font-weight: 600;
+		font-weight: 500;
 		font-size: .85rem;
 	  }
 	  .ap5-pack-product-name a:hover{
 		color: var(--asm-color);
-		font-weight: 600;
+		font-weight: 500;
 	  }
 
 	  .ap5-attributes .product-variants-item {
-		flex-direction: column;
 		align-items: flex-start;
+		flex-wrap: wrap;
 	  }
 	
 	  .ap5-attributes .product-variants-item .control-label {

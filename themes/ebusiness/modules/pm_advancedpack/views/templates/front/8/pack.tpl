@@ -351,7 +351,7 @@
             {if $product.attachments}
              <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                 <div class="banner-tabs" >
-                  <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                  <img src="/img/asm/instructions/instructions_{$language.iso_code}.webp" />
                 </div>
                 <section class="product-attachments tab">
                   {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -377,14 +377,14 @@
               
                <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                  <div class="banner-tabs" >
-                   <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                   <img src="/img/asm/instructions/instructions_{$language.iso_code}.webp" />
                  </div>
                  {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
                   <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
                   <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
                   <div class="difficulty-level">
                           <span>Difficulty Level:</span>
-                          <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
+                          <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" />
                     </div>
                  </div> *}
 
@@ -395,7 +395,7 @@
                       <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                       <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
                           <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
-                          <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                          <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                       </div>
                     {/if}
                     </div>
@@ -733,7 +733,7 @@
                   {block name='product_attachments'}
                     {if $product.attachments}
                         <div class="banner-tabs" >
-                          <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                          <img src="/img/asm/instructions/instructions_{$language.iso_code}.webp" />
                         </div>
                         <section class="product-attachments tab">
                           {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -755,14 +755,14 @@
                     {else}
 
                          <div class="banner-tabs" >
-                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                           <img src="/img/asm/instructions/instructions_{$language.iso_code}.webp" />
                          </div>
                          {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
                           <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
                           <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
                           <div class="difficulty-level">
                                   <span>Difficulty Level:</span>
-                                  <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
+                                  <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" />
                             </div>
                          </div> *}
 
@@ -773,7 +773,7 @@
                               <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                               <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
                                   <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
-                                  <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                                  <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                               </div>
                             {/if}
                             </div>

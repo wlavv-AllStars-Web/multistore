@@ -40,7 +40,7 @@
 </div>
 
 <div class="banner-tabs" >
-  <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+  <img src="/img/asm/banners/reviews/reviews_{$language.iso_code}.webp" />
 </div>
 
 {include file='module:productcomments/views/templates/hook/product-comment-item-prototype.tpl' assign="comment_prototype"}

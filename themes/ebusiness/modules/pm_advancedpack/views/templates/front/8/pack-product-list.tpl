@@ -80,7 +80,7 @@
 
 							{*  *}
 
-							<div class="{if !empty($productPack.attributes.groups)}col-lg-2{else}col-lg-5{/if} py-3 px-1" style="display: flex;flex-direction:column;">
+							<div class="{if !empty($productPack.attributes.groups)}col-lg-2{else}col-lg-5{/if} py-3 px-1" style="display: flex;flex-direction:column;justify-content:center;">
 								{* <span class="reference-title-pack">SKU:</span> *}
 								<span class="reference-value-pack-product">{$productPack.presentation.reference_to_display}</span>
 							</div>
