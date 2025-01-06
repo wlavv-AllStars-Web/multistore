@@ -42,6 +42,23 @@
 								</a>
 							</h2>
 
+							{* if image *}
+
+							<div class="ap5-pack-product-image" style="max-width: 150px;margin:auto;">
+								<a class="no-print" {if empty($from_quickview)}data-toggle="modal"
+									data-target="#ap5-pack-product-{$productPack.id_product_pack}-modal #product-modal" {/if}
+									title="{$imageTitle}"
+									href="{$pmlink->getImageLink($imageRewrite, $imageIds, $imageFormatProductZoom)}">
+									<img class="img-fluid d-block mx-auto"
+										id="thumb_{$productPack.image.id_image|default:0|intval}"
+										src="{$pmlink->getImageLink($imageRewrite, $imageIds, $imageFormatProductCover)}"
+										alt="{$imageTitle}" title="{$imageTitle}" height="{$imageFormatProductCoverHeight}"
+										width="{$imageFormatProductCoverWidth}" itemprop="image" />
+								</a>
+							</div>
+
+							{*  *}
+
 							<div style="display: flex;flex-direction:column;">
 								<span class="reference-title-pack">SKU:</span>
 								<span class="reference-value-pack-product">{$productPack.presentation.reference_to_display}</span>
