@@ -3506,11 +3506,24 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
             if (self::_isFilledArray($packProducts)) {
                 foreach ($packProducts as $key => $packProduct) {
                     $product = new Product((int)$packProduct['id_product'], false, $this->context->language->id);
+
+                    $sqlReference = 'SELECT reference 
+                    FROM ps_product WHERE id_product ='.(int)$packProduct['id_product'];
+
+// $sqlReference = 'SELECT (p.reference OR pa.reference) 
+// FROM ps_product as p
+// LEFT JOIN ps_product_attribute as pa
+// WHERE (p.id_product ='.(int)$packProduct['id_product'].' OR pa.id_product ='.(int)$packProduct['id_product'].')';
+
+                    $referenceValue = Db::getInstance()->getValue($sqlReference);
+
                     $packProducts[$key]['product_name'] = $product->name;
+                    $packProducts[$key]['reference'] = $referenceValue;
                     $packProducts[$key]['quantity'] = (int)$packProducts[$key]['quantity'];
                     $attributeDatas = AdvancedPack::getProductAttributeList(isset($packProduct['id_product_attribute']) ? (int)$packProduct['id_product_attribute'] : (int)$packProduct['default_id_product_attribute']);
                     $packProducts[$key] = array_merge($packProducts[$key], $attributeDatas);
                 }
+                // pre($attributeDatas);
                 $this->context->smarty->assign(['packProducts' => $packProducts]);
                 if ($contextType == self::PACK_CONTENT_SHOPPING_CART) {
                     return $this->display(__FILE__, $this->getPrestaShopTemplateVersion() . '/pack-product-list-cart-summary.tpl');

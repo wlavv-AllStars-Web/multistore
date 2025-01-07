@@ -1266,21 +1266,24 @@ class AdvancedPack extends Product
             $attributeList = ['attributes' => [], 'attributes_small' => []];
             if ($idProductAttribute) {
                 $result = Db::getInstance()->executeS('
-                    SELECT pac.`id_product_attribute`, agl.`public_name` AS public_group_name, al.`name` AS attribute_name
+                    SELECT pa.`reference`,pac.`id_product_attribute`, agl.`public_name` AS public_group_name, al.`name` AS attribute_name
                     FROM `' . _DB_PREFIX_ . 'product_attribute_combination` pac
                     LEFT JOIN `' . _DB_PREFIX_ . 'attribute` a ON a.`id_attribute` = pac.`id_attribute`
                     LEFT JOIN `' . _DB_PREFIX_ . 'attribute_group` ag ON ag.`id_attribute_group` = a.`id_attribute_group`
                     LEFT JOIN `' . _DB_PREFIX_ . 'attribute_lang` al ON (a.`id_attribute` = al.`id_attribute` AND al.`id_lang` = ' . (int)$idLang . ')
                     LEFT JOIN `' . _DB_PREFIX_ . 'attribute_group_lang` agl ON (ag.`id_attribute_group` = agl.`id_attribute_group` AND agl.`id_lang` = ' . (int)$idLang . ')
+                    LEFT JOIN `' . _DB_PREFIX_ . 'product_attribute` pa ON (pac.`id_product_attribute` = pa.`id_product_attribute`)
                     WHERE pac.`id_product_attribute`=' . (int)$idProductAttribute . '
                     ORDER BY agl.`public_name` ASC');
                 if (AdvancedPackCoreClass::_isFilledArray($result)) {
                     foreach ($result as $attributeRow) {
                         $attributeList['attributes'][] = $attributeRow['public_group_name'] . ' : ' . $attributeRow['attribute_name'];
                         $attributeList['attributes_small'][] = $attributeRow['attribute_name'];
+                        $attributeList['reference'][] = $attributeRow['reference'];
                     }
                     $attributeList['attributes'] = implode(', ', $attributeList['attributes']);
                     $attributeList['attributes_small'] = implode(', ', $attributeList['attributes_small']);
+                    $attributeList['reference'] = implode(', ', $attributeList['reference']);
                 }
             }
         } else {
