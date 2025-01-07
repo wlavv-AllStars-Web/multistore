@@ -636,7 +636,7 @@ form#form_ets_onepagecheckout.layout.layout_4 .product-line-grid-body {
   padding: 0;
   top: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   border: 1px solid #b3ccd1;
 }
 .block-onepagecheckout .payment-option {
@@ -651,7 +651,7 @@ form#form_ets_onepagecheckout.layout.layout_4 .product-line-grid-body {
     right: auto;
     margin: 0;
     padding: 0;
-    z-index: 2;
+    z-index: 1;
     border: 1px solid #b3ccd1;
 }
 .block-onepagecheckout .input-group.bootstrap-touchspin input.js-cart-line-product-quantity {
