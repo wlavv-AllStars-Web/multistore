@@ -210,6 +210,7 @@
                         {l s='Shop(s) to install' mod='ets_onepagecheckout'}
                     </div>
                     <div class="help-block">{l s='Please specify the shop domain(s) to install your purchased product(s)' mod='ets_onepagecheckout'}</div>
+
                     <div class="block-content">
                         {$hookDisplayShopLicenseField nofilter}
                     </div>
