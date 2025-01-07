@@ -448,6 +448,7 @@ $(document).on('change', '.ap5-attributes .ap5-attribute-select', function(e){
 	e.stopImmediatePropagation();
 	ap5Plugin.log('[ap5_Event] Attribute select click');
 	ap5Plugin.updatePackTable();
+	console.log(e)
 });
 
 $(document).on('click', '.ap5-attributes .ap5-attribute-radio', function(e){
