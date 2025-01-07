@@ -14,7 +14,7 @@ $packProduct['customization_infos']	-> product customization infos (list of id_c
 <ul class="ap5_pack_product_list ap5_pack_product_list_cart_summary">
 {foreach from=$packProducts item='packProduct'}
 	<li>
-		{$packProduct['quantity']}x {$packProduct['reference']|escape:'htmlall':'UTF-8'}
+		<span class="badge badge-dark">{$packProduct['quantity']}x</span> {$packProduct['reference']|escape:'htmlall':'UTF-8'}
 		{if isset($packProduct['attributes']) && !empty($packProduct['attributes'])}<br /><em>{$packProduct['attributes']|escape:'htmlall':'UTF-8'}</em>{/if}
 		{if isset($packProduct['customization_infos']) && is_array($packProduct['customization_infos']) && sizeof($packProduct['customization_infos'])}
 			<br />
