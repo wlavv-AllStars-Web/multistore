@@ -3502,6 +3502,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         if ((int)$idProductAttribute && AdvancedPack::isValidPack($idPack) || count($packProducts)) {
             if (!count($packProducts)) {
                 $packProducts = AdvancedPack::getPackContent($idPack, (int)$idProductAttribute);
+                // pre($packProducts);
             }
             if (self::_isFilledArray($packProducts)) {
                 foreach ($packProducts as $key => $packProduct) {
@@ -3523,7 +3524,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                     $attributeDatas = AdvancedPack::getProductAttributeList(isset($packProduct['id_product_attribute']) ? (int)$packProduct['id_product_attribute'] : (int)$packProduct['default_id_product_attribute']);
                     $packProducts[$key] = array_merge($packProducts[$key], $attributeDatas);
                 }
-                // pre($attributeDatas);
+                // pre(__FILE__, $this->getPrestaShopTemplateVersion() . '/pack-product-list-cart-summary.tpl');
                 $this->context->smarty->assign(['packProducts' => $packProducts]);
                 if ($contextType == self::PACK_CONTENT_SHOPPING_CART) {
                     return $this->display(__FILE__, $this->getPrestaShopTemplateVersion() . '/pack-product-list-cart-summary.tpl');

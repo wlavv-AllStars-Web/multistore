@@ -10,7 +10,7 @@ $packProduct['reduction_amount']	-> product reduction amount or percentage (depe
 $packProduct['reduction_type']		-> product reduction type (amount or percentage) of a product of the pack
 $packProduct['customization_infos']	-> product customization infos (list of id_customization_field => value)
 *}
-
+{debug}
 <ul class="ap5_pack_product_list ap5_pack_product_list_cart_summary">
 {foreach from=$packProducts item='packProduct'}
 	<li>
