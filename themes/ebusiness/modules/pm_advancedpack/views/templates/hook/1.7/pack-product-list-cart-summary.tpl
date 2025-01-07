@@ -12,6 +12,7 @@ $packProduct['customization_infos']	-> product customization infos (list of id_c
 *}
 
 <ul class="ap5_pack_product_list ap5_pack_product_list_cart_summary">
+<pre>{$packProducts|print_r}</pre>
 {foreach from=$packProducts item='packProduct'}
 	<li>
 		{$packProduct['quantity']}x {$packProduct['product_name']|escape:'htmlall':'UTF-8'}
