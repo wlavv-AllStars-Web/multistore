@@ -522,7 +522,10 @@
 		width: 100% !important;
 		flex: 1;
 	  }
-	
+
+	  .product-line-info.attribute{
+		text-align: start !important;
+	  }
 	
 	
 	  /*  */

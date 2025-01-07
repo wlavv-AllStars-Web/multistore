@@ -5473,7 +5473,8 @@ background: #222 !important;
 
 #form_ets_onepagecheckout .attribute{
   color: #333;
-  text-align: start;
+  text-align: start !important;
+  padding-top: .5rem;
 }
 
 .block-onepagecheckout .custom-radio span {
@@ -6599,4 +6600,8 @@ input[type="checkbox"]:checked::after {
 
 .product-accessories .add_to_cart_button .btn-primary i {
   padding: 0 !important;
+}
+
+#ets_onepagecheckout a:hover{
+  color: var(--asm-color) !important;
 }
