@@ -4136,7 +4136,7 @@ fieldset[disabled] a.btn {
     background-image: none; }
 
     .btn-primary:not(:disabled):not(.disabled):active:focus {
-      box-shadow: 0 0 0 0.2rem rgba(221, 19, 18, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(221, 19, 18, 0.9);
     }
 
     .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:active.focus, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary.active.focus,
