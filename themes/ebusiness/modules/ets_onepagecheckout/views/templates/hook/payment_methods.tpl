@@ -71,9 +71,9 @@
                                                         </label>
                                                     </div>
                                                 
-                                                    <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:block"{else}style="display: none;"{/if}>
+                                                    {* <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " {if $payment_selected==$module.module_name} style="display:block"{else}style="display: none;"{/if}>
                                                         {$module.additionalInformation nofilter}
-                                                    </div>
+                                                    </div> *}
                                                     <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:block"{else}style="display: none;"{/if}>
                                                         {if $module.form}
                                                             {$module.form nofilter}
