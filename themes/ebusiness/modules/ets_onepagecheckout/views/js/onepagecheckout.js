@@ -256,7 +256,7 @@ conditionsCheckbox.addEventListener("change", (e) => {
     if(checkbox.checked){
         document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
     }else{
-        document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
+        document.querySelector(".block-onepagecheckout.block-payment").style.display = "none"
     }
 })
 
