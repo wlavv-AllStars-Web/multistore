@@ -54,7 +54,7 @@
             {$manufacturer.short_description nofilter}
           </div>
 
-          <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
+          <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
         {else}
           {$manufacturer.short_description nofilter}
         {/if}
@@ -63,7 +63,7 @@
         {if strlen($manufacturer.description) > 550}
         <div class="description" style="display: flex;flex-direction:column">
           <div id="manufacturer-description" class="text_description hiddenTextDescription">{$manufacturer.description nofilter}</div>
-          <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
+          <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
         </div>
         {else}
           <div class="description" style="display: flex;flex-direction:column">
@@ -171,13 +171,19 @@
       height:fit-content;
       transition:height ease-in 1s;
     }
+    
+    #manufacturer-description p {
+      margin-bottom: 0;
+    }
 
     .show-more{
         border:0;
-        background:none;
-        color: var(--asm-color);
-        padding: 1rem;
-        font-size:1.25rem;
+        padding: .5rem 1rem;
+        font-size:1rem;
+        max-width: 200px;
+        margin: 1rem auto;
+        border-radius: .25rem;
+        text-transform: capitalize;
     }
 
     .description_box{

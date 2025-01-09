@@ -52,12 +52,12 @@
       <div id="manufacturer-short_description" class="text_description hiddenTextDescription" style="font-size:15px;line-height:22px;text-transform:uppercase;font-weight:500;padding:0 3rem;margin:0 !important;text-align:center;">
         {$manufacturer.short_description nofilter}
       </div>
-      <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Manufacturer'}</button>
+      <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
     </div>
   {else}
     <div class="description" style="display: flex;flex-direction:column">
       <div id="manufacturer-description">{$manufacturer.description nofilter}</div>
-      <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Manufacturer'}</button>
+      <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
     </div>
   {/if}
   
@@ -79,11 +79,13 @@
   }
 
   .show-more {
-    border: 0;
-    background: none;
-    color: var(--asm-color);
-    margin: 1rem 0;
-    font-size: 1rem;
+    border:0;
+    padding: .5rem 1rem;
+    font-size:1rem;
+    max-width: 200px;
+    margin: 1rem auto;
+    border-radius: .25rem;
+    text-transform: capitalize;
   }
 
   .show-more:focus{

@@ -51,7 +51,7 @@ body {
 }
 
 #manufacturer nav[data-depth="3"] ol li:nth-child(2) {
-  display: flex;
+  display: inline-block !important;
 }
 
 #header .header-nav .blockcart a:hover {
