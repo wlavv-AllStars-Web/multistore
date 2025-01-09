@@ -642,6 +642,20 @@ body {
   #product_shipping #totselectzone {
     padding-bottom: 1rem;
   }
+
+  .product-img-section{
+    align-items: center;
+  }
+
+  .column_tabs .nav.nav-tabs {
+    flex-wrap: unset;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .column_tabs .nav.nav-tabs .nav-link {
+    font-size: .85rem;
+  }
 }
 
 /* ps_customersignin.tpl */
@@ -895,6 +909,22 @@ body {
 
   
   /* product page */
+  .product-container .container-imgs-mobile {
+    max-height: 490px;
+  }
+
+  #ap5-buy-container .ap5-buy-block {
+    padding: 1rem 0;
+  }
+  #ap5-buy-container .product-prices {
+    margin-top: 0;
+  }
+
+  #product-modal {
+    max-width: 70vw;
+    height: 57.1vh;
+  }
+
   #product .images-container.js-images-container{
     justify-content: center !important;
   }
@@ -6604,4 +6634,109 @@ input[type="checkbox"]:checked::after {
 
 #ets_onepagecheckout a:hover{
   color: var(--asm-color) !important;
+}
+
+
+
+/* pack products page */
+
+
+@media (min-width: 992px) {
+  /* pack */
+  #product.ap5-pack-page .ap5-pack-product-name{
+  text-align: start;
+  padding: 1rem 0;
+  min-height: unset !important;
+
+  /* display: flex;
+  align-items: center; */
+
+  }
+
+  #product.ap5-pack-page .ap5-pack-product-name a {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  }
+
+  #product.ap5-pack-page .product-actions {
+  display: flex;
+  align-items: center;
+  }
+
+  #product.ap5-pack-page .ap5-pack-product-content .product-actions {
+  display: flex;
+  align-items: center;
+  background: #fff !important;
+  }
+
+  #product.ap5-pack-page .product-information{
+  display: flex;
+  flex-direction: column;
+  }
+
+  #product.ap5-pack-page .reference-title-pack {
+  color: #333;
+  }
+  #product.ap5-pack-page .reference-value-pack-product {
+  font-size: .8rem;
+  }
+
+  #product.ap5-pack-page #ap5-buy-container{
+  padding: 1rem 0;
+  }
+
+  #product.ap5-pack-page #ap5-price-container .product-prices{
+  margin-top: 0 !important;
+  }
+
+  .ap5-pack-product-price-table-container .current-price .product-price{
+  font-weight: 600;
+  color: #555;
+  font-size: 1rem;
+  }
+
+  .ap5-pack-product-content .line-separator-pack{
+  border-color: var(--asm-color);
+  }
+
+  .ap5-pack-product-name a{
+  color: #333;
+  font-weight: 500;
+  font-size: .85rem;
+  }
+  .ap5-pack-product-name a:hover{
+  color: var(--asm-color);
+  font-weight: 500;
+  }
+
+  .ap5-attributes .product-variants-item {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  }
+
+  .ap5-attributes .product-variants-item .control-label {
+  padding: 0 .5rem;
+  margin: 0;
+  }
+
+  .attribute_list.ap5-attribute-list {
+  width: 100%;
+  display: flex;
+  }
+
+  .attribute_list.ap5-attribute-list .ap5-attribute-select{
+  max-width: none;
+  width: 100% !important;
+  flex: 1;
+  }
+
+  .product-line-info.attribute{
+  text-align: start !important;
+  }
+
+
+  /*  */
 }

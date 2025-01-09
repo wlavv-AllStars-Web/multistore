@@ -60,7 +60,7 @@
       </div>
      {/if}
      <div class="row product-container js-product-container">
-        <div class="col-md-6 left-side desktop">
+        <div class="col-md-6 left-side desktop product-imgs-section">
          {block name='page_content_container'}
            <section class="page-content" id="content" >
              {block name='page_content'}

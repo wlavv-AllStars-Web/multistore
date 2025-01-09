@@ -1,14 +1,13 @@
 		<!-- pack product list-->
 
 		<div id="ap5-product-list"
-			class="card ap5-product-list {if empty($from_quickview)}col-xs-12 col-12 col-sm-8 col-md-12{else}col-xs-12 col-12{/if}{if $packAvailableQuantity <= 0} ap5-pack-oos{/if}{if $packDeviceIsTablet || $packDeviceIsMobile} ap5-is-mobile{/if}">
-			<div class="col-lg-12 px-0" style="background: #444;padding-block: .25rem;">
+			class="card ap5-product-list {if empty($from_quickview)}col-xs-12 col-12 col-sm-12 col-md-12{else}col-xs-12 col-12{/if}{if $packAvailableQuantity <= 0} ap5-pack-oos{/if}{if $packDeviceIsTablet || $packDeviceIsMobile} ap5-is-mobile{/if}">
+			{* <div class="col-lg-12 px-0" style="background: #444;padding-block: .25rem;">
 				<div class="col-lg-2 title-product-list-ap5"></div>
-				<div class="col-lg-3 title-product-list-ap5 px-0">Product</div>
-				<div class="col-lg-2 title-product-list-ap5 px-0">SKU</div>
+				<div class="col-lg-5 title-product-list-ap5 px-0">Product</div>
 				<div class="col-lg-3 title-product-list-ap5">Attributes</div>
 				<div class="col-lg-2 title-product-list-ap5">Price</div>
-			</div>
+			</div> *}
 			{assign var=nbPackProducts value=count($productsPack)}
 			{foreach from=$productsPack item=productPack}
 				{if !empty($productPack.image.id_image)}
@@ -27,7 +26,7 @@
 				{/if}
 
 				<div id="ap5-pack-product-{$productPack.id_product_pack}"
-					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-6 col-md-6 col-lg-6 col-xl-12{if $nbPackProducts != 2} col-md-6{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
+					class="ap5-pack-product ap5-no-plus-icon col-xs-12 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12{if $nbPackProducts != 2} col-md-6{/if}{if isset($productsPackErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-errors{/if}{if isset($productsPackFatalErrors[$productPack.id_product_pack])} ap5-product-pack-row-has-fatal-errors{/if}{if empty($productPack.attributes.groups)} ap5-no-attributes{/if}{if in_array($productPack.id_product_pack, $packExcludeList)} ap5-is-excluded-product{/if}">
 
 					<div class="ap5-pack-product-content">
 
@@ -42,7 +41,7 @@
 							{/if}
 						{/block}
 
-						<div class="ap5-pack-product-image col-lg-2" style="max-width: 150px;margin:auto;">
+						<div class="ap5-pack-product-image col-xs-3 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 							<a class="no-print" {if empty($from_quickview)}data-toggle="modal"
 								data-target="#ap5-pack-product-{$productPack.id_product_pack}-modal #product-modal" {/if}
 								title="{$productPack.presentation.name}"
@@ -56,11 +55,12 @@
 						</div>
 
 						{block name='ap5_product_name'}
-							<h2 class="ap5-pack-product-name col-lg-3 {if $productPack.quantity > 1}title-left{else}title-center{/if}">
+							<h2 class="ap5-pack-product-name {if !empty($productPack.attributes.groups)}col-xs-9 col-sm-10 col-md-10{else}col-xs-7 col-sm-8 col-md-8{/if} col-lg-10 col-xl-5 {if $productPack.quantity > 1}title-left{else}title-center{/if}">
 								<a target="_blank" href="{$productPack.presentation.url}" title="{$productPack.presentation.name}"
 									itemprop="url">
 									{$productPack.presentation.name}
 								</a>
+								<span class="reference-value-pack-product"><span class="reference-title-pack">{l s="SKU:" d="Shop.Theme.PackProduct"}</span>{$productPack.presentation.reference_to_display}</span>
 							</h2>
 
 							{* if image *}
@@ -80,10 +80,9 @@
 
 							{*  *}
 
-							<div class="{if !empty($productPack.attributes.groups)}col-lg-2{else}col-lg-5{/if} py-3 px-1" style="display: flex;flex-direction:column;justify-content:center;">
-								{* <span class="reference-title-pack">SKU:</span> *}
+							{* <div class="{if !empty($productPack.attributes.groups)}col-lg-2{else}col-lg-5{/if} py-3 px-1" style="display: flex;flex-direction:column;justify-content:center;">
 								<span class="reference-value-pack-product">{$productPack.presentation.reference_to_display}</span>
-							</div>
+							</div> *}
 						{/block}
 
 						
@@ -167,8 +166,8 @@
 							{/block}
 						</div> *}
 
-						{if !empty($productPack.attributes.groups)}
-						<div class="product-actions col-lg-3">
+						{* {if !empty($productPack.attributes.groups)} *}
+						<div class="product-actions {if !empty($productPack.attributes.groups)}col-xs-10 col-sm-10 col-md-10{else} d-xs-none d-sm-none d-md-none {/if} col-lg-9 col-xl-3">
 							{if $packAllowRemoveProduct && $packShowProductsQuantityWanted}
 								<!-- quantity wanted -->
 								<fieldset id="ap5-quantity-wanted-{$productPack.id_product_pack|intval}"
@@ -188,7 +187,7 @@
 							{/if}
 							{if !empty($productPack.attributes.groups)}
 								<!-- attributes -->
-								<div class="product-variants ap5-attributes py-3"
+								<div class="product-variants ap5-attributes py-3 d-xs-flex d-sm-flex d-md-flex d-lg-flex d-xl-block"
 									data-id-product-pack="{$productPack.id_product_pack|intval}">
 									{foreach from=$productPack.attributes.groups key=id_attribute_group item=group}
 										{if $group.attributes|@count}
@@ -270,13 +269,13 @@
 								</div>
 							{/if}
 						</div>
-						{/if}
+						{* {/if} *}
 
 						{if $productPack.presentation.show_price && $packShowProductsPrice && !$configuration.is_catalog}
 							{* {if $packShowProductsThumbnails && $packMaxImagesPerProduct > 1}
 							<hr class="line-separator-pack" />{/if} *}
 							<div
-								class="ap5-pack-product-price-table-container product-prices col-lg-2 mt-0{if $productPack.reduction_amount <= 0} ap5-no-reduction{/if}">
+								class="ap5-pack-product-price-table-container product-prices {if !empty($productPack.attributes.groups)}col-xs-2 col-sm-2 col-md-2{else}col-xs-2 col-sm-2 col-md-2 {/if}  col-lg-2 mt-0{if $productPack.reduction_amount <= 0} ap5-no-reduction{/if}">
 								{if empty($productsPackForceHideInfoList[$productPack.id_product_pack])}
 									<div
 										class="ap5-pack-product-price-table-cell {if $productPack.reduction_amount > 0} has-discount{/if}">
@@ -323,6 +322,7 @@
 										{block name='ap5_product_availability'}
 											{if $packShowProductsAvailability}
 												<!-- availability -->
+												<pre>{$productPack.presentation.availability|print_r}</pre>
 												<div class="ap5-availability-statut">
 													<span id="product-availability">
 														{if $productPack.presentation.availability == 'available'}

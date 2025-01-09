@@ -55,12 +55,12 @@
      {if $email_sent == 1}
       <div class="container-alert-askquestion">
       <div class="alert alert-success" role="alert">
-        Question sent successfully!
+        {l s="Question sent successfully!" d="Shop.Theme.Alerts"}
       </div>
       </div>
      {/if}
      <div class="row product-container js-product-container">
-        <div class="col-md-6 left-side desktop">
+        <div class="col-md-6 left-side desktop product-imgs-section">
          {block name='page_content_container'}
            <section class="page-content" id="content" >
              {block name='page_content'}
@@ -240,7 +240,7 @@
               </div>
             </div>
             {/if}
-            <small style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</small>
+            <small style="text-align: center;">{l s="Content protected by copyright © 2024 - All rights reserved" d="Shop.Theme.PackProduct"}</small>
         </div>
         {* {if $product.features}
           <div class="product_features">
@@ -364,7 +364,7 @@
                       </a>
 
                       <div class="difficulty-level">
-                        <span>Difficulty Level:</span>
+                        <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
                         <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" />
                       </div>
                     </div>
@@ -390,11 +390,11 @@
 
                 <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
                     <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
-                      <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">No Instructions</h4>
+                      <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">{l s='No Instructions' d='Shop.Theme.Catalog'}</h4>
                     {if $product.difficulty > 0}
                       <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                       <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
-                          <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
+                          <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
                           <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                       </div>
                     {/if}
@@ -424,10 +424,10 @@
                 <div class="question_buble">
 
                   <i class="material-icons question-success-icon">check_circle</i>
-                  <h1 class="question-success-title">IMPRESSIONNANT!</h1>
+                  <h1 class="question-success-title">{l s='Great!' d='Shop.Theme.Catalog'}</h1>
                   <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
                 </div>
-                <div class="question-success-msg" >Please, check your mailbox from time to time. We will respond you as soon as possible.</div>
+                <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
                 <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
                   Close
                 </div>
@@ -634,7 +634,7 @@
                          </div>
                         {/if}
                        </div>
-                         <small style="text-align: center;">Content protected by copyright © 2024 - All rights reserved</small>
+                         <small style="text-align: center;">{l s="Content protected by copyright © 2024 - All rights reserved" d="Shop.Theme.PackProduct"}</small>
                      </div>
                      {* {if $product.features}
                        <div class="product_features">
@@ -746,7 +746,7 @@
                               </a>
 
                               <div class="difficulty-level">
-                                <span>Difficulty Level:</span>
+                                <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
                                 <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" />
                               </div>
                             </div>
@@ -768,11 +768,11 @@
 
                         <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
     								        <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
-                              <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">No Instructions</h4>
+                              <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">{l s='No Instructions' d='Shop.Theme.Catalog'}</h4>
                             {if $product.difficulty > 0}
                               <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                               <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
-                                  <h4 style="margin:0;text-transform:uppercase;font-weight:500;">Difficulty Level:</h4>
+                                  <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
                                   <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                               </div>
                             {/if}
@@ -821,10 +821,10 @@
                       <div class="question_buble">
 
                         <i class="material-icons question-success-icon">check_circle</i>
-                        <h1 class="question-success-title">IMPRESSIONNANT!</h1>
+                        <h1 class="question-success-title">{l s='Great!' d='Shop.Theme.Catalog'}</h1>
                         <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
                       </div>
-                      <div class="question-success-msg" >Please, check your mailbox from time to time. We will respond you as soon as possible.</div>
+                      <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
                       <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
                         Close
                       </div>
@@ -852,7 +852,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">
-                      Submit
+                      {l s='Submit' d='Shop.Theme.Catalog'}
                       <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
 											<input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
 											<input type="hidden" name="product_askquestion" value="1">
@@ -899,7 +899,7 @@
 
  
   <div class="complementary-products-flag">
-    Complementary Products
+    {l s='Complementary Products' d='Shop.Theme.Catalog'}
   </div>
  
      {block name='product_accessories'}
