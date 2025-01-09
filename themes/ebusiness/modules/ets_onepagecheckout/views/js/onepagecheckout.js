@@ -278,6 +278,7 @@ $(document).on('change','input[name="payment-option"]',function() {
                     });
                 }
             }
+            console.log("paulo")
         }
     });
 });
