@@ -923,7 +923,6 @@ class nacex extends CarrierModule
             var opc_idDivGeneral = '" . Configuration::get("NACEX_OPC_ID_DIVGENERAL") . "';
             var codigo_postal_entrega = '';
             var opc_idBoton = '" . Configuration::get("NACEX_OPC_ID_BOTON") . "';
-            var codigoPostalPaulo = '".Context::getContext()->customer->getAddresses($this->context->language->id)."';
         
         $(function() {
             
