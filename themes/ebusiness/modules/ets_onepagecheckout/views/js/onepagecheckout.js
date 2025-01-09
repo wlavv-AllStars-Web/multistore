@@ -166,10 +166,10 @@ $(document).on('click','#modal .close',function(e){
     $('#modal').addClass('fade').removeClass('in').fadeOut( 200 );
     return false;
 });
-$(document).on('click','#cta-terms-and-conditions-0',function(e){
-    $('#modal').addClass('in').removeClass('fade').fadeIn( 300 );
-    return false;
-});
+// $(document).on('click','#cta-terms-and-conditions-0',function(e){
+//     $('#modal').addClass('in').removeClass('fade').fadeIn( 300 );
+//     return false;
+// });
 $(document).on('click','input[name="type-checkout-options"]',function(){
     ets_opc_change_type_option()
 });
@@ -251,6 +251,17 @@ function loadKlarnaWidget_ets_opc() {
 }
 
 const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput")
+const conditionsCheckboxA = document.querySelector("#conditions-to-approve a")
+
+if (conditionsCheckboxA) {
+    conditionsCheckboxA.addEventListener("click", (event) => {
+        event.preventDefault(); 
+        const url = conditionsCheckboxA.href; 
+        window.open(url, "_blank"); 
+    });
+}
+
+
 conditionsCheckbox.addEventListener("change", (e) => {
     const checkbox = document.querySelector("#conditions_to_approve")
     if(checkbox.checked){
@@ -755,6 +766,7 @@ $(document).on('change','input[name="product-quantity-spin"]',function(){
 
     document.body.appendChild(loadingOverlay);
 });
+
 $(document).on('click','.remove-from-cart,a[data-link-action="ets-remove-voucher"]',function(){
     if(!$('.block-shopping-cart').hasClass('loading'))
     {

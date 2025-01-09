@@ -240,7 +240,7 @@ var login_before_text = '{l s='Please login before completing your order' mod='e
     {include file='module:ets_onepagecheckout/views/templates/hook/layout_4.tpl'}
 {/if}
 
-<div class="modal fade" id="modal">
+{* <div class="modal fade" id="modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -251,4 +251,4 @@ var login_before_text = '{l s='Please login before completing your order' mod='e
             </div>
         </div>
     </div>
-</div>
+</div> *}
