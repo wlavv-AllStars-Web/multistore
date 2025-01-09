@@ -26,6 +26,11 @@
   <link rel="stylesheet" href="{$stylesheet.uri}" type="text/css" media="{$stylesheet.media}" />
 {/foreach}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+{* <link rel="stylesheet" href="{$urls.css_url}swiper-bundle.min.css" />
+<link rel="stylesheet" href="{$urls.css_url}select2.min.css" /> *}
+{* <link rel="stylesheet" href="{$urls.css_url}font-awesome6.4.2.css" /> *}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 {* <link rel="stylesheet" href="{$urls.css_url}font-elegant.css" type="text/css" media="all" /> *}
 {* <link rel="stylesheet" href="{$urls.css_url}custom.css" type="text/css" media="all" /> *}
 <link href="{$urls.css_url}cmsASM.css" rel="stylesheet" type="text/css" media="all"/>
