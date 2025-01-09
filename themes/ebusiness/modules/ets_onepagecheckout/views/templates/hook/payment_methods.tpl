@@ -34,7 +34,7 @@
                                     <img src="{$module_template_dir}views/img/{$module.module_name|escape:'html':'UTF-8'}.png" style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;"/>
                                 </div>
                                 <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
+                                    <div class="card card-body" style="gap: .5rem;">
                                     {foreach from=$payment_methods key='module_name' item='payment_method'}
                                         {foreach from=$payment_method item='module' key=key}
                                             {if $module.module_name|escape:'html':'UTF-8' == 'alma'}
