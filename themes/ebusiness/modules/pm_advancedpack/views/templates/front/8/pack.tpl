@@ -801,7 +801,7 @@
 
                   <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
                    <div class="banner-tabs" >
-                    <img src="/img/banners/warranty/warranty_{$language.iso_code}.webp" />
+                    <img src="/img/asm/banners/warranty/warranty_{$language.iso_code}.webp" />
                    </div>
                    {* <pre>{$product_manufacturer|print_r}</pre> *}
                    <div style="max-width: 1350px;margin:auto;">

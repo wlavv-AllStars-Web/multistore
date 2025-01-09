@@ -20,7 +20,13 @@
 						<a href="{$packProduct['urlAdminProduct'] nofilter}" target="_blank" title="{l s='Edit this product' mod='pm_advancedpack'}"><strong>{$packProduct['productObj']->name|escape:'html':'UTF-8'}</strong></a><br />
 						<em>{l s='Ref:' mod='pm_advancedpack'} {$packProduct['productObj']->reference|escape:'html':'UTF-8'}<br />
 						{l s='Stock:' mod='pm_advancedpack'} {StockAvailable::getQuantityAvailableByProduct($packProduct['productObj']->id)|intval}<br />
-						{l s='Sales:' mod='pm_advancedpack'} {ProductSale::getNbrSales($packProduct['productObj']->id)|intval}</em>
+						{l s='Sales:' mod='pm_advancedpack'} {ProductSale::getNbrSales($packProduct['productObj']->id)|intval}</em><br />
+						{l s='Availability:' mod='pm_advancedpack'}{if StockAvailable::getQuantityAvailableByProduct($packProduct['productObj']->id)|intval > 0}
+							<span class="badge badge-success">{$packProduct['productObj']->available_now}</span>
+						{else}
+							<span class="badge badge-danger">{$packProduct['productObj']->available_later}</span>
+						{/if}
+						
 					</td>
 					<td>
 						{if is_array($packProduct['productCombinations']) && count($packProduct['productCombinations'])}

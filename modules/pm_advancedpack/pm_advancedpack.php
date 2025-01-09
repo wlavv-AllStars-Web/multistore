@@ -354,6 +354,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
             }
             list(, $useTax) = AdvancedPack::getAddressInstance();
             $combinationsInformations = [];
+
             foreach ($productFormValues['ap5_productList'] as $idProductPack) {
                 $customCombinations = (isset($productFormValues['ap5_customCombinations-' . $idProductPack]) && $productFormValues['ap5_customCombinations-' . $idProductPack] ? $productFormValues['ap5_combinationInclude-' . $idProductPack] : []);
                 $combinationsInformations[$idProductPack] = [];
@@ -392,6 +393,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                     $advancedStockManagementAlert = true;
                 }
             }
+
             $idTaxRulesGroup = array_unique($idTaxRulesGroup);
             if (!count($idTaxRulesGroup)) {
                 $finalIdTaxRulesGroup = null;
@@ -1403,6 +1405,40 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         if ($config['displayMode'] == 'simple') {
             $currentProduct->customizable = false;
         }
+
+        // addd label stock
+        $packProductsSql = 'SELECT id_product FROM ps_pm_advancedpack_products WHERE id_pack ='.$idPack;
+        $packContentProducts =  Db::getInstance()->executeS($packProductsSql);
+
+        $lowestStock = null;
+        $productWithLowestStock = null;
+
+        foreach ($packContentProducts as $packProduct) {
+            $idProduct = (int) $packProduct['id_product'];
+        
+            // Get stock for the product
+            $stockSql = 'SELECT quantity FROM ps_stock_available WHERE id_product = '.$idProduct;
+            $stock = Db::getInstance()->getValue($stockSql);
+        
+            // Compare with the current lowest stock
+            if ($lowestStock === null || $stock < $lowestStock) {
+                $lowestStock = $stock;
+                $productWithLowestStock = $idProduct;
+            }
+        }
+
+        if ($productWithLowestStock !== null) {
+            // echo "Product ID with the lowest stock: $productWithLowestStock (Stock: $lowestStock)";
+            if($lowestStock > 0) {
+                $packLabel = Db::getInstance()->getValue('SELECT available_now FROM ps_product_lang WHERE id_product ='.$idPack.' AND id_lang='.$this->context->language->id);
+            } else {
+                $packLabel = Db::getInstance()->getValue('SELECT available_later FROM ps_product_lang WHERE id_product ='.$idPack.' AND id_lang='.$this->context->language->id);
+            }
+
+        } 
+
+        // end of label stock
+
         $vars = [
             'packDisplayModeAdvanced' => ($config['displayMode'] == self::DISPLAY_ADVANCED),
             'packDisplayModeSimple' => ($config['displayMode'] == self::DISPLAY_SIMPLE),
@@ -1435,6 +1471,8 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
             'combinationImages' => null,
             'attributesCombinations' => [],
             'content_only' => (int)Tools::getValue('content_only'),
+            'packLabel' => $packLabel,
+            'packLabelStock' => $lowestStock,
         ];
         $this->context->smarty->assign($vars);
         return $vars;
@@ -2308,6 +2346,52 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
     private function _postProcessAdminProducts($idPack, $isNewPack = false, $isMajorUpdate = false)
     {
         $pack = new AdvancedPack($idPack);
+
+        // addd label stock
+        $packProductsSql = 'SELECT id_product FROM ps_pm_advancedpack_products WHERE id_pack ='.$idPack;
+        $packContentProducts =  Db::getInstance()->executeS($packProductsSql);
+
+        $lowestStock = null;
+        $productWithLowestStock = null;
+
+        foreach ($packContentProducts as $packProduct) {
+            $idProduct = (int) $packProduct['id_product'];
+        
+            // Get stock for the product
+            $stockSql = 'SELECT quantity FROM ps_stock_available WHERE id_product = '.$idProduct;
+            $stock = Db::getInstance()->getValue($stockSql);
+        
+            // Compare with the current lowest stock
+            if ($lowestStock === null || $stock < $lowestStock) {
+                $lowestStock = $stock;
+                $productWithLowestStock = $idProduct;
+            }
+        }
+
+        if ($productWithLowestStock !== null) {
+            // echo "Product ID with the lowest stock: $productWithLowestStock (Stock: $lowestStock)";
+
+            $messageLabelStockNowSql = 'SELECT id_lang,available_now FROM ps_product_lang WHERE id_product ='.$productWithLowestStock.' AND id_shop ='.$this->context->shop->id;
+            $messageLabelStockLaterSql = 'SELECT id_lang,available_later FROM ps_product_lang WHERE id_product ='.$productWithLowestStock.' AND id_shop ='.$this->context->shop->id;
+            $messageLabelStockNow = Db::getInstance()->executeS($messageLabelStockNowSql);
+            $messageLabelStockLater = Db::getInstance()->executeS($messageLabelStockLaterSql);
+
+            // pre($messageLabelStockLater);
+
+
+            foreach ($messageLabelStockNow as $message) {
+                Db::getInstance()->execute('UPDATE ps_product_lang SET available_now = "'.$message['available_now'].'" WHERE id_lang='.$message['id_lang'].' AND id_product ='.$idPack);
+            }
+
+            foreach ($messageLabelStockLater as $message) {
+                Db::getInstance()->execute('UPDATE ps_product_lang SET available_later = "'.$message['available_later'].'" WHERE id_lang='.$message['id_lang'].' AND id_product ='.$idPack);
+            }
+
+
+        } 
+
+        // end of label stock
+
         if (Validate::isLoadedObject($pack)) {
             if (Tools::getIsset('ap5_productList') && self::_isFilledArray(Tools::getValue('ap5_productList'))) {
                 $packInformations = [];
@@ -3542,6 +3626,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         $productPack->ecotax = AdvancedPack::getPackEcoTax($idPack, $packAttributesList);
         $productPack->quantity = AdvancedPack::getPackAvailableQuantity($idPack, $packAttributesList, $packQuantityList, $packExcludeList);
         $productsPack = AdvancedPack::getPackContent($idPack, null, true, $packAttributesList, $packQuantityList);
+        // pre($productsPack);
         $config = $this->_getModuleConfiguration();
         $this->context->smarty->assign([
             'packDeviceIsMobile' => (method_exists($this->context, 'isMobile') ? $this->context->isMobile() : false),
