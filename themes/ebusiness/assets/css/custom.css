@@ -650,6 +650,13 @@ body {
   .column_tabs .nav.nav-tabs {
     flex-wrap: unset;
   }
+
+
+  /* checkout page */
+
+  .block-onepagecheckout.block-shopping-cart .cart-overview .cart-items{
+    display: flex;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
