@@ -58,8 +58,8 @@
         {block name='order_details'}
           <div style="display: flex;flex-direction:column;gap:1rem;">
             <div>
-              <p>Encore merci d'avoir choisi ALL STARS MOTORSPORT</p>
-              <p>Votre commande a été enrefistrée et les instructions de paiment par virement bancaire ont été envoyées à votre adress e-mail.</p>
+              <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
+              <p>{l s='Your order has been registered and payment instructions by bank transfer have been sent to your email address.' d='Shop.Theme.Checkout'}</p>
             </div>
             <div id="order-details">
               {* <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3> *}
@@ -81,8 +81,8 @@
               </ul>
             </div>
             <div>
-              <h4>Information importante:</h4>
-              <p>Les virements bancaires relatifs aux commandes réalisées sur notre plateforme ALL STARS MOTORSPORT doivent etre exclusivement effectués vers notre compte dont les coordonnées vous seront communiquée par mail dans les prochaines secondes.</p>
+              <h4>{l s='Important information:' d="Shop.Theme.Checkout"}</h4>
+              <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
             </div>
           </div>
         {/block}
@@ -122,7 +122,7 @@
   {* <pre>{$urls|print_r}</pre> *}
 
   <section class="back-to-orders">
-    <a class="btn-orders" href="{$urls.pages.history}">Voir l'historique de vos commandes</a>
+    <a class="btn-orders" href="{$urls.pages.history}">{l s='View your order history' d="Shop.Theme.Checkout"}</a>
   </section>
 
   {* {block name='hook_order_confirmation_2'}

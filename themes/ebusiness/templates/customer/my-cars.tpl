@@ -7,9 +7,10 @@
 {* StarterTheme: Add confirmation/error messages *}
 
 {block name='page_content'}
+    <div>
     {if isset($unsubscribeMessage)}
         <div style="text-align:center;margin: 10px auto;">
-            <div class="alert alert-success">{l s="Removeu o email da lista de newsletter com sucesso!"}</div>
+            <div class="alert alert-success">{l s="Removeu o email da lista de newsletter com sucesso!" d='Shop.Theme.MyCars'}</div>
         </div>
     {/if}
     
@@ -20,10 +21,10 @@
             {capture name=path}{l s='No emails for selected car'}{/capture}
             
             <div class="spacer-20"></div>
-            <p class="alert alert-warning"> {l s="We don't have clientes interested in this car setup yet."} </p>
+            <p class="alert alert-warning"> {l s="We don't have clientes interested in this car setup yet." d='Shop.Theme.MyCars'} </p>
     
         {else}
-            {capture name=path}{l s='Emails for: '} {$car}{/capture}
+            {capture name=path}{l s='Emails for: ' d='Shop.Theme.MyCars'} {$car}{/capture}
             
             {assign var=check_path value="{$_SERVER['DOCUMENT_ROOT']}/img/homepage/models/{$id_brand}_{$id_type}.png"}
             
@@ -36,7 +37,7 @@
             </div>
             
             <div style="float: left; width: calc( 100% - 400px );">
-                <div><h4><b>{l s='Emails of clientes for:'} </b>{$car}</h4></div>
+                <div><h4><b>{l s='Emails of clientes for:' d='Shop.Theme.MyCars'} </b>{$car}</h4></div>
                 <div class="spacer-20"></div>
                 <div>{$emails}</div>
                 
@@ -44,18 +45,18 @@
         {/if}
     {else}
     
-        {capture name=path}{l s='My Cars'}{/capture}
-        
-        <h1 class="page-heading">{l s='My Cars'}</h1>
+        {capture name=path}{l s='My Cars' d='Shop.Theme.MyCars'}{/capture}
+     
+        <h1 class="page-heading">{l s='My Cars' d='Shop.Theme.MyCars'}</h1>
         
         {if count($myCars) < 1 }
             <div style="text-align: center;">
                 <p class="alert alert-warning"> 
-                    {l s='You dont have any car set at the moment.'} 
+                    {l s='You dont have any car set at the moment.' d='Shop.Theme.MyCars'} 
                     <br><br> 
-                    {l s='To add your car, please use the vehicle selector in "Your car" and click in "Click to add to My cars"'} 
+                    {l s='To add your car, please use the vehicle selector in "Your car" and click in "Click to add to My cars"' d='Shop.Theme.MyCars'} 
                     <br><br><br>
-                    {l s='By doing so, you are allowing us to use your email to send newsletters of our produts'}
+                    {l s='By doing so, you are allowing us to use your email to send newsletters of our produts' d='Shop.Theme.MyCars'}
                 </p>
             </div>
         {else}
@@ -74,10 +75,10 @@
                     <div>
                         <div class="spacer-10"></div>
                         <div onclick="setCarAndSearch({$car['id_brand']}, {$car['id_model']}, {$car['id_type']}, {$car['id_version']})" style="cursor: pointer;">
-                            <div><b>{l s='Brand:'}</b>   <span>{$car['brand']}</span>   </div>
-                            <div><b>{l s='Model:'}</b>   <span>{$car['model']}</span>   </div>
-                            <div><b>{l s='Type:'}</b>    <span>{$car['type']}</span>    </div>
-                            <div style="height: 36px;overflow: hidden;"><b>{l s='Version:'}</b> <span>{$car['version']}</span> </div>	                
+                            <div><b>{l s='Brand:' d='Shop.Theme.MyCars'}</b>   <span>{$car['brand']}</span>   </div>
+                            <div><b>{l s='Model:' d='Shop.Theme.MyCars'}</b>   <span>{$car['model']}</span>   </div>
+                            <div><b>{l s='Type:' d='Shop.Theme.MyCars'}</b>    <span>{$car['type']}</span>    </div>
+                            <div style="height: 36px;overflow: hidden;"><b>{l s='Version:' d='Shop.Theme.MyCars'}</b> <span>{$car['version']}</span> </div>	                
                         </div>
                         <div class="spacer-20"></div>
                         <div>
@@ -126,6 +127,7 @@
             </a>
         </li>
     </ul> *}
+    </div>
     
     
     <style>

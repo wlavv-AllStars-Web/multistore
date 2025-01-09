@@ -52,12 +52,12 @@
       <div id="manufacturer-short_description" class="text_description hiddenTextDescription" style="font-size:15px;line-height:22px;text-transform:uppercase;font-weight:500;padding:0 3rem;margin:0 !important;text-align:center;">
         {$manufacturer.short_description nofilter}
       </div>
-      <button class="show-more" onclick="toggleDescription(this)">Show More</button>
+      <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Manufacturer'}</button>
     </div>
   {else}
     <div class="description" style="display: flex;flex-direction:column">
       <div id="manufacturer-description">{$manufacturer.description nofilter}</div>
-      <button class="show-more" onclick="toggleDescription(this)">Show More</button>
+      <button class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Manufacturer'}</button>
     </div>
   {/if}
   

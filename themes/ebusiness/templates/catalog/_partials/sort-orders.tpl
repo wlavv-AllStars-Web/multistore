@@ -26,7 +26,7 @@
 <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
   <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   <span id="name_sort_by">
-    {l s='Sort By' d='Shop.Theme.Actions'}
+    {l s='Sort By' d='Shop.Theme.SortOrders'}
   </span>
     {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
     <i class="material-icons pull-xs-right">arrow_drop_down</i>

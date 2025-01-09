@@ -35,7 +35,7 @@
 
 <div class="btn-toggleFilters mobile" onclick="toggleFilters()">
   <span><i class="fa-solid fa-filter"></i></span>
-  <span>Apply Filters</span>
+  <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
 </div>
 {if $page.body_classes['category-Wheels']} 
 
@@ -71,7 +71,7 @@
                 {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: 70px;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
               {/foreach}
             {elseif $countChecked > 1}
-              <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem;max-width: 70px;">{$countChecked} filters</span>
+              <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem;max-width: 70px;">{$countChecked} {l s="filters" d="Shop.Theme.ProductList"}</span>
             {/if}
 
             {* {if !$is_selected} *}
@@ -108,7 +108,7 @@
     <div class="" style="display: flex;justify-content:center;align-items:center;height:100%;">
       <div class="">
         <a class="select-title" href='{$link->getCategoryLink(228)}'>
-          {l s='Wheels Accessories' d='Shop.Theme.Actions'}
+          {l s='Wheels Accessories' d='Shop.Theme.ProductList'}
         </a>
       </div>
     </div>

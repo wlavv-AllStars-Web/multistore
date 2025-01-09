@@ -80,16 +80,16 @@
        </picture>
      {/if}
 
-     {if str_contains($product['category'] ,'clearance')}
-      <div style="position: absolute;top:1rem; right:0; width: fit-content;height:31px;background:var(--asm-color);border-radius:50px 0 0 50px;display:flex;align-items:center;gap:0.5rem;min-width:200px;font-weight:600;font-size:18px;padding:0 0.5rem;justify-content: end;">
-      <span style="color: #131313;font-weight:700">CLEARANCE</span>  
-      <span style="color: white;"> - 25%</span>  
-     
-      </div>
+      {if str_contains($product['category'] ,'clearance')}
+        <div style="position: absolute;top:1rem; left:0; width: fit-content;height:31px;background: #111;border-radius:0 50px 50px 0;display:flex;align-items:center;gap:0.5rem;min-width:200px;font-weight:600;font-size:18px;padding:0 0.5rem;border: 2px solid var(--asm-color);border-left: 0;">
+        <span style="color: #fff;font-weight:600;">{l s="CLEARANCE" d="Shop.Theme.ProductList"}</span>  
+        <span style="color: var(--asm-color);font-size: 1rem; font-weight: 700;">{$product.discount_percentage}</span>  
+       
+        </div>
       {/if}
 
     <div class="real-picture" >
-      Real Picture
+      {l s="Real Picture" d="Shop.Theme.ProductList"}
     </div>
    </div>
 

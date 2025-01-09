@@ -76,7 +76,7 @@
 
     <div class="product-line-info">
       <a class="label" href="{$product.url}" data-id_customization="{$product.id_customization|intval}">{$product.name}</a>
-      <span>Reference: {$product.reference}</span>
+      <span>{l s='Reference:' d='Shop.Theme.Cart'} {$product.reference}</span>
     </div>
 
     <div class="product-line-info product-price h5 desktop {if $product.has_discount}has-discount{/if}">

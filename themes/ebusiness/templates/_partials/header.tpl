@@ -256,7 +256,7 @@
             <li class="">
               {* <i class="material-icons">home</i> *}
               {* <i class="material-icons">contacts</i> *}
-              <a class=""  href="/">Home</a> 
+              <a class=""  href="/">{l s='Home' d='Shop.Theme.Homepage'}</a> 
             </li>
             <li class="">
               {* <i class="material-icons">new_releases</i> *}
@@ -265,7 +265,7 @@
 
             <li class=" {if $page.page_name =='index'}dropdown{/if}">
               {* <i class="material-icons">directions_car</i> *}
-                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >Your Car</a>
+                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
                   <div class="dropdown-menu menu-logos">
               {if $page.page_name =='index'}
                 {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }

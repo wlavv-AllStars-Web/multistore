@@ -5,14 +5,14 @@
         let parameters = string_splitter(elementValue, ":");
         setOrderBy(parameters[0]);
         setOrientation(parameters[1]);
-        setName($('#name_sort_by'), '{l s="Sort By"}', $( "#selectProductSort option:selected" ).text());
+        setName($('#name_sort_by'), '{l s="Sort By" d="Shop.Theme.SortOrders"}', $( "#selectProductSort option:selected" ).text());
         doSearch();
     }
 
     function setManufacturer(element, idManufacturer) {
         $('#temp_multiFilter_id_manufacturer').val(idManufacturer);
         $('#multiFilter_id_manufacturer').val(idManufacturer);
-        setName($('#name_brand'), '{l s="By Brand"}', element.text());
+        setName($('#name_brand'), '{l s="By Brand" d="Shop.Theme.SortOrders"}', element.text());
         $('#manufacturer_' + idManufacturer).css('background-color', 'rgb(0, 90, 215)').css('color', 'rgb(255, 255, 255)').css('padding', '10px');
         doSearch();
     }
@@ -32,7 +32,7 @@
         $('#temp_multiFilter_id_category').val(idCategory);
         $('#multiFilter_id_category').val(idCategory);
         $('#id_category_layered').val(idCategory);
-        setName($('#name_category'), '{l s="By Category"}', $('#category_element_' + idCategory).text());
+        setName($('#name_category'), '{l s="By Category" d="Shop.Theme.SortOrders"}', $('#category_element_' + idCategory).text());
 		$('#category_element_' + idCategory).css('background-color', 'rgb(0, 90, 215)').css('color', 'rgb(255, 255, 255)').css('padding', '10px');
         doSearch();
         
@@ -57,7 +57,7 @@
     $('#temp_multiFilter_nr_items').val(nr_items);
     $('#multiFilter_nr_items').val(nr_items);
     $('#multiFilter_n_items').val(nr_items);
-    setName($('#name_items_per_page'), nr_items, '{l s="Per Page"}');
+    setName($('#name_items_per_page'), nr_items, '{l s="Per Page" d="Shop.Theme.SortOrders"}');
     doSearch();
     }
 

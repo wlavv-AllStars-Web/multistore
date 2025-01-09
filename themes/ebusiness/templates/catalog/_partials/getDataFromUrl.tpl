@@ -1,6 +1,6 @@
 <script>
-    let category_name='{l s="All"}';
-    let manufacturer = '{l s="All"}';
+    let category_name='{l s="All" d="Shop.Theme.GetdataFilters"}';
+    let manufacturer = '{l s="All" d="Shop.Theme.GetdataFilters"}';
     let orderBy_orderWay = '---';
 
     let url_string = document.URL;
@@ -100,7 +100,7 @@
             }
  
         }
-        $('#name_sort_by').html('{l s="Sort By"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>' + deleteHtmlParameters);
+        $('#name_sort_by').html(deleteHtmlParameters + '{l s="Sort By"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
         $('#name_items_per_page').html('{l s="Per Page"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>' + deleteHtmlNrItems);
 
         if ($('body#category').length > 0) {
@@ -122,19 +122,19 @@
             $('#multiFilter_news').val(1);
             $('#news_items_news').addClass('switch_active');
             $('#news_items_all').removeClass('switch_active');
-            // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="New products"}</span></div>');
+            // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="New products" d="Shop.Theme.GetdataFilters"}</span></div>');
         }else {
 
             if (url.searchParams.get("news") == null && ($('body#new-products').length > 0)) {
                 $('#multiFilter_news').val(1);
                 $('#news_items_news').addClass('switch_active');
                 $('#news_items_all').removeClass('switch_active');
-                // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="New products"}</span></div>');
+                // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="New products" d="Shop.Theme.GetdataFilters"}</span></div>');
             } else {
                 $('#multiFilter_news').val(0);
                 $('#news_items_news').removeClass('switch_active');
                 $('#news_items_all').addClass('switch_active');
-                // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="All products"}</span></div>');
+                // $('.breadcrumb ').html('<div class="breadcrumb clearfix"><a class="home" href="/"> <i class="fa fa-home"></i> </a> <span style="margin-left:15px">{l s="All products" d="Shop.Theme.GetdataFilters"}</span></div>');
             }
         }
     }

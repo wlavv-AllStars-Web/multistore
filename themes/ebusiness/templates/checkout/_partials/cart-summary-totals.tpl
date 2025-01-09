@@ -40,11 +40,11 @@
     {else} *}
 
       <div class="cart-summary-line">
-        <span class="label">Total Products:</span>
+        <span class="label">{l s='Total Products:' d='Shop.Theme.Cart'}</span>
         <span class="value">{$cart.totals.total_excluding_tax.value}<span>
       </div>
       <div  class="cart-summary-line">
-        <span class="label">VAT</span>
+        <span class="label">{l s='VAT' d='Shop.Theme.Cart'}</span>
         <span class="value">€ {($cart.totals.total.amount - $cart.totals.total_excluding_tax.amount)|number_format:2}</span>
       </div>
       <div class="cart-summary-line cart-total">

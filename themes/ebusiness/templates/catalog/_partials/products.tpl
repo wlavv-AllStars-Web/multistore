@@ -34,7 +34,7 @@
         <div class="current-car-content">
           <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: dodgerblue;font-weight:600;"
           onclick="addToMyCars({$filter_1},{$filter_2},{$filter_3},{$filter_4},{$customer.is_logged},'{$ukoo_name_1}', '{$ukoo_name_2}', '{$ukoo_name_3}', '{$ukoo_name_4}')">
-            Click to receive informations about new products for this car
+            {l s='Click to receive informations about new products for this car' d='Shop.Theme.ProductList'}
           </div>
           <div class="mobile">
             <span><img src="/img/homepage/brands/{$filter_1}.png" style="width: 40px;"/></span>
@@ -76,27 +76,27 @@
                     <img id="wheels-image" class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/wheels_en.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
                   </div>
                   <div class="wheels-btn" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;">
-                    <span style="color: #fff;font-weight:600;">NEED HELP WITH YOUR WHEELS DETAILS?</span>
+                    <span style="color: #fff;font-weight:600;">{l s='NEED HELP WITH YOUR WHEELS DETAILS?' d='Shop.Theme.ProductList'}</span>
                   </div>
                 </div>
               </div>
               <div class="flip-card-back">
                   <div style="padding: 20px; display: block;background-color: #efefef;border: 1px solid #000;box-shadow: 0px 4px 4px #777;">
-                    <div style="color: black; font-weight: bolder; font-size: 22px;padding: 20px 0;">SELECT YOUR CAR CONFIGURATION</div>
+                    <div style="color: black; font-weight: bolder; font-size: 22px;padding: 20px 0;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
                     <div style="padding: 10px; ">
                       <select id="carBrandWheels" class="form-control" style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModelData()">
-                          <option value="0"> BRAND </option>
+                          <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
                           
                       </select>
                     </div>
                     <div style="padding: 10px;">
-                      <select id="carModelWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForYearData()" disabled="disabled"> <option> MODEL </option> </select>
+                      <select id="carModelWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
                     </div>
                     <div style="padding: 10px;">
-                      <select id="carYearWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModificationsData()" disabled="disabled"> <option> YEAR </option> </select>
+                      <select id="carYearWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
                     </div>
                     <div style="padding: 10px;">
-                      <select id="carModificationsWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" disabled="disabled"> <option> MODIFICATIONS </option> </select>
+                      <select id="carModificationsWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
                     </div>
                     <div style="padding: 10px;display: none;" id="carSpecs"></div>
                     <div style="height: 25px; width: 100%; background-color: #efefef;"></div>
@@ -124,8 +124,8 @@
       ">
         <div class="container-not-found-filters" style="text-align: center;">
           <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);">error_outline</i>
-          <h1 style="font-weight: 600;font-size: 2rem;">No Result Found</h1>
-          <span style="font-size: 1.25rem;color: #555;">We can't find any item matching your search</span>
+          <h1 style="font-weight: 600;font-size: 2rem;">{l s='No Result Found' d='Shop.Theme.ProductList'}</h1>
+          <span style="font-size: 1.25rem;color: #555;">{l s='We can\'t find any item matching your search' d='Shop.Theme.ProductList'}</span>
         </div>
       </div>
     {else}

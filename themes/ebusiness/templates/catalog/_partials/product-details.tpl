@@ -7,8 +7,8 @@
     <div class="subtitles-details">
 
             <div class="subtitles-details-left">
-              <div class="details-reference product-reference"><b>Reference:</b> {$product.reference_to_display}</div>
-              <div class="details-ec"><b>EC Approved:</b> {if $product.ec_approved > 0}<span class="aproved">Yes</span>{else}<span class="not-aproved">No</span>{/if}</div>
+              <div class="details-reference product-reference"><b>{l s="Reference:" d="Shop.Theme.Catalog"}</b> {$product.reference_to_display}</div>
+              <div class="details-ec"><b>{l s="EC Approved:" d="Shop.Theme.Catalog"}</b> {if $product.ec_approved > 0}<span class="aproved">{l s="Yes" d="Shop.Theme.Catalog"}</span>{else}<span class="not-aproved">{l s="No" d="Shop.Theme.Catalog"}</span>{/if}</div>
               {* <div class="details-product-availability d-mobile">
                 <b>Availability:</b> 
                 <span class="available">In Stock</span>
@@ -56,14 +56,14 @@
                   {if $product.show_availability && $product.availability_message}
                     {if $product.availability == 'available'}
                       {if $product.quantity < 1}
-                        <div>Shipped within:
+                        <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
                           <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                            <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
+                            <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
                           </div>
                           <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$product.availability_message}</span>
                         </div>
                       {else}
-                        <div>Availability: <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
+                        <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
                       {/if}
                     {elseif $product.availability == 'last_remaining_items'}
                       <i class="material-icons product-last-items">&#xE002;</i>
@@ -73,14 +73,14 @@
                   {/if}
                   {if $packLabel}
                     {if $packLabelStock < 1}
-                      <div>Shipped within:
+                      <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
                           <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                            <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
+                            <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
                           </div>
                           <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$packLabel}</span>
                         </div>
                     {else}
-                      <div>Availability: <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$packLabel}</span></div>
+                      <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$packLabel}</span></div>
                     {/if}
                     
                   {/if}
@@ -88,7 +88,7 @@
               {/block}
 
             {/block}
-              <div>Shipped from EU</div>
+              <div>{l s="Shipped from EU" d="Shop.Theme.Catalog"}</div>
             </div>
 
            </div>

@@ -38,9 +38,9 @@
               <h3>{l s="Infos commande" d="Shop.Theme.OrderDetails"}</h3>
             </div>
             <div class="order-infos-content">
-              <div><span class="order-infos-attribute">Reference</span> <span class="order-infos-description">{$order.details.reference}</span></div>
-              <div><span class="order-infos-attribute">Date</span> <span class="order-infos-description">{$order.details.order_date}</span></div>
-              <div><span class="order-infos-attribute">Mode de paiement</span> <span class="order-infos-description">{$order.details.payment}</span></div>
+              <div><span class="order-infos-attribute">{l s='Reference' d='Shop.Theme.CustomerAccount'}</span> <span class="order-infos-description">{$order.details.reference}</span></div>
+              <div><span class="order-infos-attribute">{l s='Date' d='Shop.Theme.CustomerAccount'}</span> <span class="order-infos-description">{$order.details.order_date}</span></div>
+              <div><span class="order-infos-attribute">{l s='Payment Method' d='Shop.Theme.CustomerAccount'}</span> <span class="order-infos-description">{$order.details.payment}</span></div>
             </div>
             {* <div class="box">
                 <div class="row">
@@ -98,7 +98,7 @@
               {if $key == 'current'}
               <div class="col-lg-12 px-0 container-current-state" onclick="toggleOrderStateHistory()">
                 <div class="order-state-label-date" style="background-color:{$state.color}">{$state.history_date} - <span class="ostate_name-label">{$state.ostate_name}</span></div>
-                <div class="order-state-label-title">History</div>
+                <div class="order-state-label-title">{l s='History' d='Shop.Theme.CustomerAccount'}</div>
               </div>
               {else}
               {/if}
@@ -107,8 +107,8 @@
               <table class="table table-striped table-bordered table-labeled ">
                 <thead class="thead-default">
                   <tr>
-                    <th>{l s='Date' d='Shop.Theme'}</th>
-                    <th>{l s='Status' d='Shop.Theme'}</th>
+                    <th>{l s='Date' d='Shop.Theme.CustomerAccount'}</th>
+                    <th>{l s='Status' d='Shop.Theme.CustomerAccount'}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -154,7 +154,7 @@
               <table class="table table-striped table-bordered ">
                 <thead class="thead-default">
                   <tr>
-                    <th>{l s='Date' d='Shop.Theme'}</th>
+                    <th>{l s='Date' d='Shop.Theme.CustomerAccount'}</th>
                     <th>{l s='Carrier' d='Shop.Theme.Checkout'}</th>
                     {* <th>{l s='Weight' d='Shop.Theme.Checkout'}</th>
                     <th>{l s='Shipping cost' d='Shop.Theme.Checkout'}</th> *}
