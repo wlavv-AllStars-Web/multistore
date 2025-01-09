@@ -250,6 +250,16 @@ function loadKlarnaWidget_ets_opc() {
     loadKlarnaWidget(option.id, $(option).data('payment_method_category'));
 }
 
+const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput")
+conditionsCheckbox.addEventListener("change", (e) => {
+    const checkbox = document.querySelector("#conditions_to_approve")
+    if(checkbox.checked){
+        document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
+    }else{
+        document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
+    }
+})
+
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
     $('.js-additional-information,.js-payment-option-form').hide();
