@@ -278,7 +278,11 @@ $(document).on('change','input[name="payment-option"]',function() {
                     });
                 }
             }
-            console.log("paulo")
+
+            const buttonSubmitPayment = document.querySelector(".checkout button[name='submitCompleteMyOrder']")
+            if(buttonSubmitPayment){
+                buttonSubmitPayment.click();
+            }
         }
     });
 });
