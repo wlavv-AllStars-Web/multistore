@@ -331,6 +331,18 @@ class AsGroup extends Module
             error_log('Product data is not valid or ec_approved is not set.');
         }
 
+        if (is_array($productData) && isset($productData['description']['universal'])){
+            $universal = $productData['description']['universal'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'universal' => pSQL($universal),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or universal is not set.');
+        }
+
+
         if (is_array($productData) && isset($productData['description']['disallow_stock'])){
             $disallow_stock = $productData['description']['disallow_stock'];
             $idProduct = $params['id_product'];

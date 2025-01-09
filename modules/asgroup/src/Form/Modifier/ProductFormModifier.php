@@ -58,7 +58,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     ): void {
         $idProduct = $productId->getValue();
 
-        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing
+        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing, universal
         FROM
         `' . _DB_PREFIX_ . 'product` 
         WHERE id_product= '.$idProduct;
@@ -78,6 +78,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $data['disallow_stock'] = $result['disallow_stock'];
         $data['ec_approved'] = $result['ec_approved'];
         $data['housing'] = $result['housing'];
+        $data['universal'] = $result['universal'];
         
         $this->modifyDescriptionTab($data, $productFormBuilder);
     }
@@ -107,9 +108,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
         //     ]
         // );
-
-        
-
 
         $descriptionTabFormBuilder = $productFormBuilder->get('description');
         $this->formBuilderModifier->addAfter(
@@ -302,6 +300,26 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
                 'required' => false,
                 'label' => $this->translator->trans('Disallow stock?',[], 'Admin.Catalog.Feature'),
                 'label_help_box' => $this->translator->trans('Disallow stock helper.',[], 'Admin.Catalog.Help'),
+            ]
+        );
+
+        $this->formBuilderModifier->addAfter(
+            $descriptionTabFormBuilder,
+            'disallow_stock',
+            'universal',
+            SwitchType::class,
+            [
+                'choices' => [
+                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+                ],
+                'data' => $data['universal'] ,
+                'placeholder' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'label' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Feature'),
+                'label_help_box' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Help'),
             ]
         );
 
