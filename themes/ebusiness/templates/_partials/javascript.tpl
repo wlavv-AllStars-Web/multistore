@@ -28,7 +28,7 @@
 
  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> *}
 
- <script src="{$urls.js_url}jquery.min.js"></script>
+ {* <script src="{$urls.js_url}jquery.min.js"></script> *}
  <script src="{$urls.js_url}select2.min.js"></script>
  <script src="{$urls.js_url}swiper-bundle.min.js"></script>
 
