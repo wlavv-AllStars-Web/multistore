@@ -658,6 +658,23 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  /* blockcart */
+  .container-buttons-modal-blockcart {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .container-buttons-modal-blockcart > button {
+    flex: 1;
+    margin-right: 0;
+    min-width: 230px;
+  }
+  .container-buttons-modal-blockcart > a {
+    flex: 1;
+  }
+
+
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
