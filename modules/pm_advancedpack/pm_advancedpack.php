@@ -974,7 +974,8 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 $productQuantity = (int)Product::getQuantity($orderDetail->product_id, $orderDetail->product_attribute_id);
                 $orderDetail->product_quantity_in_stock = ($productQuantity - ((int)$packProduct['quantity'] * (int)$orderProduct['cart_quantity']) < 0) ?
                     $productQuantity : ((int)($packProduct['quantity'] * (int)$orderProduct['cart_quantity']));
-                if ($orderStatus->id != Configuration::get('PS_OS_CANCELED') && $orderStatus->id != Configuration::get('PS_OS_ERROR')) {
+
+                if ($orderStatus->id != Configuration::get('PS_OS_CANCELED') && $orderStatus->id != Configuration::get('PS_OS_ERROR') && $orderStatus->id != Configuration::get('PS_OS_BANKWIRE')) {
                     $updateQuantity = true;
                     self::$_preventUpdateQuantityCompleteHook = true;
                     if (!StockAvailable::dependsOnStock((int)$packProduct['id_product'])) {
