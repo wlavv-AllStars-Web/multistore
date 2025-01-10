@@ -1,6 +1,6 @@
 {extends file='page.tpl'}
 
-{block name='page_content_container' prepend}
+{* {block name='page_content_container' prepend}
     <section id="content-hook_order_confirmation" class="card">
       <div class="card-block">
         <div class="row">
@@ -15,7 +15,7 @@
             <p>
               {l s='An email has been sent to your mail address %email%.' d='Shop.Theme.Checkout' sprintf=['%email%' => $order_customer.email]}
               {if $order.details.invoice_url}
-                {* [1][/1] is for a HTML tag. *}
+
                 {l
                   s='You can also [1]download your invoice[/1]'
                   d='Shop.Theme.Checkout'
@@ -35,7 +35,7 @@
         </div>
       </div>
     </section>
-{/block}
+{/block} *}
 
 {block name='page_content_container'}
   <section id="content" class="page-content page-order-confirmation card">
