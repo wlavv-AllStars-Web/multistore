@@ -434,7 +434,7 @@ class AsGroup extends Module
             ->setAssociatedColumn('product_reference')
         );
 
-        if(Context::getContext()->shop->id == 2){
+        if(Context::getContext()->shop->id == 3){
             $choices[$this->l('Bank Transfer')] = 1;
             $choices[$this->l('Credit Card')] = 2;
         }else{
@@ -544,7 +544,7 @@ class AsGroup extends Module
         $imageAlma = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/alma.webp');
         $imagePaypal = Context::getContext()->link->getMediaLink('/modules/asgroup/views/img/paypal.webp');
 
-        if(Context::getContext()->shop->id == 2){
+        if(Context::getContext()->shop->id == 3){
 
             $searchQueryBuilder->addSelect(
                 '(CASE WHEN o.payment_id IS NULL THEN "Error"
@@ -590,7 +590,7 @@ class AsGroup extends Module
                         ->setParameter($filterName, '%' . $filterValue . '%');
             }
 
-            if(Context::getContext()->shop->id == 2){
+            if(Context::getContext()->shop->id == 3){
                 if ($filterName === 'payment_id' && !empty($filterValue)) {
                     $searchQueryBuilder->andWhere('o.payment_id = :payment_id')
                         ->setParameter('payment_id', $filterValue);
