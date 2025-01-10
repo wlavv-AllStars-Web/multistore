@@ -546,16 +546,22 @@ class OrderDetailCore extends ObjectModel
     {
 
         // ASGROUP PS_OS_WAITING_PAYMENT ("Awaiting payment") to not remove stock of product if in that order state. Only on ASDistribution
-        if($this->context->shop->id != 3 || $this->context->shop->id != 2){
+        if($this->context->shop->id == 3){
             $dismissOrderStateIds = Configuration::getMultiple([
                 'PS_OS_CANCELED',
                 'PS_OS_ERROR',
+                'PS_OS_WAITING_PAYMENT'
+            ]);
+        }else if($this->context->shop->id == 2){
+            $dismissOrderStateIds = Configuration::getMultiple([
+                'PS_OS_CANCELED',
+                'PS_OS_ERROR',
+                'PS_OS_BANKWIRE'
             ]);
         }else{
             $dismissOrderStateIds = Configuration::getMultiple([
                 'PS_OS_CANCELED',
                 'PS_OS_ERROR',
-                'PS_OS_WAITING_PAYMENT'
             ]);
         }
 
