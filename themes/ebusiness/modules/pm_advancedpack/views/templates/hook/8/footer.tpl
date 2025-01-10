@@ -13,6 +13,7 @@ function ap5_setPackContentData(retryCount) {
 				ap5_packContentDataUpdated = true;
 			});
             // Default add to cart modal
+			console.log($('#blockcart-modal .modal-body span:contains("' + ap5_uniquePackAttribute + '")'));
             $('#blockcart-modal .modal-body span:contains("' + ap5_uniquePackAttribute + '")').each(function (idx, elem) {
 				var changed = $(elem).html().replace(ap5_uniquePackAttribute, ap5_cartPackProducts[ap5_uniquePackAttribute].cart);
 				$(elem).html(changed);
