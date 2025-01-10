@@ -52,10 +52,11 @@
             add_product_link=false
           }
         {/block} *}
-        {* <pre>{$order->getTotals()|print_r}</pre> *}
+
         {assign var="order_totals" value=$order->getTotals()}
 
         {block name='order_details'}
+          {if $order.details.payment == 'Bank transfer'}
           <div style="display: flex;flex-direction:column;gap:1rem;">
             <div>
               <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
@@ -85,6 +86,9 @@
               <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
             </div>
           </div>
+          {elseif $order.details.payment == 'PayPal - SANDBOX'}
+            PayPal
+          {/if}
         {/block}
 
       </div>
