@@ -656,6 +656,7 @@ body {
 
   .block-onepagecheckout.block-shopping-cart .cart-overview .cart-items{
     display: flex;
+    flex-direction: column;
   }
 }
 
