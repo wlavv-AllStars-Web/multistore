@@ -37,7 +37,7 @@
           {* {$HOOK_HOME nofilter} *}
 
           
-
+{debug}
          
           
           <div class="bannersHome">
@@ -47,7 +47,9 @@
               {foreach from=$desktop['banners'] item=item key=key name=name}
                 {if !empty($item['image_en'])}
                 <div class="swiper-slide">
-                  <img  src="{$item['image_en']}"/>
+                  <a href="{$item['link']}">
+                    <img  src="{$item['image_en']}"/>
+                  </a>
                 </div>
                 {/if}
               {/foreach}
@@ -58,7 +60,9 @@
           <div class="banners_50">
             {foreach from=$desktop['icones_50'] item=item key=key name=name}
               <div class="banner_50">
-                <img src="{$item['image_en']}" />
+                <a href="{$item['link']}">
+                  <img src="{$item['image_en']}" />
+                </a>
               </div>
             {/foreach}
           </div>
@@ -66,7 +70,9 @@
           <div class="banners_33">
             {foreach from=$desktop['icones_33'] item=item key=key name=name}
               <div class="banner_33">
-                <img src="{$item['image_en']}" />
+                <a href="{$item['link']}">
+                  <img src="{$item['image_en']}" />
+                </a>
               </div>
             {/foreach}
           </div>
