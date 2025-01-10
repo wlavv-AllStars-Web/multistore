@@ -208,7 +208,7 @@ class OrderHistoryCore extends ObjectModel
 
             // ASGROUP remove stock only on payment accepted
 
-            if($order->id_shop != 3){
+            if($order->id_shop != 3 || $order->id_shop != 2){
                 $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED')];
             }else{
                 $error_or_canceled_statuses = [Configuration::get('PS_OS_ERROR'), Configuration::get('PS_OS_CANCELED'), Configuration::get('PS_OS_BANKWIRE')];
