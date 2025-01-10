@@ -5748,6 +5748,7 @@ select.form-control:not([size]):not([multiple]){
   max-width: 300px;
   padding: .5rem 1rem;
   border-radius: .25rem;
+  justify-content: center;
 }
 
 #order-confirmation .back-to-orders .btn-orders:hover{
