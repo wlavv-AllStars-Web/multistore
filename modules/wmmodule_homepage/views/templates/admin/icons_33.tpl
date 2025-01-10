@@ -30,7 +30,7 @@
                                 <label>Select brand</label> 
                                 <select id="select_brand_{$icons_33['id']}" name="link[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_brand_{$icons_33['id']}')" style="padding:5px;">
                                     <option value="">---</option>
-                                    <option value="523_clearence" {if "523_clearence" == $icons_33['link']} selected {/if}>Clearence</option>
+                                    <option value="16_clearence" {if $icons_33['link']|replace:'-':'_' == "16_clearance"} selected {/if}>Clearence</option>
                                     {foreach $manufacturers AS $manufacturer}
                                         <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $icons_33['link']|replace:'-':'_'} selected {/if}>{$manufacturer['name']}</option>
                                     {/foreach}

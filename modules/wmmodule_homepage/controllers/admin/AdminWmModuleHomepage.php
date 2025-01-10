@@ -228,6 +228,7 @@ class AdminWmModuleHomepageController extends AdminController{
         }elseif(Tools::getValue('action') == 'updateHomepageTemp'){
             $data = Tools::getAllValues();
 
+
             $car_brand = 0;
             $car_model = 0;
             $car_type = 0;
@@ -236,12 +237,17 @@ class AdminWmModuleHomepageController extends AdminController{
 
             $row_data = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE id=' . $data['id_ps_asm_homepage_temp']);
 
+            if($data['id_element'] == 16 && $data['title_en'] == 'Clearence'){
+                $row_data['id_category'] = 16;
+                $row_data['id_manufacturer'] = 0;
+            }
+
             if($row_data['id_manufacturer']  > 0){
                 $name = Db::getInstance()->getValue('SELECT name FROM '._DB_PREFIX_.'manufacturer WHERE id_manufacturer = ' . $row_data['id_manufacturer']);
                 $link = $row_data['id_manufacturer'] . '-' . str_replace(' ', '-', $name);
             }elseif($row_data['id_category']  > 0){
                 $name = Db::getInstance()->getValue('SELECT name FROM '._DB_PREFIX_.'category_lang WHERE id_category = ' . $row_data['id_category'] . ' AND id_lang=1');
-                $link = $row_data['id_category'] . '_' . str_replace(' ', '-', $name);
+                $link = $row_data['id_category'] . '-' . str_replace(' ', '-', $name);
             }
 
             if( $data['linkProduct'] > 0){
@@ -311,7 +317,7 @@ class AdminWmModuleHomepageController extends AdminController{
                 }
             }
 
-            if($idElement == 523) $element = 'category';
+            if($idElement == 16) $element = 'category';
             
             $image_en = self::uploadIconsProcess($_FILES['fileUpload_' . $fileUpload_name . '_en'], $zoneString, 'en', $image_name);
             $image_es = self::uploadIconsProcess($_FILES['fileUpload_' . $fileUpload_name . '_es'], $zoneString, 'es', $image_name);
@@ -563,6 +569,7 @@ class AdminWmModuleHomepageController extends AdminController{
                         youtube_code='" . $row['youtube_code'] . "' ,
                         id_shop='" . $row['id_shop'] . "' 
                     WHERE id=" . $row['id'];
+
             Db::getInstance()->execute($sql);
             
         }
