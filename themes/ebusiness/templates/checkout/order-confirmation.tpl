@@ -1,6 +1,6 @@
 {extends file='page.tpl'}
 
-{* {block name='page_content_container' prepend}
+{block name='page_content_container' prepend}
     <section id="content-hook_order_confirmation" class="card">
       <div class="card-block">
         <div class="row">
@@ -35,7 +35,7 @@
         </div>
       </div>
     </section>
-{/block} *}
+{/block}
 
 {block name='page_content_container'}
   <section id="content" class="page-content page-order-confirmation card">
@@ -56,7 +56,7 @@
         {assign var="order_totals" value=$order->getTotals()}
 
         {block name='order_details'}
-          {if $order.details.payment == 'Bank transfer'}
+          {if $paymentMethod == 'ps_wirepayment'}
           <div style="display: flex;flex-direction:column;gap:1rem;">
             <div>
               <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
@@ -86,8 +86,96 @@
               <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
             </div>
           </div>
-          {elseif $order.details.payment == 'PayPal - SANDBOX'}
-            PayPal
+          {elseif $paymentMethod == 'paypal'}
+            <div style="display: flex;flex-direction:column;gap:1rem;">
+              <div>
+                <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
+                <p>{l s='Your order has been registered.' d='Shop.Theme.Checkout'}</p>
+              </div>
+              <div id="order-details">
+                {* <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3> *}
+                <ul style="padding: 0;">
+                  <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
+                  <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
+                  <li>{l s='Payé: %payment%' d='Shop.Theme.Checkout' sprintf=['%payment%' => $order_totals['total']['value']]}</li>
+                  {* {if !$order.details.is_virtual}
+                    <li>
+                      {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
+                      <em>{$order.carrier.delay}</em>
+                    </li>
+                  {/if} *}
+                  {if $order.details.recyclable}
+                    <li>  
+                      <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
+                    </li>
+                  {/if}
+                </ul>
+              </div>
+              {* <div>
+                <h4>{l s='Important information:' d="Shop.Theme.Checkout"}</h4>
+                <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
+              </div> *}
+            </div>
+          {elseif $paymentMethod == 'ogone'}
+            <div style="display: flex;flex-direction:column;gap:1rem;">
+              <div>
+                <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
+                <p>{l s='Your order has been registered.' d='Shop.Theme.Checkout'}</p>
+              </div>
+              <div id="order-details">
+                {* <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3> *}
+                <ul style="padding: 0;">
+                  <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
+                  <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
+                  <li>{l s='Payé: %payment%' d='Shop.Theme.Checkout' sprintf=['%payment%' => $order_totals['total']['value']]}</li>
+                  {* {if !$order.details.is_virtual}
+                    <li>
+                      {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
+                      <em>{$order.carrier.delay}</em>
+                    </li>
+                  {/if} *}
+                  {if $order.details.recyclable}
+                    <li>  
+                      <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
+                    </li>
+                  {/if}
+                </ul>
+              </div>
+              {* <div>
+                <h4>{l s='Important information:' d="Shop.Theme.Checkout"}</h4>
+                <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
+              </div> *}
+            </div>
+          {elseif $paymentMethod == 'alma'}
+            <div style="display: flex;flex-direction:column;gap:1rem;">
+              <div>
+                <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
+                <p>{l s='Your order has been registered.' d='Shop.Theme.Checkout'}</p>
+              </div>
+              <div id="order-details">
+                {* <h3 class="h3 card-title">{l s='Order details' d='Shop.Theme.Checkout'}:</h3> *}
+                <ul style="padding: 0;">
+                  <li id="order-reference-value">{l s='Order reference: %reference%' d='Shop.Theme.Checkout' sprintf=['%reference%' => $order.details.reference]}</li>
+                  <li>{l s='Payment method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.details.payment]}</li>
+                  <li>{l s='Payé: %payment%' d='Shop.Theme.Checkout' sprintf=['%payment%' => $order_totals['total']['value']]}</li>
+                  {* {if !$order.details.is_virtual}
+                    <li>
+                      {l s='Shipping method: %method%' d='Shop.Theme.Checkout' sprintf=['%method%' => $order.carrier.name]}<br>
+                      <em>{$order.carrier.delay}</em>
+                    </li>
+                  {/if} *}
+                  {if $order.details.recyclable}
+                    <li>  
+                      <em>{l s='You have given permission to receive your order in recycled packaging.' d="Shop.Theme.Customeraccount"}</em>
+                    </li>
+                  {/if}
+                </ul>
+              </div>
+              {* <div>
+                <h4>{l s='Important information:' d="Shop.Theme.Checkout"}</h4>
+                <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
+              </div> *}
+            </div>
           {/if}
         {/block}
 
