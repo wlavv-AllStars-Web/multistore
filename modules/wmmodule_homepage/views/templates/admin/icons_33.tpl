@@ -32,7 +32,7 @@
                                     <option value="">---</option>
                                     <option value="523_clearence" {if "523_clearence" == $icons_33['link']} selected {/if}>Clearence</option>
                                     {foreach $manufacturers AS $manufacturer}
-                                        <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $icons_33['link']} selected {/if}>{$manufacturer['name']}</option>
+                                        <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $icons_33['link']|replace:'-':'_'} selected {/if}>{$manufacturer['name']}</option>
                                     {/foreach}
                                 </select>
                             </div>
