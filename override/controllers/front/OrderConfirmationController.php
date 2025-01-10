@@ -218,12 +218,20 @@ class OrderConfirmationControllerCore extends FrontController
     {
         parent::initContent();
 
+        $orderId = $this->order->id;
+        $paymentMethod = Db::getInstance()->getValue('
+            SELECT module
+            FROM ' . _DB_PREFIX_ . 'orders
+            WHERE id_order = "' . pSQL($orderId) . '"
+        ');
+
         $this->context->smarty->assign([
             'HOOK_ORDER_CONFIRMATION' => $this->displayOrderConfirmation($this->order),
             'HOOK_PAYMENT_RETURN' => $this->displayPaymentReturn($this->order),
             'order' => (new OrderPresenter())->present($this->order),
             'order_customer' => $this->objectPresenter->present($this->customer),
             'registered_customer_exists' => Customer::customerExists($this->customer->email, false, true),
+            'paymentMethod' => $paymentMethod
         ]);
         // echo 'checkout order confimartion';
         // exit;
