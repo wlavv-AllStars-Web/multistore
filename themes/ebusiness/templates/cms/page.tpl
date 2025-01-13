@@ -250,13 +250,13 @@
             }
 
             .mySwiperCar{
-                width: 620px;
+                width: 850px;
                 height: fit-content;
                 background: #fff;
             }
 
             .mySwiperCar .swiper-slide img {
-                max-width: 620px;
+                max-width: 850px;
             }
 
 
