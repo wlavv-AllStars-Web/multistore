@@ -245,7 +245,7 @@ function toggleMenuCars(e){
 }
 
 function hoverCart(e) {
-  console.log(e)
+  // console.log(e)
   const cartModalTop = e.querySelector(".cart-hover-content")
   cartModalTop.classList.toggle("show-cart-top-modal")
 }
