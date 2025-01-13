@@ -25,7 +25,7 @@
 {* <pre>{print_r($product['category'],1)}</pre> *}
 {* <pre>{$ur|print_r}</pre> *}
 {* <pre>{$product|print_r}</pre> *}
-<article class="product-miniature js-product-miniature d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
+<article class="product-miniature {if $product.pack}product-pack-miniature{/if} js-product-miniature d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
   <div class="thumbnail-container" style="width: 526px;height:349px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative">
     <div class="image_item_product" style="border: 0;">
     {block name='product_thumbnail'}
