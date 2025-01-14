@@ -71,6 +71,7 @@ var ap5Plugin = {
 				dataType: 'json',
 				cache: false,
 				success: function(jsonData, textStatus, jqXHR) {
+					console.log("pack-17.js")
 					ap5Plugin.log('[ap5Plugin.addPackToCart] Success');
 
 					$(document).trigger('ap5-Before-AddPackToCart', [idPack, idProductAttributeList, callerElement]);
@@ -199,7 +200,7 @@ var ap5Plugin = {
 
 		if (ap5_displayMode == 'advanced') {
 			ap5Plugin.applyProductListMinHeight($('.ap5-pack-product-name'), true, 'min-height');
-			ap5Plugin.applyProductListMinHeight($('div.ap5-pack-product-price-table-container'), true, 'height');
+			// ap5Plugin.applyProductListMinHeight($('div.ap5-pack-product-price-table-container'), true, 'height');
 			ap5Plugin.applyProductListMinHeight($('div.ap5-pack-images-container'), true, 'height');
 			ap5Plugin.applyProductListMinHeight($('div.ap5-pack-product-content'), true, 'height');
 			ap5Plugin.applyProductListMinHeight($('#ap5-pack-product-tab-list li'), true, 'height');
@@ -287,6 +288,7 @@ var ap5Plugin = {
 		}
 		ap5Plugin.log('[ap5Plugin.updatePackTableFromAnchor] Call');
 		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
+		console.log("aqui3")
 		$.ajax({
 			type: 'POST',
 			url: ap5_updatePackURL,
@@ -343,6 +345,7 @@ var ap5Plugin = {
 			dataType: 'json',
 			cache: false,
 			success: function(jsonData, textStatus, jqXHR) {
+				console.log("aqui1")
 				ap5Plugin.updatePackContent(jsonData, pmAjaxSpinnerInstance);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -400,6 +403,7 @@ var ap5Plugin = {
 		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
 
 		$(document).trigger('ap5-Before-UpdateBuyBlock');
+		console.log("aqui2")
 
 		// Remove unused div
 		$('.product-prices').remove();
@@ -448,7 +452,6 @@ $(document).on('change', '.ap5-attributes .ap5-attribute-select', function(e){
 	e.stopImmediatePropagation();
 	ap5Plugin.log('[ap5_Event] Attribute select click');
 	ap5Plugin.updatePackTable();
-	console.log(e)
 });
 
 $(document).on('click', '.ap5-attributes .ap5-attribute-radio', function(e){
