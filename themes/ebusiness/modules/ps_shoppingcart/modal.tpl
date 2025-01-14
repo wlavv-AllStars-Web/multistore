@@ -22,6 +22,7 @@
                 {foreach from=$product.attributes item="property_value" key="property"}
 
                   {if $property == "Pack content" || $property == "Contenido del pack" || $property == "Contenu du pack"}
+                    <span><strong>{$property}</strong>: {$property_value}</span><br>
                     {if $packProducts}
                       <ul class="ap5_pack_product_list ap5_pack_product_list_block_cart">
                         {foreach from=$packProducts item='packProduct'}
