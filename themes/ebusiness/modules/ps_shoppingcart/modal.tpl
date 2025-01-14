@@ -18,9 +18,25 @@
                 <h6 class="h6 product-name">{$product.name}</h6>
                 <p>{$product.price}</p>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+                
                 {foreach from=$product.attributes item="property_value" key="property"}
+                  {if $property != "Pack content" || $property != "Contenido del pack" || $property != "Contenu du pack"}
                   <span><strong>{$property}</strong>: {$property_value}</span><br>
+                  {else}
+                    {if $packProducts}
+                      <ul class="ap5_pack_product_list ap5_pack_product_list_block_cart">
+                        {foreach from=$packProducts item='packProduct'}
+                          <li>
+                            <span class="badge badge-dark">{$packProduct['quantity']}x</span> {$packProduct['reference']|escape:'htmlall':'UTF-8'}
+                            {if isset($packProduct['attributes_small']) && !empty($packProduct['attributes_small'])}<br /><em>{$packProduct['attributes_small']|escape:'htmlall':'UTF-8'}</em>{/if}
+                          </li>
+                        {/foreach}
+                      </ul>
+                    {/if}
+                  {/if}
                 {/foreach}
+
+                
                 <p><strong>{l s='Quantity:' d='Shop.Theme.Checkout'}</strong>&nbsp;{$product.cart_quantity}</p>
               </div>
             </div>
@@ -49,3 +65,21 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Select the span element containing "Pack content"
+  const packContentSpan = document.querySelector('.modal-body span:has(strong:contains("Pack content"))');
+
+  // Check if the span element exists
+  if (packContentSpan) {
+    // Remove the span element from the DOM
+    packContentSpan.remove();
+    console.log("Pack content span removed successfully.");
+  } else {
+    console.log("No Pack content span found.");
+  }
+});
+
+</script>
+
