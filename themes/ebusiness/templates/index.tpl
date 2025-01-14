@@ -37,7 +37,7 @@
           {* {$HOOK_HOME nofilter} *}
 
           
-{debug}
+
          
           
           <div class="bannersHome">
