@@ -71,7 +71,7 @@ var ap5Plugin = {
 				dataType: 'json',
 				cache: false,
 				success: function(jsonData, textStatus, jqXHR) {
-					console.log("pack-17.js")
+					// console.log("pack-17.js")
 					ap5Plugin.log('[ap5Plugin.addPackToCart] Success');
 
 					$(document).trigger('ap5-Before-AddPackToCart', [idPack, idProductAttributeList, callerElement]);
@@ -288,7 +288,7 @@ var ap5Plugin = {
 		}
 		ap5Plugin.log('[ap5Plugin.updatePackTableFromAnchor] Call');
 		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
-		console.log("aqui3")
+		// console.log("aqui3")
 		$.ajax({
 			type: 'POST',
 			url: ap5_updatePackURL,
@@ -345,7 +345,7 @@ var ap5Plugin = {
 			dataType: 'json',
 			cache: false,
 			success: function(jsonData, textStatus, jqXHR) {
-				console.log("aqui1")
+				// console.log("aqui1")
 				ap5Plugin.updatePackContent(jsonData, pmAjaxSpinnerInstance);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -403,7 +403,7 @@ var ap5Plugin = {
 		var pmAjaxSpinnerInstance = ap5Plugin.addLayerLoading($('#product .product-information'));
 
 		$(document).trigger('ap5-Before-UpdateBuyBlock');
-		console.log("aqui2")
+		// console.log("aqui2")
 
 		// Remove unused div
 		$('.product-prices').remove();
