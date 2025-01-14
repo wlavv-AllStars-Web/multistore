@@ -53,12 +53,12 @@
 <div id="block_myaccount_infos" class="links wrapper myacc">
   <h3 class="myaccount-title hidden-sm-down">
     <a class="text-uppercase" href="{$urls.pages.my_account}" rel="nofollow">
-    <span class="myacct"><i class="fa-solid fa-user" style="padding-right: 5px;"></i>{l s='Your account' d='Shop.Theme.CustomerAccount'}
+    <span class="myacct"><i class="fa-solid fa-user" style="padding-right: 5px;"></i>{l s='Your account' d='Shop.Theme.Homepage'}
     </span>
     </a>
   </h3>
   <div class="title clearfix hidden-xs-up" data-target="#footer_account_list" data-toggle="collapse">
-    <span class="h3">{l s='Your account' d='Shop.Theme.CustomerAccount'}</span>
+    <span class="h3">{l s='Your account' d='Shop.Theme.Homepage'}</span>
     <span class="pull-xs-right">
       <span class="navbar-toggler collapse-icons">
          <i class="material-icons add">expand_more</i>
@@ -68,7 +68,7 @@
   </div>
   <ul class="account-list collapse" id="footer_account_list">
         <li>
-            <a href="{$link->getPageLink('my-account', true)}" title="{l s='my account' d='Shop.Theme.CustomerAccount'}"> {l s='My account' d='Shop.Theme.CustomerAccount'}</a>
+            <a href="{$link->getPageLink('my-account', true)}" title="{l s='my account' d='Shop.Theme.Homepage'}"> {l s='My account' d='Shop.Theme.Homepage'}</a>
         </li>
     {foreach from=$my_account_urls item=my_account_url}
         <li>
