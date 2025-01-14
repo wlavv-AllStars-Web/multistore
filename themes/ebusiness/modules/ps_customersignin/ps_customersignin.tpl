@@ -9,18 +9,18 @@
       </a>
       <a class="user-info-account"  href="{$urls['pages']['my_account']}" title="{l s='My account' d='Shop.Theme.CustomerAccount'}" rel="nofollow" >
         <i class="fa-solid fa-user" style="color:#fff"></i>
-        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;" >{l s='My account' d='Shop.Theme.Actions'}</span>
+        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;" >{l s='My account' d='Shop.Theme.CustomerAccount'}</span>
       </a>
       
     {else}
       <a class="d-desktop" href="{$urls['pages']['authentication']}" style="display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;" title="{l    s='Log in to your customer account' d='Shop.Theme.CustomerAccount'}" rel="nofollow" >
         <i class="fa-solid fa-user" style="color:#fff"></i>
-        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.Actions'}</span>
+        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.CustomerAccount'}</span>
       </a>
 
       <div class="d-mobile" onclick="toggleMyaccountLogin()" style="display: flex;justify-content:end;align-items:center;padding-right:4px;gap:5px;" title="{l    s='Log in to your customer account' d='Shop.Theme.CustomerAccount'}" >
         <i class="fa-solid fa-user" style="color:#fff"></i>
-        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.Actions'}</span>
+        <span class="d-none d-lg-flex" style="text-transform: uppercase;color:#fff;font-weight:600;font-size:15px;">{l s='My account' d='Shop.Theme.CustomerAccount'}</span>
       </div>
         
         {* <span style="border-right: 1px solid #fff; margin-top: 9px;   height: 21px;   display: inline-block;" > *}
