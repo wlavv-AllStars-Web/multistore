@@ -674,7 +674,11 @@ body {
     flex: 1;
   }
 
-
+  #module-psgdpr-gdpr #main {
+    max-width: 1450px;
+    margin: auto;
+    padding: 1rem 0;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
