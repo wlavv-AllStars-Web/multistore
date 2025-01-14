@@ -191,12 +191,16 @@
                 const slide = document.createElement("div")
                 slide.classList.add("swiper-slide")
 
+                const slideZoom = document.createElement("div")
+                slideZoom.classList.add("swiper-zoom-container")
+
                 const imgContent = document.createElement("img")
                 const src = img.getAttribute("src")
 
                 imgContent.setAttribute("src", src)
 
-                slide.appendChild(imgContent)
+                slideZoom.appendChild(imgContent)
+                slide.appendChild(slideZoom)
 
                 swiperWrapper.appendChild(slide)
 
