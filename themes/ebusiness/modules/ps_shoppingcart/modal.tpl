@@ -20,7 +20,7 @@
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 
                 {foreach from=$product.attributes item="property_value" key="property"}
-                  {$property}
+                  {$property != "Pack content"}
                   {if $property != "Pack content" || $property != "Contenido del pack" || $property != "Contenu du pack"}
                   <span><strong>{$property}</strong>: {$property_value}</span><br>
                   {else}
