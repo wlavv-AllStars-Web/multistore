@@ -230,6 +230,7 @@
 
         <script>
             var swiperCarImgs = new Swiper(".mySwiperCar", {
+                zoom: true,
                 autoplay: {
                     delay: 2500,
                     disableOnInteraction: false,
@@ -257,9 +258,17 @@
 
             .mySwiperCar .swiper-slide img {
                 max-width: 850px;
+                width: 100%;
             }
 
-
+            .page-car .cars_ul a {
+                color: #111 !important;
+                font-weight: 600;
+            }
+            .page-car .cars_ul a:hover {
+                color: var(--asm-color) !important;
+                font-weight: 600;
+            }
 
         </style>
     {/if}
