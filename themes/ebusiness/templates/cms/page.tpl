@@ -235,15 +235,19 @@
         <script>
             var swiperCarImgs = new Swiper(".mySwiperCar", {
                 zoom: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
                 loop: true,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
                 },
+                breakpoints: {
+                    768: {
+                        autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false,
+                        },
+                    }
+                }
             });
 
         </script>
