@@ -118,10 +118,13 @@
 
 .card_partners {
   box-shadow: 3px 3px 5px 6px #ccc;
-  height: auto;
+  /* height: auto; */
+  height: 100%;
   background-color: #333;
   color: white;
   min-height: 465px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card_partners .image_container_partners {
@@ -144,11 +147,12 @@
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     text-align: center;
+    flex: 1;
 }
 
 .button_container_partners {
   padding: 0 20px 20px 20px;
-  margin: 20px auto 20px auto;
+  margin: 0;
   text-align: center;
   display: grid;
 }
@@ -1241,47 +1245,11 @@ width: 100%;
     padding: 1rem;
   }
 
-  /* .page-car > div:nth-child(1) {
-    padding: 0 4rem;
-  }
-
-  .page-car h1 b{
-    font-size: 2.5rem;
-    padding-bottom: 2rem;
-    color: #111;
-  }
-
-  .page-car h3{
-    font-size: 1rem;
-    color: #222 !important;
-    font-weight: 600;
-  }
-
-  .page-car h3:last-child {
-    padding-bottom: 2rem;
-  }
-
-  .page-car h1{
-    font-size: 2rem;
-    padding-bottom: 1rem;
-    color: #222;
-    font-weight: 600;
-  }
-
-  .page-car ul li {
-    padding-left: 2rem;
-    color: #444;
-  } */
-
   .page-car img {
     width: 100%;
   }
 
   .page-car img:hover {
-    /* position: relative;
-    transform: scale(2);
-    z-index: 88;
-    transition: all ease-in-out 150ms; */
     cursor: pointer;
   }
 
@@ -1294,14 +1262,12 @@ width: 100%;
     justify-content: center;
   }
 
-
-
   .mySwiperCar .swiper-button-next, .mySwiperCar .swiper-button-prev {
     color: var(--asm-color);
   }
 
   @media screen and (max-width: 768px) {
-    .cms-id-28 .car-container {
+    .ourcars .car-container {
       min-width: 100%;
       max-width: 100dvw;
       width: 100% !important;
@@ -1389,7 +1355,7 @@ width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-  }
+    }
     
     .page-car > div:nth-child(1) {
       padding: 0 2rem;
@@ -1437,7 +1403,7 @@ width: 100%;
     .modal-imgs-car{
       display: none !important;
       position: fixed;
-      z-index: 99;
+      z-index: 9999;
       top: 0;
       left: 0;
       width: 100dvw;
