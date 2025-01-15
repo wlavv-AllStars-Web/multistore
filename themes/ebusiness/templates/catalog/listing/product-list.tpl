@@ -71,11 +71,11 @@
           </div>
         {/if}
       {else}
-        <div>
+        {* <div>
           {block name='product_list_top'}
             {include file='catalog/_partials/products-top.tpl' listing=$listing}
           {/block}
-        </div>
+        </div> *}
       {/if}
       
     </div>
