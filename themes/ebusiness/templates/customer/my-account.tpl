@@ -145,7 +145,7 @@
 
   </div>
   <div class="col-lg-12" style="display: flex;margin:1rem auto;max-width: 1490px;">
-    <a href="{$urls.pages.index}" class="account-link  btn-primary">
+    <a href="{$urls.pages.index}" class="account-link  btn-primary d-flex">
       <i class="material-icons">&#xE88A;</i>
       <span>{l s='Home' d='Shop.Theme'}</span>
     </a>
