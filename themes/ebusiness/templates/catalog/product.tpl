@@ -493,20 +493,20 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
                 </div>
-                <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="Name" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
+                <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="{l s='Name' d='Shop.Theme.Catalog'}" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
               </div>
               <div class="form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
                 </div>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
+                <input type="email" class="form-control" id="inputEmail" placeholder="{l s='Email' d='Shop.Theme.Catalog'}" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
               </div>
               <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your question." name="question_customer"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{l s='Write your question.' d='Shop.Theme.Catalog'}" name="question_customer"></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary">
-                Submit
+                {l s='Submit' d='Shop.Theme.Catalog'}
                 <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
                 <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
                 <input type="hidden" name="product_askquestion" value="1">
