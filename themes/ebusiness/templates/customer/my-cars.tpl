@@ -18,7 +18,7 @@
     
         {if strlen($car) < 10 }
     
-            {capture name=path}{l s='No emails for selected car'}{/capture}
+            {capture name=path}{l s='No emails for selected car' d='Shop.Theme.MyCars'}{/capture}
             
             <div class="spacer-20"></div>
             <p class="alert alert-warning"> {l s="We don't have clientes interested in this car setup yet." d='Shop.Theme.MyCars'} </p>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="spacer-20"></div>
                         <div>
-                            <a onclick="deleteCar({$car['id']})" class="btn btn-danger" rel="nofollow" title="Delete car" href="#">
+                            <a onclick="deleteCar({$car['id']})" class="btn" rel="nofollow" title="Delete car" href="#" style="background: var(--asm-color);">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </div>   
@@ -159,7 +159,7 @@
         
         function deleteCar(id){
             
-            var del=confirm("{l s='Are you sure you want to delete this car?'}");
+            var del=confirm("{l s='Are you sure you want to delete this car?' d='Shop.Theme.MyCars'}");
             if (del==true) window.location.replace('{$link->getPageLink('mycars', true)}?delete=true&id=' + id)
         
         }
