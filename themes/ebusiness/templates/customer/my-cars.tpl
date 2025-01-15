@@ -10,7 +10,7 @@
     <div>
     {if isset($unsubscribeMessage)}
         <div style="text-align:center;margin: 10px auto;">
-            <div class="alert alert-success">{l s="Removeu o email da lista de newsletter com sucesso!" d='Shop.Theme.MyCars'}</div>
+            <div class="alert alert-success">{l s="You have successfully removed the email from the newsletter list!" d='Shop.Theme.MyCars'}</div>
         </div>
     {/if}
     
