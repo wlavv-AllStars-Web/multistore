@@ -2370,22 +2370,141 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         }
         if(!$this->errors)
         {
-            if($use_another_address_for_invoice){
-                
-                if($this->context->shop->id != 3){
-                    if($invoice_address['id_address'])
-                        $address = new Address($invoice_address['id_address']);
-                    else
-                        $address = new Address();
-                }else{
+            if($this->context->shop->id == 3){
+                if($use_another_address_for_invoice){
+                    
+                    
+
                     if($shipping_address['id_address'])
                         // $address = new Address($invoice_address['id_address']);
                         $address = new Address();
                     else
                         $address = new Address();
+                    
+
+
+                    $address->alias =isset($shipping_address['alias']) && $shipping_address['alias'] ? $shipping_address['alias'] : $this->module->l('My Address','order');
+                    if(!$address->id)
+                        $address->id_customer = $this->context->customer->id;
+                    if(isset($shipping_address['firstname']) && $shipping_address['firstname'])
+                        $address->firstname = $shipping_address['firstname'];
+                    else
+                        $address->firstname =' ';
+                    if(isset($shipping_address['lastname']) && $shipping_address['lastname'])
+                        $address->lastname = $shipping_address['lastname'];
+                    else
+                        $address->lastname = ' ';
+                    if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
+                    {
+                        if(isset($shipping_address['company']))
+                            $address->company = $shipping_address['company'];
+                    }
+                    else{
+                        $customertype = isset($shipping_address['eicustomertype']) ? $shipping_address['eicustomertype']:0;
+                        if($customertype)
+                        {
+                            if(isset($shipping_address['company']))
+                            {
+                                $address->company = $shipping_address['company'];
+                            }
+                        }
+                        else
+                            $address->company = '';
+                    }
+                    if(isset($shipping_address['address2']))
+                        $address->address2 = $shipping_address['address2'];
+                    if(isset($shipping_address['address1']) && $shipping_address['address1']) 
+                        $address->address1 = $shipping_address['address1'];
+                    else
+                        $address->address1 =' ';
+                    if(isset($shipping_address['city']) && $shipping_address['city'])
+                        $address->city = $shipping_address['city'];
+                    else
+                        $address->city =' ';
+                    $address->id_state = isset($shipping_address['id_state']) ? $shipping_address['id_state'] :0;
+                    if(isset($shipping_address['id_country']) && $shipping_address['id_country'])
+                        $address->id_country = $shipping_address['id_country'];
+                    elseif(!$address->id_country)
+                        $address->id_country = (int)$this->context->country->id ? : (int)Configuration::get('PS_COUNTRY_DEFAULT');
+                    $address->postcode = isset($shipping_address['postcode']) ? $shipping_address['postcode'] :'';
+                    $address->phone = isset($shipping_address['phone']) ? $shipping_address['phone']:'';
+                    $address->phone_mobile = isset($shipping_address['phone_mobile']) ? $shipping_address['phone_mobile']:'';
+                    $address->dni = isset($shipping_address['dni']) ? $shipping_address['dni']:'dni';
+                    $address->door_number = isset($shipping_address['door_number']) ? $shipping_address['door_number']:'';
+                    $address->building = isset($shipping_address['building']) ? $shipping_address['building']:'';
+                    $address->floor = isset($shipping_address['floor']) ? $shipping_address['floor']:'';
+                    $address->stairs = isset($shipping_address['stairs']) ? $shipping_address['stairs']:'';
+                    $address->other = isset($shipping_address['other']) ? $shipping_address['other']:'';
+                    $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
+                }else{
+
+                    
+                    if($invoice_address['id_address'])
+                        // $address = new Address($invoice_address['id_address']);
+                        $address = new Address();
+                    else
+                        $address = new Address();
+                    
+                    $address->alias =isset($invoice_address['alias']) && $invoice_address['alias'] ? $invoice_address['alias'] : $this->module->l('My Address','order');
+                    if(!$address->id)
+                        $address->id_customer = $this->context->customer->id;
+                    if(isset($invoice_address['firstname']) && $invoice_address['firstname'])
+                        $address->firstname = $invoice_address['firstname'];
+                    else
+                        $address->firstname =' ';
+                    if(isset($invoice_address['lastname']) && $invoice_address['lastname'])
+                        $address->lastname = $invoice_address['lastname'];
+                    else
+                        $address->lastname = ' ';
+                    if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($invoice_address['eicustomertype']))
+                    {
+                        if(isset($invoice_address['company']))
+                            $address->company = $invoice_address['company'];
+                    }
+                    else{
+                        $customertype = isset($invoice_address['eicustomertype']) ? $invoice_address['eicustomertype']:0;
+                        if($customertype)
+                        {
+                            if(isset($invoice_address['company']))
+                            {
+                                $address->company = $invoice_address['company'];
+                            }
+                        }
+                        else
+                            $address->company = '';
+                    }
+                    if(isset($invoice_address['address2']))
+                        $address->address2 = $invoice_address['address2'];
+                    if(isset($invoice_address['address1']) && $invoice_address['address1']) 
+                        $address->address1 = $invoice_address['address1'];
+                    else
+                        $address->address1 =' ';
+                    if(isset($invoice_address['city']) && $invoice_address['city'])
+                        $address->city = $invoice_address['city'];
+                    else
+                        $address->city =' ';
+                    $address->id_state = isset($invoice_address['id_state']) ? $invoice_address['id_state'] :0;
+                    if(isset($invoice_address['id_country']) && $invoice_address['id_country'])
+                        $address->id_country = $invoice_address['id_country'];
+                    elseif(!$address->id_country)
+                        $address->id_country = (int)$this->context->country->id ? : (int)Configuration::get('PS_COUNTRY_DEFAULT');
+                    $address->postcode = isset($invoice_address['postcode']) ? $invoice_address['postcode'] :'';
+                    $address->phone = isset($invoice_address['phone']) ? $invoice_address['phone']:'';
+                    $address->phone_mobile = isset($invoice_address['phone_mobile']) ? $invoice_address['phone_mobile']:'';
+                    $address->dni = isset($invoice_address['dni']) ? $invoice_address['dni']:'dni';
+                    $address->door_number = isset($invoice_address['door_number']) ? $invoice_address['door_number']:'';
+                    $address->building = isset($invoice_address['building']) ? $invoice_address['building']:'';
+                    $address->floor = isset($invoice_address['floor']) ? $invoice_address['floor']:'';
+                    $address->stairs = isset($invoice_address['stairs']) ? $invoice_address['stairs']:'';
+                    $address->other = isset($invoice_address['other']) ? $invoice_address['other']:'';
+                    $address->vat_number = isset($invoice_address['vat_number']) ? $invoice_address['vat_number']:'';
+
                 }
-
-
+            }else{
+                if($shipping_address['id_address'])
+                $address = new Address($shipping_address['id_address']);
+                else
+                $address = new Address();
                 $address->alias =isset($shipping_address['alias']) && $shipping_address['alias'] ? $shipping_address['alias'] : $this->module->l('My Address','order');
                 if(!$address->id)
                     $address->id_customer = $this->context->customer->id;
@@ -2433,83 +2552,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 $address->phone = isset($shipping_address['phone']) ? $shipping_address['phone']:'';
                 $address->phone_mobile = isset($shipping_address['phone_mobile']) ? $shipping_address['phone_mobile']:'';
                 $address->dni = isset($shipping_address['dni']) ? $shipping_address['dni']:'dni';
-                $address->door_number = isset($shipping_address['door_number']) ? $shipping_address['door_number']:'';
-                $address->building = isset($shipping_address['building']) ? $shipping_address['building']:'';
-                $address->floor = isset($shipping_address['floor']) ? $shipping_address['floor']:'';
-                $address->stairs = isset($shipping_address['stairs']) ? $shipping_address['stairs']:'';
                 $address->other = isset($shipping_address['other']) ? $shipping_address['other']:'';
                 $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
-            }else{
-
-                if($this->context->shop->id != 3){
-                    if($shipping_address['id_address'])
-                        $address = new Address($shipping_address['id_address']);
-                    else
-                        $address = new Address();
-                }else{
-                    if($invoice_address['id_address'])
-                        // $address = new Address($invoice_address['id_address']);
-                        $address = new Address();
-                    else
-                        $address = new Address();
-                }
-
-
-                $address->alias =isset($invoice_address['alias']) && $invoice_address['alias'] ? $invoice_address['alias'] : $this->module->l('My Address','order');
-                if(!$address->id)
-                    $address->id_customer = $this->context->customer->id;
-                if(isset($invoice_address['firstname']) && $invoice_address['firstname'])
-                    $address->firstname = $invoice_address['firstname'];
-                else
-                    $address->firstname =' ';
-                if(isset($invoice_address['lastname']) && $invoice_address['lastname'])
-                    $address->lastname = $invoice_address['lastname'];
-                else
-                    $address->lastname = ' ';
-                if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($invoice_address['eicustomertype']))
-                {
-                    if(isset($invoice_address['company']))
-                        $address->company = $invoice_address['company'];
-                }
-                else{
-                    $customertype = isset($invoice_address['eicustomertype']) ? $invoice_address['eicustomertype']:0;
-                    if($customertype)
-                    {
-                        if(isset($invoice_address['company']))
-                        {
-                            $address->company = $invoice_address['company'];
-                        }
-                    }
-                    else
-                        $address->company = '';
-                }
-                if(isset($invoice_address['address2']))
-                    $address->address2 = $invoice_address['address2'];
-                if(isset($invoice_address['address1']) && $invoice_address['address1']) 
-                    $address->address1 = $invoice_address['address1'];
-                else
-                    $address->address1 =' ';
-                if(isset($invoice_address['city']) && $invoice_address['city'])
-                    $address->city = $invoice_address['city'];
-                else
-                    $address->city =' ';
-                $address->id_state = isset($invoice_address['id_state']) ? $invoice_address['id_state'] :0;
-                if(isset($invoice_address['id_country']) && $invoice_address['id_country'])
-                    $address->id_country = $invoice_address['id_country'];
-                elseif(!$address->id_country)
-                    $address->id_country = (int)$this->context->country->id ? : (int)Configuration::get('PS_COUNTRY_DEFAULT');
-                $address->postcode = isset($invoice_address['postcode']) ? $invoice_address['postcode'] :'';
-                $address->phone = isset($invoice_address['phone']) ? $invoice_address['phone']:'';
-                $address->phone_mobile = isset($invoice_address['phone_mobile']) ? $invoice_address['phone_mobile']:'';
-                $address->dni = isset($invoice_address['dni']) ? $invoice_address['dni']:'dni';
-                $address->door_number = isset($invoice_address['door_number']) ? $invoice_address['door_number']:'';
-                $address->building = isset($invoice_address['building']) ? $invoice_address['building']:'';
-                $address->floor = isset($invoice_address['floor']) ? $invoice_address['floor']:'';
-                $address->stairs = isset($invoice_address['stairs']) ? $invoice_address['stairs']:'';
-                $address->other = isset($invoice_address['other']) ? $invoice_address['other']:'';
-                $address->vat_number = isset($invoice_address['vat_number']) ? $invoice_address['vat_number']:'';
-
             }
+
             if(Configuration::get('PS_RECYCLABLE_PACK'))
             {
                 $recyclable = (int)Tools::getValue('recyclable');
