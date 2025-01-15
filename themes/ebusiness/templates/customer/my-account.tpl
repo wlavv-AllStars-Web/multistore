@@ -135,13 +135,20 @@
 
 
 
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 container-btn-homepage" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
+      {* <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 container-btn-homepage" style="display:flex;justify-content:center;align-items:center;margin-bottom: 1.875rem;">
         <div class="link-item" style="width:100%;height:100%;display:flex;justify-content:center;align-items:center;">
           <button onclick="location.href = '{$urls.pages.index}'" class="btn btn-primary" style="width: 200px;border-radius:0.25rem;box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);">{l s='Back to homepage' d='Shop.Theme.CustomerAccount'}</button>
         </div>
-      </div>
+      </div> *}
 
     </div>
+
+  </div>
+  <div class="col-lg-12" style="display: flex;margin:1rem auto;max-width: 1490px;">
+    <a href="{$urls.pages.index}" class="account-link  btn-primary">
+      <i class="material-icons">&#xE88A;</i>
+      <span>{l s='Home' d='Shop.Theme'}</span>
+    </a>
   </div>
  
 {/block}
