@@ -2370,16 +2370,21 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         }
         if(!$this->errors)
         {
-            if($this->context->shop->id == 3){
+            
                 if($use_another_address_for_invoice){
-                    
-                    
-
-                    if($shipping_address['id_address'])
+                
+                    if($this->context->shop->id == 3){
+                        if($shipping_address['id_address'])
                         // $address = new Address($invoice_address['id_address']);
-                        $address = new Address();
-                    else
-                        $address = new Address();
+                            $address = new Address();
+                        else
+                            $address = new Address();
+                    }else{
+                        if($shipping_address['id_address'])
+                            $address = new Address($shipping_address['id_address']);
+                        else
+                            $address = new Address();
+                    }
                     
 
 
@@ -2438,12 +2443,19 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                     $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
                 }else{
 
+                    if($this->context->shop->id == 3){
+                        if($invoice_address['id_address'])
+                            // $address = new Address($invoice_address['id_address']);
+                            $address = new Address();
+                        else
+                            $address = new Address();
+                    }else{
+                        if($invoice_address['id_address'])
+                            $address = new Address($invoice_address['id_address']);
+                        else
+                            $address = new Address();
+                    }
                     
-                    if($invoice_address['id_address'])
-                        // $address = new Address($invoice_address['id_address']);
-                        $address = new Address();
-                    else
-                        $address = new Address();
                     
                     $address->alias =isset($invoice_address['alias']) && $invoice_address['alias'] ? $invoice_address['alias'] : $this->module->l('My Address','order');
                     if(!$address->id)
@@ -2500,61 +2512,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                     $address->vat_number = isset($invoice_address['vat_number']) ? $invoice_address['vat_number']:'';
 
                 }
-            }else{
-                if($shipping_address['id_address'])
-                $address = new Address($shipping_address['id_address']);
-                else
-                $address = new Address();
-                $address->alias =isset($shipping_address['alias']) && $shipping_address['alias'] ? $shipping_address['alias'] : $this->module->l('My Address','order');
-                if(!$address->id)
-                    $address->id_customer = $this->context->customer->id;
-                if(isset($shipping_address['firstname']) && $shipping_address['firstname'])
-                    $address->firstname = $shipping_address['firstname'];
-                else
-                    $address->firstname =' ';
-                if(isset($shipping_address['lastname']) && $shipping_address['lastname'])
-                    $address->lastname = $shipping_address['lastname'];
-                else
-                    $address->lastname = ' ';
-                if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
-                {
-                    if(isset($shipping_address['company']))
-                        $address->company = $shipping_address['company'];
-                }
-                else{
-                    $customertype = isset($shipping_address['eicustomertype']) ? $shipping_address['eicustomertype']:0;
-                    if($customertype)
-                    {
-                        if(isset($shipping_address['company']))
-                        {
-                            $address->company = $shipping_address['company'];
-                        }
-                    }
-                    else
-                        $address->company = '';
-                }
-                if(isset($shipping_address['address2']))
-                    $address->address2 = $shipping_address['address2'];
-                if(isset($shipping_address['address1']) && $shipping_address['address1']) 
-                    $address->address1 = $shipping_address['address1'];
-                else
-                    $address->address1 =' ';
-                if(isset($shipping_address['city']) && $shipping_address['city'])
-                    $address->city = $shipping_address['city'];
-                else
-                    $address->city =' ';
-                $address->id_state = isset($shipping_address['id_state']) ? $shipping_address['id_state'] :0;
-                if(isset($shipping_address['id_country']) && $shipping_address['id_country'])
-                    $address->id_country = $shipping_address['id_country'];
-                elseif(!$address->id_country)
-                    $address->id_country = (int)$this->context->country->id ? : (int)Configuration::get('PS_COUNTRY_DEFAULT');
-                $address->postcode = isset($shipping_address['postcode']) ? $shipping_address['postcode'] :'';
-                $address->phone = isset($shipping_address['phone']) ? $shipping_address['phone']:'';
-                $address->phone_mobile = isset($shipping_address['phone_mobile']) ? $shipping_address['phone_mobile']:'';
-                $address->dni = isset($shipping_address['dni']) ? $shipping_address['dni']:'dni';
-                $address->other = isset($shipping_address['other']) ? $shipping_address['other']:'';
-                $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
-            }
+            
 
             if(Configuration::get('PS_RECYCLABLE_PACK'))
             {
