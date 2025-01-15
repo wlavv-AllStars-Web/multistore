@@ -119,7 +119,7 @@
                             {/foreach}
 
                             <div class="delivery_addresses_professional_title">
-                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">Delivery address</div>
+                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">{l s="Delivery address" d="Shop.Theme.Checkout"}</div>
                             </div>
                             <div class="customer_name">
                                 {$customer.firstname} {$customer.lastname}
@@ -148,7 +148,7 @@
                                 {/if}
                             {/foreach}
                             <div class="billing_addresses_professional_title">
-                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">Billing address</div>
+                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">{l s="Billing address" d="Shop.Theme.Checkout"}</div>
                             </div>
                             <div class="customer_name">
                                 {$customer.firstname} {$customer.lastname}
@@ -171,7 +171,7 @@
                 </div>
                 {if $customer_group_professional}
                     <div class="btn_update_address_container" style="padding: 1rem;">
-                        <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: #444;color: #fff;">Update my address <i class="material-icons">autorenew</i></a>
+                        <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: #444;color: #fff;">{l s="Update my address" d="Shop.Theme.Checkout"} <i class="material-icons">autorenew</i></a>
                     </div>
                 {/if}
             </div>
