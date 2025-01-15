@@ -22,7 +22,11 @@
       {if isset($subtotal.value) && $subtotal.value && $subtotal.type !== 'tax'}
         <div class="cart-summary-line" id="cart-subtotal-{$subtotal.type|escape:'html':'UTF-8'}">
           <span class="label{if 'products' === $subtotal.type} js-subtotal{/if}">
-            {$subtotal.label|escape:'html':'UTF-8'}
+            {if 'products' === $subtotal.type} 
+              {l s="Total productos" d="Shop.Theme.Checkout"}
+            {else}
+              {$subtotal.label|escape:'html':'UTF-8'}
+            {/if}
           </span>
           <span class="value">
             {if 'discount' == $subtotal.type}-&nbsp;{/if}{$subtotal.value|escape:'html':'UTF-8'}
