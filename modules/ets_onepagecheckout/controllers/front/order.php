@@ -914,7 +914,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // echo '<pre>'.print_r(Tools::getAllValues(),1).'</pre>';
         // echo Tools::getValue('payment_id');
         // exit;
-    //     echo 'paulo';
+        //     echo 'paulo';
         // $payment_id = '';
         // if($_POST['payment-option'] == 'creditcard'){
         //     $payment_id =2;
@@ -925,6 +925,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // exit;
 
         // Db::getInstance()->execute('INSERT INTO `'._DB_PREFIX_.'orders` (payment_id) VALUES('.$payment_id.')');
+
+        if($this->context->shop->id == 3){
 
         $type_checkout_options = Tools::getValue('type-checkout-options','login');
         $field_errors = array();
@@ -2795,6 +2797,1678 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }   
+    }else{
+        $type_checkout_options = Tools::getValue('type-checkout-options','login');
+        $field_errors = array();
+        if($type_checkout_options=='login')
+        {
+            if(!$this->context->customer->logged)
+            {
+                die(
+                    json_encode(
+                        array(
+                            'hasError' => true,
+                            'errors' => $this->module->displayError($this->module->l('You need to log in before checking out.','order')),
+                        )
+                    )
+                );
+            }
+        }
+        else
+        {
+            if($type_checkout_options=='guest')
+            {
+                $guest_field = Configuration::get('ETS_OPC_GUEST_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_GUEST_DISPLAY_FIELD')):array();
+                $guest_field_required = Configuration::get('ETS_OPC_GUEST_DISPLAY_FIELD_REQUIRED') ? explode(',',Configuration::get('ETS_OPC_GUEST_DISPLAY_FIELD_REQUIRED')):array();
+                $customer_guest = Tools::getValue('customer_guest');
+                if(!is_array($customer_guest) || !Ets_onepagecheckout::validateArray($customer_guest))
+                    $this->errors[] = $this->module->l('Guest data is not valid','order');
+                else{
+                    if(!isset($customer_guest['firstname']) || !$customer_guest['firstname'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_firstname',
+                            'error' => $this->module->l('First name is required','order')
+                        );
+                    }
+                    if(!isset($customer_guest['lastname']) || !$customer_guest['lastname'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_lastname',
+                            'error' => $this->module->l('Last name is required','order')
+                        );
+                    }
+                    if(!isset($customer_guest['email']) || !$customer_guest['email'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_email',
+                            'error' => $this->module->l('Email is required','order')
+                        );
+                    }
+                    if(Configuration::get('PSGDPR_CREATION_FORM_SWITCH') && in_array('psgdpr',$guest_field_required) && Module::isEnabled('psgdpr') &&  (!isset($customer_guest['psgdpr']) || (isset($customer_guest['psgdpr']) && !$customer_guest['psgdpr'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_psgdpr_check',
+                            'error' => $this->module->l('I agree to the terms and conditions and the privacy policy is required','order')
+                        );
+                    }
+                    if(Configuration::get('PS_CUSTOMER_OPTIN') && in_array('optin',$guest_field_required) && (!isset($customer_guest['optin']) || (isset($customer_guest['optin']) && !$customer_guest['optin'])) )
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_optin_check',
+                            'error' => $this->module->l('Receive offers from our partners is required','order')
+                        );
+                    }
+                    if(in_array('newsletter',$guest_field_required) && Module::isEnabled('ps_emailsubscription') &&  (!isset($customer_guest['newsletter']) || (isset($customer_guest['newsletter']) && !$customer_guest['newsletter'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_newsletter_check',
+                            'error' => $this->module->l('Sign up for our newsletter is required','order')
+                        );
+                    }
+                    if(in_array('customer_privacy',$guest_field_required) && Module::isEnabled('ps_dataprivacy') &&  (!isset($customer_guest['customer_privacy']) || (isset($customer_guest['customer_privacy']) && !$customer_guest['customer_privacy'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_customer_privacy_check',
+                            'error' => $this->module->l('Customer data privacy is required','order')
+                        );
+                    }
+                    if(in_array('social_title',$guest_field) && in_array('social_title',$guest_field_required) && (!isset($customer_guest['id_gender']) || !$customer_guest['id_gender']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_id_gender',
+                            'error' => $this->module->l('Social title is required','order')
+                        );
+                    }
+                    if(in_array('birthday',$guest_field) && in_array('birthday',$guest_field_required) && (!isset($customer_guest['birthday']) || !$customer_guest['birthday']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_birthday',
+                            'error' => $this->module->l('Birthday is required','order')
+                        );
+                    }
+                    if(in_array('password',$guest_field) && in_array('password',$guest_field_required) && (!isset($customer_guest['password']) || !$customer_guest['password']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_guest_password',
+                            'error' => $this->module->l('Password is required','order')
+                        );
+                    }
+                }
+            }
+            if($type_checkout_options=='create')
+            {
+                $create_field = Configuration::get('ETS_OPC_CREATEACC_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_CREATEACC_DISPLAY_FIELD')):array();
+                $create_field_required = Configuration::get('ETS_OPC_CREATEACC_DISPLAY_FIELD_REQUIRED') ? explode(',',Configuration::get('ETS_OPC_CREATEACC_DISPLAY_FIELD_REQUIRED')):array();
+                $customer_create = Tools::getValue('customer_create');
+                if(!is_array($customer_create) || !Ets_onepagecheckout::validateArray($customer_create))
+                    $this->errors[] = $this->module->l('Customer data is not valid','order');
+                else
+                {
+                    if(!isset($customer_create['firstname']) || !$customer_create['firstname'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_firstname',
+                            'error' => $this->module->l('First name is required','order')
+                        );
+                    }
+                    if(!isset($customer_create['lastname']) || !$customer_create['lastname'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_lastname',
+                            'error' => $this->module->l('Last name is required','order')
+                        );
+                    }
+                    if(!isset($customer_create['email']) || !$customer_create['email'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_email',
+                            'error' => $this->module->l('Email is required','order')
+                        );
+                    }
+                    if(!isset($customer_create['password']) || !$customer_create['password'])
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_password',
+                            'error' => $this->module->l('Password is required','order')
+                        );
+                    }
+                    if(Configuration::get('PSGDPR_CREATION_FORM_SWITCH') && in_array('psgdpr',$create_field_required) && Module::isEnabled('psgdpr') &&  (!isset($customer_create['psgdpr']) || (isset($customer_create['psgdpr']) && !$customer_create['psgdpr'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_psgdpr_check',
+                            'error' => $this->module->l('I agree to the terms and conditions and the privacy policy is required','order')
+                        );
+                    }
+                    if(Configuration::get('PS_CUSTOMER_OPTIN') && in_array('optin',$create_field_required) && (!isset($customer_create['optin']) || (isset($customer_create['optin']) && !$customer_create['optin'])) )
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_optin_check',
+                            'error' => $this->module->l('Receive offers from our partners is required','order')
+                        );
+                    }
+                    if(in_array('newsletter',$create_field_required) && Module::isEnabled('ps_emailsubscription') &&  (!isset($customer_create['newsletter']) || (isset($customer_create['newsletter']) && !$customer_create['newsletter'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_newsletter_check',
+                            'error' => $this->module->l('Sign up for our newsletter is required','order')
+                        );
+                    }
+                    if(in_array('customer_privacy',$create_field_required) && Module::isEnabled('ps_dataprivacy') &&  (!isset($customer_create['customer_privacy']) || (isset($customer_create['customer_privacy']) && !$customer_create['customer_privacy'])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_customer_privacy_check',
+                            'error' => $this->module->l('Customer data privacy is required','order')
+                        );
+                    }
+                    if(in_array('social_title',$create_field) && in_array('social_title',$create_field_required) && (!isset($customer_create['id_gender']) || !$customer_create['id_gender']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_id_gender',
+                            'error' => $this->module->l('Social title is required','order')
+                        );
+                    }
+                    if(in_array('birthday',$create_field) && in_array('birthday',$create_field_required) && (!isset($customer_create['birthday']) || !$customer_create['birthday']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'customer_create_birthday',
+                            'error' => $this->module->l('Birthday is required','order')
+                        );
+                    }
+                }
+            }
+        }
+        $shipping_address = Tools::getValue('shipping_address',array());
+        $address_field = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD')):array();
+        $address_field_required = Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED') ? explode(',',Configuration::get('ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED')):array();
+        if(!is_array($shipping_address) || !Ets_onepagecheckout::validateArray($shipping_address))
+            $this->errors[] = $this->module->l('Shipping address data is not valid','order');
+        else
+        {
+            if(in_array('address2',$address_field) && in_array('address2',$address_field_required) && (!isset($shipping_address['address2'])|| !$shipping_address['address2']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_address2',
+                    'error' => $this->module->l('Address complement is required','order')
+                );
+            }
+            if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
+            {
+                if(in_array('company',$address_field) && in_array('company',$address_field_required) && (!isset($shipping_address['company'])|| !$shipping_address['company']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'shipping_address_company',
+                        'error' => $this->module->l('Company is required','order')
+                    );
+                }
+            }
+            else
+            {
+                $eicustomertype = isset($shipping_address['eicustomertype']) ? (int)$shipping_address['eicustomertype']:0;
+                if($eicustomertype)
+                {
+                    if(in_array('company',$address_field) && in_array('company',$address_field_required) && (!isset($shipping_address['company'])|| !$shipping_address['company']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_company',
+                            'error' => $this->module->l('Company is required','order')
+                        );
+                    }
+                    if(in_array('eisdi',$address_field) && in_array('eisdi',$address_field_required) && (!isset($shipping_address['eisdi'])|| !$shipping_address['eisdi']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_eisdi',
+                            'error' => $this->module->l('SDI code is required','order')
+                        );
+                    }
+                    if(in_array('eipec',$address_field) && in_array('eipec',$address_field_required) && (!isset($shipping_address['eipec'])|| !$shipping_address['eipec']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_eipec',
+                            'error' => $this->module->l('PEC address is required','order')
+                        );
+                    }
+                }
+            }
+            if(in_array('vat_number',$address_field) && in_array('vat_number',$address_field_required) && (!isset($shipping_address['vat_number'])|| !$shipping_address['vat_number']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_vat_number',
+                    'error' => $this->module->l('VAT number is required','order')
+                );
+            }
+            if(in_array('alias',$address_field) && in_array('alias',$address_field_required) && (!isset($shipping_address['alias'])|| !$shipping_address['alias']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_alias',
+                    'error' => $this->module->l('Alias is required','order')
+                );
+            }
+            if(in_array('phone',$address_field) && in_array('phone',$address_field_required) && (!isset($shipping_address['phone'])|| !$shipping_address['phone']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_phone',
+                    'error' => $this->module->l('Phone is required','order')
+                );
+            }
+            if(in_array('phone_mobile',$address_field) && in_array('phone_mobile',$address_field_required) && (!isset($shipping_address['phone_mobile'])|| !$shipping_address['phone_mobile']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_phone_mobile',
+                    'error' => $this->module->l('Mobile phone is required','order')
+                );
+            }
+            if(in_array('dni',$address_field) && in_array('dni',$address_field_required) && (!isset($shipping_address['dni'])|| !$shipping_address['dni']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_dni',
+                    'error' => $this->module->l('Identification number is required','order')
+                );
+            }
+            if(in_array('other',$address_field) && in_array('other',$address_field_required) && (!isset($shipping_address['other'])|| !$shipping_address['other']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_other',
+                    'error' => $this->module->l('Other is required','order')
+                );
+            }
+            if(in_array('firstname',$address_field))
+            {
+                if(in_array('firstname',$address_field_required) && (!isset($shipping_address['firstname'])|| !$shipping_address['firstname']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'shipping_address_firstname',
+                        'error' => $this->module->l('First name is required','order')
+                    );
+                }
+                elseif(isset($shipping_address['firstname']) && $shipping_address['firstname'])
+                {
+
+                    if(method_exists(Validate::class, 'isCustomerName')){
+                        $ok = Validate::isCustomerName($shipping_address['firstname']);
+                    }else{
+                        $ok = Validate::isName($shipping_address['firstname']);
+                    }
+                    if(!$ok){
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_firstname',
+                            'error' => $this->module->l('First name is not valid','order')
+                        );
+                    }
+                }    
+            }
+            if(in_array('lastname',$address_field))
+            {
+                if(in_array('lastname',$address_field_required) && (!isset($shipping_address['lastname'])|| !$shipping_address['lastname']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'shipping_address_lastname',
+                        'error' => $this->module->l('Last name is required','order')
+                    );
+                }
+                elseif(isset($shipping_address['lastname']) && $shipping_address['lastname'])
+                {
+                    if(method_exists(Validate::class, 'isCustomerName')){
+                        $ok = Validate::isCustomerName($shipping_address['lastname']);
+                    }else{
+                        $ok = Validate::isName($shipping_address['lastname']);
+                    }
+                    if(!$ok) {
+                        $field_errors[] = array(
+                            'field' => 'shipping_address_lastname',
+                            'error' => $this->module->l('Last name is not valid', 'order')
+                        );
+                    }
+                }    
+            }
+            if(in_array('address',$address_field) && in_array('address',$address_field_required) && (!isset($shipping_address['address1'])|| !$shipping_address['address1']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_address1',
+                    'error' => $this->module->l('Address is required','order')
+                );
+            }
+            if(in_array('city',$address_field) && in_array('city',$address_field_required) && (!isset($shipping_address['city'])|| !$shipping_address['city']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_city',
+                    'error' => $this->module->l('City is required','order')
+                );
+            }
+            if(in_array('post_code',$address_field) && in_array('post_code',$address_field_required) && (!isset($shipping_address['postcode'])|| !$shipping_address['postcode']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_postal_code',
+                    'error' => $this->module->l('Zip Code is required','order')
+                );
+            }
+            if(in_array('country',$address_field) && in_array('country',$address_field_required) && (!isset($shipping_address['id_country'])|| !$shipping_address['id_country']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_id_country',
+                    'error' => $this->module->l('Country is required','order')
+                );
+            }
+            if(in_array('state',$address_field) && in_array('state',$address_field_required) && (isset($shipping_address['id_state']) && !$shipping_address['id_state']))
+            {
+                $field_errors[] = array(
+                    'field' => 'shipping_address_id_state',
+                    'error' => $this->module->l('State is required','order')
+                );
+            }
+        }
+        $use_another_address_for_invoice = (int)Tools::getValue('use_another_address_for_invoice');
+        if($use_another_address_for_invoice)
+        {
+            
+            $invoice_address = Tools::getValue('invoice_address',array());
+            if(!is_array($invoice_address) || !Ets_onepagecheckout::validateArray($invoice_address))
+                $this->errors[] = $this->module->l('Invoice address data is not valid','order');
+            else
+            {
+                if(in_array('address2',$address_field) && in_array('address2',$address_field_required) && (!isset($invoice_address['address2'])|| !$invoice_address['address2']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_address2',
+                        'error' => $this->module->l('Address complement is required','order')
+                    );
+                }
+                if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($invoice_address['eicustomertype']))
+                {
+                    if(in_array('company',$address_field) && in_array('company',$address_field_required) && (!isset($invoice_address['company'])|| !$invoice_address['company']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'invoice_address_company',
+                            'error' => $this->module->l('Company is required','order')
+                        );
+                    }
+                }
+                else
+                {
+                    $eicustomertype = isset($invoice_address['eicustomertype']) ? (int)$invoice_address['eicustomertype']:0;
+                    if($eicustomertype)
+                    {
+                        if(in_array('company',$address_field) && in_array('company',$address_field_required) && (!isset($invoice_address['company'])|| !$invoice_address['company']))
+                        {
+                            $field_errors[] = array(
+                                'field' => 'invoice_address_company',
+                                'error' => $this->module->l('Company is required','order')
+                            );
+                        }
+                        if(in_array('eisdi',$address_field) && in_array('eisdi',$address_field_required) && (!isset($invoice_address['eisdi'])|| !$invoice_address['eisdi']))
+                        {
+                            $field_errors[] = array(
+                                'field' => 'invoice_address_eisdi',
+                                'error' => $this->module->l('SDI code is required','order')
+                            );
+                        }
+                        if(in_array('eipec',$address_field) && in_array('eipec',$address_field_required) && (!isset($invoice_address['eipec'])|| !$invoice_address['eipec']))
+                        {
+                            $field_errors[] = array(
+                                'field' => 'invoice_address_eipec',
+                                'error' => $this->module->l('PEC address is required','order')
+                            );
+                        }
+                    }
+                }
+                if(in_array('vat_number',$address_field) && in_array('vat_number',$address_field_required) && (!isset($invoice_address['vat_number'])|| !$invoice_address['vat_number']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_vat_number',
+                        'error' => $this->module->l('VAT number is required','order')
+                    );
+                }
+                if(in_array('alias',$address_field) && in_array('alias',$address_field_required) && (!isset($invoice_address['alias'])|| !$invoice_address['alias']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_alias',
+                        'error' => $this->module->l('Alias is required','order')
+                    );
+                }
+                if(in_array('phone',$address_field) && in_array('phone',$address_field_required) && (!isset($invoice_address['phone'])|| !$invoice_address['phone']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_phone',
+                        'error' => $this->module->l('Phone is required','order')
+                    );
+                }
+                if(in_array('phone_mobile',$address_field) && in_array('phone_mobile',$address_field_required) && (!isset($invoice_address['phone_mobile'])|| !$invoice_address['phone_mobile']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_phone_mobile',
+                        'error' => $this->module->l('Mobile phone is required','order')
+                    );
+                }
+                if(in_array('dni',$address_field) && in_array('dni',$address_field_required) && (!isset($invoice_address['dni'])|| !$invoice_address['dni']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_dni',
+                        'error' => $this->module->l('Identification number is required','order')
+                    );
+                }
+                if(in_array('other',$address_field) && in_array('other',$address_field_required) && (!isset($invoice_address['other'])|| !$invoice_address['other']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_other',
+                        'error' => $this->module->l('Other is required','order')
+                    );
+                }
+                if(in_array('firstname',$address_field))
+                {
+                    if(in_array('firstname',$address_field_required) && (!isset($invoice_address['firstname'])|| !$invoice_address['firstname']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'invoice_address_firstname',
+                            'error' => $this->module->l('First name is required','order')
+                        );
+                    }
+                    elseif(isset($invoice_address['firstname']) && $invoice_address['firstname'])
+                    {
+                        if(method_exists(Validate::class, 'isCustomerName')){
+                            $ok = Validate::isCustomerName($invoice_address['firstname']);
+                        }else{
+                            $ok = Validate::isName($invoice_address['firstname']);
+                        }
+                        if(!$ok)
+                        {
+                            $field_errors[] = array(
+                                'field' => 'invoice_address_firstname',
+                                'error' => $this->module->l('First name is not valid','order')
+                            );
+                        }
+
+                    }
+                    
+                }
+                if(in_array('lastname',$address_field))
+                {
+                    if(in_array('lastname',$address_field_required) && (!isset($invoice_address['lastname'])|| !$invoice_address['lastname']))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'invoice_address_lastname',
+                            'error' => $this->module->l('Last name is required','order')
+                        );
+                    }
+                    elseif(isset($invoice_address['lastname']) && $invoice_address['lastname'])
+                    {
+                        if(method_exists(Validate::class, 'isCustomerName')){
+                            $ok = Validate::isCustomerName($invoice_address['lastname']);
+                        }else{
+                            $ok = Validate::isName($invoice_address['lastname']);
+                        }
+                        if(!$ok) {
+                            $field_errors[] = array(
+                                'field' => 'invoice_address_lastname',
+                                'error' => $this->module->l('Last name is not valid', 'order')
+                            );
+                        }
+                    }
+                    
+                }
+                if(in_array('address',$address_field) && in_array('address',$address_field_required) && (!isset($invoice_address['address1'])|| !$invoice_address['address1']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_address1',
+                        'error' => $this->module->l('Address is required','order')
+                    );
+                }
+                if(in_array('city',$address_field) && in_array('city',$address_field_required) && (!isset($invoice_address['city'])|| !$invoice_address['city']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_city',
+                        'error' => $this->module->l('City is required','order')
+                    );
+                }
+                if(in_array('post_code',$address_field) && in_array('post_code',$address_field_required) && (!isset($invoice_address['postcode'])|| !$invoice_address['postcode']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_postal_code',
+                        'error' => $this->module->l('Zip code is required','order')
+                    );
+                }
+                if(in_array('country',$address_field) && in_array('country',$address_field_required) && (!isset($invoice_address['id_country'])|| !$invoice_address['id_country']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_id_country',
+                        'error' => $this->module->l('Country is required','order')
+                    );
+                }
+                if(in_array('state',$address_field) && in_array('state',$address_field_required) && (isset($invoice_address['id_state']) && !$invoice_address['id_state']))
+                {
+                    $field_errors[] = array(
+                        'field' => 'invoice_address_id_state',
+                        'error' => $this->module->l('State is required','order')
+                    );
+                }
+            }
+        }
+        $post_values = Tools::getValue('additional_info',array());
+        $file_values = isset($_FILES['additional_info']) ? $_FILES['additional_info']:array();
+        $additional_fields = Ets_opc_additionalinfo_field::getListField($this->context->language->id,true);
+        if($additional_fields && is_array($post_values) && Ets_onepagecheckout::validateArray($post_values) && is_array($file_values) && Ets_onepagecheckout::validateArray($file_values))
+        {   
+            foreach($additional_fields as $field)
+            {
+                if($field['required'])
+                {
+                    if((!isset($post_values[$field['id']]) || (isset($post_values[$field['id']]) && !$post_values[$field['id']])) && $field['type']!='file')
+                    {
+                        $field_errors[] = array(
+                            'field' => 'additional_info_'.$field['id'],
+                            'error' => sprintf($this->module->l('%s is required','order'),$field['title'])
+                        );
+                    }
+                    if($field['type']=='file' && (!isset($file_values['name'][$field['id']]) || (isset($file_values['name'][$field['id']]) &&!$file_values['name'][$field['id']])))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'additional_info_'.$field['id'],
+                            'error' => sprintf($this->module->l('%s is required','order'),$field['title'])
+                        );
+                    }
+                }
+            }
+        }
+        if(Module::isEnabled('ets_shoplicense') && ($product_shop = Tools::getValue('product_shop')) && Ets_onepagecheckout::validateArray($product_shop))
+        {
+            foreach($product_shop as $id_product=> $shops)
+            {
+                foreach($shops as $key=> $shop)
+                {
+                    if(!trim($shop))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'product_shop_'.$id_product.'_'.$key,
+                            'error' => $this->l('Shop to install is required'),
+                        );
+                    }
+                    elseif(!Ets_onepagecheckout::isDomain(trim($shop)))
+                    {
+                        $field_errors[] = array(
+                            'field' => 'product_shop_'.$id_product.'_'.$key,
+                            'error' => $this->l('Shop to install is not a valid domain or URL'),
+                        );
+                    }
+                }
+            }
+        }
+        if($field_errors)
+        {
+            die(
+                json_encode(
+                    array(
+                        'hasError' => true,
+                        'field_errors' => $field_errors,
+                        'errors' => $this->module->displayError($this->module->l('Please fill in all required fields with valid information','order')),
+                    )
+                )
+            );
+        }
+        else
+        {
+            if($type_checkout_options=='guest')
+            {
+                $customer_guest = Tools::getValue('customer_guest',array());
+                if(!is_array($customer_guest) || !Ets_onepagecheckout::validateArray($customer_guest))
+                    $this->errors[] = $this->module->l('Guest customer data is not valid','order');
+                else
+                {
+                    if (isset($customer_guest['email']) && $customer_guest['email'] && Customer::customerExists($customer_guest['email'])) {
+                        $field_errors[] = array(
+                            'field'=> 'customer_guest_email',
+                            'error' => $this->module->l('An account using this email address has already been registered.','order'),                        
+                        );
+                    }
+                    else
+                    {
+                        if( isset($customer_guest['firstname']) && $customer_guest['firstname'] && !Validate::isName($customer_guest['firstname']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_guest_firstname',
+                                'error' => $this->module->l('First name is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_guest['lastname']) && $customer_guest['lastname'] && !Validate::isName($customer_guest['lastname']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_guest_lastname',
+                                'error' => $this->module->l('Last name is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_guest['email']) && $customer_guest['email'] && !Validate::isEmail($customer_guest['email']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_guest_email',
+                                'error' => $this->module->l('Email is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_guest['password']) && $customer_guest['password'])
+                        {
+                            if(method_exists('Validate','isPasswd') && !Validate::isPasswd($customer_guest['password']))
+                            {
+                                $field_errors[] = array(
+                                    'field'=> 'customer_guest_password',
+                                    'error' => $this->module->l('Email is invalid','order'),
+                                );
+                            }
+                            elseif($error = $this->checkPasswd($customer_guest['password']))
+                            {
+                                $field_errors[] = array(
+                                    'field'=> 'customer_guest_password',
+                                    'error' => $error,
+                                );
+                            }
+
+                        } 
+                        if(isset($customer_guest['birthday']) && $customer_guest['birthday'] && !Validate::isBirthDate($customer_guest['birthday'],$this->context->language->date_format_lite))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_guest_birthday',
+                                'error' => $this->module->l('Birthday is invalid','order'),                        
+                            );
+                        }
+                    }
+                }
+            }
+            if($type_checkout_options=='create')
+            {
+                $customer_create = Tools::getValue('customer_create',array());
+                if(!is_array($customer_create) || !Ets_onepagecheckout::validateArray($customer_create))
+                    $this->errors[] = $this->module->l('Customer data is not valid','order');
+                else
+                {
+                    if (isset($customer_create['email']) && $customer_create['email'] && Customer::customerExists($customer_create['email'])) {
+                        $field_errors[] = array(
+                            'field'=> 'customer_create_email',
+                            'error' => $this->module->l('An account using this email address has already been registered','order'),                        
+                        );
+                    }
+                    else
+                    {
+                        if(isset($customer_create['firstname']) && $customer_create['firstname'] && !Validate::isName($customer_create['firstname']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_create_firstname',
+                                'error' => $this->module->l('First name is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_create['lastname']) &&  $customer_create['lastname'] && !Validate::isName($customer_create['lastname']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_create_lastname',
+                                'error' => $this->module->l('Last name is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_create['email']) && $customer_create['email'] && !Validate::isEmail($customer_create['email']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_create_email',
+                                'error' => $this->module->l('Email is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_create['birthday']) && $customer_create['birthday'] && !Validate::isBirthDate($customer_create['birthday'],$this->context->language->date_format_lite))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'customer_create_birthday',
+                                'error' => $this->module->l('Birthday is invalid','order'),                        
+                            );
+                        }
+                        if(isset($customer_create['password']) && $customer_create['password'])
+                        {
+                            if(method_exists('Validate','isPasswd') &&   !Validate::isPasswd($customer_create['password']))
+                            {
+                                $field_errors[] = array(
+                                    'field'=> 'customer_create_password',
+                                    'error' => $this->module->l('Password is invalid','order'),
+                                );
+                            }
+                            elseif($error = $this->checkPasswd($customer_create['password']))
+                            {
+                                $field_errors[] = array(
+                                    'field'=> 'customer_create_password',
+                                    'error' => $error,
+                                );
+                            }
+
+                        }
+                    }
+                }
+            }
+            if(isset($shipping_address['alias']) && $shipping_address['alias'] && !Validate::isGenericName($shipping_address['alias']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_alias',
+                    'error' => $this->module->l('Alias is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['firstname']) && $shipping_address['firstname'] && !Validate::isName($shipping_address['firstname']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_firstname',
+                    'error' => $this->module->l('First name is invalid','order'),                        
+                );
+            }
+            if( isset($shipping_address['lastname']) && $shipping_address['lastname'] && !Validate::isName($shipping_address['lastname']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_lastname',
+                    'error' => $this->module->l('Last name is invalid','order'),                        
+                );
+            }
+            if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
+            {
+                if(isset($shipping_address['company']) && $shipping_address['company'] && !Validate::isGenericName($shipping_address['company']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'shipping_address_company',
+                        'error' => $this->module->l('Company is invalid','order'),
+                    );
+                }
+            }
+            else
+            {
+                $customerType = isset($shipping_address['eicustomertype']) ? $shipping_address['eicustomertype'] : 0;
+                if($customerType)
+                {
+                    if(isset($shipping_address['company']) && $shipping_address['company'] && !Validate::isGenericName($shipping_address['company']))
+                    {
+                        $field_errors[] = array(
+                            'field'=> 'shipping_address_company',
+                            'error' => $this->module->l('Company is invalid','order'),
+                        );
+                    }
+                    if(isset($shipping_address['eisdi']) && $shipping_address['eisdi'] && !Validate::isCleanHtml($shipping_address['eisdi']))
+                    {
+                        $field_errors[] = array(
+                            'field'=> 'shipping_address_eisdi',
+                            'error' => $this->module->l('SDI code is invalid','order'),
+                        );
+                    }
+                    if(isset($shipping_address['eipec']) && $shipping_address['eipec'] && !Validate::isEmail($shipping_address['eipec']))
+                    {
+                        $field_errors[] = array(
+                            'field'=> 'shipping_address_eipec',
+                            'error' => $this->module->l('PEC address is invalid','order'),
+                        );
+                    }
+                }
+            }
+            if(isset($shipping_address['address1']) && $shipping_address['address1'] && !Validate::isAddress($shipping_address['address1']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_address1',
+                    'error' => $this->module->l('Address is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['address2']) && $shipping_address['address2'] && !Validate::isAddress($shipping_address['address2']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_address2',
+                    'error' => $this->module->l('Address complement is invalid','order'),
+                );
+            }
+            if(isset($shipping_address['city']) && $shipping_address['city'] && !Validate::isCityName($shipping_address['city']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_city',
+                    'error' => $this->module->l('City is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['phone']) && $shipping_address['phone'] && !Validate::isPhoneNumber($shipping_address['phone']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_phone',
+                    'error' => $this->module->l('Phone is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['phone_mobile']) && $shipping_address['phone_mobile'] && !Validate::isPhoneNumber($shipping_address['phone_mobile']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_phone_mobile',
+                    'error' => $this->module->l('Mobile phone is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['dni']) && $shipping_address['dni'] && !Validate::isDniLite($shipping_address['dni']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_dni',
+                    'error' => $this->module->l('Identification number is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['other']) && $shipping_address['other'] && !Validate::isMessage($shipping_address['other']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_other',
+                    'error' => $this->module->l('Other is invalid','order'),                        
+                );
+            }
+            // Compatibility with Advanced VAT Manager Module
+            if (Module::isEnabled('advancedvatmanager') && Configuration::get('ADVANCEDVATMANAGER_FRONTVALIDATION')== 1) {
+                if(isset($shipping_address['vat_number']) && $shipping_address['vat_number']) {
+                    include_once _PS_MODULE_DIR_.'advancedvatmanager/classes/ValidationEngine.php';
+                    $advancedvatmanager = new ValidationEngine($shipping_address['vat_number']);
+                    $verifications = $advancedvatmanager->VATValidationProcess($shipping_address['id_country'], $shipping_address['id_customer'], $shipping_address['id_address'], $shipping_address['company']);
+                    if (!$verifications) {
+                        $field_errors[] = array(
+                            'field'=> 'shipping_address_vat_number',
+                            'error' => $advancedvatmanager->getMessage(),                        
+                        );
+                    }
+                }
+            }
+            elseif(isset($shipping_address['vat_number']) && $shipping_address['vat_number'] && !Validate::isGenericName($shipping_address['vat_number']))
+            {
+                $field_errors[] = array(
+                    'field'=> 'shipping_address_vat_number',
+                    'error' => $this->module->l('VAT number is invalid','order'),                        
+                );
+            }
+            if(isset($shipping_address['id_country']) && $shipping_address['id_country'])
+            {
+                $country = new Country($shipping_address['id_country']);
+                $postcode = isset($shipping_address['postcode']) ? $shipping_address['postcode'] :'';
+                if ($postcode && $country->zip_code_format && !$country->checkZipCode($postcode)) {
+                    $field_errors[] = array(
+                        'field'=> 'shipping_address_postal_code',
+                        'error' => $this->module->l('The Zip/Postal code  you\'ve entered is invalid. It must follow this format:','order').' '.str_replace('C', $country->iso_code, str_replace('N', '0', str_replace('L', 'A', $country->zip_code_format))),                        
+                    );
+                } elseif ($postcode && !Validate::isPostCode($postcode)) {
+                    $field_errors[] = array(
+                        'field'=> 'shipping_address_postal_code',
+                        'error' => $this->module->l('The Zip/Postal code is invalid.','order').' '.str_replace('C', $country->iso_code, str_replace('N', '0', str_replace('L', 'A', $country->zip_code_format))),                        
+                    );
+                }
+            }
+            if($use_another_address_for_invoice)
+            {
+                if(isset($invoice_address['alias']) && $invoice_address['alias'] && !Validate::isGenericName($invoice_address['alias']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_alias',
+                        'error' => $this->module->l('Alias is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['firstname']) && $invoice_address['firstname'] && !Validate::isName($invoice_address['firstname']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_firstname',
+                        'error' => $this->module->l('First name is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['lastname']) && $invoice_address['lastname'] && !Validate::isName($invoice_address['lastname']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_lastname',
+                        'error' => $this->module->l('Last name is invalid','order'),                        
+                    );
+                }
+                if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
+                {
+                    if(isset($invoice_address['company']) && $invoice_address['company'] && !Validate::isGenericName($invoice_address['company']))
+                    {
+                        $field_errors[] = array(
+                            'field'=> 'invoice_address_company',
+                            'error' => $this->module->l('Company is invalid','order'),
+                        );
+                    }
+                }
+                else
+                {
+                    $customerType = isset($invoice_address['eicustomertype']) ? $invoice_address['eicustomertype'] : 0;
+                    if($customerType)
+                    {
+                        if(isset($invoice_address['company']) && $invoice_address['company'] && !Validate::isGenericName($invoice_address['company']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'invoice_address_company',
+                                'error' => $this->module->l('Company is invalid','order'),
+                            );
+                        }
+                        if(isset($invoice_address['eisdi']) && $invoice_address['eisdi'] && !Validate::isCleanHtml($invoice_address['eisdi']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'invoice_address_eisdi',
+                                'error' => $this->module->l('SDI code is invalid','order'),
+                            );
+                        }
+                        if(isset($invoice_address['eipec']) && $invoice_address['eipec'] && !Validate::isEmail($invoice_address['eipec']))
+                        {
+                            $field_errors[] = array(
+                                'field'=> 'invoice_address_eipec',
+                                'error' => $this->module->l('PEC address is invalid','order'),
+                            );
+                        }
+                    }
+                }
+                if(isset($invoice_address['address1']) && $invoice_address['address1'] && !Validate::isAddress($invoice_address['address1']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_address1',
+                        'error' => $this->module->l('Address is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['address2']) && $invoice_address['address2'] && !Validate::isAddress($invoice_address['address2']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_address2',
+                        'error' => $this->module->l('Address complement is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['city']) && $invoice_address['city'] && !Validate::isCityName($invoice_address['city']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_city',
+                        'error' => $this->module->l('City is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['phone']) && $invoice_address['phone'] && !Validate::isPhoneNumber($invoice_address['phone']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_phone',
+                        'error' => $this->module->l('Phone is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['phone_mobile']) && $invoice_address['phone_mobile'] && !Validate::isPhoneNumber($invoice_address['phone_mobile']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_phone_mobile',
+                        'error' => $this->module->l('Mobile phone is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['dni']) && $invoice_address['dni'] && !Validate::isDniLite($invoice_address['dni']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_dni',
+                        'error' => $this->module->l('Identification number is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['other']) && $invoice_address['other'] && !Validate::isDniLite($invoice_address['other']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_other',
+                        'error' => $this->module->l('Other is invalid','order'),                        
+                    );
+                }
+                if (Module::isEnabled('advancedvatmanager') && Configuration::get('ADVANCEDVATMANAGER_FRONTVALIDATION')== 1) {
+                    if(isset($invoice_address['vat_number']) && $invoice_address['vat_number']) {
+                        include_once _PS_MODULE_DIR_.'advancedvatmanager/classes/ValidationEngine.php';
+                        $advancedvatmanager = new ValidationEngine($invoice_address['vat_number']);
+                        $verifications = $advancedvatmanager->VATValidationProcess($invoice_address['id_country'], $invoice_address['id_customer'], $invoice_address['id_address'], $invoice_address['company']);
+                        if (!$verifications) {
+                            $field_errors[] = array(
+                                'field'=> 'invoice_address_vat_number',
+                                'error' => $advancedvatmanager->getMessage(),                        
+                            );
+                        }
+                    }
+                }
+                elseif(isset($invoice_address['vat_number']) && $invoice_address['vat_number'] && !Validate::isGenericName($invoice_address['vat_number']))
+                {
+                    $field_errors[] = array(
+                        'field'=> 'invoice_address_vat_number',
+                        'error' => $this->module->l('VAT number is invalid','order'),                        
+                    );
+                }
+                if(isset($invoice_address['id_country']) && $invoice_address['id_country'])
+                {
+                    $country = new Country($invoice_address['id_country']);
+                    $postcode = isset($invoice_address['postcode']) ? $invoice_address['postcode'] :'';
+                    if ($postcode && $country->zip_code_format && !$country->checkZipCode($postcode)) {
+                        $field_errors[] = array(
+                            'field'=> 'invoice_address_postal_code',
+                            'error' => $this->module->l('The Zip/Postal code you\'ve entered is invalid. It must follow this format:','order').' '.str_replace('C', $country->iso_code, str_replace('N', '0', str_replace('L', 'A', $country->zip_code_format))),                        
+                        );
+                    } elseif ($postcode && !Validate::isPostCode($postcode)) {
+                        $field_errors =array(
+                            'field'=> 'invoice_address_postal_code',
+                            'error' => $this->module->l('The Zip/Postal code is invalid.','order'),
+                        );
+                    }
+                } 
+            }
+            if($additional_fields)
+            {
+                foreach($additional_fields as $field)
+                {
+                    if($field['type']!='file' && isset($post_values[$field['id']]) && $post_values[$field['id']])
+                    {
+                        if($field['type']=='text' || $field['type']=='textarea')
+                        {
+                            if(!Validate::isCleanHtml($post_values[$field['id']]))
+                            {
+                                $field_errors[] = array(
+                                    'field' => 'additional_info_'.$field['id'],
+                                    'error' => sprintf($this->module->l('%s is not valid','order'),$field['title'])
+                                );
+                            }
+                        }
+                        if(($field['type']=='radio' || $field['type']=='select' || $field['type']=='checkbox') && $field['options'])
+                        {
+                            $values = array();
+                            foreach(explode("\n",$field['options']) as $options)
+                            {
+                                $options = explode('|',$options);
+                                if(isset($options[1]) && $options[1])
+                                {
+                                    $val = $options[1];
+                                }
+                                else
+                                    $val = $options[0];
+                                $val_texts = explode(':',$val);
+                                $values[] = $val_texts[0];
+                            }
+                            if(($field['type']=='radio' || $field['type']=='select') && !in_array(trim($post_values[$field['id']]),array_map('trim',$values)))
+                            {
+                                $field_errors[] = array(
+                                    'field' => 'additional_info_'.$field['id'],
+                                    'error' => sprintf($this->module->l('%s is not valid','order'),$field['title'])
+                                );
+                            }
+                            if($field['type']=='checkbox')
+                            {
+                                foreach($post_values[$field['id']] as $post_value)
+                                {
+                                    if(!in_array(trim($post_value),array_map('trim',$values)))
+                                    {
+                                        $field_errors[] = array(
+                                            'field' => 'additional_info_'.$field['id'],
+                                            'error' => sprintf($this->module->l('%s is not valid','order'),$field['title'])
+                                        );
+                                        break;
+                                    }    
+                                }
+                            }
+                        }
+                        if(($field['type']=='date_time' || $field['type']=='date') && !Validate::isDateFormat($post_values[$field['id']]))
+                        {
+                            $field_errors[] = array(
+                                'field' => 'additional_info_'.$field['id'],
+                                'error' => sprintf($this->module->l('%s is not valid','order'),$field['title'])
+                            );
+                        }
+                        if($field['type']=='number' && !Validate::isFloat($post_values[$field['id']]))
+                        {
+                            $field_errors[] = array(
+                                'field' => 'additional_info_'.$field['id'],
+                                'error' => sprintf($this->module->l('%s is not valid','order'),$field['title'])
+                            );
+                        }
+                    }
+                    if($field['type']=='file' && isset($file_values['name'][$field['id']]) && ($file_name = $file_values['name'][$field['id']]))
+                    {
+                        $file_errors = array();
+                        $this->module->validateFile($file_name,$file_values['size'][$field['id']],$file_errors);
+                        if($file_errors)
+                        {
+                            foreach($file_errors as $error)
+                            {
+                                $field_errors[] = array(
+                                    'field' => 'additional_info_'.$field['id'],
+                                    'error' => $error
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if($field_errors)
+        {
+            die(
+                json_encode(
+                    array(
+                        'hasError' => true,
+                        'field_errors' => $field_errors,
+                        'errors' => $this->module->displayError($this->module->l('Please fill in all required fields with valid information','order')),
+                    )
+                )
+            );
+        }
+        elseif($this->errors)
+        {
+            die(
+                json_encode(
+                    array(
+                        'hasError' => true,
+                        'errors' => $this->module->displayError($this->errors),
+                    )
+                )
+            );
+        }
+        else{
+            $delivery_option = Tools::getValue('delivery_option');
+            $payment_option = Tools::getValue('payment-option');
+            if((!$delivery_option || !is_array($delivery_option) || !Ets_onepagecheckout::validateArray($delivery_option)) && !$this->context->cart->isVirtualCart())
+            {
+                $this->errors[] = $this->module->l('No shipping method has been selected.','order');
+            }
+            elseif((!$payment_option || !Validate::isModuleName($payment_option)) && $this->context->cart->getOrderTotal())
+            {
+                $this->errors[] = $this->module->l('No payment method has been selected.','order');
+            }
+            if (Module::isEnabled('ets_delivery')) {
+                /* @var Ets_delivery $delivery */
+                $delivery = Module::getInstanceByName('ets_delivery');
+                if(method_exists($delivery,'checkoutProcess'))
+                    $delivery->checkoutProcess(true);
+            }
+        } 
+        $conditions_to_approve = Tools::getValue('conditions_to_approve');
+        if(Configuration::get('PS_CONDITIONS') && ( !is_array($conditions_to_approve) || !Ets_onepagecheckout::validateArray($conditions_to_approve,'isInt') || !isset($conditions_to_approve['terms-and-conditions']) || !$conditions_to_approve['terms-and-conditions']))
+        {
+            $this->errors[] = $this->module->l('You must accept our terms of service in order to complete your order.','order');
+        }
+        $isAvailable = $this->areProductsAvailable();
+        if($isAvailable!==true)
+            $this->errors[] = $isAvailable;
+        $delivery_message = Tools::getValue('delivery_message');
+        if($delivery_message && (!Validate::isCleanHtml($delivery_message) || Tools::strlen($delivery_message)>1600))
+        {
+            $this->errors[] = $this->module->l('Message is invalid.','order');
+        }
+        if(Configuration::get('PS_GIFT_WRAPPING'))
+        {
+            $gift_message = Tools::getValue('gift_message');
+            $gift = (int)Tools::getValue('gift');
+            if($gift && $gift_message && !Validate::isMessage($gift_message)) 
+            {
+                $this->errors[] = $this->module->l('Gift message is invalid.','order');
+            }
+        }
+        if($additional_fields && !$this->errors)
+        {
+            foreach($additional_fields as $field) 
+            {
+                if($field['type']!='file')
+                {
+                    if($id_ets_opc_field_value = Ets_opc_additionalinfo_field_value::getIdByField($field['id'],$this->context->cart->id))
+                    {
+                        $fieldValue = new Ets_opc_additionalinfo_field_value($id_ets_opc_field_value);
+                    }
+                    else
+                    {
+                        $fieldValue = new Ets_opc_additionalinfo_field_value();
+                        $fieldValue->id_ets_opc_additionalinfo_field = $field['id'];
+                        $fieldValue->id_cart = $this->context->cart->id;
+                    }
+                    $fieldValue->value = isset($post_values[$field['id']]) ? (is_array($post_values[$field['id']]) ? (Ets_onepagecheckout::validateArray($post_values[$field['id']]) ? implode(',',$post_values[$field['id']]):'' ) :$post_values[$field['id']]) :'';
+                    if($fieldValue->id)
+                    {
+                        if(!$fieldValue->update())
+                            $this->errors[] = sprintf($this->module->l('Saving %s failed','order'),$field['title']);
+                    }
+                    elseif(!$fieldValue->add())
+                        $this->errors[] = sprintf($this->module->l('Saving %s failed','order'),$field['title']);
+                }
+                else
+                {
+                    $file_value = $this->module->uploadFile($file_values, $field['id'],$this->errors);
+                    if($id_ets_opc_field_value = Ets_opc_additionalinfo_field_value::getIdByField($field['id'],$this->context->cart->id))
+                    {
+                        $fieldValue = new Ets_opc_additionalinfo_field_value($id_ets_opc_field_value);
+                    }
+                    else
+                    {
+                        $fieldValue = new Ets_opc_additionalinfo_field_value();
+                        $fieldValue->id_ets_opc_additionalinfo_field = $field['id'];
+                        $fieldValue->id_cart = $this->context->cart->id;
+                    }
+                    $file_old = $fieldValue->value;
+                    $fieldValue->value = $file_value ? :'';
+                    $fieldValue->file_name = isset($file_values['name'][$field['id']]) ? $file_values['name'][$field['id']]: '';
+                    if($fieldValue->id)
+                    {
+                        if(!$fieldValue->update())
+                        {
+                            if($fieldValue->value && file_exists(_PS_ETS_OPC_UPLOAD_DIR_.$fieldValue->value))
+                                @unlink(_PS_ETS_OPC_UPLOAD_DIR_.$fieldValue->value);
+                            $this->errors[] = sprintf($this->module->l('Saving %s failed','order'),$field['title']);
+                        }elseif($file_old  && file_exists(_PS_ETS_OPC_UPLOAD_DIR_.$file_old))
+                            @unlink(_PS_ETS_OPC_UPLOAD_DIR_.$file_old);
+                    }
+                    elseif(!$fieldValue->add())
+                    {
+                        if($fieldValue->value && file_exists(_PS_ETS_OPC_UPLOAD_DIR_.$fieldValue->value))
+                            @unlink(_PS_ETS_OPC_UPLOAD_DIR_.$fieldValue->value);
+                        $this->errors[] = sprintf($this->module->l('Saving %s failed','order'),$field['title']);
+                    }
+                }
+            }
+            if($this->errors)
+            {
+                if($field_values = Ets_opc_additionalinfo_field_value::getFieldValuesByIDCart($this->context->cart->id))
+                {
+                    foreach($field_values as $field_value)
+                    {
+                        $fieldValue = new Ets_opc_additionalinfo_field_value($field_value['id_ets_opc_additionalinfo_field_value']);
+                        $fieldValue->delete();
+                    }
+                }
+            }
+        }
+        if(!$field_errors && !$this->errors && (($type_checkout_options=='create' && Configuration::get('ETS_OPC_CREATEACC_CAPTCHA_ENABLED')) || $type_checkout_options=='guest' && Configuration::get('ETS_OPC_GUEST_CAPTCHA_ENABLED')))
+        {
+            $this->checkCaptcha($field_errors);
+        }
+        if(!$this->errors)
+        {
+            if($type_checkout_options=='guest')
+            {
+                $customer_guest = Tools::getValue('customer_guest');
+                if($customer_guest && is_array($customer_guest) && Ets_onepagecheckout::validateArray($customer_guest))
+                {
+                    $customer = new Customer();
+                    $customer->firstname = $customer_guest['firstname'];
+                    $customer->lastname = $customer_guest['lastname'];
+                    $customer->email = $customer_guest['email'];
+                    $customer->passwd = isset($customer_guest['password']) && $customer_guest['password'] ? md5(_COOKIE_KEY_.$customer_guest['password']) :   md5(time()._COOKIE_KEY_);
+                    $birthday = isset($customer_guest['birthday']) ? $customer_guest['birthday']:'';
+                    if($birthday)
+                    {
+                        $customer->birthday = $this->convertDateBirthday($birthday);
+                    }
+                    $customer->is_guest = isset($customer_guest['password']) && $customer_guest['password'] ? 0:1;
+                    $customer->id_gender = isset($customer_guest['id_gender']) ? $customer_guest['id_gender']:0;
+                    if(isset($customer_guest['newsletter']) && $customer_guest['newsletter'])
+                    {
+                        $customer->newsletter=1;
+                        $customer->newsletter_date_add = date('Y-m-d H:i:s');
+                    }
+                    if(isset($customer_guest['optin']) && $customer_guest['optin'])
+                        $customer->optin=1;
+                    if($customer->add())
+                    {
+                        $customer->cleanGroups();
+                        if($customer->is_guest)
+                            $customer->addGroups(array((int)Configuration::get('PS_GUEST_GROUP')));
+                        else
+                        {
+                            $customer->addGroups(array((int)Configuration::get('PS_CUSTOMER_GROUP')));
+                        }
+                        if(method_exists($this->context,'updateCustomer'))
+                            $this->context->updateCustomer($customer);
+                        else
+                            $this->updateContext($customer);
+                        if(!$customer->is_guest)
+                            Hook::exec('actionCustomerAccountAdd',array('newCustomer'=>$customer));
+                    }
+                    else
+                        $this->errors[] = $this->module->l('Creating guest customer failed','order');
+                }
+                
+            }
+            if($type_checkout_options=='create')
+            {
+                $customer_create = Tools::getValue('customer_create');
+                if($customer_create && is_array($customer_create) && Ets_onepagecheckout::validateArray($customer_create))
+                {
+                    $customer = new Customer();
+                    $customer->firstname = $customer_create['firstname'];
+                    $customer->lastname = $customer_create['lastname'];
+                    $customer->email = $customer_create['email'];
+                    $customer->passwd = md5(_COOKIE_KEY_.$customer_create['password']);
+                    $customer->is_guest = 0;
+                    $birthday = isset($customer_create['birthday']) ? $customer_create['birthday']:'';
+                    if($birthday)
+                    {
+                        $customer->birthday = $this->convertDateBirthday($birthday);
+                    }
+                    $customer->id_gender = isset($customer_create['id_gender']) ? $customer_create['id_gender']:0;
+                    if(isset($customer_create['newsletter']) && $customer_create['newsletter'])
+                    {
+                        $customer->newsletter=1;
+                        $customer->newsletter_date_add = date('Y-m-d H:i:s');
+                    }
+                    if(isset($customer_create['optin']) && $customer_create['optin'])
+                        $customer->optin=1;
+                    if($customer->add())
+                    {
+                        $customer->cleanGroups();
+                        $customer->addGroups(array((int)Configuration::get('PS_CUSTOMER_GROUP')));
+                        if(method_exists($this->context,'updateCustomer'))
+                            $this->context->updateCustomer($customer);
+                        else
+                            $this->updateContext($customer);
+                        Hook::exec('actionCustomerAccountAdd',array('newCustomer'=>$customer));
+                    }
+                    else
+                        $this->errors[] = $this->module->l('Creating guest customer failed','order');
+                }
+            }
+        }
+        if(!$this->errors)
+        {
+            if($shipping_address['id_address'])
+                $address = new Address($shipping_address['id_address']);
+            else
+                $address = new Address();
+            $address->alias =isset($shipping_address['alias']) && $shipping_address['alias'] ? $shipping_address['alias'] : $this->module->l('My Address','order');
+            if(!$address->id)
+                $address->id_customer = $this->context->customer->id;
+            if(isset($shipping_address['firstname']) && $shipping_address['firstname'])
+                $address->firstname = $shipping_address['firstname'];
+            else
+                $address->firstname =' ';
+            if(isset($shipping_address['lastname']) && $shipping_address['lastname'])
+                $address->lastname = $shipping_address['lastname'];
+            else
+                $address->lastname = ' ';
+            if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($shipping_address['eicustomertype']))
+            {
+                if(isset($shipping_address['company']))
+                    $address->company = $shipping_address['company'];
+            }
+            else{
+                $customertype = isset($shipping_address['eicustomertype']) ? $shipping_address['eicustomertype']:0;
+                if($customertype)
+                {
+                    if(isset($shipping_address['company']))
+                    {
+                        $address->company = $shipping_address['company'];
+                    }
+                }
+                else
+                    $address->company = '';
+            }
+            if(isset($shipping_address['address2']))
+                $address->address2 = $shipping_address['address2'];
+            if(isset($shipping_address['address1']) && $shipping_address['address1']) 
+                $address->address1 = $shipping_address['address1'];
+            else
+                $address->address1 =' ';
+            if(isset($shipping_address['city']) && $shipping_address['city'])
+                $address->city = $shipping_address['city'];
+            else
+                 $address->city =' ';
+            $address->id_state = isset($shipping_address['id_state']) ? $shipping_address['id_state'] :0;
+            if(isset($shipping_address['id_country']) && $shipping_address['id_country'])
+                $address->id_country = $shipping_address['id_country'];
+            elseif(!$address->id_country)
+                $address->id_country = (int)$this->context->country->id ? : (int)Configuration::get('PS_COUNTRY_DEFAULT');
+            $address->postcode = isset($shipping_address['postcode']) ? $shipping_address['postcode'] :'';
+            $address->phone = isset($shipping_address['phone']) ? $shipping_address['phone']:'';
+            $address->phone_mobile = isset($shipping_address['phone_mobile']) ? $shipping_address['phone_mobile']:'';
+            $address->dni = isset($shipping_address['dni']) ? $shipping_address['dni']:'dni';
+            $address->other = isset($shipping_address['other']) ? $shipping_address['other']:'';
+            $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
+            
+            if(Configuration::get('PS_RECYCLABLE_PACK'))
+            {
+                $recyclable = (int)Tools::getValue('recyclable');
+                $this->context->cart->recyclable = $recyclable;
+            }
+            if(Configuration::get('PS_GIFT_WRAPPING'))
+            {
+                $gift = (int)Tools::getValue('gift');
+                if($gift)
+                    $this->context->cart->gift_message = $gift_message;
+                $this->context->cart->gift= $gift;
+            }
+            if($address->id && $this->context->customer->is_guest)
+            {
+                $address->id_customer = $this->context->customer->id;
+                $address->id =0;
+            }
+            if(isset($address->id) && $address->id)
+            {
+                if($address->id_customer!=$this->context->customer->id)
+                {
+                    $this->errors[] = $this->module->l('Shipping address is not valid','order');
+                }
+                else
+                {
+                    if($address->update())
+                    {
+                        $this->context->cart->id_address_delivery = $address->id;
+                        if(!$use_another_address_for_invoice)
+                            $this->context->cart->id_address_invoice = $address->id;
+                        $this->context->cart->update();
+                        Ets_opc_db::updateDeliveryAddress($address->id);
+                    }
+                    else
+                        $this->errors[] = $this->module->l('Updating shipping address failed','order');
+                }
+                
+            }
+            else
+            {
+               if($address->add())
+               {
+                    $this->context->cart->id_address_delivery = $address->id;
+                    if(!$use_another_address_for_invoice)
+                        $this->context->cart->id_address_invoice = $address->id;
+                    $this->context->cart->update();
+                    Ets_opc_db::updateDeliveryAddress($address->id);
+               }
+               else
+                    $this->errors[] = $this->module->l('Updating shipping address failed','order'); 
+            }
+            if(Module::isEnabled('einvoice') && Module::getInstanceByName('einvoice') && $address->id) {
+                $eiAddress = new EIAddress($address->id);
+                if ($address->company)
+                {
+                    $eiAddress->pec_email = isset($shipping_address['eipec']) ? $shipping_address['eipec']:'';
+                    $eiAddress->sdi_code = isset($shipping_address['eisdi']) ? $shipping_address['eisdi']:'';
+                    $eiAddress->is_pa = isset($shipping_address['eipa']) ? (int)$shipping_address['eipa']:0;
+                }
+                else
+                {
+                    $eiAddress->pec_email = '';
+                    $eiAddress->sdi_code = '';
+                    $eiAddress->is_pa = 0;
+                }
+                $eiAddress->save(false,true);
+            }
+            if($this->context->cart->delivery_option){
+                $delivery_option = json_decode($this->context->cart->delivery_option,true);
+                $deliveryOptionsFinder = new DeliveryOptionsFinder(
+                    $this->context,
+                    $this->getTranslator(),
+                    $this->objectPresenter,
+                    new PrestaShop\PrestaShop\Adapter\Product\PriceFormatter()
+                );
+                $checkout_session = new CheckoutSession(
+                    $this->context,
+                    $deliveryOptionsFinder
+                );
+                if ($delivery_option) {
+                    foreach($delivery_option as $id_address => $delivery){
+                        if($id_address!= $this->context->cart->id_address_delivery){
+                            unset($delivery_option[$id_address]);
+                            $delivery_option[$this->context->cart->id_address_delivery] = $delivery;
+                        }
+                    }
+                    $checkout_session->setDeliveryOption(
+                        $delivery_option
+                    );
+                }
+                Hook::exec('actionCarrierProcess', array('cart' => $checkout_session->getCart()));
+            }
+            if($use_another_address_for_invoice)
+            {
+                if($invoice_address['id_address'])
+                    $address = new Address($invoice_address['id_address']);
+                else
+                    $address = new Address();
+                $address->alias = isset($invoice_address['alias']) && $invoice_address['alias'] ? $invoice_address['alias'] : $this->module->l('My Address','order');
+                if(!$address->id)
+                    $address->id_customer = $this->context->customer->id;
+                if(isset($invoice_address['firstname']) && $invoice_address['firstname'])
+                    $address->firstname = $invoice_address['firstname'];
+                else
+                    $address->firstname =' ';
+                if(isset($invoice_address['lastname']) && $invoice_address['lastname'])
+                    $address->lastname = $invoice_address['lastname'];
+                else
+                    $address->lastname =' ';
+                if(!Module::isEnabled('einvoice') || !in_array('eicustomertype',$address_field) || !isset($invoice_address['eicustomertype']))
+                {
+                    if(isset($invoice_address['company']))
+                        $address->company = $invoice_address['company'];
+                }
+                else{
+
+                    $customertype = isset($invoice_address['eicustomertype']) ? $invoice_address['eicustomertype']:0;
+                    if($customertype)
+                    {
+                        if(isset($invoice_address['company']))
+                        {
+                            $address->company = $invoice_address['company'];
+                        }
+                    }
+                    else
+                        $address->company = '';
+                }
+                if(isset($invoice_address['address2']))
+                    $address->address2 = $invoice_address['address2']; 
+                if(isset($invoice_address['address1']) && $invoice_address['address1'])
+                    $address->address1 = $invoice_address['address1'];
+                else
+                    $address->address1 =' ';
+                if(isset($invoice_address['city']) && $invoice_address['city'])
+                    $address->city = $invoice_address['city'];
+                else
+                    $address->city =' ';
+                $address->id_state = isset($invoice_address['id_state']) ? $invoice_address['id_state'] :0;
+                if(isset($invoice_address['id_country']) && $invoice_address['id_country'])
+                    $address->id_country = $invoice_address['id_country'];
+                elseif(!$address->id_country)
+                    $address->id_country = $address->id_country = (int)$this->context->country->id ?: (int)Configuration::get('PS_COUNTRY_DEFAULT');
+                $address->postcode =  isset($invoice_address['postcode']) ? $invoice_address['postcode'] :'';
+                $address->phone = isset($invoice_address['phone']) && $invoice_address['phone'] ? $invoice_address['phone']:'';
+                $address->phone_mobile = isset($invoice_address['phone_mobile']) ? $invoice_address['phone_mobile']:'';
+                $address->dni = isset($invoice_address['dni']) ? $invoice_address['dni']:'dni';
+                $address->other = isset($invoice_address['other']) ? $invoice_address['other']:'';
+                $address->vat_number = isset($invoice_address['vat_number']) ? $invoice_address['vat_number']:'';
+                if($address->id)
+                {
+                    if($address->id_customer!=$this->context->customer->id)
+                    {
+                        $this->errors[] = $this->module->l('Invoice address is not valid','order');
+                    }
+                    else
+                    {
+                        if($address->update())
+                        {
+                            $this->context->cart->id_address_invoice = $address->id;
+                            $this->context->cart->update();
+                        }
+                        else
+                            $this->errors[] = $this->module->l('Updating invoice address failed','order');
+                    }
+                    
+                }
+                else
+                {
+                   if($address->add())
+                   {
+                        $this->context->cart->id_address_invoice = $address->id;
+                        $this->context->cart->update();
+                   }
+                   else
+                        $this->errors[] = $this->module->l('Updating invoice address failed','order'); 
+                }
+                if(Module::isEnabled('einvoice') && Module::getInstanceByName('einvoice') && $address->id) {
+                    $eiAddress = new EIAddress($address->id);
+                    if ($address->company)
+                    {
+                        $eiAddress->pec_email = isset($invoice_address['eipec']) ? $invoice_address['eipec']:'';
+                        $eiAddress->sdi_code = isset($invoice_address['eisdi']) ? $invoice_address['eisdi']:'';
+                        $eiAddress->is_pa = isset($invoice_address['eipa']) ? (int)$invoice_address['eipa']:0;
+                    }
+                    else
+                    {
+                        $eiAddress->pec_email = '';
+                        $eiAddress->sdi_code = '';
+                        $eiAddress->is_pa = 0;
+                    }
+                    $eiAddress->save(false,true);
+                }
+            }
+            
+        }
+        if(!$this->errors)
+        {
+            $message = Message::getMessageByCartId($this->context->cart->id);
+            if($delivery_message)
+            {
+                if($message && isset($message['id_message']) && ($id_message = $message['id_message']))
+                {
+                    $messageObj = new Message($id_message);
+                    $messageObj->message = $delivery_message;
+                    $messageObj->update();
+                }
+                else
+                {
+                    $messageObj = new Message();
+                    $messageObj->message = $delivery_message;
+                    $messageObj->id_employee=0;
+                    $messageObj->id_customer = $this->context->customer->id;
+                    $messageObj->id_cart= $this->context->cart->id;
+                    $messageObj->add();
+                }
+            }
+            elseif($message && isset($message['id_message']) && ($id_message = $message['id_message']))
+            {
+                $messageObj = new Message($id_message);
+                $messageObj->delete();
+            } 
+            if(Module::isInstalled('stripe_official'))
+            {
+                $stripe_official = Module::getInstanceByName('stripe_official');
+                if (method_exists($stripe_official,'hookHeader')) {
+                    $stripe_official->hookHeader();
+                }
+                else
+                    $stripe_official->hookDisplayHeader();
+                $js_def = Media::getJsDef();
+                if(isset($js_def['prestashop']))
+                    unset($js_def['prestashop']);
+                $this->context->smarty->assign(array(
+                    'js_def' => $js_def,
+                ));
+                $javascript = $this->context->smarty->fetch(_PS_ALL_THEMES_DIR_.'javascript.tpl');  
+            }
+            hook::exec('saveShippingCartShopLicense');
+            $json = array(
+                'hasError' => false,
+                'java_script' => isset($javascript)?$javascript:'',
+                'link_checkout_free' => $this->context->cart->getOrderTotal(true) == 0 ? $this->context->link->getPageLink('order-confirmation',null,null,array('free_order'=>1)):'',
+            );
+            if(in_array($type_checkout_options, ['create', 'guest']) && !$this->context->customer->is_guest){
+                $json = array_merge([
+                    'invoice_address' => $this->displayBlockInvoiceAddress($this->context->cart->id_address_delivery),
+                    'shipping_address' => $this->displayBlockDeliveryAddress($this->context->cart->id_address_invoice),
+                    'customer_block' => $this->displayBlockCustomerInFo(),
+                    'jsCustomer' => $this->getTemplateVarCustomer($this->context->customer),
+                ], $json);
+            }
+            die(
+                json_encode(
+                    $json
+                )
+            );
+        }
+        else
+        {
+            if($field_values = Ets_opc_additionalinfo_field_value::getFieldValuesByIDCart($this->context->cart->id))
+            {
+                foreach($field_values as $field_value)
+                {
+                    $fieldValue = new Ets_opc_additionalinfo_field_value($field_value['id_ets_opc_additionalinfo_field_value']);
+                    $fieldValue->delete();
+                }
+            }
+            die(
+                json_encode(
+                    array(
+                        'hasError' => true,
+                        'errors' => $this->module->displayError($this->errors),
+                    )
+                )
+            );
+        }   
+    }
+
     }
     protected function updateContext(Customer $customer)
     {
