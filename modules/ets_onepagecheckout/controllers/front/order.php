@@ -2371,15 +2371,21 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         if(!$this->errors)
         {
             if($use_another_address_for_invoice){
+                
+                if($this->context->shop->id != 3){
+                    if($invoice_address['id_address'])
+                        $address = new Address($invoice_address['id_address']);
+                    else
+                        $address = new Address();
+                }else{
+                    if($shipping_address['id_address'])
+                        // $address = new Address($invoice_address['id_address']);
+                        $address = new Address();
+                    else
+                        $address = new Address();
+                }
 
-            
-            
 
-                if($shipping_address['id_address'])
-                    // $address = new Address($invoice_address['id_address']);
-                    $address = new Address();
-                else
-                    $address = new Address();
                 $address->alias =isset($shipping_address['alias']) && $shipping_address['alias'] ? $shipping_address['alias'] : $this->module->l('My Address','order');
                 if(!$address->id)
                     $address->id_customer = $this->context->customer->id;
@@ -2435,11 +2441,20 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 $address->vat_number = isset($shipping_address['vat_number']) ? $shipping_address['vat_number']:'';
             }else{
 
-                if($invoice_address['id_address'])
-                    // $address = new Address($invoice_address['id_address']);
-                    $address = new Address();
-                else
-                    $address = new Address();
+                if($this->context->shop->id != 3){
+                    if($shipping_address['id_address'])
+                        $address = new Address($shipping_address['id_address']);
+                    else
+                        $address = new Address();
+                }else{
+                    if($invoice_address['id_address'])
+                        // $address = new Address($invoice_address['id_address']);
+                        $address = new Address();
+                    else
+                        $address = new Address();
+                }
+
+
                 $address->alias =isset($invoice_address['alias']) && $invoice_address['alias'] ? $invoice_address['alias'] : $this->module->l('My Address','order');
                 if(!$address->id)
                     $address->id_customer = $this->context->customer->id;
