@@ -686,6 +686,16 @@ body {
     box-shadow: none !important;
     padding: 0 !important;
   }
+
+  /* update address */
+
+  #address.page-customer-account #main {
+    padding: 1rem;
+  }
+}
+
+#address.page-customer-account #main {
+  padding: 1rem;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
