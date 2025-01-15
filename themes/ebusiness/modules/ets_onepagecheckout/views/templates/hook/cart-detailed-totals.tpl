@@ -23,7 +23,7 @@
         <div class="cart-summary-line" id="cart-subtotal-{$subtotal.type|escape:'html':'UTF-8'}">
           <span class="label{if 'products' === $subtotal.type} js-subtotal{/if}">
             {if 'products' === $subtotal.type} 
-              {l s="Total productos" d="Shop.Theme.Checkout"}
+              {l s="Total products" d="Shop.Theme.Checkout"}
             {else}
               {$subtotal.label|escape:'html':'UTF-8'}
             {/if}
