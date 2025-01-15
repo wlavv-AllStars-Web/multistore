@@ -63,7 +63,7 @@ class MyCarsControllerCore extends FrontController
         $breadcrumb['links'][] = $this->addMyAccountToBreadcrumb();
 
         $breadcrumb['links'][] = [
-            'title' => $this->trans('My cars', [], 'Shop.Theme.Customeraccount'),
+            'title' => $this->trans('My cars', [], 'Shop.Theme.MyCars'),
             'url' => $this->context->link->getPageLink('my-cars'),
         ];
 
