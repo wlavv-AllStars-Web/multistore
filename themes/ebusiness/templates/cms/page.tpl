@@ -187,7 +187,7 @@
 
             const imgs = document.querySelectorAll(".page-car img")
 
-            imgs.forEach((img) => {
+            imgs.forEach((img, index) => {
                 const slide = document.createElement("div")
                 slide.classList.add("swiper-slide")
 
@@ -206,6 +206,7 @@
 
                 img.addEventListener("click", (e) => {
                     containerModal.classList.toggle("show-imgs")
+                    swiperCarImgs.slideTo(index,0)
                 })
             })
 
@@ -228,14 +229,13 @@
                     !swiperContainer.contains(event.target) // Click not inside .mySwiperCar
                 ) {
                     containerModal.classList.remove("show-imgs");
+                    swiperCarImgs.update();
                 }
             });
-        </script>
 
-        <script>
             var swiperCarImgs = new Swiper(".mySwiperCar", {
                 zoom: true,
-                loop: true,
+                loop: false,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
@@ -249,8 +249,8 @@
                     }
                 }
             });
-
         </script>
+
         <style>
 
 
