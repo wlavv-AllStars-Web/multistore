@@ -679,6 +679,13 @@ body {
     margin: auto;
     padding: 1rem 0;
   }
+
+  /* order details */
+
+  .page-order-detail .box{
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {
