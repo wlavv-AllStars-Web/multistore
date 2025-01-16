@@ -131,6 +131,10 @@ body {
   outline: 2px solid #e9e9e9;
 }
 
+.page-addresses .address .address-body address {
+  color: #666;
+}
+
 
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
