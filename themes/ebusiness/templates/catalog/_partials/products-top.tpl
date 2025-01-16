@@ -21,10 +21,9 @@
  * @copyright 2007-2016 PrestaShop SA
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
- *}  
- 
+ *} 
  {assign var="categories" value=Category::getCategories(Context::getContext()->language->id)}
- {* {assign var="categoriesChildren" value=Category::getChildren($idParent, $idLang, $active = true, $idShop = false)} *}
+ <pre>{$categories|print_r}</pre>
 
 <div class="wm-hiddencompats" style="display:none;">
   {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
@@ -179,8 +178,6 @@
   </select> *}
 
 
-
- 
   {* bycategory *}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
@@ -202,37 +199,69 @@
         </a>
         {if !$page.body_classes['category-id-228']}
           <div class="dropdown-menu">
-            {foreach from=$categories[2] item=parentCategory}
-              <div class="dropdown-submenu">
-                  <a 
-                      href="#" 
-                      class="dropdown-item {if isset($categories[$parentCategory['infos']['id_category']]) && count($categories[$parentCategory['infos']['id_category']]) > 0}dropdown-toggle{/if}"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                  >
-                      {$parentCategory['infos']['name']}
-                  </a>
-                  {if isset($categories[$parentCategory['infos']['id_category']]) && count($categories[$parentCategory['infos']['id_category']]) > 0}
-                    <div class="dropdown-menu">
-                        {foreach from=$categories[$parentCategory['infos']['id_category']] item=childCategory}
-                            <a 
-                                id="category_element_{$childCategory['infos']['id_category']}" 
-                                onclick="setCategory({$childCategory['infos']['id_category']})"
-                                class="dropdown-item"
-                            >
-                                {$childCategory['infos']['name']}
-                            </a>
-                        {/foreach}
-                    </div>
+          {foreach from=$categories[2] item=parentCategory}
+            {if $parentCategory['infos']['id_category'] != 16}
+              <div 
+                  id="category_element_{$parentCategory['infos']['id_category']}" 
+                  
+                  class="select-list"
+                > 
+                  <div onclick="setCategory({$parentCategory['infos']['id_category']})">
+                    {$parentCategory['infos']['name']}
+                  </div>
+                  {if $categories[{$parentCategory['infos']['id_category']}]}
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{$parentCategory['infos']['id_category']}" aria-expanded="false" aria-controls="collapse{$parentCategory['infos']['id_category']}">
+                   <i class="material-icons">arrow_drop_down</i>
+                  </button>
                   {/if}
+                <div class="collapse" id="collapse{$parentCategory['infos']['id_category']}">
+                  {foreach from=$categories[{$parentCategory['infos']['id_category']}] item=categoryChildren}
+                    {if $categoryChildren['infos']['id_parent'] == $parentCategory['infos']['id_category']}
+                      
+                        <li onclick="setCategory({$categoryChildren['infos']['id_category']})">{$categoryChildren['infos']['name']}</li>
+                      
+                    {/if}
+                    {* {if $category['id_category'] != 16}
+                    <div 
+                      id="category_element_{$category['id_category']}" 
+                      onclick="setCategory({$category['id_category']})"
+                      class="select-list"
+                    >
+                        {$category['name']}
+                    </div>
+                    {/if} *}
+                  {/foreach}
+                </div>
               </div>
-            {/foreach}
+            {/if}
+          {/foreach}
           </div>
         {/if}
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.dropdown-menu button[data-toggle="collapse"]').forEach(function (collapseElement) {
+            // Prevent dropdown from closing when interacting with collapsible content
+            collapseElement.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                let collapseEl = collapseElement.nextElementSibling
+                console.log(collapseEl)
+                // Toggle the `collapsed` class on the button dynamically
+                if (collapseEl.classList.contains('collapsed')) {
+                    collapseEl.classList.remove('collapsed');
+                    collapseEl.classList.add('collapse');
+                } else {
+                    collapseEl.classList.add('collapsed');
+                    collapseEl.classList.remove('collapse');
+                }
+            });
+        });
+    });
+
+  </script>
 
   {* bybrand *}
 
