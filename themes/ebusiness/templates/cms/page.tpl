@@ -260,7 +260,7 @@
 
             .mySwiperCar{
                 max-width: 1200px;
-                max-height: 567px;
+                max-height: 800px;
                 background: #fff;
                 width: 100%;
             }
