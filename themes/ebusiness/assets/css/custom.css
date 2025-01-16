@@ -121,6 +121,11 @@ body {
   display: none !important;
 }
 
+.form-control-comment{
+  color: #666 !important;
+}
+
+
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
     display: none !important;
