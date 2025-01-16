@@ -203,17 +203,19 @@
               <div 
                   id="category_element_{$parentCategory['infos']['id_category']}" 
                   
-                  class="select-list"
+                class="select-list {if $categories[{$parentCategory['infos']['id_category']}]}has-children-category{/if}"
                 > 
+                <div class="container-dropdown-category">
                   <div onclick="setCategory({$parentCategory['infos']['id_category']})">
                     {$parentCategory['infos']['name']}
                   </div>
                   {if $categories[{$parentCategory['infos']['id_category']}]}
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{$parentCategory['infos']['id_category']}" aria-expanded="false" aria-controls="collapse{$parentCategory['infos']['id_category']}">
-                   <i class="material-icons">arrow_drop_down</i>
-                  </button>
+                    <button class="btn-custom-category" type="button" data-toggle="collapse" data-target="#collapse{$parentCategory['infos']['id_category']}" aria-expanded="false" aria-controls="collapse{$parentCategory['infos']['id_category']}">
+                      <i class="material-icons">arrow_drop_down</i>
+                    </button>
                   {/if}
-                <div class="collapse" id="collapse{$parentCategory['infos']['id_category']}">
+                </div>
+                <div class="collapse-container-category collapse" id="collapse{$parentCategory['infos']['id_category']}">
                   {foreach from=$categories[{$parentCategory['infos']['id_category']}] item=categoryChildren}
                     {if $categoryChildren['infos']['id_parent'] == $parentCategory['infos']['id_category']}
                       
@@ -241,13 +243,12 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.dropdown-menu button[data-toggle="collapse"]').forEach(function (collapseElement) {
+        document.querySelectorAll('.dropdown-menu button[data-toggle="collapse"]').forEach((collapseElement) => {
             // Prevent dropdown from closing when interacting with collapsible content
-            collapseElement.addEventListener('click', function (e) {
+            collapseElement.addEventListener('click',(e) => {
                 e.stopPropagation();
 
-                let collapseEl = collapseElement.nextElementSibling
-                console.log(collapseEl)
+                let collapseEl = collapseElement.parentElement.nextElementSibling
                 // Toggle the `collapsed` class on the button dynamically
                 if (collapseEl.classList.contains('collapsed')) {
                     collapseEl.classList.remove('collapsed');
