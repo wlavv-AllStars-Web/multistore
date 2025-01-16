@@ -1462,5 +1462,6 @@ width: 100%;
       flex: 1;
       min-width: 301px;
       max-width: 394px;
+      padding: 0;
     }
   }
