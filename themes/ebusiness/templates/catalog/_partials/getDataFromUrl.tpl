@@ -35,8 +35,6 @@
             if (match) {
                 const id = match[1];
                 const brand = match[2];
-                console.log("ID:", id); 
-                console.log("Brand:", brand); 
                 document.querySelector("#name_brand span").style.textTransform = "capitalize"
                 document.querySelector("#name_brand span").innerText = brand
             }
