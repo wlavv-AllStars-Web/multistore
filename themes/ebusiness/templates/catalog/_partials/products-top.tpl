@@ -23,7 +23,6 @@
  * International Registered Trademark & Property of PrestaShop SA
  *} 
  {assign var="categories" value=Category::getCategories(Context::getContext()->language->id)}
- <pre>{$categories|print_r}</pre>
 
 <div class="wm-hiddencompats" style="display:none;">
   {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
