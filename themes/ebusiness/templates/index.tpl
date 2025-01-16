@@ -163,7 +163,7 @@
         }
       } */
       .swiper-container {
-    width: 100dvw;
+    width: 100%;
     position: relative;
     overflow: hidden;
     }
