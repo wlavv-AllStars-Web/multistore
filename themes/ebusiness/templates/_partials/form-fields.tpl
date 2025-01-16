@@ -28,8 +28,8 @@
   <input type="hidden" name="{$field.name}" value="{$field.value}">
 
 {else}
-
-  <div class="form-group row {if !empty($field.errors)}has-error{/if}">
+  
+  <div class="form-group row{if $page.page_name == 'address'}col-lg-6{/if}{if !empty($field.errors)}has-error{/if}">
     <label class="{if $page.page_name == 'authentication'} col-md-10 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}">
       {if $field.type !== 'checkbox'}
         {$field.label}
