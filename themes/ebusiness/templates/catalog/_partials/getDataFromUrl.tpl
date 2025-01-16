@@ -23,6 +23,25 @@
         setDataFromUrl();
         check_ukoo_holder_after_ajax();
         setFiltersTitle();
+        
+        if(document.querySelector("body#manufacturer")){
+            // Get the current URL dynamically
+            const url = window.location.href;
+    
+            // Extract the part of the path after "/brand/"
+            const regex = /\/brand\/(\d+)-([\w-]+)/;
+            const match = url.match(regex);
+    
+            if (match) {
+                const id = match[1];
+                const brand = match[2];
+                console.log("ID:", id); 
+                console.log("Brand:", brand); 
+                document.querySelector("#name_brand span").style.textTransform = "capitalize"
+                document.querySelector("#name_brand span").innerText = brand
+            }
+        }
+
     }
 
     function check_ukoo_holder_after_ajax(){
@@ -47,6 +66,7 @@
     }
 
     function setDataFromUrl(){
+
         if(url.searchParams.get("orderby")) orderBy = url.searchParams.get("orderby");
         if(url.searchParams.get("orderway")) orderWay = url.searchParams.get("orderway");
         if(url.searchParams.get("n")){
