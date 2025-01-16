@@ -259,13 +259,14 @@
             }
 
             .mySwiperCar{
-                width: 850px;
+                max-width: 1200px;
                 max-height: 567px;
                 background: #fff;
+                width: 100%;
             }
 
             .mySwiperCar .swiper-slide img {
-                max-width: 850px;
+                max-width: 1200px;
                 width: 100%;
             }
 
