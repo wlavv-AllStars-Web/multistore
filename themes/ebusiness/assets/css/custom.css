@@ -3143,6 +3143,8 @@ body {
 
 .products-sort-order .select-list {
   color: #333 !important;
+  outline: 1px solid #d0d0d0;
+  outline-offset: 0px;
 }
 
 .products-sort-order .select-list.current {
