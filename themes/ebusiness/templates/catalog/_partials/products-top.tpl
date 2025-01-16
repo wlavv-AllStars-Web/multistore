@@ -22,6 +22,9 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}  
+ 
+ {assign var="categories" value=Category::getCategories(Context::getContext()->language->id)}
+ {* {assign var="categoriesChildren" value=Category::getChildren($idParent, $idLang, $active = true, $idShop = false)} *}
 
 <div class="wm-hiddencompats" style="display:none;">
   {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
@@ -164,7 +167,9 @@
           </div>
       </div>
   </div> *}
-  {assign var="categories" value=Category::getCategories()}
+
+  {* {assign var="categories" value=Category::getHomeCategories(Context::getContext()->language->id, true)} *}
+ 
   {* {assign var="attribute_groups" value=AttributeGroup::getAttributesGroups()} *}
 
   {* <select name="category_id">
@@ -175,7 +180,7 @@
 
 
 
-  {* <pre>{print_r($attribute_groups,1)}</pre> *}
+ 
   {* bycategory *}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
@@ -197,19 +202,32 @@
         </a>
         {if !$page.body_classes['category-id-228']}
           <div class="dropdown-menu">
-          {foreach from=$categories[2] item=categoryLevel1}
-            {foreach from=$categoryLevel1 item=category}
-              {if $category['id_category'] != 16}
-              <div 
-                id="category_element_{$category['id_category']}" 
-                onclick="setCategory({$category['id_category']})"
-                class="select-list"
-              >
-                  {$category['name']}
+            {foreach from=$categories[2] item=parentCategory}
+              <div class="dropdown-submenu">
+                  <a 
+                      href="#" 
+                      class="dropdown-item {if isset($categories[$parentCategory['infos']['id_category']]) && count($categories[$parentCategory['infos']['id_category']]) > 0}dropdown-toggle{/if}"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                  >
+                      {$parentCategory['infos']['name']}
+                  </a>
+                  {if isset($categories[$parentCategory['infos']['id_category']]) && count($categories[$parentCategory['infos']['id_category']]) > 0}
+                    <div class="dropdown-menu">
+                        {foreach from=$categories[$parentCategory['infos']['id_category']] item=childCategory}
+                            <a 
+                                id="category_element_{$childCategory['infos']['id_category']}" 
+                                onclick="setCategory({$childCategory['infos']['id_category']})"
+                                class="dropdown-item"
+                            >
+                                {$childCategory['infos']['name']}
+                            </a>
+                        {/foreach}
+                    </div>
+                  {/if}
               </div>
-              {/if}
             {/foreach}
-          {/foreach}
           </div>
         {/if}
       </div>
@@ -229,7 +247,6 @@
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
         </a>
         <div class="dropdown-menu">
-
         {foreach $manufacturers AS $manufacturer}
             <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
                   class="select-list js-search-link"
