@@ -125,6 +125,12 @@ body {
   color: #666 !important;
 }
 
+.page-addresses .address {
+  border-radius: .25rem;
+  overflow: hidden;
+  outline: 2px solid #e9e9e9;
+}
+
 
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
