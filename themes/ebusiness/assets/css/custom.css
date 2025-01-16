@@ -160,12 +160,12 @@ body {
 }
 
 .collapse-container-category {
-  background: #333;
+  background: #777;
   color: #fff;
 }
 
 .collapse-container-category li{
-  padding: 0.625rem 1.25rem 0.625rem 2rem;
+  padding: 0.625rem 1.25rem 0.625rem 2.5rem;
 }
 
 .collapse-container-category li:hover{
