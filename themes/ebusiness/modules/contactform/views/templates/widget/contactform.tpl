@@ -170,7 +170,7 @@
           <input type="text" name="url" value="" />
           <input type="hidden" name="token" value="{$token}" />
           <div style="width: fit-content; height: fit-content; position: relative; padding-bottom: 1rem;">
-              <input class="btn" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="background: white; color: var(--color-red); margin-bottom: 1rem;">
+              <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="margin-bottom: 1rem;">
           </div>
 
           <div class="whatsapp-contancts">
