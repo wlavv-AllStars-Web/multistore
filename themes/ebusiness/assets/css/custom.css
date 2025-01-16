@@ -147,6 +147,7 @@ body {
 
 .has-children-category .container-dropdown-category > div {
   padding: 0.625rem 1.25rem;
+  flex: 1;
 }
 
 .has-children-category .btn-custom-category {
