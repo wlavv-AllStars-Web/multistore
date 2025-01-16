@@ -135,6 +135,42 @@ body {
   color: #666;
 }
 
+.container-dropdown-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.has-children-category{
+  padding: 0 !important
+}
+
+.has-children-category .container-dropdown-category > div {
+  padding: 0.625rem 1.25rem;
+}
+
+.has-children-category .btn-custom-category {
+  height: 40px;
+  max-height: unset;
+  background: #333;
+  width: 40px;
+  padding: 0;
+  border: 0;
+  color: #fff;
+}
+
+.collapse-container-category {
+  background: #333;
+  color: #fff;
+}
+
+.collapse-container-category li{
+  padding: 0.625rem 1.25rem 0.625rem 2rem;
+}
+
+.collapse-container-category li:hover{
+  background: #555;
+}
 
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
