@@ -232,6 +232,17 @@ class AsGroup extends Module
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
 
+        if (is_array($productData) && isset($productData['description']['real_photos'])){
+            $real_photos = $productData['description']['real_photos'];
+            $idProduct = $params['id_product'];
+            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            Db::getInstance()->update('product', [
+                'real_photos' => pSQL($real_photos),
+            ], 'id_product = ' . $idProduct);
+        }else{
+            error_log('Product data is not valid or real_photos is not set.');
+        }
+
         if (is_array($productData) && isset($productData['description']['youtube_code'])){
             $youtube_code = $productData['description']['youtube_code'];
             $idProduct = $params['id_product'];

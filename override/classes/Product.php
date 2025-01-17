@@ -255,9 +255,12 @@ class ProductCore extends ObjectModel
 
     // ALL STARS
 
+    /** @var string real_photos */
+    public $real_photos;
+
     /** @var string youtube_code */
     public $youtube_code;
-    public $youtube_code2;
+    public $youtube_2;
 
     public $dim_verify;
 
@@ -482,10 +485,11 @@ class ProductCore extends ObjectModel
             'quantity_discount' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
             'ean13' => ['type' => self::TYPE_STRING, 'validate' => 'isEan13', 'size' => Ean13::MAX_LENGTH],
             'youtube_code' => ['type' => self::TYPE_STRING, 'size' => 50],
-            'youtube_code2' => ['type' => self::TYPE_STRING, 'size' => 50],
+            'youtube_2' => ['type' => self::TYPE_STRING, 'size' => 50],
             'nc' => ['type' => self::TYPE_STRING, 'size' => 11],
             'dim_verify' => ['type' => self::TYPE_INT],
             'difficulty' => ['type' => self::TYPE_INT],
+            'real_photos' => ['type' => self::TYPE_INT],
             'isbn' => ['type' => self::TYPE_STRING, 'validate' => 'isIsbn', 'size' => Isbn::MAX_LENGTH],
             'upc' => ['type' => self::TYPE_STRING, 'validate' => 'isUpc', 'size' => Upc::MAX_LENGTH],
             'mpn' => ['type' => self::TYPE_STRING, 'validate' => 'isMpn', 'size' => ProductSettings::MAX_MPN_LENGTH],

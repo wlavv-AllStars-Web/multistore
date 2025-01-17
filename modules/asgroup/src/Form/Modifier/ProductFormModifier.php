@@ -58,7 +58,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     ): void {
         $idProduct = $productId->getValue();
 
-        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing, universal
+        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing, universal , real_photos
         FROM
         `' . _DB_PREFIX_ . 'product` 
         WHERE id_product= '.$idProduct;
@@ -79,6 +79,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $data['ec_approved'] = $result['ec_approved'];
         $data['housing'] = $result['housing'];
         $data['universal'] = $result['universal'];
+        $data['real_photos'] = $result['real_photos'];
         
         $this->modifyDescriptionTab($data, $productFormBuilder);
     }
@@ -110,6 +111,26 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         // );
 
         $descriptionTabFormBuilder = $productFormBuilder->get('description');
+        $this->formBuilderModifier->addBefore(
+            $descriptionTabFormBuilder,
+            'description_short',
+            'real_photos',
+            SwitchType::class,
+            [
+                'choices' => [
+                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+                ],
+                'data' => $data['real_photos'] ,
+                'placeholder' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'label' => $this->translator->trans('Real Photos',[], 'Admin.Catalog.Feature'),
+                'label_help_box' => $this->translator->trans('Real Photos helper.',[], 'Admin.Catalog.Help'),
+            ]
+        );
+
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
             'description',

@@ -87,10 +87,11 @@
        
         </div>
       {/if}
-
-    <div class="real-picture" >
-      {l s="Real Picture" d="Shop.Theme.ProductList"}
-    </div>
+      {if $product['real_photos']}
+        <div class="real-picture" >
+          {l s="Real Picture" d="Shop.Theme.ProductList"}
+        </div>
+      {/if}
    </div>
 
  {/block}
