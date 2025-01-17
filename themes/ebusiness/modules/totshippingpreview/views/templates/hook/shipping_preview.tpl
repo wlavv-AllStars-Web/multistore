@@ -574,7 +574,7 @@ if (sessionStorage.getItem('scriptExecuted')) {
         });
 
         element.one('select2:open', function () {
-            $('input.select2-search__field').prop('placeholder', '{l s="Search your country" mod="totshippingpreview"}');
+            $('input.select2-search__field').prop('placeholder', '{l s="Search your country" d="Shop.Theme.ProductPage"}');
         });
 
         element.on('select2:select', function () {
