@@ -245,13 +245,29 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;background-color: #333 !important;padding:0;">
         <div style="display: flex;width: 100%;justify-content:space-between;padding: 1rem;">
           {* <a class="navbar-brand" href="#">Navbar w/ text</a> *}
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;color: #fff;">
+          {* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;color: #fff;">
+            <span class="navbar-toggler-icon"></span>
+          </button> *}
+
+
+          <button class="navbar-toggler"  onclick="openNav()" type="button"  style="margin-left: auto;color: #fff;">
             <span class="navbar-toggler-icon"></span>
           </button>
+
+
         </div>
-        <div class="collapse navbar-collapse" id="navbarText">
+        
+
+        <div id="mySidenav" class="sidenav">
           <ul class="navbar-nav mr-auto">
 
+            <div class="offcanvas-header" style="display: flex;justify-content: space-around;align-items: center;margin-bottom: 2rem;">
+              <img class="logo img-responsive" src="/img/asm/asm10.webp?t=11" style="max-width: 180px;
+              padding: 0px;
+              margin: 20px 45px;">
+              <button type="button" class="btn-close text-reset"  onclick="closeNav()" aria-label="Close">
+              <i class="material-icons">close</i></button>
+            </div>
 
             <li class="">
               {* <i class="material-icons">home</i> *}
