@@ -183,10 +183,17 @@ if(window.screen.width > 767){
   dropdownLi.addEventListener('mouseover', (e) => {
     e.stopPropagation();
     toggleDropdown();
+
+    document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
+      drop.style.display = "none"
+    })
   });
   dropdownLi.addEventListener('mouseout', (e) => {
     e.stopPropagation();
     closeDropdown();
+    document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
+      drop.style.removeProperty("display");
+    })
   });
 
 }
