@@ -103,37 +103,37 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
 
         $sortOrders = [
             $sortSalesDesc->setLabel(
-                $translator->trans('Sales, highest to lowest', [], 'Shop.Theme.Catalog')
+                $translator->trans('Sales, highest to lowest', [], 'Shop.Theme.SortOrders')
             ),
             $sortPosAsc->setLabel(
-                $translator->trans('Relevance', [], 'Shop.Theme.Catalog')
+                $translator->trans('Relevance', [], 'Shop.Theme.SortOrders')
             ),
             $sortNameAsc->setLabel(
-                $translator->trans('Name, A to Z', [], 'Shop.Theme.Catalog')
+                $translator->trans('Name, A to Z', [], 'Shop.Theme.SortOrders')
             ),
             $sortNameDesc->setLabel(
-                $translator->trans('Name, Z to A', [], 'Shop.Theme.Catalog')
+                $translator->trans('Name, Z to A', [], 'Shop.Theme.SortOrders')
             ),
             $sortPriceAsc->setLabel(
-                $translator->trans('Price, low to high', [], 'Shop.Theme.Catalog')
+                $translator->trans('Price, low to high', [], 'Shop.Theme.SortOrders')
             ),
             $sortPriceDesc->setLabel(
-                $translator->trans('Price, high to low', [], 'Shop.Theme.Catalog')
+                $translator->trans('Price, high to low', [], 'Shop.Theme.SortOrders')
             ),
             $sortRefAsc->setLabel(
-                $translator->trans('Reference, A to Z', [], 'Shop.Theme.Catalog')
+                $translator->trans('Reference, A to Z', [], 'Shop.Theme.SortOrders')
             ),
             $sortRefDesc->setLabel(
-                $translator->trans('Reference, Z to A', [], 'Shop.Theme.Catalog')
+                $translator->trans('Reference, Z to A', [], 'Shop.Theme.SortOrders')
             ),
         ];
 
         if ($query->getQueryType() == 'new-products') {
             $sortOrders[] = $sortDateAsc->setLabel(
-                $translator->trans('Date added, oldest to newest', [], 'Shop.Theme.Catalog')
+                $translator->trans('Date added, oldest to newest', [], 'Shop.Theme.SortOrders')
             );
             $sortOrders[] = $sortDateDesc->setLabel(
-                $translator->trans('Date added, newest to oldest', [], 'Shop.Theme.Catalog')
+                $translator->trans('Date added, newest to oldest', [], 'Shop.Theme.SortOrders')
             );
         }
 
@@ -162,12 +162,16 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
          */
         $facetedSearchFilters = $this->filtersConverter->createFacetedSearchFiltersFromQuery($query);
 
+        // pre($facetedSearchFilters);
+
         // Initialize the search mechanism
         $context = $this->module->getContext();
         $facetedSearch = $this->searchFactory->build($context);
 
         // Add query information into Search
         $facetedSearch->setQuery($query);
+
+        // pre($facetedSearch);
 
         // Init the search with the initial population associated with the current filters
         $facetedSearch->initSearch($facetedSearchFilters);
@@ -182,11 +186,15 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
         // Load the product searcher, it gets the Adapter through Search object
         $filterProductSearch = new Filters\Products($facetedSearch);
 
+        // pre($facetedSearchFilters);
+
         // Get the product associated with the current filter
         $productsAndCount = $filterProductSearch->getProductByFilters(
             $query,
             $facetedSearchFilters
         );
+
+        // pre($productsAndCount);
 
         $result
             ->setProducts($productsAndCount['products'])
