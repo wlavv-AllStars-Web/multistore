@@ -10,6 +10,7 @@
     }
 
     function setManufacturer(element, idManufacturer) {
+        console.log(element);
         $('#temp_multiFilter_id_manufacturer').val(idManufacturer);
         $('#multiFilter_id_manufacturer').val(idManufacturer);
         setName($('#name_brand'), '{l s="By Brand" d="Shop.Theme.SortOrders"}', element.text());
@@ -27,12 +28,12 @@
         $('#multiFilter_order_by_orientation').val(orientation);
     }
 
-    function setCategory(idCategory) {
+    function setCategory(idCategory, element) {
         
         $('#temp_multiFilter_id_category').val(idCategory);
         $('#multiFilter_id_category').val(idCategory);
         $('#id_category_layered').val(idCategory);
-        setName($('#name_category'), '{l s="By Category" d="Shop.Theme.SortOrders"}', $('#category_element_' + idCategory).text());
+        setName($('#name_category'), '{l s="By Category" d="Shop.Theme.SortOrders"}', $(element).text());
 		$('#category_element_' + idCategory).css('background-color', 'rgb(0, 90, 215)').css('color', 'rgb(255, 255, 255)').css('padding', '10px');
         doSearch();
         

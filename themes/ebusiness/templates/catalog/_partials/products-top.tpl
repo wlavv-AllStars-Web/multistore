@@ -206,7 +206,7 @@
                 class="select-list {if $categories[{$parentCategory['infos']['id_category']}]}has-children-category{/if}"
                 > 
                 <div class="container-dropdown-category">
-                  <div onclick="setCategory({$parentCategory['infos']['id_category']})">
+                  <div onclick="setCategory({$parentCategory['infos']['id_category']}, this)">
                     {$parentCategory['infos']['name']}
                   </div>
                   {if $categories[{$parentCategory['infos']['id_category']}]}
@@ -219,7 +219,7 @@
                   {foreach from=$categories[{$parentCategory['infos']['id_category']}] item=categoryChildren}
                     {if $categoryChildren['infos']['id_parent'] == $parentCategory['infos']['id_category']}
                       
-                        <li onclick="setCategory({$categoryChildren['infos']['id_category']})">{$categoryChildren['infos']['name']}</li>
+                        <li onclick="setCategory({$categoryChildren['infos']['id_category']}, this)">{$categoryChildren['infos']['name']}</li>
                       
                     {/if}
                     {* {if $category['id_category'] != 16}
