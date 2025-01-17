@@ -125,7 +125,8 @@
             category_name = document.querySelector("nav.breadcrumb li:last-child a span").textContent
             idCategory =  $('[name="id_category_layered"]').val();
         }else{
-            category_name = $('#category_element_' + idCategory).text();
+                category_name = $('[onclick="setCategory(' + idCategory + ', this)"]').text();
+            //     category_name = $('#category_element_' + idCategory).text();
         }
         // console.log(deleteHtmlCategory)
         $('#name_category').html('{l s="By Category" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + category_name + '</span>' + deleteHtmlCategory);
