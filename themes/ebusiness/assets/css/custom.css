@@ -173,6 +173,11 @@ body {
   background: #555;
 }
 
+.collapse-container-category.collapsed + .container-dropdown-category > div{
+  background-color: var(--asm-color) !important;
+}
+
+
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
     display: none !important;
@@ -3144,7 +3149,7 @@ body {
 
 .products-sort-order .select-list {
   color: #333 !important;
-  outline: 1px solid #d0d0d0;
+  outline: 1px solid #f0f0f0;
   outline-offset: 0px;
 }
 
@@ -6183,7 +6188,7 @@ select.form-control:not([size]):not([multiple]){
 
 .products-sort-order .dropdown-menu {
   width: 100%;
-  background: none repeat scroll 0 0 #d9d9d9;
+  background: none repeat scroll 0 0 #f8f8f8;
   border-radius: 0 0 .25rem .25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 2px solid #333;
