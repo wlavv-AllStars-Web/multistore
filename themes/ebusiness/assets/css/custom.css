@@ -37,6 +37,10 @@ body {
   background-color: #333 !important;
 }
 
+.banner-wheels-container .flip-card-back select {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 3px 10px;
+}
+
 /* header.tpl */
 .alma-options-header {
   font-weight: 600;
@@ -1803,6 +1807,8 @@ body {
   #category #banner-wheels {
     padding: 0;
   }
+
+
 
   #category #banner-wheels .banner-wheels-container{
     border-radius: .25rem;
