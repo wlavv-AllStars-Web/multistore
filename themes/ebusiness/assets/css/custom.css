@@ -41,6 +41,10 @@ body {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 3px 10px;
 }
 
+.products-sort-order .select-title {
+  user-select: none;
+}
+
 /* header.tpl */
 .alma-options-header {
   font-weight: 600;
