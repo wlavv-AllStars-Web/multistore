@@ -5007,6 +5007,10 @@ ul {
   width: 100% !important;
 }
 
+#addresses #content-wrapper {
+  min-height: 49dvh;
+}
+
 /* my account personal info */
 
 #identity .custom-checkbox {
