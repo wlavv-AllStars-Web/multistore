@@ -30,19 +30,33 @@
 
 {block name='page_content'}
   <div class="container-customer-addresses">
-  {foreach $customer.addresses as $address}
-    <div class="col-lg-3 col-md-6 col-sm-6">
-    {block name='customer_address'}
-      {include file='customer/_partials/block-address.tpl' address=$address}
-    {/block}
-    </div>
-  {/foreach}
+  {if $customer.id_default_group != 5}
+    {foreach $customer.addresses as $address}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+      {block name='customer_address'}
+        {include file='customer/_partials/block-address.tpl' address=$address}
+      {/block}
+      </div>
+    {/foreach}
+  {else}
+    {assign var="last_address" value=$customer.addresses|@array_slice:-1}
+    {foreach $last_address as $address}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        {block name='customer_address'}
+          {include file='customer/_partials/block-address.tpl' address=$address}
+        {/block}
+      </div>
+    {/foreach}
+
+  {/if}
   </div>
   <div class="clearfix"></div>
   <div class="addresses-footer">
+  {if $customer.id_default_group != 5}
     <a href="{$urls.pages.address}" data-link-action="add-address">
       <i class="material-icons">&#xE145;</i>
       <span>{l s='Create new address' d='Shop.Theme.Actions'}</span>
     </a>
+  {/if}
   </div>
 {/block}
