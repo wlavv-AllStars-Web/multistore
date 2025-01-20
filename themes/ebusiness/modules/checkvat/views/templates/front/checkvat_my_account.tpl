@@ -24,7 +24,7 @@
 				<h3>{l s='TVA number (Only for companies)' d='Shop.Theme.CustomerAccount'} :</h3>
 				{if $msg_vat_invalid}<p style="color:red;"><strong>{l s='Sorry, invalid VAT number' mod='checkvat'}</strong></p>{/if}
 				
-				<form method="post" style="display:flex;flex-wrap: nowrap;padding-left: 0px;padding-right:0px;gap:0.5rem;">
+				<form action="index.php?fc=module&module=checkvat&controller=default&action=saveVat" method="post" style="display:flex;flex-wrap: nowrap;padding-left: 0px;padding-right:0px;gap:0.5rem;">
 					<input class="form-control" placeholder="TVA number" aria-label="TVA number" name="vat_number" type="text" value="{if isset($smarty.post.vat_number)}{$smarty.post.vat_number}{/if}"/>
 					<button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
 				</form>
@@ -47,28 +47,31 @@ $('input[name="vat_number"]').next('button').prop('disabled', true);
 
 $('input[name="vat_number"]').focusout(function(){
 
-  $.ajax({
-		  type: "POST",
-		  dataType: 'text',
-		  headers: { "cache-control": "no-cache" },
-		  url: "/index.php?controller=my-account",
-		  data: {
-			  'action' : 'check_vat',
-			  'vatnumber' : $('input[name="vat_number"]').val()
-		  },
-		  success: function(msg){
-			  
-			if(msg == 1){
-				$('input[name="vat_number"]').css('border-color', 'black'); 
-				$('input[name="vat_number"]').next('button').prop('disabled', false);
-			}else{
-				$('input[name="vat_number"]').css('border-color', 'red'); 
-				alert("Inserted VAT Number is invalid for your country, please verify!");
-				$('input[name="vat_number"]').next('button').prop('disabled', true);   
-				// $('input[name="vat_number"]').value = "";   
-				// $('input[name="vat_number"]').attr('value', '');  
+	var vatNumber = $(this).val();
+	if (vatNumber.trim() !== '') {
+	$.ajax({
+			type: "POST",
+			dataType: 'text',
+			headers: { "cache-control": "no-cache" },
+			url: "/index.php?controller=my-account",
+			data: {
+				'action' : 'check_vat',
+				'vatnumber' : $('input[name="vat_number"]').val()
+			},
+			success: function(msg){
+				
+				if(msg == 1){
+					$('input[name="vat_number"]').css('border-color', 'black'); 
+					$('input[name="vat_number"]').next('button').prop('disabled', false);
+				}else{
+					$('input[name="vat_number"]').css('border-color', 'red'); 
+					alert("Inserted VAT Number is invalid for your country, please verify!");
+					$('input[name="vat_number"]').next('button').prop('disabled', true);   
+					// $('input[name="vat_number"]').value = "";   
+					// $('input[name="vat_number"]').attr('value', '');  
+				}
 			}
-		  }
-  });
+	});
+	}
 });
 </script>

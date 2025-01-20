@@ -41,7 +41,41 @@ class CheckVat extends Module
 		$this->displayName = $this->l('Check VAT');
 		$this->description = $this->l('Adds an addon to check VAT');
 		$this->confirmUninstall = $this->l('Are you sure you want to remove your module "controller VAT" ?');
+
+		if (Tools::getValue('action') === 'saveVat') {
+			$this->handleSaveVat();
+		}
 	}
+
+	public function handleSaveVat()
+{
+    // Get the customer ID and VAT number from the request
+    $idCustomer = (int)$this->context->customer->id;
+    $vatNumber = Tools::getValue('vat_number');
+
+    // Ensure the customer is logged in and input is valid
+    if (!$idCustomer) {
+        $this->context->controller->errors[] = $this->l('You must be logged in to save your VAT number.');
+        Tools::redirect($this->context->link->getPageLink('my-account'));
+    }
+
+    if (empty($vatNumber)) {
+        $this->context->controller->errors[] = $this->l('VAT number cannot be empty.');
+        Tools::redirect($this->context->link->getPageLink('my-account'));
+    }
+
+    // Save the VAT number
+    if (!$this->saveVatNumber($idCustomer, $vatNumber)) {
+        $this->context->controller->errors[] = $this->l('An error occurred while saving the VAT number.');
+    } else {
+		if ($this->context->controller !== null) {
+            $this->context->controller->confirmations[] = $this->l('VAT number saved successfully.');
+        }
+    }
+
+    // Redirect back to the account page
+    Tools::redirect($this->context->link->getPageLink('my-account'));
+}
 
 	public function deleteCaracteres()
 	{
@@ -402,16 +436,25 @@ class CheckVat extends Module
 				$this->context->smarty->assign('msg_vat_invalid', true);
 			}
 		}
-		$chemin = (version_compare(_PS_VERSION_, '1.6', '<'))? 'views/templates/front/' : '';
+		$chemin = 'views/templates/front/';
 		return $this->display(__FILE__, $chemin.'checkvat_my_account.tpl');
 	}
 
 	public function saveVatNumber($id_customer, $vat_number)
 	{
-		if (!Db::getInstance()->update('address', array('vat_number' => $vat_number), '`id_customer`='.(int)$id_customer, 1))
-			return false;
-		return true;
+		// Ensure the VAT number is safely escaped
+		$vat_number = pSQL($vat_number);
+
+		// Update the address table for the given customer ID
+		$result = Db::getInstance()->update(
+			'address', // Table name
+			['vat_number' => $vat_number], // Data to update
+			'`id_customer` = ' . (int)$id_customer // WHERE clause
+		);
+
+		return (bool)$result;
 	}
+
 
 	public function getvatCustomer($id_customer = false)
 	{
