@@ -3590,6 +3590,7 @@ ul {
 #customer-form {
   max-width: 1350px;
   margin: auto;
+  width: 100%;
 }
 
 #customer-form section .form-group:last-child .col-md-6 .custom-checkbox{
