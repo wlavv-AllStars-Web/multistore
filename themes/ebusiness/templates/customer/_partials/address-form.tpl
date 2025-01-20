@@ -81,7 +81,7 @@
 
 
   function setCountryByVATNumber(vatNumber){
-    console.log("setcountrybyvat")
+    // console.log("setcountrybyvat")
 
       $('select option').show();
       
@@ -102,7 +102,7 @@
       
       country_iso_code = country_iso_code.toUpperCase();
 
-      console.log(country_iso_code)
+      // console.log(country_iso_code)
       let country_id = ''
       let call_prefix = ''
 
