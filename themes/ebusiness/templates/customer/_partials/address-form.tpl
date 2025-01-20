@@ -57,3 +57,98 @@
     </footer>
   </form>
 </div>
+
+<script>
+// if(document.querySelector("body#address")){
+  $(document).ready(function () {
+  let vat_numberEl = document.querySelector("input[name='vat_number']");
+
+  if (vat_numberEl && !vat_numberEl.hasAttribute("data-initialized")) {
+    vat_numberEl.setAttribute("data-initialized", "true");
+
+    vat_numberEl.classList.add("clean_vat_number");
+    // console.log("vat_number");
+    document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+
+    vat_numberEl.addEventListener("focusout", (e) => {
+      setCountryByVATNumber(e.target.value);
+    });
+  }
+
+  // $('.clean_vat_number').val('');
+  // $('.clean_vat_number').value = '';
+});
+
+
+  function setCountryByVATNumber(vatNumber){
+    console.log("setcountrybyvat")
+
+      $('select option').show();
+      
+      $("select[name='id_country']").attr("readonly", false);
+
+      $("select[name='id_country']").css('pointer-events', 'initial');
+
+      let country_iso_code = '';
+
+      if (!hasNumber(vatNumber.substring(0, 3))) {
+          country_iso_code = vatNumber.substring(0, 3);
+      } else if (!hasNumber(vatNumber.substring(0, 2))) {
+          country_iso_code = vatNumber.substring(0, 2);
+      }else{
+        document.querySelector("select[name='id_country']").removeAttribute("disabled")
+      }
+
+      
+      country_iso_code = country_iso_code.toUpperCase();
+
+      console.log(country_iso_code)
+      let country_id = ''
+      let call_prefix = ''
+
+      if( !hasNumber(country_iso_code) ){
+        $.ajax({
+            url: '{url entity='address'}', // Replace with your endpoint
+            type: 'POST',
+            data: { iso_codeAddress: country_iso_code },
+            success: function(response) {
+              // console.log(response)
+                // Adjust based on server response
+                country_id = response.country_id; 
+                call_prefix = response.call_prefix;
+                // console.log("Country ID:", country_id);
+
+                if (country_id) {
+                    // let id_country = $('select[name="id_country"] option[value="' + country_id + '"]').val();
+
+                    if (country_iso_code === 'PT') {
+                        $('select option[mytag!=351]').hide();
+                    } else if (country_iso_code === 'FR') {
+                        $('select option[mytag!=33]').hide();
+                    } else if (country_iso_code === 'ES') {
+                        $('select option[mytag!=34]').hide();
+                    } else {
+                        document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+                    }
+                    document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+                    $("select[name='id_country']").val(country_id).change();
+                    $("input[name='phone']").val(call_prefix);
+
+                } else {
+                    console.warn("Invalid country ISO code or no matching country ID found.");
+                    document.querySelector("select[name='id_country']").removeAttribute("disabled")
+                    $('.clean_vat_number').val('');
+                    $('.clean_vat_number').value = '';
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
+          })
+          
+      
+      }
+  }
+  
+  function hasNumber(myString) { return /\d/.test(myString); }
+</script>

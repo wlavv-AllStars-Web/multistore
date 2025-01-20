@@ -64,6 +64,21 @@ class AddressControllerCore extends FrontController
      */
     public function postProcess()
     {
+        if(Tools::getValue('iso_codeAddress')){
+            $iso_code_address = Tools::getValue('iso_codeAddress');
+
+            $sql = 'SELECT id_country, call_prefix FROM ps_country WHERE iso_code = "'. pSQL($iso_code_address) .'"';
+
+            $result  = Db::getInstance()->getRow($sql);
+
+            header('Content-Type: application/json');
+            echo json_encode([
+                'country_id' => $result['id_country'],
+                'call_prefix' => $result['call_prefix'],
+            ]);
+            exit;
+        }
+
         $this->context->smarty->assign('editing', false);
         $id_address = (int) Tools::getValue('id_address');
         // Initialize address if an id exists
