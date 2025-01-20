@@ -3585,6 +3585,10 @@ ul {
   padding: 1rem !important;
 }
 
+#contact #messageCheckBox{
+  position: relative;
+}
+
 
 /* registe page */
 #customer-form {
