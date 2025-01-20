@@ -5007,8 +5007,8 @@ ul {
   width: 100% !important;
 }
 
-#addresses #content-wrapper {
-  min-height: 49dvh;
+#addresses #main {
+  min-height: 49dvh !important;
 }
 
 /* my account personal info */
