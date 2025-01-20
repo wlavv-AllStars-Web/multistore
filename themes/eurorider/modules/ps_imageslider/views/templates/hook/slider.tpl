@@ -1,0 +1,119 @@
+{*
+* 2007-2015 PrestaShop
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@prestashop.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+* versions in the future. If you wish to customize PrestaShop for your
+* needs please refer to http://www.prestashop.com for more information.
+*
+*  @author PrestaShop SA <contact@prestashop.com>
+*  @copyright  2007-2015 PrestaShop SA
+*  @version  Release: $Revision$
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*  International Registered Trademark & Property of PrestaShop SA
+*}
+
+{if $homeslider.slides}
+  <div id="carousel" data-ride="carousel" class="carousel slide d-none d-md-block" style="width: 100vw;margin-bottom:10px;" data-interval="{$homeslider.speed}" data-wrap="{(string)$homeslider.wrap}" data-pause="{$homeslider.pause}">
+    <ul class="carousel-inner" role="listbox">
+      {foreach from=$homeslider.slides item=slide name='homeslider'}
+        <li class="carousel-item {if $smarty.foreach.homeslider.first}active{/if}">
+          <figure>
+            <img src="{$slide.image_url}" alt="{$slide.legend|escape}">
+            {if $slide.title || $slide.description}
+                  <figcaption class="caption">
+                    <div class="container">
+                        <div class="caption_content">
+                            <h2 class="display-1 text-uppercase">{$slide.title}</h2>
+                            <div class="caption-description">{$slide.description nofilter}</div>
+                            {if $slide.url}
+                                <a class="slide_link" href="{$slide.url}">
+                                    {l s='Start shopping now' d='Shop.Theme.Catalog'}
+                                </a>
+                            {/if}
+                        </div>
+                    </div>
+                  </figcaption>
+            {/if}
+          </figure>
+        </li>
+      {/foreach}
+    </ul>
+    <div class="direction">
+      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+        <span class="icon-prev hidden-xs" aria-hidden="true">
+          <i class="fa fa-chevron-left"></i>
+        </span>
+        <span class="sr-only">{l s='Back' d='Shop.Theme.Catalog'}</span>
+      </a>
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+        <span class="sr-only">{l s='Next' d='Shop.Theme.Catalog'}</span>
+        <span class="icon-next" aria-hidden="true">
+          <i class="fa fa-chevron-right" style="color: #fff;"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+  <style>
+  #wrapper{
+    overflow: hidden;
+  }
+  #carousel{
+    /* margin-bottom: 0; */
+  }
+  .carousel-control .icon-next {
+    position: absolute;
+    top: 50%;
+    color: #c2c2c2;
+    background: #6f6f6f;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+  }
+  .carousel-control .icon-prev {
+    position: absolute;
+    top: 50%;
+    color: #c2c2c2;
+    background: #6f6f6f;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+  }
+
+  .carousel-control .icon-next::before {
+    left: 0;
+  }
+
+  .carousel .carousel-control.left{
+    position: absolute;
+    left: 1rem;
+    top: 58%;
+  } 
+  .carousel .carousel-control.right {
+    background: none;
+    position: absolute;
+    right: 2rem;
+    top: 58%;
+}
+
+  </style>
+{/if}
