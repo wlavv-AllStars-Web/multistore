@@ -50,22 +50,22 @@
   </footer>
 
   <script>
-    const company = document.querySelector("input[name='company']");
-    const siret = document.querySelector("input[name='siret']");
+    // const company = document.querySelector("input[name='company']");
+    // const siret = document.querySelector("input[name='siret']");
 
-    if(siret || company) {
-      siret.setAttribute("readonly","readonly")
-      company.setAttribute("readonly","readonly")
+    // if(siret || company) {
+    //   siret.setAttribute("readonly","readonly")
+    //   company.setAttribute("readonly","readonly")
 
-      const parentsiret = siret.parentElement.parentElement
-      const parentcompany = company.parentElement.parentElement
+    //   const parentsiret = siret.parentElement.parentElement
+    //   const parentcompany = company.parentElement.parentElement
 
-      parentsiret.classList.add("parentDisabled")
-      parentcompany.classList.add("parentDisabled")
+    //   parentsiret.classList.add("parentDisabled")
+    //   parentcompany.classList.add("parentDisabled")
 
-      parentsiret.querySelector(".form-control-comment").style.display = "none"
-      parentcompany.querySelector(".form-control-comment").style.display = "none"
-    }
+    //   parentsiret.querySelector(".form-control-comment").style.display = "none"
+    //   parentcompany.querySelector(".form-control-comment").style.display = "none"
+    // }
   </script>
 
 <style>
