@@ -1,5 +1,5 @@
-{* {assign var="customOrder" value=[3, 4, 5, 7, 2, 1, 6, 0, 8]} *}
-{assign var="customOrder" value=[2, 3, 4, 6, 1, 0, 5, 8, 7]}
+{assign var="customOrder" value=[3, 4, 5, 7, 2, 1, 6, 0, 8]}
+{* {assign var="customOrder" value=[2, 3, 4, 6, 1, 0, 5, 8, 7]} *}
 
 {foreach $linkBlocks as $key => $linkBlock}
   {* Initialize a new array to hold sorted links *}
@@ -71,7 +71,7 @@
                 <img class="desktop"  alt="Flickr" src="/img/asm/socials/flickr.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/flickr2.png'" onmouseout="this.src='/img/asm/socials/flickr.png' "> 
                 <img class="mobile" alt="Flickr" src="/img/asm/socials/flickr_r.png"  style="width: 50px;height:50px;"/>
               </a> 
-              <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/all-stars-motorsport" target="_NEW"> 
+              <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/allstarsmotorsport" target="_NEW"> 
                 <img class="desktop"  alt="Youtube" src="/img/asm/socials/youtube.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/youtube2.png'" onmouseout="this.src='/img/asm/socials/youtube.png' "> 
                 <img class="mobile" alt="Youtube" src="/img/asm/socials/youtube_r.png" style="width: 50px;height:50px;" />
               </a> 
