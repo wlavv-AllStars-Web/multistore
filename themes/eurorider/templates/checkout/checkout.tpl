@@ -47,7 +47,7 @@
       </div>
       {block name='continue_shopping'}
         {* <pre>{$urls.pages|print_r}</pre> *}
-        <a class="label btn-backshopping" onclick="window.history.go(-1); return false;" style="margin-left: 4rem;margin-right:1rem;font-size:1.1rem;color:#dd170e;" onMouseOver="this.style.color='#0273EB'" onMouseOut="this.style.color='#0273EB'">
+        <a class="label btn-backshopping" onclick="window.history.go(-1); return false;" style="margin-left: 4rem;margin-right:1rem;font-size:1.1rem;color:var(--asm-color);" onMouseOver="this.style.color='#0273EB'" onMouseOut="this.style.color='#0273EB'">
           <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
         </a>
       {/block}

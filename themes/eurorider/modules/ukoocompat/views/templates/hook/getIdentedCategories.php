@@ -109,7 +109,7 @@ if ($id_lang == 5) {
 
 $html=  '<div class="ukoocompat_search_block_filter_filter">';
 $html.= '<select id="ukoocompat_select_10" name="filters10" data-filter-id="10" class="form-control-2 dynamic_criteria">';
-$html.= '<option style="font-weight: bold;color: white; background: #dd170e" value="all" selected="selected">' . $transAll . '</option>';
+$html.= '<option style="font-weight: bold;color: white; background: var(--asm-color)" value="all" selected="selected">' . $transAll . '</option>';
 $html.= '<option value=""></option>';
 
 $queryFather = 'SELECT * FROM ps_ukoocompat_criterion 

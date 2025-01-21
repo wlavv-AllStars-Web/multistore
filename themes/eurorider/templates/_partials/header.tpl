@@ -57,7 +57,7 @@
             <div class="left-nav">
               <div style="display: flex;">
               {hook h='displayNav1'}
-                <a title="Whatsapp" class="social-icon" style="color: rgb(255, 255, 255); margin-right: 8px; padding-right: 8px; display: flex; align-items: center; float: left; background: unset;" href="https://wa.me/+351912201753" target="_blank" onmouseover="this.style.color='#dd170e';this.style.background='#161616'" onmouseout="this.style.color='#fff';this.style.background='unset'">
+                <a title="Whatsapp" class="social-icon" style="color: rgb(255, 255, 255); margin-right: 8px; padding-right: 8px; display: flex; align-items: center; float: left; background: unset;" href="https://wa.me/+351912201753" target="_blank" onmouseover="this.style.color='var(--asm-color)';this.style.background='#161616'" onmouseout="this.style.color='#fff';this.style.background='unset'">
                     <img src="https://www.all-stars-motorsport.com/img/whatsapp_search.png" style="width: 24px; height: 24px;padding:3px;margin-left:1rem;" alt="Whatsapp">
                     {if $currentLanguageIso === 'en'}
                     <p class="number_whatsapp_header" style="width:fit-content;margin:0;font-weight:600;">+351 912 201 753</p>
@@ -154,13 +154,15 @@
   <div class="menu-searchbar">
     {hook h='displaySearch'}
   </div>
+ 
   <div class="header-top" style="background:  #282828;margin:0;">
   {* <pre>{print_r($currentLanguage,1)}</pre> *}
     <div class="container-fluid">
        <div class="row">
         <div class="col-xs-12 col-lg-4 d-flex justify-content-sm-center justify-content-lg-start p-0" id="_desktop_logo">
+        
           <a href="{$urls.base_url}">
-            <img class="logo img-responsive" src="/img/asm/asm10.webp?t=11" style="max-width: 180px;
+            <img class="logo img-responsive" src="{$shop.logo}" style="max-width: 180px;
               padding: 0px;
               margin: 20px 45px;">
           </a>
@@ -262,7 +264,7 @@
           <ul class="navbar-nav mr-auto">
 
             <div class="offcanvas-header" style="display: flex;justify-content: space-around;align-items: center;margin-bottom: 2rem;">
-              <img class="logo img-responsive" src="/img/asm/asm10.webp?t=11" style="max-width: 180px;
+              <img class="logo img-responsive" src="{$shop.logo}" style="max-width: 180px;
               padding: 0px;
               margin: 20px 45px;">
               <button type="button" class="btn-close text-reset"  onclick="closeNav()" aria-label="Close">

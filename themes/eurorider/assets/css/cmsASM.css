@@ -101,7 +101,7 @@
 
 .button_partners {
     color: white;
-    background-color: #dd170e;
+    background-color: var(--asm-color);
     text-transform: uppercase;
     padding: 10px;
     text-decoration: none;
@@ -109,7 +109,7 @@
 }
 
 .button_partners:hover {
-  color: #dd170e;
+  color: var(--asm-color);
   background-color: #FFF;
   text-transform: uppercase;
   padding: 10px;
@@ -218,13 +218,13 @@
 
    .terms-line h2{
     font-weight: 600;
-    color: #dd170e;
+    color: var(--asm-color);
     font-size: 2rem;
    }
   
    .terms-line b{
     font-weight: 600;
-    color: #dd170e;
+    color: var(--asm-color);
     font-size: 1.25rem;
    }
 
@@ -280,7 +280,7 @@
   }
   
   #legal .legal-content b {
-    color: #dd170e;
+    color: var(--asm-color);
   }
   
   .legal-footer{
@@ -414,7 +414,7 @@
   }
 
   #cms_shipping .shipping-content-title {
-    color: #dd170e; padding: 5px;text-transform: uppercase;font-family: Arial, Helvetica, sans-serif;
+    color: var(--asm-color); padding: 5px;text-transform: uppercase;font-family: Arial, Helvetica, sans-serif;
   }
 
   #cms_shipping .shipping-content-left-text > div:nth-child(2){
@@ -483,7 +483,7 @@
   }
 
   #cms-payment .payment-methods {
-    font-weight: bolder; color: #dd170e; font-size: 18px;
+    font-weight: bolder; color: var(--asm-color); font-size: 18px;
   }
 
   #cms-payment .payment-3dsecure img{
@@ -987,7 +987,7 @@
  }
 
  #legal-mobile .legal-mobile-content b {
-  color: #dd170e;margin-bottom: 1rem;
+  color: var(--asm-color);margin-bottom: 1rem;
   display: block;
  }
 
@@ -1005,7 +1005,7 @@
  }
 
  #legal-mobile .legal-mobile-content .legal-mobile-cards b {
-  color: #dd170e;
+  color: var(--asm-color);
  }
 
  #legal-mobile .legal-mobile-content-img {
@@ -1029,10 +1029,10 @@
   padding: 10px !important; text-align: justify;line-height: 1.5 !important;color: #333;
 }
 #terms-mobile .terms-mobile-text h2{
-  font-weight: bolder; color: #dd170e;
+  font-weight: bolder; color: var(--asm-color);
 }
 #terms-mobile .terms-mobile-text b{
-  display: block; color: #dd170e;margin-bottom: 1rem;
+  display: block; color: var(--asm-color);margin-bottom: 1rem;
 }
 
 #terms-mobile .terms-mobile-text-title {
@@ -1053,7 +1053,7 @@
   padding: 10px !important; text-align: justify;
 }
 .shipping-mobile-content b{
-  display: block;color: #dd170e;margin-bottom: 1rem;
+  display: block;color: var(--asm-color);margin-bottom: 1rem;
 }
 .shipping-footer-img img{
   width: 100%;
@@ -1097,7 +1097,7 @@
 
  .payment-mobile-content .payment-methods-title {
    font-weight: bolder;
-   color: #dd170e;
+   color: var(--asm-color);
    font-size: 18px;
  }
 

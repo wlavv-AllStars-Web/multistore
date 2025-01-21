@@ -1,6 +1,6 @@
 :root {
-  --asm-color: #dd170e;
-  --asm-color-100: #dd170ec7;
+  --asm-color: #3da936;
+  --asm-color-100: rgba(61, 169, 54, .8);
   --black: #101010;
   --grey: #282828;
 }
@@ -2788,9 +2788,7 @@ body {
   border-radius: 3px;
 }
 
-.logout:hover i {
-  color: var(--asm-color) !important;
-}
+
 
 .user-info-account:hover {
   background: #121212;

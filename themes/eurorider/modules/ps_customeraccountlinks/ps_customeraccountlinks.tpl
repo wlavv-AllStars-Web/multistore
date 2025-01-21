@@ -38,7 +38,7 @@
   padding-left: 0px;
   margin-left: 178px !important;
   background-color: #000;
-  color: #dd170e!important;
+  color: var(--asm-color)!important;
   padding-left: 8px;
 }
 .myacct{
@@ -47,7 +47,7 @@
 }
 .myacct:hover{
   font-size:14px;
-  color:#dd170e !important;
+  color:var(--asm-color) !important;
 }
 </style>
 <div id="block_myaccount_infos" class="links wrapper myacc">

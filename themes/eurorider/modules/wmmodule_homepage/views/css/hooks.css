@@ -6,7 +6,7 @@
     overflow: hidden; /* [1.2] Hide the overflowing of child elements */
   }
   .img-hover-zoom:hover {
-    border: solid 1px #dd170e;
+    border: solid 1px var(--asm-color);
   }
   /* [2] Transition property for smooth transformation of images */
   .img-hover-zoom img {
