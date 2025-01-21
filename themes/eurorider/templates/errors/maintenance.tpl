@@ -104,7 +104,7 @@
           justify-content: center;
           min-height: 100dvh !important;
           color: #fff;
-          padding: 0;
+          padding: 0 !important;
         }
         
         .masthead::before {
