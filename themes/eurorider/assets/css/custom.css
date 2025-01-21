@@ -2788,6 +2788,10 @@ body {
   border-radius: 3px;
 }
 
+.logout:hover i {
+  color: var(--asm-color) !important;
+}
+
 .user-info-account:hover {
   background: #121212;
 }
