@@ -131,6 +131,7 @@
                 82: "{$link->getCMSLink(82)}",
                 83: "{$link->getCMSLink(83)}",
                 84: "{$link->getCMSLink(84)}",
+                85: "{$link->getCMSLink(85)}",
             };
 
             const cars = document.querySelectorAll(".car-container")
@@ -143,7 +144,7 @@
             })
 
         </script>
-    {elseif $cms.id >= 64 && $cms.id <= 84}
+    {elseif $cms.id >= 64 && $cms.id <= 85}
         <script>
 
             const breadcrumb = document.querySelector(".cms-id-" + {$cms.id} + " .breadcrumb");
