@@ -72,7 +72,7 @@
 
   {* novoooooo *}
 
-
+  {* <pre>{$cart.subtotals|print_r}</pre> *}
   <div id="_desktop_cart">
   <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" {if $cart.products_count > 0} onmouseover="hoverCart(this)" onmouseout="hoverCart(this)" {/if}  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
     <div class="header">
@@ -93,6 +93,7 @@
             <li class="cart-wishlist-item">{include 'module:ps_shoppingcart/ps_shoppingcart-product-line.tpl' product=$product}</li>
           {/foreach}
         </ul>
+
         {if isset($cart.subtotals)}
           <div class="cart-subtotals">
             {foreach from=$cart.subtotals item="subtotal"}
@@ -101,11 +102,15 @@
                 <span class="value">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
               </div>
             {/foreach}
+            <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
+              <span class="label">VAT</span>
+              <span class="value">€{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}</span>
+            </div>
           </div>
           {if isset($cart.totals.total)}
             <div class="cart-total">
-              <span class="label">{$cart.totals.total.label|escape:'html':'UTF-8'}</span>
-              <span class="value">{$cart.totals.total.value|escape:'html':'UTF-8'}</span>
+              <span class="label">{$cart.totals.total_including_tax.label|escape:'html':'UTF-8'}</span>
+              <span class="value">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
             </div>
 
           {/if}
