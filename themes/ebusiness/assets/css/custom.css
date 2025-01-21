@@ -3589,6 +3589,9 @@ ul {
   position: relative;
 }
 
+#contact .contact-form .form-fields .form-control-comment {
+  display: none !important;
+}
 
 /* registe page */
 #customer-form {
