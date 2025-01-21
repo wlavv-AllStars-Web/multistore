@@ -575,7 +575,7 @@ body {
     font-size: 15px;
   }
   .alma-options-header:hover {
-    background: #121212;
+    background: var(--bg-1);
     color: var(--asm-color) !important;
   }
 
@@ -2794,7 +2794,7 @@ body {
 }
 
 .logout:hover {
-  background: #121212;
+  background: var(--bg-1);
   padding: 0 1rem;
   border-radius: 3px;
 }
@@ -2802,7 +2802,7 @@ body {
 
 
 .user-info-account:hover {
-  background: #121212;
+  background: var(--bg-1);
 }
 
 .user-info-account:hover i {
@@ -2986,7 +2986,7 @@ body {
 
 /* ps_banner.tpl */
 #index {
-  background: #121212;
+  background: var(--bg-1);
 }
 @media screen and (min-width: 768px) {
   .bannerRow1,
@@ -3150,7 +3150,7 @@ body {
 .iconeees {
   color: var(--asm-color);
   font-size: 47px;
-  background: #121212;
+  background: var(--bg-1);
   height: 43px;
   border-radius: 10px;
 }
@@ -3175,27 +3175,27 @@ body {
 .lgh:hover {
   color: var(--asm-color) !important;
   cursor: pointer;
-  background-color: #121212;
+  background-color: var(--bg-1);
 }
 .lgh:focus {
   color: var(--asm-color) !important;
   cursor: pointer;
-  background-color: #121212;
+  background-color: var(--bg-1);
 }
 .lgh:active {
   color: var(--asm-color) !important;
   cursor: pointer;
-  background-color: #121212;
+  background-color: var(--bg-1);
 }
 .open {
   color: var(--asm-color) !important;
   cursor: pointer;
-  background-color: #121212;
+  background-color: var(--bg-1);
 }
 /* .open span {
   color: var(--asm-color) !important;
   cursor: pointer;
-  background-color: #121212;
+  background-color: var(--bg-1);
 } */
 .languageimg {
   height: 75%;
@@ -3698,7 +3698,7 @@ ul {
   z-index: 2;
   padding: 0;
   /* border-bottom: 1px solid var(--white); */
-  background-color: #121212;
+  background-color: var(--bg-1);
 }
 #top-menu {
   display: flex;
@@ -3717,7 +3717,7 @@ ul {
 }
 #top-menu li a:hover {
   background: var(--white);
-  color: #121212;
+  color: var(--bg-1);
 }
 
 .menu-link:nth-child(1) a:hover,
@@ -3725,7 +3725,7 @@ ul {
 .menu-link:nth-child(4) a:hover,
 .menu-link:nth-child(5) a:hover {
   background: var(--white);
-  color: #121212 !important;
+  color: var(--bg-1) !important;
 }
 
 .thumbnail-container {
@@ -4288,7 +4288,7 @@ ul {
 }
 
 .real-picture {
-  color: #121212;
+  color: var(--bg-1);
   background: #b7b7b7;
   text-transform: uppercase;
   padding: 9px 0 7px;
@@ -5338,11 +5338,11 @@ body::-ms-scrollbar-thumb:hover {
 
 .btn-default {
   background: #e9e9ed !important;
-  color: #121212 !important;
+  color: var(--bg-1) !important;
 }
 .btn-default:hover {
   background: #d0d0d7 !important;
-  color: #121212 !important;
+  color: var(--bg-1) !important;
 }
 
 @media screen and (min-width: 992px) {
