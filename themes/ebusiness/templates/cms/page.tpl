@@ -75,19 +75,19 @@
                 iframe.setAttribute("loading","lazy")
 
                 if(parentCard.classList.contains("card-availability")){
-                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_availability}?autoplay=0&mute=1&rel=0")
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_availability}?autoplay=1&mute=1&rel=0")
                 }
                 else if(parentCard.classList.contains("card-compatibility")){
-                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_compat}?autoplay=0&mute=1&rel=0")
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_compat}?autoplay=1&mute=1&rel=0")
                 }
                 else if(parentCard.classList.contains("card-shipping")){
-                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_shipping}?autoplay=0&mute=1&rel=0")
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_shipping}?autoplay=1&mute=1&rel=0")
                 }
                 else if(parentCard.classList.contains("card-newsletter")){
-                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_newsletter}?autoplay=0&mute=1&rel=0")
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_newsletter}?autoplay=1&mute=1&rel=0")
                 }
                 else if(parentCard.classList.contains("card-contact")){
-                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_contact}?autoplay=0&mute=1&rel=0")
+                    iframe.setAttribute("src","https://www.youtube.com/embed/{$youtube_contact}?autoplay=1&mute=1&rel=0")
                 }
                 
                 element.appendChild(iframe)
