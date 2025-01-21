@@ -58,6 +58,11 @@
     {$cms.content nofilter}
 
     {if $cms.id == 30}
+        <style>
+            .element-to-click .card-link img {
+                width: 100%;
+            }
+        </style>
         <script>
             const classIframe = document.querySelectorAll(".user-help-content .iframeClass")
 
