@@ -38,7 +38,7 @@
           {assign var="youtube_compat" value="1I7oxKWNk10"}
           {assign var="youtube_shipping" value="zE2_e39Tdm8"}
           {assign var="youtube_newsletter" value="YCXbyjBRkzI"}
-          {assign var="youtube_contact" value="Bv5Y-11vqmE"}
+          {assign var="youtube_contact" value="CcHpaFBC-FI"}
       {elseif $language.iso_code == 'fr'}
           {assign var="youtube_availability" value="Zv8Tw8H8DGA"}
           {assign var="youtube_compat" value="GgQvaNMYrrQ"}
@@ -50,7 +50,7 @@
           {assign var="youtube_compat" value="N06Rv015on4"}
           {assign var="youtube_shipping" value="UVpWbaECK-0"}
           {assign var="youtube_newsletter" value="ycQJs64knkk"}
-          {assign var="youtube_contact" value="n44oNOA8tjQ"}
+          {assign var="youtube_contact" value="sZyuSv0g-as"}
         {/if}
     {/if}
 
