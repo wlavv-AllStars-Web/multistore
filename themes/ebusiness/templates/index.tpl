@@ -38,7 +38,7 @@
 
           
 
-         
+        
           
           <div class="bannersHome">
           {* {$HOOK_HOME nofilter} *}
@@ -60,7 +60,7 @@
           <div class="banners_50">
             {foreach from=$desktop['icones_50'] item=item key=key name=name}
               <div class="banner_50">
-                <a href="{$item['link']}">
+                <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
                   <img src="{$item['image_en']}" />
                 </a>
               </div>
@@ -70,7 +70,7 @@
           <div class="banners_33">
             {foreach from=$desktop['icones_33'] item=item key=key name=name}
               <div class="banner_33">
-                <a href="{$item['link']}">
+              <a href="{if $key == 0 || $key == 2}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
                   <img src="{$item['image_en']}" />
                 </a>
               </div>
