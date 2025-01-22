@@ -99,18 +99,18 @@
             {foreach from=$cart.subtotals item="subtotal"}
               <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
                 <span class="label">{if isset($subtotal.label)}{$subtotal.label|escape:'html':'UTF-8'}{/if}</span>
-                <span class="value">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
+                <span class="value" style="font-weight: 600;">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
               </div>
             {/foreach}
             <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
-              <span class="label">VAT</span>
-              <span class="value">€{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}</span>
+              <span class="label">{l s="VAT" d="Shop.Theme.CartQuick"}</span>
+              <span class="value" style="font-weight: 600;">€{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}</span>
             </div>
           </div>
           {if isset($cart.totals.total)}
             <div class="cart-total">
-              <span class="label">{$cart.totals.total_including_tax.label|escape:'html':'UTF-8'}</span>
-              <span class="value">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
+              <span class="label">{l s="Total" d="Shop.Theme.CartQuick"}</span>
+              <span class="value" style="font-weight: 600;">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
             </div>
 
           {/if}
