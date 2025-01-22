@@ -5340,6 +5340,13 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  #manufacturer .description_box {
+    max-height: unset;
+  }
+  #manufacturer .description_box .description_short{
+    padding: 1rem 0;
+  }
+
   .user-info {
     display: flex;
     align-items: center;
