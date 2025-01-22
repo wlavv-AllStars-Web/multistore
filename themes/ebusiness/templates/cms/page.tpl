@@ -44,7 +44,7 @@
           {assign var="youtube_compat" value="GgQvaNMYrrQ"}
           {assign var="youtube_shipping" value="yWln2uJ52iU"}
           {assign var="youtube_newsletter" value="f1TCe1q-emA"}
-          {assign var="youtube_contact" value="l1xwWMCqWF0"}
+          {assign var="youtube_contact" value="5XcKBTGqCrI"}
       {else}
           {assign var="youtube_availability" value="3shE5Ki8ZzM"}
           {assign var="youtube_compat" value="N06Rv015on4"}
