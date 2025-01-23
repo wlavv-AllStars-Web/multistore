@@ -450,7 +450,7 @@ class AsGroup extends Module
             $choices[$this->l('Credit Card')] = 2;
         }else{
             $choices[$this->l('Bank Transfer')] = 'ps_wirepayment';
-            $choices[$this->l('Ingenico')] = 'ogone';
+            $choices[$this->l('Ingenico')] = 'worldlineop';
             $choices[$this->l('Paypal')] = 'paypal';
             $choices[$this->l('Alma')] = 'alma';
         }
@@ -570,7 +570,7 @@ class AsGroup extends Module
             $searchQueryBuilder->addSelect(
                 '(CASE WHEN o.module IS NULL THEN "Error"
                 WHEN o.module = "ps_wirepayment" THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
-                WHEN o.module = "ogone" THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
+                WHEN o.module = "worldlineop" THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
                 WHEN o.module = "alma" THEN CONCAT("<img src=\"'.$imageAlma.'\" style=\"width: 50px; height: auto;\" />")
                 WHEN o.module = "paypal" THEN CONCAT("<img src=\"'.$imagePaypal.'\" style=\"width: 50px; height: auto;\" />")
                 END) AS payment_id'
