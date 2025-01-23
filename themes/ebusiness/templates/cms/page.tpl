@@ -145,6 +145,12 @@
 
         </script>
     {elseif $cms.id >= 64 && $cms.id <= 85}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="
+        https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js
+        "></script>
+
         <script>
 
             const breadcrumb = document.querySelector(".cms-id-" + {$cms.id} + " .breadcrumb");
@@ -255,9 +261,78 @@
                     }
                 }
             });
+
+            
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+                gsap.registerPlugin(ScrollTrigger);
+
+                const leftSide = document.querySelector(".page-car div:nth-child(1)");
+                const rightSide = document.querySelector(".page-car div:nth-child(2) .row");
+
+                const leftSideScrollHeight = leftSide.scrollHeight - leftSide.clientHeight;
+                const rightSideScrollHeight = rightSide.scrollHeight - rightSide.clientHeight;
+
+                // Initial state
+                const scrollRatio = rightSideScrollHeight / leftSideScrollHeight;;// Initially disable scrolling on the left side
+
+                leftSide.style.overflowY = "hidden"; 
+
+                // Create ScrollTrigger
+                ScrollTrigger.create({
+                    trigger: ".list-menu-desktop", // Pin the container
+                    start: "top top", // Pin starts when `.page-car` reaches the top
+                    endTrigger: ".footer_after", // Pin stops when `.footer` comes into view
+                    end: "bottom bottom", // End pinning when `.page-car` bottom hits `.footer` top
+                    pin: true, // Pin `.page-car`
+                    scrub: true, // Smooth scroll syncing
+                    markers: false,
+                    onUpdate: (self) => {
+    
+                    const rightSideScrollValue = rightSideScrollHeight * self.progress ;
+                    rightSide.scrollTo({ top: rightSideScrollValue, behavior: "smooth" }); // Smooth scroll for right side
+
+                    // Adjust left side scroll value to sync it with the right side
+                    const leftSideScrollValue = leftSideScrollHeight * self.progress;
+                    leftSide.scrollTo({ top: leftSideScrollValue, behavior: "smooth" });
+
+                    }
+                });
+            });
+
+
+
+            const lenis = new Lenis()
+
+            lenis.on('scroll', (e) => {
+                console.log(e)
+            })
+
+            function raf(time) {
+                lenis.raf(time)
+                requestAnimationFrame(raf)
+            }
+            
+            requestAnimationFrame(raf)
+
+
         </script>
 
         <style>
+            /* .page-car{
+                pointer-events: none;
+            } */
+            .page-car > div:nth-child(2) .row,.page-car > div:nth-child(1){
+                max-height: 100dvh;
+                overflow-y: scroll;
+                scrollbar-width: none;
+            }
+
+            .page-car > div:nth-child(1)::-webkit-scrollbar,
+            .page-car > div:nth-child(2) .row::-webkit-scrollbar {
+                display: none;
+            }
 
 
             .modal-imgs-car.show-imgs{
