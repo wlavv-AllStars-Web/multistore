@@ -366,7 +366,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             ));
         }
 
-        // pre(Tools::getValue('q'));
+        // pre($query);
 
 
         // get the parameters containing the encoded facets from the URL
@@ -386,10 +386,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
 
+
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
         ]);
 
+        // $query
+        // ->setQueryType('');
+        // pre($query);
 
         // We're ready to run the actual query!
 
@@ -478,7 +482,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         // asm wheels
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category'){
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'){
 
             // pre($query);
 
@@ -579,7 +583,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre(count($products));
             $product_options = [];
 
-        if($category == 227 && !($query->getQueryType() == 'new-products')){
+        if($category == 227 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
 
 
             $filters = Tools::getValue('filters');
