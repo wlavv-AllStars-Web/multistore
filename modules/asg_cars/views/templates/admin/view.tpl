@@ -72,15 +72,9 @@
 		</div>
 	</div>
 
-	<div class="col-lg-9">
+	<div class="col-lg-12">
 		<div class="panel">
-			<div class="panel-heading text-center" style="border: 0px solid black;">
-				<div style="margin: 10px 25px;">
-					<span style="float: right;"><button type="button" class="btn btn-info" onclick="saveFormData()"
-							id="save_button">Save</button></span>
-					<span style="float: left;margin: 5px; font-size: 20px;" id="title_panel"></span>
-				</div>
-			</div>
+
 			<div class="panel-body" style="padding: 0 15px;">
 				<form action="/admineuromus1/index.php?controller=AdminAsgCars&token={$token}&save_car=1"
 					method="post">
@@ -205,7 +199,7 @@
 							});
 						</script>
 
-						<div class="col-lg-12" style="padding: 1rem 0;">
+						{* <div class="col-lg-12" style="padding: 1rem 0;">
 							<div class="form-group col-lg-8">
 								<label for="title_en" class="col-sm-12 col-form-label">Details Text</label>
 								<div class="col-sm-10">
@@ -252,7 +246,7 @@
 								// Add event listener to the language selector
 								languageSelectorDetails.addEventListener('change', showSelectedInput);
 							});
-						</script>
+						</script> *}
 
 						<div class="col-lg-12" style="padding: 1rem 0;">
 							<div class="form-group col-lg-8">
@@ -477,6 +471,15 @@
 						</div>
 					</div>
 				</form>
+				<div class="text-center" style="border: 0px solid black;">
+					{* <div style="margin: 10px 25px;"> *}
+						<span>
+							<button style="width: auto;" type="button" class="btn btn-info" onclick="saveFormData()"
+								id="save_button">Save</button>
+						</span>
+						{* <span style="float: left;margin: 5px; font-size: 20px;" id="title_panel"></span> *}
+					{* </div> *}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -662,11 +665,11 @@
 			let description_pt = $('input[name="description_pt"]').val();
 			let description_it = $('input[name="description_it"]').val();
 
-			let details_en = $('input[name="details_en"]').val();
-			let details_es = $('input[name="details_es"]').val();
-			let details_fr = $('input[name="details_fr"]').val();
-			let details_pt = $('input[name="details_pt"]').val();
-			let details_it = $('input[name="details_it"]').val();
+			// let details_en = $('input[name="details_en"]').val();
+			// let details_es = $('input[name="details_es"]').val();
+			// let details_fr = $('input[name="details_fr"]').val();
+			// let details_pt = $('input[name="details_pt"]').val();
+			// let details_it = $('input[name="details_it"]').val();
 			
 			let budget_en = $('input[name="budget_en"]').val();
 			let budget_es = $('input[name="budget_es"]').val();
@@ -698,11 +701,11 @@
 			formData.append('description_pt', description_pt);
 			formData.append('description_it', description_it);
 
-			formData.append('details_en', details_en);
-			formData.append('details_es', details_es);
-			formData.append('details_fr', details_fr);
-			formData.append('details_pt', details_pt);
-			formData.append('details_it', details_it);
+			// formData.append('details_en', details_en);
+			// formData.append('details_es', details_es);
+			// formData.append('details_fr', details_fr);
+			// formData.append('details_pt', details_pt);
+			// formData.append('details_it', details_it);
 			
 			formData.append('budget_en', budget_en);
 			formData.append('budget_es', budget_es);
@@ -795,11 +798,11 @@
 						$('#description_fr').val(car.description_fr);
 						$('#description_pt').val(car.description_pt);
 						$('#description_it').val(car.description_it);
-						$('#details_en').val(car.details_en);
-						$('#details_es').val(car.details_es);
-						$('#details_fr').val(car.details_fr);
-						$('#details_pt').val(car.details_pt);
-						$('#details_it').val(car.details_it);
+						// $('#details_en').val(car.details_en);
+						// $('#details_es').val(car.details_es);
+						// $('#details_fr').val(car.details_fr);
+						// $('#details_pt').val(car.details_pt);
+						// $('#details_it').val(car.details_it);
 						$('#budget_en').val(car.budget_en);
 						$('#budget_es').val(car.budget_es);
 						$('#budget_fr').val(car.budget_fr);
@@ -828,15 +831,52 @@
 
 						// Display existing images
 						if (car.images && car.images.length > 0) {
-							car.images.forEach((image) => {
-								let imageUrl = '/'+image;
-								let imageHtml = `<img src="`+imageUrl+`" style="max-width: 100px; margin: 5px;" />`;
-								$('#image_preview').append(imageHtml);
-								images.push(imageUrl); // Store existing image URLs
+							car.images.forEach((image, index) => {
+								if (index < 15) {
+									let imageUrl = '/'+image;
+									
+									// $('#image_preview').append(imageHtml);
+									images.push(imageUrl); // Store existing image URLs
+
+										const imgContainer = document.createElement('div');
+										imgContainer.style.display = 'inline-block';
+										imgContainer.style.margin = '5px';
+										imgContainer.style.position = 'relative';
+
+
+										const imageElement = document.createElement('img');
+										imageElement.src = imageUrl;
+										imageElement.style.maxWidth = '100px';
+										imgContainer.appendChild(imageElement);
+
+										const removeButton = document.createElement('i');
+										removeButton.classList.add('fa-solid', 'fa-trash');
+										removeButton.style.position = 'absolute';
+										removeButton.style.right = '0';
+										removeButton.style.color = 'red';
+										removeButton.style.padding = '5px';
+										removeButton.onclick = function() {
+											imgContainer.remove();
+										};
+
+										imgContainer.appendChild(imageElement);
+										imgContainer.appendChild(removeButton);
+										$('#image_preview').append(imgContainer);
+								}
 							});
 						}
 
 						$('#existing_images').val(JSON.stringify(images));
+
+						$('#imagesCar').on('change', function() {
+							let totalImages = images.length + this.files.length; // Total images (existing + new)
+
+							if (totalImages > 15) {
+								alert("You can upload a maximum of 15 images.");
+								// Optionally, you can prevent the upload of new images by clearing the input
+								this.value = '';  // Clear the input field
+							}
+						});
 
 						
 						Object.keys(car.products).forEach((langId) => {
@@ -924,20 +964,7 @@
 
 		function newAlert() {
 
-			$('#dashboard_message_id').val(0);
-			$('#dashboard_message_title').val('');
-			$('#dashboard_message_type').val('');
-			$('#dashboard_message_en').val('');
-			$('#dashboard_message_es').val('');
-			$('#dashboard_message_fr').val('');
-			$('#dashboard_message_ro').val('');
-			$('#dashboard_message_pt').val('');
-			$('#dashboard_message_it').val('');
-			$('#enable_dashboard_message_type').prop('checked', '');
-
-			set_message("Write a message to preview");
-			set_message_type(1);
-			change_dashboard_type();
+			location.reload();
 		}
 
 		$(document).ready(function() {
@@ -991,6 +1018,11 @@
 			font-size: 16px;
 			text-transform: uppercase;
 			margin-top: 5px;
+		}
+
+		#image_preview i:hover{
+			color: #333 !important;
+			cursor: pointer;
 		}
 </style>
 {/if}
