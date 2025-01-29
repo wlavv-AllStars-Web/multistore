@@ -17,7 +17,7 @@
 }
 
 .cms-id-28 .cars-container {
-  justify-content: center;
+  justify-content: start;
 }
 
 .cms-id-28 .hover_for_text:hover div{
@@ -1337,6 +1337,7 @@ width: 100%;
       align-items: center;
       justify-content: center;
     }
+
   }
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
@@ -1360,6 +1361,10 @@ width: 100%;
     .page-car > div:nth-child(1) {
       padding: 0 2rem;
     }
+
+    .page-car > div:nth-child(2) .row > div:nth-child(15){
+      display: none;
+    } 
 
     .page-car h1 b{
       font-size: 2.5rem;
@@ -1395,6 +1400,12 @@ width: 100%;
       min-width: 301px;
       max-width: 394px;
     }
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1785px) {
+    .page-car > div:nth-child(2) .row > div:nth-child(15){
+      display: none;
+    } 
   }
 
 
