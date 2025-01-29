@@ -210,7 +210,7 @@
                     end: "bottom bottom", // End pinning when `.page-car` bottom hits `.footer` top
                     pin: true, // Pin `.page-car`
                     scrub: true, // Smooth scroll syncing
-                    markers: true,
+                    markers: false,
                     onUpdate: (self) => {
     
                     const rightSideScrollValue = rightSideScrollHeight * self.progress ;
