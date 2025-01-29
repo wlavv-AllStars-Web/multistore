@@ -233,14 +233,14 @@
     /* .page-car{
         pointer-events: none;
     } */
-    #module-asg_cars-FrontAsgCars > div:nth-child(2) .row,#module-asg_cars-FrontAsgCars > div:nth-child(1){
+    .page-car > div:nth-child(2) .row,.page-car > div:nth-child(1){
         max-height: 100dvh;
         overflow-y: scroll;
         scrollbar-width: none;
     }
 
-    #module-asg_cars-FrontAsgCars > div:nth-child(1)::-webkit-scrollbar,
-    #module-asg_cars-FrontAsgCars > div:nth-child(2) .row::-webkit-scrollbar {
+    .page-car > div:nth-child(1)::-webkit-scrollbar,
+    .page-car > div:nth-child(2) .row::-webkit-scrollbar {
         display: none;
     }
 
@@ -265,11 +265,11 @@
         width: 100%;
     }
 
-    #module-asg_cars-FrontAsgCars .cars_ul a {
+    .page-car .cars_ul a {
         color: #111 !important;
         font-weight: 600;
     }
-    #module-asg_cars-FrontAsgCars .cars_ul a:hover {
+    .page-car .cars_ul a:hover {
         color: var(--asm-color) !important;
         font-weight: 600;
     }
