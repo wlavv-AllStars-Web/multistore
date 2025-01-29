@@ -14,7 +14,7 @@
                 <h3 style="text-transform:uppercase;color:#000000;"><strong>{$budget}</strong></h3>
             </div>
             <div style="text-align:left;">
-                <h1><strong>{l s="Engine" d="Shop.Theme.CarDetails"}</strong></h1>
+                <h1><strong>{l s="Engine/Trans" d="Shop.Theme.CarDetails"}</strong></h1>
             </div>
             <div>
                 <ul class="cars_ul" style="color:#000000;text-align:left;">
@@ -31,7 +31,7 @@
             </div>
             <div class="spacer-20"></div>
             <div style="text-align:left;">
-                <h1><strong>{l s="Chassis / Brakes" d="Shop.Theme.CarDetails"}</strong></h1>
+                <h1><strong>{l s="Chassis/Brakes" d="Shop.Theme.CarDetails"}</strong></h1>
             </div>
             <div>
                 <ul class="cars_ul" style="color:#000000;text-align:left;">
@@ -46,23 +46,7 @@
                 {/foreach}
                 </ul>
             </div>
-            <div class="spacer-20"></div>
-            <div style="text-align:left;">
-                <h1><strong>{l s="Exterior" d="Shop.Theme.CarDetails"}</strong></h1>
-            </div>
-            <div>
-                <ul class="cars_ul" style="color:#000000;text-align:left;">
-                {foreach from=$car.products item=product}
-                    {if $product.category == 'exterior' && $product.id_lang == Context::getContext()->language->id}
-                            {if !empty($product.link)}
-                                <li><a href="{$product.link}">{$product.name}<sup style="color: #dd170e;"> ( Link )</sup></a></li>
-                            {else}
-                                <li>{$product.name}</li>
-                            {/if}
-                    {/if}
-                {/foreach}
-                </ul>
-            </div>
+
             <div class="spacer-20"></div>
             <div style="text-align:left;">
                 <h1><strong>{l s="Interior" d="Shop.Theme.CarDetails"}</strong></h1>
@@ -80,6 +64,26 @@
                     {/foreach}
                 </ul>
             </div>
+
+            <div class="spacer-20"></div>
+            <div style="text-align:left;">
+                <h1><strong>{l s="Exterior" d="Shop.Theme.CarDetails"}</strong></h1>
+            </div>
+            <div>
+                <ul class="cars_ul" style="color:#000000;text-align:left;">
+                {foreach from=$car.products item=product}
+                    {if $product.category == 'exterior' && $product.id_lang == Context::getContext()->language->id}
+                            {if !empty($product.link)}
+                                <li><a href="{$product.link}">{$product.name}<sup style="color: #dd170e;"> ( Link )</sup></a></li>
+                            {else}
+                                <li>{$product.name}</li>
+                            {/if}
+                    {/if}
+                {/foreach}
+                </ul>
+            </div>
+
+
             {* <div class="spacer-20"></div>
             <div style="text-align:left;">
                 <h1><strong>Transmision</strong></h1>
