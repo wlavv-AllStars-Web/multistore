@@ -1,4 +1,5 @@
 <div class="ourcars d-flex flex-column">
+    <h4 style="text-align:center;"><strong>Our Cars</strong></h4>
     <div class="cars-container d-flex flex-wrap">
 
         {foreach from=$cars item=car}
@@ -35,6 +36,7 @@
     display: flex !important;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 </style>
 
