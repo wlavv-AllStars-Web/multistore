@@ -54,8 +54,11 @@
         {/if}
     {/if}
 
- 
-    {$cms.content nofilter}
+    {if $cms.id == 28}
+
+    {else}
+        {$cms.content nofilter}
+    {/if}
 
     {if $cms.id == 30}
         <style>
@@ -108,6 +111,7 @@
 
         </script>
     {elseif $cms.id == 28}
+        {hook h="displayAsgCars"}
         <script>
             const cmsLinks = {
                 64: "{$link->getCMSLink(64)}",
@@ -146,10 +150,10 @@
         </script>
     {elseif $cms.id >= 64 && $cms.id <= 85}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <script src="
-        https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js
-        "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js
+"></script>
 
         <script>
 
@@ -283,11 +287,11 @@
                 ScrollTrigger.create({
                     trigger: ".list-menu-desktop", // Pin the container
                     start: "top top", // Pin starts when `.page-car` reaches the top
-                    endTrigger: ".footer_after", // Pin stops when `.footer` comes into view
+                    endTrigger: ".footer_top", // Pin stops when `.footer` comes into view
                     end: "bottom bottom", // End pinning when `.page-car` bottom hits `.footer` top
                     pin: true, // Pin `.page-car`
                     scrub: true, // Smooth scroll syncing
-                    markers: false,
+                    markers: true,
                     onUpdate: (self) => {
     
                     const rightSideScrollValue = rightSideScrollHeight * self.progress ;
@@ -335,6 +339,10 @@
             }
 
 
+
+
+
+
             .modal-imgs-car.show-imgs{
                 display: flex !important;
             }
@@ -362,7 +370,6 @@
 
         </style>
     {/if}
-
 
 
 <script>
