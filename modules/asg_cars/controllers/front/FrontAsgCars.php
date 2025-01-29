@@ -6,6 +6,8 @@ class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
     {
         parent::initContent();
 
+        $this->setMedia(); 
+
         $languages = Language::getLanguages(true, $this->context->shop->id);
         $context = Context::getContext();
 
@@ -58,6 +60,18 @@ class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
             $this->context->smarty->assign('cars', $cars);
             $this->setTemplate('module:asg_cars/views/templates/front/cms.tpl');
         }
+    }
+
+
+    public function setMedia()
+    {
+        // Add your CSS and JS here for front office
+        $this->registerStylesheet('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css', ['media' => 'all', 'priority' => 100]);
+        $this->registerJavascript('gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', ['position' => 'head', 'priority' => 100]);
+        $this->registerJavascript('scrollTrigger-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', ['position' => 'head', 'priority' => 101]);
+        $this->registerJavascript('lenis-js', 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js', ['position' => 'head', 'priority' => 102]);
+
+        // Optionally, add more CSS/JS if required
     }
 
 
