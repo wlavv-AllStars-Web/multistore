@@ -15,7 +15,7 @@
 
 				{if count($cars) > 0}
 					{foreach $cars AS $car}
-						<pre>{$car['images'][0]|print_r}</pre>
+						{* <pre>{$car['images'][0]|print_r}</pre> *}
 						<div class="col-lg-2" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;outline: 2px solid #333;border-radius: .25rem;padding:0;">
 							<div class="col-lg-12" style="padding:0;">
 
