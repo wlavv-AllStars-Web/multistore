@@ -144,7 +144,8 @@
 										removeButton.style.position = 'absolute';
 										removeButton.style.right = '0';
 										removeButton.onclick = function() {
-											imgContainer.remove();
+											removeImage(imgContainer)
+											// imgContainer.remove();
 										};
 
 										imgContainer.appendChild(img);
@@ -158,7 +159,22 @@
 							}
 
 							function removeImage(imgElement) {
-								imgElement.remove();
+								console.log(imgElement.querySelector("img"))
+								let img_url = imgElement.querySelector("img").getAttribute("src")
+
+								$.ajax({
+									type: 'POST',
+									url: '/admineuromus1/index.php?controller=AdminAsgCars&action=removeImageCar&token={Tools::getValue("token")}',
+									data: {
+										'img_url': img_url
+									},
+									success: function (response) {
+										imgElement.remove();
+									},
+									error: function (xhr, status, error) {
+										console.error("Error updating positions:", error);
+									}
+								});
 							}
 						</script>
 
@@ -878,7 +894,8 @@
 										removeButton.style.color = 'red';
 										removeButton.style.padding = '5px';
 										removeButton.onclick = function() {
-											imgContainer.remove();
+											// imgContainer.remove();
+											removeImage(imgContainer)
 										};
 
 										imgContainer.appendChild(imageElement);
@@ -1020,7 +1037,32 @@
 
 			$("#sortable-cars").disableSelection();
 	
-		
+		// imgs car sort
+
+		$("#image_preview").sortable({
+			update: function (event, ui) {
+				let sortedImages = [];
+				$("#image_preview div").each(function () {
+					let imgUrl = $(this).find("img").attr("src").replace(/^\//, ""); // Remove leading "/"
+					sortedImages.push(imgUrl);
+				});
+
+				$.ajax({
+					type: "POST",
+					url: "/admineuromus1/index.php?controller=AdminAsgCars&action=updateImageOrder&token={Tools::getValue('token')}",
+					data: { sortedImages: sortedImages, carId: $('#car_id').val() },
+					success: function (response) {
+						console.log("Image order updated:", response);
+					},
+					error: function (xhr, status, error) {
+						alert("Cannot change order of the last images if they haven't been saved yet. Save the page first then sort them..")
+						// console.error("Error updating image order:", error);
+					}
+				});
+			}
+		});
+
+		$("#image_preview").disableSelection();
 	
 
 		$(document).ready(function() {
@@ -1076,6 +1118,9 @@
 			margin-top: 5px;
 		}
 
+		#image_preview img:hover{
+			cursor: all-scroll;
+		}
 		#image_preview i:hover{
 			color: #333 !important;
 			cursor: pointer;

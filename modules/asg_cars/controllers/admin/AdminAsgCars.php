@@ -114,6 +114,8 @@ class AdminAsgCarsController extends AdminController{
         elseif(Tools::getValue('action') == 'deleteCar') return self::deleteCar();
         elseif(Tools::getValue('action') == 'getdataCar') return self::getCarData(Tools::getValue('id'));
         elseif(Tools::getValue('action') == 'update_position') return self::updatePosition(Tools::getValue('sortedIds'));
+        elseif(Tools::getValue('action') == 'removeImageCar') return self::removeImageCar(Tools::getValue('img_url'));
+        elseif(Tools::getValue('action') == 'updateImageOrder') return self::updateImageOrder(Tools::getValue('sortedImages'),Tools::getValue('carId'));
     }
 
     public function getCarData($id_car){
@@ -398,6 +400,68 @@ class AdminAsgCarsController extends AdminController{
             }
         }
 
+    }
+
+    public function updateImageOrder($sortedImages,$carId){
+
+        if (!$carId || !is_array($sortedImages)) {
+            die(json_encode(['status' => 'error', 'message' => 'Invalid input']));
+        }
+
+        $imagesJson = json_encode(array_values($sortedImages));
+
+        // Update the database
+        $sql = "UPDATE " . _DB_PREFIX_ . "asg_cars 
+                SET images = '" . pSQL($imagesJson) . "' 
+                WHERE id_asg_car = $carId";
+    
+        if (Db::getInstance()->execute($sql)) {
+            die(json_encode(['status' => 'success', 'message' => 'Image order updated']));
+        } else {
+            die(json_encode(['status' => 'error', 'message' => 'Database update failed']));
+        }
+    }   
+
+    public function removeImageCar($img_url){
+        if (!$img_url) {
+            die(json_encode(['status' => 'error', 'message' => 'Invalid image URL']));
+        }
+
+        $img_url = ltrim($img_url, '/');
+    
+        // Fetch all records and filter manually
+        $sql = "SELECT id_asg_car, images 
+            FROM " . _DB_PREFIX_ . "asg_cars 
+            WHERE JSON_SEARCH(images, 'one', '" . pSQL($img_url) . "') IS NOT NULL";
+        $cars = Db::getInstance()->executeS($sql);
+    
+        foreach ($cars as $car) {
+            $id_asg_car = (int) $car['id_asg_car'];
+            $images = json_decode($car['images'], true);
+    
+            if (!is_array($images)) {
+                continue;
+            }
+    
+            // If the image exists in this car, remove it
+            if (in_array($img_url, $images)) {
+                $updatedImages = array_filter($images, function ($image) use ($img_url) {
+                    return $image !== $img_url;
+                });
+    
+                $updatedImagesJson = json_encode(array_values($updatedImages));
+    
+                // Update database
+                $updateSql = "UPDATE " . _DB_PREFIX_ . "asg_cars SET images = '" . pSQL($updatedImagesJson) . "' WHERE id_asg_car = $id_asg_car";
+                if (Db::getInstance()->execute($updateSql)) {
+                    die(json_encode(['status' => 'success', 'message' => 'Image removed successfully']));
+                } else {
+                    die(json_encode(['status' => 'error', 'message' => 'Failed to update database']));
+                }
+            }
+        }
+    
+        die(json_encode(['status' => 'error', 'message' => 'Image not found']));
     }
     
     
