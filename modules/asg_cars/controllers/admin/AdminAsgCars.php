@@ -22,7 +22,7 @@ class AdminAsgCarsController extends AdminController{
             $this->context->smarty->assign('alert_only_asm', 'Please select a shop');
         }
 
-        $cars = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT * , asgcp.id_lang AS id_lang ,asgc.id_asg_car AS id_car, asgc.name AS nameCar FROM ps_asg_cars AS asgc LEFT JOIN ps_asg_cars_product AS asgcp ON asgc.id_asg_car = asgcp.id_asg_car WHERE asgc.id_shop ='.$this->context->shop->id);
+        $cars = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT * , asgcp.id_lang AS id_lang ,asgc.id_asg_car AS id_car, asgc.name AS nameCar FROM ps_asg_cars AS asgc LEFT JOIN ps_asg_cars_product AS asgcp ON asgc.id_asg_car = asgcp.id_asg_car WHERE asgc.id_shop ='.$this->context->shop->id.' ORDER BY asgc.position ASC');
 
         $groupedCars = [];
 
@@ -37,6 +37,7 @@ class AdminAsgCarsController extends AdminController{
                     'id_asg_car' => $row['id_car'],
                     'id_shop' => $row['id_shop'],
                     'car_name' => $row['nameCar'],
+                    'car_name_galleries' => $row['car_name_galleries'],
                     'description_en' => $row['description_en'],
                     'description_es' => $row['description_es'],
                     'description_fr' => $row['description_fr'],
@@ -48,6 +49,7 @@ class AdminAsgCarsController extends AdminController{
                     'budget_pt' => $row['budget_pt'],
                     'budget_it' => $row['budget_it'],
                     'display' => $row['display'],
+                    'position' => $row['position'],
                     'created_at' => $row['created_at'],
                     'images' => [],
                     'products' => [] // Initialize the products array
@@ -111,6 +113,7 @@ class AdminAsgCarsController extends AdminController{
         if(Tools::getValue('action') == 'saveCar') return self::saveCar();
         elseif(Tools::getValue('action') == 'deleteCar') return self::deleteCar();
         elseif(Tools::getValue('action') == 'getdataCar') return self::getCarData(Tools::getValue('id'));
+        elseif(Tools::getValue('action') == 'update_position') return self::updatePosition(Tools::getValue('sortedIds'));
     }
 
     public function getCarData($id_car){
@@ -130,6 +133,7 @@ class AdminAsgCarsController extends AdminController{
                     'id_asg_car' => $row['id_car'],
                     'id_shop' => $row['id_shop'],
                     'car_name' => $row['nameCar'],
+                    'car_name_galleries' => $row['car_name_galleries'],
                     'description_en' => $row['description_en'],
                     'description_es' => $row['description_es'],
                     'description_fr' => $row['description_fr'],
@@ -192,6 +196,28 @@ class AdminAsgCarsController extends AdminController{
 
         echo json_encode($dataCar);
         exit;
+    }
+
+    public function updatePosition($sortedIds){
+        if (!is_array($sortedIds) || empty($sortedIds)) {
+            return false;
+        }
+
+        // pre($sortedIds);
+
+        foreach ($sortedIds as $item) {
+            $idAsgCar = (int)$item['id_asg_car'];
+            $newPosition = (int)$item['position'];
+    
+            // Execute the update query
+            Db::getInstance()->execute(
+                'UPDATE ' . _DB_PREFIX_ . 'asg_cars 
+                SET position = ' . (int)$newPosition . ' 
+                WHERE id_asg_car = ' . (int)$idAsgCar
+            );
+        }
+
+        return true;
     }
     
     public function saveCar(){
@@ -268,14 +294,21 @@ class AdminAsgCarsController extends AdminController{
     
         // Insert or Update logic
         if (Tools::getValue('id') == 0) {
+            $maxPosition = Db::getInstance()->getValue(
+                'SELECT MAX(position) FROM ' . _DB_PREFIX_ . 'asg_cars'
+            );
+
+            $newPosition = $maxPosition ? $maxPosition + 1 : 1;
+
             // Insert new car data
             Db::getInstance(_PS_USE_SQL_SLAVE_)->execute(
                 'INSERT INTO ' . _DB_PREFIX_ . 'asg_cars (
-                    id_shop, name, description_en,description_es,description_fr,description_pt,description_it,budget_en,budget_es,budget_fr,budget_pt,budget_it, display,  
+                    id_shop, name, car_name_galleries,description_en,description_es,description_fr,description_pt,description_it,budget_en,budget_es,budget_fr,budget_pt,budget_it, display, position,
                     images, created_at
                 ) VALUES (
                     ' . (int)Tools::getValue('id_shop') . ',
                     "' . pSQL(Tools::getValue('name')) . '",
+                    "' . pSQL(Tools::getValue('car_name_galleries')) . '",
                     "' . pSQL(Tools::getValue('description_en')) . '",
                     "' . pSQL(Tools::getValue('description_es')) . '",
                     "' . pSQL(Tools::getValue('description_fr')) . '",
@@ -287,6 +320,7 @@ class AdminAsgCarsController extends AdminController{
                     "' . pSQL(Tools::getValue('budget_pt')) . '",
                     "' . pSQL(Tools::getValue('budget_it')) . '",
                     ' . (int)Tools::getValue('display') . ',
+                    ' . (int)$newPosition . ',
                     "' . pSQL($imagesJson) . '",
                     NOW()
                 )'
@@ -302,6 +336,7 @@ class AdminAsgCarsController extends AdminController{
                 SET 
                     id_shop=' . (int)Tools::getValue('id_shop') . ',
                     name="' . pSQL(Tools::getValue('name')) . '",
+                    car_name_galleries="' . pSQL(Tools::getValue('car_name_galleries')) . '",
                     description_en="' . pSQL(Tools::getValue('description_en')) . '",
                     description_es="' . pSQL(Tools::getValue('description_es')) . '",
                     description_fr="' . pSQL(Tools::getValue('description_fr')) . '",

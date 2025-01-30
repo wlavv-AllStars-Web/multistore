@@ -38,6 +38,7 @@ class asg_cars extends Module
             `id_asg_car` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `id_shop` INT UNSIGNED NOT NULL,
             `name` VARCHAR(255) NOT NULL,
+            `car_name_galleries` VARCHAR(255) NOT NULL,
             `description_en` VARCHAR(255),
             `description_es` VARCHAR(255),
             `description_fr` VARCHAR(255),
@@ -50,6 +51,7 @@ class asg_cars extends Module
             `budget_it` VARCHAR(255),
             `images` TEXT,
             `display` TINYINT(1) NOT NULL DEFAULT 0,
+            `position` TINYINT(1) NOT NULL DEFAULT 0,
             `created_at` DATETIME NOT NULL,
             PRIMARY KEY (`id_asg_car`)
         ) ENGINE=" . _MYSQL_ENGINE_ . " DEFAULT CHARSET=utf8;";
@@ -113,12 +115,13 @@ class asg_cars extends Module
         $this->context->controller->addJs('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
         $this->context->controller->addJs('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
         $this->context->controller->addJs('https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js');
+        $this->context->controller->addJs('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
     }
 
     public function hookDisplayAsgCars()
     {
         // Fetch car data
-        $cars = Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'asg_cars` WHERE `display` = 1');
+        $cars = Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'asg_cars` WHERE `display` = 1 ORDER BY position ASC');
 
         foreach ($cars as &$car) {
             
@@ -128,14 +131,6 @@ class asg_cars extends Module
 
             $car['products'] = Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'asg_cars_product` WHERE `id_asg_car` = ' . (int)$car['id_asg_car']);
         }
-
-        // $this->context->smarty->assign(
-        //     [
-        //         'url_car_detail' => $this->context->link->getPageLink('car-details', null, null, null, false, null, true),
-        //     ]
-        
-
-        // pre($this->context->link->getPageLink('car-details', null, null, null, false, null, true));
 
         // Assign data to Smarty
         $this->context->smarty->assign([

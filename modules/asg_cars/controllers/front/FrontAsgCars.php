@@ -55,7 +55,7 @@ class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
             $this->setTemplate('module:asg_cars/views/templates/front/detail.tpl');
         } else {
             // If no `id_car` is provided, show the list of cars (default behavior)
-            $cars = Db::getInstance()->executeS('SELECT * FROM ' . _DB_PREFIX_ . 'asg_cars WHERE display = 1');
+            $cars = Db::getInstance()->executeS('SELECT * FROM ' . _DB_PREFIX_ . 'asg_cars WHERE display = 1 ORDER BY position ASC');
 
             $this->context->smarty->assign('cars', $cars);
             $this->setTemplate('module:asg_cars/views/templates/front/cms.tpl');

@@ -14,18 +14,24 @@
 			<div class="panel-body" style="padding: 0;">
 
 				{if count($cars) > 0}
+					<div id="sortable-cars" class="row" style="display: flex;flex-wrap:wrap">
 					{foreach $cars AS $car}
 						{* <pre>{$car['images'][0]|print_r}</pre> *}
-						<div class="col-lg-2" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;outline: 2px solid #333;border-radius: .25rem;padding:0;">
-							<div class="col-lg-12" style="padding:0;">
+						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem;">
+							<div class="col-lg-12" style="padding:0;border: 2px solid #333;">
 
 								<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
 						
 							</div>
-							<div class="col-lg-12" style="padding: .5rem;">
+							<div class="col-lg-12" style="padding: .5rem;display:flex;flex:1;flex-direction:column-reverse;border: 2px solid #333;border-top:0;justify-content: space-between;">
 								<div style="width: 30px;display:flex;justify-content: center;" class="btn btn-danger"
 									onclick="deleteAlert({$car['id_asg_car']})"><i class="icon-trash"></i></div>
-								<div style="width: calc( 100% - 30px );float: left; font-size: 16px; padding-left: 5px; padding-top: 5px;cursor: pointer;"
+								<div style="width: calc( 100% - 30px );float: left; font-size: 16px; padding-left: 5px; padding-top: 5px;cursor: pointer;
+								overflow: hidden;
+								display: -webkit-box;
+								-webkit-line-clamp: 2; /* number of lines to show */
+										line-clamp: 2; 
+								-webkit-box-orient: vertical;"
 								onclick="openAlert({$car['id_asg_car']})">{$car['car_name']}</div>
 							</div>
 							<div style="display: none;">
@@ -57,6 +63,7 @@
 							</div>
 						</div>
 					{/foreach}
+					</div>
 				{else}
 					<div> No cars created </div>
 				{/if}
@@ -79,14 +86,19 @@
 				<form action="/admineuromus1/index.php?controller=AdminAsgCars&token={$token}&save_car=1"
 					method="post">
 					<input type="hidden" value="0" id="car_id" name="car_id">
+					<input type="hidden" value="0" id="car_position" name="car_position">
 					<input type="hidden" value="{$context->shop->id}" id="id_shop" name="id_shop">
 					<div class="row">
 
 						<div class="col-lg-6">
-							<input placeholder="Car Name" type="text" id="name_car"
+							<input placeholder="Car name in galleries" type="text" id="car_name_galleries"
+								name="car_name_galleries" value=""
+								onchange="$('#title_panel').text($(this).val())">
+						</div>
+						<div class="col-lg-6">
+							<input placeholder="Car name in details" type="text" id="name_car"
 								name="name_car" value=""
 								onchange="$('#title_panel').text($(this).val())">
-
 						</div>
 
 						<div class="col-lg-12">
@@ -654,10 +666,12 @@
 		function saveFormData() {
 			let id = $('input[name="car_id"]').val();
 			let name = $('input[name="name_car"]').val();
+			let car_name_galleries = $('input[name="car_name_galleries"]').val();
 			let description = $('input[name="description"]').val();
 			let id_shop = $('input[name="id_shop"]').val();
 			let display = $('#display_car').val();
-			console.log(display)
+
+			
 
 			let description_en = $('input[name="description_en"]').val();
 			let description_es = $('input[name="description_es"]').val();
@@ -691,6 +705,7 @@
 			let formData = new FormData();
 			formData.append('id', id);
 			formData.append('name', name);
+			formData.append('car_name_galleries', car_name_galleries);
 			formData.append('description', description);
 			formData.append('id_shop', id_shop);
 			formData.append('display', display);
@@ -713,6 +728,10 @@
 			formData.append('budget_pt', budget_pt);
 			formData.append('budget_it', budget_it);
 
+			if($('#car_position').val() > 0){
+				let position = $('#car_position').val();
+				formData.append('position', position);
+			}
 
 			// Append product data (motor, chassis, etc.)
 			if (Object.keys(productsData).length > 0) {
@@ -789,15 +808,18 @@
 					success: function(data) {
 						const car =  data[index];
 
-						console.log(car.display)
+						console.log(car)
 
 						$('#car_id').val(car.id_asg_car);
 						$('input#name_car').val(car.car_name);
+						$('input#car_name_galleries').val(car.car_name_galleries);
 						$('#description_en').val(car.description_en);
 						$('#description_es').val(car.description_es);
 						$('#description_fr').val(car.description_fr);
 						$('#description_pt').val(car.description_pt);
 						$('#description_it').val(car.description_it);
+
+						$('#car_position').val(car.position)
 						// $('#details_en').val(car.details_en);
 						// $('#details_es').val(car.details_es);
 						// $('#details_fr').val(car.details_fr);
@@ -966,6 +988,40 @@
 
 			location.reload();
 		}
+
+
+
+		$("#sortable-cars").sortable({
+			update: function (event, ui) {
+				let sortedIds = [];
+				$(".car-item").each(function () {
+					let carId = $(this).data("id"); // This should be the id_asg_car, not the position
+					sortedIds.push({
+						id_asg_car: carId,
+						position: $(this).index() + 1  // Using index to define the position
+					});
+				});
+
+				$.ajax({
+					type: 'POST',
+					url: '/admineuromus1/index.php?controller=AdminAsgCars&action=update_position&token={Tools::getValue("token")}',
+					data: {
+						'sortedIds': sortedIds
+					},
+					success: function (response) {
+							console.log("Positions updated:", response);
+					},
+					error: function (xhr, status, error) {
+						console.error("Error updating positions:", error);
+					}
+				});
+			}
+		});
+
+			$("#sortable-cars").disableSelection();
+	
+		
+	
 
 		$(document).ready(function() {
 			change_dashboard_type();

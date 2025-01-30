@@ -4,7 +4,7 @@
 
         {foreach from=$cars item=car}
             <div class="col-3 car-container" style="margin:20px 0;">
-                <p style="text-align:center;font-size:18px;padding-top:10px;"><strong>{$car.name}</strong></p>
+                <p style="text-align:center;font-size:18px;padding-top:10px;"><strong>{$car.car_name_galleries}</strong></p>
                 <div class="col-sm-12 hover_for_text"
                     style="text-align:center;padding:0;height:315px;background-size:contain;background-repeat:no-repeat;">
                     {assign var="decodedImages" value=$car['images']}
