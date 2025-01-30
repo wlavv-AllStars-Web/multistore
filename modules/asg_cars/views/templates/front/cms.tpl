@@ -13,7 +13,7 @@
                         data-id="{$car.id_asg_car}"
                         style="width:100%;background-image:url(/img/transparent.png);height:100%;color:#fff;"
                         onclick="openCarPage(this)">
-                        See More
+                        {l s="See More" d="Shop.Theme.CarDetails"}
                     </span>
                 </div>
             </div>
