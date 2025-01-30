@@ -11,7 +11,7 @@
                 {assign var="budget_field" value='budget_'|cat:$language.iso_code}
                 {assign var="budget" value=$car[$budget_field]}
                 <h3><strong>{$description}</strong></h3>
-                <h3 style="text-transform:uppercase;color:#000000;"><strong>{$budget}</strong></h3>
+                <h3 style="color:#000000;"><strong>{$budget}</strong></h3>
             </div>
             <div style="text-align:left;">
                 <h1><strong>{l s='Engine/Trans' mod='asg_cars'}</strong></h1>
