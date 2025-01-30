@@ -1,5 +1,5 @@
 <div class="ourcars d-flex flex-column">
-    <h4 style="text-align:center;"><strong>Our Cars</strong></h4>
+    <h4 style="text-align:center;"><strong>{l s='Our Cars' mod='asg_cars'}</strong></h4>
     <div class="cars-container d-flex flex-wrap">
 
         {foreach from=$cars item=car}
