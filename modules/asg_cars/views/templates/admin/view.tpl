@@ -17,7 +17,7 @@
 					<div id="sortable-cars" class="row" style="display: flex;flex-wrap:wrap">
 					{foreach $cars AS $car}
 						{* <pre>{$car['images'][0]|print_r}</pre> *}
-						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem;">
+						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem; 1rem .5rem">
 							<div class="col-lg-12" style="padding:0;border: 2px solid #333;">
 
 								<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
