@@ -30,6 +30,7 @@ class asg_cars extends Module
 		foreach (Language::getLanguages(true) as $lang) $tab->name[$lang['id_lang']] = 'ASG CARS';
 		$tab->id_parent = (int) Tab::getIdFromClassName('IMPROVE');
 		$tab->module = $this->name;
+        $tab->icon = 'directions_car';
 		$tab->add();
 		$tab->save();
 
