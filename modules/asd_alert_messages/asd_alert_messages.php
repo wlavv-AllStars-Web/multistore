@@ -31,6 +31,7 @@ class asd_alert_messages extends Module
 		$tab->name[5] = 'ASD - Alert Messages';
 		$tab->id_parent = (int) Tab::getIdFromClassName('IMPROVE');
 		$tab->module = $this->name;
+        $tab->icon = 'notifications';
 		$tab->add();
 		$tab->save();
 
