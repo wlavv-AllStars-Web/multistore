@@ -95,16 +95,18 @@ class asg_cars extends Module
             $tab->delete();
         }
 
+        $sql2 = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars_product`;";
+        if (!Db::getInstance()->execute($sql2)) {
+            return false;
+        }
+
         // Drop the table
         $sql = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars`;";
         if (!Db::getInstance()->execute($sql)) {
             return false;
         }
 
-        $sql2 = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars_product`;";
-        if (!Db::getInstance()->execute($sql2)) {
-            return false;
-        }
+
 
         return true;
     }
