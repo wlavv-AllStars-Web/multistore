@@ -7,8 +7,8 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel">
-			<div class="panel-heading" style="border: 0px solid black;">
-				<h3 style="padding-left: 17px;">List of cars</h3>
+			<div class="py-1" style="border: 0px solid black;">
+				<h3 style="padding-left: 17px;background:#fff;">List of cars</h3>
 			</div>
 
 			<div class="panel-body" style="padding: 0;">
@@ -17,7 +17,7 @@
 					<div id="sortable-cars" class="row" style="display: flex;flex-wrap:wrap">
 					{foreach $cars AS $car}
 						{* <pre>{$car['images'][0]|print_r}</pre> *}
-						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="border-bottom: solid 1px #eee;display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem 1rem .5rem">
+						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem 1rem .5rem">
 							<div class="col-lg-12" style="padding:0;border: 2px solid #333;">
 
 								<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
@@ -90,18 +90,137 @@
 					<input type="hidden" value="{$context->shop->id}" id="id_shop" name="id_shop">
 					<div class="row">
 
-						<div class="col-lg-6">
-							<input placeholder="Car name in galleries" type="text" id="car_name_galleries"
-								name="car_name_galleries" value=""
-								onchange="$('#title_panel').text($(this).val())">
-						</div>
-						<div class="col-lg-6">
-							<input placeholder="Car name in details" type="text" id="name_car"
-								name="name_car" value=""
-								onchange="$('#title_panel').text($(this).val())">
+
+
+						<div class="col-lg-12" style="padding: 1rem 0;">
+
+							<div class="col-lg-6 py-1">
+								<label for="car_name_galleries" class="col-sm-12 col-form-label">Car Name (In Galleries)</label>
+								<div class="col-sm-12">
+									<input placeholder="Car name in galleries" type="text" id="car_name_galleries"
+									name="car_name_galleries" value=""
+									onchange="$('#title_panel').text($(this).val())">
+								</div>
+							</div>
+							<div class="col-lg-6 py-1">
+								<label for="name_car" class="col-sm-12 col-form-label">Car Name (In Page Details)</label>
+								<div class="col-sm-12">
+									<input placeholder="Car name in details" type="text" id="name_car"
+									name="name_car" value=""
+									onchange="$('#title_panel').text($(this).val())">
+								</div>
+							</div>
+
+							<div class="col-lg-6 py-1">
+								<label for="title_en" class="col-sm-12 col-form-label">Description</label>
+								<div class="col-sm-10">
+									<!-- Language Dropdown -->
+
+
+									<!-- Description Input Fields -->
+									{foreach $languages AS $lang}
+										<input type="text" class="form-control description-input" id="description_{$lang.iso_code}" name="description_{$lang.iso_code}" style="display: none;">
+									{/foreach}
+								</div>
+								<div class="col-sm-2">
+									<select id="languageSelector" class="form-control" style="margin-bottom: 10px;">
+										{foreach $languages AS $lang}
+											<option value="description_{$lang.iso_code}">{$lang.name}</option>
+										{/foreach}
+									</select>
+								</div>
+							</div>
+
+							<div class="col-lg-6 py-1">
+								<label for="title_en" class="col-sm-12 col-form-label">Budget Text</label>
+								<div class="col-sm-10">
+									<!-- budget Input Fields -->
+									{foreach $languages AS $lang}
+										<input type="text" class="form-control budget-input" id="budget_{$lang.iso_code}" name="budget_{$lang.iso_code}" style="display: none;">
+									{/foreach}
+								</div>
+								<div class="col-sm-2">
+									<select id="languageSelectorBudget" class="form-control" style="margin-bottom: 10px;">
+										{foreach $languages AS $lang}
+											<option value="budget_{$lang.iso_code}">{$lang.name}</option>
+										{/foreach}
+									</select>
+								</div>
+							</div>
+
+							
+						<div class="col-lg-3">
+							<input style="margin-top: 8px;" type="checkbox" id="display_car" name="display_car" onclick="checkCheckbox()" value="0"><span style="margin-left: 5px;">Display car</span>
 						</div>
 
-						<div class="col-lg-12">
+						</div>
+					<script type="text/javascript">
+
+						function checkCheckbox() {
+							let checkbox = document.querySelector("#display_car")
+
+							if (checkbox.checked == true) {
+								checkbox.setAttribute("value",1)
+							}else{
+								checkbox.setAttribute("value",0)
+							}
+						}
+
+						document.addEventListener('DOMContentLoaded', function() {
+							// Get the language selector and all description inputs
+							var languageSelector = document.getElementById('languageSelector');
+							var descriptionInputs = document.querySelectorAll('.description-input');
+
+							// Function to show the selected input field
+							function showSelectedInput() {
+								// Hide all input fields
+								descriptionInputs.forEach(function(input) {
+									input.style.display = 'none';
+								});
+
+								// Show the selected input field
+								var selectedInput = document.getElementById(languageSelector.value);
+								if (selectedInput) {
+									selectedInput.style.display = 'block';
+								}
+							}
+
+							// Show the initial selected input field
+							showSelectedInput();
+
+							// Add event listener to the language selector
+							languageSelector.addEventListener('change', showSelectedInput);
+						});
+
+						document.addEventListener('DOMContentLoaded', function() {
+							// Get the language selector and all budget inputs
+							var languageSelectorBudget = document.getElementById('languageSelectorBudget');
+							var budgetInputs = document.querySelectorAll('.budget-input');
+
+							// Function to show the selected input field
+							function showSelectedInput() {
+								// Hide all input fields
+								budgetInputs.forEach(function(input) {
+									input.style.display = 'none';
+								});
+
+								// Show the selected input field
+								var selectedInput = document.getElementById(languageSelectorBudget.value);
+								if (selectedInput) {
+									selectedInput.style.display = 'block';
+								}
+							}
+
+							// Show the initial selected input field
+							showSelectedInput();
+
+							// Add event listener to the language selector
+							languageSelectorBudget.addEventListener('change', showSelectedInput);
+						});
+					</script>
+
+
+						<div class="col-lg-12 p-2">
 							<label for="dashboard_car_images">Upload Car Images</label>
 							<input type="hidden" id="existing_images" name="existing_images">
 							<input type="file" id="imagesCar" name="images[]" accept="image/*"
@@ -178,149 +297,6 @@
 							}
 						</script>
 
-						<div class="col-lg-12" style="padding: 1rem 0;">
-							<div class="form-group col-lg-8">
-								<label for="title_en" class="col-sm-12 col-form-label">Description</label>
-								<div class="col-sm-10">
-									<!-- Language Dropdown -->
-
-
-									<!-- Description Input Fields -->
-									{foreach $languages AS $lang}
-										<input type="text" class="form-control description-input" id="description_{$lang.iso_code}" name="description_{$lang.iso_code}" style="display: none;">
-									{/foreach}
-								</div>
-								<div class="col-sm-2">
-									<select id="languageSelector" class="form-control" style="margin-bottom: 10px;">
-										{foreach $languages AS $lang}
-											<option value="description_{$lang.iso_code}">{$lang.name}</option>
-										{/foreach}
-									</select>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-							document.addEventListener('DOMContentLoaded', function() {
-								// Get the language selector and all description inputs
-								var languageSelector = document.getElementById('languageSelector');
-								var descriptionInputs = document.querySelectorAll('.description-input');
-
-								// Function to show the selected input field
-								function showSelectedInput() {
-									// Hide all input fields
-									descriptionInputs.forEach(function(input) {
-										input.style.display = 'none';
-									});
-
-									// Show the selected input field
-									var selectedInput = document.getElementById(languageSelector.value);
-									if (selectedInput) {
-										selectedInput.style.display = 'block';
-									}
-								}
-
-								// Show the initial selected input field
-								showSelectedInput();
-
-								// Add event listener to the language selector
-								languageSelector.addEventListener('change', showSelectedInput);
-							});
-						</script>
-
-						{* <div class="col-lg-12" style="padding: 1rem 0;">
-							<div class="form-group col-lg-8">
-								<label for="title_en" class="col-sm-12 col-form-label">Details Text</label>
-								<div class="col-sm-10">
-									<!-- Language Dropdown -->
-
-
-									<!-- Description Input Fields -->
-									{foreach $languages AS $lang}
-										<input type="text" class="form-control details-input" id="details_{$lang.iso_code}" name="details_{$lang.iso_code}" style="display: none;">
-									{/foreach}
-								</div>
-								<div class="col-sm-2">
-									<select id="languageSelectorDetails" class="form-control" style="margin-bottom: 10px;">
-										{foreach $languages AS $lang}
-											<option value="details_{$lang.iso_code}">{$lang.name}</option>
-										{/foreach}
-									</select>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-							document.addEventListener('DOMContentLoaded', function() {
-								// Get the language selector and all details inputs
-								var languageSelectorDetails = document.getElementById('languageSelectorDetails');
-								var detailsInputs = document.querySelectorAll('.details-input');
-
-								// Function to show the selected input field
-								function showSelectedInput() {
-									// Hide all input fields
-									detailsInputs.forEach(function(input) {
-										input.style.display = 'none';
-									});
-
-									// Show the selected input field
-									var selectedInput = document.getElementById(languageSelectorDetails.value);
-									if (selectedInput) {
-										selectedInput.style.display = 'block';
-									}
-								}
-
-								// Show the initial selected input field
-								showSelectedInput();
-
-								// Add event listener to the language selector
-								languageSelectorDetails.addEventListener('change', showSelectedInput);
-							});
-						</script> *}
-
-						<div class="col-lg-12" style="padding: 1rem 0;">
-							<div class="form-group col-lg-8">
-								<label for="title_en" class="col-sm-12 col-form-label">Budget Text</label>
-								<div class="col-sm-10">
-									<!-- budget Input Fields -->
-									{foreach $languages AS $lang}
-										<input type="text" class="form-control budget-input" id="budget_{$lang.iso_code}" name="budget_{$lang.iso_code}" style="display: none;">
-									{/foreach}
-								</div>
-								<div class="col-sm-2">
-									<select id="languageSelectorBudget" class="form-control" style="margin-bottom: 10px;">
-										{foreach $languages AS $lang}
-											<option value="budget_{$lang.iso_code}">{$lang.name}</option>
-										{/foreach}
-									</select>
-								</div>
-							</div>
-						</div>
-						<script type="text/javascript">
-						document.addEventListener('DOMContentLoaded', function() {
-							// Get the language selector and all budget inputs
-							var languageSelectorBudget = document.getElementById('languageSelectorBudget');
-							var budgetInputs = document.querySelectorAll('.budget-input');
-
-							// Function to show the selected input field
-							function showSelectedInput() {
-								// Hide all input fields
-								budgetInputs.forEach(function(input) {
-									input.style.display = 'none';
-								});
-
-								// Show the selected input field
-								var selectedInput = document.getElementById(languageSelectorBudget.value);
-								if (selectedInput) {
-									selectedInput.style.display = 'block';
-								}
-							}
-
-							// Show the initial selected input field
-							showSelectedInput();
-
-							// Add event listener to the language selector
-							languageSelectorBudget.addEventListener('change', showSelectedInput);
-						});
-						</script>
 
 
 						{* <div class="col-lg-3" style="display: none;">
@@ -337,29 +313,25 @@
 							</select>
 						</div> *}
 
-						<div class="col-lg-3">
-							<input style="margin-top: 8px;" type="checkbox" id="display_car" name="display_car" onclick="checkCheckbox()" value="0"><span style="margin-left: 5px;">Display car</span>
-						</div>
-
-						<script>
-							function checkCheckbox() {
-								let checkbox = document.querySelector("#display_car")
-
-								if (checkbox.checked == true) {
-									checkbox.setAttribute("value",1)
-								}else{
-									checkbox.setAttribute("value",0)
-								}
-							}
-						</script>
 
 						<div class="col-lg-12">
 							<div class="spacer-30" style="padding: 20px 0;"></div>
 						</div>
 
+						<label for="#TabCarProducts" class="col-form-label">Products Car</label>
+						<ul class="nav nav-tabs col-lg-12" id="TabCarProducts" role="tablist">
+							{foreach from=$languages item=lang key=key }
+								<li class="nav-item {if $lang.iso_code|lower == 'en'} active {/if}" role="presentation">
+									<button class="nav-link" id="tab_{$lang.iso_code|lower}" data-toggle="tab" data-target="#content_{$lang.iso_code|lower}" type="button" role="tab" aria-controls="home" aria-selected="true">{$lang.name|lower}</button>
+								</li>
+							{/foreach}
+						</ul>
+
+
 						{* <pre>{$languages|print_r}</pre> *}
+						<div class="tab-content col-lg-12" id="tabCarProductsContent">
 						{foreach from=$languages item=lang key=key }
-							<div class="col-lg-12">
+							<div id="content_{$lang.iso_code|lower}" class="col-lg-12 content_{$lang.iso_code|lower} tab-pane fade {if $lang.iso_code|lower == 'en'} active in{/if}" role="tabpanel" aria-labelledby="tab_{$lang.iso_code|lower}">
 								<div class="input-group">
 									<h1>Content {$lang.iso_code|upper}</h1>
 								</div>
@@ -480,10 +452,11 @@
 
 
 
-								<div class="spacer-3"></div>
+								<div class="spacer-2"></div>
 							</div>
 
 						{/foreach}
+						</div>
 
 
 
@@ -1070,6 +1043,24 @@
 		});
 	</script>
 	<style>
+		.py-1{
+			padding-block: .5rem !important;
+		}
+		.py-2{
+			padding-block: 1rem !important;
+		}
+		.py-3{
+			padding-block: 1.5rem !important;
+		}
+		.px-1{
+			padding-inline: .5rem !important;
+		}
+		.px-2{
+			padding-inline: 1rem !important;
+		}
+		.px-3{
+			padding-inline: 1.5rem !important;
+		}
 		.spacer-1 {
 			width: 100%;
 			height: 1px;
@@ -1133,6 +1124,28 @@
 
 		#sortable-cars .car-item {
 			cursor: all-scroll;
+		}
+
+		#TabCarProducts{
+			border-bottom: 1px solid #d0d0d0;
+		}
+
+		#TabCarProducts .nav-item .nav-link{
+			padding: 1rem !important;
+  			background: #fff;
+			border: 0;
+			text-transform: capitalize;
+		}
+		#TabCarProducts .nav-item.active .nav-link{
+			border: 1px solid #d0d0d0;
+			border-bottom: 0;
+			border-radius: .25rem .25rem 0 0;
+		}
+
+		#tabCarProductsContent{
+			border-right: 1px solid #d0d0d0;
+			border-left: 1px solid #d0d0d0;
+			border-bottom: 1px solid #d0d0d0;
 		}
 </style>
 {/if}
