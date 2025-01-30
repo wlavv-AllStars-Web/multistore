@@ -18,47 +18,49 @@
 					{foreach $cars AS $car}
 						{* <pre>{$car['images'][0]|print_r}</pre> *}
 						<div class="col-lg-2 car-item" data-id="{$car['id_asg_car']}" style="display: flex;flex-direction:column;border-radius: .25rem;padding:0 .5rem 1rem .5rem">
-							<div class="col-lg-12" style="padding:0;border: 2px solid #333;">
+							<div style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+								<div class="col-lg-12" style="padding:0;border: 2px solid #333;">
 
-								<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
-						
-							</div>
-							<div class="col-lg-12" style="padding: .5rem;display:flex;flex:1;flex-direction:column-reverse;border: 2px solid #333;border-top:0;justify-content: space-between;background-color: #fff;">
-								<div style="width: 30px;display:flex;justify-content: center;" class="btn btn-danger"
-									onclick="deleteAlert({$car['id_asg_car']})"><i class="icon-trash"></i></div>
-								<div style="width: calc( 100% - 30px );float: left; font-size: 16px; padding-left: 5px; padding-top: 5px;cursor: pointer;
-								overflow: hidden;
-								display: -webkit-box;
-								-webkit-line-clamp: 2; /* number of lines to show */
-										line-clamp: 2; 
-								-webkit-box-orient: vertical;"
-								onclick="openAlert({$car['id_asg_car']})">{$car['car_name']}</div>
-							</div>
-							<div style="display: none;">
-								<input type="hidden" name="id_{$car['id_asg_car']}" value="{$car['id_asg_car']}"> <!-- For updates, pass the record ID -->
-								<input type="text" name="name_{$car['id_asg_car']}" placeholder="Car Name" value="{$car['car_name']}" required>
-								<textarea name="description_{$car['id_asg_car']}" placeholder="Car Description" value="{$car['description']}"></textarea>
-								<input type="number" name="id_shop_{$car['id_asg_car']}" placeholder="Shop ID" required value="{$context->shop->id}">
-								
-								<input id="images_{$car['id_asg_car']}" type="file" name="images[]" multiple accept="image/*">
+									<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
+							
+								</div>
+								<div class="col-lg-12" style="padding: .5rem;display:flex;flex:1;flex-direction:column-reverse;border: 2px solid #333;border-top:0;justify-content: space-between;background-color: #fff;">
+									<div style="width: 30px;display:flex;justify-content: center;" class="btn btn-danger"
+										onclick="deleteAlert({$car['id_asg_car']})"><i class="icon-trash"></i></div>
+									<div style="width: calc( 100% - 30px );float: left; font-size: 16px; padding-left: 5px; padding-top: 5px;cursor: pointer;
+									overflow: hidden;
+									display: -webkit-box;
+									-webkit-line-clamp: 2; /* number of lines to show */
+											line-clamp: 2; 
+									-webkit-box-orient: vertical;"
+									onclick="openAlert({$car['id_asg_car']})">{$car['car_name']}</div>
+								</div>
+								<div style="display: none;">
+									<input type="hidden" name="id_{$car['id_asg_car']}" value="{$car['id_asg_car']}"> <!-- For updates, pass the record ID -->
+									<input type="text" name="name_{$car['id_asg_car']}" placeholder="Car Name" value="{$car['car_name']}" required>
+									<textarea name="description_{$car['id_asg_car']}" placeholder="Car Description" value="{$car['description']}"></textarea>
+									<input type="number" name="id_shop_{$car['id_asg_car']}" placeholder="Shop ID" required value="{$context->shop->id}">
+									
+									<input id="images_{$car['id_asg_car']}" type="file" name="images[]" multiple accept="image/*">
 
-								<div style="display: none;" id="hidden_inputs_{$car['id_asg_car']}">
-									{foreach $languages AS $lang}
-										{if isset($car['products'][$lang.id_lang]) && count($car['products'][$lang.id_lang]) > 0}
-											{foreach $car['products'][$lang.id_lang] AS $category => $products}
-												{foreach $products AS $product}
-													<input type="hidden" 
-														name="product_{$car['id_asg_car']}_{$category}_{$product['id_asg_car_product']}_{$lang.id_lang}_name" 
-														idlang="{$lang.id_lang}"
-														value="{$product['product_name']}">
-													<input type="hidden" 
-														name="product_{$car['id_asg_car']}_{$category}_{$product['id_asg_car_product']}_{$lang.id_lang}_product" 
-														idlang="{$lang.id_lang}"
-														value="{$product['id_product']}">
+									<div style="display: none;" id="hidden_inputs_{$car['id_asg_car']}">
+										{foreach $languages AS $lang}
+											{if isset($car['products'][$lang.id_lang]) && count($car['products'][$lang.id_lang]) > 0}
+												{foreach $car['products'][$lang.id_lang] AS $category => $products}
+													{foreach $products AS $product}
+														<input type="hidden" 
+															name="product_{$car['id_asg_car']}_{$category}_{$product['id_asg_car_product']}_{$lang.id_lang}_name" 
+															idlang="{$lang.id_lang}"
+															value="{$product['product_name']}">
+														<input type="hidden" 
+															name="product_{$car['id_asg_car']}_{$category}_{$product['id_asg_car_product']}_{$lang.id_lang}_product" 
+															idlang="{$lang.id_lang}"
+															value="{$product['id_product']}">
+													{/foreach}
 												{/foreach}
-											{/foreach}
-										{/if}
-									{/foreach}
+											{/if}
+										{/foreach}
+									</div>
 								</div>
 							</div>
 						</div>
