@@ -23,7 +23,7 @@
 								<img src="/{$car['images'][0]}" alt="Car Image" style="width: 100%;"/>
 						
 							</div>
-							<div class="col-lg-12" style="padding: .5rem;display:flex;flex:1;flex-direction:column-reverse;border: 2px solid #333;border-top:0;justify-content: space-between;">
+							<div class="col-lg-12" style="padding: .5rem;display:flex;flex:1;flex-direction:column-reverse;border: 2px solid #333;border-top:0;justify-content: space-between;background-color: #fff;">
 								<div style="width: 30px;display:flex;justify-content: center;" class="btn btn-danger"
 									onclick="deleteAlert({$car['id_asg_car']})"><i class="icon-trash"></i></div>
 								<div style="width: calc( 100% - 30px );float: left; font-size: 16px; padding-left: 5px; padding-top: 5px;cursor: pointer;
@@ -1118,12 +1118,21 @@
 			margin-top: 5px;
 		}
 
+		#image_preview {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
 		#image_preview img:hover{
 			cursor: all-scroll;
 		}
 		#image_preview i:hover{
 			color: #333 !important;
 			cursor: pointer;
+		}
+
+		#sortable-cars .car-item {
+			cursor: all-scroll;
 		}
 </style>
 {/if}
