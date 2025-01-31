@@ -339,10 +339,7 @@
 								<!-- Motor Section -->
 								<div class="Motor">
 									<h4><span class="badge badge-primary">Engine/Trans</span></h4>
-									<button type="button" class="btn btn-secondary add-motor-product"
-										data-lang="{$lang.id_lang}">
-										ADD ONE MORE MOTOR PRODUCT
-									</button>
+									
 									<div class="products_motor" id="products_motor_{$lang.id_lang}">
 										<div class="product_motor_item product_item">
 											<div class="col-lg-10">
@@ -356,6 +353,10 @@
 											
 										</div>
 									</div>
+									<button type="button" class="btn btn-secondary add-motor-product"
+										data-lang="{$lang.id_lang}">
+										ADD ONE MORE MOTOR PRODUCT
+									</button>
 
 								</div>
 
@@ -364,10 +365,7 @@
 								<!-- Chassis Section -->
 								<div class="Chassis">
 									<h4><span class="badge badge-primary">Chassis/Brakes</span></h4>
-									<button type="button" class="btn btn-secondary add-chassis-product"
-										data-lang="{$lang.id_lang}">
-										ADD ONE MORE CHASSIS PRODUCT
-									</button>
+									
 									<div class="products_chassis" id="products_chassis_{$lang.id_lang}">
 										<div class="product_chassis_item product_item">
 											<div class="col-lg-10">
@@ -380,6 +378,10 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" class="btn btn-secondary add-chassis-product"
+										data-lang="{$lang.id_lang}">
+										ADD ONE MORE CHASSIS PRODUCT
+									</button>
 
 								</div>
 
@@ -388,10 +390,7 @@
 								<!-- Interior Section -->
 								<div class="Interior">
 									<h4><span class="badge badge-primary">Interior</span></h4>
-									<button type="button" class="btn btn-secondary add-interior-product"
-										data-lang="{$lang.id_lang}">
-										ADD ONE MORE INTERIOR PRODUCT
-									</button>
+									
 									<div class="products_interior" id="products_interior_{$lang.id_lang}">
 										<div class="product_interior_item product_item">
 											<div class="col-lg-10">
@@ -404,6 +403,10 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" class="btn btn-secondary add-interior-product"
+										data-lang="{$lang.id_lang}">
+										ADD ONE MORE INTERIOR PRODUCT
+									</button>
 
 								</div>
 
@@ -412,10 +415,7 @@
 								<!-- Exterior Section -->
 								<div class="Exterior">
 									<h4><span class="badge badge-primary">Exterior</span></h4>
-									<button type="button" class="btn btn-secondary add-exterior-product"
-										data-lang="{$lang.id_lang}">
-										ADD ONE MORE EXTERIOR PRODUCT
-									</button>
+									
 									<div class="products_exterior" id="products_exterior_{$lang.id_lang}">
 										<div class="product_exterior_item product_item">
 											<div class="col-lg-10">
@@ -428,6 +428,10 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" class="btn btn-secondary add-exterior-product"
+										data-lang="{$lang.id_lang}">
+										ADD ONE MORE EXTERIOR PRODUCT
+									</button>
 
 								</div>
 
@@ -436,10 +440,7 @@
 								<!-- Audio Section -->
 								<div class="Audio">
 									<h4><span class="badge badge-primary">Audio</span></h4>
-									<button type="button" class="btn btn-secondary add-audio-product"
-										data-lang="{$lang.id_lang}">
-										ADD ONE MORE AUDIO PRODUCT
-									</button>
+									
 									<div class="products_audio" id="products_audio_{$lang.id_lang}">
 										<div class="product_audio_item product_item">
 											<div class="col-lg-10">
@@ -452,6 +453,10 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" class="btn btn-secondary add-audio-product"
+										data-lang="{$lang.id_lang}">
+										ADD ONE MORE AUDIO PRODUCT
+									</button>
 									
 								</div>
 
