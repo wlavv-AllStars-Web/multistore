@@ -911,8 +911,13 @@
 							}
 						});
 
+
+						$('.products_motor, .products_chassis, .products_interior, .products_exterior, .products_audio').each(function() {
+							$(this).empty();  // Clears all product items inside the category
+						});
 						
 						Object.keys(car.products).forEach((langId) => {
+						
 							const langProducts = car.products[langId];
 							console.log(langProducts)
 
@@ -959,41 +964,6 @@
 					}
 				});
 
-			// $('#car_id').val($('input[name=id_' + index+']').val());
-			// $('#name_car').val($('input[name=name_' + index+']').val());
-
-			// $('#description').val($('textarea[name=description_' + index+']').val());
-
-			// $('#id_shop').val($('input[name=id_shop]').val());
-
-
-
-			// $('input[name="motor[2][name]"]').val($('input[name=product_'+index+'_motor_6_2_name]').val())
-			// $('input[name="motor_link[2][link]"]').val($('input[name=product_'+index+'_motor_6_2_product]').val())
-
-
-
-			// $('#dashboard_message_type').val($('#message_type_' + index).val());
-			// $('#dashboard_message_en').val($('#message_en_' + index).val());
-			// $('#dashboard_message_es').val($('#message_es_' + index).val());
-			// $('#dashboard_message_fr').val($('#message_fr_' + index).val());
-			// $('#dashboard_message_ro').val($('#message_ro_' + index).val());
-			// $('#dashboard_message_pt').val($('#message_pt_' + index).val());
-			// $('#dashboard_message_it').val($('#message_it_' + index).val());
-
-			// if ($('#message_status_' + index).val() == 1) {
-			// 	$('#enable_dashboard_message_type').prop('checked', 'checked');
-			// } else {
-			// 	$('#enable_dashboard_message_type').prop('checked', '');
-			// }
-
-			// set_message($('#dashboard_message_en').val());
-			// set_message_type($('#dashboard_message_type').val());
-
-			// $('#title_panel').text($('#message_title_' + index).val());
-			// $('#title_en').text($('#title_' + index).val());
-
-			// change_dashboard_type();
 		}
 
 		function newAlert() {
