@@ -98,6 +98,10 @@
       #carSpecs tbody tr:hover i{
         color: #fff !important;
       }
+
+      #carSpecs tbody tr:last-child{
+        border-bottom: 0 !important;
+      }
     </style>
   {/if}
   <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">

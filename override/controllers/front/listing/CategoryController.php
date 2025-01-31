@@ -409,7 +409,7 @@ class CategoryControllerCore extends ProductListingFrontController
             $data = json_decode($json);
             
             $html = '<div style="padding: .5rem 0;display:block;" id="carSpecs">';
-                $html.= '<table style="width: 100%;text-align: center;font-size: 16px;color: #fff;margin: 0 auto;margin-top: 10px;border: 1px solid #666;">';
+                $html.= '<table style="width: 100%;text-align: center;font-size: 16px;color: #fff;margin: 0 auto;margin-top: 10px;border-radius: .25rem;overflow: hidden;">';
                     $html .='<thead>';
                         $html .='<tr style="background: #333;text-align: center;">';
                             $html .='<td style="text-align: center;padding: .5rem 0;"></td>';
@@ -429,7 +429,7 @@ class CategoryControllerCore extends ProductListingFrontController
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
 
                                 $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')">';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;">ALL</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">All</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
@@ -442,7 +442,7 @@ class CategoryControllerCore extends ProductListingFrontController
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
                                 $html .='<tr style="background: #fff;color: #000;text-align: center;" onclick="setFilterFromSelector(\'4:|5:\')">';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;">FRONT</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">Front</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
@@ -454,7 +454,7 @@ class CategoryControllerCore extends ProductListingFrontController
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
                                 $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:|5:\')">';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;">REAR</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">Rear</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_width . '</td>';
@@ -465,7 +465,7 @@ class CategoryControllerCore extends ProductListingFrontController
                         }
                     }
                 $html.= '</table>';
-                $html.= '<div style="padding: 1rem 0;margin-right: auto;display: flex;justify-content: flex-start;"><button type="button" class="btn btn-secondary btn-sm" onclick="resetFilters()" style="border-radius:.25rem;">Reset</button></div>';
+                $html.= '<div style="padding: 1rem 0;margin-right: auto;display: flex;justify-content: end;"><button type="button" class="btn btn-secondary btn-sm" onclick="resetFilters()" style="border-radius:.25rem;">Reset Filters</button></div>';
             $html.= '</div>';
 
             return $html;
