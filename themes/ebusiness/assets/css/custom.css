@@ -6078,6 +6078,7 @@ select.form-control:not([size]):not([multiple]){
   flex: 1;
   text-align: center;
   transition: all ease-in-out 150ms;
+  user-select: none;
 }
 
 #order-detail #order-history .order-state-label-title:hover{
@@ -6199,6 +6200,11 @@ select.form-control:not([size]):not([multiple]){
 
 
 /* flip card */
+
+#banner-wheels .banner-wheels-container{
+  border-radius: .25rem;
+  overflow: hidden;
+}
 
 #banner-wheels .wheels-selectors {
   flex: 1;
