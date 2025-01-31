@@ -593,6 +593,19 @@
 	<script>
 		function removeLineProduct(elem) {
 			elem.parentElement.remove()
+
+			$.ajax({
+					type: "POST",
+					url: "/admineuromus1/index.php?controller=AdminAsgCars&action=deleteProduct&token={Tools::getValue('token')}",
+					data: { idproductcar: elem.parentElement.querySelector("input[type='hidden']").value },
+					success: function (response) {
+						// console.log("Image order updated:", response);
+					},
+					error: function (xhr, status, error) {
+						alert("Error deleting product from car")
+						// console.error("Error updating image order:", error);
+					}
+			});
 		}
 
 		let message = "Write a message to preview";
@@ -908,6 +921,7 @@
 									let i = index + 1;
 									let productProductInput = `
 										<div class="product_motor_item product_item">
+											<i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>
 											<div class="col-lg-10">
 												<input type="text" name="`+category+`[`+langId+`][name][`+i+`]" value="`+product.product_name+`" placeholder="Motor Product Name">
 											</div>

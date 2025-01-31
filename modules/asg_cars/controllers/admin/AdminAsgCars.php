@@ -116,6 +116,12 @@ class AdminAsgCarsController extends AdminController{
         elseif(Tools::getValue('action') == 'update_position') return self::updatePosition(Tools::getValue('sortedIds'));
         elseif(Tools::getValue('action') == 'removeImageCar') return self::removeImageCar(Tools::getValue('img_url'));
         elseif(Tools::getValue('action') == 'updateImageOrder') return self::updateImageOrder(Tools::getValue('sortedImages'),Tools::getValue('carId'));
+        elseif(Tools::getValue('action') == 'deleteProduct') return self::deleteProduct(Tools::getValue('idproductcar'));
+    }
+
+    public function deleteProduct($idproductcar){
+        // pre($idproductcar);
+        return Db::getInstance(_PS_USE_SQL_SLAVE_)->execute("DELETE FROM `ps_asg_cars_product` WHERE id_asg_car_product = " . $idproductcar);
     }
 
     public function getCarData($id_car){
