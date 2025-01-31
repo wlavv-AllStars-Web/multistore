@@ -315,17 +315,6 @@ function closeNavCarSpecs() {
   document.getElementById("sidenavCarSpecs").style.padding = "1rem 0";
   document.getElementById("sidenavCarSpecs").style.opacity = "0";
   document.getElementById("main").style.marginLeft = "0";
-
-  document.querySelector("#carBrandWheels").value = 0 
-  document.querySelector("#carModelWheels").value = '' 
-  document.querySelector("#carYearWheels").value = '' 
-  document.querySelector("#carModificationsWheels").value = '' 
-  document.querySelector("#carModelWheels").innerHTML = '<option>Model</option>' 
-  document.querySelector("#carYearWheels").innerHTML = '<option>Year</option>' 
-  document.querySelector("#carModificationsWheels").innerHTML = '<option>Modifications</option>' 
-  document.querySelector("#carModelWheels").setAttribute("disabled","disabled")
-  document.querySelector("#carYearWheels").setAttribute("disabled","disabled")
-  document.querySelector("#carModificationsWheels").setAttribute("disabled","disabled")
 } 
 
 function resetFilters() {
