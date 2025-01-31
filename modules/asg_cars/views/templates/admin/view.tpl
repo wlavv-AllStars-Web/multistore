@@ -516,7 +516,7 @@
 				let container = $('#products_motor_' + langId);
 				let currentIndex = container.find('.product_item').length + 1;
 
-				let newProductHtml = '<div class="product_motor_item product_item d-flex">' +
+				let newProductHtml = '<div class="product_motor_item product_item d-flex"><i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>' +
 					'<div class="col-lg-10"><input type="text" name="motor[' + langId +
 					'][name]['+currentIndex+']" placeholder="Motor Product Name"></div>' +
 					'<div class="col-lg-2"><input type="text" name="motor_link[' + langId +
@@ -532,7 +532,7 @@
 				let container = $('#products_chassis_' + langId);
 				let currentIndex = container.find('.product_item').length + 1;
 
-				let newProductHtml = '<div class="product_chassis_item product_item d-flex">' +
+				let newProductHtml = '<div class="product_chassis_item product_item d-flex"><i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>' +
 					'<div class="col-lg-10"><input type="text" name="chassis[' + langId +
 					'][name]['+currentIndex+']" placeholder="Chassis Product Name"></div>' +
 					'<div class="col-lg-2"><input type="text" name="chassis_link[' + langId +
@@ -547,7 +547,7 @@
 				let container = $('#products_interior_' + langId);
 				let currentIndex = container.find('.product_item').length + 1;
 
-				let newProductHtml = '<div class="product_interior_item product_item d-flex">' +
+				let newProductHtml = '<div class="product_interior_item product_item d-flex"><i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>' +
 					'<div class="col-lg-10"><input type="text" name="interior[' + langId +
 					'][name]['+currentIndex+']" placeholder="Interior Product Name"></div>' +
 					'<div class="col-lg-2"><input type="text" name="interior_link[' + langId +
@@ -562,7 +562,7 @@
 				let container = $('#products_exterior_' + langId);
 				let currentIndex = container.find('.product_item').length + 1;
 
-				let newProductHtml = '<div class="product_exterior_item product_item d-flex">' +
+				let newProductHtml = '<div class="product_exterior_item product_item d-flex"><i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>' +
 					'<div class="col-lg-10"><input type="text" name="exterior[' + langId +
 					'][name]['+currentIndex+']" placeholder="Exterior Product Name"></div>' +
 					'<div class="col-lg-2"><input type="text" name="exterior_link[' + langId +
@@ -577,7 +577,7 @@
 				let container = $('#products_audio_' + langId);
 				let currentIndex = container.find('.product_item').length + 1;
 
-				var newProductHtml = '<div class="product_audio_item product_item d-flex">' +
+				var newProductHtml = '<div class="product_audio_item product_item d-flex"><i class="material-icons" style="display:flex;justify-content:center;align-items:center;cursor:pointer;" onclick="removeLineProduct(this)">close</i>' +
 					'<div class="col-lg-10"><input type="text" name="audio[' + langId +
 					'][name]['+currentIndex+']" placeholder="Audio Product Name"></div>' +
 					'<div class="col-lg-2"><input type="text" name="audio_link[' + langId +
@@ -591,6 +591,10 @@
 
 
 	<script>
+		function removeLineProduct(elem) {
+			elem.parentElement.remove()
+		}
+
 		let message = "Write a message to preview";
 		let message_type = "alert alert-info";
 
