@@ -300,4 +300,44 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
+}
+
+function openNavCarSpecs() {
+  document.getElementById("sidenavCarSpecs").style.width = "20dvw";
+  document.getElementById("sidenavCarSpecs").style.padding = "1rem .5rem";
+  document.getElementById("sidenavCarSpecs").style.opacity = "1";
+
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNavCarSpecs() {
+  document.getElementById("sidenavCarSpecs").style.width = "0";
+  document.getElementById("sidenavCarSpecs").style.padding = "1rem 0";
+  document.getElementById("sidenavCarSpecs").style.opacity = "0";
+  document.getElementById("main").style.marginLeft = "0";
+
+  document.querySelector("#carBrandWheels").value = 0 
+  document.querySelector("#carModelWheels").value = '' 
+  document.querySelector("#carYearWheels").value = '' 
+  document.querySelector("#carModificationsWheels").value = '' 
+  document.querySelector("#carModelWheels").innerHTML = '<option>Model</option>' 
+  document.querySelector("#carYearWheels").innerHTML = '<option>Year</option>' 
+  document.querySelector("#carModificationsWheels").innerHTML = '<option>Modifications</option>' 
+  document.querySelector("#carModelWheels").setAttribute("disabled","disabled")
+  document.querySelector("#carYearWheels").setAttribute("disabled","disabled")
+  document.querySelector("#carModificationsWheels").setAttribute("disabled","disabled")
 } 
+
+function resetFilters() {
+  document.querySelector("#carSpecs").innerHTML = '' 
+  document.querySelector("#carBrandWheels").value = 0 
+  document.querySelector("#carModelWheels").value = '' 
+  document.querySelector("#carYearWheels").value = '' 
+  document.querySelector("#carModificationsWheels").value = '' 
+  document.querySelector("#carModelWheels").innerHTML = '<option>Model</option>' 
+  document.querySelector("#carYearWheels").innerHTML = '<option>Year</option>' 
+  document.querySelector("#carModificationsWheels").innerHTML = '<option>Modifications</option>' 
+  document.querySelector("#carModelWheels").setAttribute("disabled","disabled")
+  document.querySelector("#carYearWheels").setAttribute("disabled","disabled")
+  document.querySelector("#carModificationsWheels").setAttribute("disabled","disabled")
+}

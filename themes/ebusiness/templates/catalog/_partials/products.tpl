@@ -25,6 +25,81 @@
  <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
 {* {debug} *}
 <div id="js-product-list">
+  {if $page.body_classes['category-Wheels']}
+    <div id="sidenavCarSpecs" class="sidenav">
+      <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
+        <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
+          <i class="fa-solid fa-xmark fa-xl"></i>
+        </button>
+      </div>
+      <div id="car-select-filters" style="padding: 20px;background-color: #fff;">
+        <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
+        <div style="padding: 10px; ">
+          <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
+              <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
+              {foreach $car_brands AS $key => $car_brand}
+                <option value="{$key}"> {$car_brand} </option>
+              {/foreach}
+          </select>
+        </div>
+        <div style="padding: 10px;">
+          <select id="carModelWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
+        </div>
+        <div style="padding: 10px;">
+          <select id="carYearWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
+        </div>
+        <div style="padding: 10px;">
+          <select id="carModificationsWheels" class="form-control"  style="text-align: center;height:auto;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
+        </div>
+        {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
+      </div>
+      <div style="padding: .5rem 0;display: none !important;" id="carSpecs"></div>
+    </div>
+
+    <style>
+      #sidenavCarSpecs{
+        background-color: #f1f1f1;
+        border-right: 2px solid #111;
+        padding: 1rem 0rem;
+        opacity: 0;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+
+      #car-select-filters{
+        border-radius: .25rem;
+      }
+
+      #car-select-filters select{
+        border: 1px solid #d0d0d0;
+        border-radius: .15rem;
+        padding: .25rem 1rem;
+        font-size: 1rem;
+        color: #111;
+      }
+      #car-select-filters select:hover:not(:disabled){
+        cursor: pointer;
+        border: 1px solid #b1b1b1;
+      }
+      #car-select-filters select:disabled{
+        opacity: .4;
+      }
+
+      #car-select-filters select option {
+        font-size: 1rem;
+      }
+
+      #carSpecs tbody tr:hover{
+        background-color: #555 !important;
+        cursor: pointer;
+        color: #fff !important;
+        transition: .35s;
+      }
+
+      #carSpecs tbody tr:hover i{
+        color: #fff !important;
+      }
+    </style>
+  {/if}
   <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">
     {if isset($filter_1) && isset($filter_3)}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-lg-3" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product" style="background: #282828;display:flex;flex-direction: column;padding:2rem 1rem !important;border-radius:0.25rem;margin-bottom: 2rem;">
@@ -70,7 +145,8 @@
           </div> *}
           <div class="flip-card">
             <div class="flip-card-inner">
-              <div class="flip-card-front" onclick="$('.flip-card-inner').css('transform', 'rotateY(180deg)');">
+              {* <div class="flip-card-front" onclick="$('.flip-card-inner').css('transform', 'rotateY(180deg)');"> *}
+              <div class="flip-card-front" onclick="openNavCarSpecs()">
                 <div style="flex-direction:column;justify-content:space-between;">
                   <div class="wheels-selectors">
                     <img id="wheels-image" class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/wheels_en.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
@@ -81,12 +157,14 @@
                 </div>
               </div>
               <div class="flip-card-back">
-                  <div style="padding: 20px; display: block;background-color: #efefef;border: 1px solid #000;box-shadow: 0px 4px 4px #777;">
+                  <div id="car-select-filters" style="padding: 20px;background-color: #efefef;border: 1px solid #000;box-shadow: 0px 4px 4px #777;">
                     <div style="color: black; font-weight: bolder; font-size: 22px;padding: 20px 0;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
                     <div style="padding: 10px; ">
                       <select id="carBrandWheels" class="form-control" style="font-size: 18px; color: #000; width: 80%;text-align: center;" onchange="callForModelData()">
                           <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
-                          
+                          {foreach $car_brands AS $key => $car_brand}
+                            <option value="{$key}"> {$car_brand} </option>
+                          {/foreach}
                       </select>
                     </div>
                     <div style="padding: 10px;">
@@ -98,15 +176,101 @@
                     <div style="padding: 10px;">
                       <select id="carModificationsWheels" class="form-control"  style="font-size: 18px; color: #000; width: 80%;text-align: center;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
                     </div>
-                    <div style="padding: 10px;display: none;" id="carSpecs"></div>
+                    {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
                     <div style="height: 25px; width: 100%; background-color: #efefef;"></div>
-                    </div>
+                  </div>
+                  {* <div style="padding: 10px;display: none !important;" id="carSpecs"></div> *}
               </div>
             </div>
           </div>
 
         </div>
       </article>
+
+      <script>
+        function callForModelData(){
+            
+            let brand = $('#carBrandWheels').val();
+            
+            document.getElementById('carModelWheels').value='';
+            document.getElementById('carYearWheels').value='';
+            document.getElementById('carModificationsWheels').value='';
+
+            $('#carSpecs').css('display', 'none !important');
+      
+            
+            let slug = '?wheelsFilter=1&type=model&brand=' + brand + '&id=carModelWheels&function=callForYearData';
+            let data = callWheelsAjax(slug, 'carModelWheels');
+        }
+
+        
+        function callForYearData(){
+                    
+            let brand = $('#carBrandWheels').val();
+            let model = $('#carModelWheels').val();
+            
+            document.getElementById('carYearWheels').value='';
+            document.getElementById('carModificationsWheels').value='';
+            
+            $('#carSpecs').css('display', 'none !important');
+
+            let slug = '?wheelsFilter=1&type=year&brand=' + brand + '&model=' + model + '&id=carYearWheels&function=callForModificationsData';
+            let data = callWheelsAjax(slug, 'carYearWheels');
+
+        }
+                
+        function callForModificationsData(){
+            
+            let brand = $('#carBrandWheels').val();
+            let model = $('#carModelWheels').val();
+            let year  = $('#carYearWheels').val();
+            
+            document.getElementById('carModificationsWheels').value='';
+            
+            $('#carSpecs').css('display', 'none !important');
+
+            let slug = '?wheelsFilter=1&type=modifications&brand=' + brand + '&model=' + model + '&year=' + year + '&id=carModificationsWheels&function=callForInfoData';
+            let data = callWheelsAjax(slug, 'carModificationsWheels');
+        }
+                
+        function callForInfoData(){
+            
+            let brand = $('#carBrandWheels').val();
+            let model = $('#carModelWheels').val();
+            let year  = $('#carYearWheels').val();
+            let modification  = $('#carModificationsWheels').val();
+
+            $('#carSpecs').css('display', 'none !important');
+            
+
+            let slug = '?wheelsFilter=1&type=info&brand=' + brand + '&model=' + model + '&year=' + year + '&modification=' + modification + '&id=carInfoWheels&function=info';
+            let data = callWheelsAjax(slug, 'carSpecs');
+        }
+        
+        function callWheelsAjax(slug, id){
+            
+            $.ajax({
+                url: '/227-wheels' + slug,
+                type: "POST",
+                success: function (data) {
+                  // console.log(data)
+                  if(id == 'carSpecs'){
+                    openNavCarSpecs()
+                    // document.querySelector("#car-select-filters").style.display = 'none'
+                  }
+                  $('#' + id).replaceWith(data);
+                  $('#' + id).focus();
+                }
+            });
+            
+            return 'NOTHING!';
+        }
+        
+        function setFilterFromSelector(slug){
+            location.href = '?filters=' + slug;
+        }
+      </script>
+
     {/if}
 
     {* <pre>{$page|print_r}</pre> *}
@@ -152,6 +316,7 @@
   {/if}
 
 </div>
+{* <script type="text/javascript" src="{$urls.base_url}modules/pm_advancedpack/views/js/pack-17.js"></script> *}
 <script>
 
 // var initialPageUrl = "{$initialPage}";

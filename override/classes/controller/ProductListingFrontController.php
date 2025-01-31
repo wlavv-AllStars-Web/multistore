@@ -593,13 +593,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             // pre($product_options);
             
-            //     $brand_api = CategoryControllerCore::apiCall('brand');
+            $brand_api = CategoryControllerCore::apiCall('brand');
 
-            //     foreach($brand_api->data AS $brand){       
-            //         $car_brands[$brand->slug] = $brand->name_en;
-            //     }
+            foreach($brand_api->data AS $brand){       
+                $car_brands[$brand->slug] = $brand->name_en;
+            }
 
-            //     $this->context->smarty->assign('car_brands', $car_brands);
+            // pre($car_brands);
+
+            $this->context->smarty->assign('car_brands', $car_brands);
             
 
 

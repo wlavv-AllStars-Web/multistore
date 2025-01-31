@@ -366,10 +366,11 @@ class CategoryControllerCore extends ProductListingFrontController
                 $data = self::apiCall( Tools::getValue('type') );
                 
                 if( Tools::getValue('type') == 'info'){
-                    echo $data;
+                    $html = $data;
+                    // echo $data;
                 }else{
-                    $html = '<select id="' . Tools::getValue('id') . '" style="font-size: 18px; color: #000; width: 80%;text-align: center;" onChange="' . Tools::getValue('function') . '()">';
-                        $html .= '<option value=""> PLEASE SELECT A OPTION </option>';
+                    $html = '<select class="form-control" id="' . Tools::getValue('id') . '" style="text-align: center;" onChange="' . Tools::getValue('function') . '()">';
+                        $html .= '<option value=""> Please select a option </option>';
                         foreach($data->data AS $item) $html .= '<option value="' . $item->slug . '"> ' . $item->name . ' </option>';
                     $html .= '</select>';
                 }
@@ -407,61 +408,64 @@ class CategoryControllerCore extends ProductListingFrontController
         
             $data = json_decode($json);
             
-            $html = '<div style="padding: 10px;" id="carSpecs">';
-                $html.= '<table style="width: 95%;text-align: center;font-size: 16px;color: #fff;margin: 0 auto;margin-top: 10px;border: 1px solid #666;">';
-                    $html .='<tr style="background: #999;text-align: center;">';
-                        $html .='<td style="text-align: center;"></td>';
-                        $html .='<td style="text-align: center;">Bolt pattern</td>';
-                        $html .='<td style="text-align: center;">Diameter</td>';
-                        $html .='<td style="text-align: center;">Width</td>';
-                        $html .='<td style="text-align: center;">Offset</td>';
-                        $html .='<td style="text-align: center;width: 30px;"></td>';
-                    $html .='</tr>';   
+            $html = '<div style="padding: .5rem 0;display:block;" id="carSpecs">';
+                $html.= '<table style="width: 100%;text-align: center;font-size: 16px;color: #fff;margin: 0 auto;margin-top: 10px;border: 1px solid #666;">';
+                    $html .='<thead>';
+                        $html .='<tr style="background: #333;text-align: center;">';
+                            $html .='<td style="text-align: center;padding: .5rem 0;"></td>';
+                            $html .='<td style="text-align: center;padding: .5rem 0;">Bolt pattern</td>';
+                            $html .='<td style="text-align: center;padding: .5rem 0;">Diameter</td>';
+                            $html .='<td style="text-align: center;padding: .5rem 0;">Width</td>';
+                            $html .='<td style="text-align: center;padding: .5rem 0;">Offset</td>';
+                            $html .='<td style="text-align: center;padding: .5rem 0;width: 30px;"></td>';
+                        $html .='</tr>';   
+                    $html .='</thead>';   
                     
                     foreach($data->data AS $dataSpecs){
                         foreach($dataSpecs->wheels AS $wheels){
                             if($wheels->rear->rim == null){
                                 
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
-                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->front->rim_diameter . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;">';
-                                    $html .='<td style="text-align: center;">ALL</td>';
-                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_diameter . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_width . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:' . $boltPattern . '|17:' . $rimDiameter . '\')"></i></td>';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')">';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">ALL</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')"></i></td>';
                                 $html .='</tr>';                            
                             }else{
                                 
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
-                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->front->rim_diameter . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;">';
-                                    $html .='<td style="text-align: center;">FRONT</td>';
-                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_diameter . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_width . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->front->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:|17:\')"></i></td>';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;" onclick="setFilterFromSelector(\'4:|5:\')">';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">FRONT</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:|5:\')"></i></td>';
                                 $html .='</tr>'; 
                                 
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
-                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $wheels->rear->rim_diameter . '"' ) + 0;
+                                $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;">';
-                                    $html .='<td style="text-align: center;">REAR</td>';
-                                    $html .='<td style="text-align: center;">' . $dataSpecs->technical->bolt_pattern . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_diameter . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_width . '</td>';
-                                    $html .='<td style="text-align: center;">' . $wheels->rear->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;"><i style="color: red; border: 1px solid red; border-radius: 15px;padding: 4px;width: 25px;height: 25px; cursor: pointer;" class="fa fa-chevron-right" onclick="setFilterFromSelector(\'15:|17:\')"></i></td>';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:|5:\')">';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">REAR</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_diameter . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_width . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_offset . '</td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:|5:\')"></i></td>';
                                 $html .='</tr>';                            
                             }
                         }
                     }
                 $html.= '</table>';
+                $html.= '<div style="padding: 1rem 0;margin-right: auto;display: flex;justify-content: flex-start;"><button type="button" class="btn btn-secondary btn-sm" onclick="resetFilters()" style="border-radius:.25rem;">Reset</button></div>';
             $html.= '</div>';
 
             return $html;
