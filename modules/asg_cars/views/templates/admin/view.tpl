@@ -594,18 +594,22 @@
 		function removeLineProduct(elem) {
 			elem.parentElement.remove()
 
-			$.ajax({
-					type: "POST",
-					url: "/admineuromus1/index.php?controller=AdminAsgCars&action=deleteProduct&token={Tools::getValue('token')}",
-					data: { idproductcar: elem.parentElement.querySelector("input[type='hidden']").value },
-					success: function (response) {
-						// console.log("Image order updated:", response);
-					},
-					error: function (xhr, status, error) {
-						alert("Error deleting product from car")
-						// console.error("Error updating image order:", error);
-					}
-			});
+			let id_input_product = elem.parentElement.querySelector("input[type='hidden']").value ;
+
+			if(id_input_product > 0) {
+				$.ajax({
+						type: "POST",
+						url: "/admineuromus1/index.php?controller=AdminAsgCars&action=deleteProduct&token={Tools::getValue('token')}",
+						data: { idproductcar: id_input_product},
+						success: function (response) {
+							// console.log("Image order updated:", response);
+						},
+						error: function (xhr, status, error) {
+							alert("Error deleting product from car")
+							// console.error("Error updating image order:", error);
+						}
+				});
+			}
 		}
 
 		let message = "Write a message to preview";
