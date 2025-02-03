@@ -5360,7 +5360,7 @@ body::-ms-scrollbar-thumb:hover {
   }
 
   #password #main #content .form-password-reset label{
-    text-align: start;
+    text-align: center;
   }
 
   #password #main #content .form-password-reset .form-fields{
