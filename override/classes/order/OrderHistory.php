@@ -766,9 +766,14 @@ class OrderHistoryCore extends ObjectModel
         
         // Full email logo URL
         $email_logo_url = $base_url . 'img/' . $email_logo_filename;
+
+        if($shop_id == 2) {
+            $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
+        }
             
 
         $data = [
+            '{payment_img}' => $payment_img ? $payment_img : '',
             '{shop_logo}' => $email_logo_url,
             '{firstname}' => $customer->firstname,
             '{lastname}' => $customer->lastname,
