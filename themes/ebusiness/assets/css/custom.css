@@ -5354,7 +5354,7 @@ body::-ms-scrollbar-thumb:hover {
 
   #password #main #content {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
     border: 1px solid #f2f2f2;
   }
