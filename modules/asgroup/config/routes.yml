@@ -31,6 +31,27 @@ admin_orders_view:
     orderId: \d+
 
 
+admin_orders_send_process_order_email:
+  path: /process-order-email
+  methods: [ POST ]
+  defaults:
+    _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::sendProcessOrderEmailAction'
+    _legacy_controller: AdminOrders
+    _disable_module_prefix: true
+  options:
+    expose: true
+
+admin_orders_resend_email:
+  path: /{orderId}/history/{orderHistoryId}/statuses/{orderStatusId}/resend-email
+  methods: [ POST ]
+  defaults:
+    _controller: 'PrestaShop\Module\AsGroup\Controller\Admin\OrderController::resendEmailAction'
+    _disable_module_prefix: true
+  requirements:
+    orderId: \d+
+    orderHistoryId: \d+
+    orderStatusId: \d+
+
 admin_orders_add_product:
   path: /sell/orders/{orderId}/products
   methods: [POST]
