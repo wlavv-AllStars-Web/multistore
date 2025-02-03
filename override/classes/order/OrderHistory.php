@@ -753,7 +753,23 @@ class OrderHistoryCore extends ObjectModel
 
             
 
+        $shop_id = $this->context->shop->id;
+        $base_url = _PS_BASE_URL_ . __PS_BASE_URI__; // Get shop base URL
+        
+        // Get the email logo filename from Prestashop configuration
+        $email_logo_filename = Configuration::get('PS_LOGO_MAIL', null, null, $shop_id);
+        
+        // If no custom email logo is set, fallback to the default one
+        if (!$email_logo_filename) {
+            $email_logo_filename = 'logo_mail.jpg'; // Default email logo
+        }
+        
+        // Full email logo URL
+        $email_logo_url = $base_url . 'img/' . $email_logo_filename;
+            
+
         $data = [
+            '{email_logo}' => $email_logo_url,
             '{firstname}' => $customer->firstname,
             '{lastname}' => $customer->lastname,
             '{email}' => $customer->email,
