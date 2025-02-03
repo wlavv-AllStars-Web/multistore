@@ -5340,6 +5340,45 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  /* password forget */
+
+  #password #main {
+    min-height: 49dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 50dvw;
+    margin: auto;
+  }
+
+  #password #main #content {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+
+  #password #main #content .form-password-reset label{
+    text-align: start;
+  }
+
+  #password #main #content .form-password-reset .form-fields{
+    padding-bottom: 1rem;
+  }
+
+  #password .page-footer a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    margin-top: 2rem;
+  }
+
+  #password .page-footer a:hover{
+    color: var(--asm-color);
+  }
+
+  /*  */
   #manufacturer .description_box {
     max-height: unset;
   }
@@ -6243,7 +6282,7 @@ select.form-control:not([size]):not([multiple]){
 
 .flip-card-back > div {
  height: 100%;
- display: flex !important;
+ /* display: flex !important; */
  flex-direction: column;
  padding: 10px !important;
 }
@@ -6935,7 +6974,7 @@ input[type="checkbox"]:checked::after {
   background-color: #333; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  transition: 0.25s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
