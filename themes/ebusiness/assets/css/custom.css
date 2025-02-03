@@ -5905,6 +5905,7 @@ background: #222 !important;
 }
 #form_ets_onepagecheckout .product-line-grid-body .product-price.has-discount .product-discount .discount-percentage{
   margin: 0;
+  z-index: 1;
 }
 
 #checkout #onepagecheckout-information-errros {
