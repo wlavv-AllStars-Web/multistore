@@ -478,7 +478,7 @@ class OrderHistoryCore extends ObjectModel
 
     public function sendEmail($order, $template_vars = false)
     {
-        if($this->context->shop->id == 3){
+        if(Context::getContext()->shop->id == 3){
             $result = Db::getInstance()->getRow('
                 SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
                 FROM `' . _DB_PREFIX_ . 'order_history` oh
