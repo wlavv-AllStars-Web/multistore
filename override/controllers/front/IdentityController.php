@@ -73,24 +73,24 @@ class IdentityControllerCore extends FrontController
 
         if (Tools::isSubmit('submitCreate')) {
 
-            if($shopId == 2) {
-                $old_company = $this->context->customer->company;
-                $old_siret = $this->context->customer->siret;
+            // if($shopId == 2) {
+            //     $old_company = $this->context->customer->company;
+            //     $old_siret = $this->context->customer->siret;
                 
-                if ((Tools::getValue('company') != $old_company && Tools::getValue('siret') == $old_siret)|| (Tools::getValue('siret') != $old_siret && Tools::getValue('company') == $old_company)) {
-                    $this->errors[] = $this->trans('Could not update your information, you cannot edit "Siret" or "Company".', [], 'Shop.Notifications.Error');
-                    $should_redirect = true;
-                } else {
-                    $customer_form->fillWith(Tools::getAllValues());
+            //     if ((Tools::getValue('company') != $old_company && Tools::getValue('siret') == $old_siret)|| (Tools::getValue('siret') != $old_siret && Tools::getValue('company') == $old_company)) {
+            //         $this->errors[] = $this->trans('Could not update your information, you cannot edit "Siret" or "Company".', [], 'Shop.Notifications.Error');
+            //         $should_redirect = true;
+            //     } else {
+            //         $customer_form->fillWith(Tools::getAllValues());
     
-                    if ($customer_form->submit()) {
-                        $this->success[] = $this->trans('Information successfully updated.', [], 'Shop.Notifications.Success');
-                        $should_redirect = true;
-                    } else {
-                        $this->errors[] = $this->trans('Could not update your information, please check your data.', [], 'Shop.Notifications.Error');
-                    }
-                }
-            }else{
+            //         if ($customer_form->submit()) {
+            //             $this->success[] = $this->trans('Information successfully updated.', [], 'Shop.Notifications.Success');
+            //             $should_redirect = true;
+            //         } else {
+            //             $this->errors[] = $this->trans('Could not update your information, please check your data.', [], 'Shop.Notifications.Error');
+            //         }
+            //     }
+            // }else{
                 $customer_form->fillWith(Tools::getAllValues());
     
                 if ($customer_form->submit()) {
@@ -99,7 +99,7 @@ class IdentityControllerCore extends FrontController
                 } else {
                     $this->errors[] = $this->trans('Could not update your information, please check your data.', [], 'Shop.Notifications.Error');
                 }
-            }
+            // }
 
             
 
