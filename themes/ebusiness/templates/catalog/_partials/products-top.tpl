@@ -199,7 +199,7 @@
         {if !$page.body_classes['category-id-228']}
           <div class="dropdown-menu">
           {foreach from=$categories[2] item=parentCategory}
-            {if $parentCategory['infos']['id_category'] != 16}
+            {if $parentCategory['infos']['id_category'] != 16 && $parentCategory['infos']['id_category'] != 227}
               <div 
                   id="category_element_{$parentCategory['infos']['id_category']}" 
                   
