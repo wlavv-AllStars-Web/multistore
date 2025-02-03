@@ -769,10 +769,18 @@ class OrderHistoryCore extends ObjectModel
 
         if($shop_id == 2) {
             $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
+            $shop_faceboook = $base_url . '/img/asm/socials/facebook2.png';
+            $shop_instagram = $base_url . '/img/asm/socials/instagram2.png';
+            $shop_flickr = $base_url . '/img/asm/socials/flickr2.png';
+            $shop_youtube = $base_url . '/img/asm/socials/youtube2.png';
         }
             
 
         $data = [
+            '{shop_faceboook}' => $shop_faceboook ? $shop_faceboook : '',
+            '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
+            '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
+            '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
             '{payment_img}' => $payment_img ? $payment_img : '',
             '{shop_logo}' => $email_logo_url,
             '{firstname}' => $customer->firstname,
