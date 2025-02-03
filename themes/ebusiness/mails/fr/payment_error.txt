@@ -3,8 +3,11 @@
 
 Bonjour {firstname} {lastname}, 
 
-Your order with the reference {order_name} from {shop_name} has
-been canceled. 
+Un problème a été constaté pour le paiement de votre commande sur
+{shop_name} ayant pour référence {order_name}.
+
+NOUS NE POUVONS MALHEUREUSEMENT PAS EXPÉDIER VOTRE COMMANDE TANT QUE
+NOUS N'AVONS PAS REÇU VOTRE PAIEMENT. 		 
 
 Vous pouvez consulter le détail de votre commande via le lien
 "Historique de mes commandes" [{history_url}] dans la

@@ -3,8 +3,8 @@
 
 Bonjour {firstname} {lastname}, 
 
-Your order with the reference {order_name} from {shop_name} has
-been canceled. 
+Votre commande sur {shop_name} ayant pour référence {order_name}
+est en cours de préparation. 
 
 Vous pouvez consulter le détail de votre commande via le lien
 "Historique de mes commandes" [{history_url}] dans la
