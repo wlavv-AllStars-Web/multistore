@@ -49,13 +49,14 @@
 
 .ourcars h4{
   font-size: 2.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0rem;
   color: #111;
 }
 
 .cms-id-28 .car-container {
   min-width: 300px;
   /* position: relative; */
+  padding: .5rem;
 }
 
 .cms-id-28 .car-container > div{
