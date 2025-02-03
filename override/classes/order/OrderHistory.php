@@ -769,7 +769,7 @@ class OrderHistoryCore extends ObjectModel
             
 
         $data = [
-            '{email_logo}' => $email_logo_url,
+            '{shop_logo}' => $email_logo_url,
             '{firstname}' => $customer->firstname,
             '{lastname}' => $customer->lastname,
             '{email}' => $customer->email,
