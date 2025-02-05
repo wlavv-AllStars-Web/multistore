@@ -428,38 +428,38 @@ class CategoryControllerCore extends ProductListingFrontController
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')">';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')">';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">All</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')"></i></td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')"></i></td>';
                                 $html .='</tr>';                            
                             }else{
                                 
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')">';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')">';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">Front</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_width . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->front->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')"></i></td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')"></i></td>';
                                 $html .='</tr>'; 
                                 
                                 $boltPattern = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . $dataSpecs->technical->bolt_pattern . '"' ) + 0;
                                 $rimDiameter = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue( 'SELECT id_feature_value FROM ps_feature_value_lang WHERE value = "' . pSQL($wheels->front->rim_diameter. '"') . '"' ) + 0;
                                 
-                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')">';
+                                $html .='<tr style="background: #fff;color: #000;text-align: center;border-bottom: 1px solid #666;" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')">';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">Rear</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $dataSpecs->technical->bolt_pattern . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_diameter . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_width . '</td>';
                                     $html .='<td style="text-align: center;padding: .5rem 0;">' . $wheels->rear->rim_offset . '</td>';
-                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'4:' . $boltPattern . '|5:' . $rimDiameter . '\')"></i></td>';
+                                    $html .='<td style="text-align: center;padding: .5rem 0;"><i style="color: var(--asm-color);padding: 4px;cursor: pointer;font-size: 1.5rem;" class="fa-solid fa-circle-chevron-right" onclick="setFilterFromSelector(\'6:' . $boltPattern . '|7:' . $rimDiameter . '\')"></i></td>';
                                 $html .='</tr>';                            
                             }
                         }
