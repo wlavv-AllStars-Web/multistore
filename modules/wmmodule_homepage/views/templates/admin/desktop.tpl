@@ -27,7 +27,9 @@
             </div>
         </div>
         <div>
+        {if $currentShop != 1}
             {include file="$modules/wmmodule_homepage/views/templates/admin/banners.tpl"}
+        {/if}
             {include file="$modules/wmmodule_homepage/views/templates/admin/icons_50.tpl"}
             {include file="$modules/wmmodule_homepage/views/templates/admin/icons_33.tpl"}
             {include file="$modules/wmmodule_homepage/views/templates/admin/videos.tpl"}            
