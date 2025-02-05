@@ -303,9 +303,15 @@ function closeNav() {
 }
 
 function openNavCarSpecs() {
-  document.getElementById("sidenavCarSpecs").style.width = "20dvw";
+  document.getElementById("sidenavCarSpecs").style.width = "30dvw";
   document.getElementById("sidenavCarSpecs").style.padding = "1rem .5rem";
   document.getElementById("sidenavCarSpecs").style.opacity = "1";
+
+  if(window.screen.width >= 554){
+    document.getElementById("sidenavCarSpecs").style.minWidth = "300px";
+  }else{
+    document.getElementById("sidenavCarSpecs").style.minWidth = "80dvw";
+  }
 
   document.querySelector(".bg-sidenavCarSpecs").style.display = "block";
 
@@ -316,6 +322,7 @@ function closeNavCarSpecs() {
   document.getElementById("sidenavCarSpecs").style.width = "0";
   document.getElementById("sidenavCarSpecs").style.padding = "1rem 0";
   document.getElementById("sidenavCarSpecs").style.opacity = "0";
+  document.getElementById("sidenavCarSpecs").style.minWidth = "0";
   document.getElementById("main").style.marginLeft = "0";
 
   document.querySelector(".bg-sidenavCarSpecs").style.display = "none";
