@@ -5,9 +5,11 @@
     <form id="desktop_form" action="/admin77500/index.php?controller=AdminWmModuleHomepage&action=updateDesktop&token={Tools::getValue('token')}" enctype="multipart/form-data" method="POST">
     *}
         <div>
+            {if $currentShop != 1}
             <div class="options_desktop_container" style="cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: dodgerblue; " onclick="$('.elements_container').css('display', 'none');$('#banners_container').toggle();$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
                 <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> BANNERS </div>
             </div>
+            {/if}
             <div class="options_desktop_container" style="cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders50_container').toggle();$('#sliders50_container').css('display','flex');$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
                 <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 50% </div>
             </div>
