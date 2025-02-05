@@ -102,6 +102,10 @@
         font-size: 1rem;
       }
 
+      #carSpecs tbody tr{
+        background-color: #d0d0d0;
+      }
+
       #carSpecs tbody tr:hover{
         background-color: #555 !important;
         cursor: pointer;
