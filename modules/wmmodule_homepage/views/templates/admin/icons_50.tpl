@@ -1,4 +1,4 @@
-<div style="{if $currentShop == 1}display: block;{else}display:none;{/if}" id="sliders50_container" class="elements_container">
+<div style="{if $currentShop == 1}display: flex;{else}display:none;{/if}" id="sliders50_container" class="elements_container">
 
     {foreach $array_icons_50 AS $index => $icons_50}
         <div style="border: 1px solid #666;flex:1;padding: 5px;">
