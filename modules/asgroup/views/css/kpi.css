@@ -179,11 +179,13 @@
     transition: 600ms max-height ease;
     visibility: hidden;
     padding: 0;
+    border-radius: .25rem;
 }
 .order-status-web.show_status{
     max-height: 500px;
     visibility: visible;
     padding: 0;
+    border-radius: .25rem;
 }
 
 #view_order_payments_block{
