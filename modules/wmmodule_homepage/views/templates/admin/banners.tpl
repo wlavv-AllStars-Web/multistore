@@ -1,4 +1,4 @@
-<div style="display: block;" id="banners_container" class="elements_container">
+<div style="{if $currentShop == 1}display: none;{else}display:block;{/if}" id="banners_container" class="elements_container">
     <div style="display: inline-block;border: 1px solid #444;">
         {foreach $banners AS $index => $banner}
             <div style="border-bottom: 3px solid dodgerblue;width: 100%;">
