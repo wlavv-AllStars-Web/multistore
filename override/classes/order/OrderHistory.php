@@ -478,7 +478,7 @@ class OrderHistoryCore extends ObjectModel
 
     public function sendEmail($order, $template_vars = false)
     {
-        // if(Context::getContext()->shop->id == 3){
+        if($order->id_shop == 3){
             $result = Db::getInstance()->getRow('
                 SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
                 FROM `' . _DB_PREFIX_ . 'order_history` oh
@@ -487,16 +487,16 @@ class OrderHistoryCore extends ObjectModel
                     LEFT JOIN `' . _DB_PREFIX_ . 'order_state` os ON oh.`id_order_state` = os.`id_order_state`
                     LEFT JOIN `' . _DB_PREFIX_ . 'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = o.`id_lang`)
                 WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`send_email` = 1');
-        // }else{
-        //     $result = Db::getInstance()->getRow('
-        //         SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
-        //         FROM `' . _DB_PREFIX_ . 'order_history` oh
-        //             LEFT JOIN `' . _DB_PREFIX_ . 'orders` o ON oh.`id_order` = o.`id_order`
-        //             LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON o.`id_customer` = c.`id_customer`
-        //             LEFT JOIN `' . _DB_PREFIX_ . 'order_state` os ON oh.`id_order_state` = os.`id_order_state`
-        //             LEFT JOIN `' . _DB_PREFIX_ . 'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = o.`id_lang`)
-        //         WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`id_order_state` IN (2,3,4,6,7,8,9,10)');
-        // }
+        }else{
+            $result = Db::getInstance()->getRow('
+                SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
+                FROM `' . _DB_PREFIX_ . 'order_history` oh
+                    LEFT JOIN `' . _DB_PREFIX_ . 'orders` o ON oh.`id_order` = o.`id_order`
+                    LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON o.`id_customer` = c.`id_customer`
+                    LEFT JOIN `' . _DB_PREFIX_ . 'order_state` os ON oh.`id_order_state` = os.`id_order_state`
+                    LEFT JOIN `' . _DB_PREFIX_ . 'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = o.`id_lang`)
+                WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`id_order_state` IN (3,6,8,10)');
+        }
         
         // echo 'SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
         //         FROM `' . _DB_PREFIX_ . 'order_history` oh
@@ -505,6 +505,7 @@ class OrderHistoryCore extends ObjectModel
         //             LEFT JOIN `' . _DB_PREFIX_ . 'order_state` os ON oh.`id_order_state` = os.`id_order_state`
         //             LEFT JOIN `' . _DB_PREFIX_ . 'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = o.`id_lang`)
         //         WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`id_order_state` IN (2,3,4,6,7,8,9,10)';
+        // echo Context::getContext()->shop->id;
         // echo '<br>';
         // echo $result['template'];
         // echo '<br>';
@@ -769,10 +770,10 @@ class OrderHistoryCore extends ObjectModel
 
         if($shop_id == 2) {
             $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
-            $shop_facebook = $base_url . '/img/asm/socials/facebook2.png';
-            $shop_instagram = $base_url . '/img/asm/socials/instagram2.png';
-            $shop_flickr = $base_url . '/img/asm/socials/flickr2.png';
-            $shop_youtube = $base_url . '/img/asm/socials/youtube2.png';
+            $shop_facebook = $base_url . '/img/asm/socials/facebook.png';
+            $shop_instagram = $base_url . '/img/asm/socials/instagram.png';
+            $shop_flickr = $base_url . '/img/asm/socials/flickr.png';
+            $shop_youtube = $base_url . '/img/asm/socials/youtube.png';
         }
             
 
