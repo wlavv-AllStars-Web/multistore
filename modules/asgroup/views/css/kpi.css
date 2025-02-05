@@ -506,3 +506,11 @@
     width: 34px;         
     height: auto; 
 }
+
+
+#historyTabContent {
+    overflow-y: scroll;
+    max-height: 300px;
+    margin-bottom: 2rem;
+    padding: .5rem 0;
+}
