@@ -676,8 +676,12 @@ body {
     display: none !important;
   }
 
+  #banner-news {
+    max-height: 310px;
+  }
+
   #new-products #main .banner-news-img{
-    height: 310px;
+    /* height: 310px; */
     overflow: hidden;
   }
 
