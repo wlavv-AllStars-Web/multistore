@@ -245,6 +245,9 @@ class IndexController extends IndexControllerCore
         AND cl.id_category != 219
         AND c.active = 1';
 
+        if ($shopId == 1){
+            $sql .= ' AND cl.id_category BETWEEN 220 AND 226';
+        }
 
         $cats = Db::getInstance()->executeS($sql);
         $categoryArray = [];
