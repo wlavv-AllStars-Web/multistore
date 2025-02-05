@@ -3209,7 +3209,7 @@ body {
 }
 
 .products-sort-order .select-list.current {
-  background: #444;
+  background: #666;
   color: #fff !important;
 }
 
@@ -6303,9 +6303,14 @@ select.form-control:not([size]):not([multiple]){
   transform: rotateY(180deg);
 }
 
+
 .products-sort-order .select-list:hover{
   background: #444;
 }
+
+/* .products-sort-order .dropdown-menu::-webkit-scrollbar-track {
+  background: red;
+} */
 
 .products-sort-order .dropdown-menu {
   width: 100%;
