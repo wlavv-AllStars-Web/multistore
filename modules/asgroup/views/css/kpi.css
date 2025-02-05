@@ -178,12 +178,12 @@
     max-height: 0;
     transition: 600ms max-height ease;
     visibility: hidden;
-    padding: 0 .9375rem;
+    padding: 0;
 }
 .order-status-web.show_status{
     max-height: 500px;
     visibility: visible;
-    padding: 0 .9375rem;
+    padding: 0;
 }
 
 #view_order_payments_block{
@@ -512,5 +512,5 @@
     overflow-y: scroll;
     max-height: 300px;
     margin-bottom: 2rem;
-    padding: .5rem 0;
+    padding: .5rem 1rem;
 }
