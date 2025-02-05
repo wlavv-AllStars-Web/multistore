@@ -65,7 +65,6 @@
         padding: 1rem 0rem;
         opacity: 0;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        min-width: 350px;
       }
 
       .bg-sidenavCarSpecs{
@@ -161,7 +160,7 @@
     {/if}
 
     {if $page.body_classes['category-Wheels']}
-      <article id="banner-wheels" class="d-flex justify-content-center col-lg-3">
+      <article id="banner-wheels" class="d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12">
         <div class="banner-wheels-container" style="display: flex;flex-direction:column;justify-content:space-between;">
           {* <div class="banner-wheels-title" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #ddd;">
             <h1 id="wheels-title" style="margin-bottom: 0;font-weight:600;">WHEELS</h1>
