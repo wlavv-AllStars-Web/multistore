@@ -770,10 +770,10 @@ class OrderHistoryCore extends ObjectModel
 
         if($shop_id == 2) {
             $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
-            $shop_facebook = $base_url . '/img/asm/socials/facebook2.png';
-            $shop_instagram = $base_url . '/img/asm/socials/instagram2.png';
-            $shop_flickr = $base_url . '/img/asm/socials/flickr2.png';
-            $shop_youtube = $base_url . '/img/asm/socials/youtube2.png';
+            $shop_facebook = $base_url . '/img/asm/socials/facebook_mail.jpg';
+            $shop_instagram = $base_url . '/img/asm/socials/insta_mail.jpg';
+            $shop_flickr = $base_url . '/img/asm/socials/flickr_mail.jpg';
+            $shop_youtube = $base_url . '/img/asm/socials/youtube_mail.jpg';
         }
             
 
