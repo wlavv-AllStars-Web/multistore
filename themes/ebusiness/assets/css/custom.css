@@ -6275,7 +6275,14 @@ select.form-control:not([size]):not([multiple]){
   transform-style: preserve-3d;
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front{
+  /* position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; */
+}
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -6827,7 +6834,12 @@ input[type="checkbox"]:checked::after {
   }
 
   #banner-wheels .flip-card {
-    min-height: 50dvh;
+    /* min-height: 50dvh; */
+    min-height: 323px;
+  }
+
+  #sidenavCarSpecs .fa-xmark {
+    padding: .25rem;
   }
 }
 
