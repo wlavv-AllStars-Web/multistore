@@ -33,7 +33,7 @@
             <i class="fa-solid fa-xmark fa-xl"></i>
           </button>
         </div>
-        <div id="car-select-filters" style="padding: 20px;background-color: #fff;">
+        <div id="car-select-filters" style="padding: .5rem;background-color: #fff;">
           <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-wrap: nowrap;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
           <div style="padding: 10px; ">
             <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
@@ -103,7 +103,7 @@
       }
 
       #carSpecs tbody tr{
-        background-color: #d0d0d0;
+        background-color: #e7e7e7 !important;
       }
 
       #carSpecs tbody tr:hover{
