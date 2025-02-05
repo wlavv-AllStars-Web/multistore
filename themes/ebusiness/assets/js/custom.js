@@ -303,12 +303,12 @@ function closeNav() {
 }
 
 function openNavCarSpecs() {
-  document.getElementById("sidenavCarSpecs").style.width = "30dvw";
+  document.getElementById("sidenavCarSpecs").style.width = "20dvw";
   document.getElementById("sidenavCarSpecs").style.padding = "1rem .5rem";
   document.getElementById("sidenavCarSpecs").style.opacity = "1";
 
   if(window.screen.width >= 554){
-    document.getElementById("sidenavCarSpecs").style.minWidth = "300px";
+    document.getElementById("sidenavCarSpecs").style.minWidth = "400px";
   }else{
     document.getElementById("sidenavCarSpecs").style.minWidth = "80dvw";
   }
