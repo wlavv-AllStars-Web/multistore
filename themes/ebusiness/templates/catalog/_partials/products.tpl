@@ -34,7 +34,7 @@
           </button>
         </div>
         <div id="car-select-filters" style="padding: .5rem;background-color: #fff;">
-          <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-wrap: nowrap;text-align:center;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
+          <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-align:center;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
           <div style="padding: 10px; ">
             <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
                 <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
@@ -65,6 +65,7 @@
         padding: 1rem 0rem;
         opacity: 0;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        min-width: 350px;
       }
 
       .bg-sidenavCarSpecs{
