@@ -26,43 +26,57 @@
 {* {debug} *}
 <div id="js-product-list">
   {if $page.body_classes['category-Wheels']}
-    <div id="sidenavCarSpecs" class="sidenav">
-      <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
-        <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
-          <i class="fa-solid fa-xmark fa-xl"></i>
-        </button>
+      <div class="bg-sidenavCarSpecs"></div>
+      <div id="sidenavCarSpecs" class="sidenav">
+        <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
+          <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
+            <i class="fa-solid fa-xmark fa-xl"></i>
+          </button>
+        </div>
+        <div id="car-select-filters" style="padding: 20px;background-color: #fff;">
+          <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-wrap: nowrap;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
+          <div style="padding: 10px; ">
+            <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
+                <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
+                {foreach $car_brands AS $key => $car_brand}
+                  <option value="{$key}"> {$car_brand} </option>
+                {/foreach}
+            </select>
+          </div>
+          <div style="padding: 10px;">
+            <select id="carModelWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
+          </div>
+          <div style="padding: 10px;">
+            <select id="carYearWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
+          </div>
+          <div style="padding: 10px;">
+            <select id="carModificationsWheels" class="form-control"  style="text-align: center;height:auto;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
+          </div>
+          {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
+        </div>
+        <div style="padding: .5rem 0;display: none !important;" id="carSpecs"></div>
       </div>
-      <div id="car-select-filters" style="padding: 20px;background-color: #fff;">
-        <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
-        <div style="padding: 10px; ">
-          <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
-              <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
-              {foreach $car_brands AS $key => $car_brand}
-                <option value="{$key}"> {$car_brand} </option>
-              {/foreach}
-          </select>
-        </div>
-        <div style="padding: 10px;">
-          <select id="carModelWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
-        </div>
-        <div style="padding: 10px;">
-          <select id="carYearWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
-        </div>
-        <div style="padding: 10px;">
-          <select id="carModificationsWheels" class="form-control"  style="text-align: center;height:auto;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
-        </div>
-        {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
-      </div>
-      <div style="padding: .5rem 0;display: none !important;" id="carSpecs"></div>
-    </div>
+
 
     <style>
       #sidenavCarSpecs{
-        background-color: #f1f1f1;
-        border-right: 2px solid #111;
+        background-color: #fff;
+        border-right: 4px solid var(--asm-color);
         padding: 1rem 0rem;
         opacity: 0;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+
+      .bg-sidenavCarSpecs{
+        width: 100dvw;
+        height: 100dvh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,.4);
+        z-index: 9;
+        backdrop-filter: blur(2px);
+        display: none;
       }
 
       #car-select-filters{
