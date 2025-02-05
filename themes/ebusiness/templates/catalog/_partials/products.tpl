@@ -74,7 +74,7 @@
         top: 0;
         left: 0;
         background: rgba(0,0,0,.4);
-        z-index: 9;
+        z-index: 9999;
         backdrop-filter: blur(2px);
         display: none;
       }
