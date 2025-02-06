@@ -6507,6 +6507,14 @@ input[type="checkbox"]:checked::after {
 /* product list */
 
 @media screen and (min-width: 544px) and (max-width: 768px){
+
+  .menu-languageselector-mobile #language_selector {
+    width: 100%;
+  }
+
+  .menu-languageselector-mobile #language_selector .language-selector-wrapper{
+    width: 100%;
+  }
     
   /* forbidden page */
 
@@ -6603,6 +6611,12 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+  .menu-languageselector-mobile #language_selector {
+    width: 100%;
+  }
+  .menu-languageselector-mobile #language_selector .language-selector-wrapper{
+    width: 100%;
+  }
   /* product list */
 
 
