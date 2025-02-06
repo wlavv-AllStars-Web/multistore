@@ -1,6 +1,6 @@
 <div id="language_selector" class="language-selector-wrapper">
   <!-- Desktop Layout -->
-  <div id="_desktop_language_selector" style="display: none;">
+  <div id="_desktop_language_selector" class="d-desktop">
     <div class="language-selector-wrapper">
       <div class="language-selector dropdown js-dropdown">
         <div data-toggle="dropdown" class="btn-unstyle lang lgh" style="display: flex;flex-direction:row;align-items:center;gap:5px;" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Language dropdown' d='Shop.Theme.Global'}">
@@ -21,7 +21,7 @@
   </div>
 
   <!-- Mobile Layout -->
-  <div id="_mobile_language_selector" style="display: none;">
+  <div id="_mobile_language_selector" class="d-mobile">
     <div class="language-selector-wrapper">
       <ul aria-labelledby="language-selector-label">
         {foreach from=$languages item=language}
