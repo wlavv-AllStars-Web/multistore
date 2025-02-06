@@ -266,7 +266,7 @@
               padding: 0px;
               margin: 20px 45px;">
               <button type="button" class="btn-close text-reset"  onclick="closeNav()" aria-label="Close">
-              <i class="material-icons">close</i></button>
+              <i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <li class="">
