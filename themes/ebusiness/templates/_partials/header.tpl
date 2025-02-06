@@ -315,7 +315,7 @@
                   </div>
               {/if}
             </li>
-{debug}
+
             <li class="dropdown brands-drop">
               <div class="btn"  type="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</div>
               <ul class="dropdown-menu-brands dropdown-menu">
