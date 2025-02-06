@@ -1714,6 +1714,7 @@ body {
     -moz-appearance: none;
     appearance: none !important;
     padding: 0 !important;
+    color: #333 !important;
   }
 
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
