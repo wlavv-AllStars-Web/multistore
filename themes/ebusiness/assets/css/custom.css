@@ -1720,6 +1720,12 @@ body {
     color: #333 !important;
   }
 
+  /* header */
+
+  #header a:hover {
+    color: #111;
+  }
+
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
     display: flex;
     justify-content: center;
