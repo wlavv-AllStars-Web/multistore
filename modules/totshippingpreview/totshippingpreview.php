@@ -943,18 +943,40 @@ class TotShippingPreview extends Module
             $min_days_nb = $mindays + $tot_product_delay;
             $max_days_nb = $maxdays + $tot_product_delay;
 
-            if ($this->context->language->id == Configuration::get('PS_LANG_DEFAULT')) {
+
+            if (isset($shipping_preview->delivery_country) && is_array($shipping_preview->delivery_country)) {
                 $delivery_country = $shipping_preview->delivery_country[$this->context->language->id] ?? null;
-                $origin_country = $shipping_preview->origin_country[$this->context->language->id] ?? null;
-
             } else {
-                $delivery_country = ($shipping_preview->delivery_country[$this->context->language->id] != '' ? $shipping_preview->delivery_country[$this->context->language->id] : $shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')]);
-                
-                $origin_country = ($shipping_preview->origin_country[$this->context->language->id] != '' ? $shipping_preview->origin_country[$this->context->language->id] : $shipping_preview->origin_country[Configuration::get('PS_LANG_DEFAULT')]);
+                $delivery_country = null;
             }
+            
+            if (isset($shipping_preview->origin_country) && is_array($shipping_preview->origin_country)) {
+                $origin_country = $shipping_preview->origin_country[$this->context->language->id] ?? null;
+            } else {
+                $origin_country = null;
+            }
+            
+            if ($this->context->language->id != Configuration::get('PS_LANG_DEFAULT')) {
+                if (empty($delivery_country) && isset($shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')])) {
+                    $delivery_country = $shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')];
+                }
+            
+                if (empty($origin_country) && isset($shipping_preview->origin_country[Configuration::get('PS_LANG_DEFAULT')])) {
+                    $origin_country = $shipping_preview->origin_country[Configuration::get('PS_LANG_DEFAULT')];
+                }
+            }
+            
 
+            // if ($this->context->language->id == Configuration::get('PS_LANG_DEFAULT')) {
+            //     $delivery_country = $shipping_preview->delivery_country[$this->context->language->id] ?? null;
+            //     $origin_country = $shipping_preview->origin_country[$this->context->language->id] ?? null;
 
-            // $isMobile = isset($params['mobile']) ? (bool)$params['mobile'] : 0;
+            // } else {
+            //     $delivery_country = ($shipping_preview->delivery_country[$this->context->language->id] != '' ? $shipping_preview->delivery_country[$this->context->language->id] : $shipping_preview->delivery_country[Configuration::get('PS_LANG_DEFAULT')]);
+                
+            //     $origin_country = ($shipping_preview->origin_country[$this->context->language->id] != '' ? $shipping_preview->origin_country[$this->context->language->id] : $shipping_preview->origin_country[Configuration::get('PS_LANG_DEFAULT')]);
+            // }
+
 
 
             $this->smarty->assign(array(
