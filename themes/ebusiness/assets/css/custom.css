@@ -475,6 +475,12 @@ body {
     display: flex !important;
   }
 
+  /* header */
+
+  .bg-mysidenav {
+    display: none;
+  }
+
   /* #_desktop_language_selector{
     display: block !important;
   }
@@ -1228,6 +1234,10 @@ body {
   #banner-wheels .banner-wheels-container{
     outline: 1px solid #d8d8d8 !important;
   }
+
+  .bg-mysidenav {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 564px) and (max-width: 768px) {
@@ -1237,6 +1247,37 @@ body {
   .d-desktop{
     display: none !important;
   }
+
+  /* header */
+  .bg-mysidenav {
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+  }
+
+  #mySidenav .offcanvas-header .btn-close {
+    -webkit-appearance: none !important;
+    -moz-appearance: none;
+    appearance: none !important;
+    padding: 0 !important;
+  }
+
+  #mySidenav .offcanvas-header .btn-close i {
+    color: #333 !important;
+  }
+
+  #header a:hover {
+    color: #111;
+  }
+
+
+  /*  */
+
 
   .count-products {
     display: flex;
@@ -1708,6 +1749,17 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  .bg-mysidenav {
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+  }
 
   #mySidenav .offcanvas-header .btn-close {
     -webkit-appearance: none !important;
