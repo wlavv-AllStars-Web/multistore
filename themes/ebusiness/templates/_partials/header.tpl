@@ -225,7 +225,7 @@
           <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
           <ul class="dropdown-menu-brands">
           {foreach from=$manufacturers item=$manufacturer }
-            <li class="col-lg-3">
+            <li class="col-lg-3 col-md-4">
               <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
                 {$manufacturer.name}
               </a>
@@ -315,7 +315,7 @@
                   </div>
               {/if}
             </li>
-
+{debug}
             <li class="dropdown brands-drop">
               <div class="btn"  type="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</div>
               <ul class="dropdown-menu-brands dropdown-menu">
@@ -323,7 +323,7 @@
                 <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
                   <a class="dropdown-item" href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
                     {* {$manufacturer.name} *}
-                    <img alt="{$manufacturer.name}" style="width: 100%;max-width:300px;height:auto;" width="300" height="150" src="/img/asd/150px/{$manufacturer.id_manufacturer}.webp" loading="lazy">
+                    <img alt="{$manufacturer.name}" style="width: 100%;max-width:300px;height:auto;" width="300" height="150" src="{$link->getManufacturerImageLink($manufacturer.id_manufacturer)}" loading="lazy">
                   </a>
                 </li>
               {/foreach}
