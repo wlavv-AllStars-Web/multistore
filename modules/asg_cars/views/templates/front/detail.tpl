@@ -276,6 +276,10 @@
 
 
     @media screen and (max-width: 768px) {
+        #module-asg_cars-FrontAsgCars .breadcrumb_wrapper{
+            display: block;
+        }
+
         .page-car{
             padding: 0;
         }
