@@ -1818,7 +1818,7 @@ body {
   /* header */
 
   #header a:hover {
-    color: #111;
+    color: #111 !important;
   }
 
 
