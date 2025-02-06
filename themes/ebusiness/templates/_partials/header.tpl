@@ -257,7 +257,7 @@
 
         </div>
         
-
+        <div class="bg-mysidenav"></div>
         <div id="mySidenav" class="sidenav">
           <ul class="navbar-nav mr-auto">
 
