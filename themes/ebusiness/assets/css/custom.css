@@ -1714,6 +1714,9 @@ body {
     -moz-appearance: none;
     appearance: none !important;
     padding: 0 !important;
+  }
+
+  #mySidenav .offcanvas-header .btn-close i {
     color: #333 !important;
   }
 
