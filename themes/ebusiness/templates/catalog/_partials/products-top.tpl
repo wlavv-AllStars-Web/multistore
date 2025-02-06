@@ -57,6 +57,8 @@
                onclick="removeFilterFeatures('{$feature.combined_combinations}')">cancel</i>
             {/if}
 
+            <div class="filter-container-data">
+
             <span class="featuresName" style="font-weight: 500;color: #333;font-size: 1rem;">{$feature['name']}</span>
 
             {assign var="countChecked" value=0}
@@ -74,6 +76,8 @@
             {elseif $countChecked > 1}
               <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem;max-width: 70px;">{$countChecked} {l s="filters" d="Shop.Theme.ProductList"}</span>
             {/if}
+
+            </div>
 
             {* {if !$is_selected} *}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>
@@ -316,6 +320,7 @@
   {/if}
   {* <pre>{$requestNb|print_r}</pre> *}
   {* bypage *}
+  {if $page['page_name'] != 'search'}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
       {* <div class="col-sm-3 col-xs-4 hidden-md-up filter-button">
@@ -340,6 +345,7 @@
       </div>
     </div>
   </div>
+  {/if}
 
 
 
