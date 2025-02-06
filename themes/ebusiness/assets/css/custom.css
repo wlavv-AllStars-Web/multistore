@@ -1248,6 +1248,27 @@ body {
     display: none !important;
   }
 
+  #product .breadcrumb_wrapper {
+    display: block;
+  }
+
+  #product .breadcrumb_wrapper .breadcrumb ol{
+    display: flex;
+  }
+  #product .breadcrumb_wrapper .breadcrumb ol li{
+    display: flex;
+    align-items: center;
+  }
+
+  #product .breadcrumb_wrapper span[itemprop="name"]{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+
   /* header */
   .bg-mysidenav {
     display: none;
