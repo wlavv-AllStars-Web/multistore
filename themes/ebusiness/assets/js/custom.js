@@ -294,14 +294,14 @@ function toggleOrderStateHistory() {
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "80dvw";
-  document.querySelector("bg-mysidenav").style.display = "block";
+  document.querySelector(".bg-mysidenav").style.display = "block";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
-  document.querySelector("bg-mysidenav").style.display = "none";
+  document.querySelector(".bg-mysidenav").style.display = "none";
 }
 
 function openNavCarSpecs() {
