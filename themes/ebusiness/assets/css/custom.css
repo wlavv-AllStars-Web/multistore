@@ -1250,6 +1250,7 @@ body {
 
   /* header */
   .bg-mysidenav {
+    display: none;
     width: 100dvw;
     height: 100dvh;
     background: rgba(0,0,0,.4);
@@ -1751,6 +1752,7 @@ body {
 @media (max-width: 563px) {
 
   .bg-mysidenav {
+    display: none;
     width: 100dvw;
     height: 100dvh;
     background: rgba(0,0,0,.4);
