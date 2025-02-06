@@ -1711,6 +1711,17 @@ body {
 
   #mySidenav .offcanvas-header .btn-close {
     -webkit-appearance: none !important;
+    appearance: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    font-size: inherit !important;
   }
 
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
