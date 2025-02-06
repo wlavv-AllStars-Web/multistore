@@ -2180,6 +2180,7 @@ body {
 
   #index #main {
     background: #5c5c5c;
+    padding: .5rem;
   }
 
   #main {
@@ -2192,6 +2193,8 @@ body {
 
   #main #products #js-product-list{
     padding: 0.5rem 0.5rem 0 0.5rem;
+    background: #fff;
+    margin-top: 0;
   }
 
   #manufacturer #main .description_box .description {
