@@ -1714,6 +1714,11 @@ body {
     -moz-appearance: none;
     appearance: none !important;
   }
+  #mySidenav .offcanvas-header .btn-close i{
+    -webkit-appearance: none !important;
+    -moz-appearance: none;
+    appearance: none !important;
+  }
 
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
     display: flex;
