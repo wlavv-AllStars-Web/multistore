@@ -1708,6 +1708,23 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  #mySidenav .offcanvas-header .btn-close {
+    -webkit-appearance: none !important;
+  }
+
+  #js-product-list-top .products-sort-order .select-title .filter-container-data{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  #js-product-list-top .products-sort-order .select-title .filter-container-data .featuresName{
+    color: #fff !important;
+  }
+  #js-product-list-top .products-sort-order .dropdown-menu{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 0 !important;
+  }
   /* addresses update */
 
   #address .form-control-label {
@@ -2225,6 +2242,11 @@ body {
   }
   #product .product-miniature {
     width: 100%;
+  }
+
+  #banner-news {
+    outline: 2px solid #d0d0d0;
+    border-radius: .25rem;
   }
 
   .product-miniature {
