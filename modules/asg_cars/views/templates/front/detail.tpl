@@ -106,7 +106,7 @@
     </div>
 
     <script>
-    const content = document.querySelector("#module-asg_cars-FrontAsgCars")
+    const content = document.querySelector("#module-asg_cars-FrontAsgCars .page-car")
 
     const containerModal = document.createElement("div")
     containerModal.classList.add("modal-imgs-car")
@@ -123,7 +123,7 @@
     swiperContainer.appendChild(swiperWrapper)
 
 
-    const imgs = document.querySelectorAll("#module-asg_cars-FrontAsgCars img")
+    const imgs = document.querySelectorAll("#module-asg_cars-FrontAsgCars .page-car img")
 
     imgs.forEach((img, index) => {
         const slide = document.createElement("div")
@@ -272,6 +272,16 @@
     .page-car .cars_ul a:hover {
         color: var(--asm-color) !important;
         font-weight: 600;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        .page-car{
+            padding: 0;
+        }
+        .mySwiperCar {
+            max-width: 100dvw;
+        }
     }
 
     </style>
