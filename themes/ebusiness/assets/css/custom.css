@@ -1713,14 +1713,8 @@ body {
     -webkit-appearance: none !important;
     -moz-appearance: none;
     appearance: none !important;
+    padding: 0 !important;
   }
-
-  #mySidenav .offcanvas-header .material-icons {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-  }
-
 
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
     display: flex;
