@@ -714,6 +714,10 @@ body {
   }
 
 
+  .products-sort-order .dropdown-menu{
+    box-shadow: rgba(0, 0, 0, 0.35) 8px 5px 15px;
+  }
+
 
   .product-price-and-shipping{
     padding: 0 1rem;
@@ -5699,7 +5703,7 @@ body::-ms-scrollbar-thumb:hover {
   margin-bottom: 30px;
 }
 #banner-news div {
-  background: #888;
+  background: #d0d0d0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5710,7 +5714,7 @@ body::-ms-scrollbar-thumb:hover {
   margin-bottom: 30px;
 }
 #banner-wheels div {
-  background: #888;
+  background: #d0d0d0;
   display: flex;
   align-items: center;
   justify-content: center;
