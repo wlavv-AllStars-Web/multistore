@@ -853,7 +853,10 @@ body {
     display: none;
   }
 
-  .product-accessories .product-miniature {
+  .product-accessories .product-miniature{
+    border: 0;
+  }
+  .product-accessories .product-miniature .thumbnail-container{
     border: 1px solid #d8d8d8;
   }
 }
