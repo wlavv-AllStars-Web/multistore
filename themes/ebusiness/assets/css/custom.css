@@ -5723,6 +5723,10 @@ body::-ms-scrollbar-thumb:hover {
   cursor: pointer;
 }
 
+#wheels-image {
+  padding: 0 !important;
+}
+
 .wheels-search-container{
   flex-direction: column;
   align-items: start;
