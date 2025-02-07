@@ -6933,6 +6933,7 @@ input[type="checkbox"]:checked::after {
   .section-content-product .nav-link{
     color: #fff;
     background: #333 !important;
+    border-bottom: 2px solid #555;
   }
 
   .section-content-product .container-drop{
