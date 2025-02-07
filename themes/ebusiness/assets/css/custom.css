@@ -7308,7 +7308,9 @@ input[type="checkbox"]:checked::after {
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
+.rd-btn {
+  border-radius: .25rem;
+}
 /* Position and style the close button (top right corner) */
 .sidenav .closebtn {
   position: absolute;
