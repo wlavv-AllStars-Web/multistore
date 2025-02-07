@@ -852,6 +852,10 @@ body {
   .ukoocompat_search_block_filter-mobile {
     display: none;
   }
+
+  .product-accessories .product-miniature {
+    border: 1px solid #d8d8d8;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -6751,6 +6755,9 @@ input[type="checkbox"]:checked::after {
     }
     /*  */
 
+    .product-accessories .product-miniature {
+      border: 1px solid #d8d8d8;
+    }
 }
 
 @media screen and (max-width: 544px) {
@@ -7103,6 +7110,10 @@ input[type="checkbox"]:checked::after {
   #sidenavCarSpecs .fa-xmark {
     padding: .25rem;
   }
+
+  .product-accessories .product-miniature {
+    border: 1px solid #d8d8d8;
+  }
 }
 
 
@@ -7112,7 +7123,6 @@ input[type="checkbox"]:checked::after {
   max-width: unset;
   margin-top: 1rem;
   padding: 0 !important;
-  border: 1px solid #d8d8d8;
 }
 
 /* .product-accessories .product-miniature .thumbnail-container{
