@@ -2986,6 +2986,10 @@ body {
   }
 
 
+  .d-mobile.section-content-product {
+    gap: 0 !important;
+  }
+
 }
 
 .swiper-pagination-fraction {
@@ -6928,7 +6932,7 @@ input[type="checkbox"]:checked::after {
   } */
   .section-content-product .nav-link{
     color: #fff;
-    background: #555 !important;
+    background: #333 !important;
   }
 
   .section-content-product .container-drop{
