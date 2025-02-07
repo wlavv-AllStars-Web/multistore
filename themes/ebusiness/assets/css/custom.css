@@ -6927,7 +6927,7 @@ input[type="checkbox"]:checked::after {
   }
 
   .section-content-product .container-drop{
-    background: #f6f6f6;
+    background: #fff;
   }
 
   #askquestionMobile .form-control {
