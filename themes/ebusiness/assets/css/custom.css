@@ -6790,6 +6790,7 @@ input[type="checkbox"]:checked::after {
 
   .select2-container.select2-container--default.select2-container--open {
     width: 100% !important;
+    max-width: 83dvw;
   }
   
   .totselectzone__table th{
