@@ -7117,6 +7117,16 @@ input[type="checkbox"]:checked::after {
   .product-accessories .product-miniature {
     border: 1px solid #d8d8d8;
   }
+
+  .product-accessories .product-miniature .product-title a{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 32px;
+  }
 }
 
 
@@ -7134,11 +7144,11 @@ input[type="checkbox"]:checked::after {
 } */
 
 .product-accessories .swiper-button-next, .product-accessories .swiper-button-prev {
-  color: var(--asm-color) !important;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #333;
+  color: #333 !important;
+  width: 35px;
+  height: 35px;
+  border-radius: .25rem;
+  background: rgba(1, 1, 1, .1);
   font-size: 13px !important;
 }
 
