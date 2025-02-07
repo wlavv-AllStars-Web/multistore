@@ -6902,6 +6902,10 @@ input[type="checkbox"]:checked::after {
     text-align: center;
   }
 
+  .totselectzone__table-container tbody .has-image img{
+    height: auto !important;
+  }
+
   /* instructions */
 
   #product-installation > div:nth-child(2) > div {
