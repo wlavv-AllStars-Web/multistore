@@ -521,7 +521,7 @@ body {
   }
 
   #productList article .banner-news-img{
-    outline: 1px solid #d8d8d8;
+    /* outline: 1px solid #d8d8d8; */
     border-radius: .25rem;
     outline-offset: -1px;
   }
@@ -5699,7 +5699,7 @@ body::-ms-scrollbar-thumb:hover {
   margin-bottom: 30px;
 }
 #banner-news div {
-  background: #efefef;
+  background: #777;
   display: flex;
   align-items: center;
   justify-content: center;
