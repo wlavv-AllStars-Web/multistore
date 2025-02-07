@@ -5699,7 +5699,7 @@ body::-ms-scrollbar-thumb:hover {
   margin-bottom: 30px;
 }
 #banner-news div {
-  background: #777;
+  background: #888;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5710,7 +5710,7 @@ body::-ms-scrollbar-thumb:hover {
   margin-bottom: 30px;
 }
 #banner-wheels div {
-  background: #efefef;
+  background: #888;
   display: flex;
   align-items: center;
   justify-content: center;
