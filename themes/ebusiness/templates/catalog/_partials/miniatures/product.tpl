@@ -22,6 +22,9 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
+ {* {if $product.pack}
+  <pre>{$product|print_r}</pre>
+{/if} *}
 {* <pre>{print_r($product['category'],1)}</pre> *}
 {* <pre>{$ur|print_r}</pre> *}
 {* <pre>{$product|print_r}</pre> *}
@@ -30,7 +33,7 @@
     <div class="image_item_product" style="border: 0;">
     {block name='product_thumbnail'}
       {if $product.cover_image_id}
-        <a href="{$product.link}" class="thumbnail product-thumbnail">
+      <a href="{if $product.pack}{$product.pack_link}{else}{$product.link}{/if}" class="thumbnail product-thumbnail">
           <picture>
             {* {if !empty($product.cover.bySize.home_default.sources.avif)}<source srcset="{$product.cover.bySize.home_default.sources.avif}" type="image/avif">{/if}
             {if !empty($product.cover.bySize.home_default.sources.webp)}<source srcset="{$product.cover.bySize.home_default.sources.webp}" type="image/webp">{/if} *}
@@ -144,27 +147,32 @@
           <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem;margin:0;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
           <div class="add_to_cart_button d-desktop" style="margin-right: 1rem;">
 
-            <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
-                    <input type="hidden" name="token" value="{$static_token}">
-                    <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
-                    <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
+          
+          <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
+          {* <form action="{if $product.pack}{pm_advancedpack::getPackAddCartURL($product.id)}{else}{$urls.pages.cart}{/if}" method="post" id="{if $product.pack}add-to-cart-form{else}add-to-cart-or-refresh{/if}"> *}
+            <input type="hidden" name="token" value="{$static_token}">
+            <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
+            <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
+    
+            <div class="add">
+              <button
+                class="btn btn-primary add-to-cart"
+                {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
+                data-button-action="add-to-cart"
+                data-dismiss="modal"
+                type="submit"
+                style="margin-top: 0;"
+                {* {if !$product.add_to_cart_url}
+                  disabled
+                {/if} *}
+              >
+                <i class="material-icons shopping-cart">&#xE547;</i>
 
-                    <div class="add">
-                    <button
-                      class="btn btn-primary add-to-cart"
-                      data-button-action="add-to-cart"
-                      data-dismiss="modal"
-                      type="submit"
-                      style="margin-top: 0;"
-                      {* {if !$product.add_to_cart_url}
-                        disabled
-                      {/if} *}
-                    >
-                      <i class="material-icons shopping-cart">&#xE547;</i>
-      
-                    </button>
-                  </div>
-            </form>
+              </button>
+            </div>
+          </form>
+
+          
 
           </div>
          </div>
@@ -247,23 +255,56 @@
 </article>
 
 <script>
-// document.addEventListener('DOMContentLoaded', function() {
-//   var addButton = document.querySelectorAll('.add_to_cart_button .btn.btn-primary');
-  
 
-//   addButton.forEach((item) => {
-//     var icon = item.querySelector('.add_to_cart i');
+  // if(document.querySelector('button[data-button-action="add-pack-to-cart"]')){
+  //   document.querySelector('[data-button-action="add-pack-to-cart"]').addEventListener('click', function (event) {
+  //     event.preventDefault(); // Prevent the default form submission
 
-//     item.addEventListener('mouseover', function() {
-//       icon.style.color = 'white';
-//     });
+  //     const button = event.currentTarget;
+  //     const form = button.closest('form'); // Find the nearest form element
+  //     if (!form) {
+  //       console.error('No form found for the button.');
+  //       return;
+  //     }
 
-//     item.addEventListener('mouseout', function() {
-//       icon.style.color = ''; // Revert to the default color or remove this line if not needed
-//     });
-//   })
+  //     const formData = new FormData(form);
 
-  
-// });
+  //     fetch(form.action, {
+  //       method: form.method,
+  //       body: formData,
+  //     })
+  //       .then((response) => response.json()) // Adjust based on your server's response type
+  //       .then((data) => {
+  //         console.log('Response:', data);
+
+  //         prestashop.emit('updateCart', {
+  //           reason: {
+  //             idProduct: data.idProduct,
+  //             idProductAttribute: data.id_product_attribute,
+  //             linkAction: 'add-to-cart',
+  //             cart: data.cart
+  //           },
+  //           resp: data.cart
+  //         });
+  //         // Use the response data as needed
+  //         const modal = document.querySelector("#blockcart-modal");
+
+  //         if (modal) {
+  //         // Set the product image
+  //           const productImage = modal.querySelector(".modal-body .product-image");
+  //           if (productImage && data.cart.products.length > 0) {
+  //             const product = data.cart.products[0]; // Use the first product in the cart
+  //             productImage.setAttribute("src", product.cover.bySize.cart_default.url);
+  //           }
+  //         }
+
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error:', error);
+  //         alert('Failed to add product to cart.');
+  //       });
+  //   });
+  // }
+
 
 </script>

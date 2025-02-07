@@ -5678,6 +5678,10 @@ class ProductCore extends ObjectModel
         // Datas
         $row['category'] = Category::getLinkRewrite((int) $row['id_category_default'], (int) $id_lang);
         $row['category_name'] = Db::getInstance()->getValue('SELECT name FROM ' . _DB_PREFIX_ . 'category_lang WHERE id_shop = ' . (int) $context->shop->id . ' AND id_lang = ' . (int) $id_lang . ' AND id_category = ' . (int) $row['id_category_default']);
+
+        
+        
+        // pre(self::getProductAttributesIds((int) $row['id_product']));
         $row['link'] = $context->link->getProductLink((int) $row['id_product'], $row['link_rewrite'], $row['category'], $row['ean13']);
 
         // Get manufacturer name if missing
@@ -5860,6 +5864,33 @@ class ProductCore extends ObjectModel
         $row['pack'] = (!isset($row['cache_is_pack']) ? Pack::isPack($row['id_product']) : (int) $row['cache_is_pack']);
         $row['packItems'] = $row['pack'] ? Pack::getItemTable($row['id_product'], $id_lang) : [];
         $row['nopackprice'] = $row['pack'] ? Pack::noPackPrice($row['id_product']) : 0;
+
+        // pre(Context::getContext()->shop->id);
+        if(isset($row['cache_is_pack']) && Context::getContext()->shop->id == 2){
+            $sql = 'SELECT pma.id_product_pack,pma.default_id_product_attribute, pac.id_attribute 
+            FROM ps_pm_advancedpack_products AS pma 
+            LEFT JOIN ps_product_attribute_combination AS pac 
+            ON pma.default_id_product_attribute = pac.id_product_attribute  
+            WHERE id_pack =' . (int) $row['id_product'] .' AND pma.default_id_product_attribute != 0';
+
+            $result = Db::getInstance()->executeS($sql);
+            // $urlAnchor = AdvancedPack::getPackAnchorByAttributes(18130);
+
+            // pre($result);
+
+            $attributes = [];
+
+            foreach ($result as $res) {
+                if ((int) $res['id_attribute'] > 0) {
+                    $attributes[] = $res['id_product_pack'] . '_' . $res['id_attribute'];
+                       
+                }
+            }
+
+            $anchor = !empty($attributes) ? '#' . implode('_', $attributes) . '-color-black' : '';
+            // pre($anchor);
+            $row['pack_link'] = $context->link->getProductLink((int) $row['id_product'], $row['link_rewrite'], $row['category'], $row['ean13']) . $anchor;
+        }
 
         if ($row['pack'] && !Pack::isInStock($row['id_product'], $quantity, $context->cart)) {
             $row['quantity'] = 0;
