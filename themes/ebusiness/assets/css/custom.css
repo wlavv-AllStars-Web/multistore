@@ -2940,7 +2940,7 @@ body {
   #product .container-table-compats .table .thead-dark th{
     background: #333;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: .85rem;
   }
 
   #product .container-table-compats .table td{
