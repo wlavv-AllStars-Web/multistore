@@ -5866,6 +5866,7 @@ class ProductCore extends ObjectModel
         $row['nopackprice'] = $row['pack'] ? Pack::noPackPrice($row['id_product']) : 0;
 
         // pre(Context::getContext()->shop->id);
+        // asgrou add link to pack product asm
         if(isset($row['cache_is_pack']) && Context::getContext()->shop->id == 2){
             $sql = 'SELECT pma.id_product_pack,pma.default_id_product_attribute, pac.id_attribute 
             FROM ps_pm_advancedpack_products AS pma 
