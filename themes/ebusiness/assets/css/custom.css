@@ -872,6 +872,10 @@ body {
   .d-desktop-language{
     display: flex;
   }
+
+  .variantionsProductList{
+    min-height: 49px !important;
+  }
 }
 @media screen and (max-width: 992px) {
   .category-wheels-top:not(.show-filters){
@@ -919,9 +923,7 @@ body {
     width: 33% !important;
     flex: 1;
   } */
-  .variantionsProductList{
-    min-height: 49px !important;
-  }
+
 
   /* homepage */
 
