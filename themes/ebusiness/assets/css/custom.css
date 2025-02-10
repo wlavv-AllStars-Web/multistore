@@ -2317,6 +2317,12 @@ body {
     padding: 1rem;
   }
 
+  .category-wheels-top.show-filters{
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
   .btn-toggleFilters {
     display: flex;
     justify-content: center;
@@ -3735,21 +3741,21 @@ ul {
   gap: 1rem;
 }
 
-#js-product-list-top.category-wheels-top .wheels-accessories-filter {
+.category-wheels-top .wheels-accessories-filter {
   /* margin-top: 1rem; */
   background: #333;
 }
 
-#js-product-list-top.category-wheels-top .wheels-accessories-filter a{
+.category-wheels-top .wheels-accessories-filter a{
   font-weight: 600;
   transition: all ease-in-out 150ms;
 }
 
-#js-product-list-top.category-wheels-top .wheels-accessories-filter:hover {
+.category-wheels-top .wheels-accessories-filter:hover {
   cursor: pointer;
   background: var(--asm-color);
 }
-#js-product-list-top.category-wheels-top .wheels-accessories-filter a:hover{
+.category-wheels-top .wheels-accessories-filter a:hover{
   color: #fff !important;
 }
 
