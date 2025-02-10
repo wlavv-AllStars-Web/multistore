@@ -6792,6 +6792,10 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+  /* cms shipping */
+  #cms_shipping{
+    padding: 0;
+  }
   /* cms partners */
   #cms-partners .card_partners {
     border-radius: .25rem;
