@@ -6792,6 +6792,10 @@ input[type="checkbox"]:checked::after {
     border-radius: 0;
   }
 
+  #authentication .login-form footer .form-control-submit{
+    margin-left: auto;
+  }
+
   .login-form, .register_form{
     box-shadow: none !important;
   }
