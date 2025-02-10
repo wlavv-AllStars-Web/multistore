@@ -5147,7 +5147,7 @@ ul {
   padding: 0 !important;
 }
 
-.variantionsProductList{
+#productList .variantionsProductList{
   min-height: 33px !important;
 }
 
@@ -5733,6 +5733,27 @@ body::-ms-scrollbar-thumb:hover {
 .btn-default:hover {
   background: #d0d0d7 !important;
   color: #121212 !important;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  #banner-news .banner-news-img img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  #js-product-list-top .products-selection {
+    width: 100%;
+  }
+  #js-product-list-top .products-selection .box-sortby{
+    height: 100%;
+  }
+
+  .subtitles-details > div {
+    padding: .5rem;
+  }
+  .subtitles-details .subtitles-details-right > div {
+    text-align: start;
+  }
 }
 
 @media screen and (min-width: 992px) {
