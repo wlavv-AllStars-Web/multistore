@@ -6787,6 +6787,15 @@ input[type="checkbox"]:checked::after {
     justify-content: center;
   }
 
+  #authentication .login-form{
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+  }
+
+  .login-form, .register_form{
+    box-shadow: none !important;
+  }
+
   /*  */
   .menu-languageselector-mobile #language_selector {
     width: 100%;
