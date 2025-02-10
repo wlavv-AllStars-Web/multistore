@@ -6792,6 +6792,10 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+
+  .btn-remove-filter-wheel{
+    color: var(--asm-color) !important;
+  }
   /* page create account  */
 
   #registration #customer-form .form-control-label{
