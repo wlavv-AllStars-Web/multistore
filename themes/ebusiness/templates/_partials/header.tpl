@@ -318,7 +318,7 @@
 
             {* <li class="dropdown brands-drop"> *}
             <li class="">
-              <a class=""  href="{$link->getPageLink('manufacturers', true)}">{l s='Brands' d='Shop.Theme.Homepage'}</a> 
+              <a class=""  href="{$link->getPageLink('manufacturer', true)}">{l s='Brands' d='Shop.Theme.Homepage'}</a> 
               {* <div class="btn"  type="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</div>
               <ul class="dropdown-menu-brands dropdown-menu">
               {foreach from=$manufacturers item=$manufacturer }
