@@ -351,6 +351,16 @@
 
 <script>
 
+    document.addEventListener("scroll", function () {
+      const header = document.getElementById("header");
+      if (window.scrollY > 80) { // Adjust scroll threshold as needed
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+
     // function setCarAndSearch(brand, model, type, version){
         
     //     $("#custom_filter_1").prop('value', brand);
