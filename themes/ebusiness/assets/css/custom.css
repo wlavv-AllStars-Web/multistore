@@ -919,7 +919,7 @@ body {
     width: 33% !important;
     flex: 1;
   } */
-  .product-accessories .products .product-miniature .variantionsProductList{
+  .variantionsProductList{
     min-height: 49px !important;
   }
 
