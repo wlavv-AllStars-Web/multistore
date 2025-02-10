@@ -26,7 +26,7 @@
 {* {debug} *}
 <div id="js-product-list">
   {if $page.body_classes['category-Wheels']}
-      <div class="bg-sidenavCarSpecs"></div>
+      <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
       <div id="sidenavCarSpecs" class="sidenav">
         <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
           <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
