@@ -6782,6 +6782,11 @@ input[type="checkbox"]:checked::after {
     text-align: left;
   }
 
+  #registration #customer-form .form-control-label footer.form-footer {
+    display: flex;
+    justify-content: center;
+  }
+
   /*  */
   .menu-languageselector-mobile #language_selector {
     width: 100%;
