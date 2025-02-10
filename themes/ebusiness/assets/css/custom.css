@@ -7457,6 +7457,12 @@ input[type="checkbox"]:checked::after {
 
 
 @media (min-width: 992px) {
+  #new-products .products-selection {
+    width: 80%;
+    margin: auto;
+  }
+
+
   /* pack */
   #product.ap5-pack-page .ap5-pack-product-name{
   text-align: start;
