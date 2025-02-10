@@ -701,15 +701,15 @@ body {
     margin-top: 1rem;
   }
 
-  #products #js-product-list-top .sort-by-row{
+  #products .category-wheels-top .sort-by-row{
     height: 100%;
   }
 
-  #products #js-product-list-top .sort-by-row .products-sort-order{
+  #products .category-wheels-top .sort-by-row .products-sort-order{
     margin-top: 0;
   }
 
-  #products #js-product-list-top .sort-by-row .products-sort-order .select-title{
+  #products .category-wheels-top .sort-by-row .products-sort-order .select-title{
     height: 100%;
   }
 
@@ -987,11 +987,11 @@ body {
     align-items: center;
   }
 
-  #js-product-list-top{
+  /* #js-product-list-top{
     display: none;
-  }
+  } */
 
-  #js-product-list-top.show-filters{
+  .category-wheels-top.show-filters{
     display: flex !important;
     background: #d0d0d0;
     padding: 1rem;
@@ -999,32 +999,32 @@ body {
     align-items: center;
   }
 
-  #js-product-list-top.show-filters .box-sortby {
+  .category-wheels-top.show-filters .box-sortby {
     width: 100%;
     max-width: 350px;
     min-width: 250px;
   }
 
-  #js-product-list-top.show-filters .box-sortby.wheels-accessories-filter {
+  .category-wheels-top.show-filters .box-sortby.wheels-accessories-filter {
     padding: .5rem 1rem;
     border-radius: .25rem;
     /* margin-top: 1rem; */
   }
 
-  #js-product-list-top.show-filters .box-sortby .products-sort-order {
+  .category-wheels-top.show-filters .box-sortby .products-sort-order {
     margin-top: 0 !important;
   }
 
-  #js-product-list-top.show-filters .box-sortby .products-sort-order .select-title{
+  .category-wheels-top.show-filters .box-sortby .products-sort-order .select-title{
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 2px 0px -8px;
   }
 
-  #js-product-list-top.show-filters .box-sortby .products-sort-order.open{
+  .category-wheels-top.show-filters .box-sortby .products-sort-order.open{
     background: transparent;
   }
 
-  #js-product-list-top.show-filters .box-sortby a{
+  .category-wheels-top.show-filters .box-sortby a{
     border-radius: .25rem;
     user-select: none;
   }
@@ -1420,7 +1420,7 @@ body {
     -webkit-box-orient: vertical;
   }
 
-  #products #js-product-list-top {
+  #products .category-wheels-top {
     display: none;
     background: #888;
     gap: 1rem;
@@ -3860,7 +3860,7 @@ ul {
   margin: auto;
 }
 
-#js-product-list-top.category-wheels-top{
+.category-wheels-top{
   max-width: unset !important;
   margin: auto;
   padding: 1rem;
@@ -3886,7 +3886,7 @@ ul {
   color: #fff !important;
 }
 
-#js-product-list-top.category-wheels-top .box-sortby {
+.category-wheels-top .box-sortby {
   width: 14.28%;
 }
 
@@ -5766,6 +5766,15 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  /* wheels */
+  #js-product-list-top {
+    max-width: unset !important;
+  }
+
+  .category-wheels-top{
+    width: 100%;
+  }
+
   /* password forget */
 
   #password #main {
@@ -6766,6 +6775,11 @@ select.form-control:not([size]):not([multiple]){
   align-items: center;
   justify-content: space-between;
   padding: 0 0 0 1rem!important;
+  border-radius: .25rem;
+}
+
+.category-wheels-top .wheels-accessories-filter {
+  border-radius: .25rem;
 }
 
 .products-sort-order .select-title span {
