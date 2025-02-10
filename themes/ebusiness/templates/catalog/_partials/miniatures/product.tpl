@@ -40,7 +40,7 @@
             <img
               src="{if !empty($product.cover.bySize.home_default_asm.url)}{$product.cover.bySize.home_default_asm.url}{else}{$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'home_default_asm')}{/if}"
               alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-              loading="lazy"
+              {* loading="lazy" *}
               data-full-size-image-url="{$product.cover.large.url}"
               width="{$product.cover.bySize.home_default_asm.width}"
               height="{$product.cover.bySize.home_default_asm.height}"
