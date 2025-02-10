@@ -1910,6 +1910,10 @@ body {
 
 @media (max-width: 563px) {
 
+  #post-product-comment-form > .row:nth-child(2) > div {
+    padding: 0;
+  }
+
   #product .breadcrumb_wrapper {
     display: block;
   }
