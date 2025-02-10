@@ -100,66 +100,68 @@
                             {/if}
                         {elseif $module_name == 'worldlineop'}
                             {assign var="number_part" value=$module.logo|regex_replace:'/.*\/([0-9]+)\.svg$/':'$1'}
-                        <div class="ets_payment_method" onclick="setPaymentClick(this)">
-                                <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;max-width:unset !important;">
-                                    <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
-                                        {if $number_part == 3}
-                                            <img src="{$module_template_dir}views/img/mastercard.png" 
-                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
-                                        {elseif $number_part == 1}
-                                            <img src="{$module_template_dir}views/img/visa.png" 
-                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
-                                        {else}
-                                            <img src="{$module.logo}" 
-                                            style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
-                                        {/if}
-                                        {* <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
-                                        style="max-width: 120px !important;width: 100%;" /> *}
-                                    </label>
-                                    <span class="custom-radio float-xs-left" style="display: none;">
-                                        {* <input id="{$module.id|escape:'html':'UTF-8'}"
-                                                class="ps-shown-by-js {if $module.module_name}{if $payment_selected==$module.module_name}checked{/if}{else}{if $payment_selected==$module_name}checked{/if}{/if}"
-                                                data-module-name="{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}" name="payment-option" type="radio"
-                                                value="{$module_name|escape:'html':'UTF-8'}"
-                                        /> *}
-                                        <input id="{$module.id|escape:'html':'UTF-8'}"
-                                                class="ps-shown-by-js"
-                                                data-module-name="{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}" name="payment-option" type="radio"
-                                                value="{$module_name|escape:'html':'UTF-8'}"
-                                        />
-                                        <span></span>
-                                    </span>
-                                    <form method="GET" class="ps-hidden-by-js" style="display:none;">
-                                        <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$module.id|escape:'html':'UTF-8'}">
-                                            {l s='Choose' mod='ets_onepagecheckout'}
-                                        </button>
-                                    </form>
-                                    <label for="{$module.id|escape:'html':'UTF-8'}" style="display: none;">
-                                        <span>
-                                            {if $ETS_OPC_PAYMENT_LOGO_ENABLED}{if isset($module.logo) && $module.logo}<img src="{$module.logo|escape:'html':'UTF-8'}" style="width:40px" />{/if}{/if}
-                                            {$module.call_to_action_text|escape:'html':'UTF-8'}
-                                        </span>
-                                    </label>
-                                </div>
-                            
-                                {* <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
-                                    {$module.additionalInformation nofilter}
-                                </div> *}
-                                <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
-                                    {if $module.form}
-                                        {$module.form nofilter}
-                                    {else}
-                                        <form id="payment-form" method="POST" action="{$module.action|escape:'html':'UTF-8'}">
-                                            {if isset($module.inputs) && $module.inputs}
-                                                {foreach from = $module.inputs item='input'}
-                                                    <input{foreach from=$input key='key' item='value'} {$key|escape:'html':'UTF-8'}="{$value|escape:'html':'UTF-8'}"{/foreach} />
-                                                {/foreach}
+                            {if !preg_match('/&tokenId=[0-9]+$/', $module.action)}
+                                <div class="ets_payment_method" onclick="setPaymentClick(this)">
+                                        <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" style="display: flex;flex-direction:column;align-items:center;max-width:unset !important;">
+                                            <label class="img-payment-method" for="{$module.id|escape:'html':'UTF-8'}">
+                                                {if $number_part == 3}
+                                                    <img src="{$module_template_dir}views/img/mastercard.png" 
+                                                    style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
+                                                {elseif $number_part == 1}
+                                                    <img src="{$module_template_dir}views/img/visa.png" 
+                                                    style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
+                                                {else}
+                                                    <img src="{$module.logo}" 
+                                                    style="width: 100%;height:auto !important;max-width:100px !important;max-height:unset !important;" />
+                                                {/if}
+                                                {* <img src="{$module_template_dir}views/img/{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}.png" 
+                                                style="max-width: 120px !important;width: 100%;" /> *}
+                                            </label>
+                                            <span class="custom-radio float-xs-left" style="display: none;">
+                                                {* <input id="{$module.id|escape:'html':'UTF-8'}"
+                                                        class="ps-shown-by-js {if $module.module_name}{if $payment_selected==$module.module_name}checked{/if}{else}{if $payment_selected==$module_name}checked{/if}{/if}"
+                                                        data-module-name="{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}" name="payment-option" type="radio"
+                                                        value="{$module_name|escape:'html':'UTF-8'}"
+                                                /> *}
+                                                <input id="{$module.id|escape:'html':'UTF-8'}"
+                                                        class="ps-shown-by-js"
+                                                        data-module-name="{if $module.module_name}{$module.module_name|escape:'html':'UTF-8'}{else}{$module_name|escape:'html':'UTF-8'}{/if}" name="payment-option" type="radio"
+                                                        value="{$module_name|escape:'html':'UTF-8'}"
+                                                />
+                                                <span></span>
+                                            </span>
+                                            <form method="GET" class="ps-hidden-by-js" style="display:none;">
+                                                <button class="ps-hidden-by-js" type="submit" name="select_payment_option" value="{$module.id|escape:'html':'UTF-8'}">
+                                                    {l s='Choose' mod='ets_onepagecheckout'}
+                                                </button>
+                                            </form>
+                                            <label for="{$module.id|escape:'html':'UTF-8'}" style="display: none;">
+                                                <span>
+                                                    {if $ETS_OPC_PAYMENT_LOGO_ENABLED}{if isset($module.logo) && $module.logo}<img src="{$module.logo|escape:'html':'UTF-8'}" style="width:40px" />{/if}{/if}
+                                                    {$module.call_to_action_text|escape:'html':'UTF-8'}
+                                                </span>
+                                            </label>
+                                        </div>
+                                    
+                                        {* <div id="{$module.id|escape:'html':'UTF-8'}-additional-information" class="js-additional-information definition-list additional-information ps-hidden " style="display: none;">
+                                            {$module.additionalInformation nofilter}
+                                        </div> *}
+                                        <div id="pay-with-{$module.id|escape:'html':'UTF-8'}-form" class="js-payment-option-form ps-hidden " {if $payment_selected==$module.module_name}  style="color:red; display:none"{else}style="display: none;"{/if}>
+                                            {if $module.form}
+                                                {$module.form nofilter}
+                                            {else}
+                                                <form id="payment-form" method="POST" action="{$module.action|escape:'html':'UTF-8'}">
+                                                    {if isset($module.inputs) && $module.inputs}
+                                                        {foreach from = $module.inputs item='input'}
+                                                            <input{foreach from=$input key='key' item='value'} {$key|escape:'html':'UTF-8'}="{$value|escape:'html':'UTF-8'}"{/foreach} />
+                                                        {/foreach}
+                                                    {/if}
+                                                    <button id="pay-with-{$module.id|escape:'html':'UTF-8'}" style="display:none" type="submit"></button>
+                                                </form>
                                             {/if}
-                                            <button id="pay-with-{$module.id|escape:'html':'UTF-8'}" style="display:none" type="submit"></button>
-                                        </form>
-                                    {/if}
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
+                            {/if}
                         {else}
                             <div class="ets_payment_method"  onclick="setPaymentClick(this)">
                                 <div id="{$module.id|escape:'html':'UTF-8'}-container" class="payment-option clearfix" 
