@@ -7165,6 +7165,7 @@ input[type="checkbox"]:checked::after {
 
   .totselectzone__table-container tbody .has-image img{
     height: auto !important;
+    padding: 5px;
   }
 
   /* instructions */
