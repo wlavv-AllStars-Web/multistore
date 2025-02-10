@@ -6776,6 +6776,13 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+  /* page create account  */
+
+  #registration #customer-form .form-control-label{
+    text-align: left;
+  }
+
+  /*  */
   .menu-languageselector-mobile #language_selector {
     width: 100%;
   }
