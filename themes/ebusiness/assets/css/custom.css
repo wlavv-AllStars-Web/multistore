@@ -879,7 +879,7 @@ body {
   }
 
   .product-accessories .product-miniature {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 
   .product-accessories .product-description > div:nth-child(1){
