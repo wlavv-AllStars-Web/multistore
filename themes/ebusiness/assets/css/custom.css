@@ -30,10 +30,12 @@ body {
 
 .low-stock {
    background: yellow;
+   padding: .25rem .5rem;
 }
 
 .in-stock{
   background: #56ca4a;
+  padding: .25rem .5rem;
 }
 
 /* cartwishlist */
