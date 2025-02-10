@@ -178,7 +178,7 @@ body {
 }
 
 .collapse-container-category li:hover{
-  background: #555;
+  background: #d0d0d0;
 }
 
 .collapse-container-category.collapsed + .container-dropdown-category > div{
