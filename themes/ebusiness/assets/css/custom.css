@@ -6806,6 +6806,11 @@ input[type="checkbox"]:checked::after {
   #my-account .account-link.btn-primary {
     border-radius: .25rem;
   }
+
+  .page-my-account #content .links a span.link-item{
+    outline: 1px solid #d0d0d0;
+  }
+
   /*  */
   .menu-languageselector-mobile #language_selector {
     width: 100%;
