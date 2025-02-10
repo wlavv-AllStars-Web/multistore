@@ -245,6 +245,11 @@ function toggleFilters() {
 
   filters.classList.toggle("show-filters")
 }
+function toggleFiltersWheels() {
+  const filters = document.querySelector(".category-wheels-top")
+
+  filters.classList.toggle("show-filters")
+}
 
 function toggleMenuCars(e){
   const menuCars = document.querySelector(".bannersHomeMobile #ukoocompat_search_block_1");

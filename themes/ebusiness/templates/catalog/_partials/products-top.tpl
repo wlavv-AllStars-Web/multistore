@@ -34,7 +34,7 @@
   {count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
   </div>
 
-  <div class="btn-toggleFilters mobile" onclick="toggleFilters()">
+  <div class="btn-toggleFilters mobile" {if $page.body_classes['category-Wheels']}onclick="toggleFiltersWheels()"{else}onclick="toggleFilters()"{/if}>
     <span><i class="fa-solid fa-filter"></i></span>
     <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
   </div>
