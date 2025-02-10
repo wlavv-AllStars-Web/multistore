@@ -910,6 +910,16 @@ body {
     display: flex !important;
   }
 
+  /*  */
+  /* .product-accessories .products{
+    gap: 1rem;
+  }
+
+  .product-accessories .products .product-miniature{
+    width: 33% !important;
+    flex: 1;
+  } */
+
   /* homepage */
 
   .bannersHome .videosContainer .image_play {
