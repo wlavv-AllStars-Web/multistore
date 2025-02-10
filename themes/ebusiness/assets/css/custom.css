@@ -6793,6 +6793,15 @@ input[type="checkbox"]:checked::after {
 
 @media screen and (max-width: 544px) {
 
+  /* about us */
+  #about-us .about-content > div:nth-child(1) {
+    flex-direction: column;
+  }
+
+  #about-us .about-content > div:nth-child(1) .about-content-text{
+    margin: 0 !important;
+  }
+
   /* homepage footer */
 
   #footer_sub_menu_4 .socials-footer {
