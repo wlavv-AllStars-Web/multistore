@@ -886,6 +886,12 @@ body {
     display: flex !important;
   }
 
+  /* homepage */
+
+  .bannersHome .videosContainer .image_play {
+    max-width: 66px !important;
+  }
+
   /* tot shipping */
   #totselectzone #shipping_zone {
     width: 75% !important; 
@@ -1259,6 +1265,22 @@ body {
     display: none !important;
   }
 
+  /* body:not(#index) #footer .footer_top{
+    display: none;
+  } */
+  #footer .footer_top{
+    display: none;
+  }
+
+  .bannersHomeMobile .footer-asm {
+
+  }
+  
+
+  #cms .breadcrumb_wrapper {
+    margin-bottom: 0 !important;
+  }
+
   #product .breadcrumb_wrapper {
     display: block;
   }
@@ -1529,7 +1551,52 @@ body {
     width: 20%;
   }
 
-  .bannersHomeMobile .footer-asm {
+  /* .bannersHomeMobile .footer-asm {
+    display: none;
+  } */
+
+  .bannersHomeMobile .footer-asm{
+    padding: .5rem;
+  }
+  .bannersHomeMobile .footer-asm .links{
+    padding: 0;
+  }
+  .bannersHomeMobile .footer-asm .links .wrapper{
+    padding: 0;
+  }
+  .bannersHomeMobile .footer-asm .links .wrapper .title {
+    border-radius: .25rem .25rem 0 0;
+  }
+  .bannersHomeMobile .footer-asm .links .wrapper .title > *{
+    display: none;
+  }
+
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4.collapse.in{
+    display: flex !important;
+  }
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4{
+    gap: 1rem;
+    background: #222;
+    padding: 1rem;
+  }
+
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4 li {
+    padding: .5rem 1rem;
+    background: #333;
+    border-radius: .25rem;
+  }
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4 li a{
+    color: #fff;
+    height: fit-content;
+  }
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4 li.socials-footer {
+    padding: .5rem 1rem;
+    display: none;
+    justify-content: center;
+    background-color: #222;
+    height: fit-content !important;
+  }
+  .bannersHomeMobile .footer-asm #footer_sub_menu_4 li.socials-footer.show{
     display: none;
   }
 
@@ -1778,6 +1845,15 @@ body {
   }
   .category-wheels-top.show-filters .box-sortby.wheels-accessories-filter{
     padding: .5rem 0;
+  }
+
+  .footer-asm .title {
+    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//info_en.webp?t=1781861638");
+    background-size: contain;
+    background-position: center;
+    height: 90px;
+    outline: 2px solid #111;
+    outline-offset: -2px;
   }
 }
 
@@ -6792,34 +6868,7 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
-  /* cms shipping */
-  #cms_shipping{
-    padding: 0;
-  }
-  /* cms partners */
-  #cms-partners .card_partners {
-    border-radius: .25rem;
-    overflow: hidden;
-  }
-  #cms-partners .card_partners .text_partners{
-    font-size: 1rem;
-  }
-  /* cms payment */
 
-  #cms-payment .payment-content-bottom > div:nth-child(2) {
-    width: 100% !important;
-    flex: unset;
-    max-width: unset;
-  }
-
-  /* about us */
-  #about-us .about-content > div:nth-child(1) {
-    flex-direction: column;
-  }
-
-  #about-us .about-content > div:nth-child(1) .about-content-text{
-    margin: 0 !important;
-  }
 
   /* homepage footer */
 
