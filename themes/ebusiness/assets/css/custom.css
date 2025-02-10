@@ -6955,6 +6955,23 @@ input[type="checkbox"]:checked::after {
 
 @media screen and (max-width: 544px) {
 
+  #header{
+    position: sticky;
+    top: 0;
+    z-index: 999999;
+    transition: all 0.3s ease-in-out;
+  }
+  #header .header-top > .container-fluid {
+    max-height: 100px; /* Set this to the actual height of your logo */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .scrolled .header-top > .container-fluid {
+    max-height: 0 !important;
+    opacity: 0;
+    transform: scaleY(0);
+    overflow: hidden;
+  }
 
   /* homepage footer */
 
