@@ -209,7 +209,7 @@
    }
 
    .terms-content {
-    text-align: center; background: #eeeeee;display: flex;flex-direction: column;gap: 2rem;padding-top: 2rem;
+    text-align: center; background: #eeeeee;display: flex;flex-direction: column;gap: 2rem;padding: 2rem 0;
    }
   
    .terms-line {
