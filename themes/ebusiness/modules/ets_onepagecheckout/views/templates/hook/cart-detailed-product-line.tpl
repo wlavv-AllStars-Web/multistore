@@ -46,7 +46,7 @@
 
     <div class="col-lg-4">
       <div class="cart-container-availability">
-        <div class="availability-message">
+        <div class="availability-message {if $product.quantity_available <= 0}low-stock{else}in-stock{/if}">
           {$product.availability_message}
         </div>
         <div class="availability-tip">
