@@ -6803,6 +6803,9 @@ input[type="checkbox"]:checked::after {
     box-shadow: none !important;
   }
 
+  #my-account .account-link.btn-primary {
+    border-radius: .25rem;
+  }
   /*  */
   .menu-languageselector-mobile #language_selector {
     width: 100%;
