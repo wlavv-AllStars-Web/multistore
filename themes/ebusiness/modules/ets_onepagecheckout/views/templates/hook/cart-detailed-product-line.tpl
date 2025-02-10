@@ -16,7 +16,7 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
-{* <pre>{$product|print_r}</pre> *}
+{* <pre>{$product.attributes|print_r}</pre> *}
 <div class="product-line-grid d-desktop">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-lg-1 col-md-3 col-xs-4">
@@ -54,7 +54,11 @@
             <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
           </a>
           <div class="availability-tip-message">
+          {if $product.quantity_available <= 0}
             {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+          {else}
+            {l s="This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later" d="Shop.Theme.Checkout"}
+          {/if}
           </div>
         </div>
       </div>
@@ -248,7 +252,11 @@
             <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
           </a>
           <div class="availability-tip-message">
+          {if $product.quantity_available <= 0}
             {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+          {else}
+            {l s="This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later" d="Shop.Theme.Checkout"}
+          {/if}
           </div>
         </div>
       </div>
@@ -404,15 +412,17 @@
                 <span class="gift-quantity">{$product.quantity|intval}</span>
               {else}
                 <input
-                  class="js-cart-line-product-quantity"
-                  data-down-url="{$product.down_quantity_url|escape:'html':'UTF-8'}&id_country={Tools::getValue('id_country')|escape:'html':'UTF-8'}&id_state={Tools::getValue('id_state')|escape:'html':'UTF-8'}"
-                  data-up-url="{$product.up_quantity_url|escape:'html':'UTF-8'}&id_country={Tools::getValue('id_country')|escape:'html':'UTF-8'}&id_state={Tools::getValue('id_state')|escape:'html':'UTF-8'}"
-                  data-update-url="{$product.update_quantity_url|escape:'html':'UTF-8'}&id_country={Tools::getValue('id_country')|escape:'html':'UTF-8'}&id_state={Tools::getValue('id_state')|escape:'html':'UTF-8'}"
-                  data-product-id="{$product.id_product|intval}"
-                  type="number"
-                  value="{$product.quantity|escape:'html':'UTF-8'}"
-                  name="product-quantity-spin"
-                  min="{$product.minimal_quantity|escape:'html':'UTF-8'}"
+                class="js-cart-line-product-quantity"
+                data-down-url="{$product.down_quantity_url}"
+                data-up-url="{$product.up_quantity_url}"
+                data-update-url="{$product.update_quantity_url}"
+                data-product-id="{$product.id_product}"
+                type="number"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                value="{$product.quantity}"
+                name="product-quantity-spin"
+                aria-label="{l s='%productName% product quantity field' sprintf=['%productName%' => $product.name] d='Shop.Theme.Checkout'}"
                 />
               {/if}
             </div>
