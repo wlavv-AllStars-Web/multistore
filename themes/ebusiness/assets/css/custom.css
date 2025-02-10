@@ -2298,13 +2298,23 @@ body {
     display: flex !important;
   }
 
-  #products #js-product-list-top {
+  #products .products-selection {
     display: none;
+  }
+
+  #js-product-list-top {
+    padding: 0;
+  }
+
+  #js-product-list-top .count-products{
+    background: #fff;
   }
 
   .products-selection.show-filters {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .btn-toggleFilters {

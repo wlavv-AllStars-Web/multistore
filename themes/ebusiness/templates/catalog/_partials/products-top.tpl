@@ -23,24 +23,25 @@
  * International Registered Trademark & Property of PrestaShop SA
  *} 
  {assign var="categories" value=Category::getCategories(Context::getContext()->language->id)}
+<div id="js-product-list-top">
+  <div class="wm-hiddencompats" style="display:none;">
+    {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
+    {else} {hook h="displayUkooCompatBlock"}
+    {/if}
+  </div>
+  {* <pre>{print_r($brand,1)}</pre> *}
+  <div class="d-mobile count-products total-products">
+  {count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
+  </div>
 
-<div class="wm-hiddencompats" style="display:none;">
-  {if ( isset($ukoodata) && strlen($ukoodata) > 0)} {$ukoodata}
-  {else} {hook h="displayUkooCompatBlock"}
-  {/if}
-</div>
-{* <pre>{print_r($brand,1)}</pre> *}
-<div class="d-mobile count-products">
-{count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
-</div>
+  <div class="btn-toggleFilters mobile" onclick="toggleFilters()">
+    <span><i class="fa-solid fa-filter"></i></span>
+    <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
+  </div>
 
-<div class="btn-toggleFilters mobile" onclick="toggleFilters()">
-  <span><i class="fa-solid fa-filter"></i></span>
-  <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
-</div>
 {if $page.body_classes['category-Wheels']} 
 
-  <div id="js-product-list-top" class="products-selection category-wheels-top">
+  <div class="category-wheels-top">
   {foreach $asw_features AS $feature key=key}
     <div class=" box-sortby">
       <div class="row sort-by-row">
@@ -122,12 +123,13 @@
 
 
   </div>
-
+  
 {else}
+    
 
 
 
-<div id="js-product-list-top" class="products-selection">
+<div class="products-selection">
 
   {* <div class="col-md-6 hidden-sm-down total-products"> *}
     {*if $listing.products|count > 1}
@@ -358,6 +360,7 @@
   </div> *}
   </div>
 {/if}
+</div>
 {include file='catalog/_partials/setFilterData.tpl'}
 {include file='catalog/_partials/getDataFromUrl.tpl'}
 

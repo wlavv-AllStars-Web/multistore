@@ -241,7 +241,7 @@ function dropdownSearch(){
 
 
 function toggleFilters() {
-  const filters = document.querySelector("#js-product-list-top")
+  const filters = document.querySelector(".products-selection")
 
   filters.classList.toggle("show-filters")
 }
