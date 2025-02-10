@@ -6793,6 +6793,15 @@ input[type="checkbox"]:checked::after {
 
 @media screen and (max-width: 544px) {
 
+  /* homepage footer */
+
+  #footer_sub_menu_4 .socials-footer {
+    background: #222;
+    border-radius: .25rem;
+    margin-top: .25rem;
+  }
+
+  /*  */
   .btn-remove-filter-wheel{
     color: var(--asm-color) !important;
   }
