@@ -161,7 +161,7 @@ body {
 .has-children-category .btn-custom-category {
   height: 40px;
   max-height: unset;
-  background: #333;
+  background: #555;
   width: 40px;
   padding: 0;
   border: 0;
@@ -169,8 +169,8 @@ body {
 }
 
 .collapse-container-category {
-  background: #777;
-  color: #fff;
+  background: #fff;
+  color: #333;
 }
 
 .collapse-container-category li{
