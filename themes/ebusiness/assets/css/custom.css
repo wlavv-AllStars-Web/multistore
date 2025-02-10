@@ -1268,9 +1268,9 @@ body {
   /* body:not(#index) #footer .footer_top{
     display: none;
   } */
-  #footer .footer_top{
+  /* #footer .footer_top{
     display: none;
-  }
+  } */
 
   .bannersHomeMobile .footer-asm {
 
@@ -1551,11 +1551,11 @@ body {
     width: 20%;
   }
 
-  /* .bannersHomeMobile .footer-asm {
+  .bannersHomeMobile .footer-asm {
     display: none;
-  } */
+  }
 
-  .bannersHomeMobile .footer-asm{
+  /* .bannersHomeMobile .footer-asm{
     padding: .5rem;
   }
   .bannersHomeMobile .footer-asm .links{
@@ -1598,7 +1598,7 @@ body {
   }
   .bannersHomeMobile .footer-asm #footer_sub_menu_4 li.socials-footer.show{
     display: none;
-  }
+  } */
 
   #footer_sub_menu_4 {
     display: flex;
@@ -1847,14 +1847,6 @@ body {
     padding: .5rem 0;
   }
 
-  .footer-asm .title {
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//info_en.webp?t=1781861638");
-    background-size: contain;
-    background-position: center;
-    height: 90px;
-    outline: 2px solid #111;
-    outline-offset: -2px;
-  }
 }
 
 @media (max-width: 563px) {
