@@ -1968,6 +1968,7 @@ body {
   #js-product-list-top .products-sort-order .select-title .filter-container-data{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
   }
   #js-product-list-top .products-sort-order .select-title .filter-container-data .featuresName{
