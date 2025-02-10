@@ -877,6 +877,10 @@ body {
     min-height: 49px !important;
     padding: .5rem;
   }
+
+  .product-accessories .product-description > div:nth-child(1){
+    padding-top: .5rem;
+  }
 }
 @media screen and (max-width: 992px) {
   .category-wheels-top:not(.show-filters){
