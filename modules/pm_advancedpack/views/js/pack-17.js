@@ -71,6 +71,7 @@ var ap5Plugin = {
 				dataType: 'json',
 				cache: false,
 				success: function(jsonData, textStatus, jqXHR) {
+					// console.log("pack-17.js")
 					ap5Plugin.log('[ap5Plugin.addPackToCart] Success');
 
 					$(document).trigger('ap5-Before-AddPackToCart', [idPack, idProductAttributeList, callerElement]);
@@ -362,7 +363,7 @@ var ap5Plugin = {
 			// Restore exclusion
 			ap5Plugin.productPackExclude = ap5Plugin.productPackExcludeBackup.slice(0);
 		} else {
-			console.log(jsonData)
+			// console.log(jsonData)
 			if (typeof (jsonData.packUrlAnchor) !== 'undefined' && jsonData.packUrlAnchor != '#') {
 				window.location.hash = jsonData.packUrlAnchor;
 			}

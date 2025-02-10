@@ -13,6 +13,7 @@ function ap5_updateCartData() {
 		dataType : "json",
 		data: 'controller=update_cart&ajax=1&fc=module&module=pm_advancedpack&ajax=true&token=' + static_token,
 		success: function(jsonData) {
+			// console.log("shopping-cart.js")
 			ap5_avoidLoop = true;
 			if (typeof(jsonData.hasError) !== 'undefined' && !jsonData.hasError) {
 				if (typeof(ajaxCart) != 'undefined') {
@@ -32,6 +33,7 @@ function ap5_updateCartData() {
 }
 
 $(document).ajaxSuccess(function(e, ajaxOptions, ajaxData) {
+	// console.log("shopping-cart.js")
 	if (typeof(ajaxData) !== 'undefined' && typeof(ajaxData.data) !== 'undefined' && ajaxData.data != null && ajaxData.data.indexOf('controller=update_cart') == -1 && ajaxData.data.indexOf('controller=cart') > -1)
 		ap5_updateCartData();
 });

@@ -455,6 +455,7 @@ $(document).ready(function() {
 	});
 
 	if ($('#form_content').length > 0) {
+		// console.log($('#form_content').length);
 		ap5_getAdminNewPackOutput(pm_advancedpack.isRealNewPack);
 		// PS < 8.1 - Product v1
 		$('#form_content .form-contenttab').removeClass('active');

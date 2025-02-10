@@ -41,6 +41,7 @@ var ap5ProductFooterPlugin = {
 				dataType: 'json',
 				cache: false,
 				success: function(jsonData, textStatus, jqXHR) {
+					// console.log("product-footer.js")
 					ap5ProductFooterPlugin.log('[ap5ProductFooterPlugin.addPackToCart] Success');
 
 					// Redirect if AJAX cart is disabled
