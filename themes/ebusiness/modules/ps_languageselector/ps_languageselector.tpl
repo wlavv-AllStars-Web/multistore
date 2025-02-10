@@ -1,6 +1,6 @@
 <div id="language_selector" class="language-selector-wrapper">
   <!-- Desktop Layout -->
-  <div id="_desktop_language_selector" class="d-desktop">
+  <div id="_desktop_language_selector" class="d-desktop-language">
     <div class="language-selector-wrapper">
       <div class="language-selector dropdown js-dropdown">
         <div data-toggle="dropdown" class="btn-unstyle lang lgh" style="display: flex;flex-direction:row;align-items:center;gap:5px;" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Language dropdown' d='Shop.Theme.Global'}">
@@ -21,7 +21,7 @@
   </div>
 
   <!-- Mobile Layout -->
-  <div id="_mobile_language_selector" class="d-mobile">
+  <div id="_mobile_language_selector" class="d-mobile-language">
     <div class="language-selector-wrapper">
       <ul aria-labelledby="language-selector-label">
         {foreach from=$languages item=language}
@@ -36,20 +36,21 @@
   </div>
 </div>
 
-<script>
+{* <script>
   document.addEventListener('DOMContentLoaded', () => {
     const desktopSelector = document.getElementById('_desktop_language_selector');
     const mobileSelector = document.getElementById('_mobile_language_selector');
 
     const updateSelectorDisplay = () => {
-      if (window.innerWidth >= 992) {
+      // console.log(window.innerWidth)
+      if (window.screen.width >= 992) {
         // Show desktop layout
-        desktopSelector.style.display = 'block';
+        desktopSelector.style.display = 'flex';
         mobileSelector.style.display = 'none';
       } else {
         // Show mobile layout
         desktopSelector.style.display = 'none';
-        mobileSelector.style.display = 'block';
+        mobileSelector.style.display = 'flex';
       }
     };
 
@@ -59,4 +60,4 @@
     // Update on resize
     window.addEventListener('resize', updateSelectorDisplay);
   });
-</script>
+</script> *}

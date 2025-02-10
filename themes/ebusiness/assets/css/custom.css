@@ -865,9 +865,33 @@ body {
   }
 }
 
+@media (min-width: 993px) {
+  .d-mobile-language{
+    display: none;
+  }
+  .d-desktop-language{
+    display: flex;
+  }
+}
 @media screen and (max-width: 992px) {
   .category-wheels-top:not(.show-filters){
     display: none !important;
+  }
+  .d-mobile-language{
+    display: flex;
+  }
+  .d-desktop-language{
+    display: none;
+  }
+
+  #language_selector {
+    width: 100%;
+  }
+  #language_selector #_mobile_language_selector{
+    width: 100%;
+  }
+  #language_selector #_mobile_language_selector .language-selector-wrapper{
+    width: 100%;
   }
 }
 
