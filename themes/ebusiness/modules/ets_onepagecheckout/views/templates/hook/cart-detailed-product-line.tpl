@@ -17,7 +17,7 @@
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
 {* <pre>{$product.attributes|print_r}</pre> *}
-{if $packProducts}
+{* {if $packProducts}
   {assign var="minFutureStock" value=null}
   {assign var="minStockMsg" value=""}
   {assign var="packQuantity" value=$product.quantity}
@@ -31,7 +31,7 @@
         {assign var="id_productLowStock" value=$pack.id_product}
     {/if}
   {/foreach}
-{/if}
+{/if} *}
 <div class="product-line-grid d-desktop">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-lg-1 col-md-3 col-xs-4">
@@ -62,21 +62,23 @@
     <div class="col-lg-4">
       <div class="cart-container-availability">
         {if $packProducts}
-          {* {assign var="minFutureStock" value=null}
+          {assign var="minFutureStock" value=null}
           {assign var="minStockMsg" value=""}
           {assign var="packQuantity" value=$product.quantity}
 
           {foreach from=$packProducts item=pack}
+            {* {$pack.stock} *}
             {assign var="futureStock" value=$pack.stock - ($pack.quantity * $packQuantity)}
 
             {if $minFutureStock === null || $futureStock < $minFutureStock}
                 {assign var="minFutureStock" value=$futureStock}
                 {assign var="minStockMsg" value=$pack.availableMsg}
+                {assign var="id_productLowStock" value=$pack.id_product}
             {/if}
-          {/foreach} *}
+          {/foreach}
           <script>
           document.addEventListener("DOMContentLoaded", (event) => {
-            // setTimeout(() => {
+            setTimeout(() => {
             const productLowStock = {$id_productLowStock}
             const productLowStockQuantity = {$minFutureStock}
 
@@ -96,7 +98,7 @@
             newI.title = "{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}"
 
             liParent.appendChild(newI)
-          // }, "1000");
+          }, "1000");
          });
           </script>
 
