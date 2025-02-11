@@ -9,6 +9,18 @@ class ContactControllerCore extends FrontController
 
     public function postProcess()
     {
+        // if (Tools::getValue('g-recaptcha-response')) {
+        //     $recaptcha_secret = '6Lf2688qAAAAAKGwMJNRzNaBBAqd6qNUyPq54v1z';
+        //     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=".$_POST['g-recaptcha-response']);
+        //     $responseKeys = json_decode($response, true);
+        
+        //     if (!$responseKeys["success"] || $responseKeys["score"] < 0.5) {
+        //         die("reCAPTCHA verification failed.");
+        //     }
+        // } else {
+        //     die("reCAPTCHA missing.");
+        // }
+        
         if (Tools::isSubmit('submitMessage')) {
             // echo 'paulo';
             // exit;
@@ -303,6 +315,18 @@ class ContactControllerCore extends FrontController
             $id_order = (int)Tools::getValue('id_order');
         }
         return (int)$id_order;
+    }
+
+    public function getBreadcrumbLinks()
+    {
+        $breadcrumb = parent::getBreadcrumbLinks();
+
+        $breadcrumb['links'][] = [
+            'title' => $this->trans('Contact', [], 'Shop.Theme.MyCars'),
+            'url' => $this->context->link->getPageLink('contact'),
+        ];
+
+        return $breadcrumb;
     }
 }
 

@@ -485,6 +485,11 @@ body {
     display: flex !important;
   }
 
+  #contact #wrapper .breadcrumb[data-depth="1"], 
+  #contact #wrapper .breadcrumb_wrapper[data-depth="1"] {
+    display: block !important;
+  }
+
   /* header */
 
   .bg-mysidenav {
