@@ -91,7 +91,7 @@
 
             const liParent = document.querySelector('.ap5_pack_product_list_cart_summary li[id_product="'+productLowStock+'"]')
 
-            console.log(liParent)
+            // console.log(liParent)
 
             const newI = document.createElement("i")
             newI.innerText = "warning"
