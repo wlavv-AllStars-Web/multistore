@@ -1,4 +1,4 @@
-{assign var="customOrder" value=[2,3,4,6,7,1,0,5,8]}
+{assign var="customOrder" value=[3,4,5,7,2,1,6,0,8]}
 {* {assign var="customOrder" value=[2, 3, 4, 6, 1, 0, 5, 8, 7]} *}
 
 {foreach $linkBlocks as $key => $linkBlock}
