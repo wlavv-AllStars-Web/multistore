@@ -1,4 +1,3 @@
-
 <!-- view image of product -->
 {if $product.images}
     <div class="shoppingcart_img">
@@ -20,7 +19,9 @@
                 {foreach from=$product.customizations item='customization'}
                     <li>
                         <span class="product-quantity">{$customization.quantity}</span>
+                        {if $page.page_name != 'checkout'}
                         <a href="{$customization.remove_from_cart_url}" title="{l s='remove from cart' d='Shop.Theme.Actions'}" class="remove-from-cart" rel="nofollow">{l s='Remove' d='Shop.Theme.Actions'}</a>
+                        {/if}
                         <ul>
                             {foreach from=$customization.fields item='field'}
                                 <li>
@@ -41,6 +42,8 @@
 </div>
 </div>
 </div>
+{if $page.page_name != 'checkout'}
 <a class="remove-from-cart" rel="nofollow" href="{$product.remove_from_cart_url}" data-link-action="delete-from-cart" title="{l s='remove from cart' d='Shop.Theme.Actions'}" >
     <i class="material-icons">&#xE5CD;</i>
 </a>
+{/if}
