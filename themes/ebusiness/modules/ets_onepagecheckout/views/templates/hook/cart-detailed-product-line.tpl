@@ -17,6 +17,21 @@
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
 {* <pre>{$product.attributes|print_r}</pre> *}
+{if $packProducts}
+  {assign var="minFutureStock" value=null}
+  {assign var="minStockMsg" value=""}
+  {assign var="packQuantity" value=$product.quantity}
+
+  {foreach from=$packProducts item=pack}
+    {assign var="futureStock" value=$pack.stock - ($pack.quantity * $packQuantity)}
+
+    {if $minFutureStock === null || $futureStock < $minFutureStock}
+        {assign var="minFutureStock" value=$futureStock}
+        {assign var="minStockMsg" value=$pack.availableMsg}
+        {assign var="id_productLowStock" value=$pack.id_product}
+    {/if}
+  {/foreach}
+{/if}
 <div class="product-line-grid d-desktop">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-lg-1 col-md-3 col-xs-4">
@@ -46,21 +61,78 @@
 
     <div class="col-lg-4">
       <div class="cart-container-availability">
-        <div class="availability-message {if $product.quantity_available <= 0}low-stock{else}in-stock{/if}">
-          {$product.availability_message}
+        {if $packProducts}
+          {* {assign var="minFutureStock" value=null}
+          {assign var="minStockMsg" value=""}
+          {assign var="packQuantity" value=$product.quantity}
+
+          {foreach from=$packProducts item=pack}
+            {assign var="futureStock" value=$pack.stock - ($pack.quantity * $packQuantity)}
+
+            {if $minFutureStock === null || $futureStock < $minFutureStock}
+                {assign var="minFutureStock" value=$futureStock}
+                {assign var="minStockMsg" value=$pack.availableMsg}
+            {/if}
+          {/foreach} *}
+          <script>
+          document.addEventListener("DOMContentLoaded", (event) => {
+            setTimeout(() => {
+            const productLowStock = {$id_productLowStock}
+            const productLowStockQuantity = {$minFutureStock}
+
+            // console.log(productLowStock)
+            // console.log(productLowStockQuantity)
+            // console.log("Value:", productLowStock, "Type:", typeof productLowStock);
+
+            const liParent = document.querySelector('.ap5_pack_product_list_cart_summary li[id_product="'+productLowStock+'"]')
+
+            console.log(liParent)
+
+            const newI = document.createElement("i")
+            newI.innerText = "warning"
+            newI.classList.add("material-icons")
+            newI.style.color = "gold"
+            newI.style.cursor = "default"
+            newI.title = "{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}"
+
+            liParent.appendChild(newI)
+          }, "1000");
+         });
+          </script>
+
+        <div class="availability-message {if $minFutureStock <= 0}low-stock{else}in-stock{/if}">
+          {$minStockMsg}
         </div>
         <div class="availability-tip">
-          <a onmouseenter="showTooltip(this)" onmouseleave="removeTooltip(this)">
-            <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
-          </a>
-          <div class="availability-tip-message">
-          {if $product.quantity_available <= 0}
-            {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
-          {else}
-            {l s="This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later" d="Shop.Theme.Checkout"}
-          {/if}
-          </div>
+            <a onmouseenter="showTooltip(this)" onmouseleave="removeTooltip(this)">
+              <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
+            </a>
+            <div class="availability-tip-message">
+            {if $minFutureStock <= 0}
+              {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+            {else}
+              {l s="This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later" d="Shop.Theme.Checkout"}
+            {/if}
+            </div>
         </div>
+
+        {else}
+          <div class="availability-message {if $product.quantity_available <= 0}low-stock{else}in-stock{/if}">
+            {$product.availability_message}
+          </div>
+          <div class="availability-tip">
+            <a onmouseenter="showTooltip(this)" onmouseleave="removeTooltip(this)">
+              <i class="material-icons" style="margin-right: 0;color: #333;">help</i>
+            </a>
+            <div class="availability-tip-message">
+            {if $product.quantity_available <= 0}
+              {l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}
+            {else}
+              {l s="This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later" d="Shop.Theme.Checkout"}
+            {/if}
+            </div>
+          </div>
+        {/if}
       </div>
       <script>
         function showTooltip(e) {

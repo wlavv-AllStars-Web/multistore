@@ -3538,12 +3538,14 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 $this->context->customer = new Customer($cart->id_customer);
             }
             $products = $cart->getProducts();
+
             if (self::_isFilledArray($products)) {
                 foreach ($products as $cartProduct) {
                     if ($cartProduct['id_product_attribute'] && AdvancedPack::isValidPack($cartProduct['id_product'])) {
                         if (empty($cartProduct['attributes_small'])) {
                             continue;
-                        }
+                        }            
+
                         $cartPackProducts[$cartProduct['attributes_small']] = [
                             'cart' => $this->displayPackContent($cartProduct['id_product'], $cartProduct['id_product_attribute'], self::PACK_CONTENT_SHOPPING_CART),
                             'block_cart' => $this->displayPackContent($cartProduct['id_product'], $cartProduct['id_product_attribute'], self::PACK_CONTENT_BLOCK_CART),
@@ -3552,18 +3554,29 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 }
             }
         }
+
         return $cartPackProducts;
     }
     protected function replacePackSmallAttributes($params, $fromHookName = null)
     {
+
         $cartPackProducts = [];
+
+        if ($this->context->cart->nbProducts() > 0) {
+            // If products exist, fetch and format the pack content using your method
+            $cartPackProducts = $this->getFormatedPackAttributes($this->context->cart);
+        }
+
         if (isset($params['cart']) && Validate::isLoadedObject($params['cart'])) {
             $cartPackProducts = $this->getFormatedPackAttributes($params['cart']);
         }
+
         $preparedCustomPackContentSelector = null;
+
         if (!empty($cartPackProducts)) {
             $moduleConfiguration = $this->_getModuleConfiguration();
             $customPackContentSelector = $moduleConfiguration['packAttributeSelector'];
+
             if (!empty($customPackContentSelector)) {
                 $explodedCustomPackContentSelector = explode(',', $customPackContentSelector);
                 array_walk($explodedCustomPackContentSelector, function (&$item) {
@@ -3572,8 +3585,9 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 $preparedCustomPackContentSelector = implode(', ', $explodedCustomPackContentSelector);
             }
         }
+        
         $this->context->smarty->assign([
-            'cartPackProducts' => $cartPackProducts,
+            'cartPackProducts' => json_encode($cartPackProducts),
             'customPackAttributesSelectors' => $preparedCustomPackContentSelector,
         ]);
         if ($fromHookName == 'displayBackOfficeHeader') {
@@ -3603,13 +3617,31 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
 
                     $referenceValue = Db::getInstance()->getValue($sqlReference);
 
+                    $stockAttribute = isset($packProduct['id_product_attribute']) ? (int)$packProduct['id_product_attribute'] : null;
+                    $stock = StockAvailable::getQuantityAvailableByProduct((int)$packProduct['id_product'],$stockAttribute);
+
+                    if($stock <= 0 && $stock - (int)$packProducts[$key]['quantity'] < 0){
+                        $sqlAvailableMsg = 'SELECT available_later 
+                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id;
+                    }else{
+                        $sqlAvailableMsg = 'SELECT available_now
+                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id;
+                    }
+
+                    $availableMsg = Db::getInstance()->getValue($sqlAvailableMsg);
+
                     $packProducts[$key]['product_name'] = $product->name;
                     $packProducts[$key]['reference'] = $referenceValue;
                     $packProducts[$key]['quantity'] = (int)$packProducts[$key]['quantity'];
+                    $packProducts[$key]['stock'] = $stock;
+                    if($availableMsg){
+                        $packProducts[$key]['availableMsg'] = $availableMsg;
+                    }
                     $attributeDatas = AdvancedPack::getProductAttributeList(isset($packProduct['id_product_attribute']) ? (int)$packProduct['id_product_attribute'] : (int)$packProduct['default_id_product_attribute']);
                     $packProducts[$key] = array_merge($packProducts[$key], $attributeDatas);
                 }
                 // pre(__FILE__, $this->getPrestaShopTemplateVersion() . '/pack-product-list-cart-summary.tpl');
+                // pre($packProducts);
                 $this->context->smarty->assign(['packProducts' => $packProducts]);
                 if ($contextType == self::PACK_CONTENT_SHOPPING_CART) {
                     return $this->display(__FILE__, $this->getPrestaShopTemplateVersion() . '/pack-product-list-cart-summary.tpl');
