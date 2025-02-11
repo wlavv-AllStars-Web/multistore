@@ -723,6 +723,9 @@ body {
     height: 100%;
   }
 
+  .products-sort-order{
+    border-radius: .25rem;
+  }
 
   .products-sort-order .dropdown-menu{
     box-shadow: rgba(0, 0, 0, 0.35) 8px 5px 15px;
