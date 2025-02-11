@@ -61,7 +61,7 @@
 
     <div class="col-lg-4">
       <div class="cart-container-availability">
-        {if $packProducts}
+        {if $packProducts && $product.pack == 1}
           {assign var="minFutureStock" value=null}
           {assign var="minStockMsg" value=""}
           {assign var="packQuantity" value=$product.quantity}
