@@ -9,18 +9,37 @@ class ContactControllerCore extends FrontController
 
     public function postProcess()
     {
-        // if (Tools::getValue('g-recaptcha-response')) {
-        //     $recaptcha_secret = '6Lf2688qAAAAAKGwMJNRzNaBBAqd6qNUyPq54v1z';
-        //     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=".$_POST['g-recaptcha-response']);
-        //     $responseKeys = json_decode($response, true);
+
         
-        //     if (!$responseKeys["success"] || $responseKeys["score"] < 0.5) {
-        //         die("reCAPTCHA verification failed.");
-        //     }
-        // } else {
-        //     die("reCAPTCHA missing.");
-        // }
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+        $resq_data = array( 
+        	'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+        	'response' => $_POST['g-recaptcha-response'], 
+        	'remoteip' => $_SERVER['REMOTE_ADDR'] 
+        ); 
         
+        $curlConfig = array( 
+        	CURLOPT_URL => $api_url, 
+        	CURLOPT_POST => true, 
+        	CURLOPT_RETURNTRANSFER => true, 
+        	CURLOPT_POSTFIELDS => $resq_data, 
+        	CURLOPT_SSL_VERIFYPEER => false 
+        ); 
+        
+        $ch = curl_init(); 
+        curl_setopt_array($ch, $curlConfig); 
+        $response = curl_exec($ch); 
+        
+        if (curl_errno($ch)) $api_error = curl_error($ch); 
+        
+        curl_close($ch); 
+        
+        $responseData = json_decode($response); 
+        
+        if(!empty($responseData) && $responseData->success){
+        
+        }
+                
         if (Tools::isSubmit('submitMessage')) {
             // echo 'paulo';
             // exit;
@@ -316,17 +335,16 @@ class ContactControllerCore extends FrontController
         }
         return (int)$id_order;
     }
-
+    
     public function getBreadcrumbLinks()
     {
         $breadcrumb = parent::getBreadcrumbLinks();
-
+    
         $breadcrumb['links'][] = [
             'title' => $this->trans('Contact', [], 'Shop.Theme.MyCars'),
             'url' => $this->context->link->getPageLink('contact'),
         ];
-
+    
         return $breadcrumb;
     }
 }
-
