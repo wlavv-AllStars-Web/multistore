@@ -76,7 +76,7 @@
           {/foreach} *}
           <script>
           document.addEventListener("DOMContentLoaded", (event) => {
-            setTimeout(() => {
+            // setTimeout(() => {
             const productLowStock = {$id_productLowStock}
             const productLowStockQuantity = {$minFutureStock}
 
@@ -96,7 +96,7 @@
             newI.title = "{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}"
 
             liParent.appendChild(newI)
-          }, "1000");
+          // }, "1000");
          });
           </script>
 
