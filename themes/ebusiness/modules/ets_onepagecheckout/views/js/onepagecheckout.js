@@ -753,6 +753,19 @@ $( document ).ajaxError(function( event, jqxhr, settings, thrownError){
     }
 });
 $(document ).ajaxComplete(function( event, xhr, settings ) {
+    try {
+        var response = JSON.parse(xhr.responseText); // Parse the JSON response
+
+        if (response.hasError) {  // Check if hasError is true
+            const loadingOverlay = document.querySelector(".loading-overlay");
+            if (loadingOverlay) {
+                document.body.removeChild(loadingOverlay);
+            }
+        }
+    } catch (e) {
+        console.error("Failed to parse response:", e);
+    }
+
     var data_post = settings.data;
     if(typeof data_post!= 'object' && data_post )
     {
@@ -980,6 +993,10 @@ function ets_refresh_shipping_cart(del_product)
             },
             error: function(error)
             { 
+                const loadingOverlay = document.querySelector(".loading-overlay")
+                if(loadingOverlay){
+                    document.body.removeChild(loadingOverlay);
+                }
                 $('.loading').removeClass('loading');
             }
         });
