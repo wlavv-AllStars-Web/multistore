@@ -3622,10 +3622,10 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
 
                     if($stock <= 0 && $stock - (int)$packProducts[$key]['quantity'] < 0){
                         $sqlAvailableMsg = 'SELECT available_later 
-                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id;
+                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id.' AND id_lang='.Context::getContext()->language->id;
                     }else{
                         $sqlAvailableMsg = 'SELECT available_now
-                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id;
+                        FROM ps_product_lang WHERE id_product ='.(int)$packProduct['id_product'].' AND id_shop='.Context::getContext()->shop->id.' AND id_lang='.Context::getContext()->language->id;
                     }
 
                     $availableMsg = Db::getInstance()->getValue($sqlAvailableMsg);
