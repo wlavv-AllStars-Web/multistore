@@ -85,6 +85,9 @@
             // console.log(productLowStock)
             // console.log(productLowStockQuantity)
             // console.log("Value:", productLowStock, "Type:", typeof productLowStock);
+            if(document.querySelector(".ap5_pack_product_list_cart_summary i.stock-warning")){
+              document.querySelector(".ap5_pack_product_list_cart_summary i.stock-warning").remove()
+            }
 
             const liParent = document.querySelector('.ap5_pack_product_list_cart_summary li[id_product="'+productLowStock+'"]')
 
@@ -93,6 +96,7 @@
             const newI = document.createElement("i")
             newI.innerText = "warning"
             newI.classList.add("material-icons")
+            newI.classList.add("stock-warning")
             newI.style.color = "gold"
             newI.style.cursor = "default"
             newI.title = "{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximative shipping date for this item." d="Shop.Theme.Checkout"}"
