@@ -232,6 +232,10 @@ body {
   }
 }
 
+.page-my-account #content .links a span.link-item {
+  outline: 2px solid #e0e0e0;
+}
+
 
 @media (max-width: 991px) {
   /* #_desktop_language_selector{
