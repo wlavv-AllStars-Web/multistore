@@ -547,7 +547,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
             if(!empty($type) && $type == 'new-products'){
-                $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT');
+                $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT',null,null,2);
                 $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
                 $sql .= ' AND ps_product.date_add >= "' . pSQL($newProductDate) . '"';
             }
@@ -565,6 +565,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'sales') {
                     $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'date_add') {
+                    $sql .= ' ORDER BY ps_product.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
 
