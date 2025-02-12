@@ -30,9 +30,11 @@
 
     {block name='page_header_container'}
       {block name='page_title' hide}
+        {if $page.page_name != 'order-detail'}
         <header class="page-header">
           <h2>{$smarty.block.child}</h2>
         </header>
+        {/if}
       {/block}
     {/block}
 
