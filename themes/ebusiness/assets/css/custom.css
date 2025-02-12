@@ -481,6 +481,14 @@ body {
   border-radius: .25rem;
 }
 
+#name_sort_by {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 @media (min-width: 992px) {
   .d-mobile{
     display: none !important;
