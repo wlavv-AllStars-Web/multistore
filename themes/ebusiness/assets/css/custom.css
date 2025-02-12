@@ -587,8 +587,7 @@ body {
   }
 
   .product-miniature .thumbnail-container:hover {
-    outline: 2px solid var(--asm-color) !important;
-    outline-offset: 0px;
+    border: 2px solid var(--asm-color) !important;
   }
 
   #header .header-nav .user-info {
@@ -904,7 +903,8 @@ body {
     border: 0 !important;
   }
   .product-accessories .product-miniature .thumbnail-container{
-    border: 1px solid #d8d8d8;
+    border: 2px solid #e0e0e0;
+    border-radius: .25rem;
   }
 }
 
@@ -917,7 +917,7 @@ body {
   }
 
   .variantionsProductList{
-    min-height: 49px !important;
+    min-height: 20px !important;
     padding: .5rem;
   }
 
