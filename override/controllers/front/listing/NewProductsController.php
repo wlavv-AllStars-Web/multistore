@@ -61,18 +61,20 @@ class NewProductsControllerCore extends ProductListingFrontController
 
         if($this->context->shop->id == 2) {
             // $this->assignProductList();
-            $ukooObj = new UkooCompat();
-            $ukooData = $ukooObj->hookDisplayCompat(null);
+            // $ukooObj = new UkooCompat();
+            // $ukooData = $ukooObj->hookDisplayCompat(null);
             $manufacturerOBJ = new Manufacturer();
             $manufacturers = $manufacturerOBJ->getManufacturers();
+
+            // pre($manufacturers);
 
             // $getData = Tools::getAllValues();
 
             $this->context->smarty->assign([
-                'category' => $categoryVar,
+                // 'category' => $categoryVar,
                 'manufacturers'        => $manufacturers,
                 // 'p' => $getData['p'],
-                'ukoodata'             => $ukooData,
+                // 'ukoodata'             => $ukooData,
             ]);
         }
 
