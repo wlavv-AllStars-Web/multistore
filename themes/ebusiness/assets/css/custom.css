@@ -489,7 +489,7 @@ body {
     display: flex !important;
   }
 
-  #search .js-product-list-top .products-selection {
+  #search #js-product-list-top .products-selection {
     width: 100%;
     margin: auto;
     max-width: 1500px;
