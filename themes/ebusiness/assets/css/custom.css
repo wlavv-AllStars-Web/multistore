@@ -4890,13 +4890,17 @@ ul {
 .btn_downloadInstructions {
   padding: 0.5rem 1rem;
   color: var(--asm-color);
-  border: 1px solid #d6d6d6;
+  border: 1px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: .25rem;
 }
 .btn_downloadInstructions:hover {
   padding: 0.5rem 1rem;
   background: var(--asm-color);
   color: #fff;
-  border: 1px solid #d6d6d6;
+  border: 1px solid #d0d0d0;
 }
 
 .attachment {
