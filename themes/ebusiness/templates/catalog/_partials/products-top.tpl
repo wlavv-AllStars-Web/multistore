@@ -182,7 +182,7 @@
     {/foreach}
   </select> *}
 
-
+  {if $page.page_name != "search"}
   {* bycategory *}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
@@ -268,10 +268,11 @@
     });
 
   </script>
+  {/if}
 
   {* bybrand *}
   
-
+  {if $page.page_name != "search"}
   <div class=" box-sortby col-md-3">
     <div class="row sort-by-row">
       <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
@@ -297,7 +298,9 @@
       </div>
     </div>
   </div>
+  {/if}
 
+  {if $page.page_name != "search"}
   {* SortBy *}
   <div class="box-sortby col-md-3">
     <div class="row sort-by-row">
@@ -313,7 +316,7 @@
       {/block}
     </div>
   </div>
-
+  {/if}
 
   
   {if $page['page_name'] == 'new-products'}

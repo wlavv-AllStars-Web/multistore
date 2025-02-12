@@ -482,7 +482,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         // asm wheels
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'){
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer' || $this->context->shop->id == 2 && $query->getQueryType() == 'search'){
 
             // pre($query);
 
@@ -510,6 +510,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $sortOrder = $query->getSortOrder();
             }
 
+            if($query->getSearchString()){
+                $searchString = $query->getSearchString();
+            }
+
 
 
             // Fetch category and manufacturer IDs from the query object
@@ -524,6 +528,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
             LEFT JOIN ps_product_sale ON ps_product.id_product = ps_product_sale.id_product 
             LEFT JOIN ps_category_product ON ps_product.id_product = ps_category_product.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
+            LEFT JOIN ps_product_attribute ON ps_product.id_product = ps_product_attribute.id_product
             WHERE ps_product.active = 1
             AND ps_product_shop.id_shop = 2';
                 
@@ -533,6 +538,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             if ($manufacturer > 0) {
                 $sql .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+            }
+
+            if (!empty($searchString)) {
+                $sql .= ' AND (ps_product_lang.name LIKE "%' . pSQL($searchString) . '%" 
+                OR ps_product.reference LIKE "%' . pSQL($searchString) . '%"
+                OR ps_product_attribute.reference LIKE "%' . pSQL($searchString) . '%")';
             }
 
             if(!empty($type) && $type == 'new-products'){
