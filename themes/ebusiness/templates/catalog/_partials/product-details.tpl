@@ -60,10 +60,10 @@
                           <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
                             <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
                           </div>
-                          <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$product.availability_message}</span>
+                          <span style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.availability_message}</span>
                         </div>
                       {else}
-                        <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
+                        <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#333;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
                       {/if}
                     {elseif $product.availability == 'last_remaining_items'}
                       <i class="material-icons product-last-items">&#xE002;</i>
