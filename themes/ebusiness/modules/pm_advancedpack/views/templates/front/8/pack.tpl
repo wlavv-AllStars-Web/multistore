@@ -22,25 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
- {extends file=$layout}
-
- {block name='head' append}
-   <meta property="og:type" content="product">
-   {if $product.cover}
-     <meta property="og:image" content="{$product.cover.large.url}">
-   {/if}
- 
-   {if $product.show_price}
-     <meta property="product:pretax_price:amount" content="{$product.price_tax_exc}">
-     <meta property="product:pretax_price:currency" content="{$currency.iso_code}">
-     <meta property="product:price:amount" content="{$product.price_amount}">
-     <meta property="product:price:currency" content="{$currency.iso_code}">
-   {/if}
-   {if isset($product.weight) && ($product.weight != 0)}
-   <meta property="product:weight:value" content="{$product.weight}">
-   <meta property="product:weight:units" content="{$product.weight_unit}">
-   {/if}
- {/block}
+ {extends file='catalog/product.tpl'}
  
  {block name='head_microdata_special'}
    {include file='_partials/microdata/product-jsonld.tpl'}
@@ -59,6 +41,7 @@
       </div>
       </div>
      {/if}
+
      <div class="row product-container js-product-container">
         <div class="col-md-6 left-side desktop product-imgs-section">
          {block name='page_content_container'}
@@ -66,9 +49,11 @@
              {block name='page_content'}
                {* {include file='catalog/_partials/product-flags.tpl'} *}
               
-               {block name='product_cover_thumbnails'}
-                 {include file='catalog/_partials/product-cover-thumbnails.tpl'}
-               {/block}
+               {* {block name='ap5_images'} *}
+                {block name='product_cover_thumbnails'}
+                  {include file='catalog/_partials/product-cover-thumbnails.tpl'}
+                {/block}
+               {* {/block} *}
                {* <div class="scroll-box-arrows">
                 <i class="material-icons left">&#xE314;</i>
                 <i class="material-icons right">&#xE315;</i>
@@ -360,6 +345,7 @@
                       {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
                       {* <p>{$attachment.description}</p> *}
                       <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                        <i class="material-icons">file_download</i>
                         {l s='Download Instructions' d='Shop.Theme.Actions'}
                       </a>
 
@@ -742,6 +728,7 @@
                               {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
                               {* <p>{$attachment.description}</p> *}
                               <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                                <i class="material-icons">file_download</i>
                                 {l s='Download Instructions' d='Shop.Theme.Actions'}
                               </a>
 

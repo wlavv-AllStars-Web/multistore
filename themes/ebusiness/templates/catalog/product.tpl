@@ -411,6 +411,7 @@
                       {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
                       {* <p>{$attachment.description}</p> *}
                       <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                        <i class="material-icons">file_download</i>
                         {l s='Download Instructions' d='Shop.Theme.Actions'}
                       </a>
 
@@ -793,6 +794,7 @@
                               {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
                               {* <p>{$attachment.description}</p> *}
                               <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                                <i class="material-icons">file_download</i>
                                 {l s='Download Instructions' d='Shop.Theme.Actions'}
                               </a>
 
