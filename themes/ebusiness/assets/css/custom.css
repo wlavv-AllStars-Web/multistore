@@ -477,6 +477,10 @@ body {
 
 }
 
+.btn-primary{
+  border-radius: .25rem;
+}
+
 @media (min-width: 992px) {
   .d-mobile{
     display: none !important;
@@ -485,10 +489,23 @@ body {
     display: flex !important;
   }
 
+  #search .js-product-list-top .products-selection {
+    width: 100%;
+    margin: auto;
+    max-width: 1500px;
+    display: flex;
+    justify-content: center;
+  }
+
   #contact #wrapper .breadcrumb[data-depth="1"], 
   #contact #wrapper .breadcrumb_wrapper[data-depth="1"] {
     display: block !important;
   }
+
+  /* #contact .contact-form .btn-primary[name="submitMessage"] {
+
+  } */
+
 
   /* header */
 
