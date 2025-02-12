@@ -519,6 +519,13 @@ body {
     display: flex;
     justify-content: center;
   }
+  #manufacturer #js-product-list-top .products-selection {
+    width: 100%;
+    margin: auto;
+    max-width: 1500px;
+    display: flex;
+    justify-content: center;
+  }
 
   #contact #wrapper .breadcrumb[data-depth="1"], 
   #contact #wrapper .breadcrumb_wrapper[data-depth="1"] {
