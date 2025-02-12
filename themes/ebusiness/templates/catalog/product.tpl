@@ -798,6 +798,8 @@
                                 {l s='Download Instructions' d='Shop.Theme.Actions'}
                               </a>
 
+                              <div class="verticalLign" style="height:100%;width:4px; background:#b3b3b3;"></div>
+
                               <div class="difficulty-level">
                                 <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
                                 <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp"  alt="Difficulty{$product.difficulty}"/>

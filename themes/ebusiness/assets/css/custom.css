@@ -4890,7 +4890,7 @@ ul {
 .btn_downloadInstructions {
   padding: 0.5rem 1rem;
   color: var(--asm-color);
-  outline: 1px solid #d0d0d0;
+  outline: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   gap: .5rem;
@@ -4900,7 +4900,7 @@ ul {
   padding: 0.5rem 1rem;
   background: var(--asm-color);
   color: #fff;
-  outline: 1px solid #d0d0d0;
+  outline: 1px solid #e0e0e0;
 }
 
 .attachment {
