@@ -501,6 +501,10 @@ body {
     display: flex !important;
   }
 
+  .section_tabs_video .nav-tabs .nav-item {
+    margin-bottom: 0;
+  }
+
   #search #js-product-list-top .products-selection {
     width: 100%;
     margin: auto;
