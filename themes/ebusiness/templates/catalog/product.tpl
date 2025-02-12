@@ -798,7 +798,7 @@
                                 {l s='Download Instructions' d='Shop.Theme.Actions'}
                               </a>
 
-                              <div class="verticalLign" style="height:100%;width:4px; background:#b3b3b3;"></div>
+                              <div class="verticalLign" style="height:100%;width:2px; background:#c0c0c0;"></div>
 
                               <div class="difficulty-level">
                                 <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
