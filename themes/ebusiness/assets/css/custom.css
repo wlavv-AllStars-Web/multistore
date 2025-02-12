@@ -4933,8 +4933,16 @@ ul {
 #product_askquestion .form-control {
   border: 1px solid #d6d6d6;
 }
+
 .form-askquestion {
   padding: 2rem;
+}
+
+#product_askquestion textarea {
+  border-radius: .25rem;
+}
+#product_askquestion input {
+  border-radius: 0 .25rem .25rem 0;
 }
 
 #footer_sub_menu_4 {
