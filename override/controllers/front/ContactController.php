@@ -11,34 +11,34 @@ class ContactControllerCore extends FrontController
     {
 
         
-        $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
-        $resq_data = array( 
-        	'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
-        	'response' => $_POST['g-recaptcha-response'], 
-        	'remoteip' => $_SERVER['REMOTE_ADDR'] 
-        ); 
+        // $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+        // $resq_data = array( 
+        // 	'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+        // 	'response' => $_POST['g-recaptcha-response'], 
+        // 	'remoteip' => $_SERVER['REMOTE_ADDR'] 
+        // ); 
         
-        $curlConfig = array( 
-        	CURLOPT_URL => $api_url, 
-        	CURLOPT_POST => true, 
-        	CURLOPT_RETURNTRANSFER => true, 
-        	CURLOPT_POSTFIELDS => $resq_data, 
-        	CURLOPT_SSL_VERIFYPEER => false 
-        ); 
+        // $curlConfig = array( 
+        // 	CURLOPT_URL => $api_url, 
+        // 	CURLOPT_POST => true, 
+        // 	CURLOPT_RETURNTRANSFER => true, 
+        // 	CURLOPT_POSTFIELDS => $resq_data, 
+        // 	CURLOPT_SSL_VERIFYPEER => false 
+        // ); 
         
-        $ch = curl_init(); 
-        curl_setopt_array($ch, $curlConfig); 
-        $response = curl_exec($ch); 
+        // $ch = curl_init(); 
+        // curl_setopt_array($ch, $curlConfig); 
+        // $response = curl_exec($ch); 
         
-        if (curl_errno($ch)) $api_error = curl_error($ch); 
+        // if (curl_errno($ch)) $api_error = curl_error($ch); 
         
-        curl_close($ch); 
+        // curl_close($ch); 
         
-        $responseData = json_decode($response); 
+        // $responseData = json_decode($response); 
         
-        if(!empty($responseData) && $responseData->success){
+        // if(!empty($responseData) && $responseData->success){
         
-        }
+        // }
                 
         if (Tools::isSubmit('submitMessage')) {
             // echo 'paulo';
@@ -207,13 +207,13 @@ class ContactControllerCore extends FrontController
 
                     if (!empty($contact->email)) {
                         if (!Mail::Send(2, 'contact', Mail::l('Message from contact form').' [no_sync]',
-                            $var_list, 'pauloallstarsweb@gmail.com', $contact->name, null, null,
+                            $var_list, 'info@euromuscleparts.com', $contact->name, null, null,
                                     $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
                             $this->errors[] = Tools::displayError('An error occurred while sending the message.');
                         }
                         
                         Mail::Send($this->context->language->id, 'contact_form', Mail::l('Message from contact form').' [no_sync]',
-                            $var_list, 'pauloallstarsweb@outlook.com', $var_list['{firstname}'] . ' ' . $var_list['{lastname}'], null, null,
+                            $var_list, 'info@euromuscleparts.com', $var_list['{firstname}'] . ' ' . $var_list['{lastname}'], null, null,
                                     $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from);
                     }
                 }
@@ -335,7 +335,7 @@ class ContactControllerCore extends FrontController
         }
         return (int)$id_order;
     }
-    
+
     public function getBreadcrumbLinks()
     {
         $breadcrumb = parent::getBreadcrumbLinks();
