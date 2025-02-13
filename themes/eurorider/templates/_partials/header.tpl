@@ -168,7 +168,7 @@
           </a>
         </div>
         <div class="col-md-4  d-none d-lg-flex justify-content-center align-items-center" >
-        <img width="90" height="90" src="/img/eu.png" />
+        <img width="90" height="90" src="/img/eurorider/eu_{$language.iso_code}.webp" />
         </div>
         <div class="col-md-4 d-none d-lg-flex justify-content-end align-items-center" style="position: relative;z-index:1;padding-right: 3rem;">
             {hook h='displaySearch'}
