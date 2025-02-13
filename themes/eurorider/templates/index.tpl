@@ -36,7 +36,7 @@
             {* {hook h='ybcCustom3'} *}
           {* {$HOOK_HOME nofilter} *}
 
-          <img style="width: 100%;" src="/img/eurorider/esquema-03.jpg"/>
+          <img style="width: 100%;" src="/img/eurorider/esquema-01.jpg"/>
 
         
           
