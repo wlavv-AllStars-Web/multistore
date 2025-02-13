@@ -188,7 +188,7 @@
         </li>
 
         <li {if $page.page_name =='index'}class="dropdown" {/if}>
-            <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+            <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Bike' d='Shop.Theme.Homepage'}</a>
               <div class="dropdown-menu menu-logos">
           {if $page.page_name =='index'}
             {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
@@ -284,7 +284,7 @@
 
             <li class=" {if $page.page_name =='index'}dropdown{/if}">
               {* <i class="material-icons">directions_car</i> *}
-                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Bike' d='Shop.Theme.Homepage'}</a>
                   <div class="dropdown-menu menu-logos">
               {if $page.page_name =='index'}
                 {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
