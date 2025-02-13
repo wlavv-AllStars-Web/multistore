@@ -60,24 +60,24 @@
             <li class="socials-footer">
               <div style="display: flex;">
               <a title="Facebook" aria-label="Facebook" id="footer_facebook" class="social-icon" style="margin-right: 5px;" href="https://www.facebook.com/all-stars-motorsport" target="_NEW"> 
-                <img class="desktop" alt="Facebook" src="/img/asm/socials/facebook.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/facebook2.png'" onmouseout="this.src='/img/asm/socials/facebook.png' "> 
-                <img class="mobile" alt="Facebook" src="/img/asm/socials/facebook_r.png" style="width: 50px;height:50px;" />
+                <img class="desktop" alt="Facebook" src="/img/eurorider/socials/facebook.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/eurorider/socials/facebook_hover.png'" onmouseout="this.src='/img/eurorider/socials/facebook.png' "> 
+                <img class="mobile" alt="Facebook" src="/img/eurorider/socials/facebook_hover.png" style="width: 50px;height:50px;" />
               </a> 
               <a title="Instagram" aria-label="Instagram" id="footer_insta" class="social-icon" style="margin-right: 5px;" href="https://instagram.com/allstarsmotorsport" target="_NEW"> 
-                <img class="desktop"  alt="Instagram" src="/img/asm/socials/instagram.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/instagram2.png'" onmouseout="this.src='/img/asm/socials/instagram.png' "> 
-                <img class="mobile" alt="Instagram" src="/img/asm/socials/instagram_r.png"  style="width: 50px;height:50px;"/>
+                <img class="desktop"  alt="Instagram" src="/img/eurorider/socials/instagram.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/eurorider/socials/instagram_hover.png'" onmouseout="this.src='/img/eurorider/socials/instagram.png' "> 
+                <img class="mobile" alt="Instagram" src="/img/eurorider/socials/instagram_hover.png"  style="width: 50px;height:50px;"/>
               </a> 
               {* <a title="Flickr" aria-label="Flickr" id="footer_flickr" class="social-icon" style="margin-right: 5px;" href="https://www.flickr.com/photos/allstarsmotorsport/" target="_NEW"> 
                 <img class="desktop"  alt="Flickr" src="/img/asm/socials/flickr.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/flickr2.png'" onmouseout="this.src='/img/asm/socials/flickr.png' "> 
                 <img class="mobile" alt="Flickr" src="/img/asm/socials/flickr_r.png"  style="width: 50px;height:50px;"/>
               </a>  *}
               <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/all-stars-motorsport" target="_NEW"> 
-                <img class="desktop"  alt="Youtube" src="/img/asm/socials/youtube.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/youtube2.png'" onmouseout="this.src='/img/asm/socials/youtube.png' "> 
-                <img class="mobile" alt="Youtube" src="/img/asm/socials/youtube_r.png" style="width: 50px;height:50px;" />
+                <img class="desktop"  alt="Youtube" src="/img/eurorider/socials/youtube.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/eurorider/socials/youtube_hover.png'" onmouseout="this.src='/img/eurorider/socials/youtube.png' "> 
+                <img class="mobile" alt="Youtube" src="/img/eurorider/socials/youtube.png" style="width: 50px;height:50px;" />
               </a> 
               <a title="Whatsapp" class="social-icon" style="margin-right: 8px;" href="https://wa.me/+351912201753" target="_blank"> 
-                <img class="desktop"  alt="Whatsapp" src="/img/asm/socials/whatsapp.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/whatsapp2.png'" onmouseout="this.src='/img/asm/socials/whatsapp.png' "> 
-                <img class="mobile" alt="Whatsapp" src="/img/asm/socials/whatsapp_mobile.png" style="width: 50px;height:50px;"/>
+                <img class="desktop"  alt="Whatsapp" src="/img/eurorider/socials/whatsapp.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/eurorider/socials/whatsapp_hover.png'" onmouseout="this.src='/img/eurorider/socials/whatsapp.png' "> 
+                <img class="mobile" alt="Whatsapp" src="/img/eurorider/socials/whatsapp.png" style="width: 50px;height:50px;"/>
               </a>
             </div>
           </li>
