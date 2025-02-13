@@ -235,9 +235,10 @@
           {/foreach}
           </ul>
         </li>
+        {* {$urls.pages.contact} *}
         {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
-        <li><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
-        <li><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
+        {* <li><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li> *}
+        <li><a href="{$urls.pages.contact}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
       </ul>
     
       <div class="clearfix"></div> 
@@ -332,7 +333,7 @@
               </ul>
             </li>
             {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
-            <li class="nav-item"><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
+            {* <li class="nav-item"><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li> *}
             <li class="nav-item"><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
           </ul>
         </div>
