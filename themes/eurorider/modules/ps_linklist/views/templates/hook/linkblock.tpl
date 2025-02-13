@@ -57,7 +57,7 @@
             <a onclick="showSocials(this)">Social Media</a>
           </li>
 
-            <li class="socials-footer col-lg-2">
+            <li class="socials-footer">
               <div style="display: flex;">
               <a title="Facebook" aria-label="Facebook" id="footer_facebook" class="social-icon" style="margin-right: 5px;" href="https://www.facebook.com/all-stars-motorsport" target="_NEW"> 
                 <img class="desktop" alt="Facebook" src="/img/asm/socials/facebook.png" style="width: 30px; height: 30px;" onmouseover="this.src='/img/asm/socials/facebook2.png'" onmouseout="this.src='/img/asm/socials/facebook.png' "> 
