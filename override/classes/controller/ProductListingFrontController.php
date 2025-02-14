@@ -312,7 +312,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         $query = $this->getProductSearchQuery();
 
 
-
+        
 
 
         // ...modules decide if they can handle it (first one that can is used)
@@ -328,7 +328,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $resultsPerPage = Configuration::get('PS_PRODUCTS_PER_PAGE');
         }
 
-        // pre(Tools::getAllValues());
+        
         if(Tools::getValue('n')){
             $resultsPerPage = Tools::getValue('n');
         }
@@ -386,7 +386,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
 
-
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
         ]);
@@ -404,6 +403,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         );
 
         // pre($result);
+
+        // if(Tools::getValue('id_compat')){
+
+        //     $id_compat = Tools::getValue('id_compat');
+
+        //     $sql = 'SELECT cp.id_product
+        //         FROM ' . _DB_PREFIX_ . 'category_product cp WHERE id_product = ' . (int) $id_compat;
+
+
+        //     $productsCar = Db::getInstance()->executeS($sql);
+
+        //     $result['products'] = $productsCar;
+        //     pre($result);
+        //     pre($productsCar);
+
+        // }   
 
 
         Hook::exec('actionProductSearchProviderRunQueryAfter', [
@@ -458,7 +473,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $query,
             $result
         );
-
 
         // prepare the sort orders
         // note that, again, the product controller is sort-orders
@@ -816,7 +830,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // }
 
           
-            
+            // pre($products_227);
             
             $products = $this->prepareMultipleProductsForTemplate(
                 $products_227
@@ -829,7 +843,45 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         }
 
+        if(Tools::getValue('id_compat')){
+            // pre($query);
 
+            $id_compat = Tools::getValue('id_compat');
+
+            $sql = 'SELECT cp.id_category, cp.id_product, cp.position
+                FROM ' . _DB_PREFIX_ . 'category_product cp WHERE id_product = ' . (int) $id_compat;
+
+
+            $productsCar = Db::getInstance()->executeS($sql);
+
+            $products = $this->prepareMultipleProductsForTemplate(
+                $productsCar
+            );
+
+                    // universal products
+            $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
+                            FROM ps_category_product AS pcp
+                            LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
+                            LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
+                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2';
+
+            $universalProducts = Db::getInstance()->executeS($sqlUniversals);
+
+            $universals = $this->prepareMultipleProductsForTemplate(
+                $universalProducts
+            );
+
+            // pre(count($universals));
+            if (empty($products)) {
+                $this->context->smarty->assign('no_products', true);
+            }
+
+            $this->context->smarty->assign([
+                'universals' => $universals
+            ]);
+        }   
+
+        // pre(count($products));
 
 
             $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
@@ -859,6 +911,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $pagination['items_shown_to'] = count($products);
             }
 
+            // pre($result);
 
             $searchVariables = [
                 'result' => $result,
@@ -1238,10 +1291,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             return;
         } else {
             $variables = $this->getProductSearchVariables();
-            // pre($variables);
+
             $this->context->smarty->assign([
                 'listing' => $variables,
             ]);
+
             $this->setTemplate($template, $params, $locale);
         }
     }

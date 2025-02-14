@@ -534,6 +534,88 @@ class FrontControllerCore extends Controller
      */
     public function postProcess()
     {
+        if(Tools::getValue('getBrandsModelProducts')){
+
+
+        }
+        if(Tools::getValue('getdataBrands')){
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $values = Tools::getAllValues();
+            // pre($values);
+            if(Tools::getValue('type') == 'brand'){
+                  $url = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$values['isolang'].'/'.$values['storeId'].'/'.$key;
+            }elseif(Tools::getValue('type') == 'model') {
+                $url = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$values['id_brand'].'/'.$values['isolang'].'/'.$values['storeId'].'/'.$key;
+            }
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $decodedJson = json_decode($json, true);
+
+            // pre($decodedJson);
+            if(Tools::getValue('type') == 'brand') {
+
+            
+                $html_brands = '<div class="swiper-wrapper">';
+                                    
+                foreach ($decodedJson['data'] as $key => $brand) {
+                    $html_brands .= '<li class="swiper-slide brand_'.$brand['id_brand'].'" style="background:transparent;flex:unset;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;" onclick="openModels(this,'.$brand['id_brand'].')">
+                                        <img class="original_img" style="max-width:100px;" src="'.$brand['brand_logo'].'"/>
+                                        <img class="hover_img dont_show" style="max-width:100px;" src="'.$brand['brand_hover_logo'].'"/>
+                                        <span class="name_brand" style="color:#fff;font-weight:600;">'.$brand['name'].'</span>
+                                    </li>';
+                }
+
+                $html_brands .='</div>
+                                <div class="swiper-button-next" style="color: #ff0000;"></div>
+                                <div class="swiper-button-prev" style="color: #ff0000;"></div>
+                            ';
+                
+                $decodedJson['html_brands'] = $html_brands;
+            
+            }
+            if(Tools::getValue('type') == 'model'){
+                foreach ($decodedJson['data'] as $key => $model) {
+                $html_model = '<div class="car_item_holder">
+                                <div class="myCarsBrand">
+                                    <div style="display:flex;flex-direction:column;">
+                                        <img class="img-responsive" src="'.$model['cartoon'].'" style="margin: 0 auto;width: 200px; cursor: pointer;" />
+                                    </div>
+                                    <div id="container_version_parent" style="display:flex;justify-content:center;">
+                                        <div class="version_model_container" style="padding:1rem;text-align:center;">
+                                            <div class="model_name" onclick="toogleClasslist(this)">
+                                                <span class="modelspan">'.$model['model'].'</span>
+                                                <span>|</span>
+                                                <span>'.$model['type'].'</span>
+                                            </div>
+
+                                            <div class="versions_model_content dont_show">
+                                                <div class="type_selector" onclick="setCarSearch('.$model['id_compat'].')">
+                                                     <span>'.$model['version'].'</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                }
+
+                $decodedJson['html_model'] = $html_model;
+            }
+            // Send response as JSON
+            header('Content-Type: application/json');
+            echo json_encode($decodedJson);
+            exit;
+
+            }
+
     }
 
     protected function assignGeneralPurposeVariables()
@@ -614,6 +696,7 @@ class FrontControllerCore extends Controller
      */
     public function initContent()
     {
+        // $this->getManufacturers();
         $this->assignGeneralPurposeVariables();
         $this->getCategories();
         $this->getAllCMS();
@@ -816,6 +899,7 @@ class FrontControllerCore extends Controller
      */
     protected function displayMaintenancePage()
     {
+
         if ($this->maintenance == true || !(int) Configuration::get('PS_SHOP_ENABLE')) {
             $this->maintenance = true;
 
@@ -2286,8 +2370,15 @@ class FrontControllerCore extends Controller
     public function getCategories()
     {
         $lang = (int)Context::getContext()->language->id;
-		$cats = Category::getCategories($lang);				
+		$cats = Category::getCategories($lang);
+        // pre($cats);			
 		$this->context->smarty->assign('categories', $cats);		
+    }
+    public function getManufacturers()
+    {
+        $lang = (int)Context::getContext()->language->id;
+		$brands = Manufacturer::getManufacturers(false, $lang, true, false, false, false);			
+		$this->context->smarty->assign('manufacturers', $brands);		
     }
 
     public function getAllCMS()

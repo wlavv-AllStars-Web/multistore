@@ -123,26 +123,29 @@
     </style>
   {/if}
   <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">
-    {if isset($filter_1) && isset($filter_3)}
-      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-lg-3" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product" style="background: #282828;display:flex;flex-direction: column;padding:2rem 1rem !important;border-radius:0.25rem;margin-bottom: 2rem;">
+  {if $cars_products_page}
+      {* {Tools::getAllValues()|print_r} *}
+      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;">
+      <div style="background: #efefef !important;display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
-          <img class="img-responsive" src="/img/homepage/models/{$filter_1}_{$filter_3}.png" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
-        </div>
-        <div class="current-car-content">
-          <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: dodgerblue;font-weight:600;"
-          onclick="addToMyCars({$filter_1},{$filter_2},{$filter_3},{$filter_4},{$customer.is_logged},'{$ukoo_name_1}', '{$ukoo_name_2}', '{$ukoo_name_3}', '{$ukoo_name_4}')">
-            {l s='Click to receive informations about new products for this car' d='Shop.Theme.ProductList'}
+            <img class="img-responsive" src="https://webtools.all-stars-motorsport.com/uploads/compats/compat/2.png" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
           </div>
-          <div class="mobile">
-            <span><img src="/img/homepage/brands/{$filter_1}.png" style="width: 40px;"/></span>
-            <span>|</span>
-            <span style="color: var(--asm-color) !important;">{$ukoo_name_2}</span>
-            <span>|</span>
-            <span>{$ukoo_name_3}</span>
-          </div>
-          <div class="desktop details-info-car-dektop">
-            <div>{$ukoo_name_1} | {$ukoo_name_2} </div>
-            <div style="margin-top: 11px;"> {$ukoo_name_3} | {$ukoo_name_4} </div>
+          <div class="current-car-content">
+            <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: dodgerblue;font-weight:600;"
+            onclick="addToMyCars({$filter_1},{$filter_2},{$filter_3},{$filter_4},{$customer.is_logged},'{$ukoo_name_1}', '{$ukoo_name_2}', '{$ukoo_name_3}', '{$ukoo_name_4}')">
+              {l s='Click to receive informations about new products for this car' d='Shop.Theme.ProductList'}
+            </div>
+            <div class="mobile">
+              <span><img src="/img/homepage/brands/{$filter_1}.png" style="width: 40px;"/></span>
+              <span>|</span>
+              <span style="color: var(--asm-color) !important;">{$ukoo_name_2}</span>
+              <span>|</span>
+              <span>{$ukoo_name_3}</span>
+            </div>
+            <div class="desktop details-info-car-dektop">
+              <div>Abarth / Fiat | 595 / 695</div>
+              <div style="margin-top: 11px;"> 312 - 08-... | Abarth - 135 / 140 / 160</div>
+            </div>
           </div>
         </div>
       </article>

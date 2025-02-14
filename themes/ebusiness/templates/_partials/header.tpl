@@ -185,10 +185,19 @@
           <a href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
         </li>
 
-        <li {if $page.page_name =='index'}class="dropdown" {/if}>
-            <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
-              <div class="dropdown-menu menu-logos">
-          {if $page.page_name =='index'}
+        <li class="dropdown-brands">
+            <a class="link-logosMenu" aria-expanded="false"  >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+            <div class="dropdown-menu menu-logos" style="background: #333;border-bottom: 3px solid var(--asm-color)">
+              <div class="swiper swiper-menu-brands"></div>
+              {* <div class="swiper swiper-menu-brands">
+                <div class="swiper-wrapper">
+
+                </div>
+                <div class="swiper-pagination"></div>
+              </div> *}
+              <div class="versions_cars"></div>
+            </div>
+          {* {if $page.page_name =='index'}
             {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
               <div id="your_garage_container" style="text-align: center;margin: 0 auto;display: none;">
                     <h2 id="openMyCars" style="cursor: pointer;">{l s='Your Garage' d='Shop.Theme.Homepage'}</h2>
@@ -218,7 +227,7 @@
               
                   {hook h="displayHome" mod="ukoocompat"}
               </div>
-          {/if}
+          {/if} *}
         </li>
 
         <li class="dropdown brands-drop">
@@ -279,12 +288,12 @@
               <a class=""  href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
             </li>
 
-            <li class=" {if $page.page_name =='index'}dropdown{/if}">
+            <li class="dropdown">
               {* <i class="material-icons">directions_car</i> *}
-                <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+                <a class="link-logosMenu"   data-toggle="dropdown" aria-expanded="false">{l s='Your Car' d='Shop.Theme.Homepage'}</a>
                   <div class="dropdown-menu menu-logos">
-              {if $page.page_name =='index'}
-                {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
+              {* {if $page.page_name =='index'} *}
+                {* {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
                   <div id="your_garage_container" style="text-align: center;margin: 0 auto;display: none;">
                         <h2 id="openMyCars" style="cursor: pointer;">{l s='Your Garage' d='Shop.Theme.Homepage'}</h2>
                         <div class="cars-container">
@@ -309,11 +318,12 @@
                       {/foreach}
                         </div>
                   </div>
-                {/if}
+                {/if} *}
                   
-                      {hook h="displayHome" mod="ukoocompat"}
+                      {* {hook h="displayHome" mod="ukoocompat"} *}
+                      <div class="versions_cars"></div>
                   </div>
-              {/if}
+              {* {/if} *}
             </li>
 
             {* <li class="dropdown brands-drop"> *}
@@ -349,16 +359,166 @@
 </div>
 {hook h='displayMLS'}
 
+
+<style>
+  .dont_show {
+    display: none;
+  }
+
+  .dropdown-brands{
+    transition: all ease-in-out 250ms;
+  }
+
+  .link-logosMenu {
+    user-select: none;
+  }
+
+  .version_model_container .model_name > span {
+    color: #fff;
+    font-weight: 600;
+  }
+  .version_model_container .model_name:hover > span {
+    color: #ff0000 !important;
+  }
+
+  .versions_model_content.dont_show{
+    display: none;
+  }
+
+  .model_name {
+    user-select: none;
+  }
+
+  .type_selector span {
+    user-select: none;
+    color: #d0d0d0;
+    padding: 1rem;
+  }
+  .type_selector:hover span {
+    user-select: none;
+    color: #ff0000;
+  }
+
+</style>
+{* <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> *}
 <script>
 
-    document.addEventListener("scroll", function () {
-      const header = document.getElementById("header");
-      if (window.scrollY > 80) { // Adjust scroll threshold as needed
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
+  function toogleClasslist(elem) {
+    event.stopPropagation(); 
+    elem.nextElementSibling.classList.toggle("dont_show")
+  }
+
+  document.addEventListener("scroll", function () {
+    const header = document.getElementById("header");
+    if (window.scrollY > 80) { // Adjust scroll threshold as needed
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+
+  const dropdownButton = document.querySelector(".dropdown-brands");
+  const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
+
+  // Toggle dropdown on click
+  dropdownButton.addEventListener("click", (event) => {
+      event.stopPropagation(); // Prevent event from reaching document
+      
+      // Toggle display
+      if (dropdownMenu.style.display === "block") {
+          dropdownMenu.style.display = "none";
+          document.querySelector(".link-logosMenu").setAttribute("aria-expanded","false")
+        } else {
+          dropdownMenu.style.display = "block";
+          document.querySelector(".link-logosMenu").setAttribute("aria-expanded","true")
       }
-    });
+  });
+
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", (event) => {
+      if (!dropdownMenu.contains(event.target) 
+          && !dropdownButton.contains(event.target) 
+          && !event.target.closest(".swiper-menu-brands")
+          && !event.target.closest(".model_name")) {
+          dropdownMenu.style.display = "none";
+      }
+  });
+
+  function openMenuCars(){
+    $.ajax({
+            url: '{url entity='frontController'}', // Replace with your endpoint
+            type: 'GET',
+            data: {
+              getdataBrands: 1,
+              type: 'brand',
+              storeId: {Context::getContext()->shop->id}
+            },
+            success: function(brands) {
+              let brandsContainer = document.querySelector(".dropdown-menu.menu-logos .swiper-menu-brands")
+              brandsContainer.innerHTML = brands.html_brands
+
+              let librands = brandsContainer.querySelectorAll("li")
+
+              librands.forEach((brand) => {
+                brand.addEventListener("mouseenter", function () {
+                  brand.querySelector(".original_img").classList.add("dont_show")
+                  brand.querySelector(".hover_img").classList.remove("dont_show")
+                  brand.querySelector(".name_brand").style.color = "#ff0000"
+                });
+                brand.addEventListener("mouseleave", function () {
+                  brand.querySelector(".original_img").classList.remove("dont_show")
+                  brand.querySelector(".hover_img").classList.add("dont_show")
+                  brand.querySelector(".name_brand").style.color = "#fff"
+                });
+              });
+
+
+              var swiper = new Swiper(".swiper-menu-brands", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true,
+                },
+              });
+
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
+          })
+  }
+
+  openMenuCars()
+
+  function openModels(element,id_brand){
+    event.stopPropagation(); 
+    $.ajax({
+            url: '{url entity='frontController'}', // Replace with your endpoint
+            type: 'GET',
+            data: {
+              getdataBrands: 1,
+              type: 'model',
+              id_brand: id_brand,
+              storeId: {Context::getContext()->shop->id}
+            },
+            success: function(brands) {
+              let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
+              brandsContainer.innerHTML = brands.html_model
+
+
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
+          })
+  }
+
+
+  function setCarSearch(idCompat) {
+    idCompat = 18136
+    window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+idCompat
+  }
 
 
     // function setCarAndSearch(brand, model, type, version){

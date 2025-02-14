@@ -505,6 +505,18 @@ body {
     margin-bottom: 0;
   }
 
+ 
+  #cars-products #js-product-list-top {
+    width: 100%;
+    margin: auto;
+    max-width: 1500px !important;
+    display: flex;
+    justify-content: center;
+  }
+  #cars-products #js-product-list-top .products-selection{
+    width: 100%;
+  }
+
   #search #js-product-list-top .products-selection {
     width: 100%;
     margin: auto;
@@ -512,6 +524,7 @@ body {
     display: flex;
     justify-content: center;
   }
+
   #category #js-product-list-top .products-selection {
     width: 100%;
     margin: auto;
@@ -535,6 +548,11 @@ body {
   #contact #wrapper .breadcrumb[data-depth="1"], 
   #contact #wrapper .breadcrumb_wrapper[data-depth="1"] {
     display: block !important;
+  }
+
+  .link-logosMenu[aria-expanded="true"] {
+    background: var(--asm-color);
+    color: #fff !important;
   }
 
   /* #contact .contact-form .btn-primary[name="submitMessage"] {
@@ -6142,8 +6160,8 @@ body::-ms-scrollbar-thumb:hover {
 
 
 .loading-spinner {
-  border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid var(--asm-color); /* Blue */
+  border: 4px solid #f3f3f3; 
+  border-top: 4px solid var(--asm-color); 
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -6162,6 +6180,32 @@ body::-ms-scrollbar-thumb:hover {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+}
+
+.loading-overlay-universals{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.loading-overlay-universals:not(.showLoading){
+  display: none;
+}
+
+.universals-product-list article{
+  margin-bottom: 1.5rem;
+}
+
+.universals-product-list article .thumbnail-container {
+    border-radius: .25rem;
+    outline: 1px solid #d8d8d8;
+    outline-offset: -2px;
 }
 
 @keyframes spin {
