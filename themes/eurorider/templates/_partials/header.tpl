@@ -169,7 +169,9 @@
         </div>
         <div class="col-md-4  d-none d-lg-flex justify-content-center align-items-center" style="flex-direction: column;" >
           <img width="90" height="90" src="/img/eurorider/eu.webp" />
-          <span>{l s="Shipped from" d="Shop.Theme.Header"}</span><span style="font-weight: 600;">{l s="Europe" d="Shop.Theme.Header"}</span>
+          <div style="display: flex;gap: .25rem;padding: .5rem 1rem; color: var(--asm-color);">
+            <span>{l s="Shipped from" d="Shop.Theme.Header"}</span><span style="font-weight: 700;">{l s="Europe" d="Shop.Theme.Header"}</span>
+          </div>
           {* <span>{l s="%shipped% %from%" sprintf=['%shipped%' => 'Shipped', '%from%' => 'from Europe'] d="Shop.Theme.Header"}</span> *}
         </div>
         <div class="col-md-4 d-none d-lg-flex justify-content-end align-items-center" style="position: relative;z-index:1;padding-right: 3rem;">
