@@ -55,7 +55,9 @@ class CarsProductsControllerCore extends ProductListingFrontController{
     protected function getProductsByCar($carProductId)
     {
         $sql = 'SELECT cp.id_category, cp.id_product, cp.position
-                FROM ' . _DB_PREFIX_ . 'category_product cp WHERE id_product = ' . (int) $carProductId;
+                FROM ' . _DB_PREFIX_ . 'category_product cp
+                LEFT JOIN ' . _DB_PREFIX_ . 'product_shop ps ON cp.id_product = ps.id_product
+                WHERE cp.id_product = ' . (int) $carProductId;
 
 
         return Db::getInstance()->executeS($sql);
