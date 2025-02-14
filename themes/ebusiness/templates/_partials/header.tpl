@@ -516,7 +516,7 @@
 
 
   function setCarSearch(idCompat) {
-    idCompat = 18136
+    idCompat = 18127
     window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+idCompat
   }
 
