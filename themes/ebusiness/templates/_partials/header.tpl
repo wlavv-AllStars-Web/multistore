@@ -489,7 +489,7 @@
           })
   }
 
-  // openMenuCars()
+  openMenuCars()
 
   function openModels(element,id_brand){
     event.stopPropagation(); 
