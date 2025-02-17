@@ -54,6 +54,16 @@ class AddressControllerCore extends FrontController
         }
 
         $this->address_form = $this->makeAddressForm();
+
+        $customerId = $this->context->customer->id;
+
+        $sql = 'SELECT siret FROM ps_customer WHERE id_customer ='.$customerId;
+        $hasSiret = DB::getInstance()->getValue($sql);
+
+        if($hasSiret){
+            $this->address_form->fillWith(['vat_number' => $hasSiret]);
+        }
+
         $this->context->smarty->assign('address_form', $this->address_form->getProxy());
     }
 
@@ -70,6 +80,7 @@ class AddressControllerCore extends FrontController
             $sql = 'SELECT id_country, call_prefix FROM ps_country WHERE iso_code = "'. pSQL($iso_code_address) .'"';
 
             $result  = Db::getInstance()->getRow($sql);
+            
 
             header('Content-Type: application/json');
             echo json_encode([
@@ -91,16 +102,34 @@ class AddressControllerCore extends FrontController
 
         // Submit the address, don't care if it's an edit or add
         if (Tools::isSubmit('submitAddress')) {
+
             if (!$this->address_form->submit()) {
                 $this->errors[] = $this->trans('Please fix the error below.', [], 'Shop.Notifications.Error');
             } else {
-                if ($id_address) {
-                    $this->success[] = $this->trans('Address successfully updated.', [], 'Shop.Notifications.Success');
-                } else {
-                    $this->success[] = $this->trans('Address successfully added.', [], 'Shop.Notifications.Success');
-                }
 
-                $this->should_redirect = true;
+                // pre(Tools::getAllValues());
+
+                $customerId = $this->context->customer->id;
+
+                $sql = 'SELECT siret FROM ps_customer WHERE id_customer ='.$customerId;
+                $hasSiret = DB::getInstance()->getValue($sql);
+        
+                if($hasSiret != Tools::getValue('vat_number')){
+                    $this->errors[] = $this->trans('Cannot change vat number.', [], 'Shop.Notifications.Error');
+                    $this->address_form->fillWith(['vat_number' => $hasSiret]);
+                    return;
+                }else{
+                    if ($id_address) {
+                        $this->success[] = $this->trans('Address successfully updated.', [], 'Shop.Notifications.Success');
+                    } else {
+                        $this->success[] = $this->trans('Address successfully added.', [], 'Shop.Notifications.Success');
+                    }
+                    
+                    $this->should_redirect = true;
+                }
+        
+
+
             }
         }
 
@@ -193,6 +222,8 @@ class AddressControllerCore extends FrontController
     {
         $addressForm = $this->makeAddressForm();
 
+
+
         if (Tools::getIsset('id_address') && ($id_address = (int) Tools::getValue('id_address'))) {
             $addressForm->loadAddressById($id_address);
         }
@@ -200,6 +231,7 @@ class AddressControllerCore extends FrontController
         if (Tools::getIsset('id_country')) {
             $addressForm->fillWith(['id_country' => Tools::getValue('id_country')]);
         }
+
 
         ob_end_clean();
         header('Content-Type: application/json');

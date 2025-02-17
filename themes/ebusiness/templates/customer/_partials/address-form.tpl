@@ -34,6 +34,7 @@
     <section class="form-fields">
       {block name='form_fields'}
         {foreach from=$formFields item="field"}
+          {* <pre>{$formFields|print_r}</pre> *}
           {block name='form_field'}
             {form_field field=$field}
           {/block}
@@ -61,14 +62,20 @@
 <script>
 // if(document.querySelector("body#address")){
   $(document).ready(function () {
-  let vat_numberEl = document.querySelector("input[name='vat_number']");
+    let vat_numberEl = document.querySelector("input[name='vat_number']");
 
-  if (vat_numberEl && !vat_numberEl.hasAttribute("data-initialized")) {
+    if (vat_numberEl && vat_numberEl.value.trim() !== "") {
+        vat_numberEl.setAttribute("readonly", "true");
+        document.querySelector("select[name='id_country']").style.pointerEvents = 'none';
+    }
+
+
+  if (vat_numberEl && !vat_numberEl.hasAttribute("data-initialized") && !vat_numberEl.value.trim() !== "") {
     vat_numberEl.setAttribute("data-initialized", "true");
 
-    vat_numberEl.classList.add("clean_vat_number");
+    // vat_numberEl.classList.add("clean_vat_number");
     // console.log("vat_number");
-    document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+    document.querySelector("select[name='id_country']").setAttribute("readonly","true")
 
     vat_numberEl.addEventListener("focusout", (e) => {
       setCountryByVATNumber(e.target.value);
@@ -82,6 +89,7 @@
 
   function setCountryByVATNumber(vatNumber){
     // console.log("setcountrybyvat")
+
 
       $('select option').show();
       
@@ -112,7 +120,7 @@
             type: 'POST',
             data: { iso_codeAddress: country_iso_code },
             success: function(response) {
-              // console.log(response)
+              console.log(response)
                 // Adjust based on server response
                 country_id = response.country_id; 
                 call_prefix = response.call_prefix;
@@ -128,18 +136,24 @@
                     } else if (country_iso_code === 'ES') {
                         $('select option[mytag!=34]').hide();
                     } else {
-                        document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+                        // document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
                     }
-                    document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
+                    // document.querySelector("select[name='id_country']").setAttribute("disabled","disabled")
                     $("select[name='id_country']").val(country_id).change();
                     $("input[name='phone']").val(call_prefix);
 
+                    
+                    // checkVat();
+                    
+
                 } else {
                     console.warn("Invalid country ISO code or no matching country ID found.");
-                    document.querySelector("select[name='id_country']").removeAttribute("disabled")
+                    // document.querySelector("select[name='id_country']").removeAttribute("disabled")
                     $('.clean_vat_number').val('');
                     $('.clean_vat_number').value = '';
                 }
+
+
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", status, error);
@@ -149,6 +163,32 @@
       
       }
   }
+
+  // function checkVat() {
+  //   $.ajax({
+	// 	  type: "POST",
+	// 	  dataType: 'text',
+	// 	  headers: { "cache-control": "no-cache" },
+	// 	  url: '{url entity='my-account'}',
+	// 	  data: {
+	// 		  'action' : 'check_vat',
+	// 		  'vatnumber' : $('input[name="vat_number"]').val().toUpperCase()
+	// 	  },
+	// 	  success: function(msg){
+			  
+	// 		if(msg == 1){
+	// 			$('input[name="vat_number"]').css('border-color', 'black'); 
+	// 			$('input[name="vat_number"]').next('button').prop('disabled', false);
+	// 		}else{
+	// 			$('input[name="vat_number"]').css('outline', '2px solid red'); 
+	// 			// alert("Inserted VAT Number is invalid for your country, please verify!");
+	// 			// $('input[name="vat_number"]').next('button').prop('disabled', true);   
+	// 			// $('input[name="vat_number"]').value = "";   
+	// 			// $('input[name="vat_number"]').attr('value', '');  
+	// 		}
+	// 	  }
+  // });
+  // }
   
   function hasNumber(myString) { return /\d/.test(myString); }
 </script>
