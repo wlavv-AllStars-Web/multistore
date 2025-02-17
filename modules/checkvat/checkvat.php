@@ -51,7 +51,8 @@ class CheckVat extends Module
 {
     // Get the customer ID and VAT number from the request
     $idCustomer = (int)$this->context->customer->id;
-    $vatNumber = Tools::getValue('vat_number');
+    $vatNumber = Tools::getValue('siret');
+    
 
     // Ensure the customer is logged in and input is valid
     if (!$idCustomer) {
@@ -193,10 +194,12 @@ class CheckVat extends Module
 		|| !$this->registerHook('customerAccount')
 		|| !$this->registerHook('createAccountForm')
 		|| !$this->registerHook('Top')
-		|| !$this->registerHook('actionBeforeSubmitAccount')
+		|| !$this->registerHook('actionSubmitAccountBefore')
 		|| !$this->registerHook('displayBackOfficeHome')
 		|| !$this->registerHook('dashboardZoneTwo')
-		|| !$this->registerHook('actionCustomerAccountAdd'))
+		|| !$this->registerHook('actionCustomerAccountAdd')
+		|| !$this->registerHook('DisplayTop')
+		)
 			return false;
 
 		$this->saveConfiguration($this->valuesConfigurationByDefault());
@@ -283,7 +286,7 @@ class CheckVat extends Module
 		return true;
 	}
 
-	public function hookactionBeforeSubmitAccount()
+	public function hookactionSubmitAccountBefore()
 	{
 		/*
 		number_vat_valid = 1 : vat is valide for VIES
@@ -293,38 +296,45 @@ class CheckVat extends Module
 
 		$this->context->number_vat_valid = 2;
 		$vat_required_new_customer = Configuration::get('VAT_REQUIRED_NEW_CUSTOMER');
-		$vat_number = Tools::getValue('vat_number');
+		$vat_number = Tools::getValue('siret');
 		$vat_number = $this->nettoyeVat($vat_number);
 
-		if (Tools::isSubmit('submitAccount') && ($vat_required_new_customer == 1) && !$vat_number)
-			$this->context->controller->errors[] = Tools::displayError('You must indicate your VAT number');
 
-		if (Tools::isSubmit('submitAccount') && $vat_number)
+		if (Tools::isSubmit('submitCreate') && ($vat_required_new_customer == 1) && !$vat_number)
+			$this->context->controller->errors[] = $this->l('You must indicate your VAT number');
+
+		if (Tools::isSubmit('submitCreate') && $vat_number)
 		{
 			$this->context->number_vat_valid = $this->checkvatCreateAccount($vat_number);
 
+
 			if ($this->context->number_vat_valid == 2)
-				$this->context->controller->errors[] = Tools::displayError('Your VAT number is invalid');
+				$this->context->controller->errors[] = $this->l('Your VAT number is invalid');
+		
+		    return $this->context->number_vat_valid;
 		}
 	}
 
 	public function hookactionCustomerAccountAdd()
 	{
+	    PrestaShopLogger::addLog('hookactionCustomerAccountAdd called', 1);
 		$this->saveVat((int)$this->context->number_vat_valid, (int)$this->context->customer->id);
 	}
 
 	/**
 	* HOOK hookTop
 	*/
-	public function hookTop()
+	public function hookDisplayTop()
 	{
 		$vat_required_old_customer = Configuration::get('VAT_REQUIRED_OLD_CUSTOMER');
 		if (!$this->context->customer->id)
 			return;
 		$vat_customer = array();
 		$vat_customer = $this->getvatCustomer();
+		
 
 		if ($vat_required_old_customer == 1 && !$vat_customer && $this->context->controller->php_self != 'my-account')
+		    PrestaShopLogger::addLog('hookDisplayHeader: Redirecting to my-account', 1);
 			Tools::redirect('index.php?controller=my-account');
 	}
 
@@ -344,11 +354,15 @@ class CheckVat extends Module
 			WHERE c_l.`id_lang` = '.(int)$this->context->language->id.'
 			AND c.`iso_code` IN('.$this->listCodeIso().')';
 
+
 		$list_countries = Db::getInstance()->ExecuteS($list_countries_sql);
 		$this->context->smarty->assign('list_countries', $list_countries);
 		$this->context->smarty->assign('validation_auto', false);
 
+		
+
 		$vat_required_new_customer = Configuration::get('VAT_REQUIRED_NEW_CUSTOMER');
+		// pre($vat_required_new_customer);
 		$this->context->smarty->assign('vat_required_new_customer', $vat_required_new_customer);
 
 		/* for show the input vat number */
@@ -362,9 +376,11 @@ class CheckVat extends Module
 	
 	public function hookcustomerAccount()
 	{
+	
 		if ($this->getvatCustomer()){
 			return;
 		}
+
 
 		$this->context->smarty->assign('msg_vat_valid', false);
 		$this->context->smarty->assign('bloc_checkvat', true);
@@ -377,21 +393,23 @@ class CheckVat extends Module
 		// $this->context->smarty->assign('action_url_checkvat', $action_url);
 
 		// $this->context->smarty->assign('action_url_checkvat', $action_url);
+		// echo 'paulo';
+		// exit;
 
-		if ($vat = Tools::getValue('vat_number'))
+		if ($vat = Tools::getValue('siret'))
 		{
 
 			$vat = $this->nettoyeVat($vat);
-			$iso_code = Tools::substr($vat, 0, 2);
+			$iso_code = substr($vat, 0, 2);
 			$vat = pSQL($vat);
 
-			$iso_code = Tools::strtoupper(pSQL($iso_code));
+			$iso_code = strtoupper(pSQL($iso_code));
 			$structurevatvalide = $this->structureVatValide($iso_code, $vat);
 			if (!empty($iso_code) && !empty($vat) && $structurevatvalide)
 			{
 				$validation_auto = $this->getValidationAuto($iso_code);
 				$this->context->smarty->assign('validation_auto', $validation_auto);
-				$vatvalidebyvies = $this->vatValideByVies($iso_code, Tools::substr($vat, 2));
+				$vatvalidebyvies = $this->vatValideByVies($iso_code, substr($vat, 2));
 				switch ($vatvalidebyvies)
 				{
 					case 1 : // vat valide
@@ -515,17 +533,16 @@ class CheckVat extends Module
 		if (Tools::getValue('updateconfigurationcheckvat'))
 		{
 			if ($this->updateConfigurationCheckvat())
-				$this->_html .= $this->displayConfirmation($this->l('The parameters were updated successfully'));
+				$this->_html .= $this->l('The parameters were updated successfully');
 			else
-				$this->_html .= $this->displayError($this->l('An error occurred while updating'));
+				$this->_html .= $this->l('An error occurred while updating');
 		}
 
 		if (Configuration::get('PS_B2B_ENABLE') != 1)
-			$this->_html .= $this->displayError($this->l('Active the mode B2B for use this module'));
+			$this->_html .= $this->l('Active the mode B2B for use this module');
 
 		if (Configuration::get('PS_REGISTRATION_PROCESS_TYPE') != 1 && Configuration::get('VAT_REQUIRED_NEW_CUSTOMER') == 1)
-			$this->_html .= $this->displayError(
-			$this->l('Select "Standard (account creation and address creation)" for the registration process type'));
+			$this->_html .= $this->l('Select "Standard (account creation and address creation)" for the registration process type');
 
 		if (Tools::getValue('resetconfig'))
 			$this->saveConfiguration($this->valuesConfigurationByDefault());
@@ -643,17 +660,17 @@ class CheckVat extends Module
 		if ($id_customer = (int)Tools::getValue('retirerclient'))
 		{
 			if ($this->retirerClient($id_customer))
-				$output .= $this->displayConfirmation($this->l('The client was removed from the group successfullyp'));
+				$output .= $this->l('The client was removed from the group successfullyp');
 			else
-				$output .= $this->displayError($this->l('An error occurred when removing the client group'));
+				$output .= $this->l('An error occurred when removing the client group');
 		}
 
 		if ($id_customer = (int)Tools::getValue('validerClient'))
 		{
 			if ($this->validerClient($id_customer))
-				$output .= $this->displayConfirmation($this->l('The client group was changed successfully'));
+				$output .= $this->l('The client group was changed successfully');
 			else
-				$output .= $this->displayError($this->l('An error occured when changing group'));
+				$output .= $this->l('An error occured when changing group');
 		}
 
 		$list_id_group_for_an_iso_code = $this->getConfiguration();
@@ -713,7 +730,7 @@ class CheckVat extends Module
 						<a href ="index.php?tab=AdminCustomers&id_customer='.$value_customer['id_customer'].'&updatecustomer&token=
 						'.$token_customer.'"><img src="../img/admin/tab-customers.gif" alt="'.$this->l('Customer').'" 
 						title="'.$this->l('Customer').'"/></a>
-						<a style="text-decoration: none;" target="_blank" href="https://ec.europa.eu/taxation_customs/vies/rest-api/ms/'.(($value_customer['iso_code'] == 'GR')? 'EL' : $value_customer['iso_code']).'/vat/'.Tools::substr($value_customer['vat_number'], 2).'">
+						<a style="text-decoration: none;" target="_blank" href="https://ec.europa.eu/taxation_customs/vies/rest-api/ms/'.(($value_customer['iso_code'] == 'GR')? 'EL' : $value_customer['iso_code']).'/vat/'.substr($value_customer['vat_number'], 2).'">
 						<img src="../modules/'.$this->name.'/logo.gif" alt="'.$this->l('Validation "VIES" of the VAT number').'" 
 						title="'.$this->l('Validation "VIES" of the VAT number').'" />
 						</a>	
@@ -749,24 +766,27 @@ class CheckVat extends Module
 
 	public function checkvatCreateAccount($vat)
 	{
-		$iso_code = Tools::substr($vat, 0, 2);
+		$iso_code = substr($vat, 0, 2);
+// 		echo $iso_code;
+// 		exit;
+
 		if ($this->structureVatValide($iso_code, $vat))
-			return $this->vatValideByVies($iso_code, Tools::substr($vat, 2));
+			return $this->vatValideByVies($iso_code, substr($vat, 2));
 		return 2;
 	}
 
 	public function structureVatValide($iso_code, $numero_vat)
 	{
-		$vat = Tools::substr($numero_vat, 2);
+		$vat = substr($numero_vat, 2);
 		$vat_valide = false;
 		switch ($iso_code)
 		{
 			case 'AT':
-				if (Tools::substr($vat, 0, 1) == 'U' && Tools::strlen($vat) == 9 && is_numeric( Tools::substr($vat, 1)))
+				if (substr($vat, 0, 1) == 'U' && Tools::strlen($vat) == 9 && is_numeric( substr($vat, 1)))
 					$vat_valide = true;
 				break;
 			case 'BE':
-				if (Tools::substr($vat, 1, 0) == 0 && Tools::strlen($vat) == 10 && is_numeric($vat))
+				if (substr($vat, 1, 0) == 0 && Tools::strlen($vat) == 10 && is_numeric($vat))
 					$vat_valide = true;
 				break;
 			case 'BG':
@@ -774,7 +794,7 @@ class CheckVat extends Module
 					$vat_valide = true;
 				break;
 			case 'CY':
-				if (Tools::strlen($vat) == 9 && is_numeric( Tools::substr($vat, 0, 8)) && !is_numeric( Tools::substr($vat, -1)))
+				if (Tools::strlen($vat) == 9 && is_numeric( substr($vat, 0, 8)) && !is_numeric( substr($vat, -1)))
 					$vat_valide = true;
 				break;
 			case 'CZ':
@@ -803,8 +823,8 @@ class CheckVat extends Module
 				break;
 			case 'ES':
 				if (Tools::strlen($vat) == 9
-				&& ((is_numeric( Tools::substr($vat, 0, 1)) && !is_numeric( Tools::substr($vat, -1))) || (!is_numeric( Tools::substr($vat, 0, 1))
-				&& is_numeric( Tools::substr($vat, -1)))) && is_numeric( Tools::substr($vat, 1, 7)))
+				&& ((is_numeric( substr($vat, 0, 1)) && !is_numeric( substr($vat, -1))) || (!is_numeric( substr($vat, 0, 1))
+				&& is_numeric( substr($vat, -1)))) && is_numeric( substr($vat, 1, 7)))
 					$vat_valide = true;
 				break;
 			case 'FI':
@@ -812,13 +832,13 @@ class CheckVat extends Module
 					$vat_valide = true;
 				break;
 			case 'FR':
-				if (Tools::strlen($vat) == 11 && is_numeric( Tools::substr($vat, -9)))
+				if (Tools::strlen($vat) == 11 && is_numeric( substr($vat, -9)))
 					$vat_valide = true;
 				break;
 			case 'GB':
 				if (((Tools::strlen($vat) == 9 || Tools::strlen($vat) == 12) && is_numeric($vat))
-				|| ( Tools::substr($vat, 0, 2) == 'GD' && is_numeric( Tools::substr($vat, 2)) && Tools::strlen($vat) == 5)
-				|| ( Tools::substr($vat, 0, 2) == 'HA' && is_numeric( Tools::substr($vat, 2)) && Tools::strlen($vat) == 5))
+				|| ( substr($vat, 0, 2) == 'GD' && is_numeric( substr($vat, 2)) && Tools::strlen($vat) == 5)
+				|| ( substr($vat, 0, 2) == 'HA' && is_numeric( substr($vat, 2)) && Tools::strlen($vat) == 5))
 					$vat_valide = true;
 				break;
 			case 'HU':
@@ -830,8 +850,8 @@ class CheckVat extends Module
 					$vat_valide = true;
 				break;
 			case 'IE':
-				if (Tools::strlen($vat) == 8 && is_numeric( Tools::substr($vat, 0, 1))
-				&& is_numeric( Tools::substr($vat, 2, 5)) && !is_numeric( Tools::substr($vat, -1)))
+				if (Tools::strlen($vat) == 8 && is_numeric( substr($vat, 0, 1))
+				&& is_numeric( substr($vat, 2, 5)) && !is_numeric( substr($vat, -1)))
 					$vat_valide = true;
 				break;
 			case 'IT':
@@ -855,9 +875,9 @@ class CheckVat extends Module
 					$vat_valide = true;
 				break;
 			case 'NL':
-				if (Tools::strlen($vat) == 12 && is_numeric( Tools::substr($vat, 0, 9))
-				&& !is_numeric( Tools::substr($vat, 9, 1)) && Tools::substr($vat, 9, 1) == 'B'
-				&& is_numeric( Tools::substr($vat, -2)))
+				if (Tools::strlen($vat) == 12 && is_numeric( substr($vat, 0, 9))
+				&& !is_numeric( substr($vat, 9, 1)) && substr($vat, 9, 1) == 'B'
+				&& is_numeric( substr($vat, -2)))
 					$vat_valide = true;
 				break;
 			case 'PL':
@@ -913,6 +933,9 @@ class CheckVat extends Module
 	    $iso_code = (($iso_code == 'GR') ? 'EL' : $iso_code);
 	    
 		$url = 'https://ec.europa.eu/taxation_customs/vies/rest-api/ms/'. $iso_code .'/vat/'.$vat;
+		
+// 		echo $url;
+// 		exit;
 
 	    $isValid = self::checkCurlUrl($url);
 
@@ -976,9 +999,9 @@ class CheckVat extends Module
 
 	public function saveVat($number_vat_valid, $id_customer)
 	{
-		$vat_number = Tools::getValue('vat_number');
+		$vat_number = Tools::getValue('siret');
 		$vat_number = $this->nettoyeVat($vat_number);
-		$iso_code = Tools::substr($vat_number, 0, 2);
+		$iso_code = substr($vat_number, 0, 2);
 		if ($number_vat_valid == 1 && $this->getValidationAuto($iso_code))
 			$this->validerClient($id_customer);
 	}
@@ -1001,21 +1024,19 @@ class CheckVat extends Module
 				return false;
 
 	
-        $last_id_address = Db::getInstance()->getValue('SELECT `id_address` FROM `'._DB_PREFIX_.'address` WHERE `id_customer` = '.(int)$id_customer . ' AND active=1 AND deleted = 0 ORDER BY id_address DESC');
+		if(!Tools::getValue('submitCreate')){
+			$last_id_address = Db::getInstance()->getValue('SELECT `id_address` FROM `'._DB_PREFIX_.'address` WHERE `id_customer` = '.(int)$id_customer . ' AND active=1 AND deleted = 0 ORDER BY id_address DESC');
+			
+			$id_country = Db::getInstance()->getValue('SELECT id_country FROM '._DB_PREFIX_.'address WHERE id_address=' . $last_id_address);
+	
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'address SET active=0, deleted = 1 WHERE `id_customer` = '.(int)$id_customer . ' AND id_address <> ' . $last_id_address);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'address SET vat_number = "' . Tools::getValue('siret') . '" WHERE `id_customer` = '.(int)$id_customer . ' AND id_address =' . $last_id_address);
+		}
         
-        $id_country = Db::getInstance()->getValue('SELECT id_country FROM '._DB_PREFIX_.'address WHERE id_address=' . $last_id_address);
 
-        Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'address SET active=0, deleted = 1 WHERE `id_customer` = '.(int)$id_customer . ' AND id_address <> ' . $last_id_address);
-        Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'address SET vat_number = "' . Tools::getValue('vat_number') . '" WHERE `id_customer` = '.(int)$id_customer . ' AND id_address =' . $last_id_address);
-        
-        if( ( $id_country == 15 ) || ( $id_country == 9) ){
-            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=1 WHERE `id_customer` = '.(int)$id_customer);
-            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=1 WHERE `id_customer` = '.(int)$id_customer);
-        }else{
-            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
-            Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
-        }
-        
+		Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
+		Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
+            
         
 		return true;
 	}
