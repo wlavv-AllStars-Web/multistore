@@ -1008,7 +1008,8 @@ class CheckVat extends Module
 
 	public function validerClient($id_customer = false)
 	{
-		$iso_code = $this->getIsoCodeForCustomer($id_customer);
+// 		$iso_code = $this->getIsoCodeForCustomer($id_customer);
+        $iso_code = substr(Tools::getValue('siret'), 0, 2);
 		$id_group = (int)$this->getIdGroupForAnIsoCode($iso_code);
 
 		if (!Db::getInstance()->update('customer', array('id_default_group' => $id_group), '`id_customer` = '.$id_customer, 1))
@@ -1023,6 +1024,7 @@ class CheckVat extends Module
 			if (!Db::getInstance()->delete('customer_group', '`id_group`='.$ps_customer_group.' AND `id_customer`='.(int)$id_customer))
 				return false;
 
+        $id_country = Db::getInstance()->getValue('SELECT id_country FROM '._DB_PREFIX_.'country WHERE iso_code="'.pSQL($iso_code).'" LIMIT 1');
 	
 		if(!Tools::getValue('submitCreate')){
 			$last_id_address = Db::getInstance()->getValue('SELECT `id_address` FROM `'._DB_PREFIX_.'address` WHERE `id_customer` = '.(int)$id_customer . ' AND active=1 AND deleted = 0 ORDER BY id_address DESC');
@@ -1034,8 +1036,13 @@ class CheckVat extends Module
 		}
         
 
-		Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group='.$id_group.' WHERE `id_customer` = '.(int)$id_customer);
-		Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group='.$id_group.' WHERE `id_customer` = '.(int)$id_customer);
+		if(isset($id_country) && ($id_country == 9 || $id_country == 15)){
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=3 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=3 WHERE `id_customer` = '.(int)$id_customer);
+		}else{
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=5 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=5 WHERE `id_customer` = '.(int)$id_customer);
+		}
             
         
 		return true;
