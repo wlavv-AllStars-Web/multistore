@@ -103,33 +103,44 @@ class AddressControllerCore extends FrontController
         // Submit the address, don't care if it's an edit or add
         if (Tools::isSubmit('submitAddress')) {
 
-            if (!$this->address_form->submit()) {
-                $this->errors[] = $this->trans('Please fix the error below.', [], 'Shop.Notifications.Error');
-            } else {
+            
+            $customerId = $this->context->customer->id;
 
-                // pre(Tools::getAllValues());
+            $sql = 'SELECT siret FROM ps_customer WHERE id_customer ='.$customerId;
+            $hasSiret = DB::getInstance()->getValue($sql);
 
-                $customerId = $this->context->customer->id;
+            $sqlCountry = 'SELECT iso_code FROM ps_country WHERE id_country='.Tools::getValue('id_country');
+            $vatCountryIsoCode = DB::getInstance()->getValue($sqlCountry);
 
-                $sql = 'SELECT siret FROM ps_customer WHERE id_customer ='.$customerId;
-                $hasSiret = DB::getInstance()->getValue($sql);
-        
-                if($hasSiret != Tools::getValue('vat_number')){
-                    $this->errors[] = $this->trans('Cannot change vat number.', [], 'Shop.Notifications.Error');
-                    $this->address_form->fillWith(['vat_number' => $hasSiret]);
-                    return;
-                }else{
+            $vatCountry = substr($hasSiret,0,2);
+
+            $sqlCountryVat = 'SELECT id_country FROM ps_country WHERE iso_code="'.$vatCountry.'"';
+            $CountryVatId = DB::getInstance()->getValue($sqlCountryVat);
+
+
+            if($hasSiret && $hasSiret != Tools::getValue('vat_number')){
+                $this->errors[] = $this->trans('Cannot change vat number.', [], 'Shop.Notifications.Error');
+                $this->address_form->fillWith(['vat_number' => $hasSiret]);
+                return;
+            }elseif($vatCountryIsoCode != $vatCountry){
+                $this->errors[] = $this->trans('Cannot change country.', [], 'Shop.Notifications.Error');
+                $this->address_form->fillWith(['id_country' => $CountryVatId]);
+            }else{
+
+                if (!$this->address_form->submit()) {
+                    $this->errors[] = $this->trans('Please fix the error below.', [], 'Shop.Notifications.Error');
+                } else {
+
+                
                     if ($id_address) {
                         $this->success[] = $this->trans('Address successfully updated.', [], 'Shop.Notifications.Success');
                     } else {
                         $this->success[] = $this->trans('Address successfully added.', [], 'Shop.Notifications.Success');
                     }
-                    
-                    $this->should_redirect = true;
+
+                $this->should_redirect = true;
+
                 }
-        
-
-
             }
         }
 
