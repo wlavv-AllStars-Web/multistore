@@ -534,18 +534,18 @@ class FrontControllerCore extends Controller
      */
     public function postProcess()
     {
-        if(Tools::getValue('getBrandsModelProducts')){
+        // if(Tools::getValue('getBrandsModelProducts')){
 
 
-        }
+        // }
         if(Tools::getValue('getdataBrands')){
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $values = Tools::getAllValues();
             // pre($values);
             if(Tools::getValue('type') == 'brand'){
-                  $url = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$values['isolang'].'/'.$values['storeId'].'/'.$key;
+                  $url = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$values['storeId'].'/'.$key;
             }elseif(Tools::getValue('type') == 'model') {
-                $url = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$values['id_brand'].'/'.$values['isolang'].'/'.$values['storeId'].'/'.$key;
+                $url = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$values['id_brand'].'/'.$values['storeId'].'/'.$key;
             }
 
 
