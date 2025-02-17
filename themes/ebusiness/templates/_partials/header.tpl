@@ -419,6 +419,8 @@
 
   const dropdownButton = document.querySelector(".dropdown-brands");
   const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
+  const dropdownMenuNext = document.querySelector(".dropdown-menu.menu-logos .swiper-button-next");
+  const dropdownMenuPrev = document.querySelector(".dropdown-menu.menu-logos .swiper-button-prev");
 
   // Toggle dropdown on click
   dropdownButton.addEventListener("click", (event) => {
@@ -438,7 +440,8 @@
   document.addEventListener("click", (event) => {
       if (!dropdownMenu.contains(event.target) 
           && !dropdownButton.contains(event.target) 
-          && !event.target.closest(".swiper-menu-brands")
+          && !dropdownMenuNext.contains(event.target) 
+          && !dropdownButton.contains(event.target) 
           && !event.target.closest(".model_name")) {
           dropdownMenu.style.display = "none";
       }
@@ -474,13 +477,43 @@
 
 
               var swiper = new Swiper(".swiper-menu-brands", {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                pagination: {
-                  el: ".swiper-pagination",
-                  clickable: true,
+              slidesPerView: 16,
+              loop: true,
+              navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev"
+              },
+              breakpoints: {
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                  },
+                  1024: {
+                    slidesPerView: 6,
+                    spaceBetween: 0,
+                  },
+                  1441: {
+                    slidesPerView: 9,
+                    spaceBetween: 0,
+                  },
+                  1550: {
+                    slidesPerView: 9,
+                    spaceBetween: 0,
+                  },
+                  1601: {
+                    slidesPerView: 12,
+                    spaceBetween: 0,
+                  },
+                  1921: {
+                    slidesPerView: 12,
+                    spaceBetween: 0,
+                  },
                 },
-              });
+          });
 
             },
             error: function(xhr, status, error) {
