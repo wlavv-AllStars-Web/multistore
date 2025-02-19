@@ -314,12 +314,12 @@ class CheckVat extends Module
 		}
 		if(Tools::isSubmit('submitCreate') && $vat_number && $this->context->number_vat_valid == 1){
 			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			return 1;
+			Tools::redirect('index.php?controller=my-account');
 		}
 
 		if(Tools::isSubmit('submitCreate') && !$vat_number && !$siret){
 			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			return 1;
+			Tools::redirect('index.php?controller=my-account');
 		}
 
 
