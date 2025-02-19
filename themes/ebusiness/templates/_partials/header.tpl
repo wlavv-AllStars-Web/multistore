@@ -480,8 +480,8 @@
               slidesPerView: 12,
               loop: true,
               navigation: {
-                  nextEl: ".swiper-button-next-brands",
-                  prevEl: ".swiper-button-prev-brands"
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev"
               },
               breakpoints: {
                   640: {
