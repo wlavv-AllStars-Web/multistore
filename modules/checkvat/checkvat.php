@@ -1061,6 +1061,9 @@ class CheckVat extends Module
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=5 WHERE `id_customer` = '.(int)$id_customer);
 		}
             
+		if(Tools::isSubmit('submitCreate')) {
+			Tools::redirect('index.php?controller=my-account');
+		}
         
 		return true;
 	}
