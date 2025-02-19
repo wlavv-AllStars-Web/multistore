@@ -36,7 +36,9 @@ use PrestaShop\PrestaShop\Core\Grid\Filter\Filter;
 use PrestaShop\PrestaShop\Core\Form\FormInterface; // If you use forms
 use PrestaShop\PrestaShop\Core\Grid\Column\Type\ImageColumn;
 use PrestaShopBundle\Form\Admin\Type\SwitchType;
+use PrestaShopBundle\Form\Admin\Type\TranslatableType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AsGroup extends Module
 {
@@ -124,17 +126,31 @@ class AsGroup extends Module
     public function hookActionManufacturerFormBuilderModifier(array $params)
     {
         $manufacturerId = isset($params['id']) ? (int) $params['id'] : null;
-
+        $youtubeValue = '';
+        $warrantyValues = [];
+    
         if ($manufacturerId) {
-            $sql = 'SELECT youtube
-                    FROM `' . _DB_PREFIX_ . 'manufacturer`
+            // Retrieve the YouTube value
+            $sql = 'SELECT youtube FROM `' . _DB_PREFIX_ . 'manufacturer`
                     WHERE id_manufacturer = ' . (int) $manufacturerId;
-            $youtubeValue = Db::getInstance()->getValue($sql); 
+            $youtubeValue = Db::getInstance()->getValue($sql);
+    
+            // Retrieve the warranty values for all languages
+            $sql = 'SELECT id_lang, warranty FROM `' . _DB_PREFIX_ . 'manufacturer_lang`
+                    WHERE id_manufacturer = ' . (int) $manufacturerId;
+            $warrantyResults = Db::getInstance()->executeS($sql);
+    
+            // Format warranty data into an associative array (id_lang => warranty_text)
+            foreach ($warrantyResults as $row) {
+                $warrantyValues[(int) $row['id_lang']] = $row['warranty'];
+            }
         }
+
 
 
         /** @var FormBuilderInterface $formBuilder */
         $formBuilder = $params['form_builder'];
+
         $formBuilder->add(
             'youtube', 
             TextType::class,
@@ -146,34 +162,23 @@ class AsGroup extends Module
             ]
         );
 
-        
+        $formBuilder->add(
+            'warranty', 
+            TranslatableType::class,
+            [
+                'type' => TextareaType::class,
+                'label' => $this->trans('Warranty', [], 'Modules.ASGroup.Admin'),
+                'required' => false,
+                'options' => [
+                    'attr' => [
+                        'class' => 'custom-class', // Optional: Add CSS class
+                        'rows' => 3, // Optional: Define textarea size
+                    ],
+                ],
+                'data' => $warrantyValues,
+            ]
+        );
 
-        // $manufacturerData = Tools::getValue('manufacturer');
-
-        
-        // if ($manufacturerData) {
-
-
-        //     if (isset($manufacturerData['youtube'])){
-
-        //         $youtube_code = $manufacturerData['youtube'];
-
-        //         $result = Db::getInstance()->update(
-        //             'manufacturer', 
-        //             ['youtube' => pSQL($youtube_code)], 
-        //             'id_manufacturer = ' . (int) $manufacturerId
-        //         );
-                
-        //         if (!$result) {
-        //             error_log('Update Error: ' . Db::getInstance()->getMsgError());
-        //         } else {
-        //             error_log('Manufacturer updated successfully.');
-        //         }
-
-        //     }else{
-        //         error_log('Product data is not valid or youtube_code is not set.');
-        //     }
-        // }
 
     }
 
@@ -206,9 +211,20 @@ class AsGroup extends Module
             } else {
                 error_log('YouTube code updated successfully for manufacturer ID: ' . $manufacturerId);
             }
-        } else {
-            error_log('YouTube code is not set for manufacturer ID: ' . $manufacturerId);
+        } 
+
+        $warrantyData = isset($manufacturerData['warranty']) ? $manufacturerData['warranty'] : [];
+
+        if (!empty($warrantyData) && is_array($warrantyData)) {
+            foreach ($warrantyData as $idLang => $warrantyText) {
+                $sql = 'INSERT INTO `' . _DB_PREFIX_ . 'manufacturer_lang` (`id_manufacturer`, `id_lang`, `warranty`) 
+                        VALUES (' . $manufacturerId . ', ' . (int) $idLang . ', "' . pSQL($warrantyText) . '")
+                        ON DUPLICATE KEY UPDATE warranty = "' . pSQL($warrantyText) . '"';
+                Db::getInstance()->execute($sql);
+            }
         }
+
+
     }
     
 
