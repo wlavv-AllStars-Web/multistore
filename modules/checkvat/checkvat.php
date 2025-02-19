@@ -312,9 +312,10 @@ class CheckVat extends Module
 				$this->context->controller->errors[] = $this->trans('Your VAT number is invalid', [], 'Shop.Theme.Registration');
 		
 		}
+		
 		if(Tools::isSubmit('submitCreate') && $vat_number && $this->context->number_vat_valid == 1){
 			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			return 1;
+            return 1;
 		}
 
 		if(Tools::isSubmit('submitCreate') && !$vat_number && !$siret){
@@ -427,6 +428,18 @@ class CheckVat extends Module
 				switch ($vatvalidebyvies)
 				{
 					case 1 : // vat valide
+						// remove all addresses if any
+						$sql = 'DELETE FROM ' . _DB_PREFIX_ . 'address WHERE id_customer = ' . (int)$id_customer;
+						$result = Db::getInstance()->execute($sql);
+
+						if ($result) {
+							echo 'All addresses for the customer have been deleted.';
+						} else {
+							echo 'No addresses found for this customer or an error occurred.';
+						}
+
+
+						
 						$this->saveVatNumber($this->context->customer->id, $vat);
 						$this->context->smarty->assign('msg_vat_valid', true);
 						$this->context->smarty->assign('bloc_checkvat', false);
@@ -468,6 +481,7 @@ class CheckVat extends Module
 				$this->context->smarty->assign('msg_vat_invalid', true);
 			}
 		}
+
 		$chemin = 'views/templates/front/';
 		return $this->display(__FILE__, $chemin.'checkvat_my_account.tpl');
 	}
@@ -1021,10 +1035,7 @@ class CheckVat extends Module
 		$iso_code = substr($vat_number, 0, 2);
 		if ($number_vat_valid == 1 && $this->getValidationAuto($iso_code))
 			$this->validerClient($id_customer);
-
-		if(Tools::isSubmit('submitCreate')) {
 			Tools::redirect('index.php?controller=my-account');
-		}
 	}
 
 	public function validerClient($id_customer = false)
@@ -1065,7 +1076,12 @@ class CheckVat extends Module
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=5 WHERE `id_customer` = '.(int)$id_customer);
 		}
 
-		return true;
+// 		if(Tools::getValue('submitCreate') == 1) {
+		    
+// 			Tools::redirect('index.php?controller=my-account');
+// 		}else{
+			return true;
+// 		}
         
 	}
 
