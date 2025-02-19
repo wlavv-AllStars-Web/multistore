@@ -427,13 +427,13 @@
       event.stopPropagation(); // Prevent event from reaching document
       
       // Toggle display
-      if (dropdownMenu.style.display === "block") {
-          dropdownMenu.style.display = "none";
-          document.querySelector(".link-logosMenu").setAttribute("aria-expanded","false")
-        } else {
+      // if (dropdownMenu.style.display === "block") {
+      //     dropdownMenu.style.display = "none";
+      //     document.querySelector(".link-logosMenu").setAttribute("aria-expanded","false")
+      //   } else {
           dropdownMenu.style.display = "block";
           document.querySelector(".link-logosMenu").setAttribute("aria-expanded","true")
-      }
+      // }
   });
 
   // Hide dropdown when clicking outside
@@ -477,7 +477,7 @@
 
 
               var swiper = new Swiper(".swiper-menu-brands", {
-              slidesPerView: 16,
+              slidesPerView: 12,
               loop: true,
               navigation: {
                   nextEl: ".swiper-button-next",
@@ -567,6 +567,47 @@
 
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+    // var swiper = new Swiper(".swiper-menu-brands", {
+    //               slidesPerView: 12,
+    //               loop: true,
+    //               navigation: {
+    //                   nextEl: ".swiper-button-next",
+    //                   prevEl: ".swiper-button-prev"
+    //               },
+    //               breakpoints: {
+    //                   640: {
+    //                     slidesPerView: 2,
+    //                     spaceBetween: 20,
+    //                   },
+    //                   768: {
+    //                     slidesPerView: 4,
+    //                     spaceBetween: 40,
+    //                   },
+    //                   1024: {
+    //                     slidesPerView: 6,
+    //                     spaceBetween: 0,
+    //                   },
+    //                   1441: {
+    //                     slidesPerView: 9,
+    //                     spaceBetween: 0,
+    //                   },
+    //                   1550: {
+    //                     slidesPerView: 9,
+    //                     spaceBetween: 0,
+    //                   },
+    //                   1601: {
+    //                     slidesPerView: 12,
+    //                     spaceBetween: 0,
+    //                   },
+    //                   1921: {
+    //                     slidesPerView: 12,
+    //                     spaceBetween: 0,
+    //                   },
+    //                 },
+    //           });
+
+
         const queryString = window.location.search;
         console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
