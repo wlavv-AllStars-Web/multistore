@@ -196,6 +196,14 @@ body {
 }
 
 
+#product-comments-list-header .comments-nb{
+  text-transform: uppercase;
+}
+
+.complementary-products-flag{
+  text-transform: uppercase;
+}
+
 /* loading */
 
 /* Style the loading container */
@@ -972,6 +980,7 @@ body {
 
   .product-accessories .product-description > div:nth-child(1){
     padding-top: .5rem;
+    min-height: 30.8px;
   }
 }
 @media screen and (max-width: 992px) {
