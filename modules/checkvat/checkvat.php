@@ -296,23 +296,33 @@ class CheckVat extends Module
 
 		$this->context->number_vat_valid = 2;
 		$vat_required_new_customer = Configuration::get('VAT_REQUIRED_NEW_CUSTOMER');
-		$vat_number = Tools::getValue('siret');
-		$vat_number = $this->nettoyeVat($vat_number);
+		$siret = Tools::getValue('siret');
+		$vat_number = $this->nettoyeVat($siret);
 
 
-		if (Tools::isSubmit('submitCreate') && ($vat_required_new_customer == 1) && !$vat_number)
-			$this->context->controller->errors[] = $this->l('You must indicate your VAT number');
+		// if (Tools::isSubmit('submitCreate') && ($vat_required_new_customer == 1) && !$vat_number)
+		// 	$this->context->controller->errors[] = $this->l('You must indicate your VAT number');
 
-		if (Tools::isSubmit('submitCreate') && $vat_number)
+		if (Tools::isSubmit('submitCreate') && $vat_number && $siret)
 		{
 			$this->context->number_vat_valid = $this->checkvatCreateAccount($vat_number);
 
 
 			if ($this->context->number_vat_valid == 2)
-				$this->context->controller->errors[] = $this->l('Your VAT number is invalid');
+				$this->context->controller->errors[] = $this->trans('Your VAT number is invalid', [], 'Shop.Theme.Registration');
 		
-		    return $this->context->number_vat_valid;
 		}
+		if(Tools::isSubmit('submitCreate') && $vat_number && $this->context->number_vat_valid == 1){
+			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
+			return 1;
+		}
+
+		if(Tools::isSubmit('submitCreate') && !$vat_number && !$siret){
+			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
+			return 1;
+		}
+
+
 	}
 
 	public function hookactionCustomerAccountAdd()
