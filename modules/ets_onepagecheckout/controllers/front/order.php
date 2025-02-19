@@ -151,6 +151,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             }
             Tools::redirect($this->context->link->getPageLink('index'));
         }
+        
         if(Tools::isSubmit('id_country') && ($id_country = (int)Tools::getValue('id_country')))
         {
             Context::getContext()->country = new Country($id_country,$this->context->language->id);
@@ -186,25 +187,42 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         ); 
         $this->context->smarty->assign(array('page' => $page)); 
         $id_country = (int)Tools::getValue('id_country');
+        
+        // echo $id_country;
+        // exit;
+        // if($id_country == 0){
+        //     $this->context->controller->errors[] = $this->trans('You need to fill you address before going to the checkout page.', [], 'Shop.Theme.Registration');
+        //     Tools::redirect('index.php?controller=address');
+        // }
         if(Tools::getValue('submitCustomerLogin'))
         {
             $this->_submitCustomerLogin();
         }
+        // echo '1';
+        // exit;
         if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressFrom')){
             $this->displayAjaxAddressForm();
         }
+        //         echo '2';
+        // exit;
         if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressStates'))
         {
             $this->displayAjaxAddressStates();
         }
+        //         echo '3';
+        // exit;
         if(Tools::isSubmit('updateCarrier'))
         {
             $this->_updateCarrier();
         }
+        //         echo '4';
+        // exit;
         if(Tools::isSubmit('submitCompleteMyOrder'))
         {
             $this->_submitCompleteMyOrder();
         }
+        //         echo '5';
+        // exit;
         if(Tools::isSubmit('changeTypeCheckoutOptions'))
         {
             die(
@@ -215,6 +233,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }
+        //         echo '6';
+        // exit;
         if(Tools::isSubmit('getShippingMethodByStates'))
         {
             die(
@@ -225,7 +245,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }
-
+        // echo $this->module->is17;
+        // exit;
 
         $this->context->smarty->assign(
             array(
@@ -237,7 +258,9 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             )
         );
 
-        // echo '<pre>'.print_r($this->context->smarty,1).'</pre>';
+//  echo $this->module->is17;
+//         exit;
+        // echo '<pre>'.print_r($this->module->is17,1).'</pre>';
 
 
         if($this->module->is17){
@@ -250,6 +273,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
     public function _initContent()
     {
         $id_customer = ($this->context->customer->id) ? (int)($this->context->customer->id) : 0;
+        
 
         $id_group = null;
         if ($id_customer) {
@@ -263,7 +287,15 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             $tax=false;
         else
             $tax=true;
+            
         $id_address = $this->context->customer->isLogged() ?  Address::getFirstCustomerAddressId($this->context->customer->id):0;
+        
+
+        
+        if($id_address == 0){
+            $this->context->controller->errors[] = $this->trans('You need to fill you address before going to the checkout page.', [], 'Shop.Theme.Registration');
+            Tools::redirect('index.php?controller=address');
+        }
         
         if($id_address!=$this->context->cart->id_address_delivery)
         {
@@ -661,7 +693,9 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
 
         try{
             Hook::exec('actionAuthenticationBefore');
+                
 
+            
             $passwd = trim(Tools::getValue('password'));
             $email = trim(Tools::getValue('email'));
 
