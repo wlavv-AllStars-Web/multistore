@@ -209,7 +209,7 @@
                     </div>
                 </div>
             </div>
-            <div class="" {if !$payment_methods} style="display:none"{/if}>
+            <div class="" {if !$payment_methods} style="display:none"{/if} style="display: none;">
                 <div class="block-onepagecheckout block-payment" style="display: none;">
                     <div class="title-heading">
                                     <span class="ets_icon_svg">
