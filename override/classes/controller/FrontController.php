@@ -569,7 +569,7 @@ class FrontControllerCore extends Controller
                     $html_brands .= '<li class="swiper-slide brand_'.$brand['id_brand'].'" style="background:transparent;flex:unset;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;" onclick="openModels(this,'.$brand['id_brand'].')">
                                         <img class="original_img" style="max-width:100px;" src="'.$brand['brand_logo'].'"/>
                                         <img class="hover_img dont_show" style="max-width:100px;" src="'.$brand['brand_hover_logo'].'"/>
-                                        <span class="name_brand" style="color:#fff;font-weight:600;">'.$brand['name'].'</span>
+                                        <span class="name_brand" style="color:#fff;font-weight:600;font-size: .75rem;">'.$brand['name'].'</span>
                                     </li>';
                 }
 

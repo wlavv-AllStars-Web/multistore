@@ -493,7 +493,7 @@
               var swiper = new Swiper(".swiper-menu-brands", {
 
                 slidesPerView: 15,
-                // loop: true,
+                loop: true,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev"
