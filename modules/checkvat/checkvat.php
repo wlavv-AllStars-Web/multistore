@@ -338,6 +338,7 @@ class CheckVat extends Module
 	*/
 	public function hookDisplayTop()
 	{
+		PrestaShopLogger::addLog('hookDisplayTop called', 1);
 		$vat_required_old_customer = Configuration::get('VAT_REQUIRED_OLD_CUSTOMER');
 		if (!$this->context->customer->id)
 			return;
@@ -355,6 +356,7 @@ class CheckVat extends Module
 	*/
 	public function hookcreateAccountForm()
 	{
+		PrestaShopLogger::addLog('hookcreateAccountForm called', 1);
 		$this->context->smarty->assign('msg_vat_valid', false);
 		$this->context->smarty->assign('bloc_checkvat', true);
 		$this->context->smarty->assign('msg_vat_invalid', false);
@@ -388,7 +390,7 @@ class CheckVat extends Module
 	
 	public function hookcustomerAccount()
 	{
-	
+		PrestaShopLogger::addLog('hookcustomerAccount called', 1);
 		if ($this->getvatCustomer()){
 			return;
 		}
@@ -472,6 +474,7 @@ class CheckVat extends Module
 
 	public function saveVatNumber($id_customer, $vat_number)
 	{
+		PrestaShopLogger::addLog('saveVatNumber called', 1);
 		// Ensure the VAT number is safely escaped
 		$vat_number = pSQL($vat_number);
 
@@ -488,6 +491,7 @@ class CheckVat extends Module
 
 	public function getvatCustomer($id_customer = false)
 	{
+		PrestaShopLogger::addLog('getvatCustomer called', 1);
 		$id_customer = ($id_customer)? $id_customer : (int)$this->context->customer->id;
 		if (!(Db::getInstance()->getValue('
 			SELECT `vat_number` FROM `'._DB_PREFIX_.'address` 
@@ -509,6 +513,7 @@ class CheckVat extends Module
 	*/
 	public function updateConfigurationCheckvat()
 	{
+		PrestaShopLogger::addLog('updateConfigurationCheckvat called', 1);
 		$configuration = array();
 		foreach ($this->valuesConfigurationByDefault() as $iso_code => $values)
 		{
