@@ -49,6 +49,23 @@
 
             <!-- block accept terms -->
 
+            <div id="availability-to-approve" method="GET">
+                <ul>
+                    <li style="display: flex;">
+                        <div class="float-xs-left">
+                            <span class="checkbox ets_checkinput" style="font-size: 0;">
+                                <input id="availability_to_approve" name="availability_to_approve[availability]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
+                            </span>
+                        </div>
+                        <div class="condition-label">
+                            <label class="js-terms required" for="availability_to_approve">
+                                {l s='I agree with products availability' mod='ets_onepagecheckout'}
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
             {if Configuration::get('PS_CONDITIONS')}
                 <div id="conditions-to-approve" method="GET">
                     <ul>
@@ -67,6 +84,8 @@
                     </ul>
                 </div>
             {/if}
+
+
 
             <!-- block customer -->
 

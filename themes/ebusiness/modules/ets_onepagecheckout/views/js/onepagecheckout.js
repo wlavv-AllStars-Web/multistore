@@ -250,7 +250,9 @@ function loadKlarnaWidget_ets_opc() {
     loadKlarnaWidget(option.id, $(option).data('payment_method_category'));
 }
 
-const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput")
+const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput input")
+const availabilityCheckbox = document.querySelector("#availability-to-approve .checkbox.ets_checkinput input")
+
 const conditionsCheckboxA = document.querySelector("#conditions-to-approve a")
 
 if (conditionsCheckboxA) {
@@ -261,15 +263,23 @@ if (conditionsCheckboxA) {
     });
 }
 
+function togglePaymentBlock() {
+    const conditionsChecked = conditionsCheckbox.checked;
+    const availabilityChecked = availabilityCheckbox.checked;
+    console.log("conditionsChecked"+conditionsChecked)
+    console.log("availabilityChecked"+availabilityChecked)
+    
+    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
 
-conditionsCheckbox.addEventListener("change", (e) => {
-    const checkbox = document.querySelector("#conditions_to_approve")
-    if(checkbox.checked){
-        document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
-    }else{
-        document.querySelector(".block-onepagecheckout.block-payment").style.display = "none"
+    if (conditionsChecked && availabilityChecked) {
+        paymentBlock.style.display = "block";
+    } else {
+        paymentBlock.style.display = "none";
     }
-})
+}
+
+conditionsCheckbox.addEventListener("change", togglePaymentBlock);
+availabilityCheckbox.addEventListener("change", togglePaymentBlock);
 
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
