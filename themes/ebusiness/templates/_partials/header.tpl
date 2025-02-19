@@ -399,6 +399,20 @@
     color: #ff0000;
   }
 
+  .swiper-menu-brands {
+    width: 100%;
+  }
+
+  .swiper-wrapper {
+    width: max-content;
+  }
+
+  /* .swiper-slide {
+    width: 100% !important;
+  } */
+
+
+
 </style>
 {* <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> *}
 <script>
@@ -477,43 +491,68 @@
 
 
               var swiper = new Swiper(".swiper-menu-brands", {
-              slidesPerView: 12,
-              loop: true,
-              navigation: {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev"
-              },
-              breakpoints: {
+
+                slidesPerView: 16,
+                // loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                breakpoints: {
                   640: {
-                    slidesPerView: 2,
+                    slidesPerView: 10,
                     spaceBetween: 20,
                   },
                   768: {
-                    slidesPerView: 4,
+                    slidesPerView: 12,
                     spaceBetween: 40,
                   },
                   1024: {
-                    slidesPerView: 6,
-                    spaceBetween: 0,
-                  },
-                  1441: {
-                    slidesPerView: 9,
-                    spaceBetween: 0,
-                  },
-                  1550: {
-                    slidesPerView: 9,
-                    spaceBetween: 0,
-                  },
-                  1601: {
-                    slidesPerView: 12,
-                    spaceBetween: 0,
-                  },
-                  1921: {
-                    slidesPerView: 12,
-                    spaceBetween: 0,
+                    slidesPerView: 16,
+                    spaceBetween: 50,
                   },
                 },
-          });
+              });
+
+
+          //     var swiper = new Swiper(".swiper-menu-brands", {
+          //     slidesPerView: 12,
+          //     loop: true,
+          //     navigation: {
+          //         nextEl: ".swiper-button-next",
+          //         prevEl: ".swiper-button-prev"
+          //     },
+          //     // breakpoints: {
+          //     //     640: {
+          //     //       slidesPerView: 2,
+          //     //       spaceBetween: 20,
+          //     //     },
+          //     //     768: {
+          //     //       slidesPerView: 4,
+          //     //       spaceBetween: 40,
+          //     //     },
+          //     //     1024: {
+          //     //       slidesPerView: 6,
+          //     //       spaceBetween: 0,
+          //     //     },
+          //     //     1441: {
+          //     //       slidesPerView: 9,
+          //     //       spaceBetween: 0,
+          //     //     },
+          //     //     1550: {
+          //     //       slidesPerView: 9,
+          //     //       spaceBetween: 0,
+          //     //     },
+          //     //     1601: {
+          //     //       slidesPerView: 12,
+          //     //       spaceBetween: 0,
+          //     //     },
+          //     //     1921: {
+          //     //       slidesPerView: 12,
+          //     //       spaceBetween: 0,
+          //     //     },
+          //     //   },
+          // });
 
             },
             error: function(xhr, status, error) {
@@ -569,43 +608,28 @@
     document.addEventListener('DOMContentLoaded', (event) => {
 
     // var swiper = new Swiper(".swiper-menu-brands", {
-    //               slidesPerView: 12,
-    //               loop: true,
-    //               navigation: {
-    //                   nextEl: ".swiper-button-next",
-    //                   prevEl: ".swiper-button-prev"
-    //               },
-    //               breakpoints: {
-    //                   640: {
-    //                     slidesPerView: 2,
-    //                     spaceBetween: 20,
-    //                   },
-    //                   768: {
-    //                     slidesPerView: 4,
-    //                     spaceBetween: 40,
-    //                   },
-    //                   1024: {
-    //                     slidesPerView: 6,
-    //                     spaceBetween: 0,
-    //                   },
-    //                   1441: {
-    //                     slidesPerView: 9,
-    //                     spaceBetween: 0,
-    //                   },
-    //                   1550: {
-    //                     slidesPerView: 9,
-    //                     spaceBetween: 0,
-    //                   },
-    //                   1601: {
-    //                     slidesPerView: 12,
-    //                     spaceBetween: 0,
-    //                   },
-    //                   1921: {
-    //                     slidesPerView: 12,
-    //                     spaceBetween: 0,
-    //                   },
-    //                 },
-    //           });
+
+    //     slidesPerView: 12,
+    //     loop: true,
+    //     navigation: {
+    //         nextEl: ".swiper-button-next",
+    //         prevEl: ".swiper-button-prev"
+    //     },
+    //     breakpoints: {
+    //       640: {
+    //         slidesPerView: 2,
+    //         spaceBetween: 20,
+    //       },
+    //       768: {
+    //         slidesPerView: 4,
+    //         spaceBetween: 40,
+    //       },
+    //       1024: {
+    //         slidesPerView: 5,
+    //         spaceBetween: 50,
+    //       },
+    //     },
+    // });
 
 
         const queryString = window.location.search;
