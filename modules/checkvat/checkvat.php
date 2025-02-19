@@ -1021,6 +1021,10 @@ class CheckVat extends Module
 		$iso_code = substr($vat_number, 0, 2);
 		if ($number_vat_valid == 1 && $this->getValidationAuto($iso_code))
 			$this->validerClient($id_customer);
+
+		if(Tools::isSubmit('submitCreate')) {
+			Tools::redirect('index.php?controller=my-account');
+		}
 	}
 
 	public function validerClient($id_customer = false)
@@ -1060,12 +1064,8 @@ class CheckVat extends Module
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=5 WHERE `id_customer` = '.(int)$id_customer);
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=5 WHERE `id_customer` = '.(int)$id_customer);
 		}
-            
-		if(Tools::isSubmit('submitCreate')) {
-			Tools::redirect('index.php?controller=my-account');
-		}else{
-			return true;
-		}
+
+		return true;
         
 	}
 
