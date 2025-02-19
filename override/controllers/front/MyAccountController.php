@@ -217,16 +217,27 @@ class MyAccountController extends MyAccountControllerCore
         
         if(Tools::getValue('action') == 'check_vat'){
             $has_address = $this->context->customer->getAddresses($this->context->language->id);
-            $country = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT iso_code FROM ". _DB_PREFIX_ ."country WHERE id_country=" . $has_address[0]['id_country'] . " Limit 1 ");
-
-            $iso_code = $country[0]['iso_code'];
             
-            $vat_iso_code = substr(Tools::getValue('vatnumber',0), 0, 2);;
+            if($has_address) {
+                $country = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT iso_code FROM ". _DB_PREFIX_ ."country WHERE id_country=" . $has_address[0]['id_country'] . " Limit 1 ");
+                $iso_code = $country[0]['iso_code'];
+                $iso_code = ($iso_code == 'GR') ? 'EL' : $iso_code;
+            }
+
+            $vat_iso_code = substr(Tools::getValue('vatnumber',0), 0, 2);
     
             $vat_iso_code = ($vat_iso_code == 'GR') ? 'EL' : $vat_iso_code;
-            $iso_code = ($iso_code == 'GR') ? 'EL' : $iso_code;
 
+
+            if($has_address) {
             echo ($vat_iso_code != $iso_code) ? 0 : 1;
+            }else{
+                if(preg_match('/^[A-Za-z]+$/', $vat_iso_code)){
+                    echo 1;
+                }else{
+                     $this->errors[] = $this->trans('VAT number is not valid.', [], 'Shop.Notifications.Error');
+                }
+            }
             // $this->redirectWithNotifications($this->getCurrentURL());
 
             // if($vat_iso_code != $iso_code){

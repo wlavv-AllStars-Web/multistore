@@ -49,9 +49,11 @@ class CheckVat extends Module
 
 	public function handleSaveVat()
 {
+    // echo '<pre>'.print_r(Tools::getAllValues(),1).'</pre>';
+    // exit;
     // Get the customer ID and VAT number from the request
     $idCustomer = (int)$this->context->customer->id;
-    $vatNumber = Tools::getValue('siret');
+    $vatNumber = Tools::getValue('vat_number');
     
 
     // Ensure the customer is logged in and input is valid
@@ -65,17 +67,35 @@ class CheckVat extends Module
         Tools::redirect($this->context->link->getPageLink('my-account'));
     }
 
+    $sql = 'UPDATE ' . _DB_PREFIX_ . 'customer SET siret="'.$vatNumber.'" WHERE id_customer = '.$idCustomer;
+    // echo $sql;
+    // exit;
+
+
+    Db::getInstance()->execute($sql);
+    
+    
+	$sql1 = 'DELETE FROM ' . _DB_PREFIX_ . 'address WHERE id_customer = ' . (int)$idCustomer;
+	Db::getInstance()->execute($sql1);
+
+	$sql2 = 'SELECT siret FROM ps_customer WHERE id_customer ='.$idCustomer;
+	$hasSiret = DB::getInstance()->getValue($sql2);
+
+	$this->context->smarty->assign('professional_vat', $hasSiret);
+	
+	Tools::redirect($this->context->link->getPageLink('address'));
+
     // Save the VAT number
-    if (!$this->saveVatNumber($idCustomer, $vatNumber)) {
-        $this->context->controller->errors[] = $this->l('An error occurred while saving the VAT number.');
-    } else {
-		if ($this->context->controller !== null) {
-            $this->context->controller->confirmations[] = $this->l('VAT number saved successfully.');
-        }
-    }
+//     if (!$this->saveVatNumber($idCustomer, $vatNumber)) {
+//         $this->context->controller->errors[] = $this->l('An error occurred while saving the VAT number.');
+//     } else {
+// 		if ($this->context->controller !== null) {
+//             $this->context->controller->confirmations[] = $this->l('VAT number saved successfully.');
+//         }
+//     }
 
     // Redirect back to the account page
-    Tools::redirect($this->context->link->getPageLink('my-account'));
+    // Tools::redirect($this->context->link->getPageLink('my-account'));
 }
 
 	public function deleteCaracteres()
@@ -431,14 +451,6 @@ class CheckVat extends Module
 						// remove all addresses if any
 						$sql = 'DELETE FROM ' . _DB_PREFIX_ . 'address WHERE id_customer = ' . (int)$id_customer;
 						$result = Db::getInstance()->execute($sql);
-
-						if ($result) {
-							echo 'All addresses for the customer have been deleted.';
-						} else {
-							echo 'No addresses found for this customer or an error occurred.';
-						}
-
-
 						
 						$this->saveVatNumber($this->context->customer->id, $vat);
 						$this->context->smarty->assign('msg_vat_valid', true);
