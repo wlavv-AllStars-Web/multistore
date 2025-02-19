@@ -265,17 +265,28 @@ if (conditionsCheckboxA) {
 
 function togglePaymentBlock() {
     const conditionsChecked = conditionsCheckbox.checked;
-    const availabilityChecked = availabilityCheckbox.checked;
-    console.log("conditionsChecked"+conditionsChecked)
-    console.log("availabilityChecked"+availabilityChecked)
-    
-    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
 
-    if (conditionsChecked && availabilityChecked) {
-        paymentBlock.style.display = "block";
-    } else {
-        paymentBlock.style.display = "none";
+    if(availabilityCheckbox){
+        const availabilityChecked = availabilityCheckbox.checked;
+
+        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+    
+        if (conditionsChecked && availabilityChecked) {
+            paymentBlock.style.display = "block";
+        } else {
+            paymentBlock.style.display = "none";
+        }
+    }else{
+        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+    
+        if (conditionsChecked) {
+            paymentBlock.style.display = "block";
+        } else {
+            paymentBlock.style.display = "none";
+        }
     }
+
+    
 }
 
 conditionsCheckbox.addEventListener("change", togglePaymentBlock);

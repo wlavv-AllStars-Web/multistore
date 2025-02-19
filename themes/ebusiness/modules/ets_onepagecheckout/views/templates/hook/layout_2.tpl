@@ -48,7 +48,8 @@
             </div>
 
             <!-- block accept terms -->
-
+          
+            {if $stock_quantity_negative}
             <div id="availability-to-approve" method="GET">
                 <ul>
                     <li style="display: flex;">
@@ -65,6 +66,7 @@
                     </li>
                 </ul>
             </div>
+            {/if}
 
             {if Configuration::get('PS_CONDITIONS')}
                 <div id="conditions-to-approve" method="GET">

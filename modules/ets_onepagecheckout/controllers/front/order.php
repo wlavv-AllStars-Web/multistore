@@ -312,6 +312,31 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             $layout = 'layout_1';
         }
 
+        $presenter = $this->context->controller->cart_presenter;
+        $shouldSeparateGifts = true;
+        $presented_cart = $presenter->present($this->context->cart, $shouldSeparateGifts, true);
+        
+        $lowestStock = null;
+        $lowestStockProduct = null;
+        
+        foreach ($presented_cart['products'] as $product) {
+            if (!isset($product['stock_quantity'])) {
+                continue; // Skip if 'stock_quantity' is not set
+            }
+        
+            if ($lowestStock === null || $product['stock_quantity'] < $lowestStock) {
+                $lowestStock = $product['stock_quantity'];
+                $lowestStockProduct = $product;
+            }
+        }
+        
+        // Debugging Output
+        // pre([
+        //     'lowest_stock' => $lowestStock,
+        //     'product' => $lowestStockProduct
+        // ]);
+        
+
         // echo $layout;
         // echo 'paulo';
         // exit;              
@@ -356,6 +381,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 'hookDisplayShopLicenseField' => Module::isEnabled('ets_shoplicense') ? Hook::exec('displayShopLicenseField') :'',
                 'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable) : '',
                 'gift_label' => sprintf($this->module->l('I would like my order to be gift wrapped (additional cost of %s %s.)','order'), Tools::displayPrice($this->context->cart->getGiftWrappingPrice($tax,$id_address)),$tax_text),
+                'stock_quantity_negative' => $lowestStock <= 0 ? 1 : 0,
             )
         );
 
