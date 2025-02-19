@@ -273,16 +273,20 @@ function togglePaymentBlock() {
     
         if (conditionsChecked && availabilityChecked) {
             paymentBlock.style.display = "block";
+            paymentBlock.parentElement.style.display = "block";
         } else {
             paymentBlock.style.display = "none";
+            paymentBlock.parentElement.style.display = "none";
         }
     }else{
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
     
         if (conditionsChecked) {
             paymentBlock.style.display = "block";
+            paymentBlock.parentElement.style.display = "block";
         } else {
             paymentBlock.style.display = "none";
+            paymentBlock.parentElement.style.display = "none";
         }
     }
 
