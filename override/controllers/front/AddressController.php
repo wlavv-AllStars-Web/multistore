@@ -122,7 +122,7 @@ class AddressControllerCore extends FrontController
                 $this->errors[] = $this->trans('Cannot change vat number.', [], 'Shop.Notifications.Error');
                 $this->address_form->fillWith(['vat_number' => $hasSiret]);
                 return;
-            }elseif($vatCountryIsoCode != $vatCountry){
+            }elseif(Tools::getValue('vat_number') && $vatCountryIsoCode != $vatCountry){
                 $this->errors[] = $this->trans('Cannot change country.', [], 'Shop.Notifications.Error');
                 $this->address_form->fillWith(['id_country' => $CountryVatId]);
             }else{
