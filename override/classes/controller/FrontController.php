@@ -574,8 +574,8 @@ class FrontControllerCore extends Controller
                 }
 
                 $html_brands .='</div>
-                                <div class="swiper-button-next" style="color: #ff0000;"></div>
-                                <div class="swiper-button-prev" style="color: #ff0000;"></div>
+                                <div class="swiper-button-next-brands" style="color: #ff0000;"></div>
+                                <div class="swiper-button-prev-brands" style="color: #ff0000;"></div>
                             ';
                 
                 $decodedJson['html_brands'] = $html_brands;
