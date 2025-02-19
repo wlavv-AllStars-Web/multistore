@@ -492,7 +492,7 @@
 
               var swiper = new Swiper(".swiper-menu-brands", {
 
-                slidesPerView: 16,
+                slidesPerView: 15,
                 // loop: true,
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -501,15 +501,15 @@
                 breakpoints: {
                   640: {
                     slidesPerView: 10,
-                    spaceBetween: 20,
+                    spaceBetween: 30,
                   },
                   768: {
                     slidesPerView: 12,
-                    spaceBetween: 40,
+                    spaceBetween: 30,
                   },
                   1024: {
-                    slidesPerView: 16,
-                    spaceBetween: 50,
+                    slidesPerView: 15,
+                    spaceBetween: 30,
                   },
                 },
               });
