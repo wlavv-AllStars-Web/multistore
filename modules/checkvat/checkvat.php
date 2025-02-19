@@ -314,12 +314,12 @@ class CheckVat extends Module
 		}
 		if(Tools::isSubmit('submitCreate') && $vat_number && $this->context->number_vat_valid == 1){
 			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			Tools::redirect('index.php?controller=my-account');
+			return 1;
 		}
 
 		if(Tools::isSubmit('submitCreate') && !$vat_number && !$siret){
 			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			Tools::redirect('index.php?controller=my-account');
+			return 1;
 		}
 
 
@@ -329,6 +329,8 @@ class CheckVat extends Module
 	{
 	    PrestaShopLogger::addLog('hookactionCustomerAccountAdd called', 1);
 		$this->saveVat((int)$this->context->number_vat_valid, (int)$this->context->customer->id);
+		Tools::redirect('index.php?controller=my-account');
+
 	}
 
 	/**
