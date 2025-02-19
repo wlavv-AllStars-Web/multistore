@@ -189,13 +189,11 @@
             <a class="link-logosMenu" aria-expanded="false"  >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
             <div class="dropdown-menu menu-logos" style="background: #333;border-bottom: 3px solid var(--asm-color)">
               <div class="swiper swiper-menu-brands"></div>
-              {* <div class="swiper swiper-menu-brands">
-                <div class="swiper-wrapper">
 
-                </div>
-                <div class="swiper-pagination"></div>
-              </div> *}
               <div class="versions_cars"></div>
+              <div class="loading-overlay-cars dont_show" role="status">
+                  <span class="loading-spinner"></span>
+              </div>
             </div>
           {* {if $page.page_name =='index'}
             {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
@@ -416,6 +414,16 @@
     justify-content: center;
   }
 
+  .loading-overlay-cars:not(.dont_show) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .loading-overlay-cars{
+    display: none;
+  }
 
 
 </style>
@@ -570,6 +578,8 @@
 
   function openModels(element,id_brand){
     event.stopPropagation(); 
+    document.querySelector(".dropdown-menu .versions_cars").innerHTML = ''
+    document.querySelector(".loading-overlay-cars").classList.remove("dont_show")
     $.ajax({
             url: '{url entity='frontController'}', // Replace with your endpoint
             type: 'GET',
@@ -580,6 +590,7 @@
               storeId: {Context::getContext()->shop->id}
             },
             success: function(brands) {
+              document.querySelector(".loading-overlay-cars").classList.add("dont_show")
               let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
               brandsContainer.innerHTML = brands.html_model
 
