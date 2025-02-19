@@ -300,8 +300,8 @@ class CheckVat extends Module
 		$vat_number = $this->nettoyeVat($siret);
 
 
-		// if (Tools::isSubmit('submitCreate') && ($vat_required_new_customer == 1) && !$vat_number)
-		// 	$this->context->controller->errors[] = $this->l('You must indicate your VAT number');
+		if (Tools::isSubmit('submitCreate') && ($vat_required_new_customer == 1) && !$vat_number)
+			$this->context->controller->errors[] = $this->l('You must indicate your VAT number');
 
 		if (Tools::isSubmit('submitCreate') && $vat_number && $siret)
 		{
