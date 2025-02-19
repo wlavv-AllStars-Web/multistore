@@ -392,7 +392,7 @@
   .type_selector span {
     user-select: none;
     color: #d0d0d0;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
   .type_selector:hover span {
     user-select: none;
@@ -410,6 +410,11 @@
   /* .swiper-slide {
     width: 100% !important;
   } */
+
+  .model_group_cars {
+    display: flex;
+    justify-content: center;
+  }
 
 
 

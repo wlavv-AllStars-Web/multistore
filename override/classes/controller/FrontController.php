@@ -582,32 +582,62 @@ class FrontControllerCore extends Controller
             
             }
             if(Tools::getValue('type') == 'model'){
-                foreach ($decodedJson['data'] as $key => $model) {
-                $html_model = '<div class="car_item_holder">
-                                <div class="myCarsBrand">
-                                    <div style="display:flex;flex-direction:column;">
-                                        <img class="img-responsive" src="'.$model['cartoon'].'" style="margin: 0 auto;width: 200px; cursor: pointer;" />
-                                    </div>
-                                    <div id="container_version_parent" style="display:flex;justify-content:center;">
-                                        <div class="version_model_container" style="padding:1rem;text-align:center;">
-                                            <div class="model_name" onclick="toogleClasslist(this)">
-                                                <span class="modelspan">'.$model['model'].'</span>
-                                                <span>|</span>
-                                                <span>'.$model['type'].'</span>
-                                            </div>
+                $html_model = '';
+                $groupedModels = [];
 
-                                            <div class="versions_model_content dont_show">
-                                                <div class="type_selector" onclick="setCarSearch('.$model['id_compat'].')">
-                                                     <span>'.$model['version'].'</span>
+                // Group models by 'model' first
+                foreach ($decodedJson['data'] as $model) {
+                    $modelName = $model['model'];
+                    $groupedModels[$modelName][] = $model;
+                }
+
+                // Generate HTML
+                foreach ($groupedModels as $modelName => $modelsByModel) {
+                    $html_model .= '<div class="model_group_cars">'; // Group all same models
+
+                    // Now, group by 'type' inside the same model
+                    $groupedByType = [];
+                    foreach ($modelsByModel as $model) {
+                        $type = $model['type'];
+                        $groupedByType[$type][] = $model;
+                    }
+
+                    foreach ($groupedByType as $type => $models) {
+                        $firstModel = $models[0]; // Take first model for image display
+
+                        $html_model .= '<div class="car_item_holder">
+                                            <div class="myCarsBrand">
+                                                <div style="display:flex;flex-direction:column;">
+                                                    <img class="img-responsive" src="' . $firstModel['cartoon'] . '" style="margin: 0 auto;width: 200px; cursor: pointer;" />
+                                                </div>
+                                                <div id="container_version_parent" style="display:flex;justify-content:center;">
+                                                    <div class="version_model_container" style="padding:1rem;text-align:center;">
+                                                        <div class="model_name" onclick="toogleClasslist(this)">
+                                                            <span class="modelspan">' . $modelName . '</span>
+                                                            <span>|</span>
+                                                            <span>' . $type . '</span>
+                                                        </div>
+                                                        <div class="versions_model_content dont_show">';
+                        
+                        // Add all versions under the same type
+                        foreach ($models as $model) {
+                            $html_model .= '<div class="type_selector" onclick="setCarSearch(' . $model['id_compat'] . ')">
+                                                <span>' . $model['version'] . '</span>
+                                            </div>';
+                        }
+
+                        $html_model .= '            </div> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>';
+                                        </div>';
+                    }
+
+                    $html_model .= '</div>'; // Close model group
                 }
 
                 $decodedJson['html_model'] = $html_model;
+
             }
             // Send response as JSON
             header('Content-Type: application/json');
