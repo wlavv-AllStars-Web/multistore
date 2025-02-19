@@ -1063,9 +1063,10 @@ class CheckVat extends Module
             
 		if(Tools::isSubmit('submitCreate')) {
 			Tools::redirect('index.php?controller=my-account');
+		}else{
+			return true;
 		}
         
-		return true;
 	}
 
 	public function retirerClient($id_customer)
