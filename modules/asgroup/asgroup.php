@@ -670,5 +670,260 @@ class AsGroup extends Module
         // your action code ....
     }
 
+    protected function fetchTemplate($tpl, $customVars = [], $configOptions = [])
+    {
+        if (Tools::getValue('getmodelsbrand')) {
+            $this->ajaxProcessGetModels();
+        }
+        $this->context->smarty->assign([
+            'ps_major_version' => Tools::substr(str_replace('.', '', _PS_VERSION_), 0, 2),
+            'module_name' => $this->name,
+            'module_path' => $this->_path,
+            'current_iso_lang' => $this->context->language->iso_code,
+            'current_id_lang' => (int)$this->context->language->id,
+            'options' => $configOptions,
+            // 'base_config_url' => $this->baseConfigUrl,
+        ]);
+        if (!empty($customVars)) {
+            foreach ($customVars as $key => $value) {
+                $this->context->smarty->assign($key, $value);
+            }
+        }
+        return $this->context->smarty->fetch(_PS_MODULE_DIR_ . $this->name . '/views/templates/admin/' . $tpl);
+    }
 
+
+    public function getCompatsCars($product) {
+        // get brands compat
+
+        
+
+        $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
+        $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        
+        $storeId = $this->context->shop->id;
+
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/brands/'.$storeId.'/'.$key;
+
+        $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
+
+        // pre($product);
+
+        // $adminUrl = $this->context->link->getAdminLink('AsGroup', true) . '&action=getmodelsbrand';
+
+        // $adminUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . __PS_BASE_URI__ . 'modules/asgroup/asgroup.php';
+
+
+
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+        $json = curl_exec($ch);
+
+        $ch2 = curl_init();
+        curl_setopt($ch2,CURLOPT_URL,$urlCompats);
+        curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
+        $compats = curl_exec($ch2);
+        curl_close($ch2);
+
+        // Decode JSON string into an associative array
+        $brands = json_decode($json, true);
+        $compats = json_decode($compats, true);
+
+        return $this->fetchTemplate('compats_admin_cars.tpl',[
+            'product' => $product,
+            'brands'  => isset($brands['data']) ? $brands['data'] : [],
+            'compats' => isset($compats['data']) ? $compats['data'] : [],
+            'shop_id' => $storeId,
+            'key'   => $key,
+            'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
+                    'configure' => $this->name,
+                    'action' => 'getModels',
+                ]),
+        ]);
+        
+    }
+
+    public function getModelsFromBrand($brand, $shop_id, $key)
+    {
+        // Build the API URL
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/models/' . $brand . '/' . $shop_id . '/' . $key;
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        // Decode the response into an associative array
+        $data = json_decode($json, true);
+
+        $html_models = '';
+        $html_models .= '<option selected>Model</option>';
+        foreach ($data['data'] as $key => $model) {
+            $html_models .= '<option data-brand="'.$brand.'" value="'.$model['id_model'].'">'.$model['name'].'</option>';
+        };
+
+        $data['html_brands'] = $html_models;
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    public function getTypesFromModel($brand,$modelV,$shop_id, $key)
+    {
+        // Build the API URL
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/types/' . $brand . '/'.$modelV.'/' . $shop_id . '/' . $key;
+        // pre($url);
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        // Decode the response into an associative array
+        $data = json_decode($json, true);
+
+        // pre($data);
+
+        $html_models = '';
+        $html_models .= '<option selected>Type</option>';
+        foreach ($data['data'] as $key => $model) {
+            $html_models .= '<option data-brand="'.$brand.'" data-model="'.$modelV.'" value="'.$model['id_type'].'">'.$model['name'].'</option>';
+        };
+
+        $data['html_brands'] = $html_models;
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    public function getVersionsFromTypes($brand,$modelV,$type,$shop_id, $key)
+    {
+        // Build the API URL
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/versions/' . $brand . '/'.$modelV.'/'.$type.'/' . $shop_id . '/' . $key;
+        // pre($url);
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        // Decode the response into an associative array
+        $data = json_decode($json, true);
+
+        // pre($data);
+
+        $html_models = '';
+        $html_models .= '<option selected>Version</option>';
+        foreach ($data['data'] as $key => $model) {
+            $html_models .= '<option data-brand="'.$brand.'" data-model="'.$modelV.'" data-type="'.$type.'" value="'.$model['id_version'].'">'.$model['name'].'</option>';
+        };
+
+        $data['html_brands'] = $html_models;
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    public function saveCompat($brand, $model, $type, $version, $product,$shop_id, $key) {
+        $url = 'https://webtools.all-stars-motorsport.com/api/create/bo/compats/' . $brand . '/'.$model.'/'.$type.'/'.$version.'/'.$product.'/' . $shop_id . '/' . $key;
+
+        $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/'.$product .'/'.$shop_id.'/'.$keyFront;
+        
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $res = curl_exec($ch);
+        curl_close($ch);
+
+        $ch2 = curl_init();
+        curl_setopt($ch2, CURLOPT_URL, $urlCompats);
+        curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch2, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $compats = curl_exec($ch2);
+        curl_close($ch2);
+
+        // Decode the response into an associative array
+        $data = json_decode($res, true);
+        $comp = json_decode($compats, true);
+
+        $tableCompats = '';
+        foreach ($comp['data'] as $key => $compat) {
+            $tableCompats .= '<tr>
+                                    <td>'.$compat["brand"].'</td>
+                                    <td>'.$compat["model"].'</td>
+                                    <td>'.$compat["type"].'</td>
+                                    <td>'.$compat["version"].'</td>
+                                </tr>';
+        };
+
+        $data['compats'] = $tableCompats;
+
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    public function ajaxProcessGetModels()
+    {   
+
+        $brand = Tools::getValue('brand');
+        $shop_id = Tools::getValue('shop_id');
+        $key = Tools::getValue('key');
+        $model = Tools::getValue('model');
+        $type = Tools::getValue('type');
+        $version = Tools::getValue('version');
+        $product = Tools::getValue('product');
+    
+        $models= '';
+        
+        // Example: call your API to fetch models based on the brand
+        if(Tools::getValue('getmodelsbrand')){
+            $models = $this->getModelsFromBrand($brand, $shop_id, $key);
+        }
+
+        if(Tools::getValue('getTypesbrand')){
+            $models = $this->getTypesFromModel($brand,$model, $shop_id, $key);
+        }
+
+        if(Tools::getValue('getVersionsbrand')){
+            $models = $this->getVersionsFromTypes($brand, $model, $type, $shop_id, $key);
+        }
+
+        if(Tools::getValue('saveCompat')){
+            $models = $this->saveCompat($brand, $model, $type, $version, $product, $shop_id, $key);
+        }
+
+
+        die(json_encode($models));
+        
+    }
 }

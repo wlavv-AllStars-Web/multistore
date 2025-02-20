@@ -25,8 +25,8 @@
 
  {% if grid.id == "order" %}
 <div class="bulkactions-orders-custom">
-    <div class="tracking_input">
-      <input type="text" name="search_tracking" placeholder="Tracking Number" class="form-control" value="" onkeydown="searchOrderByTracking(event)">
+    <div class="tracking_input" action="">
+      <input type="text" name="search_tracking" placeholder="Tracking Number" class="form-control" value="" onkeydown="searchOrderByTracking(event)" >
       <small class="tracking_not_found"><i class="material-icons">report</i></small>
     </div>
   {% endif %}

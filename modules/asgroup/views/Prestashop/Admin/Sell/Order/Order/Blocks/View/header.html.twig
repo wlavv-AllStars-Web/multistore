@@ -51,9 +51,16 @@
         {% endif %}
     {% endfor %}
 
+
     {% if defaultGroup %}
-        <span class="badge rounded badge-dark ml-2 mr-2 font-size-100">
-            {{ defaultGroup }}
+        <span class="badge rounded badge-light ml-2 mr-2 font-size-100" style="outline:1px solid #dedede">
+          {% if defaultGroup == 'Customer' %}
+             <img src="/modules/asgroup/views/img/normal.png" style="width:30px" title="Normal Customer"/> 
+          {%elseif defaultGroup == 'Dealer' %}
+             <img src="/modules/asgroup/views/img/dealer.png" style="width:30px" title="Dealer"/> 
+          {%elseif defaultGroup == 'Professional' %}
+             <img src="/modules/asgroup/views/img/profissional.png" style="width:30px" title="Professional" /> 
+          {% endif %}
         </span>
     {% endif %}
 

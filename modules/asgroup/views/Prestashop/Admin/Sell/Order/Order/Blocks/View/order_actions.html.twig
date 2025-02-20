@@ -31,7 +31,6 @@
   }) }}
 
 
-
   <div class="input-group">
     {% set backgroundColor = '#ffffff' %}
     {% set isBright = true %}
@@ -69,7 +68,7 @@
   </div>
   {{ form_end(updateOrderStatusActionBarForm) }}
 
-  {% if orderForViewing.documents.canGenerateInvoice %}
+  {#{% if orderForViewing.documents.canGenerateInvoice %}
     <form class="order-actions-invoice">
       <div class="input-group">
         <a href="{{ path('admin_orders_generate_invoice_pdf', {'orderId': orderForViewing.id}) }}"
@@ -79,7 +78,7 @@
         </a>
       </div>
     </form>
-  {% endif %}
+  {% endif %} #}
 
   {#<form class="order-actions-print">
     <div class="input-group">
@@ -122,12 +121,22 @@
     {% endif %}
   {% endif %}
 
-  {% if orderForViewing.hasBeenPaid() or orderForViewing.hasPayments() %}
+  {#{% if orderForViewing.hasBeenPaid() or orderForViewing.hasPayments() %}
       <button class="btn btn-action partial-refund-display" type="button"{% if not orderForViewing.isRefundable() %} disabled{% endif %}>
         <i class="material-icons">swap_horiz</i>
         {{ 'Partial refund'|trans({}, 'Admin.Orderscustomers.Feature') }}
       </button>
-  {% endif %}
+  {% endif %}#}
+
+    <button class="btn btn-action btn-toggle-payments" type="button"{% if not orderForViewing.isRefundable() %} disabled{% endif %}>
+      <i class="material-icons">euro_symbol</i>
+      {{ 'Payment'|trans({}, 'Admin.Global') }} ({{ orderForViewing.payments.payments|length }})
+    </button>
+
+    <button class="btn btn-action btn-toggle-note" type="button"{% if not orderForViewing.isRefundable() %} disabled{% endif %}>
+      <i class="material-icons">speaker_notes</i>
+      {{ 'Comment'|trans({}, 'Admin.Orderscustomers.Feature') }}
+    </button>
 
   {% if orderForViewing.history.currentOrderStatusId == 3 %}
   <div class="d-inline-block ml-auto">

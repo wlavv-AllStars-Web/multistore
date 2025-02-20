@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Db;
+use PrestaModule\AdvancedPack\ProductForm\CustomTabType;
 use PrestaShop\PrestaShop\Core\ConstraintValidator\Constraints\TypedRegex;
 use Symfony\Component\Validator\Constraints\Length;
 use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\Reference;
@@ -33,6 +34,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
      * @var FormBuilderModifier
      */
     private $formBuilderModifier;
+    private $moduleInstance;
 
     /**
      * @param TranslatorInterface $translator
@@ -41,9 +43,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     public function __construct(
         TranslatorInterface $translator,
         FormBuilderModifier $formBuilderModifier
+        
     ) {
         $this->translator = $translator;
         $this->formBuilderModifier = $formBuilderModifier;
+        $this->moduleInstance = \Module::getInstanceByName('asgroup');
     }
 
 
@@ -68,6 +72,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         // pre($result['difficulty']);
 
         // $data['youtube_code'] = Configuration::get('youtube_code' . $idWkProduct);
+        $data['productId'] = $idProduct;
         $data['youtube_code'] = $result['youtube_code'];
         $data['youtube_2'] = $result['youtube_2'];
         $data['dim_verify'] = $result['dim_verify'];
@@ -415,35 +420,27 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
             ]
         );
 
-// custom ean input on tab details
 
 
-        // tab combinations ean
+        // add new tab for ukooo new
+        $context = \Context::getContext();
 
-        // $combinationsTabFormBuilder = $productFormBuilder->get('combinations');
+        $productId = $data['productId'];
+        
+        $product = new \Product((int)$productId, true, $context->language->id, $context->shop->id);
 
-        // $this->formBuilderModifier->addAfter(
-        //     $combinationsTabFormBuilder,
-        //     'name',  // You can also add it after any other existing field
-        //     'ean13',   // New field name
-        //     TextType::class,
-        //     [
-        //         'label' => $this->translator->trans('Custom EAN-13',[], 'Modules.ASGroup.Admin'),
-        //         'label_attr' => [
-        //             'title' => 'h2',
-        //             'class' => 'text-info',
-        //         ],
-        //         'attr' => [
-        //             'placeholder' => $this->translator->trans('Enter EAN-13 code', [], 'Modules.ASGroup.Admin'),
-        //         ],
-        //         'constraints' => [
-        //             new TypedRegex(TypedRegex::TYPE_EAN_13),
-        //             new Length(['max' => 13]),
-        //         ],
-        //         'data' => $data['ean13'] ?? '',
-        //         'empty_data' => '',
-        //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
-        //     ]
-        // );
+        $this->formBuilderModifier->addAfter(
+            $productFormBuilder,
+            'options',
+            'compats_car_custom_html',
+            CustomTabType::class,
+            [
+                'label' => $this->moduleInstance->l('Compats Cars'),
+                'data' => [
+                    'id_product' => $productId,
+                    'content' => $this->moduleInstance->getCompatsCars($product),
+                ],
+            ]
+        );
     }
 }

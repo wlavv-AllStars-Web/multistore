@@ -847,12 +847,47 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre($query);
 
             $id_compat = Tools::getValue('id_compat');
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $shop_id = $this->context->shop->id; 
 
+            $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+            // pre($url);
+    
+            // Initialize cURL
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+    
+            // Execute cURL request
+            $json = curl_exec($ch);
+            curl_close($ch);
+    
+            // Decode the response into an associative array
+            $data = json_decode($json, true);
+
+            $productsC = $data['data'];
+
+            // pre($product);
+
+            // $search = $this->getProductSearchVariables();
+        
+            // Fetch products related to the selected car product
+            if (empty($productsC)) {
+                return [];
+            }
+    
+            $ids = array_map('intval', (array) $productsC);
+            $idList = implode(',', $ids);
+    
             $sql = 'SELECT cp.id_category, cp.id_product, cp.position
-                FROM ' . _DB_PREFIX_ . 'category_product cp WHERE id_product = ' . (int) $id_compat;
-
-
-            $productsCar = Db::getInstance()->executeS($sql);
+                    FROM ' . _DB_PREFIX_ . 'category_product cp
+                    LEFT JOIN ' . _DB_PREFIX_ . 'product_shop ps ON cp.id_product = ps.id_product
+                    WHERE cp.id_product IN (' . $idList . ') GROUP BY cp.id_product';
+                    
+            // pre($sql);
+    
+            $productsCar =  Db::getInstance()->executeS($sql);
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $productsCar

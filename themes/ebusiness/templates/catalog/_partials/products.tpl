@@ -299,7 +299,7 @@
     {/if}
 
     {* <pre>{$page|print_r}</pre> *}
-
+    {* <pre>{$listing|print_r}</pre> *}
     {if $no_products}
       <div style="
         display: flex;

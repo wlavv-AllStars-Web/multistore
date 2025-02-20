@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="{{ asset('themes/new-theme/public/orders' ~ rtl_suffix ~ '.css') }}" type="text/css" media="all">
 {% endblock %}
 
+
 {% block content %}
   <div id="order-view-page" data-order-title="{{ 'Order'|trans({}, 'Admin.Global') }} #{{ orderForViewing.id }} {{ orderForViewing.reference }}">
     <div class="d-print-none">
@@ -41,10 +42,27 @@
       {% if displayAdminOrderTopHookContent != '' %}
         {{ displayAdminOrderTopHookContent|raw }}
       {% endif %}
+
+      {% if orderForViewing.note %}
+      <div class="internal-note-asgroup">
+        <div class="alert alert-danger" role="alert">
+          {{orderForViewing.note}}
+        </div>
+      </div>
+      {% endif %}
+
+    <div class="shipping-notsaved-asgroup">
+        <div class="alert alert-danger" role="alert">
+          {{ 'Line Shipping not saved !'|trans({}, 'Admin.Global') }} 
+        </div>
+    </div>
+
       <div class="order-actions">
         {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/order_actions.html.twig' %}
       </div>
     </div>
+
+
 
     <div class="tab-content order-status-web">
         <div class="tab-pane d-print-block fade show active" id="historyTabContent" role="tabpanel" aria-labelledby="historyTab">
@@ -65,10 +83,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="view_order_note_block">
             {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/internal_note.html.twig' %}
         </div>
     </div>
+
+    {#<div class="row">
+        <div class="col-md-12" id="view_order_messages_block">
+            {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/messages.html.twig' %}
+        </div>
+    </div> #}
 
     <div class="d-none d-print-block mb-4">
       {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/print_order_statistics.html.twig' %}
@@ -81,24 +105,27 @@
     </div>
 
     <div class="product-row row">
-      <div class="col-md-4 left-column">
+      {#<div class="col-md-4 left-column">
         {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/customer.html.twig' %}
         {{ renderhook('displayAdminOrderSide', {'id_order': orderForViewing.id}) }}
         {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/messages.html.twig' %}
         {{ renderhook('displayAdminOrderSideBottom', {'id_order': orderForViewing.id}) }}
-      </div>
+      </div>#}
 
-      <div class="col-md-8 d-print-block right-column">
+      <div class="col-md-12 d-print-block right-column">
         <div id="orderProductsOriginalPosition">
           {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/products.html.twig' %}
         </div>
         {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/details.html.twig' %}
+        
+
         {{ renderhook('displayAdminOrderMain', {'id_order': orderForViewing.id}) }}
        {# {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/payments.html.twig' %} #}
         {{ renderhook('displayAdminOrderMainBottom', {'id_order': orderForViewing.id}) }}
       </div>
     </div>
 
+    {#
     {% if orderForViewing.sources.sources is not empty %}
       <div class="product-row">
         <div class="left-column">
@@ -106,12 +133,13 @@
         </div>
       </div>
     {% endif %}
+    #}
 
     {% if orderForViewing.linkedOrders.linkedOrders is not empty %}
       {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/linked_orders.html.twig' %}
     {% endif %}
 
-    {{ renderhook('displayAdminOrder', {'id_order': orderForViewing.id}) }}
+    {#{{ renderhook('displayAdminOrder', {'id_order': orderForViewing.id}) }} #}
 
     {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/Modal/add_order_discount_modal.html.twig' %}
     {% include '@PrestaShop/Admin/Sell/Order/Order/Blocks/View/Modal/update_shipping_modal.html.twig' %}
@@ -125,8 +153,9 @@
 
 {% block javascripts %}
   {{ parent() }}
-
+  
   <script src="{{ asset('themes/new-theme/public/order_view.bundle.js') }}"></script>
+
 {% endblock %}
 
 {% set js_translatable = {
@@ -136,3 +165,4 @@
   "[1] products were successfully removed.": '[1] products were successfully removed.'|trans({}, 'Admin.Notifications.Success'),
 }|merge(js_translatable)
 %}
+

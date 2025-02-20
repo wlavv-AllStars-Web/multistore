@@ -25,9 +25,30 @@
 
 <div class="card mt-2" id="view_order_payments_block">
   <div class="card-header">
+    <div style="display:flex;align-items:center;gap:1rem;">
     <h3 class="card-header-title">
       {{ 'Payment'|trans({}, 'Admin.Global') }} ({{ orderForViewing.payments.payments|length }})
     </h3>
+
+    {% if orderForViewing.documents.canGenerateInvoice %}
+      <form class="order-actions-invoice ml-auto">
+        <div class="input-group">
+          <a href="{{ path('admin_orders_generate_invoice_pdf', {'orderId': orderForViewing.id}) }}"
+            class="btn btn-action" data-role="view-invoice">
+            <i class="material-icons">receipt</i>
+            {{ 'View invoice'|trans({}, 'Admin.Orderscustomers.Feature') }}
+          </a>
+        </div>
+      </form>
+    {% endif %}
+
+    {% if orderForViewing.hasBeenPaid() or orderForViewing.hasPayments() %}
+      <button class="btn btn-action partial-refund-display" type="button"{% if not orderForViewing.isRefundable() %} disabled{% endif %}>
+        <i class="material-icons">swap_horiz</i>
+        {{ 'Partial refund'|trans({}, 'Admin.Orderscustomers.Feature') }}
+      </button>
+    {% endif %}
+    </div>
   </div>
 
   <div class="card-body">
@@ -60,9 +81,9 @@
           <td data-role="amount-column">{{ payment.amount }}</td>
           <td data-role="invoice-column">{% if payment.invoiceNumber %}{{ payment.invoiceNumber }}{% endif %}</td>
           <td class="text-right">
-            <button class="btn btn-sm btn-outline-secondary js-payment-details-btn">
+            {#<button class="btn btn-sm btn-outline-secondary js-payment-details-btn">
               {{ 'Details'|trans({}, 'Admin.Global') }}
-            </button>
+            </button> #}
           </td>
         </tr>
         <tr class="d-none" data-role="payment-details">

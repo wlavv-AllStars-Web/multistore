@@ -21,8 +21,31 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         // pre(Tools::getAllValues());
         if(Tools::getValue('id_compat')){
 
-            $product = Tools::getValue('id_compat');
+            $id_compat = Tools::getValue('id_compat');
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $shop_id = $this->context->shop->id; 
+
+            $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+            // pre($url);
+    
+            // Initialize cURL
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+    
+            // Execute cURL request
+            $json = curl_exec($ch);
+            curl_close($ch);
+    
+            // Decode the response into an associative array
+            $data = json_decode($json, true);
+
+            $product = $data['data'];
+
             // pre($product);
+
+     
             $this->car_description = "Abarth / Fiat | 595 / 695";
             // $search = $this->getProductSearchVariables();
         
@@ -34,11 +57,13 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             );
 
 
-            // pre($products);
+            // pre(count($products));
 
             // Store data in Smarty for use in the template
             $this->context->smarty->assign([
-                'listing' => $products,
+                'listingCompat' => [
+                    'products' => $products, // Assign prepared product array
+                ],
             ]);
 
             // Redirect to the cars-products page
@@ -52,13 +77,21 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
     }
 
-    protected function getProductsByCar($carProductId)
+    protected function getProductsByCar($carProductIds)
     {
+        if (empty($carProductIds)) {
+            return [];
+        }
+
+        $ids = array_map('intval', (array) $carProductIds);
+        $idList = implode(',', $ids);
+
         $sql = 'SELECT cp.id_category, cp.id_product, cp.position
                 FROM ' . _DB_PREFIX_ . 'category_product cp
                 LEFT JOIN ' . _DB_PREFIX_ . 'product_shop ps ON cp.id_product = ps.id_product
-                WHERE cp.id_product = ' . (int) $carProductId;
-
+                WHERE cp.id_product IN (' . $idList . ') GROUP BY cp.id_product';
+                
+        // pre($sql);
 
         return Db::getInstance()->executeS($sql);
     }

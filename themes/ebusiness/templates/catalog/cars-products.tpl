@@ -44,7 +44,7 @@
      {/block}
      
      {hook h="displayHeaderCategory"}
- 
+     {* <pre>{$listingCompat|print_r}</pre> *}
      <section id="products">
        {if $listing.products|count}
  

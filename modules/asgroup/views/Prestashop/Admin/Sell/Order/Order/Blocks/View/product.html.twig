@@ -23,17 +23,19 @@
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *#}
 
- {# {{ dump(product) }} #}
-
 {% set rowIsDisplayed =  (productIndex is defined and paginationNum is defined and productIndex > paginationNum) %}
 <tr id="orderProduct_{{ product.orderDetailId }}" class="cellProduct{% if rowIsDisplayed %} d-none d-print-table-row{% endif %}" orderDetailId="{{product.orderDetailId}}">
-  <!-- <td class="cellProductImg">
+  {# <td class="cellProductImg">
     {% if product.imagePath %}
       <img src="{{ product.imagePath }}" alt="{{ product.name }}" />
     {% endif %}
-  </td> -->
-  <td class="cellProductName">
+  </td> #}
+  <td class="cellProductRef">
+    {% if product.reference_combination %}
+    <p class="mb-0">{{ product.reference_combination }}</p>
+    {% else %}
     <p class="mb-0">{{ product.reference }}</p>
+    {% endif %}
   </td>
   <td class="cellProductName">
     <a href="{{ path('admin_product_form', {'id': product.id}) }}">
@@ -56,6 +58,14 @@
         <strong>{{ 'View pack content'|trans({}, 'Admin.Actions') }}</strong>
       </span>
     {% endif %}
+  </td>
+
+  <td class="cellProductVariations">
+    {% for variation in product.variations_product %}
+        {{ variation.attr_group }}: {{ variation.attr_name }}{% if not loop.last %}, {% endif %}
+    {% else %}
+        No variations available
+    {% endfor %}
   </td>
 
   <td class="cellProductUnitPrice">{{ product.unitPrice }}</td>

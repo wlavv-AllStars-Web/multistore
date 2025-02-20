@@ -178,12 +178,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectNacexContainer = document.querySelector(".nav-item-select-nacex")
             selectNacexContainer.style.display = "block"
 
-            // const selectServices = document.querySelector("#nacex_tip_ser")
-            // const clonedSelectServices = selectServices.cloneNode(true);
-            // clonedSelectServices.id = "nacex_tip_ser_cloned"
 
-            // selectNacex.appendChild(clonedSelectServices)
+            const selectServices = document.querySelectorAll("#nacexTabContent #nacex_tip_ser optgroup:nth-child(2) option") 
+    
+            // clonedSelectServices.id = "nacex_tip_ser_cloned"
+            // selectNacex.appendChild(clonedOptionsServices)
+            
             const selectNacex = document.querySelector(".nav-item-select-nacex #select-nacex")
+
+
+            if (selectNacex) {
+                selectNacex.innerHTML = ''
+                selectServices.forEach(option => {
+                    // Clone each option and append it to selectNacex
+                    const clonedOption = option.cloneNode(true);
+                    selectNacex.appendChild(clonedOption);
+                });
+            }
 
             selectNacex.addEventListener("change", (e) => {
                 const selectedValue = e.target.value;
@@ -219,6 +230,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const selectNacex = document.querySelector(".nav-item-select-nacex")
             selectNacex.style.display = "none"
+
+            const observer  = new MutationObserver((mutations, observerInstance) => {
+                const firstWebvizo = document.querySelector("#upsTabContent .webvizo");
+                if (firstWebvizo) {
+                    // Stop observing once the element is found
+                    observerInstance.disconnect();
+    
+                    const selectServices = firstWebvizo.querySelectorAll("#UPS_SETTINGS_SHIPMENTMETHOD option");
+    
+                    const selectUps = document.querySelector(".nav-item-select-shipping-ups #select-ups");
+                    if (selectUps) {
+                        selectUps.innerHTML = ''; // Clear previous options
+                        selectServices.forEach(option => {
+                            const clonedOption = option.cloneNode(true);
+                            selectUps.appendChild(clonedOption);
+                        });
+                    }
+                }
+            });
+
+            // Start observing the parent container for changes
+            const upsTabContent = document.querySelector("#upsTabContent");
+            if (upsTabContent) {
+                observer.observe(upsTabContent, { childList: true, subtree: true });
+            }
         })
     }
 
@@ -554,11 +590,14 @@ function carrierGenerateExpedition(e){
 
     if(isActive){
         console.log(idSelected)
+
+
+        const weightInputValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").value;
+        const weightValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").getAttribute("value");
+
         if(idSelected == 'orderShippingNACEX'){
             // document.querySelector("input[name='submitputexpedicion']").click()
             const selectNacex = document.querySelector(".nav-item-select-nacex #select-nacex")
-            const weightInputValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").value;
-            const weightValue = document.querySelector("input[name='update_order_shipping[shipping_weight]']").getAttribute("value");
 
             if(selectNacex.value == 'default'){
                 selectNacex.style.outline = "2px solid red"
@@ -584,6 +623,23 @@ function carrierGenerateExpedition(e){
             }
 
         }else if(idSelected == 'orderShippingUPS'){
+            save_settings('custom_package')
+            
+            if(weightValue == 0 && weightValue == weightInputValue){
+                orderWeightInput.classList.add("input-error");
+                orderWeightInputValidation.classList.add("show-validation")
+                orderWeightInput.focus()
+
+                orderWeightInput.addEventListener("blur", () => {
+                    orderWeightInput.classList.remove("input-error");
+                    orderWeightInputValidation.classList.remove("show-validation")
+                });
+            }
+
+            if(weightInputValue != weightValue){
+                form.submit();
+            }
+
             // document.querySelector("#generate_shipping_label").click()
         }else if(idSelected == 'orderShippingDPD'){
             form.submit();
