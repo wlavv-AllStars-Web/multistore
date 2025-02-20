@@ -898,7 +898,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                             FROM ps_category_product AS pcp
                             LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
                             LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2';
+                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product';
+                            
+            // pre($sqlUniversals);
 
             $universalProducts = Db::getInstance()->executeS($sqlUniversals);
 
