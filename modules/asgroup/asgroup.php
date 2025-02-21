@@ -361,7 +361,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['universal'])){
             $universal = $productData['description']['universal'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'universal' => pSQL($universal),
             ], 'id_product = ' . $idProduct);
@@ -731,6 +731,7 @@ class AsGroup extends Module
         // Decode JSON string into an associative array
         $brands = json_decode($json, true);
         $compats = json_decode($compats, true);
+        // pre($compats);
 
         return $this->fetchTemplate('compats_admin_cars.tpl',[
             'product' => $product,
@@ -873,6 +874,7 @@ class AsGroup extends Module
         // Decode the response into an associative array
         $data = json_decode($res, true);
         $comp = json_decode($compats, true);
+       
 
         $tableCompats = '';
         foreach ($comp['data'] as $key => $compat) {
@@ -881,11 +883,34 @@ class AsGroup extends Module
                                     <td>'.$compat["model"].'</td>
                                     <td>'.$compat["type"].'</td>
                                     <td>'.$compat["version"].'</td>
+                                    <td>'.$compat["id_compat"].'</td>
                                 </tr>';
         };
 
         $data['compats'] = $tableCompats;
 
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
+    public function deleteCompat($id_compat, $product, $shop_id) {
+        $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
+        $urlCompatRemove = 'https://webtools.all-stars-motorsport.com/api/remove/bo/compats/'.$id_compat.'/'.$product .'/'.$shop_id.'/'.$key;
+
+        
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlCompatRemove);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $res = curl_exec($ch);
+        curl_close($ch);
+
+        $data = json_decode($res, true);
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -902,6 +927,7 @@ class AsGroup extends Module
         $type = Tools::getValue('type');
         $version = Tools::getValue('version');
         $product = Tools::getValue('product');
+        $id_compat = Tools::getValue('id_compat');
     
         $models= '';
         
@@ -920,6 +946,10 @@ class AsGroup extends Module
 
         if(Tools::getValue('saveCompat')){
             $models = $this->saveCompat($brand, $model, $type, $version, $product, $shop_id, $key);
+        }
+
+        if(Tools::getValue('deleteCompat')){
+            $models = $this->deleteCompat($id_compat, $product, $shop_id);
         }
 
 
