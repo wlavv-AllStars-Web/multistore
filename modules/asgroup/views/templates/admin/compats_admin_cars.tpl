@@ -41,7 +41,7 @@
                         <td>{$compat.model}</td>
                         <td>{$compat.type}</td>
                         <td>{$compat.version}</td>
-                        <td style="text-align: center;"><i class="material-icons" onclick="deleteCompat({$compat.id_compat})">delete</i></td>
+                        <td style="text-align: center;"><i class="material-icons" onclick="deleteCompat({$compat.id_compat},this)">delete</i></td>
                     </tr>
                 {/foreach}
             </tbody>
@@ -254,7 +254,7 @@
         });
     }
 
-    function deleteCompat(id_compat){
+    function deleteCompat(id_compat,elem){
 
         const product = document.querySelector("form.product-form").getAttribute("data-product-id");
         const shop_id = {$shop_id}
@@ -279,6 +279,8 @@
                 } else {
                     alert('Compatibility deleted successfully!');
                 }
+
+                elem.parentElement.remove()
 
                 // document.querySelector(".product-compats-active table tbody").innerHTML = models.compats
 
