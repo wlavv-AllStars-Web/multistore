@@ -1216,6 +1216,30 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
             } elseif (Tools::getIsset('action')) {
                 return null;
             }
+            // test ASG
+            
+                    // Retrieve all products in the pack
+                    $productsInPack = AdvancedPack::getPackContent($product->id, null, true, [], []);
+                    $lowestStockProduct = null;
+                    $lowestStock = PHP_INT_MAX;
+                    
+
+            
+                    // Find the product with the lowest stock
+                    foreach ($productsInPack as $productInPack) {
+                        $stock = StockAvailable::getQuantityAvailableByProduct($productInPack['id_product'], $productInPack['id_product_attribute']);
+                        if ($stock < $lowestStock) {
+                            $lowestStock = $stock;
+                            $lowestStockProduct = $productInPack;
+                            $lowestStockProduct['lowestStock'] = $lowestStock;
+                        }
+                    }
+                    
+                    
+                    $this->context->smarty->assign('lowestStockASG', $lowestStock);
+            
+            
+            // fim teste
             if ($config['displayMode'] == self::DISPLAY_ADVANCED) {
                 return 'module:' . $this->name . '/views/templates/front/' . $this->getPrestaShopTemplateVersion() . '/pack.tpl';
             }
@@ -3833,7 +3857,18 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         $saveResult = $productPack->save();
 
         // remove pack from universal
-        Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'product` SET `universal` = 0 WHERE `id_product` = ' . (int)$productPack->id);
+        Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'product` SET 
+        `real_photos` = 0 , 
+        `youtube_code` = NULL, 
+        `youtube_code2` = NULL , 
+        `nc` = 0 , 
+        `difficulty` = 0 , 
+        `ec_approved` = 0 , 
+        `wmdeprecated` = 0 , 
+        `not_to_order` = 0 , 
+        `disallow_stock` = 0 , 
+        `universal` = 0
+        WHERE `id_product` = ' . (int)$productPack->id);
     
         
         PrestaShopLogger::addLog('After save: ' . $productPack->universal);

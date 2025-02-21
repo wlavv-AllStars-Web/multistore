@@ -21,7 +21,7 @@
 
 
             <div class="subtitles-details-right">
-            {block name='product_availability'}
+            {* {block name='product_availability'} *}
                
               {* <span id="product-availability" class="js-product-availability" >
                 {if $product.show_availability && $product.availability_message}
@@ -53,7 +53,7 @@
 
                 <span id="product-availability">
 {* <pre>{$product.availability_message|print_r}</pre> *}
-                  {if $product.show_availability && $product.availability_message}
+                  {if $product.show_availability && $product.availability_message && !$packLabel}
                     {if $product.availability == 'available'}
                       {if $product.quantity < 1}
                         <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
@@ -87,7 +87,7 @@
                 </span>
               {/block}
 
-            {/block}
+            {* {/block} *}
               <div>{l s="Shipped from EU" d="Shop.Theme.Catalog"}</div>
             </div>
 
