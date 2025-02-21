@@ -41,7 +41,7 @@
                         <td>{$compat.model}</td>
                         <td>{$compat.type}</td>
                         <td>{$compat.version}</td>
-                        <td style="text-align: center;"><i class="material-icons" onclick="deleteCompat({$compat.id_compat},this)">delete</i></td>
+                        <td style="text-align: center;"><i class="material-icons deleteAction" onclick="deleteCompat({$compat.id_compat},this)">delete</i></td>
                     </tr>
                 {/foreach}
             </tbody>
@@ -64,6 +64,12 @@
     padding: .25rem .5rem;
 }
 
+.product-compats-active .deleteAction{
+    cursor: pointer;
+}
+.product-compats-active .deleteAction:hover{
+    color: var(--asm-color);
+}
 .product-compats-active thead td {
     font-weight: 600;
     background: #444;
