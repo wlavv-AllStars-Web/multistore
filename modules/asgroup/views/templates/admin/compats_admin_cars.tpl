@@ -280,7 +280,7 @@
                     alert('Compatibility deleted successfully!');
                 }
 
-                elem.parentElement.remove()
+                elem.parentElement.parentElement.remove()
 
                 // document.querySelector(".product-compats-active table tbody").innerHTML = models.compats
 
