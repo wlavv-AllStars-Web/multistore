@@ -1552,6 +1552,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
     public function hookActionProductSave($params)
     {
         if (Tools::getValue('new_pack') == 1 && isset($params['product'])) {
+            pre($params['product']);
             $params['product']->addToCategories([$this->context->shop->id_category]);
             if ($this->shopUsesNewProductPage()) {
                 if (Tools::getValue('source_id_product')) {
@@ -3764,6 +3765,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         self::$_preventInfiniteLoop = true;
         AdvancedPack::clearAP5Cache();
         $productPack = new Product((int)$idPack, false, null, AdvancedPack::getPackIdShop($idPack));
+
         if (version_compare(_PS_VERSION_, '1.7.8.0', '>=')
         && property_exists($productPack, 'product_type')
         && class_exists(PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\ProductType::class)
@@ -3824,7 +3826,19 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 $productPack->id_category_default = (int)$config['bundleDefaultCategory'];
             }
         }
-        if ($productPack->save()) {
+
+
+    
+        // Save the product
+        $saveResult = $productPack->save();
+
+        // remove pack from universal
+        Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'product` SET `universal` = 0 WHERE `id_product` = ' . (int)$productPack->id);
+    
+        
+        PrestaShopLogger::addLog('After save: ' . $productPack->universal);
+        
+        if ($saveResult) {
             if (!empty($config['postponeUpdatePackSpecificPrice'])) {
                 $idPackList = $this->getPackIdToUpdate('price');
                 $idPackList[] = (int)$idPack;
