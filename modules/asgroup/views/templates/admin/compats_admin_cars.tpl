@@ -68,7 +68,7 @@
     cursor: pointer;
 }
 .product-compats-active .deleteAction:hover{
-    color: var(--asm-color);
+    color: #fe0000;
 }
 .product-compats-active thead td {
     font-weight: 600;
