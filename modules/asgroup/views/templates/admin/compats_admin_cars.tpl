@@ -22,6 +22,7 @@
         </select>
         <div class="btn btn-primary" onclick="saveCompat()">Save</div>
     </div>
+    {$compats|print_r}
     <div class="product-compats-active">
         <table class="table table-bordered" style="margin-top: 2rem;">
             <thead>
@@ -30,6 +31,7 @@
                     <td>Model</td>
                     <td>Type</td>
                     <td>Version</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +41,7 @@
                         <td>{$compat.model}</td>
                         <td>{$compat.type}</td>
                         <td>{$compat.version}</td>
+                        <td style="text-align: center;"><i class="material-icons" onclick="deleteCompat({$compat.id_compat})">delete</i></td>
                     </tr>
                 {/foreach}
             </tbody>
@@ -237,6 +240,47 @@
                 }
 
                 document.querySelector(".product-compats-active table tbody").innerHTML = models.compats
+
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+
+                if (typeof showErrorMessage === 'function') {
+                    showErrorMessage('Something went wrong. Please try again.');
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            }
+        });
+    }
+
+    function deleteCompat(id_compat){
+
+        const product = document.querySelector("form.product-form").getAttribute("data-product-id");
+        const shop_id = {$shop_id}
+        const url = '{$admin_url}'
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                ajax: true,
+                action: 'getModels', 
+                id_compat: id_compat,
+                product: product,
+                shop_id: shop_id,
+                deleteCompat: 1,
+            },
+            success: function(res) {
+                console.log(res);
+
+                if (typeof showSuccessMessage === 'function') {
+                    showSuccessMessage('Compatibility deleted successfully!');
+                } else {
+                    alert('Compatibility deleted successfully!');
+                }
+
+                // document.querySelector(".product-compats-active table tbody").innerHTML = models.compats
 
             },
             error: function(xhr, status, error) {
