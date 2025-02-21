@@ -44,7 +44,7 @@
      {/block}
      
      {hook h="displayHeaderCategory"}
-     {* <pre>{$listingCompat|print_r}</pre> *}
+     {* <pre>{$compat|print_r}</pre> *}
      <section id="products">
        {if $listing.products|count}
  
@@ -59,7 +59,7 @@
          {/block}
  
          {block name='product_list'}
-            {include file='catalog/_partials/products.tpl' listing=$listing productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/products.tpl' listing=$listing compat=$compat productClass="col-xs-12 col-sm-6 col-xl-4"}
 
             {if $universals}
             {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-4"}

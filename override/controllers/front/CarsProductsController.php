@@ -66,6 +66,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 'listingCompat' => [
                     'products' => $products, // Assign prepared product array
                 ],
+                'compat' => $compat,
             ]);
 
             // Redirect to the cars-products page
