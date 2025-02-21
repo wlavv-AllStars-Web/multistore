@@ -22,7 +22,7 @@
         </select>
         <div class="btn btn-primary" onclick="saveCompat()">Save</div>
     </div>
-    {$compats|print_r}
+    {* {$compats|print_r} *}
     <div class="product-compats-active">
         <table class="table table-bordered" style="margin-top: 2rem;">
             <thead>
