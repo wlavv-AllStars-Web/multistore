@@ -41,12 +41,14 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             // Decode the response into an associative array
             $data = json_decode($json, true);
 
-            $product = $data['data'];
 
-            // pre($product);
+            $product = $data['data'];
+            $compat = $data['compat'];
+
+           
 
      
-            $this->car_description = "Abarth / Fiat | 595 / 695";
+            $this->car_description = $compat['brand']." | ".$compat['model']." | ".$compat['type']." | ".$compat['version'];
             // $search = $this->getProductSearchVariables();
         
             // Fetch products related to the selected car product
