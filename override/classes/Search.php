@@ -174,8 +174,9 @@ class SearchCore
     }
 
     public static function find($id_lang, $expr, $page_number = 1, $page_size = 1, $order_by = 'position',
-        $order_way = 'desc', $ajax = false, $use_cookie = true, Context $context = null)
+        $order_way = 'desc', $ajax = false, $use_cookie = true, Context $context = null, $compat = null)
     {
+        // pre($compat);
         // paulo quickshop
         echo $context->shop->id;
         $URL = $_SERVER['HTTP_REFERER'];
@@ -210,41 +211,43 @@ class SearchCore
         $score_array = array();
         $words = explode(' ', Search::sanitize($expr, $id_lang, false, $context->language->iso_code));
         
-        foreach ($words as $key => $word) {
-            if (!empty($word) && strlen($word) >= (int)Configuration::get('PS_SEARCH_MINWORDLEN')) {
-                $word = str_replace(array('%', '_'), array('\\%', '\\_'), $word);
-                $start_search = Configuration::get('PS_SEARCH_START') ? '%': '';
-
-                if($end == 'quick-shop'){
-                    $end_search = 1 ? '%': '';
-                }else{
-                    $end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
+        if(!$compat){
+            foreach ($words as $key => $word) {
+                if (!empty($word) && strlen($word) >= (int)Configuration::get('PS_SEARCH_MINWORDLEN')) {
+                    $word = str_replace(array('%', '_'), array('\\%', '\\_'), $word);
+                    $start_search = Configuration::get('PS_SEARCH_START') ? '%': '';
+    
+                    if($end == 'quick-shop'){
+                        $end_search = 1 ? '%': '';
+                    }else{
+                        $end_search = Configuration::get('PS_SEARCH_END') ? '': '%';
+                    }
+    
+                    $intersect_array[] = 'SELECT si.id_product
+                        FROM '._DB_PREFIX_.'search_word sw
+                        LEFT JOIN '._DB_PREFIX_.'search_index si ON sw.id_word = si.id_word
+                        WHERE sw.id_lang = '.(int)$id_lang.'
+                            AND sw.id_shop = '.$context->shop->id.'
+                            AND sw.word LIKE
+                        '.($word[0] == '-'
+                            ? ' \''.$start_search.pSQL(Tools::substr($word, 1, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\''
+                            : ' \''.$start_search.pSQL(Tools::substr($word, 0, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\''
+                        );
+    
+                    if ($word[0] != '-') {
+                        $score_array[] = 'sw.word LIKE \''.$start_search.pSQL(Tools::substr($word, 0, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\'';
+                    }
+                } else {
+                    unset($words[$key]);
                 }
-
-                $intersect_array[] = 'SELECT si.id_product
-					FROM '._DB_PREFIX_.'search_word sw
-					LEFT JOIN '._DB_PREFIX_.'search_index si ON sw.id_word = si.id_word
-					WHERE sw.id_lang = '.(int)$id_lang.'
-						AND sw.id_shop = '.$context->shop->id.'
-						AND sw.word LIKE
-					'.($word[0] == '-'
-                        ? ' \''.$start_search.pSQL(Tools::substr($word, 1, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\''
-                        : ' \''.$start_search.pSQL(Tools::substr($word, 0, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\''
-                    );
-
-                if ($word[0] != '-') {
-                    $score_array[] = 'sw.word LIKE \''.$start_search.pSQL(Tools::substr($word, 0, PS_SEARCH_MAX_WORD_LENGTH)).$end_search.'\'';
-                }
-            } else {
-                unset($words[$key]);
+            }
+    
+            if (!count($words)) {
+                return ($ajax ? array() : array('total' => 0, 'result' => array()));
             }
         }
 
-        if (!count($words)) {
-            return ($ajax ? array() : array('total' => 0, 'result' => array()));
-        }
-
-        $score = '';
+        $score = ', 0 as position';
         if (is_array($score_array) && !empty($score_array)) {
             $score = ',(
 				SELECT SUM(weight)
@@ -263,23 +266,36 @@ class SearchCore
             $sql_groups = 'AND cg.`id_group` '.(count($groups) ? 'IN ('.implode(',', $groups).')' : '= 1');
         }
 
-        $results = $db->executeS('
-		SELECT cp.`id_product`
-		FROM `'._DB_PREFIX_.'category_product` cp
-		'.(Group::isFeatureActive() ? 'INNER JOIN `'._DB_PREFIX_.'category_group` cg ON cp.`id_category` = cg.`id_category`' : '').'
-		INNER JOIN `'._DB_PREFIX_.'category` c ON cp.`id_category` = c.`id_category`
-		INNER JOIN `'._DB_PREFIX_.'product` p ON cp.`id_product` = p.`id_product`
-		'.Shop::addSqlAssociation('product', 'p', false).'
-		WHERE c.`active` = 1
-		AND product_shop.`active` = 1
-		AND product_shop.`visibility` IN ("both", "search")
-		AND product_shop.indexed = 1
-		'.$sql_groups, true, false);
-
         $eligible_products = array();
-        foreach ($results as $row) {
-            $eligible_products[] = $row['id_product'];
+
+
+        if($compat){
+
+            foreach ($compat as $product) {
+                $eligible_products[] = $product['id_product'];
+            }
+
+            // pre($eligible_products);
+
+        }else{
+            $results = $db->executeS('
+            SELECT cp.`id_product`
+            FROM `'._DB_PREFIX_.'category_product` cp
+            '.(Group::isFeatureActive() ? 'INNER JOIN `'._DB_PREFIX_.'category_group` cg ON cp.`id_category` = cg.`id_category`' : '').'
+            INNER JOIN `'._DB_PREFIX_.'category` c ON cp.`id_category` = c.`id_category`
+            INNER JOIN `'._DB_PREFIX_.'product` p ON cp.`id_product` = p.`id_product`
+            '.Shop::addSqlAssociation('product', 'p', false).'
+            WHERE c.`active` = 1
+            AND product_shop.`active` = 1
+            AND product_shop.`visibility` IN ("both", "search")
+            AND product_shop.indexed = 1
+            '.$sql_groups, true, false);
+    
+            foreach ($results as $row) {
+                $eligible_products[] = $row['id_product'];
+            }
         }
+
         foreach ($intersect_array as $query) {
             $eligible_products2 = array();
             foreach ($db->executeS($query, true, false) as $row) {

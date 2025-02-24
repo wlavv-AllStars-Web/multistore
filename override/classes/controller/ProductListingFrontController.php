@@ -308,15 +308,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // the search provider will need a context (language, shop...) to do its job
         $context = $this->getProductSearchContext();
 
+
         // the controller generates the query...
         $query = $this->getProductSearchQuery();
-
 
         
 
 
         // ...modules decide if they can handle it (first one that can is used)
         $provider = $this->getProductSearchProviderFromModules($query);
+
         // if no module wants to do the query, then the core feature is used
         if (null === $provider) {
             $provider = $this->getDefaultProductSearchProvider();
@@ -384,15 +385,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         $query->setEncodedFacets($encodedFacets);
 
-
+        // pre($query);
 
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
         ]);
 
         // $query
-        // ->setQueryType('');
-        // pre($query);
+        // ->setQueryType('compat');
+        
 
         // We're ready to run the actual query!
 
@@ -419,6 +420,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         //     pre($productsCar);
 
         // }   
+
 
 
         Hook::exec('actionProductSearchProviderRunQueryAfter', [
@@ -483,6 +485,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $result->getAvailableSortOrders(),
             $query->getSortOrder()->toString()
         );
+
+
 
         $sort_selected = false;
         if (!empty($sort_orders)) {
@@ -844,7 +848,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         if(Tools::getValue('id_compat')){
-            // pre($query);
+            // pre(Tools::getAllValues());
 
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -868,7 +872,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $productsC = $data['data'];
 
-            // pre($product);
+            // pre($query);
+            $category = Tools::getValue('id_category_layered');
+            $manufacturer = Tools::getValue('id_manufacturer_layered');
 
             // $search = $this->getProductSearchVariables();
         
@@ -880,12 +886,54 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $ids = array_map('intval', (array) $productsC);
             $idList = implode(',', $ids);
     
-            $sql = 'SELECT cp.id_category, cp.id_product, cp.position
-                    FROM ' . _DB_PREFIX_ . 'category_product cp
-                    LEFT JOIN ' . _DB_PREFIX_ . 'product_shop ps ON cp.id_product = ps.id_product
-                    WHERE cp.id_product IN (' . $idList . ') GROUP BY cp.id_product';
-                    
+            $sql = 'SELECT ps_category_product.id_category, ps_category_product.id_product, ps_category_product.position
+                    FROM ps_category_product
+                    LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
+                    LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
+                    LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+                    WHERE ps_category_product.id_product IN (' . $idList . ')  
+                    AND ps_product.active = 1 AND ps_product_shop.id_shop = '.$this->context->shop->id;
+             
+            if($category > 0) {
+                $sql .= ' AND ps_category_product.id_category = ' . $category;
+            }
+
+            if ($manufacturer > 0) {
+                $sql .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+            }
+
+
+            
+            $sql .= ' GROUP BY ps_product.id_product';
+
+            // test
+            if($query->getSortOrder()){
+                $sortOrder = $query->getSortOrder(); 
+                // pre($sortOrder);
+                if ($sortOrder->getField() === 'price') {
+                    $sql .= ' ORDER BY ps_product.price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'name') {
+                    $sql .= ' ORDER BY ps_product_lang.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'reference') {
+                    $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'sales') {
+                    $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                } elseif ($sortOrder->getField() === 'date_add') {
+                    $sql .= ' ORDER BY ps_product.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                }
+            }
+
+
+
+            if($query->getResultsPerPage()) {
+                $sql .= ' LIMIT '.$query->getResultsPerPage();
+            }
+
+
             // pre($sql);
+
+            // fim test
+
     
             $productsCar =  Db::getInstance()->executeS($sql);
 
@@ -899,10 +947,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                             LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
                             LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
                             WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product';
-                            
-            // pre($sqlUniversals);
 
+
+                            
+                            
             $universalProducts = Db::getInstance()->executeS($sqlUniversals);
+            // pre($universalProducts);
 
             $universals = $this->prepareMultipleProductsForTemplate(
                 $universalProducts
@@ -948,7 +998,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $pagination['items_shown_to'] = count($products);
             }
 
-            // pre($result);
+            // pre($sort_orders);
 
             $searchVariables = [
                 'result' => $result,
@@ -1079,6 +1129,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             $result->getFacetCollection()->setFacets($filteredFacets);
         }
+
 
         if ($result->getAvailableSortOrders()) {
             $filteredOrders = [];
@@ -1289,6 +1340,60 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         return $data;
     }
 
+    // protected function getAjaxProductSearchVariablesCompats()
+    // {
+    //     $search = $this->getProductSearchVariables();
+
+    //     echo 'paulo';
+
+    //     pre($search);
+
+    //     // $product = new Product($search['id_product']);
+    //     // $haveCombinations = $product->hasAttributes();
+        
+
+    //     // $search['hasCombinations'] = $haveCombinations;
+        
+
+    //     if($this->context->shop->id == 3){
+
+    //         // $haveCombinations = $product->hasAttributes();
+
+    //         $searchRef = pSQL(Tools::getValue('s'));
+    //         // echo 'SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"';
+    //         // exit;
+    //         foreach($search['products'] as $product){
+    //             $product['product_attribute_atr'] = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"');
+    //         }
+
+    //         // $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
+    //         $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search]);
+    //         // $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations, 'child_reference' => pSQL(Tools::getValue('s'))]);
+    //         // $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
+    //     }else{
+    //         $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
+    //         $rendered_products = $this->render('catalog/_partials/products', ['listing' => $search]);
+    //         $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
+    //     }
+        
+
+
+    //     $data = array_merge(
+    //         [
+    //             'rendered_products_top' => $rendered_products_top,
+    //             'rendered_products' => $rendered_products,
+    //             'rendered_products_bottom' => $rendered_products_bottom,
+    //         ],
+    //         $search
+    //     );
+
+    //     if (!empty($data['products']) && is_array($data['products'])) {
+    //         $data['products'] = $this->prepareProductArrayForAjaxReturn($data['products']);
+    //     }
+
+    //     return $data;
+    // }
+
     /**
      * Cleans the products array with only whitelisted properties.
      *
@@ -1315,12 +1420,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
      */
     protected function doProductSearch($template, $params = [], $locale = null)
     {   
-        
         if ($this->ajax) {
             ob_end_clean();
             header('Content-Type: application/json');
             if($template == 'catalog/quick-shop'){
                 $this->ajaxRender(json_encode($this->getAjaxProductSearchVariablesQS()));
+            // }elseif($template == 'catalog/cars-products'){
+            //     $this->ajaxRender(json_encode($this->getAjaxProductSearchVariablesCompats()));
             }else{
                 $this->ajaxRender(json_encode($this->getAjaxProductSearchVariables()));
             }

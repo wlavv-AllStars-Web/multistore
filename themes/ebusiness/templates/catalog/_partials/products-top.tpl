@@ -364,8 +364,11 @@
   </div>
 {/if}
 </div>
-{include file='catalog/_partials/setFilterData.tpl'}
-{include file='catalog/_partials/getDataFromUrl.tpl'}
+
+{* {if !$compat} *}
+  {include file='catalog/_partials/setFilterData.tpl'}
+  {include file='catalog/_partials/getDataFromUrl.tpl'}
+{* {/if} *}
 
   <script>
       $('document').ready(function () {

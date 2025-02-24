@@ -65,6 +65,7 @@
 
     function setDataFromUrl(){
 
+        if(url.searchParams.get("id_compat")) id_compat = url.searchParams.get("id_compat");
         if(url.searchParams.get("orderby")) orderBy = url.searchParams.get("orderby");
         if(url.searchParams.get("orderway")) orderWay = url.searchParams.get("orderway");
         if(url.searchParams.get("n")){
@@ -111,11 +112,11 @@
         if( !($('body#manufacturer').length > 0) && (idManufacturer)) deleteHtmlManufacturers = deleteHtml('removeManufacturerParametersAndReload');
         if( !($('body#category').length > 0) && (idCategory > 0)){
 
-            if($('#current_car_settings').length){
-                deleteHtmlCategory = deleteHtml('removeCategoryParametersAndReloadUkoo');
-            }else{
+            // if($('#current_car_settings').length){
+            //     deleteHtmlCategory = deleteHtml('removeCategoryParametersAndReloadUkoo');
+            // }else{
                 deleteHtmlCategory = deleteHtml('removeCategoryParametersAndReload');
-            }
+            // }
  
         }
         $('#name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');

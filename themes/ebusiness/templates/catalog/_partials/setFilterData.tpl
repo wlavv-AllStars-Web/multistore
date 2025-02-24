@@ -94,6 +94,7 @@
     function doSearch() {
 
         let ukoo_element = $('#ukoocompat_select_4');
+        let compat_elem = $('#current_car_settings');
 
         $('#loader_holder').css('display', 'block');
 
@@ -102,7 +103,11 @@
         } else {
 
             if( typeof(create_url) === typeof(Function)) {
-                window.location.href = create_url();
+                if(compat_elem){
+                    window.location.href = create_url(1);
+                }else{
+                    window.location.href = create_url();
+                }
             }else{
                 alert($('#alert_message').val());
                 $('#loader_holder').css('display', 'none');
@@ -116,8 +121,11 @@
         }
     }
 
-    function create_url(){
+    function create_url(compat = null){
         let data =  urlParameter_OrderBy();
+        if(compat){
+            data += urlParameter_IdCompat();
+        }
         data += urlParameter_OrderWay();
         data += urlParameter_NumberOfItems();
         data += urlParameter_NewProducts();
@@ -127,6 +135,7 @@
         return location.protocol + '//' + location.host + location.pathname + '?' + data;
     }
 
+    function urlParameter_IdCompat(){    return '&id_compat=' + $('#current_car_settings').attr('id_compat'); }
     function urlParameter_PageNumber(){    return '&p=' + $('#multiFilter_page_number').val(); }
     function urlParameter_OrderBy(){       return 'orderby=' + $('#multiFilter_order_by').val(); }
     function urlParameter_OrderWay(){      return '&orderway=' + $('#multiFilter_order_by_orientation').val(); }

@@ -46,7 +46,7 @@
      {hook h="displayHeaderCategory"}
      {* <pre>{$compat|print_r}</pre> *}
      <section id="products">
-       {if $listing.products|count}
+       {* {if $listing.products|count} *}
  
          {block name='product_list_top'}
            {include file='catalog/_partials/products-top.tpl' listing=$listing}
@@ -70,7 +70,7 @@
            {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
          {/block}
  
-       {else}
+       {* {else}
          <div id="js-product-list-top"></div>
  
          <div id="js-product-list">
@@ -83,7 +83,7 @@
          </div>
  
          <div id="js-product-list-bottom"></div>
-       {/if}
+       {/if} *}
      </section>
  
      {block name='product_list_footer'}{/block}

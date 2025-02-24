@@ -125,8 +125,7 @@
   <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">
   {if $cars_products_page}
     {if $compat}
-      {* {Tools::getAllValues()|print_r} *}
-      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;">
+      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
       <div style="background: #efefef !important;display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
             <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">

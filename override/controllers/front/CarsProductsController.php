@@ -1,5 +1,7 @@
 <?php
 
+use PrestaShop\Module\AsGroup\Adapter\Search\CustomSearchProductSearchProvider;
+use PrestaShop\Module\AsGroup\Core\Product\Search\CustomProductSearchQuery;
 use PrestaShop\PrestaShop\Adapter\Search\SearchProductSearchProvider;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
@@ -15,9 +17,20 @@ class CarsProductsControllerCore extends ProductListingFrontController{
     protected $search_tag;
     public $car_description;
 
+    public $brand;
+    public $model;
+    public $type;
+    public $version;
+    public $compatProducts;
+
     public function init()
     {
         parent::init();
+
+        if (Tools::getValue('ajax')) {
+            $this->ajax = true;
+        }
+
         // pre(Tools::getAllValues());
         if(Tools::getValue('id_compat')){
 
@@ -42,22 +55,37 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $data = json_decode($json, true);
 
 
-            $product = $data['data'];
+            $products = $data['data'];
             $compat = $data['compat'];
 
-           
+            $productObjects = [];
+            
+            foreach($products as $product){
+                $productObjects[] = ['id_product' => $product];
+            };
+
+            // pre($productObjects);
+
+           $this->brand = $compat['brand'];
+           $this->model = $compat['model'];
+           $this->type = $compat['type'];
+           $this->version = $compat['version'];
 
      
             $this->car_description = $compat['brand']." | ".$compat['model']." | ".$compat['type']." | ".$compat['version'];
             // $search = $this->getProductSearchVariables();
+            $this->compatProducts = $productObjects;
         
             // Fetch products related to the selected car product
-            $productsCar = $this->getProductsByCar($product);
+            $productsCar = $this->getProductsByCar($products);
+
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $productsCar
             );
 
+            $manufacturerOBJ = new Manufacturer();
+            $manufacturers = $manufacturerOBJ->getManufacturers();
 
             // pre(count($products));
 
@@ -67,6 +95,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                     'products' => $products, // Assign prepared product array
                 ],
                 'compat' => $compat,
+                'manufacturers' => $manufacturers,
             ]);
 
             // Redirect to the cars-products page
@@ -74,9 +103,6 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             
         }
 
-        if (Tools::getValue('ajax')) {
-            $this->ajax = true;
-        }
 
     }
 
@@ -227,12 +253,17 @@ class CarsProductsControllerCore extends ProductListingFrontController{
      */
     protected function getProductSearchQuery()
     {
-        $query = new ProductSearchQuery();
+        $query = new CustomProductSearchQuery();
         $query
             ->setQueryType('search')
-            ->setSortOrder(new SortOrder('product', 'position', 'desc'))
+            ->setSortOrder(new SortOrder('product', 'price', 'asc'))
             ->setSearchString($this->search_string)
-            ->setSearchTag($this->search_tag);
+            ->setSearchTag($this->search_tag)
+            ->setBrand($this->brand)
+            ->setModel($this->model)
+            ->setType($this->type)
+            ->setVersion($this->version)
+            ->setCompatsProducts($this->compatProducts);
 
             if ($this->search_string) {
                 $this->search_string = $this->search_string ;
@@ -246,7 +277,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
      */
     protected function getDefaultProductSearchProvider()
     {
-        return new SearchProductSearchProvider(
+
+        return new CustomSearchProductSearchProvider(
             $this->getTranslator()
         );
     }
