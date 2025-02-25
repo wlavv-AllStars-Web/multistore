@@ -1,6 +1,6 @@
 {if $universals}
-    <div style="width: 100%;background:#222;">
-        <h1 style="margin: auto;text-align:center;color:#fff;padding:1rem;">( {$total} ) Universal Products</h1>
+    <div style="width: 100%;background:#222;border-bottom: 3px solid;border-color:var(--asm-color);">
+        <h1 style="margin: auto;text-align:center;color:#fff;padding:.75rem 1rem;">( {$total} ) Universal Products</h1>
     </div>
     <div class="universals-product-list d-flex p-3" style="flex-wrap: wrap;position:relative;">
     {foreach from=$universals item=product name=products}
