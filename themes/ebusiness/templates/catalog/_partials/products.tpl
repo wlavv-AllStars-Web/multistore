@@ -126,7 +126,7 @@
   {if $cars_products_page}
     {if $compat}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
-      <div style="background: #efefef !important;display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;">
+      <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
             <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
           </div>
@@ -138,12 +138,12 @@
             </div>
             {/if}
 
-            <div class="mobile">
-              <span><img src="/img/homepage/brands/{$filter_1}.png" style="width: 40px;"/></span>
+            <div class="mobile details-info-car-mobile">
+              <span><img src="{$compat['brand_logo']}" style="width: 40px;"/></span>
               <span>|</span>
-              <span style="color: var(--asm-color) !important;">{$ukoo_name_2}</span>
+              <span style="color: var(--asm-color) !important;">{$compat['brand']}</span>
               <span>|</span>
-              <span>{$ukoo_name_3}</span>
+              <span>{$compat['model']}</span>
             </div>
             <div class="desktop details-info-car-dektop">
               <div>{$compat['brand']} | {$compat['model']}</div>

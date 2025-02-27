@@ -961,9 +961,17 @@ body {
     border: 2px solid #e0e0e0;
     border-radius: .25rem;
   }
+
+  /*  */
+
+  #current_car_settings > div{
+    background: #efefef !important;
+  }
 }
 
 @media (min-width: 993px) {
+
+
   .d-mobile-language{
     display: none;
   }
@@ -2099,6 +2107,16 @@ body {
     align-items: center;
     font-size: 14px;
     text-align: center;
+  }
+
+  #current_car_settings > div{
+    background: #282828 !important;
+  }
+  #current_car_settings .details-info-car-mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
   }
   /*  */
 
