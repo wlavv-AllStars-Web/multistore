@@ -52,9 +52,13 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 // Decode JSON string into an associative array
                 $myCarsGarage = json_decode($jsonGarage, true);
 
-                $exists = !empty(array_filter($myCarsGarage['data'], function ($car) use ($id_compat) {
-                    return $car['id_compat'] == $id_compat;
-                }));
+                if(isset($myCarsGarage['data'])){
+                    $exists = !empty(array_filter($myCarsGarage['data'], function ($car) use ($id_compat) {
+                        return $car['id_compat'] == $id_compat;
+                    }));
+                }else{
+                    $exists = 0;
+                }
                 
                 
             }
