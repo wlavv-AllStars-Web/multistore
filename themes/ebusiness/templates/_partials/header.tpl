@@ -512,6 +512,9 @@
               let brandsContainer = document.querySelector(".dropdown-menu.menu-logos .swiper-menu-brands")
               brandsContainer.innerHTML = brands.html_brands
 
+              let brandsContainerMobile = document.querySelector(".car_brands_mobile")
+              brandsContainerMobile.innerHTML = brands.html_brands_mobile
+
               let librands = brandsContainer.querySelectorAll("li")
 
               librands.forEach((brand) => {

@@ -24,13 +24,15 @@
  *}
 
 
- {assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
+{assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
 {assign var="currentLanguage" value=Context::getContext()->language->id}
 {assign var="categories" value=Category::getCategories($currentLanguage)}
+
 {extends file='page.tpl'}
 
     {block name='page_content_container'}
       <section id="content" class="page-home" style="">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {block name='page_content_top'}{/block}
         {block name='page_content'}
             {* {hook h='ybcCustom3'} *}
@@ -101,7 +103,8 @@
 
             <div class="cards-menu">
               <div class="card-yourcar" onclick="toggleMenuCars(this)"></div>
-              {$HOOK_HOME nofilter}
+              <div class="car_brands_mobile" style="display: none;overflow:hidden;"></div>
+              {* {$HOOK_HOME nofilter} *}
               <div class="cards-menuLink">
                 <div class="card-news" onclick="window.location = '{$link->getPageLink('new-products', true)}';"></div>
                 <div class="card-brands" onclick="window.location = '{$link->getPageLink('manufacturer', true)}';"></div>
@@ -215,4 +218,153 @@
 
 
       </style>
+
+      <script>
+        function openModelsMobile(elem,id_brand){
+          event.stopPropagation(); 
+          console.log(elem);
+          console.log(id_brand);
+          // document.querySelector(".dropdown-menu .versions_cars").innerHTML = ''
+          // document.querySelector(".loading-overlay-cars").classList.remove("dont_show")
+          $.ajax({
+              url: '{url entity='frontController'}', // Replace with your endpoint
+              type: 'GET',
+              data: {
+                getdataBrands: 1,
+                type: 'model',
+                id_brand: id_brand,
+                storeId: {Context::getContext()->shop->id}
+              },
+              success: function(brands) {
+                console.log(brands)
+                // document.querySelector(".loading-overlay-cars").classList.add("dont_show")
+                let modelsContainerMobile = document.querySelector(".car_brands_mobile")
+                modelsContainerMobile.innerHTML = brands.html_models_mobile
+
+
+                if(screen.width < 560){
+function toggleStatus(element){
+
+    element.parentElement.classList.toggle("show");
+}
+const modelCars = document.querySelectorAll('.model_group_cars_mobile');
+console.log(modelCars);
+   modelCars.forEach(function(container) {
+       if (container.children.length > 1) {
+           container.classList.add('has-multiple-children');
+   
+           container.querySelectorAll('.car_item_holder').forEach(function(child, index) {
+               const versionsParent = document.querySelectorAll("#container_version_parent");
+               
+               
+               child.style.position = "relative";
+               const div = document.createElement('div');
+               div.innerHTML = `<span style="font-weight:bold;font-size:1.25rem;">`+(index + 1)+`</span><span style="color: #222222;font-size:1rem;"> / `+container.children.length+`</span>`;
+               div.style.color = "red";
+               div.style.fontWeight = "regular";
+               div.style.textAlign = "center";
+               
+               div.style.margin = "0 0 1rem 0";
+               
+               // arrow right
+                   const arrowRight = document.createElement('span')
+                   arrowRight.classList.add("fa");
+                   arrowRight.classList.add("fa-chevron-right");
+                   arrowRight.style.marginLeft = "1rem";
+                   arrowRight.style.fontSize = "30px";
+                   arrowRight.style.right = "1rem";
+                   arrowRight.style.bottom = "1rem";
+                   arrowRight.style.color = "red";
+                   arrowRight.style.background = "#282828";
+                   arrowRight.style.padding = "0.25rem 0.5rem";
+                   arrowRight.style.borderRadius = "5px";
+                   arrowRight.style.boxShadow = "2px 4px 4px #444444";
+                   arrowRight.style.position = "absolute";
+                   arrowRight.setAttribute("title", "Right click");
+               
+               // arrow left
+               
+                   const arrowLeft = document.createElement('span');
+                   arrowLeft.classList.add("fa");
+                   arrowLeft.classList.add("fa-chevron-left");
+                   arrowLeft.style.fontSize = "30px";
+                   arrowLeft.style.left = "1rem";
+                   arrowLeft.style.bottom = "1rem";
+                   arrowLeft.style.color = "red";
+                   arrowLeft.style.background = "#282828";
+                   arrowLeft.style.padding = "0.25rem 0.5rem";
+                   arrowLeft.style.borderRadius = "5px";
+                   arrowLeft.style.boxShadow = "2px 4px 4px #444444";
+                   arrowLeft.style.position = "absolute";
+                   arrowLeft.setAttribute("title", "Left click");
+
+               
+               if (index === 0) {
+                   
+                   arrowRight.addEventListener('click', function() {
+                   
+                       if (index < container.children.length - 1) {
+                           
+                           const nextIndex = index + 1;
+                           container.children[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start'  });
+                       }
+                   });
+                   child.appendChild(arrowRight)
+               } else if(index == container.children.length - 1){
+                   
+                   
+                   arrowLeft.addEventListener('click', function() {
+                       if (index == container.children.length - 1) {
+                           
+                           const prevIndex = index - 1;
+                           container.children[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start'  });
+                       }
+                   });
+                   
+                   child.appendChild(arrowLeft)
+               }else{
+                   
+                   
+                   arrowLeft.addEventListener('click', function() {
+                       
+                           
+                           const prevIndex = index - 1;
+                           container.children[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start'  });
+                   
+                   });
+                   arrowRight.addEventListener('click', function() {
+                   
+                       if (index < container.children.length - 1) {
+                           
+                           const nextIndex = index + 1;
+                           container.children[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start'  });
+                       }
+                   });
+               
+               child.appendChild(arrowLeft)
+               child.appendChild(arrowRight)
+                   
+               }
+   
+               child.appendChild(div);
+               
+              
+           
+           });
+       }
+   });
+}
+
+
+              },
+              error: function(xhr, status, error) {
+                  console.error("AJAX Error:", status, error);
+              }
+            })
+        }
+      </script>
+
+<script>
+
+</script>
     {/block}
