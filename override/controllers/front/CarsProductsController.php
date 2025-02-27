@@ -37,7 +37,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $shop_id = $this->context->shop->id; 
-
+            $exists = 0;
             if($this->context->customer->id){
                 $id_customer = $this->context->customer->id;
                 $urlCarsGarage = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
