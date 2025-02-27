@@ -47,10 +47,12 @@
      {* <pre>{$compat|print_r}</pre> *}
      <section id="products">
        {* {if $listing.products|count} *}
- 
-         {block name='product_list_top'}
-           {include file='catalog/_partials/products-top.tpl' listing=$listing}
-         {/block}
+
+         {if $no_products || $noProducts == 0}
+          {block name='product_list_top'}
+            {include file='catalog/_partials/products-top.tpl' listing=$listing}
+          {/block}
+         {/if}
  
          {block name='product_list_active_filters'}
            <div class="hidden-sm-down">
@@ -59,17 +61,19 @@
          {/block}
  
          {block name='product_list'}
-            {include file='catalog/_partials/products.tpl' listing=$listing compat=$compat productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/products.tpl' listing=$listing compat=$compat noProducts=$noProducts productClass="col-xs-12 col-sm-6 col-xl-4"}
 
             {if $universals}
             {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-4"}
             {/if}
          {/block}
  
-         {block name='product_list_bottom'}
-           {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
-         {/block}
- 
+         {if !$no_products || $noProducts == 0}
+          {block name='product_list_bottom'}
+            {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
+          {/block}
+         {/if}
+  
        {* {else}
          <div id="js-product-list-top"></div>
  
