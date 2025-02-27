@@ -3735,7 +3735,7 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 9999;
   display: none;
   float: left;
   min-width: 116px;
@@ -4198,7 +4198,7 @@ ul {
 }
 #_desktop_top_menu {
   position: relative !important;
-  z-index: 2;
+  z-index: 9999;
   padding: 0;
   /* border-bottom: 1px solid #fff; */
   background-color: #121212;
@@ -6205,7 +6205,7 @@ body::-ms-scrollbar-thumb:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9998;
 }
 .loading-overlay-universals:not(.showLoading){
   display: none;

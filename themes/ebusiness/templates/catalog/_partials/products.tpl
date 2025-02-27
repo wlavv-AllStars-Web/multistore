@@ -126,15 +126,18 @@
   {if $cars_products_page}
     {if $compat}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
-      <div style="background: #efefef !important;display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;">
+      <div style="background: #efefef !important;display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
             <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
           </div>
           <div class="current-car-content">
+            {if !$compat['subscribed']}
             <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: var(--asm-color);font-weight:600;"
-            onclick="addToMyCars({$filter_1},{$filter_2},{$filter_3},{$filter_4},{$customer.is_logged},'{$ukoo_name_1}', '{$ukoo_name_2}', '{$ukoo_name_3}', '{$ukoo_name_4}')">
+            onclick="addToMyCars({$compat['id_compat']})">
               {l s='Click to receive informations about new products for this car' d='Shop.Theme.ProductList'}
             </div>
+            {/if}
+
             <div class="mobile">
               <span><img src="/img/homepage/brands/{$filter_1}.png" style="width: 40px;"/></span>
               <span>|</span>
@@ -301,7 +304,7 @@
 
     {* <pre>{$page|print_r}</pre> *}
     {* <pre>{$listing|print_r}</pre> *}
-    {if $no_products}
+    {if $no_products || $noProducts}
       <div style="
         display: flex;
         flex: 1;
@@ -328,157 +331,73 @@
     {/if}
 
 
-  {* <pre>{$listing|print_r}</pre> *}
 
   </div>
 
 {* {assign var=initialPage value=$listing.pagination.pages[1]['url']}
 {assign var=totalPages value=$listing.pagination.pages_count} *}
 
-  {if !$no_products}
+
+  {if isset($no_products) || $noProducts < 1}
   {block name='pagination'}
     {include file='themes/ebusiness/templates/_partials/pagination.tpl' pagination=$listing.pagination}
   {/block}
   {/if}
 
 </div>
+
 {* <script type="text/javascript" src="{$urls.base_url}modules/pm_advancedpack/views/js/pack-17.js"></script> *}
 <script>
 
-// var initialPageUrl = "{$initialPage}";
+  function addToMyCars(id_compat){
 
-// window.addEventListener('unload', function() {
-//   var currentUrl = window.location.href;
-//   if (currentUrl.includes('?page=')) {
-//         // Remove the ?page= parameter from the URL
-//         var updatedUrl = currentUrl.replace(/\?page=\d+/i, '');
-        
-//         // Update the URL without reloading the page
-//         window.location.href = updatedUrl
-//     }
-
-// });
-
-
-
-//     document.addEventListener('DOMContentLoaded', function () {
-
-
-//     var pageNumber = 2; // Assuming the next page is 2 initially
-//     var brand = ''; // Initialize brand variable
-
-//     // Extract brand information from the current URL
-//     var currentUrl = window.location.href;
-//     var brandMatch = currentUrl.match(/\/en\/brand\/([^\/]+)/);
-//     if (brandMatch && brandMatch[1]) {
-//         brand = brandMatch[1];
-//     }
-
-//     var isLoading = false;
-//     var totalPageCount = {$totalPages};
-
-//     var loadingSpinner = document.getElementById('loadingSpinner');
-//     var nomoreproductsDiv = document.getElementById('nomoreproducts');
-//     nomoreproductsDiv.style.display = 'none'
-
-//     var infiniteScroll = new InfiniteScroll('#productList', {
-//         path: function () {
-//             return '/en/brand/' + brand + '?page=' + pageNumber;
-//         },
-//         append: '.product-miniature',
-//         status: '.page-load-status',
-//         hideNav: '.pagination',
-//         loadOnScroll: false,
-//     });
-
-//     infiniteScroll.on('request', function (path, settings) {
-//       // console.log('Requesting page:', path);
-      
-//         if (pageNumber > totalPageCount) {
-//             // Stop loading more pages if current page exceeds the total number of pages
-//             infiniteScroll.destroy();
-//             nomoreproductsDiv.style.display = 'flex'
-//             nomoreproductsDiv.style.justifyContent = 'center'
-
-//             document.getElementById('loadMoreBtn').remove()
-//             return;
-//         }
-//         isLoading = true;
-//         loadingSpinner.style.display = 'block';
-// });
-
-// infiniteScroll.on('load', function (response, path, items) {
-//     // console.log('Page loaded:', path);
-//     isLoading = false;
-//     loadingSpinner.style.display = 'none';
-//     pageNumber++;
-// });
-
-// infiniteScroll.on('append', function (response, path, items) {
-//     // console.log('Append content:', items);
-//     // Handle the response, update pageNumber, or perform any other logic
-
-//     if (!response || pageNumber >= totalPageCount) {
-//             infiniteScroll.options.loadOnScroll = false;
-//         }
-// });
-
-
-//     document.getElementById('loadMoreBtn').addEventListener('click', function () {
-//         // Manually trigger Infinite Scroll when the button is clicked
-//         // console.log('Requesting page:', '/en/brand/' + brand + '/ajaxLoadMoreProducts?page=' + pageNumber);
-        
-//         infiniteScroll.loadNextPage();
-//     });
-// });
-
-
-function addToMyCars(id_brand, id_model, id_type, id_version, logged, brand, model, type, version){
-        
-        let id_customer=0;
-        let email='';
+        let complete = 0;
+        let logged = {if $customer.is_logged}1{else}0{/if};
+        let id_customer = {if $customer.id}{$customer.id}{else}0{/if};
+        let email = '{$customer.email}';
         
         if(logged == 1){
-            id_customer = {intval($customer.id)};
-            email = "{$customer.email}";
+            
+          complete = 1;
+
         } else {
             email = prompt("{l s='Please enter your email.'}");
 
             if (email != null) {
+                complete = 1;
                 // Additional logic can be placed here if needed
             } else {
                 alert("{l s='You did not enter an email. Please try again!'}");
                 return; // Exit the function if no email is entered
             } 
         }
-
-        // alert("{$_SERVER['DOCUMENT_ROOT']}/js/asm/front/carNewsletter/carNewsletter.php")
         
-        if(email.length > 0){
-            $.ajax({
-                url: "{$_SERVER['DOCUMENT_ROOT']}/asm/front/carNewsletter/carNewsletter.php",
-                type: 'POST',
-                data: {
-                    'id_brand': id_brand,
-                    'id_model': id_model,
-                    'id_type': id_type,
-                    'id_version': id_version,
-                    'email': email,
-                    'id_customer': id_customer,
-                    'brand': brand,
-                    'model': model,
-                    'type': type,
-                    'version': version,
-                    'iso_code': "{Context::getContext()->language->iso_code}"
-                },
-                dataType: 'json',
-                success: function (data) {
+        if(complete){
+          $.ajax({
+              url: '{url entity="frontController"}',
+              type: 'POST',
+              data: {
+                  'saveCarGarage': 1,
+                  'id_compat': id_compat,
+                  'email': email,
+                  'id_customer': id_customer,
+                  'iso_code': "{Context::getContext()->language->iso_code}"
+              },
+              dataType: 'json',
+              success: function (data) {
+                  if(data.success == false){
+                    alert("error")
+                  }else{
                     $('.addToMyCarsButton').remove();
-                }
-            });
+                  }
+              }
+          });
         }
         
     }
+
+
+
 </script>
 
 

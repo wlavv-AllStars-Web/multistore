@@ -38,7 +38,29 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $shop_id = $this->context->shop->id; 
 
+            if($this->context->customer->id){
+                $id_customer = $this->context->customer->id;
+                $urlCarsGarage = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
+
+                $ch2 = curl_init();
+                curl_setopt($ch2,CURLOPT_URL,$urlCarsGarage);
+                curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
+                $jsonGarage = curl_exec($ch2);
+                curl_close($ch2);
+    
+                // Decode JSON string into an associative array
+                $myCarsGarage = json_decode($jsonGarage, true);
+
+                $exists = !empty(array_filter($myCarsGarage['data'], function ($car) use ($id_compat) {
+                    return $car['id_compat'] == $id_compat;
+                }));
+                
+                
+            }
+
             $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+
             // pre($url);
     
             // Initialize cURL
@@ -55,14 +77,31 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $data = json_decode($json, true);
 
 
+
+            // pre($data);
+
+
             $products = $data['data'];
             $compat = $data['compat'];
 
-            $productObjects = [];
-            
-            foreach($products as $product){
-                $productObjects[] = ['id_product' => $product];
-            };
+            $compat['subscribed'] = $exists;
+
+            if(count($products) > 0){
+                $productObjects = [];
+                
+                foreach($products as $product){
+                    $productObjects[] = ['id_product' => $product];
+                };
+
+                $this->compatProducts = $productObjects;
+
+                $productsCar = $this->getProductsByCar($products);
+
+
+                $products = $this->prepareMultipleProductsForTemplate(
+                    $productsCar
+                );
+            }
 
             // pre($productObjects);
 
@@ -74,18 +113,16 @@ class CarsProductsControllerCore extends ProductListingFrontController{
      
             $this->car_description = $compat['brand']." | ".$compat['model']." | ".$compat['type']." | ".$compat['version'];
             // $search = $this->getProductSearchVariables();
-            $this->compatProducts = $productObjects;
+
         
             // Fetch products related to the selected car product
-            $productsCar = $this->getProductsByCar($products);
 
-
-            $products = $this->prepareMultipleProductsForTemplate(
-                $productsCar
-            );
 
             $manufacturerOBJ = new Manufacturer();
             $manufacturers = $manufacturerOBJ->getManufacturers();
+
+
+
 
             // pre(count($products));
 
@@ -156,10 +193,21 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         // Fetch products related to the selected car product
         $productsCar = $this->getProductsByCar($product);
 
+        // pre($productsCar);
+
+        
+
         $products = $this->prepareMultipleProductsForTemplate(
             $productsCar
         );
 
+
+        
+        if(count($products) < 1){
+            $noProducts = 1;
+        }else{
+            $noProducts = 0;
+        }
 
 
 
@@ -192,7 +240,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 'url_cars_products_controller' => $this->context->link->getPageLink('cars-products', null, null, null, false, null, true),
                 'cars_products_page' => 1,
                 'universals' => $universals,
-                'total' => $TotalUniversals
+                'total' => $TotalUniversals,
+                'noProducts' => $noProducts
             ]
         );
 

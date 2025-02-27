@@ -536,12 +536,20 @@ class FrontControllerCore extends Controller
     {
         // if(Tools::getValue('getBrandsModelProducts')){
 
+        if(Tools::getValue('saveCarGarage')){
+            $this->saveCarGarage();
+        }
 
         // }
         if(Tools::getValue('getdataBrands')){
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $values = Tools::getAllValues();
             // pre($values);
+
+            $id_customer = Context::getContext()->customer->id;
+
+            $urlCarsGarage = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$values['storeId'].'/'.$key;
+
             if(Tools::getValue('type') == 'brand'){
                   $url = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$values['storeId'].'/'.$key;
             }elseif(Tools::getValue('type') == 'model') {
@@ -558,6 +566,38 @@ class FrontControllerCore extends Controller
 
             // Decode JSON string into an associative array
             $decodedJson = json_decode($json, true);
+
+            $ch2 = curl_init();
+            curl_setopt($ch2,CURLOPT_URL,$urlCarsGarage);
+            curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
+            $jsonGarage = curl_exec($ch2);
+            curl_close($ch2);
+
+            // Decode JSON string into an associative array
+            $myCarsGarage = json_decode($jsonGarage, true);
+
+            // pre($myCarsGarage['data']);
+
+            if(isset($myCarsGarage['data'])){
+                $html_garage = '<div class="my-cars-garage">';
+                $html_garage .= '<div class="my-garage-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">Your Garage</h1></div>';
+                $html_garage .= '<div class="my-garage-cars" style="display:flex;flex-wrap:wrap;">';
+
+                foreach ($myCarsGarage['data'] as $key => $carGarage) {
+                    $html_garage .=   '<div class="my-garage-car col-lg-2" onclick="setCarSearch('.$carGarage['id_compat'].')">';
+                    $html_garage .=     '<img src="'.$carGarage['cartoon'].'" style="width:80%;display:flex;margin:auto;" />';
+                    $html_garage .=     '<div class="my-garage-car-details" style="text-align:center;color:#fff;">
+                                            <span>'.$carGarage['brand'].' '.$carGarage['model'].'</span>
+                                        </div>';
+                    $html_garage .=     '</div>';
+                }
+
+
+                $html_garage .= '</div></div>';
+                $decodedJson['html_garage'] = $html_garage;
+            }
+            // echo count($myCarsGarage['data']);
 
             // pre($decodedJson);
             if(Tools::getValue('type') == 'brand') {
@@ -639,6 +679,9 @@ class FrontControllerCore extends Controller
                 $decodedJson['html_model'] = $html_model;
 
             }
+
+
+
             // Send response as JSON
             header('Content-Type: application/json');
             echo json_encode($decodedJson);
@@ -2437,5 +2480,46 @@ class FrontControllerCore extends Controller
                 $this->context->smarty->assign('General', $cms);	
             }
         }
+    }
+
+    public function saveCarGarage() {
+        // https://webtools.all-stars-motorsport.com/api/add/car/{id_customer}/{id_compat}/{iso_code}/{store}/{token}
+        // pre(Tools::getAllValues());
+        $email = Tools::getValue('email');
+
+        if (!preg_match("/^[\w\.\-]+@[\w\-]+\.[a-zA-Z]{2,}$/", $email)) {
+            die(json_encode([
+                'success' => false,
+                'email' => "Invalid email"
+            ]));
+        }
+
+        $id_compat = Tools::getValue('id_compat');
+        $id_customer = Tools::getValue('id_customer');
+        $iso_code = Tools::getValue('iso_code');
+        $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        $shop_id = $this->context->shop->id; 
+
+        $url = 'https://webtools.all-stars-motorsport.com/api/add/car/'. $id_customer . '/' . $id_compat . '/'. $iso_code . '/'. $shop_id . '/' . $key;
+        // pre($url);
+
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+
+        // Execute cURL request
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        // Decode the response into an associative array
+        $data = json_decode($json, true);
+
+        die(json_encode([
+            'success' => true,
+            'data' => $data,
+            'email' => "Car added successfully!"
+        ]));
     }
 }
