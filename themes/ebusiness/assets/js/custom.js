@@ -252,7 +252,7 @@ function toggleFiltersWheels() {
 }
 
 function toggleMenuCars(e){
-  const menuCars = document.querySelector(".bannersHomeMobile #ukoocompat_search_block_1");
+  const menuCars = document.querySelector(".car_brands_mobile");
   menuCars.classList.toggle("show-menu-cars")
 }
 
