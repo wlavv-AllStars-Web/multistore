@@ -389,6 +389,7 @@
                     alert("error")
                   }else{
                     $('.addToMyCarsButton').remove();
+                    openMenuCars();
                   }
               }
           });
