@@ -471,6 +471,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             );
         }
 
+        // pre($query);
+
         $pagination = $this->getTemplateVarPagination(
             $query,
             $result
@@ -850,6 +852,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         if(Tools::getValue('id_compat')){
             // pre(Tools::getAllValues());
 
+
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $shop_id = $this->context->shop->id; 
@@ -924,6 +927,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
 
+            $productsCarTotal =  Db::getInstance()->executeS($sql);
+
+            // pre($pagination);
 
             if($query->getResultsPerPage()) {
                 $sql .= ' LIMIT '.$query->getResultsPerPage();
@@ -959,6 +965,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             );
 
             // pre(count($universals));
+            // pre($products);
             if (empty($products)) {
                 $this->context->smarty->assign('no_products', true);
             }
@@ -966,6 +973,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $this->context->smarty->assign([
                 'universals' => $universals
             ]);
+
+            // pre($query);
+
+
         }   
 
         // pre(count($products));
@@ -988,14 +999,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             
             
-            $pagination['total_items'] = count($products);
+            $pagination['total_items'] = $productsCarTotal ? count($productsCarTotal) : count($products);
 
             if($query->getResultsPerPage() && (count($products) >= $query->getResultsPerPage())){
                 $pagination['items_shown_to'] = $query->getResultsPerPage();
             }
 
             if($query->getResultsPerPage() && (count($products) < $query->getResultsPerPage())){
-                $pagination['items_shown_to'] = count($products);
+                $pagination['items_shown_to'] = $productsCarTotal ? count($productsCarTotal) : count($products);;
             }
 
             // pre($sort_orders);
