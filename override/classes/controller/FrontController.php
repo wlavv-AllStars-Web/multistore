@@ -706,7 +706,7 @@ class FrontControllerCore extends Controller
             if(Tools::getValue('type') == 'model'){
                 // pre($decodedJson['data']);
                 $html_models_mobile = '<div>';
-                $html_models_mobile .= '<button class="btn-back" type="button">
+                $html_models_mobile .= '<button class="btn-back" type="button" onclick="backButtonBrand()">
                                             <span class="fa fa-caret-left" style="font-size:25px;margin: 0 5px;"></span>BACK
                                         </button>
                                         <div class="informationBrandModel" style="display:flex !important;">

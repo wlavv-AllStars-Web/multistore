@@ -255,6 +255,9 @@ function toggleMenuCars(e){
   const menuCars = document.querySelector(".car_brands_mobile");
   menuCars.classList.toggle("show-menu-cars")
 }
+function backButtonBrand(){
+  location.reload(); 
+}
 
 function hoverCart(e) {
   // console.log(e)
