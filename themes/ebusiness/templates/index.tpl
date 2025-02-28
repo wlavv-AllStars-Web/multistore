@@ -222,8 +222,12 @@
       <script>
         function openModelsMobile(elem,id_brand){
           event.stopPropagation(); 
-          console.log(elem);
-          console.log(id_brand);
+          let loading = '<div class="loading-overlay-universals showLoading" role="status">' +
+                    '<span class="loading-spinner"></span>' +
+                  '</div>';
+
+          document.querySelector(".car_brands_mobile").innerHTML = loading
+          
           // document.querySelector(".dropdown-menu .versions_cars").innerHTML = ''
           // document.querySelector(".loading-overlay-cars").classList.remove("dont_show")
           $.ajax({
