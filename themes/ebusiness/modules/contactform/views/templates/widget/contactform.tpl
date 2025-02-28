@@ -22,6 +22,7 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+ <script src="https://www.google.com/recaptcha/api.js" ></script>
 {* {assign var="language_id" value=Context::getContext->language}
 <pre>{$language_id|print_r}</pre> *}
 <section class="contact-form" style="width:100%;max-width:1440px;">
@@ -169,8 +170,15 @@
           </style>
           <input type="text" name="url" value="" />
           <input type="hidden" name="token" value="{$token}" />
-          <div style="width: fit-content; height: fit-content; position: relative; padding-bottom: 1rem;">
-              <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="margin-bottom: 1rem;">
+
+
+          <div style="width: fit-content; height: fit-content; position: relative; padding: .5rem !important;">
+            <button class="g-recaptcha btn btn-primary" 
+            name="submitMessage"
+            data-sitekey="6LdDD9AqAAAAAJsJhlRvLLGAlaB39VWInXCBSupZ" 
+            data-callback='onSubmit' 
+            data-action='submit'>{l s='SEND' d='Shop.Theme.Actions'}</button>
+            
           </div>
 
           <div class="whatsapp-contancts">
