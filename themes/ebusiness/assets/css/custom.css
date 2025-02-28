@@ -492,6 +492,9 @@ body {
 .btn-primary{
   border-radius: .25rem;
 }
+.btn-secondary{
+  border-radius: .25rem;
+}
 
 #name_sort_by {
   overflow: hidden;
