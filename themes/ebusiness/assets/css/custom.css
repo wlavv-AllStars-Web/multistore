@@ -2424,10 +2424,18 @@ body {
   }
   
   #productList .product-miniature{
-    outline: 2px solid #d0d0d0;
+    outline: 1px solid #d0d0d0;
   }
   #productList .product-miniature:hover{
-    outline: 2px solid #d0d0d0;
+    outline: 1px solid #d0d0d0;
+  }
+
+  #js-product-list .pagination{
+    border-radius: .25rem .25rem 0 0;
+  }
+
+  #js-product-list .pagination .js-search-link{
+    border-radius: .25rem;
   }
 
 
@@ -7268,6 +7276,21 @@ input[type="checkbox"]:checked::after {
   #manufacturer .description_box .description_short {
     display: none !important;
   }
+
+  #cars-products #js-product-list-top {
+    margin: 0 !important;
+  }
+
+  #cars-products #current_car_settings {
+    padding: 0 !important;
+  }
+
+  #cars-products .universals-product-list article .thumbnail-container {
+    outline: none !important;
+    border: 1px solid #d8d8d8;
+  }
+
+
 
   /* checkout */
     #customer-login > div:nth-child(3) > div{
