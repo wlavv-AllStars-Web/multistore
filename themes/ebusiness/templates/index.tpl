@@ -174,7 +174,7 @@
     .swiper-slide {
         background-size: cover;
         background-position: 50%;
-        min-height: 20vh;
+        /* min-height: 20vh; */
         max-width: 100dvw;
         width: 100%;
         display: flex;
