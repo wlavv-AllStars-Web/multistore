@@ -192,7 +192,7 @@
       {l s='More variations available' d='Shop.Theme.Actions'}
     </div>
     {else}
-      <div class="variantionsProductList" style="min-height:17px"></div>
+      <div class="variantionsProductList" style="min-height:33px"></div>
     {/if}
 
     <div class="add_to_cart_button-mobile d-mobile">
