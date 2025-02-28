@@ -579,8 +579,10 @@ class FrontControllerCore extends Controller
             // pre($myCarsGarage['data']);
 
             if(isset($myCarsGarage['data'])){
+                $translator = Context::getContext()->getTranslator();
+
                 $html_garage = '<div class="my-cars-garage">';
-                $html_garage .= '<div class="my-garage-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">Your Garage</h1></div>';
+                $html_garage .= '<div class="my-garage-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">'. $translator->trans('Your Garage', [], 'Shop.Theme.Header') .'</h1></div>';
                 $html_garage .= '<div class="my-garage-cars" style="display:flex;flex-wrap:wrap;">';
 
                 foreach ($myCarsGarage['data'] as $key => $carGarage) {
@@ -647,6 +649,8 @@ class FrontControllerCore extends Controller
             if(Tools::getValue('type') == 'model'){
                 $html_model = '';
                 $groupedModels = [];
+
+                
 
                 // Group models by 'model' first
                 foreach ($decodedJson['data'] as $model) {
