@@ -7259,7 +7259,7 @@ input[type="checkbox"]:checked::after {
   #header{
     position: sticky;
     top: 0;
-    z-index: 999999;
+    z-index: 9999;
     transition: all 0.3s ease-in-out;
   }
   #header .header-top > .container-fluid {
