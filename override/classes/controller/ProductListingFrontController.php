@@ -842,9 +842,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $products_227
             );
             
-            if (empty($products)) {
-                $this->context->smarty->assign('no_products', true);
-            }
+
+            $noProducts = count($products) < 1 ? 1 : 0;
+            $this->context->smarty->assign('noProducts', $noProducts);
+
+
+
             // pre($products);
 
         }
@@ -963,16 +966,25 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $universals = $this->prepareMultipleProductsForTemplate(
                 $universalProducts
             );
-
-            // pre(count($universals));
+            $noProducts = 1;
             // pre($products);
-            if (empty($products)) {
-                $this->context->smarty->assign('no_products', true);
+            if (empty($products) || !is_array($products)) {
+                $noProducts = 1;
+            } else {
+                $noProducts = count($products) < 1 ? 1 : 0;
             }
 
+            // pre($noProducts);
+            
+
+           
+
             $this->context->smarty->assign([
+                'noProducts' => $noProducts,
                 'universals' => $universals
             ]);
+
+            // pre($this->context->smarty);
 
             // pre($query);
 

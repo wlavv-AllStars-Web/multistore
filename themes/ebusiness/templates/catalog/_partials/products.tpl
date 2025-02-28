@@ -304,7 +304,7 @@
 
     {* <pre>{$page|print_r}</pre> *}
     {* <pre>{$listing|print_r}</pre> *}
-    {if $no_products || $noProducts}
+    {if count($listing.products) < 1}
       <div style="
         display: flex;
         flex: 1;
@@ -338,7 +338,7 @@
 {assign var=totalPages value=$listing.pagination.pages_count} *}
 
 
-  {if isset($no_products) || $noProducts < 1}
+  {if count($listing.products) > 0}
   {block name='pagination'}
     {include file='themes/ebusiness/templates/_partials/pagination.tpl' pagination=$listing.pagination}
   {/block}
