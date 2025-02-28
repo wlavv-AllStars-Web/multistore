@@ -339,8 +339,21 @@ class CheckVat extends Module
 		}
 
 		if(Tools::isSubmit('submitCreate') && !$vat_number && !$siret){
-			$this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
-			return 1;
+		    $email = Tools::getValue('email');
+
+            // Check if the email already exists in the database
+            $customer = new Customer();
+            if ($customer->getByEmail($email)) {
+                // Email already exists, add error to the errors array
+                $this->context->controller->errors[] = $this->trans('This email address is already registered.', [], 'Shop.Theme.Registration');
+            }
+        
+            // If no errors, proceed with success
+            if (empty($this->context->controller->errors)) {
+                // No errors, add success message
+                $this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
+                return 1;  // Success
+            }
 		}
 
 
