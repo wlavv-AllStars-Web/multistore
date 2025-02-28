@@ -506,7 +506,14 @@ dropdownMenu.addEventListener("click", (event) => {
             success: function(brands) {
               if(brands.html_garage){
                 let garageContainer = document.querySelector(".dropdown-menu.menu-logos .my-cars-garage")
-                garageContainer.innerHTML = brands.html_garage
+
+                let garageTitle = `<div class="my-garage-title">
+                    <h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">
+                      {l s="Your Garage" d="Shop.Theme.Header"}
+                    </h1>
+                </div>`;
+
+                garageContainer.innerHTML = garageTitle + brands.html_garage;
               }
               let brandsContainer = document.querySelector(".dropdown-menu.menu-logos .swiper-menu-brands")
               if(brandsContainer){
