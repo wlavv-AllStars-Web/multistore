@@ -30,6 +30,7 @@ use PrestaShop\PrestaShop\Adapter\ContainerBuilder;
 use PrestaShop\PrestaShop\Adapter\Image\ImageRetriever;
 use PrestaShop\PrestaShop\Adapter\Presenter\Cart\CartPresenter;
 use PrestaShop\PrestaShop\Adapter\Presenter\Object\ObjectPresenter;
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 use PrestaShop\PrestaShop\Core\Security\PasswordPolicyConfiguration;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\IpUtils;
@@ -579,7 +580,7 @@ class FrontControllerCore extends Controller
             // pre($myCarsGarage['data']);
 
             if(isset($myCarsGarage['data'])){
-                $translator = Context::getContext()->getTranslator();
+                $translator = SymfonyContainer::getInstance()->get('translator');
 
                 $html_garage = '<div class="my-cars-garage">';
                 $html_garage .= '<div class="my-garage-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">'. $translator->trans('Your Garage', [], 'Shop.Theme.Header') .'</h1></div>';
