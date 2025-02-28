@@ -459,38 +459,36 @@
   });
 
   const dropdownButton = document.querySelector(".dropdown-brands");
-  const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
-  const dropdownMenuNext = document.querySelector(".dropdown-menu.menu-logos .swiper-button-next");
-  const dropdownMenuPrev = document.querySelector(".dropdown-menu.menu-logos .swiper-button-prev");
+const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
 
-  // Toggle dropdown on click
-  dropdownButton.addEventListener("click", (event) => {
-      event.stopPropagation(); // Prevent event from reaching document
-      
-      // Toggle display
-      if (dropdownMenu.style.display === "block") {
-          dropdownMenu.style.display = "none";
-          document.querySelector(".link-logosMenu").setAttribute("aria-expanded","false")
-        } else {
-          dropdownMenu.style.display = "block";
-          document.querySelector(".link-logosMenu").setAttribute("aria-expanded","true")
-      }
-  });
-
-  // Hide dropdown when clicking outside
-  document.addEventListener("click", (event) => {
-    if (
-        dropdownMenu && dropdownButton && dropdownMenuNext && 
-        dropdownMenuPrev &&  // Include all necessary elements
-        !dropdownMenu.contains(event.target) &&
-        !dropdownButton.contains(event.target) &&
-        !dropdownMenuNext.contains(event.target) &&
-        !dropdownMenuPrev.contains(event.target) &&
-        !event.target.closest(".model_name")
-    ) {
+// Toggle dropdown on click
+dropdownButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent event from reaching document
+    
+    console.log("cliquei");
+    // Toggle display
+    if (dropdownMenu.style.display === "block") {
         dropdownMenu.style.display = "none";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "false");
+    } else {
+        dropdownMenu.style.display = "block";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "true");
     }
 });
+
+// Hide dropdown when clicking outside
+document.addEventListener("click", (event) => {
+    if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdownMenu.style.display = "none";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "false");
+    }
+});
+
+// Prevent clicks inside the dropdown from closing it
+dropdownMenu.addEventListener("click", (event) => {
+    event.stopPropagation(); // Stop the event from reaching document click event
+});
+
 
 
 
