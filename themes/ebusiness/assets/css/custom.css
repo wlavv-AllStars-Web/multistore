@@ -927,6 +927,10 @@ body {
   #banner-wheels .banner-wheels-container{
     outline: 1px solid #d0d0d0 !important;
   }
+
+  .header-nav {
+    z-index: 9999;
+  }
 }
 
 #address.page-customer-account #main {
@@ -4309,7 +4313,7 @@ ul {
 }
 #_desktop_top_menu {
   position: relative !important;
-  z-index: 9999;
+  z-index: 9994;
   padding: 0;
   /* border-bottom: 1px solid #fff; */
   background-color: #121212;
@@ -6316,7 +6320,7 @@ body::-ms-scrollbar-thumb:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9998;
+  z-index: 9993;
 }
 .loading-overlay-universals:not(.showLoading){
   display: none;
