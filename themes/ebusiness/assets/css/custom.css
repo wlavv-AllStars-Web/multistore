@@ -7253,6 +7253,42 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+
+  .order-details-bottom-shipping .title-shipping-bottom h3{
+    border-bottom: 1px solid #333;
+    padding: .5rem 0;
+  }
+  .order-details-bottom-shipping .content-shipping-bottom .content-shipping-item strong{
+    color: #444;
+    font-weight: 600;
+  }
+
+  /* page detail order */
+  #order-detail .order-details-bottom .order-items .name{
+    color: #333;
+  }
+
+  #order-detail .order-details-bottom .order-totals strong{
+    color: #333;
+  }
+
+  #order-detail .order-details-top > div:nth-child(1) > div {
+    min-width: unset;
+  }
+
+  #order-detail #order-history .order-state-label-title{
+    /* min-width: fit-content; */
+    width: fit-content;
+    padding: .5rem 1rem;
+    background: #e7e7e7;
+    color: #333;
+    flex: unset;
+    text-align: center;
+    transition: all ease-in-out 150ms;
+    user-select: none;
+  }
+
+  /*  */
   #manufacturer #wrapper{
     padding: 0 !important;
   }

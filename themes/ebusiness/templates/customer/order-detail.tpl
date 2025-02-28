@@ -248,7 +248,30 @@
       {/if}
     {/block}
   </section>
+{debug}
+  <section class="order-details-bottom-shipping">
+    <div class="title-shipping-bottom">
+      <h3>{l s="Shipping" d="Shop.Theme.OrderDetails"}</h3>
+    </div>
+    <div class="content-shipping-bottom">
+      <div class="content-shipping-item">
+        <strong>{l s="Date" d="Shop.Theme.OrderDetails"}:</strong> <span>{$line.shipping_date}</span>
+      </div>
+      <div class="content-shipping-item">
+        <strong>{l s="Carrier" d="Shop.Theme.OrderDetails"}:</strong> <span>{$line.carrier_name}</span>
+      </div>
+      <div class="content-shipping-item">
+        <strong>{l s="Weight" d="Shop.Theme.OrderDetails"}:</strong> <span>{$line.weight|number_format:2} kg</span>
+      </div>
+      <div class="content-shipping-item">
+        <strong>{l s="Shipping cost" d="Shop.Theme.OrderDetails"}:</strong> <span>{$line.shipping_cost}</span>
+      </div>
+      <div class="content-shipping-item">
+        <strong>{l s="Tracking number" d="Shop.Theme.OrderDetails"}:</strong> <span>{$line.tracking}</span>
+      </div>
 
+    </div>
+  </section>
 
 
 
