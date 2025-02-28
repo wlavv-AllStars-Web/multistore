@@ -75,7 +75,10 @@ class CheckVat extends Module
     Db::getInstance()->execute($sql);
     
     
-	$sql1 = 'DELETE FROM ' . _DB_PREFIX_ . 'address WHERE id_customer = ' . (int)$idCustomer;
+	$sql1 = 'UPDATE ' . _DB_PREFIX_ . 'address 
+	SET deleted = 1 
+	WHERE id_customer = ' . (int)$idCustomer;
+
 	Db::getInstance()->execute($sql1);
 
 	$sql2 = 'SELECT siret FROM ps_customer WHERE id_customer ='.$idCustomer;
