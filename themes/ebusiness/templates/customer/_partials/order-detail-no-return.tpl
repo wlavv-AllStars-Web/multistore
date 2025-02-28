@@ -22,27 +22,33 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="box hidden-sm-down">
+<div class="hidden-sm-down ">
   <table id="order-products" class="table table-bordered">
     <thead class="thead-default">
       <tr>
+        <th>{l s='Reference' d='Shop.Theme.Catalog'}</th>
         <th>{l s='Product' d='Shop.Theme.Catalog'}</th>
         <th>{l s='Quantity' d='Shop.Theme.Catalog'}</th>
         <th>{l s='Unit price' d='Shop.Theme.Catalog'}</th>
         <th>{l s='Total price' d='Shop.Theme.Catalog'}</th>
       </tr>
     </thead>
+
     {foreach from=$order.products item=product}
       <tr>
         <td>
-          <strong>
+          {$product.reference}
+        </td>
+        <td>
+          {* <strong> *}
             <a {if isset($product.download_link)}href="{$product.download_link}"{/if}>
               {$product.name}
             </a>
-          </strong><br/>
-          {if $product.reference}
+          {* </strong> *}
+          <br/>
+          {* {if $product.reference}
             {l s='Reference' d='Shop.Theme.Catalog'}: {$product.reference}<br/>
-          {/if}
+          {/if} *}
           {if $product.customizations}
             {foreach from=$product.customizations item="customization"}
               <div class="customization">
@@ -99,16 +105,17 @@
       </tr>
     {/foreach}
     <tfoot>
+
       {foreach $order.subtotals as $line}
         {if $line.value}  
           <tr class="text-xs-right line-{$line.type}">
-            <td colspan="3">{$line.label}</td>
+            <td colspan="4">{$line.label}</td>
             <td>{$line.value}</td>
           </tr>
         {/if}
       {/foreach}
       <tr class="text-xs-right line-{$order.totals.total.type}">
-        <td colspan="3">{$order.totals.total.label}</td>
+        <td colspan="4">{$order.totals.total.label}</td>
         <td>{$order.totals.total.value}</td>
       </tr>
     </tfoot>
@@ -136,20 +143,27 @@
         </div>
         <div class="col-sm-7 qty">
           <div class="row">
-            <div class="col-xs-4 text-sm-left text-xs-left">
-              {$product.price}
-            </div>
-            <div class="col-xs-4">
+            <div class="col-xs-12  text-sm-center text-xs-center" style="display: flex;
+  justify-content: space-between;padding: 0;
+  border-bottom: 1px solid #e0e0e0;">
               {if $product.customizations}
                 {foreach $product.customizations as $customization}
                   {$customization.quantity}
                 {/foreach}
               {else}
-                {$product.quantity}
+                <strong style="color: #333;font-weight:600;">Quantity Ordered:</strong> <span>{$product.quantity}</span>
               {/if}
             </div>
-            <div class="col-xs-4 text-xs-right">
-              {$product.total}
+            <div class="col-xs-12 text-sm-center text-xs-center" style="display: flex;
+  justify-content: space-between;padding: 0;
+  border-bottom: 1px solid #e0e0e0;">
+              <strong style="color: #333;font-weight:600;">Unitary Price:</strong> <span>{$product.price}</span>
+            </div>
+            
+            <div class="col-xs-12 text-xs-center" style="display: flex;
+  justify-content: space-between;padding: 0;
+  border-bottom: 1px solid #e0e0e0;">
+              <strong style="color: #333;font-weight:600;">Row Total:</strong> <span>{$product.total}</span>
             </div>
           </div>
         </div>
