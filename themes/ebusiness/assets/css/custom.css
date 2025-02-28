@@ -944,6 +944,7 @@ body {
     margin-top: 0;
     padding-inline: 1rem;
     border-radius: .25rem;
+    transition: all ease-in-out 250ms;
   }
 
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-next:hover,
@@ -956,6 +957,7 @@ body {
     margin-top: 0;
     padding-inline: 1rem;
     border-radius: .25rem;
+    transition: all ease-in-out 250ms;
   }
 }
 
