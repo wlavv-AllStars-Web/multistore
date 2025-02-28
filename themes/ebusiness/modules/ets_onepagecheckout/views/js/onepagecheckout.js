@@ -292,9 +292,12 @@ function togglePaymentBlock() {
 
     
 }
-
-conditionsCheckbox.addEventListener("change", togglePaymentBlock);
-availabilityCheckbox.addEventListener("change", togglePaymentBlock);
+if(conditionsCheckbox){
+    conditionsCheckbox.addEventListener("change", togglePaymentBlock);
+}
+if(availabilityCheckbox){
+    availabilityCheckbox.addEventListener("change", togglePaymentBlock);
+}
 
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
