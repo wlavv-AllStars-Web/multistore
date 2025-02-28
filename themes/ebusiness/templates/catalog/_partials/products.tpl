@@ -134,7 +134,7 @@
             {if !$compat['subscribed']}
             <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: var(--asm-color);font-weight:600;"
             onclick="addToMyCars({$compat['id_compat']})">
-              {l s='Click to receive informations about new products for this car' d='Shop.Theme.ProductList'}
+              {l s='Click to receive updates about new products for this car' d='Shop.Theme.ProductList'}
             </div>
             {/if}
 
