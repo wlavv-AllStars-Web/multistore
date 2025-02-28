@@ -318,6 +318,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
      */
     public function initContent()
     {
+
         if (!$this->errors) {
             if (Pack::isPack((int) $this->product->id)
                 && !Pack::isInStock((int) $this->product->id, $this->product->minimal_quantity, $this->context->cart)
@@ -452,6 +453,32 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
 
             $productBrandUrl = $this->context->link->getManufacturerLink($productManufacturer->id);
 
+            // ASG add compats to the product
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/' . $this->product->id. '/'. $this->context->shop->id . '/' . $key;
+
+            // pre($url);
+    
+            // Initialize cURL
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $urlCompats);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+    
+            // Execute cURL request
+            $json = curl_exec($ch);
+            curl_close($ch);
+    
+            // Decode the response into an associative array
+            $data = json_decode($json, true);
+
+
+            $compats = $data['data'];
+
+
+            // pre($compats);
+
 
             $this->context->smarty->assign([
                 'priceDisplay' => $priceDisplay,
@@ -464,6 +491,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
                 'product_manufacturer' => $productManufacturer,
                 'manufacturer_image_url' => $manufacturerImageUrl,
                 'product_brand_url' => $productBrandUrl,
+                'compats' => $compats,
             ]);
 
             // Assign attribute groups to the template

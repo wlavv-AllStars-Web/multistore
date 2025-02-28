@@ -351,19 +351,21 @@
               <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Version</th>
+                    <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                    <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                    <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                    <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
                   </tr>
                 </thead>
                 <tbody>
+                {foreach from=$compats item=compat}
                   <tr>
-                    <td>Audi</td>
-                    <td>A3</td>
-                    <td>8V / 8.5V - 12-20</td>
-                    <td>2.0 TFSI - 190 / 220</td>
+                    <td>{$compat.brand}</td>
+                    <td>{$compat.model}</td>
+                    <td>{$compat.type}</td>
+                    <td>{$compat.version}</td>
                   </tr>
+                {/foreach}
                 </tbody>
               </table>
             </div>
@@ -755,23 +757,24 @@
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
                     <div class="container-table-compats">
-                      {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
                       <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                         <thead class="thead-dark">
                           <tr>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Version</th>
+                            <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
                           </tr>
                         </thead>
                         <tbody>
+                        {foreach from=$compats item=compat}
                           <tr>
-                            <td>Audi</td>
-                            <td>A3</td>
-                            <td>8V / 8.5V - 12-20</td>
-                            <td>2.0 TFSI - 190 / 220</td>
+                            <td>{$compat.brand}</td>
+                            <td>{$compat.model}</td>
+                            <td>{$compat.type}</td>
+                            <td>{$compat.version}</td>
                           </tr>
+                        {/foreach}
                         </tbody>
                       </table>
                     </div>
