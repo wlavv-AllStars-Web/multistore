@@ -202,6 +202,7 @@
               <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
               <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
 
+              {if !$complementary}
               <div class="add">
               <button
                 class="btn btn-outline-primary add-to-cart"
@@ -217,6 +218,7 @@
                 {l s="Add to cart" d="Shop.Theme.ProductList"}
               </button>
             </div>
+              {/if}
       </form>
 
     </div>
