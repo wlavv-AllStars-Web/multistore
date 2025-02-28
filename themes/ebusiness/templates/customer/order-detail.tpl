@@ -248,7 +248,7 @@
       {/if}
     {/block}
   </section>
-{debug}
+
   <section class="order-details-bottom-shipping">
     <div class="title-shipping-bottom">
       <h3>{l s="Shipping" d="Shop.Theme.OrderDetails"}</h3>
