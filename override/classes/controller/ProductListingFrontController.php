@@ -613,7 +613,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $productsQuery
             );
 
-            // pre(count($products));
+            
             $product_options = [];
 
         if($category == 227 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
@@ -852,9 +852,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         }
 
-        if(Tools::getValue('id_compat')){
+        if(Tools::getValue('id_compat') !== 'undefined'){
             // pre(Tools::getAllValues());
-
+            // pre(Tools::getValue('id_compat'));
 
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -1021,7 +1021,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $pagination['items_shown_to'] = $productsCarTotal ? count($productsCarTotal) : count($products);;
             }
 
-            // pre($sort_orders);
+            // pre($products);
 
             $searchVariables = [
                 'result' => $result,
