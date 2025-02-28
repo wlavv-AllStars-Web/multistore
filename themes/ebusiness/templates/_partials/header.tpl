@@ -281,7 +281,7 @@
             <li class="">
               {* <i class="material-icons">home</i> *}
               {* <i class="material-icons">contacts</i> *}
-              <a class=""  href="/">{l s='Home' d='Shop.Theme.Homepage'}</a> 
+              <a class=""  href="{$urls.pages.index}">{l s='Home' d='Shop.Theme.Homepage'}</a> 
             </li>
             <li class="">
               {* <i class="material-icons">new_releases</i> *}
@@ -290,8 +290,8 @@
 
             <li class="dropdown">
               {* <i class="material-icons">directions_car</i> *}
-                <a class="link-logosMenu"   data-toggle="dropdown" aria-expanded="false">{l s='Your Car' d='Shop.Theme.Homepage'}</a>
-                  <div class="dropdown-menu menu-logos">
+                <a class="link-logosMenu" href="{$urls.pages.index}" >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+                  {* <div class="dropdown-menu menu-logos"> *}
               {* {if $page.page_name =='index'} *}
                 {* {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
                   <div id="your_garage_container" style="text-align: center;margin: 0 auto;display: none;">
@@ -321,8 +321,8 @@
                 {/if} *}
                   
                       {* {hook h="displayHome" mod="ukoocompat"} *}
-                      <div class="versions_cars"></div>
-                  </div>
+                      {* <div class="versions_cars"></div>
+                  </div> *}
               {* {/if} *}
             </li>
 
