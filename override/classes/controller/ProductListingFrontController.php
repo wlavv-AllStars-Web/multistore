@@ -616,8 +616,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             
             $product_options = [];
 
-        if($category == 227 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
 
+
+        if($category == 227 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
 
             $filters = Tools::getValue('filters');
 
@@ -836,15 +837,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // }
 
           
-            // pre($products_227);
             
             $products = $this->prepareMultipleProductsForTemplate(
                 $products_227
             );
             
 
-            $noProducts = count($products) < 1 ? 1 : 0;
-            $this->context->smarty->assign('noProducts', $noProducts);
+            // $noProducts = count($products) < 1 ? 1 : 0;
+            // $this->context->smarty->assign('noProducts', $noProducts);
 
 
 
@@ -852,9 +852,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         }
 
-        if(Tools::getValue('id_compat') !== 'undefined'){
+        if(Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0){
             // pre(Tools::getAllValues());
             // pre(Tools::getValue('id_compat'));
+            // echo 'paulo';
+            // exit;
 
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
