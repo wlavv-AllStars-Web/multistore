@@ -7265,6 +7265,10 @@ input[type="checkbox"]:checked::after {
     display: none !important;
   }
 
+  #manufacturer .description_box .description_short {
+    display: none !important;
+  }
+
   /* checkout */
     #customer-login > div:nth-child(3) > div{
       flex-direction: column;
