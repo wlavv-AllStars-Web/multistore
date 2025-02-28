@@ -7242,6 +7242,29 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (max-width: 544px) {
+  #manufacturer #wrapper{
+    padding: 0 !important;
+  }
+  /* page manufacturer */
+  #manufacturer #js-product-list-top .products-selection {
+    display: none !important;
+  }
+
+  #manufacturer #js-product-list-top .products-selection.show-filters {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  #manufacturer .products-sort-order {
+    width: 100% !important;
+  }
+
+  #manufacturer .count-products.total-products {
+    display: none !important;
+  }
+
   /* checkout */
     #customer-login > div:nth-child(3) > div{
       flex-direction: column;
