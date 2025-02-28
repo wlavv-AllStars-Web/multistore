@@ -189,6 +189,7 @@
             <a class="link-logosMenu" aria-expanded="false"  >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
             <div class="dropdown-menu menu-logos" style="background: #333;border-bottom: 3px solid var(--asm-color)">
               <div class="my-cars-garage"></div>
+              <div class="brands-menu-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">{l s="Select a Vehicle" d="Shop.Theme.Header"}</h1></div>
               <div class="swiper swiper-menu-brands"></div>
 
               <div class="versions_cars"></div>
