@@ -5589,6 +5589,7 @@ ul {
 
 #checkout .availability-tip .availability-tip-message.show-tip {
   display: block;
+  border: 1px solid #c0c0c0;
 }
 
 .block-onepagecheckout.block-shopping-cart .cart-item:not(:last-child) {
