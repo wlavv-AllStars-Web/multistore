@@ -5592,6 +5592,11 @@ ul {
   border: 1px solid #c0c0c0;
 }
 
+.btn-primary:disabled {
+  background-color: var(--asm-color);
+  border-color: var(--asm-color);
+}
+
 .block-onepagecheckout.block-shopping-cart .cart-item:not(:last-child) {
   border-bottom: 1px solid #d0d0d0 !important;
 }
