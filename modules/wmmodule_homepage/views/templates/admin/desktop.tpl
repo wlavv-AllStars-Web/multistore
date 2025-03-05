@@ -10,19 +10,22 @@
                 <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> BANNERS </div>
             </div>
             {/if}
-            <div class="options_desktop_container" style="{if $currentShop == 1}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders50_container').toggle();$('#sliders50_container').css('display','flex');$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+            <div class="options_desktop_container" style="{if $currentShop == 1 || $currentShop == 6}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders50_container').toggle();$('#sliders50_container').css('display','flex');$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
                 <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 50% </div>
             </div>
-            {if $currentShop == 1}
-                <div class="options_desktop_container" style="{if $currentShop == 1}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders33_container').toggle();$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
-                    <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 33% </div>
-                </div>
-            {else}
-                <div class="options_desktop_container" style="cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders33_container').toggle();$('#sliders33_container').css('display','flex');$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
-                    <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 33% </div>
-                </div>
+            {if $currentShop != 6}
+                {if $currentShop == 1}
+                    <div class="options_desktop_container" style="{if $currentShop == 1}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders33_container').toggle();$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+                        <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 33% </div>
+                    </div>
+                {else}
+                    <div class="options_desktop_container" style="cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#sliders33_container').toggle();$('#sliders33_container').css('display','flex');$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+                        <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> ICONS 33% </div>
+                    </div>
+                {/if}
             {/if}
-            <div class="options_desktop_container" style="{if $currentShop == 1}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#videos_container').toggle();$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+
+            <div class="options_desktop_container" style="{if $currentShop == 1 || $currentShop == 6}flex:1;{/if}cursor: pointer;display: flow-root;margin-top: 10px;width:25%;float:left;background-color: grey;" onclick="$('.elements_container').css('display', 'none');$('#videos_container').toggle();$('.options_desktop_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
                 <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder;color: #FFF;text-align: center;"> VIDEOS </div>
             </div>
         </div>

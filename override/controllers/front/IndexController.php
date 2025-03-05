@@ -43,7 +43,7 @@ class IndexController extends IndexControllerCore
         }
 
 
-        if($this->id_shop === 2){
+        if($this->id_shop === 2 || $this->id_shop === 6){
             $action = Tools::getValue('action', '');
 
             if($action == 'getMenuHtml'){

@@ -24,10 +24,12 @@
     <h1 style="text-transform: uppercase;font-weight:bold;color:#ee302e;">All Stars Motorsport</h1>
 {elseif $currentShop ==3}
     <h1 style="text-transform: uppercase;font-weight:bold;color:dodgerblue;">All Stars Distribution</h1>
+{elseif $currentShop ==6}
+    <h1 style="text-transform: uppercase;font-weight:bold;color:#01a547;">EuroRider</h1>
 {else}
     <h1>Escolhe um Site</h1>
 {/if}
-{if $currentShop ==1 || $currentShop ==2}
+{if $currentShop ==1 || $currentShop ==2 || $currentShop == 6}
    <div style="display: flow-root;" id="abas_container">
     <div class="desktop_mobile_container" style="cursor: pointer;border-radius: 10px 0 0 0;background-color: dodgerblue; color: #fff;width:50%;float: left; border: 1px solid #777;padding: 10px;font-weight: bolder; font-size:40px;text-align: center;" onclick="$('.desktop_mobile_container').css('background-color', 'grey');$(this).css('background-color', 'dodgerblue');$('#desktop_layer_container').toggle();$('#mobile_layer_container').toggle();">
         DESKTOP
@@ -122,6 +124,18 @@
     $("#select_mini_33").on("change",  function () { setModal(33, 3, $(this), 'miniature' ) });
     $("#select_mini_34").on("change",  function () { setModal(34, 3, $(this), 'miniature' ) });
 
+
+    $("#select_brand_55").on("change",   function () { setModal(55,  1, $(this), 'manufacturer' ) });
+    $("#select_brand_56").on("change",   function () { setModal(56,  1, $(this), 'manufacturer' ) });
+    $("#select_brand_57").on("change",   function () { setModal(57,  1, $(this), 'manufacturer' ) });
+    $("#select_brand_58").on("change",   function () { setModal(58,  1, $(this), 'manufacturer' ) });
+    $("#select_brand_59").on("change",   function () { setModal(59,  1, $(this), 'manufacturer' ) });
+    $("#select_brand_60").on("change",   function () { setModal(60,  1, $(this), 'manufacturer' ) });
+
+    $("#select_mini_61").on("change",  function () { setModal(61, 3, $(this), 'miniature' ) });
+    $("#select_mini_62").on("change",  function () { setModal(62, 3, $(this), 'miniature' ) });
+    $("#select_mini_63").on("change",  function () { setModal(63, 3, $(this), 'miniature' ) });
+    $("#select_mini_64").on("change",  function () { setModal(64, 3, $(this), 'miniature' ) });
     
     $(document).on("click","#uploadSubmitButton", function(){
         var dataForm = new FormData($('#uploadForm')[0]);
@@ -171,6 +185,10 @@
                 if(id_image == 46) id_element = 1;
                 if(id_image == 47) id_element = 2;
                 if(id_image == 48) id_element = 3;
+
+                if(id_image == 65) id_element = 1;
+                if(id_image == 66) id_element = 2;
+                if(id_image == 67) id_element = 3;
             }
         }else if(element === 'manufacturer'){
             document.getElementById('select_car_' + id_image).selectedIndex = 0;

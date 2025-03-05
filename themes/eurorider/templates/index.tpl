@@ -36,9 +36,9 @@
             {* {hook h='ybcCustom3'} *}
           {* {$HOOK_HOME nofilter} *}
 
-          <img style="width: 100%;" src="/img/eurorider/esquema-01.jpg"/>
+          {* <img style="width: 100%;" src="/img/eurorider/esquema-01.jpg"/> *}
 
-        
+        {* {debug} *}
           
           <div class="bannersHome">
           {* {$HOOK_HOME nofilter} *}
@@ -188,10 +188,12 @@
       display: flex;
       gap: .5rem;
       padding: 0.25rem;
+      flex-wrap: wrap;
     }
     
     .banners_50 .banner_50{
       flex: 1;
+      min-width: 48vw;
     }
     
     .banners_50 .banner_50 img{
