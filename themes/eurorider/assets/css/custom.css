@@ -935,10 +935,10 @@ body {
     font-size: 1rem;
   }
 
-  #footer_sub_menu_4 {
+  #footer_sub_menu_14 {
     display: flex;
   }
-  #footer_sub_menu_4.collapse {
+  #footer_sub_menu_14.collapse {
     display: flex !important;
   }
 
@@ -968,11 +968,11 @@ body {
     max-width: unset;
   }
 
-  footer #footer_sub_menu_4 {
+  footer #footer_sub_menu_14 {
     gap: 0.5rem;
   }
 
-  footer #footer_sub_menu_4 li {
+  footer #footer_sub_menu_14 li {
     flex: 1;
     min-width: 20%;
     /* max-width: 25%; */
@@ -983,17 +983,17 @@ body {
     text-align: center;
   }
 
-  footer #footer_sub_menu_4 li a {
+  footer #footer_sub_menu_14 li a {
     padding: 0;
     width: 100%;
     text-align: start;
   }
 
-  footer #footer_sub_menu_4 li.mobile {
+  footer #footer_sub_menu_14 li.mobile {
     display: none;
   }
 
-  footer #footer_sub_menu_4 li.socials-footer {
+  footer #footer_sub_menu_14 li.socials-footer {
     min-width: 100%;
     justify-content: center;
     align-items: center;
@@ -1400,10 +1400,10 @@ body {
     display: none;
   }
 
-  #footer_sub_menu_4 {
+  #footer_sub_menu_14 {
     display: flex;
   }
-  #footer_sub_menu_4.collapse {
+  #footer_sub_menu_14.collapse {
     display: none !important;
   }
 
@@ -1423,11 +1423,11 @@ body {
     display: flex;
   }
 
-  footer #footer_sub_menu_4 {
+  footer #footer_sub_menu_14 {
     gap: 0.5rem;
   }
 
-  footer #footer_sub_menu_4 li {
+  footer #footer_sub_menu_14 li {
     flex: 1;
     min-width: 25%;
     /* max-width: 25%; */
@@ -1438,13 +1438,13 @@ body {
     text-align: center;
   }
 
-  footer #footer_sub_menu_4 li a {
+  footer #footer_sub_menu_14 li a {
     padding: 0;
     width: 100%;
     text-align: center;
   }
 
-  footer #footer_sub_menu_4 li.socials-footer {
+  footer #footer_sub_menu_14 li.socials-footer {
     min-width: 100%;
     justify-content: center;
     align-items: center;
@@ -1587,15 +1587,15 @@ body {
     font-weight: 600;
   }
 
-  #product div[data-target="#footer_sub_menu_4"]{
+  #product div[data-target="#footer_sub_menu_14"]{
     display: none !important;
   }
 
-  #product #footer_sub_menu_4 {
+  #product #footer_sub_menu_14 {
     display: flex !important;
   }
 
-  #product #footer_sub_menu_4 li{
+  #product #footer_sub_menu_14 li{
     background: var(--bg-3);
   }
 
@@ -1968,19 +1968,19 @@ body {
   }
 
   /* footer mobile */
-  #footer_sub_menu_4 {
+  #footer_sub_menu_14 {
     padding: 0;
     padding-top: 1rem !important;
   }
-  #footer_sub_menu_4.collapse {
+  #footer_sub_menu_14.collapse {
     display: none;
   }
-  #footer_sub_menu_4.collapse.in {
+  #footer_sub_menu_14.collapse.in {
     display: flex;
     /* justify-content: center; */
   }
 
-  #footer_sub_menu_4 li {
+  #footer_sub_menu_14 li {
     width: 50%;
     display: flex;
     align-items: center;
@@ -1988,7 +1988,7 @@ body {
     padding: 0.15rem;
     margin-top: 0;
   }
-  #footer_sub_menu_4 li:not(.socials-footer) a {
+  #footer_sub_menu_14 li:not(.socials-footer) a {
     width: 100%;
     padding: 2rem 0;
     text-align: center;
@@ -1996,12 +1996,12 @@ body {
     color: var(--bg-3) !important;
   }
 
-  #footer_sub_menu_4 li.socials-footer {
+  #footer_sub_menu_14 li.socials-footer {
     width: 100%;
     padding: 2rem 0;
     display: none;
   }
-  #footer_sub_menu_4 li.socials-footer a {
+  #footer_sub_menu_14 li.socials-footer a {
     padding: 0;
   }
 
@@ -4485,7 +4485,7 @@ ul {
   padding: 2rem;
 }
 
-#footer_sub_menu_4 {
+#footer_sub_menu_14 {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
@@ -4498,21 +4498,21 @@ ul {
 }
 
 @media screen and (min-width: 768px) {
-  #footer_sub_menu_4 li {
+  #footer_sub_menu_14 li {
     width: 25%;
   }
-  #footer_sub_menu_4 li a {
+  #footer_sub_menu_14 li a {
     color: var(--white);
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
   }
-  #footer_sub_menu_4 .fa-circle-arrow-right {
+  #footer_sub_menu_14 .fa-circle-arrow-right {
     color: var(--asm-color);
   }
 }
 
-#footer_sub_menu_4 li a:hover .fa-circle-arrow-right {
+#footer_sub_menu_14 li a:hover .fa-circle-arrow-right {
   color: var(--white);
 }
 
