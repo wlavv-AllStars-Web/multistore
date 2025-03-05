@@ -299,22 +299,33 @@ document.addEventListener("DOMContentLoaded", moveQuantityInput);
 // } 
 
 function ValidateEmail() {
-
     let message = "{$error_4}";
-    const validatorString = "^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$";
-    
-    if($('#email').val().indexOf(' ') >= 0){
+
+    // A simplified regex for basic email validation
+    const validatorString = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+
+    const email = $('.form-become-dealer #email').val();
+
+    // Debugging: log the email value to check if there are spaces or hidden characters
+    console.log('Email entered:', email);
+
+    // Check if email contains a space
+    if (email.indexOf(' ') >= 0) {
+        console.log('Email contains space!');
         alert(message);
-        return (false);
+        return false;
     }
-    
-    if ( !validatorString.test($('#email').val()) ){
+
+    // Test the email using the regex
+    if (!validatorString.test(email)) {
+        console.log('Email failed regex validation');
         alert(message);
-        return (false); 
+        return false;
     }
-    
+
     return true;
 }
+
 
 // function ValidateURL(tipoURL) {
 
