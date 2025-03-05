@@ -644,7 +644,18 @@
 
               <div class="form-row">
                 <div class="form-group col-md-12  col-sm-12 col-xs-12" style="display: flex;justify-content:center;">
-                  <button type="submit" class="btn btn-primary">{l s='Submit' d='Shop.Theme.FormBecomesupplier'}</button>
+
+                                <button class="g-recaptcha btn btn-primary" 
+                                 name="submitMessage"
+                                 data-sitekey="6LdZXeoqAAAAAIjzGbbS_j_IgN8BrFxojdpbF3us" 
+                                 data-callback='submitSupplierForm'
+                                 data-action='submit'>{l s='Submit' d='Shop.Theme.FormBecomesupplier'}</button> 
+                                 
+                                 <script>
+                                     function submitSupplierForm() {
+                                         $('.form-become-supplier form').submit();
+                                        }
+                                 </script>
                 </div>
               </div>
             </form>
