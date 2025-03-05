@@ -64,6 +64,7 @@
 
 
     {block name='cms_content'}
+      <script src="https://www.google.com/recaptcha/api.js" ></script>
       {if $cms.id === 8}
         <div id="cms_container_8">
           <div><img class="about_banner p-img" src="/img/asd/Content_pages/aboutus/top_image_short.webp" alt="top_image_short" /></div>
