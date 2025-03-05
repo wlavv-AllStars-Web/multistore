@@ -25,6 +25,7 @@
 {/block}
 
 {block name='page_content_container'}
+ <script src="https://www.google.com/recaptcha/api.js" ></script>
   <section id="content" class="page-content page-cms page-cms-{$cms.id|escape:'html':'UTF-8'}">
 
     {if isset($email_sent) && ($email_sent == 1)}
@@ -464,7 +465,12 @@
               </div>
             
               <div class="form-group col-lg-12 col-md-6 col-sm-12" style="display: flex;justify-content:center;align-items:center;">
-                <button type="submit" class="btn btn-primary" onclick="validateForm()">{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button>
+               <!--<button type="submit" class="btn btn-primary" onclick="validateForm()">{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button>-->
+              <button class="g-recaptcha btn btn-primary" 
+                 name="submitMessage"
+                 data-sitekey="6LdZXeoqAAAAAIjzGbbS_j_IgN8BrFxojdpbF3us" 
+                 data-callback='validateForm' 
+                 data-action='submit'>{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button> 
               </div>
             </div>
             </form>
@@ -574,25 +580,25 @@
                 <div class="col-lg-6 col-md-12  col-sm-12 col-xs-12">
                     <div class="form-group col-md-6 col-sm-12 col-xs-12">
                       <div class="form-group">
-                        <label for="company">{l s='Company' d='Shop.Theme.FormBecomesupplier'}</label>
+                        <label for="company">{l s='Company' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="company" required name="company">
                       </div>
                       <div class="form-group">
-                        <label for="phone">{l s='Phone' d='Shop.Theme.FormBecomesupplier'}</label>
+                        <label for="phone">{l s='Phone' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="phone" required name="phone">
                       </div>
                       <div class="form-group">
-                        <label for="site">{l s='Website' d='Shop.Theme.FormBecomesupplier'}</label>
-                        <input type="text" class="form-control" id="site" name="site" >
+                        <label for="site">{l s='Website' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="site" name="site" required>
                       </div>
                       <div class="form-group">
-                        <label for="social">{l s='Social media' d='Shop.Theme.FormBecomesupplier'}</label>
-                        <input type="text" class="form-control" id="social" name="social" >
+                        <label for="social">{l s='Social media' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="social" name="social" required>
                       </div>
                     </div>
                     <div class="form-group col-md-6  col-sm-12 col-xs-12">
                       <div class="form-group">
-                        <label for="email">{l s='Email' d='Shop.Theme.FormBecomesupplier'}</label>
+                        <label for="email">{l s='Email' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" required>
                       </div>
                       <div class="form-group">
@@ -604,7 +610,7 @@
 
                 <div class="col-lg-6 col-md-12  col-sm-12 col-xs-12">
                   <div class="form-group col-md-12  col-sm-12 col-xs-12">
-                    <label for="adresse_line_1">{l s='Address' d='Shop.Theme.FormBecomesupplier'}</label>
+                    <label for="adresse_line_1">{l s='Address' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                     <input type="text" class="form-control" id="adresse_line_1" name="adresse_line_1" required>
                   </div>
                   <div class="form-group col-md-12  col-sm-12 col-xs-12">
@@ -613,16 +619,16 @@
                   </div>
                   <div class="form-group col-md-12  col-sm-12 col-xs-12 rm-b">
                     <div class="form-group col-md-8  col-sm-12 col-xs-12 city">
-                      <label for="city">{l s='City' d='Shop.Theme.FormBecomesupplier'}</label>
+                      <label for="city">{l s='City' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="city" name="city" required>
                     </div>
                     <div class="form-group col-md-4  col-sm-12 col-xs-12 zip_code">
-                      <label for="postal_code">{l s='Zip Code' d='Shop.Theme.FormBecomesupplier'}</label>
+                      <label for="postal_code">{l s='Zip Code' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                       <input type="text" class="form-control" id="postal_code" required name="postal_code">
                     </div>
                   </div>
                   <div class="form-group col-md-12  col-sm-12 col-xs-12">
-                    <label for="inputState">{l s='Country' d='Shop.Theme.FormBecomesupplier'}</label>
+                    <label for="inputState">{l s='Country' d='Shop.Theme.FormBecomesupplier'}<span style="color: red;">*</span></label>
                     <select id="country" class="form-control" required name="country">
                       <option selected>{l s='Please Select...' d='Shop.Theme.FormBecomesupplier'}</option>
                       {foreach $countries as $country}
@@ -1665,6 +1671,7 @@
       if(!ValidateEmail()){
           error = 1;
       }
+    
       
       if((site != '') && (!ValidateURL(1))){
           error = 1;
@@ -1673,9 +1680,9 @@
       if((social != '') && (!ValidateURL(2))){
           error = 1;
       } 
-      
+
       if(error == 0){
-          $('.form-become-dealer').submit();
+          $('.form-become-dealer form').submit();
       }else{
           return false;
       }
@@ -1696,7 +1703,7 @@
           alert(message);
           return (false);
       } 
-      var validatorString = /((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/g;
+       let validatorString = new RegExp("((http|https)\\://)?[a-zA-Z0-9\\.\\/\\?\\:\\@\\-_=#]+\\.([a-zA-Z0-9\\&\\.\\/\\?\\:\\@\\-_=#])*");
   
       if ( validatorString.test(url) ){
           return (true);

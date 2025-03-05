@@ -286,137 +286,246 @@ class CmsControllerCore extends FrontController
 
     public function postProcess()
     {
+        // echo '<pre>'.print_r($_POST,1).'</pre>';
+        // exit;
         $error = 0;
-        if(Tools::getValue('action_job') == "form_specificRequest"){
-            $var_list['{firstname}'] = Tools::getValue('firstname');
-            $var_list['{lastname}'] = Tools::getValue('lastname');
-            $var_list['{email}'] = Tools::getValue('email');
+        if($_POST['g-recaptcha-response']){
+            // echo 'aqui';
+            // exit;
+            
+            $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+            
+            if($this->context->shop->id == 2){
+                $resq_data = array( 
+                    'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+                    'response' => $_POST['g-recaptcha-response'], 
+                    'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                ); 
+            } else if($this->context->shop->id == 3){
+                $resq_data = array( 
+                    'secret' => '6LdZXeoqAAAAAIsvrwmj4X7gOOCpIEF8WIjkjTV4', 
+                    'response' => $_POST['g-recaptcha-response'], 
+                    'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                ); 
+            }
 
-            $var_list['{brand}'] = Tools::getValue('brand');
-            $var_list['{model}'] = Tools::getValue('model');
-            $var_list['{type}'] = Tools::getValue('type');
-            $var_list['{version}'] = Tools::getValue('version');
+            $curlConfig = array( 
+                CURLOPT_URL => $api_url, 
+                CURLOPT_POST => true, 
+                CURLOPT_RETURNTRANSFER => true, 
+                CURLOPT_POSTFIELDS => $resq_data, 
+                CURLOPT_SSL_VERIFYPEER => false 
+            ); 
+            
+            $ch = curl_init(); 
+            curl_setopt_array($ch, $curlConfig); 
+            $response = curl_exec($ch); 
+            
+            if (curl_errno($ch)) $api_error = curl_error($ch); 
+            
+            curl_close($ch); 
+            
+            $responseData = json_decode($response); 
+            
+        //             echo '<pre>'.print_r(Tools::getAllValues(),1).'</pre>';
+        // exit;
+            
+            if(!empty($responseData) && $responseData->success){
+            
+                if(Tools::getValue('action_job') == "form_specificRequest"){
+                    $var_list['{firstname}'] = Tools::getValue('firstname');
+                    $var_list['{lastname}'] = Tools::getValue('lastname');
+                    $var_list['{email}'] = Tools::getValue('email');
+        
+                    $var_list['{brand}'] = Tools::getValue('brand');
+                    $var_list['{model}'] = Tools::getValue('model');
+                    $var_list['{type}'] = Tools::getValue('type');
+                    $var_list['{version}'] = Tools::getValue('version');
+        
+                    $var_list['{product_brand}'] = Tools::getValue('product_brand');
+                    $var_list['{product_type}'] = Tools::getValue('product_type');
+        
+                    $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
+        
+                    Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, '
+        info@euromuscleparts.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    $this->context->smarty->assign(array( 'email_sent' => 1 ));
+                    Tools::redirect($this->context->link->getCMSLink(53));
+                }
+        
+                if(Tools::getValue('action_job') == "form_job"){
+                    
+                    $var_list['{gender}'] = Tools::getValue('gender') == "1" ? "Male" :"Female";
+                    $var_list['{name}'] = Tools::getValue('first_name');
+                    $var_list['{surname}'] = Tools::getValue('last_name');
+                    $var_list['{email}'] = Tools::getValue('email_job');
+                    $var_list['{phone_code}'] = Tools::getValue('country_code');
+                    $var_list['{phone}'] = Tools::getValue('phone_number');
+                    $var_list['{addresse_line_1}'] = Tools::getValue('address_line_1');
+                    $var_list['{addresse_line_2}'] = Tools::getValue('address_line_2');
+                    $var_list['{distrito}'] = Tools::getValue('distrito');
+                    $var_list['{city}'] = Tools::getValue('city');
+                    $var_list['{postal_code}'] = Tools::getValue('post_code');
+                    $var_list['{country}'] = Tools::getValue('country');
+                    $var_list['{position}'] = Tools::getValue('position');
+                    $var_list['{from_where}'] = Tools::getValue('from_where');
+                    $var_list['{contact_preference}'] = Tools::getValue('contact_preference');
+                    $var_list['{lang}'] = Tools::getValue('lang');
+        
+                    if (isset($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['tmp_name'])){
+                        
+                    	$extension = array('.pdf');
+                    	$filename = uniqid().basename($_FILES['fileUpload']['name']);
+                    	$filename = str_replace(' ', '-', $filename);
+                    	$filename = strtolower($filename);
+                    	$filename = filter_var($filename, FILTER_SANITIZE_STRING);
+                    	$_FILES['fileUpload']['name'] = $filename;
+                    	$uploader = new UploaderCore();
+                    	$uploader->upload($_FILES['fileUpload']);
+                        $var_list['{cv}'] = '/upload/' . $filename;
+                    }
+        
+                    Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  '
+        info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    $this->context->smarty->assign(array( 'email_sent' => 2 ));
+                    
+                }else{
+                    $businessType = Tools::getValue('business_type');
+                    if (!is_array($businessType)) {
+                        $businessType = [$businessType];
+                    }
+                    $main_market = Tools::getValue('main_market');
+                    if (!is_array($main_market)) {
+                        $main_market = [$main_market];
+                    }
+                    $annual_sales = Tools::getValue('annual_sales');
+                    if (!is_array($annual_sales)) {
+                        $annual_sales = [$annual_sales];
+                    }
+        
+                    $var_list['{name}'] = Tools::getValue('name');
+                    $var_list['{surname}'] = Tools::getValue('surname');
+                    $var_list['{company}'] = Tools::getValue('company');
+                    $var_list['{company_tva}'] = Tools::getValue('company_tva');
+                    $var_list['{email}'] = Tools::getValue('email');
+                    $var_list['{phone}'] = Tools::getValue('phone');
+                    $var_list['{site}'] = Tools::getValue('site');
+                    $var_list['{social}'] = Tools::getValue('social');
+                    $var_list['{adresse_line_1}'] = Tools::getValue('adresse_line_1');
+                    $var_list['{adresse_line_2}'] = Tools::getValue('adresse_line_2');
+                    $var_list['{city}'] = Tools::getValue('city');
+                    $var_list['{postal_code}'] = Tools::getValue('postal_code');
+                    $var_list['{country}'] = Tools::getValue('country');
+                    $var_list['{business_type}'] = implode(', ', $businessType);
+                    $var_list['{main_market}'] = implode(', ', $main_market);
+                    $var_list['{annual_sales}'] = implode(', ', $annual_sales);
+                    $var_list['{supplier_1}'] = Tools::getValue('supplier_1');
+                    $var_list['{supplier_2}'] = Tools::getValue('supplier_2');
+                    $var_list['{supplier_3}'] = Tools::getValue('supplier_3');
+                    $var_list['{observations}'] = Tools::getValue('observations');
+        
+        
+                if (Tools::getValue('type') == 'becomedealer') {
+                    $template = 'become_dealer'; // Name of the email template
+                    $subject = 'BECOME A DEALER'; // Subject of the email
+                    
+                    $to = 'paulo@euromuscleparts.com';
 
-            $var_list['{product_brand}'] = Tools::getValue('product_brand');
-            $var_list['{product_type}'] = Tools::getValue('product_type');
+                    if ( (Tools::getValue('site') == '') && (Tools::getValue('social') == '') ) {
+                        $this->context->controller->errors[] = $this->trans('The Website or Social Media Link cannot be empty.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif ( strlen($var_list['{business_type}']) < 1) {
+                        $this->context->controller->errors[] = $this->trans('The Business type must at least have one option selected.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif ( strlen($var_list['{main_market}']) < 1) {
+                         $this->context->controller->errors[] = $this->trans('The Main market must at least have one option selected.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif (!filter_var(Tools::getValue('email'), FILTER_VALIDATE_EMAIL)) {
+                        $this->context->controller->errors[] = $this->trans('The email is invalid.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif ((Tools::getValue('site') != '') && (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",Tools::getValue('site')))) {
+                        $this->context->controller->errors[] = $this->trans('The Website link is invalid.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif ((Tools::getValue('social') != '') &&  (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",Tools::getValue('social')))) {
+                         $this->context->controller->errors[] = $this->trans('The Social media link is invalid.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }else{
+                        if (!empty($this->errors)) {
+                            return;
+                        }
+                    
+                      $mailSent = Mail::Send(
+                        $this->context->language->id,  // Language ID
+                        $template,                     // Template name
+                        $subject,                      // Subject
+                        $var_list,                     // Template variables
+                        $to,                           // Recipient email
+                        null,                          // Recipient name (optional)
+                        null,                         // Sender email
+                        null,                     // Sender name
+                        null,                          // File attachments (optional)
+                        null,                          // SMTP mode (optional)
+                        _PS_MAIL_DIR_,                 // Mail directory (optional)
+                        false,                         // Don't stop script if false
+                        null,                          // Shop ID (optional)
+                        null,                          // BCC (optional)
+                        null,                          // Reply-to address (optional)
+                        null                           // Reply-to name (optional)
+                        );
+        // exit;
+        
+                        $this->context->smarty->assign(array( 'email_sent' => 1 ));
+                    
+                    }
+            
+                }elseif (Tools::getValue('type') == 'becomesupplier') {
+                    $template = 'become_supplier'; // Name of the  email template
+                    $subject = 'BECOME A SUPPLIER'; // Subject of the email
+                    
+                    $to = 'paulo@euromuscleparts.com';
+                    
+                    if ( (Tools::getValue('site') == '')) {
+                        $this->context->controller->errors[] = $this->trans('The Site field is required.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif (!filter_var(Tools::getValue('email'), FILTER_VALIDATE_EMAIL)) {
+                         $this->context->controller->errors[] = $this->trans('The email is not valid.', [], 'Shop.Notifications.Error');
+                        $error = 1;
+                    }elseif ((Tools::getValue('site') != '') && (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",Tools::getValue('site')))) {
+                        $this->context->controller->errors[] = $this->trans('The Site field is invalid.', [], 'Shop.Notifications.Error');
+                        $error = 1;
 
-            $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
-
-            Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, '
-info@euromuscleparts.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
-            $this->context->smarty->assign(array( 'email_sent' => 1 ));
-            Tools::redirect($this->context->link->getCMSLink(53));
+                    }else{
+                        if (!empty($this->errors)) {
+                            return;
+                        }
+                    
+                    $mailSent = Mail::Send(
+                        $this->context->language->id,  // Language ID
+                        $template,                     // Template name
+                        $subject,                      // Subject
+                        $var_list,                     // Template variables
+                        $to,                           // Recipient email
+                        null,                          // Recipient name (optional)
+                        null,                         // Sender email
+                        null,                     // Sender name
+                        null,                          // File attachments (optional)
+                        null,                          // SMTP mode (optional)
+                        _PS_MAIL_DIR_,                 // Mail directory (optional)
+                        false,                         // Don't stop script if false
+                        null,                          // Shop ID (optional)
+                        null,                          // BCC (optional)
+                        null,                          // Reply-to address (optional)
+                        null                           // Reply-to name (optional)
+                    );
+                    $this->context->smarty->assign(array( 'email_sent' => 1 ));
+                    }
+                    
+                }else{
+                    $this->context->smarty->assign(array( 'email_sent' => 0 ));
+                } 
+                }
+            }
         }
-
-        if(Tools::getValue('action_job') == "form_job"){
-            
-            $var_list['{gender}'] = Tools::getValue('gender') == "1" ? "Male" :"Female";
-            $var_list['{name}'] = Tools::getValue('first_name');
-            $var_list['{surname}'] = Tools::getValue('last_name');
-            $var_list['{email}'] = Tools::getValue('email_job');
-            $var_list['{phone_code}'] = Tools::getValue('country_code');
-            $var_list['{phone}'] = Tools::getValue('phone_number');
-            $var_list['{addresse_line_1}'] = Tools::getValue('address_line_1');
-            $var_list['{addresse_line_2}'] = Tools::getValue('address_line_2');
-            $var_list['{distrito}'] = Tools::getValue('distrito');
-            $var_list['{city}'] = Tools::getValue('city');
-            $var_list['{postal_code}'] = Tools::getValue('post_code');
-            $var_list['{country}'] = Tools::getValue('country');
-            $var_list['{position}'] = Tools::getValue('position');
-            $var_list['{from_where}'] = Tools::getValue('from_where');
-            $var_list['{contact_preference}'] = Tools::getValue('contact_preference');
-            $var_list['{lang}'] = Tools::getValue('lang');
-
-            if (isset($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['tmp_name'])){
-                
-            	$extension = array('.pdf');
-            	$filename = uniqid().basename($_FILES['fileUpload']['name']);
-            	$filename = str_replace(' ', '-', $filename);
-            	$filename = strtolower($filename);
-            	$filename = filter_var($filename, FILTER_SANITIZE_STRING);
-            	$_FILES['fileUpload']['name'] = $filename;
-            	$uploader = new UploaderCore();
-            	$uploader->upload($_FILES['fileUpload']);
-                $var_list['{cv}'] = '/upload/' . $filename;
-            }
-
-            Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  '
-info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
-            $this->context->smarty->assign(array( 'email_sent' => 2 ));
-            
-        }else{
-            $businessType = Tools::getValue('business_type');
-            if (!is_array($businessType)) {
-                $businessType = [$businessType];
-            }
-            $main_market = Tools::getValue('main_market');
-            if (!is_array($main_market)) {
-                $main_market = [$main_market];
-            }
-            $annual_sales = Tools::getValue('annual_sales');
-            if (!is_array($annual_sales)) {
-                $annual_sales = [$annual_sales];
-            }
-
-            $var_list['{name}'] = Tools::getValue('name');
-            $var_list['{surname}'] = Tools::getValue('surname');
-            $var_list['{company}'] = Tools::getValue('company');
-            $var_list['{company_tva}'] = Tools::getValue('company_tva');
-            $var_list['{email}'] = Tools::getValue('email');
-            $var_list['{phone}'] = Tools::getValue('phone');
-            $var_list['{site}'] = Tools::getValue('site');
-            $var_list['{social}'] = Tools::getValue('social');
-            $var_list['{adresse_line_1}'] = Tools::getValue('adresse_line_1');
-            $var_list['{adresse_line_2}'] = Tools::getValue('adresse_line_2');
-            $var_list['{city}'] = Tools::getValue('city');
-            $var_list['{postal_code}'] = Tools::getValue('postal_code');
-            $var_list['{country}'] = Tools::getValue('country');
-            $var_list['{business_type}'] = implode(', ', $businessType);
-            $var_list['{main_market}'] = implode(', ', $main_market);
-            $var_list['{annual_sales}'] = implode(', ', $annual_sales);
-            $var_list['{supplier_1}'] = Tools::getValue('supplier_1');
-            $var_list['{supplier_2}'] = Tools::getValue('supplier_2');
-            $var_list['{supplier_3}'] = Tools::getValue('supplier_3');
-            $var_list['{observations}'] = Tools::getValue('observations');
-
-
-        if (Tools::getValue('type') == 'becomedealer') {
-            if ( (Tools::getValue('site') == '') && (Tools::getValue('social') == '') ) {
-                $this->context->smarty->assign(array( 'form_error' => 1 ));
-                $error = 1;
-            }elseif ( strlen($var_list['{business_type}']) < 1) {
-                $this->context->smarty->assign(array( 'form_error' => 2 ));
-                $error = 1;
-            }elseif ( strlen($var_list['{main_market}']) < 1) {
-                $this->context->smarty->assign(array( 'form_error' => 3 ));
-                $error = 1;
-            }elseif (!filter_var(Tools::getValue('email'), FILTER_VALIDATE_EMAIL)) {
-                $this->context->smarty->assign(array( 'form_error' => 4 ));
-                $error = 1;
-            }elseif ((Tools::getValue('site') != '') && (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",Tools::getValue('site')))) {
-                $this->context->smarty->assign(array( 'form_error' => 5 ));
-                $error = 1;
-            }elseif ((Tools::getValue('social') != '') &&  (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",Tools::getValue('social')))) {
-                $this->context->smarty->assign(array( 'form_error' => 6 ));
-                $error = 1;
-            }else{
-            
-                Mail::Send($this->context->language->id, 'become_dealer', 'BECOME A DEALER', $var_list,  '
-info@euromuscleparts.com', 'BECOME A DEALER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
-                $this->context->smarty->assign(array( 'email_sent' => 1 ));
-            
-            }
-    
-        }elseif (Tools::getValue('type') == 'becomesupplier') {
-            Mail::Send($this->context->language->id, 'become_supplier', 'BECOME A SUPPLIER', $var_list, '
-info@euromuscleparts.com', 'BECOME A SUPPLIER', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
-            $this->context->smarty->assign(array( 'email_sent' => 1 ));
-            
-        }else{
-            $this->context->smarty->assign(array( 'email_sent' => 0 ));
-        } 
-        }
-
        
         
     }
