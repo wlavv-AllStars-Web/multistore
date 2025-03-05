@@ -404,25 +404,25 @@
                 <div class="title-suppliers">{l s='Annual sales volume' d='Shop.Theme.FormBecomedealer'}</div>
                 <div class="col-sm-10 check-form">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Under 100K" name="annual_sales[]" checked>
+                    <input class="form-check-input" type="radio" id="gridRadios1" value="Under 100K" name="annual_sales[]" checked>
                     <label class="form-check-label" for="gridRadios1">
                     {l s='Under 100K€' d='Shop.Theme.FormBecomedealer'}
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="100K to 500K€" name="annual_sales[]">
+                    <input class="form-check-input" type="radio" id="gridRadios2" value="100K to 500K€" name="annual_sales[]">
                     <label class="form-check-label" for="gridRadios2">
                     {l s='100K to 500K€' d='Shop.Theme.FormBecomedealer'}
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="500K€ to 1M€" name="annual_sales[]">
+                    <input class="form-check-input" type="radio" id="gridRadios3" value="500K€ to 1M€" name="annual_sales[]">
                     <label class="form-check-label" for="gridRadios3">
                     {l s='500K€ to 1M€' d='Shop.Theme.FormBecomedealer'}
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="1M€ +" name="annual_sales[]">
+                    <input class="form-check-input" type="radio" id="gridRadios4" value="1M€ +" name="annual_sales[]">
                     <label class="form-check-label" for="gridRadios4">
                     {l s='1M€ +' d='Shop.Theme.FormBecomedealer'}
                     </label>
