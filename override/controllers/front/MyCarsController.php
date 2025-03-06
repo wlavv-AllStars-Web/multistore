@@ -79,7 +79,7 @@ class MyCarsControllerCore extends FrontController
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         $shop_id = $this->context->shop->id; 
 
-        $url = 'https://webtools.all-stars-motorsport.com/api/get/cars/9/2/UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
         // pre($url);
 
         // Initialize cURL
