@@ -480,6 +480,11 @@ body {
 
 @media (min-width: 992px) {
   /* hpmepage */
+  #index #main #content {
+    background-image: url("/img/eurorider/fundo.svg");
+    background-size: contain;
+    background-color: #222;
+  }
   .bannersHome .swiper-slide > a {
     padding: 1.5rem 1.5rem 0rem 1.5rem !important;
   }
@@ -493,7 +498,7 @@ body {
   }
 
   .bannersHome .videosContainer {
-    padding: 0.25rem 1.5rem !important;
+    padding: 0.25rem 1.5rem 1.5rem 1.5rem !important;
   }
 
   /*  */
