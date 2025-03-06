@@ -203,7 +203,6 @@
         // }
 
         function deleteCar(id_compat, e){
-            console.log("deleteCar")
             
             var del=confirm("{l s='Are you sure you want to delete this car?' d='Shop.Theme.MyCars'}");
 
