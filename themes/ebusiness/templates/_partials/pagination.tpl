@@ -86,3 +86,75 @@
   line-height: 0;
 }
 </style>
+
+{block name='js_content'}
+  <script>
+  
+  // document.addEventListener("DOMContentLoaded", function() {
+  // Use event delegation for dynamically added .js-search-link elements
+  document.querySelector("#cars-products .pagination").addEventListener("click", function(e) {
+      if (e.target && e.target.matches(".js-search-link")) {
+          e.preventDefault(); // Prevent the default behavior of the link (like navigating)
+          console.log("Loading...");
+
+          // Show the loading spinner
+          showLoadingSpinner();
+
+          // Get the URL from the link
+          const url = e.target.getAttribute('href'); // Get the URL from the link
+
+          // Example of an AJAX request - replace with actual request if needed
+          fetch(url)
+              .then(response => {
+                  if (response.ok) {
+                      return response.text(); // Handle the response here
+                  }
+                  throw new Error("AJAX request failed");
+              })
+              .then(data => {
+                  console.log("AJAX request completed successfully.");
+                  // Hide the loading spinner after request completion
+                  hideLoadingSpinner();
+                  // You can update the DOM with the new data here if needed
+              })
+              .catch(error => {
+                  console.error("AJAX request failed:", error);
+                  // Hide the spinner if the request failed
+                  hideLoadingSpinner();
+              });
+      }
+  });
+
+  // Function to show the loading spinner
+  function showLoadingSpinner() {
+      if (document.querySelector('#loadingOverlay') === null) {
+          // Create the spinner and overlay container
+          const overlay = document.createElement('div');
+          overlay.id = 'loadingOverlay';
+          overlay.classList.add('loading-overlay');
+
+          const spinner = document.createElement('div');
+          spinner.classList.add('loading-spinner');
+
+          // Append the spinner to the overlay
+          overlay.appendChild(spinner);
+
+          // Append the overlay to the body
+          document.body.appendChild(overlay);
+      }
+  }
+
+  // Function to hide the loading spinner
+  function hideLoadingSpinner() {
+      const overlay = document.querySelector('#loadingOverlay');
+      if (overlay) {
+          overlay.style.display = 'none'; // Hide the overlay and spinner
+          setTimeout(() => overlay.remove(), 300); // Optionally remove it after fade-out
+      }
+  }
+// });
+
+
+  </script>
+    {/block}
+      

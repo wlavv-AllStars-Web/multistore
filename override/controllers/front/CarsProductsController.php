@@ -22,6 +22,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
     public $type;
     public $version;
     public $compatProducts;
+    public $compat;
 
     public function init()
     {
@@ -113,6 +114,19 @@ class CarsProductsControllerCore extends ProductListingFrontController{
            $this->model = $compat['model'];
            $this->type = $compat['type'];
            $this->version = $compat['version'];
+
+           $this->compat[] = [
+                'id_compat' => $compat['id_compat'],
+                'brand' => $compat['brand'],
+                'model' => $compat['model'],
+                'type' => $compat['type'],
+                'version' => $compat['version'],
+                'brand_logo' => $compat['brand_logo'],
+                'brand_hover_logo' => $compat['brand_hover_logo'],
+                'cartoon' => $compat['cartoon'],
+                'subscribed' => $compat['subscribed'],
+            ];
+        
 
      
             $this->car_description = $compat['brand']." | ".$compat['model']." | ".$compat['type']." | ".$compat['version'];
@@ -207,10 +221,10 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
 
         
-        if(count($products) < 1){
+        if (empty($products) || !is_array($products)) {
             $noProducts = 1;
-        }else{
-            $noProducts = 0;
+        } else {
+            $noProducts = count($products) < 1 ? 1 : 0;
         }
 
 
@@ -248,6 +262,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 'noProducts' => $noProducts
             ]
         );
+
+        // pre($this->context->smarty);
 
         $this->setTemplate('catalog/cars-products.tpl');
     }
@@ -316,10 +332,22 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             ->setModel($this->model)
             ->setType($this->type)
             ->setVersion($this->version)
+            ->setCompat($this->compat)
             ->setCompatsProducts($this->compatProducts);
 
+            // Pagination settings
+            $resultsPerPage = Configuration::get('PS_PRODUCTS_PER_PAGE');
+            
+            // Use the page number from the URL, default to 1 if not present
+            $page = max((int) Tools::getValue('page'), 1);
+
+            
+            // Set the pagination properties
+            $query->setResultsPerPage($resultsPerPage);
+            $query->setPage($page);
+
             if ($this->search_string) {
-                $this->search_string = $this->search_string ;
+                $this->search_string = $this->search_string;
             }
 
         return $query;

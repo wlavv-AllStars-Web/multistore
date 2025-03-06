@@ -41,7 +41,20 @@ class CustomProductSearchQuery extends ProductSearchQuery
     private $type;
     private $version;
     private $compats;
+    private $compat;
 
+
+    public function setCompat($compat)
+    {
+        $this->compat = $compat;
+
+        return $this;
+    }
+    
+    public function getCompat()
+    {
+        return $this->compat;
+    }
 
     public function setBrand($brand)
     {

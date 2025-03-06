@@ -312,6 +312,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // the controller generates the query...
         $query = $this->getProductSearchQuery();
 
+
         
 
 
@@ -471,13 +472,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             );
         }
 
-        // pre($query);
+
 
         $pagination = $this->getTemplateVarPagination(
             $query,
             $result
         );
 
+        // pre($pagination);
         // prepare the sort orders
         // note that, again, the product controller is sort-orders
         // agnostic
@@ -735,35 +737,37 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
             // pre($selected_filter_feature);
+            $default_products_per_page = max(1, (int) Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $currentPage = (int) $query->getPage(); // Get the current page from the query object
+            $offset = ($currentPage - 1) * $default_products_per_page;
 
-
-            $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN ( 227 )';
+            $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN (227)';
             // pre($sql_products_of_category);
         
 
-            if($product_options){
-                if(count($product_options) > 0 ){
-                    $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
-                }
+            if (!empty($product_options)) {
+                $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
             }
             // elseif(count($ids_products) > 0 ){
             //     $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
             // }
 
-            $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
-            // pre($products_227);
+            $sql_products_of_category .= ' LIMIT ' . $default_products_per_page . ' OFFSET ' . $offset;
 
+            $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
+            
 
             $ids_prods = array();
             $features  = array();
 
             foreach($products_227 AS $product_227) $ids_prods[] = $product_227['id_product'];
 
+            // pre($ids_prods);
+
             // $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
 
             $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
 
-            // pre($features_category);
 
             foreach($features_category AS $f_category){
 
@@ -861,6 +865,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre(Tools::getValue('id_compat'));
             // echo 'paulo';
             // exit;
+            // pre($pagination);
 
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -897,6 +902,29 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
     
             $ids = array_map('intval', (array) $productsC);
             $idList = implode(',', $ids);
+
+            // count products
+            // Query to count total products matching the filters
+            $sqlCount = 'SELECT COUNT(DISTINCT ps_category_product.id_product) 
+            FROM ps_category_product
+            LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
+            LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
+            LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
+                AND ps_product_lang.id_lang = '.$this->context->language->id.' 
+                AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+            WHERE ps_category_product.id_product IN (' . $idList . ')  
+            AND ps_product.active = 1 
+            AND ps_product_shop.id_shop = '.$this->context->shop->id;
+
+            if ($category > 0) {
+            $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
+            }
+
+            if ($manufacturer > 0) {
+            $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+            }
+
+            $totalProducts = Db::getInstance()->getValue($sqlCount);
     
             $sql = 'SELECT ps_category_product.id_category, ps_category_product.id_product, ps_category_product.position
                     FROM ps_category_product
@@ -905,6 +933,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = '.$this->context->shop->id.'
                     WHERE ps_category_product.id_product IN (' . $idList . ')  
                     AND ps_product.active = 1 AND ps_product_shop.id_shop = '.$this->context->shop->id;
+
              
             if($category > 0) {
                 $sql .= ' AND ps_category_product.id_category = ' . $category;
@@ -936,18 +965,26 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
 
-            $productsCarTotal =  Db::getInstance()->executeS($sql);
+            if($query->getResultsPerPage()) {
+                $resultsPerPage = (int) $query->getResultsPerPage();
+                $currentPage = (int) $query->getPage(); // Get the current page from the query object
+                $offset = ($currentPage - 1) * $resultsPerPage;
+            
+                $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
+            }
+
 
             // pre($pagination);
 
-            if($query->getResultsPerPage()) {
-                $sql .= ' LIMIT '.$query->getResultsPerPage();
-            }
 
+            
+            // pre($pagination);
+            // $productsCarTotal =  Db::getInstance()->executeS($sql);
 
             // pre($sql);
 
             // fim test
+
 
     
             $productsCar =  Db::getInstance()->executeS($sql);
@@ -983,12 +1020,72 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre($noProducts);
             
 
-           
+            if ($totalProducts > 0) {
+                // Calculate total pages
+                $pagesCount = ceil($totalProducts / $resultsPerPage);
+                $currentPage = max((int) $query->getPage(), 1);
+                
+                // Ensure current page is within valid range
+                if ($currentPage > $pagesCount) {
+                    $currentPage = $pagesCount;
+                }
+            
+                // Now, calculate the offset for pagination
+                $offset = ($currentPage - 1) * $resultsPerPage;
+            
+                // Add the LIMIT and OFFSET to the main SQL query
+                $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
+            
+                // Assign pagination info to Smarty
+                $pagination = [
+                    'total_items' => $totalProducts,
+                    'items_shown_from' => $offset + 1,
+                    'items_shown_to' => min($offset + $resultsPerPage, $totalProducts),
+                    'current_page' => $currentPage,
+                    'pages_count' => $pagesCount,
+                    'pages' => [],
+                ];
+            
+                // Build the page links
+                for ($i = 1; $i <= $pagesCount; $i++) {
+                    // Generate URL without `page` parameter for page 1
+                    $url = ($i == 1) 
+                        ? $this->context->link->getPageLink('cars-products', null, null, [
+                            'id_compat' => Tools::getValue('id_compat'),
+                          ])
+                        : $this->context->link->getPageLink('cars-products', null, null, [
+                            'page' => $i,
+                            'id_compat' => Tools::getValue('id_compat'),
+                          ]);
+            
+                    $pagination['pages'][$i] = [
+                        'type' => 'page',
+                        'page' => $i,
+                        'clickable' => $i != $currentPage,
+                        'current' => $i == $currentPage,
+                        'url' => $url,
+                    ];
+                }
 
-            $this->context->smarty->assign([
-                'noProducts' => $noProducts,
-                'universals' => $universals
-            ]);
+                // pre($query);
+                
+                // $compat = $query->getCompat();
+                // pre($compat);
+                // Assign the pagination to Smarty
+                $this->context->smarty->assign([
+                    // 'compat' => $compat[0],
+                    'cars_products_page' => 1,
+                    'pagination' => $pagination,
+                    'products' => $products,  // the list of products fetched after applying pagination
+                    'noProducts' => $noProducts,
+                    'universals' => $universals,
+                ]);
+            }
+            
+            // $this->context->smarty->assign([
+            //     'noProducts' => $noProducts,
+            //     'universals' => $universals
+            // ]);
 
             // pre($this->context->smarty);
 
@@ -1028,7 +1125,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             //     $pagination['items_shown_to'] = $productsCarTotal ? count($productsCarTotal) : count($products);;
             // }
 
-            // pre($products);
+            // pre($pagination);
+
 
             $searchVariables = [
                 'result' => $result,
