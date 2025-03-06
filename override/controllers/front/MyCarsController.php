@@ -74,7 +74,7 @@ class MyCarsControllerCore extends FrontController
         // pre(Tools::getAllValues());
 
         $id_compat = Tools::getValue('id_compat');
-        $id_customer = Tools::getValue('id_customer');
+        $id_customer = $this->context->customer->id;
         $iso_code = Tools::getValue('iso_code');
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         $shop_id = $this->context->shop->id; 
