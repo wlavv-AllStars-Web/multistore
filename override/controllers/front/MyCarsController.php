@@ -35,7 +35,6 @@ class MyCarsControllerCore extends FrontController
             // Decode the response into an associative array
             $my_cars = json_decode($json, true);
     
-            pre($my_cars);
     
             $this->context->smarty->assign('myCars', $my_cars);
             $this->setTemplate('customer/my-cars');
