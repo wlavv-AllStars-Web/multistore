@@ -482,7 +482,7 @@ body {
   /* hpmepage */
   #index #main #content {
     background-image: url("/img/eurorider/fundo.svg");
-    background-size: contain;
+    background-size: 16%;
     background-color: #222;
   }
   .bannersHome .swiper-slide > a {
