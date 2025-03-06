@@ -10,7 +10,7 @@
 <div class="shoppingcart_des_c">
 <div class="shoppingcart_des_c_c">
     <h4 class="cart_productname">
-    <span class="product-quantity"><span class="badge" style="background-color: #333;">{$product.quantity}x</span></span>
+    <span class="product-quantity"><span class="badge" style="background-color: #333;color:#fff;">{$product.quantity}x</span></span>
     <span class="product-name">{$product.name}</span></h4>
     <p class="product-price">{$product.price}</p>
     {if $product.customizations|count}
