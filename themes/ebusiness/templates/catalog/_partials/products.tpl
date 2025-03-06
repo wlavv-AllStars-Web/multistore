@@ -125,7 +125,7 @@
   <div class="products row" id="productList" style="margin-right: auto;min-height: 38dvh;">
   {if $cars_products_page}
     {if $compat}
-      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;padding:.5rem !important;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
+      <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
       <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;">
         <div style="width: 300px;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
             <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
@@ -355,6 +355,14 @@
         let logged = {if $customer.is_logged}1{else}0{/if};
         let id_customer = {if $customer.id}{$customer.id}{else}0{/if};
         let email = '{$customer.email}';
+
+            // Prevent multiple clicks
+        let button = $('.addToMyCarsButton');
+        if (button.data('loading')) {
+            return; // Stop if a request is already in progress
+        }
+        button.data('loading', true); // Set loading state
+        button.prop('disabled', true); // Disable button
         
         if(logged == 1){
             
@@ -368,6 +376,8 @@
                 // Additional logic can be placed here if needed
             } else {
                 alert("{l s='You did not enter an email. Please try again!'}");
+                button.data('loading', false); // Reset loading state
+                button.prop('disabled', false); // Re-enable button
                 return; // Exit the function if no email is entered
             } 
         }
@@ -391,7 +401,12 @@
                     $('.addToMyCarsButton').remove();
                     openMenuCars();
                   }
-              }
+              },
+              complete: function () {
+                button.data('loading', false); // Reset loading state
+                // button.prop('disabled', false); // Re-enable button
+                $('.addToMyCarsButton').remove();
+            }
           });
         }
         
