@@ -481,19 +481,19 @@ body {
 @media (min-width: 992px) {
   /* hpmepage */
   .bannersHome .swiper-slide > a {
-    padding: 1.5rem 1.5rem 0rem 1.5rem;
+    padding: 1.5rem 1.5rem 0rem 1.5rem !important;
   }
 
   .banners_50 {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1.5rem !important;
   }
 
   .banners_33 {
-    display: none;
+    display: none !important;
   }
 
   .bannersHome .videosContainer {
-    padding: 0.25rem 1.5rem;
+    padding: 0.25rem 1.5rem !important;
   }
 
   /*  */
