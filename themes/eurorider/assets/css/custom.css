@@ -3420,7 +3420,7 @@ ul {
 .banner_50 {
   transition: all ease-in-out 250ms;
   overflow: hidden;
-  /* outline: 2px solid var(--bg-3); */
+  outline: 2px solid var(--bg-3);
 }
 .banner_50:hover {
   outline: 2px solid var(--asm-color);
