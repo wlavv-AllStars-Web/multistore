@@ -24,6 +24,21 @@ body {
   width: 100%;
 }
 
+.cart_productname {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.cart_productname .product-name{
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient:vertical;
+  text-wrap:wrap;
+}
+
 .right-nav {
   height: 38px;
 }
