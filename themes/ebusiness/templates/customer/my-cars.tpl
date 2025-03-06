@@ -85,7 +85,7 @@
                         </div>
                         <div class="spacer-20"></div>
                         <div class="car-button-delete">
-                            <div onclick="deleteCar({$car['id_compat']})" class="btn" rel="nofollow" title="Delete car">
+                            <div onclick="deleteCar({$car['id_compat']},this)" class="btn" rel="nofollow" title="Delete car">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </div>
                         </div>   
@@ -202,7 +202,7 @@
             
         // }
 
-        function deleteCar(id_compat){
+        function deleteCar(id_compat, e){
             console.log("deleteCar")
             
             var del=confirm("{l s='Are you sure you want to delete this car?' d='Shop.Theme.MyCars'}");
@@ -218,9 +218,11 @@
                         id_customer: {Context::getContext()->customer->id}
                     },
                     success: function(brands) {
+                    e.parentElement.parentElement.parentElement.remove();
                     document.querySelector(".loading-overlay-cars").classList.add("dont_show")
                     let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
                     brandsContainer.innerHTML = brands.html_model
+
     
     
                     },
