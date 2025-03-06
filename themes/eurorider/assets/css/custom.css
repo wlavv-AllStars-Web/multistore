@@ -479,6 +479,24 @@ body {
 }
 
 @media (min-width: 992px) {
+  /* hpmepage */
+  .bannersHome .swiper-slide > a {
+    padding: 1.5rem 1.5rem 0rem 1.5rem;
+  }
+
+  .banners_50 {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .banners_33 {
+    display: none;
+  }
+
+  .bannersHome .videosContainer {
+    padding: 0.25rem 1.5rem;
+  }
+
+  /*  */
   .d-mobile{
     display: none !important;
   }
