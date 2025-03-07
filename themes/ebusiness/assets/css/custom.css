@@ -1100,7 +1100,7 @@ body {
 
   #mySidenav li {
     background: #444;
-    margin-bottom: .15rem;
+    border-bottom: 2px solid #333;
   }
 
   #mySidenav li a {
