@@ -1100,11 +1100,29 @@ body {
 
   #mySidenav li {
     background: #444;
-    border-bottom: 2px solid #333;
+    text-align: center;
   }
 
   #mySidenav li a {
     color: #fff;
+    border-bottom: 2px solid #333;
+  }
+
+  #mySidenav li a:active {
+    color: #fff;
+    border-bottom: 2px solid var(--asm-color);
+  }
+
+  .bg-mysidenav {
+    display: none;
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
   }
 
   /*  */
