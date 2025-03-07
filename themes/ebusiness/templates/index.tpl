@@ -58,13 +58,21 @@
             </div>
             <div class="swiper-pagination"></div>
           </div>
+          {* <pre>{$urls|print_r}</pre> *}
 
           <div class="banners_50">
             {foreach from=$desktop['icones_50'] item=item key=key name=name}
+              {* <pre>{$item|print_r}</pre> *}
               <div class="banner_50">
-                <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
-                  <img src="{$item['image_en']}" />
-                </a>
+                {if $item['id_compat'] > 0}
+                  <a href="{$urls.current_url}cars-products?id_compat={$item['id_compat']}">
+                    <img src="{$item['image_en']}" />
+                  </a>
+                {else}
+                  <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
+                    <img src="{$item['image_en']}" />
+                  </a>
+                {/if}
               </div>
             {/foreach}
           </div>
