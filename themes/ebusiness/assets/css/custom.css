@@ -2072,6 +2072,14 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* my garage */
+  #my-cars .cars-content {
+    gap: 1rem;
+  }
+  #my-cars .car_container {
+    margin: 0;
+  }
+
 /* mobile cars menu */
   .car_brands_mobile > div{
     display: flex;
