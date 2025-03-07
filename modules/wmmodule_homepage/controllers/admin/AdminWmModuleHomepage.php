@@ -357,7 +357,7 @@ class AdminWmModuleHomepageController extends AdminController{
                 }
             }
 
-            pre(Tools::getAllValues());
+            // pre(Tools::getAllValues());
             // if($id_compat )
             if($idElement == 16) $element = 'category';
             
