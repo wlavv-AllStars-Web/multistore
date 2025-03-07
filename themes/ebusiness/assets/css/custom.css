@@ -2072,6 +2072,14 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* search page */
+  #search .btn-toggleFilters {
+    display: none !important;
+  }
+  #search #js-product-list-top .count-products {
+    border-bottom: 23px solid #333;
+  }
+
   /* events */
 
   .page-cms-29 .rte .col-sm-4 {
