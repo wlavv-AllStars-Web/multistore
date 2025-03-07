@@ -1090,12 +1090,20 @@ body {
     display: flex !important;
   }
 
-  .header-top #_desktop_top_menu {
+  /* .header-top #_desktop_top_menu {
     display: none !important;
   }
 
   .header-top .d-mobile.mobile-menu {
     display: flex !important;
+  } */
+  .model_group_cars {
+    display: flex;
+    justify-content: start !important;
+    max-width: 100dvw;
+    overflow-x: auto;
+    width: 100%;
+    white-space:nowrap;
   }
 
   #mySidenav li {
