@@ -1146,6 +1146,14 @@ body {
     margin: 0;
   }
 
+  #cms #content.page-content{
+    padding: .5rem;
+  }
+
+  #cms .breadcrumb_wrapper{
+    margin-bottom: 0;
+  }
+
   /*  */
   /* .product-accessories .products{
     gap: 1rem;
