@@ -2072,6 +2072,16 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* events */
+
+  .page-cms-29 .rte .col-sm-4 {
+    min-width: unset;
+  }
+
+  .page-cms-29 .rte .col-sm-4 img{
+    width: 100%;
+  }
+
   /* my garage */
   #my-cars .cars-content {
     gap: 1rem;
