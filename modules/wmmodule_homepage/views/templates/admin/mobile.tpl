@@ -42,7 +42,7 @@
                                     <option value="">---</option>
                                    
                                    {foreach $cars AS $car}
-                                        <option value="{implode('_', array_keys($car['filters']))}" {if (implode('_', array_keys($car['filters'])) == $compat)} selected {/if}>{implode(' | ', array_values($car['filters']))}</option>
+                                        {* <option value="{implode('_', array_keys($car['filters']))}" {if (implode('_', array_keys($car['filters'])) == $compat)} selected {/if}>{implode(' | ', array_values($car['filters']))}</option> *}
                                     {/foreach}
                                    
                                 </select>

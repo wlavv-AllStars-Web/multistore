@@ -19,6 +19,8 @@ class AdminWmModuleHomepageController extends AdminController{
         parent::initContent();
         include dirname(__FILE__).'/../../classes/WmModuleHomepageMain.php';
         $template_file = _PS_MODULE_DIR_. 'wmmodule_homepage/views/templates/admin/view.tpl';
+
+        // pre(Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=2 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
        
         $this->context->smarty->assign("banners",        Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=1 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
         $this->context->smarty->assign("array_icons_50", Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=2 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
@@ -42,40 +44,67 @@ class AdminWmModuleHomepageController extends AdminController{
 
     public function getCompatibilities(){
         
-        $result = Db::getInstance()->executeS("SELECT * FROM "._DB_PREFIX_."ukoocompat_compat_asm");
+        $store = $this->context->shop->id;
+        $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
 
-        $compats_list = array();
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/all/compats/' . $store . '/'. $key;
+        // https://webtools.all-stars-motorsport.com/api/get/bo/all/compats/2/DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA
+        // // pre($url);
 
-        foreach ($result AS $row) {
+        // // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
 
-            $line= array();
-            $line['id_ukoocompat_compat'] = $row['id_ukoocompat_compat'];
+        // // Execute cURL request
+        $json = curl_exec($ch);
+        curl_close($ch);
 
-            $sql_1 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_1'];
-            $sql_2 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_2'];
-            $sql_3 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_3'];
-            $sql_4 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_4'];
+        // // Decode the response into an associative array
+        $data = json_decode($json, true);
 
-            $result_1 = Db::getInstance()->executeS($sql_1);
-            $result_2 = Db::getInstance()->executeS($sql_2);
-            $result_3 = Db::getInstance()->executeS($sql_3);
-            $result_4 = Db::getInstance()->executeS($sql_4);
+        // pre($data);
 
-            $filters= array();
-            foreach ($result_1 AS $row_1) $filters[$row['id_filter_value_1']] = $row_1['value'];
-            foreach ($result_2 AS $row_2) $filters[$row['id_filter_value_2']] = $row_2['value'];
-            foreach ($result_3 AS $row_3) $filters[$row['id_filter_value_3']] = $row_3['value'];
-            foreach ($result_4 AS $row_4) $filters[$row['id_filter_value_4']] = $row_4['value'];
+        $compats_list = $data['data'];
 
-            $line['filters'] = $filters;
-            $compats_list[] = $line;
-        }
+        // $result = Db::getInstance()->executeS("SELECT * FROM "._DB_PREFIX_."ukoocompat_compat_asm");
+
+        // $compats_list = array();
+
+        // foreach ($result AS $row) {
+
+        //     $line= array();
+        //     $line['id_ukoocompat_compat'] = $row['id_ukoocompat_compat'];
+
+        //     $sql_1 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_1'];
+        //     $sql_2 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_2'];
+        //     $sql_3 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_3'];
+        //     $sql_4 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $row['id_filter_value_4'];
+
+        //     $result_1 = Db::getInstance()->executeS($sql_1);
+        //     $result_2 = Db::getInstance()->executeS($sql_2);
+        //     $result_3 = Db::getInstance()->executeS($sql_3);
+        //     $result_4 = Db::getInstance()->executeS($sql_4);
+
+        //     $filters= array();
+        //     foreach ($result_1 AS $row_1) $filters[$row['id_filter_value_1']] = $row_1['value'];
+        //     foreach ($result_2 AS $row_2) $filters[$row['id_filter_value_2']] = $row_2['value'];
+        //     foreach ($result_3 AS $row_3) $filters[$row['id_filter_value_3']] = $row_3['value'];
+        //     foreach ($result_4 AS $row_4) $filters[$row['id_filter_value_4']] = $row_4['value'];
+
+        //     $line['filters'] = $filters;
+        //     $compats_list[] = $line;
+        // }
+
+        // pre($compats_list);
 
         return $compats_list;
 
     }
 
     public function getCompatibilitiesName($brand, $model, $type, $version){
+
         
         $sql_1 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $brand;
         $sql_2 = "SELECT value FROM "._DB_PREFIX_."ukoocompat_criterion_lang WHERE id_ukoocompat_criterion = " . $model;
@@ -86,6 +115,9 @@ class AdminWmModuleHomepageController extends AdminController{
         $result_2 = Db::getInstance()->getValue($sql_2);
         $result_3 = Db::getInstance()->getValue($sql_3);
         $result_4 = Db::getInstance()->getValue($sql_4);
+
+        echo $result_1 . ' ' . $result_2 . ' ' . $result_3 . ' ' . $result_4;
+        exit;
 
         return $result_1 . ' ' . $result_2 . ' ' . $result_3 . ' ' . $result_4;
     }
@@ -202,6 +234,7 @@ class AdminWmModuleHomepageController extends AdminController{
             
             if(isset($data['car'])) $car  = explode('_', $data['car']);
 
+            // pre($data);
             
             $sql = "UPDATE "._DB_PREFIX_."asm_homepage_temp SET ";
             if(isset($data['active'])) $sql.= " active=1 "; else  $sql.= " active=0 ";
@@ -218,7 +251,7 @@ class AdminWmModuleHomepageController extends AdminController{
             Db::getInstance()->execute($sql);
             
         }elseif(Tools::getValue('action') == 'getBrandImages'){
-           $this->getBrandImages(Tools::getValue('id_image'), Tools::getValue('id_element'), Tools::getValue('type'), Tools::getValue('element'), $this->id_shop);
+           $this->getBrandImages(Tools::getValue('id_image'), Tools::getValue('id_element'), Tools::getValue('type'), Tools::getValue('element'), $this->id_shop , Tools::getValue('id_compat'));
             die();
         }elseif(Tools::getValue('action') == 'updateActive'){
            $data = Tools::getAllValues();
@@ -228,6 +261,7 @@ class AdminWmModuleHomepageController extends AdminController{
         }elseif(Tools::getValue('action') == 'updateHomepageTemp'){
             $data = Tools::getAllValues();
 
+            // pre($data);
 
             $car_brand = 0;
             $car_model = 0;
@@ -274,16 +308,22 @@ class AdminWmModuleHomepageController extends AdminController{
                         model=" .   $car_model . ", 
                         type="  .   $car_type . ", 
                         version=" . $car_version . " ,
+                        id_compat=" . $data['id_compat'] . " ,
                         id_shop=" . $this->id_shop . "
                     WHERE id=" . $data['id_image'];
+
+
             Db::getInstance()->execute($sql);
             
         }elseif(Tools::getValue('action') == 'uploadSubmitButton'){
+
+            // pre(Tools::getAllValues());
 
             $element = Tools::getValue('uploadElement');
             $idElement = Tools::getValue('uploadIdElement');
             $zone = Tools::getValue('uploadTypeValue');
             $id_image = Tools::getValue('uploadIdImage');
+            $id_compat = Tools::getValue('uploadIdCompat');
             
             $image_name = Tools::getValue('uploadIdElement').'_'.date('ymdhis');
             
@@ -317,6 +357,8 @@ class AdminWmModuleHomepageController extends AdminController{
                 }
             }
 
+            pre(Tools::getAllValues());
+            // if($id_compat )
             if($idElement == 16) $element = 'category';
             
             $image_en = self::uploadIconsProcess($_FILES['fileUpload_' . $fileUpload_name . '_en'], $zoneString, 'en', $image_name);
@@ -330,7 +372,7 @@ class AdminWmModuleHomepageController extends AdminController{
             }elseif($element == 'category'){
                 $sql = 'INSERT INTO `'._DB_PREFIX_.'asm_homepage_manufacturers`(`id_category`,      `zone`, `url_en`, `url_es`, `url_fr`, `url_pt`, `inserted_at`,`id_shop`) VALUES (' . $idElement . ',' . $zone . '' . ',"' . $image_en . '","' . $image_es . '","' . $image_fr . '","' . $image_pt .  '","' . date('Y-m-d') . '","' . $this->id_shop . '")';
             }elseif($element == 'compatibility'){
-                $sql = 'INSERT INTO `'._DB_PREFIX_.'asm_homepage_manufacturers`(`id_compatibility`, `zone`, `url_en`, `url_es`, `url_fr`, `url_pt`, `inserted_at`,`id_shop`) VALUES ("' . $idElement . '",' . $zone . '' . ',"' . $image_en . '","' . $image_es . '","' . $image_fr . '","' . $image_pt . '","' . date('Y-m-d') . '","' . $this->id_shop . '")';
+                $sql = 'INSERT INTO `'._DB_PREFIX_.'asm_homepage_manufacturers`(`id_compatibility`, `zone`, `url_en`, `url_es`, `url_fr`, `url_pt`, `inserted_at`,`id_shop`) VALUES ("' . $id_compat . '",' . $zone . '' . ',"' . $image_en . '","' . $image_es . '","' . $image_fr . '","' . $image_pt . '","' . date('Y-m-d') . '","' . $this->id_shop . '")';
             }elseif($element == 'video'){
                 $sql = 'INSERT INTO `'._DB_PREFIX_.'asm_homepage_manufacturers`(`id_video`, `zone`, `url_en`, `url_es`, `url_fr`, `url_pt`, `inserted_at`,`id_shop`) VALUES (' . $idElement . ', ' . $zone . '' . ',"' . $image_en . '","' . $image_es . '","' . $image_fr . '","' . $image_pt .  '","' . date('Y-m-d') . '","' . $this->id_shop . '")';
             }
@@ -341,7 +383,7 @@ class AdminWmModuleHomepageController extends AdminController{
             Db::getInstance()->execute($sql);
             
             /** VER TIPOS POSSIVEIS **/
-            $this->getBrandImages($id_image, $idElement, $zone, $element,$this->id_shop);
+            $this->getBrandImages($id_image, $idElement, $zone, $element,$this->id_shop, $id_compat);
             
             die();
         }elseif(Tools::getValue('action') == 'updateVideoCode'){
@@ -360,8 +402,9 @@ class AdminWmModuleHomepageController extends AdminController{
 
     }
 
-    public function getBrandImages($id_image, $id_element, $zone, $element, $id_shop){
+    public function getBrandImages($id_image, $id_element, $zone, $element, $id_shop , $id_compat){
         
+        // pre(Tools::getAllValues());
         if($id_element == 523) $element = 'category';
 
         if($element == 'manufacturer'){
@@ -378,7 +421,8 @@ class AdminWmModuleHomepageController extends AdminController{
             $name = "Miniatures " . $id_element;
         }
 
-        $model_content = self::getImagesOfZone($id_image, $id_element, $zone, $element,$id_shop);
+
+        $model_content = self::getImagesOfZone($id_image, $id_element, $zone, $element,$id_shop,$id_compat);
         
         $array=[
             'modal_title' => $name,
@@ -388,8 +432,9 @@ class AdminWmModuleHomepageController extends AdminController{
         echo json_encode($array);
     }
     
-    public function getImagesOfZone($id_image, $id_element, $zone, $element,$id_shop)
+    public function getImagesOfZone($id_image, $id_element, $zone, $element, $id_shop ,$id_compat)
     {
+        // pre($id_element);
 
         if (strpos($id_element, "_") !== false) {
             $id_elements = explode("_", $id_element);
@@ -409,7 +454,7 @@ class AdminWmModuleHomepageController extends AdminController{
             $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE ' . $field . ' = '. $id_element . " AND zone=" . $zone ." AND id_shop=" . $id_shop;
         }elseif($element == 'compatibility'){
             $field = 'id_compatibility';
-            $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE ' . $field . ' = "'. $id_element . '" AND zone=' . $zone ." AND id_shop=" . $id_shop;
+            $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE ' . $field . ' = "'. $id_compat . '" AND zone=' . $zone ." AND id_shop=" . $id_shop;
         }elseif($element == 'video'){
             $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE id_video > 0 AND id_shop=' .$id_shop;
         }elseif($element == 'miniature'){
@@ -418,6 +463,8 @@ class AdminWmModuleHomepageController extends AdminController{
         }
         
         $icons_brand = Db::getInstance()->executeS($sql);
+
+        // pre($icons_brand);
 
         switch($zone){
             case 1:{
@@ -458,7 +505,7 @@ class AdminWmModuleHomepageController extends AdminController{
                 $html .= '<h2>SELECT IMAGE</h2>';
                 foreach($icons_brand AS $icon){
                         $html .= '<div class="image_container">';
-                        $html .= '<img src="' . $icon['url_en'] . '" style="width: 100%;" onclick="setImage(' . $zone . ', ' . $id_image  . ', \'' . $icon['url_en'] . '\', ' . $icon['id'] . ', ' . $icon[$field] . ')">';
+                        $html .= '<img src="' . $icon['url_en'] . '" style="width: 100%;" onclick="setImage(' . $zone . ', ' . $id_image  . ', \'' . $icon['url_en'] . '\', ' . $icon['id'] . ', ' . $icon[$field] . ','. $id_compat .')">';
                         if($icon[$field]){
                         $html .= '<div class="delete_btn" style="top:0;right:0;background:#ee302e;color:#fff;cursor:pointer;" onclick="deleteImage(' . $zone . ', ' . $id_image  . ', \'' . $icon['url_en'] . '\', ' . $icon['id'] . ', ' . $icon[$field] . ',$(this))"><i class="material-icons">&#xe872;</i></div>';
                         }else{
@@ -486,6 +533,7 @@ class AdminWmModuleHomepageController extends AdminController{
                             <input type="hidden" name="uploadIdImage"   id="uploadIdImage"   value="' . $id_image . '">
                             <input type="hidden" name="uploadElement"   id="uploadElement"   value="' . $element . '">
                             <input type="hidden" name="uploadIdElement" id="uploadIdElement" value="' . $id_element . '">
+                            <input type="hidden" name="uploadIdCompat" id="uploadIdCompat" value="' . $id_compat . '">
                             <div class="col-md-3" style="text-align: center;">
                                 <div style="display: none;"> <input type="file" id="' . $fileUpload_name . '_en" name="' . $fileUpload_name . '_en" onchange="addCheck(\'imageUploadEN\', 1)"/> </div>  
                                 <img src="/modules/wmmodule_homepage/img/' . $upload_image . '_en.jpg?t='.rand().'" onclick="$(\'#' . $fileUpload_name . '_en\').click()" style="margin:0 auto;border: 1px solid dodgerblue;width: 100%;" id="imageUploadEN">
@@ -543,6 +591,7 @@ class AdminWmModuleHomepageController extends AdminController{
     public function setDesktopLive()
     {
         $desktop_rows = Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop"');
+        // pre($desktop_rows);
         foreach($desktop_rows AS $row){
 
             $sql = "UPDATE "._DB_PREFIX_."asm_homepage_online 
@@ -567,7 +616,8 @@ class AdminWmModuleHomepageController extends AdminController{
                         type="          . $row['type'] . ", 
                         version="       . $row['version'] . ", 
                         youtube_code='" . $row['youtube_code'] . "' ,
-                        id_shop='" . $row['id_shop'] . "' 
+                        id_shop='" . $row['id_shop'] . "' ,
+                        id_compat='" . ($row['id_compat'] > 0 ? $row['id_compat'] : 0) . "' 
                     WHERE id=" . $row['id'];
 
             Db::getInstance()->execute($sql);

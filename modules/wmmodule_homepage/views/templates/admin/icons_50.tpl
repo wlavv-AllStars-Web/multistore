@@ -26,14 +26,13 @@
                         <div style="color: black; font-weight: bolder; font-size: 16px; text-transform: uppercase; text-align: center; padding: 15px 15px 0px 15px;" > OR </div>
                     </div>
                     <div style="width: 45%;">
-                        {assign var="compat" value="`$icons_50['brand']`_`$icons_50['model']`_`$icons_50['type']`_`$icons_50['version']`"}
+                        {assign var="compat" value="`$icons_50['id_compat']`"}
                         <label>Select car</label> 
                         <select id="select_car_{$icons_50['id']}" name="car[{$icons_50['id']}]" onclick="setImageText(this, {$icons_50['id']}, 'select_car_{$icons_50['id']}');">
-                            {* <option value="">---</option> *}
+                            <option value="">---</option>
                             
                             {foreach $cars AS $car}
-                                {* <option value="{implode('_', array_keys($car['filters']))}" {if (implode('_', array_keys($car['filters'])) == $compat)} selected {/if}>{implode(' | ', array_values($car['filters']))}</option> *}
-                                <option value="{implode('_', array_keys($car['filters']))}" {if (implode('_', array_keys($car['filters'])) == $compat)} selected {/if}>{implode(' | ', array_values($car['filters']))}</option>
+                                <option value="{$car['id_compat']}" {if $car['id_compat'] == $compat} selected {/if}>{$car['name']}</option>
                             {/foreach}
                         
                         </select>

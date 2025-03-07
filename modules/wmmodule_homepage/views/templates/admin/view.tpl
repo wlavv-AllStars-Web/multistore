@@ -132,6 +132,13 @@
     $("#select_brand_59").on("change",   function () { setModal(59,  1, $(this), 'manufacturer' ) });
     $("#select_brand_60").on("change",   function () { setModal(60,  1, $(this), 'manufacturer' ) });
 
+    $("#select_car_55").on("change",   function () { setModal(55,  1, $(this), 'compatibility' ) });
+    $("#select_car_56").on("change",   function () { setModal(56,  1, $(this), 'compatibility' ) });
+    $("#select_car_57").on("change",   function () { setModal(57,  1, $(this), 'compatibility' ) });
+    $("#select_car_58").on("change",   function () { setModal(58,  1, $(this), 'compatibility' ) });
+    $("#select_car_59").on("change",   function () { setModal(59,  1, $(this), 'compatibility' ) });
+    $("#select_car_60").on("change",   function () { setModal(60,  1, $(this), 'compatibility' ) });
+
     $("#select_mini_61").on("change",  function () { setModal(61, 3, $(this), 'miniature' ) });
     $("#select_mini_62").on("change",  function () { setModal(62, 3, $(this), 'miniature' ) });
     $("#select_mini_63").on("change",  function () { setModal(63, 3, $(this), 'miniature' ) });
@@ -139,7 +146,7 @@
     
     $(document).on("click","#uploadSubmitButton", function(){
         var dataForm = new FormData($('#uploadForm')[0]);
-        
+
 		$.ajax({
 			type : 'POST',
 			url : "{$httpssl}//{$dominio}/{$back_path}/index.php?controller=AdminWmModuleHomepage&token={Tools::getAdminTokenLite('AdminWmModuleHomepage')}&action=uploadSubmitButton",
@@ -203,6 +210,7 @@
             id_element = $('#select_car_' + id_image).val();
         }
         
+        // console.log(element)
         
 		$.ajax({
 			type : 'POST',
@@ -212,7 +220,8 @@
 				'type' : type,
 				'id_image' : id_image,
 				'element' : element,
-                'id_shop': id_shop
+                'id_shop': id_shop,
+                'id_compat': element === 'compatibility' ? id_element : 0
 			},
 			success : function(data) {
 			    let data_modal = JSON.parse(data);
@@ -258,7 +267,7 @@
         return;
     }
     
-    function setImage(id_zone, id_image, url, homepage_manufacturer_id, homepage_manufacturer_id_manufacturer){
+    function setImage(id_zone, id_image, url, homepage_manufacturer_id, homepage_manufacturer_id_manufacturer, id_compat=0){
         // const linkProduct = document.getElementById("link_"+ id_image).innerText;
         // console.log(linkProduct)
 		$.ajax({
@@ -273,7 +282,8 @@
 				'title_en' : $('#title_en_' + id_image).val(),
 				'title_es' : $('#title_es_' + id_image).val(),
 				'title_fr' : $('#title_fr_' + id_image).val(),
-                'linkProduct' : $('#link_'+ id_image).val()
+                'linkProduct' : $('#link_'+ id_image).val(),
+                'id_compat' : id_compat
 			},
 			success : function(data) { }
 		});
