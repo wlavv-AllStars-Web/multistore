@@ -1484,6 +1484,7 @@ body {
     height: 100%;
     transition: height 1s ease-in;
     display: flex !important;
+    background: #333;
   }
   .show-menu-cars > div{
     display: flex;
