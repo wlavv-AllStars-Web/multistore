@@ -1087,20 +1087,6 @@ body {
   }
 
 
-  /* table menu cars */
-  .show-menu-cars {
-    height: 100%;
-    transition: height 1s ease-in;
-    display: flex !important;
-  }
-  .show-menu-cars > div{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .show-menu-cars > div li{
-    padding: .5rem;
-  }
 
   /*  */
   /* .product-accessories .products{
@@ -1490,6 +1476,22 @@ body {
   }
   .d-desktop{
     display: none !important;
+  }
+
+  
+  /* table menu cars */
+  .show-menu-cars {
+    height: 100%;
+    transition: height 1s ease-in;
+    display: flex !important;
+  }
+  .show-menu-cars > div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .show-menu-cars > div li{
+    padding: .5rem;
   }
 
   /* body:not(#index) #footer .footer_top{
