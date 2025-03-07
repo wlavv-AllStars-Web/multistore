@@ -1142,6 +1142,10 @@ body {
     display: none !important;
   }
 
+  #contact #content.page-content{
+    margin: 0;
+  }
+
   /*  */
   /* .product-accessories .products{
     gap: 1rem;
