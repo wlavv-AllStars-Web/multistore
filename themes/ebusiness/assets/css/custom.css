@@ -1126,9 +1126,9 @@ body {
     backdrop-filter: blur(5px);
   }
 
-  /* #js-product-list-top .btn-toggleFilters.mobile {
+  #new-products #js-product-list-top .btn-toggleFilters.mobile {
     display: none !important;
-  } */
+  }
 
   .breadcrumb_wrapper {
     display: flex !important;
