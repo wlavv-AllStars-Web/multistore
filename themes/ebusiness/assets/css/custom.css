@@ -1144,6 +1144,7 @@ body {
 
   #contact #content.page-content{
     margin: 0;
+    padding: .5rem;
   }
 
   #cms #content.page-content{
