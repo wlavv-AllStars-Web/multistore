@@ -80,9 +80,15 @@
           <div class="banners_33">
             {foreach from=$desktop['icones_33'] item=item key=key name=name}
               <div class="banner_33">
-              <a href="{if $key == 0 || $key == 2}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
-                  <img src="{$item['image_en']}" />
-                </a>
+                {if $item['id_compat'] > 0}
+                  <a href="{$urls.current_url}cars-products?id_compat={$item['id_compat']}">
+                    <img src="{$item['image_en']}" />
+                  </a>
+                {else}
+                  <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
+                    <img src="{$item['image_en']}" />
+                  </a>
+                {/if}
               </div>
             {/foreach}
           </div>
