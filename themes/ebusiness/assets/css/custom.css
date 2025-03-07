@@ -1086,7 +1086,25 @@ body {
     display: flex !important;
   }
 
+  .bannersHome .swiper-container{
+    display: flex !important;
+  }
 
+  .header-top #_desktop_top_menu {
+    display: none !important;
+  }
+
+  .header-top .d-mobile.mobile-menu {
+    display: flex !important;
+  }
+
+  #mySidenav li {
+    background: #444;
+  }
+
+  #mySidenav li a {
+    color: #fff;
+  }
 
   /*  */
   /* .product-accessories .products{
