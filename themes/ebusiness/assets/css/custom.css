@@ -1491,7 +1491,7 @@ body {
     justify-content: center;
   }
   .show-menu-cars > div li{
-    padding: .5rem;
+    padding: .5rem !important;
   }
 
   /* body:not(#index) #footer .footer_top{
