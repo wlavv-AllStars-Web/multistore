@@ -88,6 +88,7 @@ class ManufacturerCore extends ObjectModel
 
 
     public $warranty;
+    public $available_to_buy;
 
     /**
      * @see ObjectModel::$definition
@@ -131,6 +132,7 @@ class ManufacturerCore extends ObjectModel
             'info' => ['type' => self::TYPE_INT],
             'info_updated' => ['type' => self::TYPE_DATE],
             'youtube' => ['type' => self::TYPE_STRING, 'size' => 15],
+            'available_to_buy' => ['type' => self::TYPE_INT],
         ],
     ];
 
@@ -244,7 +246,9 @@ class ManufacturerCore extends ObjectModel
         }
         if (!Group::isFeatureActive()) {
             $allGroup = true;
+            $id_shop = Context::getContext()->shop->id;
         }
+
 
         $manufacturers = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
 		SELECT m.*, ml.`description`, ml.`short_description`

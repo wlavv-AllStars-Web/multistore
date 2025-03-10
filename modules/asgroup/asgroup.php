@@ -74,6 +74,7 @@ class AsGroup extends Module
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier') &&
             $this->registerHook('actionAdminOrdersControllerSaveBefore') &&
+            $this->registerHook('actionDispatcherBefore') &&
             // $this->registerHook('actionAdminOrdersControllerView') &&
             // $this->registerHook('actionAdminOrderControllerSave') &&
             // $this->registerHook('actionOrderGridDataBefore') &&
@@ -100,6 +101,7 @@ class AsGroup extends Module
         $this->unregisterHook('actionOrderGridDefinitionModifier') &&
         $this->unregisterHook('actionAdminOrdersControllerSaveBefore') &&
         $this->unregisterHook('actionOrderGridQueryBuilderModifier');
+        $this->unregisterHook('actionDispatcherBefore');
 }
 
 
@@ -113,6 +115,19 @@ class AsGroup extends Module
      *
      * @param array $params
      */
+
+
+     public function hookActionDispatcherBefore(array $params)
+    {
+    //     // Get the container
+    //     $container = $this->get('prestashop.adapter.legacy.context')->getContainer();
+
+    //     // Override the default search provider with your custom one
+    //     $container->set(
+    //         'prestashop.core.product_search_provider',
+    //         $container->get('PrestaShop\Module\AsGroup\Adapter\Search\CustomSearchProductSearchProvider')
+    //     );
+    }
 
     public function hookActionAdminControllerSetMedia()
     {
@@ -144,6 +159,14 @@ class AsGroup extends Module
             foreach ($warrantyResults as $row) {
                 $warrantyValues[(int) $row['id_lang']] = $row['warranty'];
             }
+
+            $sql = 'SELECT available_to_buy
+            FROM
+            `' . _DB_PREFIX_ . 'manufacturer` 
+            WHERE id_manufacturer= '. (int) $manufacturerId;
+    
+            $availableToBuy = Db::getInstance()->getValue($sql);
+            // pre($availableToBuy);
         }
 
 
@@ -176,6 +199,24 @@ class AsGroup extends Module
                     ],
                 ],
                 'data' => $warrantyValues,
+            ]
+        );
+
+        $formBuilder->add(
+            'available_to_buy', 
+            SwitchType::class,
+            [
+                'choices' => [
+                    $this->trans('No',[], 'Admin.Catalog.Feature') => 2,
+                    $this->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+                ],
+                'data' => $availableToBuy,
+                'placeholder' => false,
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'label' => $this->trans('Allow buying from this brand',[], 'Admin.Catalog.Feature'),
+                'label_help_box' => $this->trans('This will let or not let buy the products of this brand in the frontoffice.',[], 'Admin.Catalog.Help'),
             ]
         );
 
@@ -221,6 +262,36 @@ class AsGroup extends Module
                         VALUES (' . $manufacturerId . ', ' . (int) $idLang . ', "' . pSQL($warrantyText) . '")
                         ON DUPLICATE KEY UPDATE warranty = "' . pSQL($warrantyText) . '"';
                 Db::getInstance()->execute($sql);
+            }
+        }
+
+        $outofstockData = $manufacturerData['available_to_buy']; 
+
+        if (!empty($outofstockData)) {
+            $sql = 'UPDATE `' . _DB_PREFIX_ . 'manufacturer`
+                    SET available_to_buy = "' . $outofstockData . '"
+                    WHERE id_manufacturer = ' . (int) $manufacturerId;
+            
+            // Execute the query
+            $resultOutofstock = Db::getInstance()->execute($sql);
+    
+            if (!$resultOutofstock) {
+                error_log('Failed to update YouTube code for manufacturer ID: ' . $manufacturerId);
+            } else {
+                error_log('YouTube code updated successfully for manufacturer ID: ' . $manufacturerId);
+            }
+
+            // update product table out of stock to display the same as the brand available to buy
+            $sql = 'UPDATE `' . _DB_PREFIX_ . 'product`
+                    SET out_of_stock = "' . $outofstockData . '"
+                    WHERE id_manufacturer = ' . (int) $manufacturerId;
+
+            $resultOutofstockProduct = Db::getInstance()->execute($sql);
+
+            if (!$resultOutofstockProduct) {
+                error_log('Failed to update out_of_stock in the products table where the manufacturer is: ' . $manufacturerId);
+            } else {
+                error_log('Products table updated sucessfully: ' . $manufacturerId);
             }
         }
 
