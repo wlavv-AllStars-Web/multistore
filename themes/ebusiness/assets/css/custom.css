@@ -4227,7 +4227,7 @@ ul {
 .videosContainer .video .iframeClass iframe {
   width: 100%;
   height: inherit;
-  /* min-height: 353.55px; foi aqui*/
+  min-height: 349.917px;
 }
 
 .banner_50 {
