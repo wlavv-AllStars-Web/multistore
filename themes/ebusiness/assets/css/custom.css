@@ -4228,7 +4228,13 @@ ul {
   width: 100%;
   height: inherit;
   /* min-height: 349.917px; */
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
+  height: max-content;
+  display: flex;
+}
+
+.bannersHome .videosContainer .video{
+  outline-offset: -2px;
 }
 
 .banner_50 {
