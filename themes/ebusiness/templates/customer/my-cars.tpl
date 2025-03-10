@@ -182,7 +182,7 @@
         @media only screen and (max-width: 768px) {
             
             h1.page-heading{ text-align: center; }
-            .car_container{ width: calc( 100% - 40px ); margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #888;text-align: center; background-color: #FFF; }
+            .car_container{ width: calc( 100% - 40px ); margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #e0e0e0;text-align: center; background-color: #FFF; }
             ul.footer_links{ margin:0 20px 20px 20px; padding: 0; }
             ul.footer_links li{ list-style-type: none; }
             ul.footer_links li a{ border: 1px solid red; color: red; background-color: #FFF; border-radius: 5px; width: 100%; }
