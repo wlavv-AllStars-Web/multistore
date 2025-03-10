@@ -293,6 +293,34 @@ class AsGroup extends Module
             } else {
                 error_log('Products table updated sucessfully: ' . $manufacturerId);
             }
+
+            // get products id from id manufacturer
+            $sql = 'SELECT id_product FROM `' . _DB_PREFIX_ . 'product` WHERE id_manufacturer = ' . (int) $manufacturerId;
+            $productIds = Db::getInstance()->executeS($sql);
+
+            if (!empty($productIds)) {
+                // Extract IDs into an array
+                $productIdsArray = array_column($productIds, 'id_product');
+                
+                // Convert array to comma-separated values for SQL IN clause
+                $productIdsList = implode(',', array_map('intval', $productIdsArray));
+            
+                // Now update stock availability for these products
+                $updateSql = 'UPDATE `' . _DB_PREFIX_ . 'stock_available`
+                              SET out_of_stock = "' . (int) $outofstockData . '"
+                              WHERE id_product IN (' . $productIdsList . ')';
+            
+                $resultOutofstockProduct = Db::getInstance()->execute($updateSql);
+            
+                if (!$resultOutofstockProduct) {
+                    error_log('Failed to update out_of_stock for manufacturer ID: ' . $manufacturerId);
+                } else {
+                    error_log('Stock availability updated for products of manufacturer ID: ' . $manufacturerId);
+                }
+            } else {
+                error_log('No products found for manufacturer ID: ' . $manufacturerId);
+            }
+
         }
 
 
