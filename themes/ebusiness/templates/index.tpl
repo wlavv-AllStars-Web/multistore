@@ -167,7 +167,7 @@
                         <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
                       </a>
                     {else}
-                      <a  class="card-itemMobile"  href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$mobileItem['link']}">
+                      <a  class="card-itemMobile"  href="{if $mobilekey == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$mobileItem['link']}">
                         <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
                       </a>
                     {/if}
