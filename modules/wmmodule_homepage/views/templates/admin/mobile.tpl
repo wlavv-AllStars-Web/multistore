@@ -11,6 +11,14 @@
         <div class="options_mobile_container" style="cursor: pointer;display: flow-root;margin-top: 10px;flex:1;background-color: grey;" onclick="$('.elements_mobile_container').css('display', 'none');$('#container_block_mobile_2').toggle();$('#container_block_mobile_2').css('display', 'flex');$('.options_mobile_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
             <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> POSITION 3 </div>
         </div>
+        {if $currentShop !== 1}
+            <div class="options_mobile_container" style="cursor: pointer;display: flow-root;margin-top: 10px;flex:1;background-color: grey;" onclick="$('.elements_mobile_container').css('display', 'none');$('#container_block_mobile_3').toggle();$('#container_block_mobile_3').css('display', 'flex');$('.options_mobile_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+            <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> POSITION 4 </div>
+            </div>
+            <div class="options_mobile_container" style="cursor: pointer;display: flow-root;margin-top: 10px;flex:1;background-color: grey;" onclick="$('.elements_mobile_container').css('display', 'none');$('#container_block_mobile_4').toggle();$('#container_block_mobile_4').css('display', 'flex');$('.options_mobile_container').css('background-color', 'grey'); $(this).css('background-color', 'dodgerblue')">
+                <div style="width: 100%;text-align: left;border-top: 1px solid #666;border-left: 1px solid #666;border-right: 1px solid #666;padding: 5px;font-weight: bolder; color: #FFF;text-align: center;"> POSITION 5 </div>
+            </div>
+        {/if}
     </div>
     <div style="display: flex">
         {foreach $mobile_icons AS $index => $mobile}
