@@ -2166,6 +2166,12 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* order confirmation */
+
+  #order-confirmation .page-order-confirmation {
+    padding: 1rem;
+  }
+
   /* search page */
   #search .btn-toggleFilters {
     display: none !important;
