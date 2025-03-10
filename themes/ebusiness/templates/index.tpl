@@ -128,7 +128,7 @@
             
             <div class="card-container-homepage">
               {foreach from=$mobile item=mobileItem key=mobilekey name=mobilename}
-                {assign var="url" value=$mobileItem["image_{$currentLanguageIso}"]}
+                {* {assign var="url" value=$mobileItem["image_{$currentLanguageIso}"]}
                 {assign var="numberString" value="`$url`"|regex_replace:"/.*\/(\d+)_(\d+)_(\d+)_(\d+)_.*$/":"$1,$2,$3,$4"}
                 {assign var="linkBrand" value=$mobileItem["link"]}
 
@@ -153,13 +153,26 @@
                   {/if}
 
                     <img src="{$mobileItem["image_{$currentLanguageIso}"]}" style="width: 100%;" loading="lazy" alt="banner{$mobilekey}"/>
-                    {* <div class="layerHovermobile">{$mobileItem["title_{$currentLanguageIso}"]}</div> *}
+            
 
                   {if isset($numbers)}
                   </a>
                   {elseif $linkBrand != ''}
                   </a>
-                  {/if}
+                  {/if} *}
+
+
+                    {if $mobileItem['id_compat'] > 0}
+                      <a class="card-img card-itemMobile"  href="{$urls.current_url}cars-products?id_compat={$mobileItem['id_compat']}">
+                        <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
+                      </a>
+                    {else}
+                      <a  class="card-itemMobile"  href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$mobileItem['link']}">
+                        <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
+                      </a>
+                    {/if}
+               
+                  
                   
               {/foreach}
             

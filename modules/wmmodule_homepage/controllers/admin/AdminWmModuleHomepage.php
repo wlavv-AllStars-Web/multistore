@@ -654,7 +654,8 @@ class AdminWmModuleHomepageController extends AdminController{
                 type="          . $row['type'] . ", 
                 version="       . $row['version'] . ", 
                 youtube_code='" . $row['youtube_code'] . "' ,
-                id_shop='" . $row['id_shop'] . "' 
+                id_shop='" . $row['id_shop'] . "' ,
+                id_compat='" . ($row['id_compat'] > 0 ? $row['id_compat'] : 0) . "' 
                 WHERE id=" . $row['id'];
             Db::getInstance()->execute($sql);
             
