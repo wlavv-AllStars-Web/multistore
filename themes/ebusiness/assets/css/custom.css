@@ -4227,7 +4227,8 @@ ul {
 .videosContainer .video .iframeClass iframe {
   width: 100%;
   height: inherit;
-  min-height: 349.917px;
+  /* min-height: 349.917px; */
+  aspect-ratio: 16/9;
 }
 
 .banner_50 {
