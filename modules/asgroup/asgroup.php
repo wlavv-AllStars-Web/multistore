@@ -267,7 +267,7 @@ class AsGroup extends Module
 
         $outofstockData = $manufacturerData['available_to_buy']; 
 
-        if (!empty($outofstockData)) {
+        if (isset($outofstockData)) {
             $sql = 'UPDATE `' . _DB_PREFIX_ . 'manufacturer`
                     SET available_to_buy = "' . $outofstockData . '"
                     WHERE id_manufacturer = ' . (int) $manufacturerId;
