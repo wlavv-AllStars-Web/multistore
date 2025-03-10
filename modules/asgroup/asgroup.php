@@ -207,7 +207,7 @@ class AsGroup extends Module
             SwitchType::class,
             [
                 'choices' => [
-                    $this->trans('No',[], 'Admin.Catalog.Feature') => 2,
+                    $this->trans('No',[], 'Admin.Catalog.Feature') => 0,
                     $this->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
                 ],
                 'data' => $availableToBuy,
