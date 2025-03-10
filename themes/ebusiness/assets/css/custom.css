@@ -2174,6 +2174,13 @@ body {
     border-bottom: 23px solid #333;
   }
 
+
+  .container-not-found-filters h1 {
+    font-size: 1.5rem !important;
+  }
+  .container-not-found-filters span {
+    font-size: 1rem !important;
+  }
   /* events */
 
   .page-cms-29 .rte .col-sm-4 {
