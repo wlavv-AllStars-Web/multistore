@@ -2788,8 +2788,8 @@ body {
     width: 100%;
     padding: 2rem 0;
     text-align: center;
-    background: #f6f6f6;
-    color: #333 !important;
+    background: #222;
+    color: #fff !important;
   }
 
   #footer_sub_menu_4 li.socials-footer {
@@ -4227,7 +4227,7 @@ ul {
 .videosContainer .video .iframeClass iframe {
   width: 100%;
   height: inherit;
-  min-height: 353.55px;
+  /* min-height: 353.55px; foi aqui*/
 }
 
 .banner_50 {
