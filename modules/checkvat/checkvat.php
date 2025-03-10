@@ -354,7 +354,7 @@ class CheckVat extends Module
             // If no errors, proceed with success
             if (empty($this->context->controller->errors)) {
                 // No errors, add success message
-                $this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
+                // $this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
                 return 1;  // Success
             }
 		}
