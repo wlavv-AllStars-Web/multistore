@@ -4101,6 +4101,11 @@ ul {
   text-align: center;
 }
 
+#my-account #check_vat.myaccount-link-list {
+  outline: 1px solid #e0e0e0;
+  border-radius: .25rem;
+}
+
 #authentication .login_page_content {
   flex-direction: row-reverse !important;
   max-width: 1350px;
