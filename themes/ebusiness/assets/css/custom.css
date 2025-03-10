@@ -4110,6 +4110,7 @@ ul {
 
 #authentication [data-action="show-password"] {
   z-index: 1;
+  min-height: 38px;
 }
 
 #registration #wrapper > .container {
