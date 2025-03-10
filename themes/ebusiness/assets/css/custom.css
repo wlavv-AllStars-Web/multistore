@@ -2166,6 +2166,12 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* mycars */
+  #my-cars .title-heading {
+    font-size: 2rem;
+    padding: 1rem .5rem;
+  }
+
   /* order confirmation */
   /*  */
 
