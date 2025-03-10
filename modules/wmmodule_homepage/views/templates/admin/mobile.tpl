@@ -36,7 +36,7 @@
                                 <label>Select brand</label> 
                                 <select id="select_brand_{$mobile['id']}" name="link" onclick="setImageText(this, {$mobile['id']}, 'select_car_{$mobile['id']}')">
                                     <option value="">---</option>
-                                    <option value="523_clearence" {if "523_clearence" == $mobile['link']} selected {/if}>Clearence</option>
+                                    <option value="16_clearence" {if "16_clearence" == $mobile['link']} selected {/if}>Clearence</option>
                                     {foreach $manufacturers AS $manufacturer}
                                         <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $mobile['link']} selected {/if}>{$manufacturer['name']}</option>
                                     {/foreach}
@@ -44,16 +44,16 @@
                             </div>
                             <div style="width: 10%;"> <div style="color: black; font-weight: bolder; font-size: 20px; text-transform: uppercase; text-align: center;" ></div> </div>
                             <div style="width: 45%;">
-                                {assign var="compat" value="`$mobile['brand']`_`$mobile['model']`_`$mobile['type']`_`$mobile['version']`"}
+                                {assign var="compat" value="`$mobile['id_compat']`"}
                                 <label>Select car</label> 
-                                <select id="select_car_{$mobile['id']}" name="car" onclick="setImageText(this, {$mobile['id']}, 'select_brand_{$mobile['id']}');">
-                                    <option value="">---</option>
-                                   
-                                   {foreach $cars AS $car}
-                                        {* <option value="{implode('_', array_keys($car['filters']))}" {if (implode('_', array_keys($car['filters'])) == $compat)} selected {/if}>{implode(' | ', array_values($car['filters']))}</option> *}
-                                    {/foreach}
-                                   
-                                </select>
+                                <select id="select_car_{$mobile['id']}" name="car[{$mobile['id']}]" onclick="setImageText(this, {$mobile['id']}, 'select_car_{$mobile['id']}');">
+                                <option value="">---</option>
+                                
+                                {foreach $cars AS $car}
+                                    <option value="{$car['id_compat']}" {if $car['id_compat'] == $compat} selected {/if}>{$car['name']}</option>
+                                {/foreach}
+                            
+                            </select>
                             </div>
                             <div style="width: 100%;display:flex;flex-direction: column;margin:0.5rem 0;">
                                 <label style="color: #103054;">ID of Product</label> 
