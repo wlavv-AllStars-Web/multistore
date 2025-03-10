@@ -2174,6 +2174,19 @@ body {
     border-bottom: 23px solid #333;
   }
 
+  #manufacturer .webmaster-logomanufacturer img {
+    height: 98px !important;
+    width: 98px !important;
+  }
+
+  .page-product-notfound {
+    padding: 1rem !important;
+
+  }
+  .page-product-notfound h1 {
+    display: flex !important;
+    
+  }
 
   .container-not-found-filters h1 {
     font-size: 1.5rem !important;
@@ -2894,10 +2907,10 @@ body {
   #manufacturer #main .description_box .webmaster-logomanufacturer {
     margin: auto;
   }
-  #manufacturer #main .description_box .webmaster-logomanufacturer img {
+  /* #manufacturer #main .description_box .webmaster-logomanufacturer img {
     height: 171px !important;
     object-fit: cover;
-  }
+  } */
 
   #products {
     width: 100% !important;
