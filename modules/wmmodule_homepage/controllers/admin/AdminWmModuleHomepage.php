@@ -271,7 +271,7 @@ class AdminWmModuleHomepageController extends AdminController{
 
             $row_data = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE id=' . $data['id_ps_asm_homepage_temp']);
 
-            if($data['id_element'] == 16 && $data['title_en'] == 'Clearence'){
+            if($data['id_element'] == 16 && $data['title_en'] == 'Clearance'){
                 $row_data['id_category'] = 16;
                 $row_data['id_manufacturer'] = 0;
             }

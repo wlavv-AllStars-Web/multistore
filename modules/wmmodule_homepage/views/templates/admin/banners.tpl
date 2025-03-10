@@ -19,7 +19,7 @@
                                 <label>Select brand</label> 
                                 <select id="select_brand_{$banner['id']}" name="link[{$banner['id']}]" onclick="setImageText(this, {$banner['id']}, 'select_brand_{$banner['id']}')">
                                     <option value="">---</option>
-                                    <option value="523_clearence" {if "523_clearence" == $banner['link']} selected {/if}>Clearence</option>
+                                    <option value="16_clearance" {if "16_clearance" == $banner['link']} selected {/if}>Clearance</option>
                                     {foreach $manufacturers AS $manufacturer} 
                                         <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $banner['link']} selected {/if} >{$manufacturer['name']}</option>
                                     {/foreach}
