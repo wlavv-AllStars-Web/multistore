@@ -885,12 +885,13 @@
 </div>
 
  
-  <div class="complementary-products-flag">
-    {l s='Complementary Products' d='Shop.Theme.Catalog'}
-  </div>
+
  
      {block name='product_accessories'}
        {if $accessories}
+          <div class="complementary-products-flag">
+            {l s='Complementary Products' d='Shop.Theme.Catalog'}
+          </div>
          <section class="product-accessories clearfix">
 
            {* <div class="products d-desktop">
