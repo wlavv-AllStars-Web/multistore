@@ -345,7 +345,7 @@
               <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
-
+            {if $compats|count}
             <div class="container-table-compats">
               {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
               <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
@@ -369,7 +369,9 @@
                 </tbody>
               </table>
             </div>
-
+            {else}
+              <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+            {/if}
 
 
           </div>
@@ -755,7 +757,7 @@
                        <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
-
+                    {if $compats|count}
                     <div class="container-table-compats">
                       <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                         <thead class="thead-dark">
@@ -778,6 +780,10 @@
                         </tbody>
                       </table>
                     </div>
+                    {else}
+                      <h2 style="text-align: center;font-weight:500;padding:1rem;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                    {/if}
+
                   </div>
          
                   {* {block name='product_details'}
