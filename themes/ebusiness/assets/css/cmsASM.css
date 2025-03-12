@@ -185,6 +185,8 @@
     background: transparent none repeat scroll 0 0;
     padding: 0 !important;
     margin: auto;
+    border-radius: .25rem;
+    overflow: hidden;
   }
   
   .galleries_header img{
@@ -217,6 +219,8 @@
   #terms{
     max-width: 1440px;
     margin: auto;
+    border-radius: .25rem;
+    overflow: hidden;
    }
 
     #terms img{
@@ -285,6 +289,8 @@
     max-width: 1440px; 
     font-family: Roboto; 
     font-size: 16px;
+    border-radius: .25rem;
+    overflow: hidden;
   }
 
   #legal img{
@@ -334,6 +340,8 @@
 
   #about-us .about-header {
     background-color: #eee; font-family: Arial, Helvetica, sans-serif; max-width: 1440px; margin: 0 auto;
+    border-radius: .25rem .25rem 0 0;
+    overflow: hidden;
   }
   #about-us .about-header img {
     width: 100%;
@@ -341,6 +349,8 @@
 
   #about-us .about-content {
     background-color: #eee; font-family: Arial, Helvetica, sans-serif; max-width: 1440px; font-size: 16px; margin: 0 auto;
+    border-radius: 0 0 .25rem .25rem;
+    overflow: hidden;
   }
 
   #about-us .about-content > .row {
@@ -422,7 +432,9 @@
   #cms_shipping {
     max-width: 1440px;
     margin: auto;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
+    border-radius: .25rem;
+    overflow: hidden;
   }
 
   #cms_shipping .shipping-header {
@@ -490,6 +502,8 @@
 
   #cms-payment {
     background-color: #eee; width: 1440px; font-family: Roboto; font-size: 16px; margin: 0 auto;text-align: justify;font-family: Arial, Helvetica, sans-serif;color: #101010;
+    border-radius: .25rem;
+    overflow: hidden;
   }
 
   #cms-payment .payment {
