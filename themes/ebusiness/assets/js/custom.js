@@ -251,10 +251,10 @@ function toggleFiltersWheels() {
   filters.classList.toggle("show-filters")
 }
 
-function toggleMenuCars(e){
-  const menuCars = document.querySelector(".car_brands_mobile");
-  menuCars.classList.toggle("show-menu-cars")
-}
+// function toggleMenuCars(e){
+//   const menuCars = document.querySelector(".car_brands_mobile");
+//   menuCars.classList.toggle("show-menu-cars")
+// }
 function backButtonBrand(){
   location.reload(); 
 }
