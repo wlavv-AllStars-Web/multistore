@@ -904,6 +904,11 @@
     padding: 1rem;
   }
 
+  #user-help .user-help-header {
+    border-radius: .25rem;
+    overflow: hidden;
+  }
+
   #user-help .user-help-header img {
     width: 100%;
   }
