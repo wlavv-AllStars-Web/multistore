@@ -2170,7 +2170,7 @@ body {
 
   #mySidenav li a:active{
     opacity: 1;
-    color: #111 !important;
+    color: #fff !important;
   }
 
 
