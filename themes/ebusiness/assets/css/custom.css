@@ -6237,6 +6237,9 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  #product #product_reviews.desktop {
+    padding-bottom: 2rem;
+  }
   /* wheels */
   #js-product-list-top {
     max-width: unset !important;
