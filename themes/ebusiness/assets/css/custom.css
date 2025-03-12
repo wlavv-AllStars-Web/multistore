@@ -2166,6 +2166,9 @@ body {
 }
 
 @media (max-width: 563px) {
+  #product #reviewsMobile{
+    padding-bottom: 1rem;
+  }
   /* mycars */
   #my-cars .page-heading {
     font-size: 2rem;
