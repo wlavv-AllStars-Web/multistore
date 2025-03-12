@@ -289,8 +289,9 @@
             </li>
 
             <li class="dropdown">
+            
               {* <i class="material-icons">directions_car</i> *}
-                <a class="link-logosMenu" href="{$urls.pages.index}" >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
+                <a class="link-logosMenu" href="{$urls.pages.index}?openCarsMobile" >{l s='Your Car' d='Shop.Theme.Homepage'}</a>
                   {* <div class="dropdown-menu menu-logos"> *}
               {* {if $page.page_name =='index'} *}
                 {* {if $customer.is_logged && is_array($myCars) && ( count($myCars) > 0 ) }
@@ -555,13 +556,17 @@ dropdownMenu.addEventListener("click", (event) => {
                     spaceBetween: 30,
                   },
                   768: {
-                    slidesPerView: 12,
+                    slidesPerView: 8,
                     spaceBetween: 30,
                   },
                   1024: {
-                    slidesPerView: 15,
+                    slidesPerView: 10,
                     spaceBetween: 30,
                   },
+                  1500: {
+                    slidesPerView: 15,
+                    spaceBetween: 30,
+                  }
                 },
               });
 
