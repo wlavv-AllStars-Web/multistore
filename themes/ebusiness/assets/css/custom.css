@@ -2169,7 +2169,8 @@ body {
   /* menu mobile */
 
   #mySidenav li a:active{
-    color: var(--asm-color) !important;
+    opacity: 1;
+    color: #222 !important;
   }
 
   /*  */
