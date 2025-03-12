@@ -153,11 +153,11 @@
             <input type="hidden" name="token" value="{$static_token}">
             <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
             <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
-    
+    {* <pre>{$product|print_r}</pre> *}
             {if !$complementary}
             <div class="add">
               <button
-                class="btn btn-primary add-to-cart"
+                class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
                 {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
                 data-button-action="add-to-cart"
                 data-dismiss="modal"
