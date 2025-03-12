@@ -1266,6 +1266,13 @@ width: 100%;
   .contact-form {
     font-family: Arial, Helvetica, sans-serif;
   }
+  
+  .contact-form > div {
+    border-radius: .25rem;
+    overflow: hidden;
+  }
+
+
 
   /* events */
 
