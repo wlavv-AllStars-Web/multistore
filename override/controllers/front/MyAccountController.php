@@ -28,7 +28,48 @@ class MyAccountController extends MyAccountControllerCore
     public function postProcess(){
         $origin_newsletter = (bool)$this->customer->newsletter;
 
-        if (Tools::isSubmit('submitMessage')) {
+    if($_POST['g-recaptcha-response']){
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+        
+        if($this->context->shop->id == 2){
+            $resq_data = array( 
+                'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+                'response' => $_POST['g-recaptcha-response'], 
+                'remoteip' => $_SERVER['REMOTE_ADDR'] 
+            ); 
+        } else if($this->context->shop->id == 3){
+            $resq_data = array( 
+                'secret' => '6LdZXeoqAAAAAIsvrwmj4X7gOOCpIEF8WIjkjTV4', 
+                'response' => $_POST['g-recaptcha-response'], 
+                'remoteip' => $_SERVER['REMOTE_ADDR'] 
+            ); 
+        }
+
+        $curlConfig = array( 
+            CURLOPT_URL => $api_url, 
+            CURLOPT_POST => true, 
+            CURLOPT_RETURNTRANSFER => true, 
+            CURLOPT_POSTFIELDS => $resq_data, 
+            CURLOPT_SSL_VERIFYPEER => false 
+        ); 
+        
+        $ch = curl_init(); 
+        curl_setopt_array($ch, $curlConfig); 
+        $response = curl_exec($ch); 
+        
+        if (curl_errno($ch)) $api_error = curl_error($ch); 
+        
+        curl_close($ch); 
+        
+        $responseData = json_decode($response); 
+        // echo 'paulo';
+        // echo '<pre>'.print_r($responseData,1).'</pre>' ;
+        // exit;
+        
+        if(!empty($responseData) && $responseData->success){
+
+
+        // if (Tools::isSubmit('submitMessage')) {
             // echo 'paulo';
             // exit;
             $saveContactKey = $this->context->cookie->contactFormKey;
@@ -194,7 +235,7 @@ class MyAccountController extends MyAccountControllerCore
                     // echo Tools::getValue('name');
                     // exit;
 
-                    if (!empty($contact->email)) {
+                    if (!empty($contact->email) || !empty(Tools::getValue('from'))) {
                         if (!Mail::Send(2, 'contact', Mail::l('Message from contact form').' [no_sync]',
                             $var_list, 'info@euromuscleparts.com', $contact->name, null, null,
                                     $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
@@ -213,7 +254,9 @@ class MyAccountController extends MyAccountControllerCore
                     $this->context->smarty->assign('confirmation', 1);
                 }
             }
-        }
+        // }
+    }
+}
         
         if(Tools::getValue('action') == 'check_vat'){
             $has_address = $this->context->customer->getAddresses($this->context->language->id);
