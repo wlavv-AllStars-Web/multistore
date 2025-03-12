@@ -532,9 +532,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
             }
         }
+
+        // removi do proximo if porque tinha bug na barra de pesquisa || $this->context->shop->id == 2 && $query->getQueryType() == 'search'
        
         // asm wheels
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer' || $this->context->shop->id == 2 && $query->getQueryType() == 'search'){
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'){
 
             
 
