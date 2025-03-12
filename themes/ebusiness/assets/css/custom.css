@@ -2170,12 +2170,8 @@ body {
 
   #mySidenav li a:active{
     opacity: 1;
-    color: #222 !important;
+    color: #111 !important;
   }
-
-  #mySidenav li:has(a:active) {
-    background-color: #d0d0d0; /* Change li background */
-}
 
 
   /*  */
