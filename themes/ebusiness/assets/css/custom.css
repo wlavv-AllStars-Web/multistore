@@ -5407,6 +5407,7 @@ ul {
   width: 100%;
   font-size: 1.25rem;
   text-transform: uppercase;
+  user-select: none;
 }
 
 #_desktop_top_menu .list-menu-desktop li:hover {
