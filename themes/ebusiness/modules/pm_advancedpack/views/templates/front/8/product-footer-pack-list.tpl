@@ -26,7 +26,7 @@
 							<input type="hidden" name="id_product_attribute_list" value="">
 							<input type="hidden" name="qty" value="1">
 							<button
-							class="btn btn-primary add-to-cart"
+							class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
 							data-button-action="add-pack-to-cart"
 							type="submit"
 							><i class="material-icons shopping-cart">&#xE547;</i>{l s='Buy this pack' mod='pm_advancedpack'}</button>
