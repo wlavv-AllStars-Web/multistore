@@ -33,7 +33,7 @@
     </div>
     <div class="footer_after">
             <div class="rights_footer" style="display: flex;justify-content:center;align-items:center;color:#f3f3f3;gap: 0.25rem;padding-top: 0.5rem;">
-                <span>@ 2013 All Stars Motorsport.</span>
+                <span>@ 2025 All Stars Motorsport.</span>
                 <p>All Rights Reserved.</p>
             </div>
             <div class="container">
