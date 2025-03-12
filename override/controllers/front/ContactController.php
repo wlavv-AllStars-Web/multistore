@@ -64,7 +64,7 @@ class ContactControllerCore extends FrontController
                         $this->errors[] = Tools::displayError('The message cannot be blank.');
                     } elseif (!Validate::isCleanHtml($message)) {
                         $this->errors[] = Tools::displayError('Invalid message');
-                    } elseif (!($id_contact = (int)Tools::getValue('id_contact')) || !(Validate::isLoadedObject($contact = new Contact($id_contact, $this->context->language->id)))) {
+                    } elseif (Tools::getValue('id_contact') && (!(int)Tools::getValue('id_contact') || !Validate::isLoadedObject($contact = new Contact((int)Tools::getValue('id_contact'), $this->context->language->id)))) {
                         $this->errors[] = Tools::displayError('Please select a subject from the list provided. ');
                     } elseif (!empty($file_attachment['name']) && $file_attachment['error'] != 0) {
                         $this->errors[] = Tools::displayError('An error occurred during the file-upload process.');
@@ -184,7 +184,7 @@ class ContactControllerCore extends FrontController
         
                         if (!count($this->errors)) {
                             $var_list = array(
-                                            '{order_name}' => '-',
+                                            '{order_name}' => Tools::getValue('reference') ? Tools::getValue('reference') :'-',
                                             '{attached_file}' => '-',
                                             '{message}' => Tools::nl2br(stripslashes($message)),
                                             '{email}' =>  $from,
@@ -215,7 +215,7 @@ class ContactControllerCore extends FrontController
                             // echo Tools::getValue('name');
                             // exit;
         
-                            if (!empty($contact->email)) {
+                            if (!empty($contact->email) || !empty(Tools::getValue('from'))) {
                                 if (!Mail::Send(2, 'contact', Mail::l('Message from contact form').' [no_sync]',
                                     $var_list, 'info@euromuscleparts.com', $contact->name, null, null,
                                             $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
