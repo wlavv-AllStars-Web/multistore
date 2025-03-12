@@ -87,7 +87,7 @@
             <div class="form-group col-12 col-lg-4">
                 <label class="col-md-12 form-control-label" for="reference">{l s='Order Reference' d='Shop.Forms.Labels'}<sup>*</sup></label>
                 <div class="col-md-12">
-                  <input id="reference" class="form-control" name="from" type="text" value="{!!$contact.orders}"
+                  <input id="reference" class="form-control" name="reference" type="text" value="{!!$contact.orders}"
                     placeholder="(ex: WNDGVVZLX)">
                 </div>
                 <div class="col-12" style="display: flex;align-items: center;gap: 5px;justify-content:flex-start;padding-top:0.5rem;">
@@ -102,7 +102,7 @@
           <div class="form-group  col-12 col-lg-4">
             <label class="col-md-12 form-control-label" for="name">{l s='Name' d='Shop.Forms.Labels'}<sup>*</sup></label>
             <div class="col-md-12">
-              <input id="name" class="form-control" name="from" type="text" value=""
+              <input id="name" class="form-control" name="name" type="text" value=""
                 placeholder="Name">
             </div>
           </div>
