@@ -308,6 +308,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // the search provider will need a context (language, shop...) to do its job
         $context = $this->getProductSearchContext();
 
+   
 
         // the controller generates the query...
         $query = $this->getProductSearchQuery();
@@ -368,14 +369,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             ));
         }
 
-        // pre($query);
+    
 
 
         // get the parameters containing the encoded facets from the URL
         $encodedFacets = Tools::getValue('q');
 
         // pre($encodedFacets);
-
+     
         /*
          * The controller is agnostic of facets.
          * It's up to the search module to use /define them.
@@ -391,19 +392,20 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
         ]);
-
+       
         // $query
         // ->setQueryType('compat');
         
 
         // We're ready to run the actual query!
+        // pre($provider);
 
         /** @var ProductSearchResult $result */
         $result = $provider->runQuery(
             $context,
             $query
         );
-
+        // pre($query);
         // pre($result);
 
         // if(Tools::getValue('id_compat')){
@@ -441,6 +443,34 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // as for the query anyway
         if (!$result->getCurrentSortOrder()) {
             $result->setCurrentSortOrder($query->getSortOrder());
+        }
+
+        // quickshop
+
+        if (Tools::getValue('quickshop') == 1) {
+            // Get the products array
+            $products = $result->getProducts();
+        
+            // Ensure $products is an array
+            if (!is_array($products)) {
+                error_log('Error: $result->getProducts() is not an array');
+                return;
+            }
+        
+            // Filter products: Keep only those where out_of_stock is 1 or 2
+            $filteredProducts = array_filter($products, function ($product) {
+                return isset($product['out_of_stock']) && ($product['out_of_stock'] == 1 || $product['out_of_stock'] == 2);
+            });
+        
+            // Reindex the array
+            $filteredProducts = array_values($filteredProducts);
+        
+            // Check if $result has a setter method
+            if (method_exists($result, 'setProducts')) {
+                $result->setProducts($filteredProducts);
+            } else {
+                error_log('Error: $result does not have a setProducts method');
+            }
         }
 
         // prepare the products
@@ -502,11 +532,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
             }
         }
-
+       
         // asm wheels
         if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer' || $this->context->shop->id == 2 && $query->getQueryType() == 'search'){
 
-            // pre($query);
+            
 
             if($query->getQueryType()){
                 $type = $query->getQueryType();
@@ -536,7 +566,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $searchString = $query->getSearchString();
             }
 
-
+            // pre($query);
 
             // Fetch category and manufacturer IDs from the query object
             $category = (int) $query->getIdCategory(); 
