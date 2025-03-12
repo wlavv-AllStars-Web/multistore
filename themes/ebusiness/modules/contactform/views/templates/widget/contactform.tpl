@@ -181,6 +181,12 @@
             
           </div>
 
+          <script>
+            function onSubmit(token) {
+                document.querySelector(".contact-form form").submit();
+              }
+          </script>
+
           <div class="whatsapp-contancts">
             <div style="display:flex;align-items:center;justify-content:end;">
               <div style="display:flex;align-items:center;justify-content:center;margin-right:1rem;">

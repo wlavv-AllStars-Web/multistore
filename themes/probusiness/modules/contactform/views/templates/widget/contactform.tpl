@@ -185,6 +185,11 @@
              data-action='submit'>{l s='Send' d='Shop.Theme.Contactform'}</button>
            </div>
  
+           <script>
+            function onSubmit(token) {
+                document.querySelector(".contact-form form").submit();
+              }
+          </script>
  
          </footer>
        {/if}
