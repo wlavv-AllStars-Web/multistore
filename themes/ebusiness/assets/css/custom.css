@@ -2166,6 +2166,14 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* menu mobile */
+
+  #mySidenav li a:active{
+    color: var(--asm-color) !important;
+  }
+
+  /*  */
+
   #product #reviewsMobile{
     padding-bottom: 1rem;
   }
