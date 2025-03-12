@@ -26,6 +26,13 @@
 {* {assign var="language_id" value=Context::getContext->language}
 <pre>{$language_id|print_r}</pre> *}
 <section class="contact-form" style="width:100%;max-width:1440px;">
+{if $confirmation}
+  <div class="alert-success">
+    <ul>
+      <li>Thank you for your message. It has been sent.</li>
+    </ul>
+  </div>
+{/if}
   <div align="center" style="background-color: #d3d3d3;">
     <img alt="contact" src="/img/cms/contact_{$language.iso_code}.jpg" class="img-responsive" style="margin:0 auto;width:100%">
     {* <div style="max-width: 1200px;padding-top: 23px;font-height: 600; color:#000; font-size:16px;margin: 20px auto 40px auto;padding-inline:1rem">
