@@ -315,7 +315,6 @@
         align-items: center;
         font-size: 2rem;
         color: #222;
-        text-transform: capitalize;
         margin-bottom: 30px;
       ">
         <div class="container-not-found-filters" style="text-align: center;">
