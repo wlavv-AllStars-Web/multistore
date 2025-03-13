@@ -446,6 +446,11 @@
 {* <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> *}
 <script>
 
+  function toogleClasslistCar(elem) {
+    event.stopPropagation(); 
+    elem.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("dont_show")
+  }
+
   function toogleClasslist(elem) {
     event.stopPropagation(); 
     elem.nextElementSibling.classList.toggle("dont_show")
