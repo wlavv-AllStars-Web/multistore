@@ -8520,3 +8520,10 @@ input[type="checkbox"]:checked::after {
     right:-34% !important;
   }
 }
+
+
+@media screen and (max-width: 768px) {
+  .add_to_cart_button-mobile .btn-outline-primary {
+    border-radius: .25rem;
+  }
+}
