@@ -1085,7 +1085,7 @@ body {
   }
 
   #my-account #check_vat form {
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
   }
 
   #my-account #check_vat form input{
