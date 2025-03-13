@@ -795,7 +795,7 @@ body {
   }
 
   #banner-news {
-    max-height: 310px;
+    max-height: 341px;
   }
 
   #new-products #main .banner-news-img{
@@ -5621,7 +5621,7 @@ ul {
 }
 
 .thumbnail.product-thumbnail img {
-  max-width: 250px;
+  max-width: 380px;
   height: auto;
 }
 
