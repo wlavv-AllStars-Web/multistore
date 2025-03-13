@@ -1083,6 +1083,15 @@ body {
   .page-my-account #content .links a span.link-item{
     outline: 1px solid #e0e0e0;
   }
+
+  #my-account #check_vat form {
+    flex-wrap: wrap;
+  }
+
+  #my-account #check_vat form input{
+    min-width: 150px;
+    flex: 1;
+  }
 }
 
 @media screen and (max-width: 893px) {
