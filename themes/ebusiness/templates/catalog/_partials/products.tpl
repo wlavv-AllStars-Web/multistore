@@ -178,7 +178,7 @@
               <div class="flip-card-front" onclick="openNavCarSpecs()">
                 <div style="flex-direction:column;justify-content:space-between;">
                   <div class="wheels-selectors">
-                    <img id="wheels-image" class="img-responsive" src="https://www.all-stars-motorsport.com/img/app_icons/wheels_en.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
+                    <img id="wheels-image" class="img-responsive" src="/img/asm/banners/wheels/wheels_{$language.iso_code}.webp" style="margin: 0 auto;max-width: 250px; position: relative; top: -5px;pointer-events: none;padding: 20px;">
                   </div>
                   <div class="wheels-btn" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;">
                     <span style="color: #fff;font-weight:600;">{l s='NEED HELP WITH YOUR WHEELS DETAILS?' d='Shop.Theme.ProductList'}</span>
