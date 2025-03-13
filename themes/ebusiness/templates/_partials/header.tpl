@@ -448,7 +448,7 @@
 
   function toogleClasslistCar(elem) {
     event.stopPropagation(); 
-    elem.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("dont_show")
+    elem.nextElementSibling.querySelector(".model_name").click()
   }
 
   function toogleClasslist(elem) {
