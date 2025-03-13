@@ -25,7 +25,7 @@
  <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
 {* {debug} *}
 <div id="js-product-list">
-  {if $page.body_classes['category-Wheels']}
+  {if $page.body_classes['category-id-227']}
       <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
       <div id="sidenavCarSpecs" class="sidenav">
         <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
@@ -169,7 +169,7 @@
       </article>
     {/if}
 
-    {if $page.body_classes['category-Wheels']}
+    {if $page.body_classes['category-id-227']}
       <article id="banner-wheels" class="d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12">
         <div class="banner-wheels-container" style="display: flex;flex-direction:column;justify-content:space-between;">
           {* <div class="banner-wheels-title" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #ddd;">
