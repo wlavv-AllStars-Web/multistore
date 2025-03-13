@@ -1075,6 +1075,10 @@ body {
   #language_selector #_mobile_language_selector .language-selector-wrapper{
     width: 100%;
   }
+
+  #my-account #check_vat {
+    height: 100%;
+  }
 }
 
 @media screen and (max-width: 893px) {
@@ -8535,7 +8539,4 @@ input[type="checkbox"]:checked::after {
     flex: 1;
   }
 
-  #my-account #check_vat {
-    height: 100%;
-  }
 }
