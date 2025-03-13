@@ -310,7 +310,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
             $newHtml = $this->context->smarty->fetch('catalog/_partials/universal_ajax_products.tpl');
 
-            die(json_encode(['success' => false, 'message' => 'No more products.']));
+            die(json_encode(['success' => false, 'message' => $this->trans('No more products.', [], 'Shop.Theme.CarsProducts')]));
         }
     }
 
