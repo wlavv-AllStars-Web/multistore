@@ -122,7 +122,7 @@
           <small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
         </div>
       </div> *}
-      <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6 d-mobile" id="logout-link" href="{$logout_url}">
+      <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="logout-link" href="{$logout_url}">
         <span class="link-item">
           <i class="fa-solid fa-lock"></i>
           {l s='Logout' d='Shop.Theme.CustomerAccount'}

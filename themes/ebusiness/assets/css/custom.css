@@ -527,6 +527,10 @@ body {
     display: flex !important;
   }
 
+  #my-account .links #logout-link {
+    display: none;
+  }
+
   .section_tabs_video .nav-tabs .nav-item {
     margin-bottom: 0;
     max-width: 230px;
@@ -8525,5 +8529,9 @@ input[type="checkbox"]:checked::after {
 @media screen and (max-width: 768px) {
   .add_to_cart_button-mobile .btn-outline-primary {
     border-radius: .25rem;
+  }
+
+  #my-account .links #logout-link span{
+    flex: 1;
   }
 }
