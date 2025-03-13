@@ -8095,6 +8095,11 @@ input[type="checkbox"]:checked::after {
 
 
 @media (min-width: 992px) {
+
+  .container-dropdown-category > div{
+    flex: 1;
+  }
+
   #new-products .products-selection {
     width: 80%;
     margin: auto;
