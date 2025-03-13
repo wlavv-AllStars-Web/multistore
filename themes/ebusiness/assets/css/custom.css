@@ -810,7 +810,7 @@ body {
 
   #products #js-product-list-top {
     display: flex;
-    /* margin-top: 1rem; */
+    margin-top: .5rem;
   }
 
   #products .category-wheels-top .sort-by-row{
