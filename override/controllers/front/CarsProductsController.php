@@ -5,6 +5,7 @@ use PrestaShop\Module\AsGroup\Core\Product\Search\CustomProductSearchQuery;
 use PrestaShop\PrestaShop\Adapter\Search\SearchProductSearchProvider;
 use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
 use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
+use PrestaShop\PrestaShop\Core\Localization\TranslatorInterface;
 
 class CarsProductsControllerCore extends ProductListingFrontController{
     public $auth = false;
@@ -310,7 +311,10 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
             $newHtml = $this->context->smarty->fetch('catalog/_partials/universal_ajax_products.tpl');
 
-            die(json_encode(['success' => false, 'message' => $this->trans('No more products.', [], 'Shop.Theme.CarsProducts')]));
+            die(json_encode([
+                'success' => false,
+                'message' => $this->trans('No more products.', [], 'Shop.Theme.Cars')
+            ]));
         }
     }
 
