@@ -217,7 +217,7 @@
 	  {* </div> *}
 
 
-    <div class="add_to_cart_button-mobile d-mobile">
+    <div class="add_to_cart_button-mobile d-mobile justify-content-center">
 
     {if count($product['attributes']) > 0}
       <div class="add">
