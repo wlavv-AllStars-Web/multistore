@@ -156,9 +156,12 @@
   {/if}
 
     {if $page.page_name == 'new-products'}
-      <article id="banner-news" class="d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12">
+      <article id="banner-news" class="d-flex flex-column justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12 " style="border-radius: .25rem .25rem 0 0;">
         <div class="banner-news-img">
           <img src="/img/asm/banners/news/news_icon_{$language.iso_code}.webp" />
+        </div>
+        <div class="news-info" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #222;border-radius: 0 0 .25rem .25rem;">
+          <span style="color: #fff;font-weight:600;">{l s="Find out our new products" d="Shop.Theme.ProductList"}</span>
         </div>
         {* <div class="banner-news-title">
           <h1>Novidades</h1>
