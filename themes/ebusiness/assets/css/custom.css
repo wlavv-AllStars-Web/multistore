@@ -810,7 +810,7 @@ body {
 
   #products #js-product-list-top {
     display: flex;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
   }
 
   #products .category-wheels-top .sort-by-row{
@@ -4312,9 +4312,9 @@ ul {
     outline-offset: -2px;
   } */
 
-#js-product-list {
+/* #js-product-list {
   margin-top: 2rem;
-}
+} */
 
 #js-product-list-top {
   max-width: 1350px;
