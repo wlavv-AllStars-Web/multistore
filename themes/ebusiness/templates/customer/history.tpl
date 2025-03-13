@@ -143,6 +143,9 @@
         </div>
       {/foreach}
     </div>
-
+  {else}
+    <div class="alert alert-warning" role="alert">
+      {l s="You have not placed any orders." d="Shop.Theme.CustomerAccount"}
+    </div>
   {/if}
 {/block}
