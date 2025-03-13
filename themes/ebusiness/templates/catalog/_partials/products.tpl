@@ -158,7 +158,7 @@
     {if $page.page_name == 'new-products'}
       <article id="banner-news" class="d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12">
         <div class="banner-news-img">
-          <img src="https://www.all-stars-motorsport.com/img/app_icons/news_icon_en.webp" />
+          <img src="/img/asm/news/news_icon_{$language.iso_code}.webp" />
         </div>
         {* <div class="banner-news-title">
           <h1>Novidades</h1>
