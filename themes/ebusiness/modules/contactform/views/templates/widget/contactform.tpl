@@ -110,7 +110,7 @@
             <label class="col-md-12 form-control-label" for="name">{l s='Name' d='Shop.Forms.Labels'}<sup>*</sup></label>
             <div class="col-md-12">
               <input id="name" class="form-control" name="name" type="text" value=""
-                placeholder="Name">
+                placeholder="{l s='Name' d='Shop.Forms.Labels'}">
             </div>
           </div>
 
