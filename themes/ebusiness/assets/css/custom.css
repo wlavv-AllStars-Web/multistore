@@ -6285,10 +6285,19 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
-/* compats */
-.versions_model_content {
-  padding: .5rem 0;
-}
+  /* compats */
+  .versions_model_content {
+    padding: .5rem 0;
+    background-color: #444;
+    border-radius: .25rem;
+    margin-top: .25rem;
+  }
+
+  .versions_model_content .type_selector{
+    padding: .25rem;
+    color: #fff;
+  }
+
   /*  */
   #product #product_reviews.desktop {
     padding-bottom: 2rem !important;
