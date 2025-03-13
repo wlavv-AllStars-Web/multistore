@@ -156,7 +156,7 @@
   {/if}
 
     {if $page.page_name == 'new-products'}
-      <article id="banner-news" class="d-flex flex-column justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12 " style="border-radius: .25rem .25rem 0 0;">
+      <article id="banner-news" class="d-flex flex-column justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12 " style="border-radius: .25rem .25rem 0 0;">
         <div class="banner-news-img">
           <img src="/img/asm/banners/news/news_icon_{$language.iso_code}.webp" />
         </div>
@@ -170,7 +170,7 @@
     {/if}
 
     {if $page.body_classes['category-Wheels']}
-      <article id="banner-wheels" class="d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12">
+      <article id="banner-wheels" class="d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12">
         <div class="banner-wheels-container" style="display: flex;flex-direction:column;justify-content:space-between;">
           {* <div class="banner-wheels-title" style="display:flex;justify-content:center;padding:.5rem 1rem;background: #ddd;">
             <h1 id="wheels-title" style="margin-bottom: 0;font-weight:600;">WHEELS</h1>
