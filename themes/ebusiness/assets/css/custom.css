@@ -635,7 +635,8 @@ body {
 
   #productList article .banner-news-img{
     /* outline: 1px solid #d8d8d8; */
-    border-radius: .25rem;
+    /* border-radius: .25rem; */
+    border-radius: .25rem .25rem 0 0;
     outline-offset: -1px;
   }
 
