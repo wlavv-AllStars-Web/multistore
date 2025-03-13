@@ -139,7 +139,16 @@
         {/if}
       {/block}
     {/if}
-    <div class="product-description" style="color: black;">
+    <div class="product-description" style="color: black;padding: .5rem 0;">
+
+      {if count($product['attributes']) > 0}
+      <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
+        {l s='More variations available' d='Shop.Theme.Actions'}
+      </div>
+      {else}
+        <div class="variantionsProductList" style="min-height:33px"></div>
+      {/if}
+  
     
       {block name='product_name'}
         {* <h4 class="h3 product-title"  itemprop="name"><a style="color: black;" href="{$product.url}">{$product.name|truncate:30:'...'}</a></h4> *}
@@ -187,13 +196,6 @@
 	      {* {hook h='displayProductListReviews' product=$product} *}
 	  {* </div> *}
 
-    {if count($product['attributes']) > 0}
-    <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
-      {l s='More variations available' d='Shop.Theme.Actions'}
-    </div>
-    {else}
-      <div class="variantionsProductList" style="min-height:33px"></div>
-    {/if}
 
     <div class="add_to_cart_button-mobile d-mobile">
 
