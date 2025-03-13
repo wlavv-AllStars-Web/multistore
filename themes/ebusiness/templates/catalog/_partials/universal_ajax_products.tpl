@@ -54,7 +54,7 @@
                             productListUniversals.insertAdjacentHTML("beforeend", data.product);
                           }
                       }else{
-                        document.querySelector(".noMoreProducts").innerHTML = {l s="No more products" d="Shop.Theme.Universals"}
+                        document.querySelector(".noMoreProducts").innerHTML = "{l s="No more products" d="Shop.Theme.Universals"}"
                         document.querySelector(".noMoreProducts").setAttribute('list_complete',true)
                       }
         
