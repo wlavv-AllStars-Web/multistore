@@ -28,7 +28,7 @@
 {* <pre>{print_r($product['category'],1)}</pre> *}
 {* <pre>{$ur|print_r}</pre> *}
 {* <pre>{$product|print_r}</pre> *}
-<article class="product-miniature {if $product.pack}product-pack-miniature{/if} js-product-miniature d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
+<article class="product-miniature {if $product.pack}product-pack-miniature{/if} js-product-miniature d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
   <div class="thumbnail-container" style="width: 526px;height:349px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative">
     <div class="image_item_product" style="border: 0;">
     {block name='product_thumbnail'}
@@ -141,14 +141,14 @@
     {/if}
     <div class="product-description" style="color: black;padding: .5rem 0;">
 
-      {if count($product['attributes']) > 0}
+      {* {if count($product['attributes']) > 0}
       <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
         {l s='More variations available' d='Shop.Theme.Actions'}
       </div>
       {else}
         <div class="variantionsProductList" style="min-height:33px"></div>
       {/if}
-  
+   *}
     
       {block name='product_name'}
         {* <h4 class="h3 product-title"  itemprop="name"><a style="color: black;" href="{$product.url}">{$product.name|truncate:30:'...'}</a></h4> *}
@@ -156,7 +156,26 @@
           <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem;margin:0;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
           <div class="add_to_cart_button d-desktop" style="margin-right: 1rem;">
 
-          
+          {if count($product['attributes']) > 0}
+            <div class="add">
+              <button
+                class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
+                {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
+                {* data-button-action="add-to-cart"
+                data-dismiss="modal"
+                type="submit" *}
+                style="margin-top: 0;"
+                {* {if !$product.add_to_cart_url}
+                  disabled
+                {/if} *}
+                onclick="location.href = '{$product.url}'"
+
+              >
+                <i class="material-icons small">add_circle</i>
+
+              </button>
+            </div>
+          {else}
           <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
           {* <form action="{if $product.pack}{pm_advancedpack::getPackAddCartURL($product.id)}{else}{$urls.pages.cart}{/if}" method="post" id="{if $product.pack}add-to-cart-form{else}add-to-cart-or-refresh{/if}"> *}
             <input type="hidden" name="token" value="{$static_token}">
@@ -182,6 +201,7 @@
             </div>
             {/if}
           </form>
+          {/if}
 
           
 
@@ -199,6 +219,26 @@
 
     <div class="add_to_cart_button-mobile d-mobile">
 
+    {if count($product['attributes']) > 0}
+      <div class="add">
+        <button
+          class="btn btn-outline-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
+          {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
+          {* data-button-action="add-to-cart"
+          data-dismiss="modal"
+          type="submit" *}
+          style="margin-top: 0;"
+          {* {if !$product.add_to_cart_url}
+            disabled
+          {/if} *}
+          onclick="location.href = '{$product.url}'"
+
+        >
+          {l s="More variations" d="Shop.Theme.ProductList"}
+
+        </button>
+      </div>
+    {else}
       <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
               <input type="hidden" name="token" value="{$static_token}">
               <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
@@ -222,6 +262,7 @@
             </div>
               {/if}
       </form>
+      {/if}
 
     </div>
     {* <pre>{$product.prices|print_r}</pre> *}
@@ -236,9 +277,9 @@
       
       
     </div>
-    {* {block name='product_flags'}
+    {block name='product_flags'}
       <ul class="product-flags">
-        {foreach from=$product.flags item=flag}
+        {* {foreach from=$product.flags item=flag}
             {if $flag.type != 'discount'}
               <li class="{$flag.type}">
                 {$flag.label}
@@ -253,9 +294,26 @@
                 </li>
               {/if}
             {/if}
-        {/if}
+        {/if} *}
+        {if count($product['attributes']) > 0}
+          <div class="variantionsProductList" 
+            style="color: var(--asm-color);
+                  text-align:center;
+                  display: block;
+                  line-height: 17px;
+                  color: var(--asm-color);
+                  text-align: center;
+                  font-size: 14px;
+                  padding:0.5rem;">
+            
+            {* {l s='More variations available' d='Shop.Theme.Actions'} *}
+            {l s='More variations' d='Shop.Theme.Actions'}
+          </div>
+          {* {else}
+            <div class="variantionsProductList" style="min-height:33px"></div> *}
+          {/if}
       </ul>
-    {/block} *}
+    {/block}
   </div>
 
 </article>
