@@ -465,6 +465,33 @@
   //   }
   // });
 
+  let lastScrollY = window.scrollY;
+let isScrolled = false;
+
+document.addEventListener("scroll", function () {
+  requestAnimationFrame(() => {
+    const header = document.getElementById("header");
+    let currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      // Scrolling down past 80px
+      if (!isScrolled) {
+        header.classList.add("scrolled");
+        isScrolled = true;
+      }
+    } else if (currentScrollY < 10) {
+      // Scrolling all the way back up
+      if (isScrolled) {
+        header.classList.remove("scrolled");
+        isScrolled = false;
+      }
+    }
+
+    lastScrollY = currentScrollY;
+  });
+});
+
+
   const dropdownButton = document.querySelector(".dropdown-brands");
 const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
 
