@@ -49,7 +49,7 @@
               {foreach from=$desktop['banners'] item=item key=key name=name}
                 {if !empty($item['image_en'])}
                 <div class="swiper-slide">
-                  <a href="{$item['link']}">
+                  <a href="{l s="brand" d="Shop.Theme.Homepage"}/{$item['link']}">
                     <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 </div>
