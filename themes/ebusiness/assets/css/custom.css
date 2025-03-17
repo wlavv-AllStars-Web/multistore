@@ -8385,6 +8385,19 @@ input[type="checkbox"]:checked::after {
     font-weight: 600;
   }
 
+  .product-accessories .variantionsProductList{
+    /* min-height: 33px !important; */
+    position: absolute;
+    right: -40%;
+    transform-origin: center;
+    transform: rotate(45deg);
+    top: 1rem;
+    background: #222;
+    color: #fff !important;
+    width: 100%;
+    font-weight: 600;
+  }
+
   #banner-news {
     max-height: 339px;
   }
