@@ -157,6 +157,7 @@
           <div class="add_to_cart_button d-desktop" style="margin-right: 1rem;">
 
           {if count($product['attributes']) > 0}
+            {if !$complementary}
             <div class="add">
               <button
                 class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
@@ -175,6 +176,7 @@
 
               </button>
             </div>
+            {/if}
           {else}
           <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
           {* <form action="{if $product.pack}{pm_advancedpack::getPackAddCartURL($product.id)}{else}{$urls.pages.cart}{/if}" method="post" id="{if $product.pack}add-to-cart-form{else}add-to-cart-or-refresh{/if}"> *}
