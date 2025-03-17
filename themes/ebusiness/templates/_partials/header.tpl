@@ -456,14 +456,32 @@
     elem.nextElementSibling.classList.toggle("dont_show")
   }
 
-  document.addEventListener("scroll", function () {
+  // document.addEventListener("scroll", function () {
+  //   const header = document.getElementById("header");
+  //   if (window.scrollY > 80) { // Adjust scroll threshold as needed
+  //     header.classList.add("scrolled");
+  //   } else {
+  //     header.classList.remove("scrolled");
+  //   }
+  // });
+
+  let isScrolling;
+
+document.addEventListener("scroll", function () {
+  clearTimeout(isScrolling);
+
+  isScrolling = setTimeout(() => {
     const header = document.getElementById("header");
-    if (window.scrollY > 80) { // Adjust scroll threshold as needed
+
+    if (window.scrollY > 80) {
       header.classList.add("scrolled");
     } else {
       header.classList.remove("scrolled");
     }
-  });
+  }, 100); // Adjust delay as needed
+});
+
+
 
   const dropdownButton = document.querySelector(".dropdown-brands");
 const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
