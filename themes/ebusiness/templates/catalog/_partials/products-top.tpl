@@ -34,12 +34,12 @@
   {count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
   </div>
 
-  <div class="btn-toggleFilters mobile" {if $page.body_classes['category-Wheels']}onclick="toggleFiltersWheels()"{else}onclick="toggleFilters()"{/if}>
+  <div class="btn-toggleFilters mobile" {if $page.body_classes['category-id-227']} onclick="toggleFiltersWheels()"{else}onclick="toggleFilters()"{/if}>
     <span><i class="fa-solid fa-filter"></i></span>
     <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
   </div>
 
-{if $page.body_classes['category-Wheels']} 
+{if $page.body_classes['category-id-227']} 
 
   <div class="category-wheels-top">
   {foreach $asw_features AS $feature key=key}
