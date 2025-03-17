@@ -1173,6 +1173,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // pre($pagination);
 
+            
 
             $searchVariables = [
                 'result' => $result,
