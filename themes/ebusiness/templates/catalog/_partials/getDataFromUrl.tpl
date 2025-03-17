@@ -120,7 +120,7 @@
  
         }
         $('#name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
-        $('#name_items_per_page').html('{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>' + deleteHtmlNrItems);
+        $('#name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>');
 
         if ($('body#category').length > 0) {
             category_name = document.querySelector("nav.breadcrumb li:last-child a span").textContent
@@ -130,7 +130,7 @@
             //     category_name = $('#category_element_' + idCategory).text();
         }
         // console.log(deleteHtmlCategory)
-        $('#name_category').html('{l s="By Category" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + category_name + '</span>' + deleteHtmlCategory);
+        $('#name_category').html(deleteHtmlCategory + '{l s="By Category" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + category_name + '</span>');
 
         if ($('body#manufacturer').length > 0) { manufacturer = $('#id_current_manufacturer_name').val();
         }else{
@@ -202,7 +202,9 @@
     }
 
     function setNewsFromURL(){
-	    if($('body#new-products').length > 0) news = 1;
+        if($('body#new-products').length > 0) {
+            news = 1;  // Set value of news
+        }
         $('#multiFilter_news').val(news);
     }
 
