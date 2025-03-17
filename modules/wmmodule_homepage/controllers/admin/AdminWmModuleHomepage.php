@@ -456,6 +456,7 @@ class AdminWmModuleHomepageController extends AdminController{
             $field = 'id_compatibility';
             $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE ' . $field . ' = "'. $id_compat . '" AND zone=' . $zone ." AND id_shop=" . $id_shop;
         }elseif($element == 'video'){
+            $field = 'id_video';
             $sql = 'SELECT * FROM '._DB_PREFIX_.'asm_homepage_manufacturers WHERE id_video > 0 AND id_shop=' .$id_shop;
         }elseif($element == 'miniature'){
             $field = 'id_miniature';
