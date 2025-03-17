@@ -2,6 +2,8 @@
 
 class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
 {
+    public $car_name;
+    
     public function initContent()
     {
         parent::initContent();
@@ -44,6 +46,8 @@ class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
                 $car['images'] = $imageUrls;
             }
 
+            $this->car_name = $car['name'];
+
             // Assign data to Smarty
             $this->context->smarty->assign("languages", $languages);
             $this->context->smarty->assign("context", $context);
@@ -80,7 +84,7 @@ class asg_carsFrontAsgCarsModuleFrontController extends ModuleFrontController
         $breadcrumb = parent::getBreadcrumbLinks();
 
         $breadcrumb['links'][] = [
-            'title' => $this->trans('Our Cars', [], 'Shop.Theme.MyCars'),
+            'title' => sprintf('%s %s', $this->trans('Our Cars', [], 'Shop.Theme.MyCars'), $this->car_name),
             'url' => $this->context->link->getCMSLink(28),
         ];
 
