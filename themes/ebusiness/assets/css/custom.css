@@ -511,7 +511,7 @@ body {
   border-radius: .25rem;
 }
 
-#name_sort_by {
+#name_sort_by span{
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
