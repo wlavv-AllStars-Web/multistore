@@ -2274,6 +2274,11 @@ body {
     margin-top: 0;
   }
 
+  .tooltip .tooltiptext {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   /* menu mobile */
 
   #mySidenav li a:active{
