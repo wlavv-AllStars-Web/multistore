@@ -780,12 +780,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
         
-            $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN (227)';
+            $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (227)';
             // pre($sql_products_of_category);
         
 
             if (!empty($product_options)) {
-                $sql_products_of_category .= ' AND id_product IN (' . implode(',', $product_options) . ')';
+                $sql_products_of_category .= ' AND pc.id_product IN (' . implode(',', $product_options) . ')';
             }
             // elseif(count($ids_products) > 0 ){
             //     $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
@@ -857,7 +857,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             
                         // Additional processing for "Brand" feature
                         if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
-                            $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name="' . $value["value"] . '"';
+
+                        
+                            $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
+
                             $brandImg = Db::getInstance()->getValue($sqlBrandImg);
             
                             // Add img field to $value
