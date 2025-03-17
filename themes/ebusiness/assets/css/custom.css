@@ -7617,6 +7617,7 @@ input[type="checkbox"]:checked::after {
     z-index: 9999;
     transition: all 0.3s ease-in-out;
   }
+  
   #header .header-top > .container-fluid {
     max-height: 100px; /* Set this to the actual height of your logo */
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -8502,7 +8503,7 @@ input[type="checkbox"]:checked::after {
   .products-sort-order .select-title i {
     color: var(--asm-color) !important;
   }
-  .products-sort-order .select-title span {
+  .products-sort-order .select-title span > span {
     color: var(--asm-color) !important;
   }
 }
@@ -8550,7 +8551,7 @@ input[type="checkbox"]:checked::after {
   .products-sort-order .select-title i {
     color: var(--asm-color) !important;
   }
-  .products-sort-order .select-title span {
+  .products-sort-order .select-title span > span {
     color: var(--asm-color) !important;
   }
 }
