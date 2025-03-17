@@ -30,7 +30,7 @@
           <ol itemscope itemtype="http://schema.org/BreadcrumbList">
           {* <pre>{print_r($breadcrumb,1)}</pre> *}
             {foreach from=$breadcrumb.links item=path name=breadcrumb}
-              {if str_contains($path.title, 'Home') == true || str_contains($path.title, 'Accueil') == true || str_contains($path.title, 'Página principal') == true}
+              {if str_contains($path.title, 'Home') == true || str_contains($path.title, 'Accueil') == true || str_contains($path.title, 'Inicio') == true  || str_contains($path.title, 'Página principal') == true}
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                   <a itemprop="item" href="{$path.url}">
                   <i class="fa-solid fa-house" ></i>
