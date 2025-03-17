@@ -525,6 +525,7 @@ body {
   line-clamp: 1;
   -webkit-box-orient: vertical;
   text-wrap: wrap;
+  width: fit-content;
 }
 
 @media (min-width: 992px) {
