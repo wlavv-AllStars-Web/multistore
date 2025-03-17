@@ -50,7 +50,7 @@
                 {if !empty($item['image_en'])}
                 <div class="swiper-slide">
                   <a href="{$item['link']}">
-                    <img  src="{$item['image_en']}"/>
+                    <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 </div>
                 {/if}
@@ -66,11 +66,11 @@
               <div class="banner_50">
                 {if $item['id_compat'] > 0}
                   <a href="{$urls.current_url}cars-products?id_compat={$item['id_compat']}">
-                    <img src="{$item['image_en']}" />
+                    <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 {else}
                   <a href="{l s="brand" d="Shop.Theme.Homepage"}/{$item['link']}">
-                    <img src="{$item['image_en']}" />
+                    <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 {/if}
               </div>
@@ -82,11 +82,11 @@
               <div class="banner_33">
                 {if $item['id_compat'] > 0}
                   <a href="{$urls.current_url}cars-products?id_compat={$item['id_compat']}">
-                    <img src="{$item['image_en']}" />
+                    <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 {else}
                   <a href="{l s="brand" d="Shop.Theme.Homepage"}/{$item['link']}">
-                    <img src="{$item['image_en']}" />
+                    <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
                 {/if}
               </div>
