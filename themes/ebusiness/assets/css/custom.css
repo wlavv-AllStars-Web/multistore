@@ -8364,6 +8364,10 @@ input[type="checkbox"]:checked::after {
   /* padding: 20px; */
 }
 
+.product-accessories .variantionsProductList{
+  display: none;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
@@ -8385,18 +8389,7 @@ input[type="checkbox"]:checked::after {
     font-weight: 600;
   }
 
-  .product-accessories .variantionsProductList{
-    /* min-height: 33px !important; */
-    position: absolute;
-    right: -40%;
-    transform-origin: center;
-    transform: rotate(45deg);
-    top: 1rem;
-    background: #222;
-    color: #fff !important;
-    width: 100%;
-    font-weight: 600;
-  }
+
 
   #banner-news {
     max-height: 339px;
