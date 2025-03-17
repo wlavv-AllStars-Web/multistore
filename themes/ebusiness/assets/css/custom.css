@@ -532,6 +532,57 @@ body {
   width: fit-content;
 }
 
+#name_category {
+  display: flex;
+  text-wrap: nowrap;
+  gap: .5rem;
+  align-items: baseline;
+  justify-content: center;
+}
+#name_category span{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-wrap: wrap;
+  width: fit-content;
+}
+
+#name_brand {
+  display: flex;
+  text-wrap: nowrap;
+  gap: .5rem;
+  align-items: baseline;
+  justify-content: center;
+}
+#name_brand span{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-wrap: wrap;
+  width: fit-content;
+}
+
+#name_items_per_page {
+  display: flex;
+  text-wrap: nowrap;
+  gap: .5rem;
+  align-items: baseline;
+  justify-content: center;
+}
+#name_items_per_page span{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-wrap: wrap;
+  width: fit-content;
+}
+
 @media (min-width: 992px) {
   .d-mobile{
     display: none !important;
