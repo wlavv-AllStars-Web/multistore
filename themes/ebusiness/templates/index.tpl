@@ -69,7 +69,7 @@
                     <img src="{$item['image_en']}" />
                   </a>
                 {else}
-                  <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
+                  <a href="{l s="brand" d="Shop.Theme.Homepage"}/{$item['link']}">
                     <img src="{$item['image_en']}" />
                   </a>
                 {/if}
@@ -85,7 +85,7 @@
                     <img src="{$item['image_en']}" />
                   </a>
                 {else}
-                  <a href="{if $key == 0}{l s="brand" d="Shop.Theme.Homepage"}/{/if}{$item['link']}">
+                  <a href="{l s="brand" d="Shop.Theme.Homepage"}/{$item['link']}">
                     <img src="{$item['image_en']}" />
                   </a>
                 {/if}
