@@ -2270,6 +2270,10 @@ body {
 
   /*  */
 
+  label[for="messageCheckBox"]{
+    text-align: left;
+  }
+
   #product #reviewsMobile{
     padding-bottom: 1rem;
   }
