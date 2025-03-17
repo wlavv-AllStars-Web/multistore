@@ -323,10 +323,35 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             if (!isset($product['stock_quantity'])) {
                 continue; // Skip if 'stock_quantity' is not set
             }
+            
         
-            if ($lowestStock === null || $product['stock_quantity'] < $lowestStock) {
-                $lowestStock = $product['stock_quantity'];
-                $lowestStockProduct = $product;
+            if ($product['pack']) {
+                $packContents = AdvancedPack::getPackContent($product['id_product']); // Get pack content
+        
+                foreach ($packContents as $packItem) {
+                    $idProduct = $packItem['id_product'];
+                    $idProductAttribute = isset($packItem['default_id_product_attribute']) ? $packItem['default_id_product_attribute'] : 0;
+        
+                    // Get stock for each product in the pack
+                    $stockQuantity = StockAvailable::getQuantityAvailableByProduct($idProduct, $idProductAttribute);
+                    
+                    // pre($stockQuantity);
+        
+                    if ($lowestStock === null || $stockQuantity < $lowestStock) {
+                        $lowestStock = $stockQuantity;
+                        $lowestStockProduct = [
+                            'id_product' => $idProduct,
+                            'id_product_attribute' => $idProductAttribute,
+                            'stock_quantity' => $stockQuantity,
+                        ];
+                    }
+                }
+            } else {
+                // Regular product stock check
+                if ($lowestStock === null || $product['stock_quantity'] < $lowestStock) {
+                    $lowestStock = $product['stock_quantity'];
+                    $lowestStockProduct = $product;
+                }
             }
         }
         
