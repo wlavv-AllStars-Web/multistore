@@ -154,6 +154,10 @@ body {
   display: none !important;
 }
 
+.register_form_cell a{
+  text-transform: initial;
+}
+
 .form-control-comment{
   color: #666 !important;
 }
