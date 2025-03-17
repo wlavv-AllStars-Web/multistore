@@ -583,6 +583,10 @@ body {
   width: fit-content;
 }
 
+.btn-primary, .btn-secondary, .btn-tertiary {
+  text-transform: initial;
+}
+
 @media (min-width: 992px) {
   .d-mobile{
     display: none !important;

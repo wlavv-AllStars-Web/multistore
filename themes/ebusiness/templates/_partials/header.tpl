@@ -466,37 +466,31 @@
   // });
 
   let lastScrollY = window.scrollY;
-  let isScrolled = false;
-  let isLocked = false; // Prevents unnecessary toggles
+  let isHidden = false;
 
   document.addEventListener("scroll", function () {
     requestAnimationFrame(() => {
       const header = document.getElementById("header");
       let currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Ensure scrolling past 100px before applying class
-        if (!isScrolled) {
+      if (currentScrollY > 100) {
+        // User scrolled past 100px, hide the header
+        if (!isHidden) {
           header.classList.add("scrolled");
-          isScrolled = true;
-          isLocked = true; // Lock state to prevent flickering
+          isHidden = true;
         }
-      } else if (currentScrollY < 20) {
-        // Remove class only if scrolled far back up
-        if (isScrolled && !isLocked) {
+      } else if (currentScrollY === 0) {
+        // User is back at the top, show the header
+        if (isHidden) {
           header.classList.remove("scrolled");
-          isScrolled = false;
+          isHidden = false;
         }
-      }
-
-      // Unlock if scrolling further up (preventing quick toggles)
-      if (currentScrollY < 80) {
-        isLocked = false;
       }
 
       lastScrollY = currentScrollY;
     });
   });
+
 
 
   const dropdownButton = document.querySelector(".dropdown-brands");
