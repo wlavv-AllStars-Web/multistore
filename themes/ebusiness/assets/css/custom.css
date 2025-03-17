@@ -516,6 +516,7 @@ body {
   text-wrap: nowrap;
   gap: .5rem;
   align-items: baseline;
+  justify-content: center;
 }
 #name_sort_by span{
   overflow: hidden;
