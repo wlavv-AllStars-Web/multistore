@@ -511,12 +511,19 @@ body {
   border-radius: .25rem;
 }
 
+#name_sort_by {
+  display: flex;
+  text-wrap: nowrap;
+  gap: .5rem;
+  align-items: baseline;
+}
 #name_sort_by span{
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   line-clamp: 1;
   -webkit-box-orient: vertical;
+  text-wrap: wrap;
 }
 
 @media (min-width: 992px) {
