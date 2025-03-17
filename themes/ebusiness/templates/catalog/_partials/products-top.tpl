@@ -71,8 +71,8 @@
 
             {if $countChecked == 1}
               {foreach $feature['values'] AS $value}
-                {if $value['checked'] == 1 && $feature['name'] == 'Brand'}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
-                {if $value['checked'] == 1 && !($feature['name'] == 'Brand')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: fit-content;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
+                {if $value['checked'] == 1 && ($feature['name'] == 'Brand' || $feature['name'] == 'Marca' || $feature['name'] == 'Marque')}<img src="{$value['img']}" style="width: auto;max-height:34px;max-width:131px;"/>{/if}
+                {if $value['checked'] == 1 && !($feature['name'] == 'Brand'|| $feature['name'] == 'Marca' || $feature['name'] == 'Marque')}<span class="badge badge-dark" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;max-width: fit-content;background: var(--asm-color);margin-right: .5rem">{$value['value']}</span>{/if}
               {/foreach}
             {elseif $countChecked > 1}
               <span class="badge" style="font-weight: 500;color: #fff;font-size: .85rem;padding: .35rem;min-width: 55px;background: var(--asm-color);margin-right: .5rem;max-width: fit-content;">{$countChecked} {l s="filters" d="Shop.Theme.ProductList"}</span>
