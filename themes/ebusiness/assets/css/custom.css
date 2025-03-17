@@ -2268,6 +2268,12 @@ body {
 }
 
 @media (max-width: 563px) {
+  /* product page */
+  #product-availability{
+    display: flex !important;
+    margin-top: 0;
+  }
+
   /* menu mobile */
 
   #mySidenav li a:active{
