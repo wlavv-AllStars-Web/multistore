@@ -504,7 +504,7 @@
                 />
               {/if}
             </div>
-            {* <div class="form_total_price" style="width: 100%;border:0;margin-top:1rem;">
+            <div class="form_total_price" style="width: 100%;border:0;margin-top:1rem;">
               <span style="font-size: 1rem;font-weight: 600;color: #333;">{l s='Total' mod='ets_onepagecheckout'}:</span>
               <span class="product-price" style="font-weight: 500;font-size:1rem;">
                 <span>
@@ -515,7 +515,7 @@
                   {/if}
                 </span>
               </span>
-            </div> *}
+            </div>
           </div>
         </div>
 
