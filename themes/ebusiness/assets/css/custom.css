@@ -158,6 +158,10 @@ body {
   text-transform: initial;
 }
 
+.page-my-account #content .links a{
+  text-transform: initial;
+}
+
 .form-control-comment{
   color: #666 !important;
 }
