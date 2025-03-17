@@ -504,6 +504,10 @@ body {
 
 }
 
+#js-product-list-top .box-sortby .dropdown-menu {
+  z-index: 9000;
+}
+
 .btn-primary{
   border-radius: .25rem;
 }
