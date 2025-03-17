@@ -848,7 +848,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         }
             
                         // Additional processing for "Brand" feature
-                        if ($feature['name'] === 'Brand') {
+                        if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
                             $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name="' . $value["value"] . '"';
                             $brandImg = Db::getInstance()->getValue($sqlBrandImg);
             
