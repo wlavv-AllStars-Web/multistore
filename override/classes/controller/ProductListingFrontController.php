@@ -705,6 +705,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
             }  
 
+            // pre($product_options);
 
             $selected_filter_feature = [];
             $selected_features = null;
@@ -729,6 +730,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     ' ORDER BY name DESC';
                     
                     $feature_group = Db::getInstance()->getValue($sqlFeature);
+
+                    
                     
                     if($selected_feature[1] == 0){
                         $feature_value = 'ALL';
@@ -768,11 +771,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 
             }
 
+            // pre($feature_group);
+
             // pre($selected_filter_feature);
             $default_products_per_page = max(1, (int) Configuration::get('PS_PRODUCTS_PER_PAGE'));
             $currentPage = (int) $query->getPage(); // Get the current page from the query object
             $offset = ($currentPage - 1) * $default_products_per_page;
 
+
+        
             $sql_products_of_category = 'SELECT * FROM ps_category_product WHERE id_category IN (227)';
             // pre($sql_products_of_category);
         
@@ -788,6 +795,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
             
+            // pre($products_227);
 
             $ids_prods = array();
             $features  = array();
@@ -883,6 +891,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             );
             
 
+            if(empty($product_options)){
+                $this->context->smarty->assign('no_products', true);
+            }
             // $noProducts = count($products) < 1 ? 1 : 0;
             // $this->context->smarty->assign('noProducts', $noProducts);
 

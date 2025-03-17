@@ -307,7 +307,7 @@
 
     {* <pre>{$page|print_r}</pre> *}
     {* <pre>{$listing|print_r}</pre> *}
-    {if $listing.products|count < 1}
+    {if $listing.products|count < 1 || $no_products}
       <div style="
         display: flex;
         flex: 1;
