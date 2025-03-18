@@ -495,7 +495,7 @@ class OrderHistoryCore extends ObjectModel
                     LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON o.`id_customer` = c.`id_customer`
                     LEFT JOIN `' . _DB_PREFIX_ . 'order_state` os ON oh.`id_order_state` = os.`id_order_state`
                     LEFT JOIN `' . _DB_PREFIX_ . 'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = o.`id_lang`)
-                WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`id_order_state` IN (3,6,8,10)');
+                WHERE oh.`id_order_history` = ' . (int) $this->id . ' AND os.`id_order_state` IN (3,4,6,8,10)');
         }
         
         // echo 'SELECT osl.`template`, c.`lastname`, c.`firstname`, osl.`name` AS osname, c.`email`, os.`module_name`, os.`id_order_state`, os.`pdf_invoice`, os.`pdf_delivery`
