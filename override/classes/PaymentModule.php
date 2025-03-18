@@ -595,7 +595,7 @@ abstract class PaymentModuleCore extends Module
             $order = new Order((int) $order->id);
 
             // Send an e-mail to customer (one order = one email)
-            if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $this->context->customer->id) {
+            if ($id_order_state != Configuration::get('PS_OS_ERROR') && $id_order_state != Configuration::get('PS_OS_CANCELED') && $id_order_state != 2  && $this->context->customer->id) {
                 $invoice = new Address((int) $order->id_address_invoice);
                 $delivery = new Address((int) $order->id_address_delivery);
                 $delivery_state = $delivery->id_state ? new State((int) $delivery->id_state) : false;
