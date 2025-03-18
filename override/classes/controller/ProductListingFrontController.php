@@ -918,7 +918,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                         // If a manufacturer is found, assign the image path
                                         if ($brandImg) {
                                             $value['img'] = "/img/asm/wheels/" . $brandImg . ".webp?t=3";
-                                            pre($value);
+                                            // pre($value);
                                         } else {
                                             if($value['value'] == 'Gram Lights'){
                                                 $value['img'] = "/img/asm/wheels/170.webp?t=3";
