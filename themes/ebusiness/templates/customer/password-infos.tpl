@@ -22,16 +22,27 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-{extends file='page.tpl'}
+ {extends file='page.tpl'}
 
-{block name='page_title'}
-  {l s='Forgot your password?' d='Shop.Theme.CustomerAccount'}
-{/block}
-
-{block name='page_content_container'}{/block}
-
-{block name='page_footer'}
-  <ul>
-    <li><a href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
-  </ul>
-{/block}
+ {block name='page_title'}
+   {l s='Forgot your password?' d='Shop.Theme.CustomerAccount'}
+ {/block}
+ 
+ {block name='page_content_container'}
+     {if empty($errors)}
+         <div class="alert alert-success" role="alert">
+             {$successes[0]}
+         </div>
+     {else}
+         <div class="alert alert-danger" role="alert">
+           {$errors[0]}
+         </div>
+     {/if}
+ {/block}
+ 
+ {block name='page_footer'}
+   <ul>
+     <li><a href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
+   </ul>
+ {/block}
+ 
