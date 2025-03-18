@@ -803,6 +803,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             
             // pre($products_227);
 
+            $formatted_products_227 = [];
+            foreach ($products_227 as $product) {
+                $formatted_products_227[] = ['id_product' => $product['id_product']];
+            }
+
+            $result->setProducts($formatted_products_227);
+            $result->setTotalProductsCount(count($formatted_products_227));
+
+            $pagination = $this->getTemplateVarPagination(
+                $query,
+                $result
+            );
+
             $ids_prods = array();
             $features  = array();
 
