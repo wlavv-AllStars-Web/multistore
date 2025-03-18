@@ -24,11 +24,14 @@
  *}
  {extends file='page.tpl'}
 
+
  {block name='page_title'}
-   {l s='Forgot your password?' d='Shop.Theme.CustomerAccount'}
+
  {/block}
  
  {block name='page_content_container'}
+ <div style="display:flex;flex-direction:column;padding:2rem;justify-content:space-between;align-items:center;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;border-radius: .25rem;gap:1rem;">
+     <h1>{l s='Forgot your password?' d='Shop.Theme.CustomerAccount'}</h1>
      {if empty($errors)}
          <div class="alert alert-success" role="alert">
              {$successes[0]}
@@ -38,11 +41,13 @@
            {$errors[0]}
          </div>
      {/if}
+        <ul>
+         <li><a class="btn btn-primary" href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
+       </ul>
+  </div>
  {/block}
  
  {block name='page_footer'}
-   <ul>
-     <li><a href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
-   </ul>
+   
  {/block}
  
