@@ -122,7 +122,7 @@
       }
     </style>
   {/if}
-  <div class="products row" id="productList" style="margin-right: auto;min-height: 40dvh;">
+  <div class="products row" id="productList" style="margin-right: auto;min-height: 41dvh;">
   {if $cars_products_page}
     {if $compat}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center  col-lg-3 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;border-radius:0.25rem;margin-bottom: 2rem;" id_compat="{$compat['id_compat']}">
