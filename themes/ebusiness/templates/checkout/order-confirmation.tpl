@@ -116,7 +116,7 @@
                 <p>{l s='Bank transfers relating to orders placed on our ALL STARS MOTORSPORT platform must be made exclusively to our account, the details of which will be communicated to you by email in the next few seconds.' d="Shop.Theme.Checkout"}</p>
               </div> *}
             </div>
-          {elseif $paymentMethod == 'ogone'}
+          {elseif $paymentMethod == 'worldlineop'}
             <div style="display: flex;flex-direction:column;gap:1rem;">
               <div>
                 <p>{l s='Thank you again for choosing ALL STARS MOTORSPORT' d='Shop.Theme.Checkout'}</p>
