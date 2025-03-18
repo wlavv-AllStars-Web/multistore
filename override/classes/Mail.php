@@ -689,7 +689,7 @@ class MailCore extends ObjectModel
         if ($moduleName !== false) {
             $templateRelativePath = '/modules/' . $moduleName . '/mails/';
         } else {
-            $templateRelativePath = '/mails/';
+            $templateRelativePath = 'mails/';
         }
 
         foreach ($basePathList as $base) {
