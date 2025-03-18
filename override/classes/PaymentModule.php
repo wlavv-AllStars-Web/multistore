@@ -700,7 +700,7 @@ abstract class PaymentModuleCore extends Module
                         $data = array_merge($data, $extra_vars);
                     }
 
-                    if($this->context->shop->id != 3){
+                    if($this->context->shop->id != 3 && $this->context->shop->id != 2){
                         
                         Mail::Send(
                         (int) $order->id_lang,
@@ -723,6 +723,27 @@ abstract class PaymentModuleCore extends Module
                         (int) $order->id_shop
                         );
                     
+                    }elseif( $this->context->shop->id == 2){
+                        Mail::Send(
+                        (int) $order->id_lang,
+                        'order_created',
+                        $this->context->getTranslator()->trans(
+                            'Order confirmation',
+                            [],
+                            'Emails.Subject',
+                            $orderLanguage->locale
+                        ),
+                        $data,
+                        $this->context->customer->email,
+                        $this->context->customer->firstname . ' ' . $this->context->customer->lastname,
+                        null,
+                        null,
+                        $file_attachement,
+                        null,
+                        _PS_MAIL_DIR_,
+                        false,
+                        (int) $order->id_shop
+                        );
                     }
                 }
             }
