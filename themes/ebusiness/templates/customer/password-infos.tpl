@@ -41,13 +41,13 @@
            {$errors[0]}
          </div>
      {/if}
-        <ul>
-         <li><a class="btn btn-primary" href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
-       </ul>
+
   </div>
  {/block}
  
  {block name='page_footer'}
-   
+  <ul>
+    <li><a href="{$urls.pages.authentication}">{l s='Back to Login' d='Shop.Theme.Actions'}</a></li>
+  </ul>
  {/block}
  
