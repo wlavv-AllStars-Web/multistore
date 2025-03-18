@@ -728,6 +728,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     ' . $sql_product_options . '
                                     AND ps_feature_lang.id_feature=' . $selected_feature[0] .
                                     ' ORDER BY name DESC';
+
+                    // pre($sqlFeature);
                     
                     $feature_group = Db::getInstance()->getValue($sqlFeature);
 
@@ -771,7 +773,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 
             }
 
-            // pre($feature_group);
+            // pre($product_options);
 
             // pre($selected_filter_feature);
             $default_products_per_page = max(1, (int) Configuration::get('PS_PRODUCTS_PER_PAGE'));
@@ -786,12 +788,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             if (!empty($product_options)) {
                 $sql_products_of_category .= ' AND pc.id_product IN (' . implode(',', $product_options) . ')';
+            }else if(!empty($selected_filter_feature) && empty($product_options)){
+                $sql_products_of_category .= 'AND 1=0';
             }
             // elseif(count($ids_products) > 0 ){
             //     $sql_products_of_category .= ' AND id_product IN (' . implode(',', $ids_products) . ')';
             // }
 
             $sql_products_of_category .= ' LIMIT ' . $default_products_per_page . ' OFFSET ' . $offset;
+
+            // pre($sql_products_of_category);
 
             $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
             
@@ -804,9 +810,41 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // pre($ids_prods);
 
+            // echo 'SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat 
+            //         FROM ps_feature_product 
+            //         LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
+            //         LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
+            //             AND id_lang=' . (int)$this->context->language->id . ' 
+            //         WHERE id_product IN (' . implode(", ", $ids_prods) . ')  
+            //         GROUP BY ps_feature_product.id_feature 
+            //         ORDER BY ps_feature.position ASC';
+            //         exit;
+
             // $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature');
 
-            $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+            // $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+
+            if (!empty($ids_prods)) {
+                $features_category = Db::getInstance()->ExecuteS(
+                    'SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat 
+                    FROM ps_feature_product 
+                    LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
+                    LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
+                        AND id_lang=' . (int)$this->context->language->id . ' 
+                    WHERE id_product IN (' . implode(", ", $ids_prods) . ')  
+                    GROUP BY ps_feature_product.id_feature 
+                    ORDER BY ps_feature.position ASC'
+                );
+            } else {
+                $features_category = Db::getInstance()->ExecuteS(
+                    'SELECT ps_feature_product.id_feature, ps_feature_lang.name, COUNT(ps_feature_lang.name) AS nr_repeat , ps_feature_shop.id_shop 
+                    FROM ps_feature_product 
+                    LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
+                    LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
+                    LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop='. $this->context->shop->id .'
+                    GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+            }
+            
 
 
             foreach($features_category AS $f_category){
@@ -857,16 +895,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             
                         // Additional processing for "Brand" feature
                         if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
-
-                        
-                            $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
-
-                            $brandImg = Db::getInstance()->getValue($sqlBrandImg);
+                            // pre($product_227);
+                            if(!empty($product_227)) {
+                                $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
+                                $brandImg = Db::getInstance()->getValue($sqlBrandImg);
             
-                            // Add img field to $value
-                            $value['img'] = $brandImg 
-                                ? "/img/asm/wheels/" . $brandImg . ".webp?t=3" 
-                                : null; // Add null or fallback URL if brandImg is not found
+                                // Add img field to $value
+                                $value['img'] = $brandImg 
+                                    ? "/img/asm/wheels/" . $brandImg . ".webp?t=3" 
+                                    : null; // Add null or fallback URL if brandImg is not found
+
+                            }elseif($feature['id_feature'] == 3) {
+                                // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
+                                // pre($feature['values']);
+                                foreach ($feature['values'] as &$value) {
+                                    if($value['checked'] != '0'){
+                                        $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name = "' . pSQL($value['value']) . '"';
+                                        
+                                        // Execute the query to check if the manufacturer exists
+                                        $brandImg = Db::getInstance()->getValue($sqlBrandImg);
+
+                                        // If a manufacturer is found, assign the image path
+                                        if ($brandImg) {
+                                            $value['img'] = "/img/asm/wheels/" . $brandImg . ".webp?t=3";
+                                            pre($value);
+                                        } else {
+                                            if($value['value'] == 'Gram Lights'){
+                                                $value['img'] = "/img/asm/wheels/170.webp?t=3";
+                                            }
+                                            // pre($value);
+                                        }
+                                    }
+                                }
+                            }
+
+                            
+                            // pre($value);
                         }
                     }
                 }
@@ -894,9 +958,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             );
             
 
-            if(empty($product_options)){
+            if(empty($products)){
                 $this->context->smarty->assign('no_products', true);
             }
+
+            
             // $noProducts = count($products) < 1 ? 1 : 0;
             // $this->context->smarty->assign('noProducts', $noProducts);
 
@@ -1170,6 +1236,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // if($query->getResultsPerPage() && (count($products) < $query->getResultsPerPage())){
             //     $pagination['items_shown_to'] = $productsCarTotal ? count($productsCarTotal) : count($products);;
             // }
+
+            // echo count($products);
+            // exit;
 
             // pre($pagination);
 

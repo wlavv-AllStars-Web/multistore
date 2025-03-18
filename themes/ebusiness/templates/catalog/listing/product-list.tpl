@@ -100,8 +100,7 @@
     <div id="products" class="sang">
 
     {* <pre>{$listing|print_r}</pre> *}
-
-      {if $listing.products|count}
+      {if $listing.products|count || $no_products}
 
 
         {* {if !$no_products} *}
