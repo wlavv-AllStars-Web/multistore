@@ -922,6 +922,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                         } else {
                                             if($value['value'] == 'Gram Lights'){
                                                 $value['img'] = "/img/asm/wheels/170.webp?t=3";
+                                            }elseif($value['value'] == 'Carroll Shelby'){
+                                                $value['img'] = "/img/asm/wheels/188.webp?t=3";
+                                            }elseif($value['value'] == 'Volk Racing'){
+                                                $value['img'] = "/img/asm/wheels/173.webp?t=3";
                                             }
                                             // pre($value);
                                         }
