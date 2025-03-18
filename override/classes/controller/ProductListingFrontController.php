@@ -905,7 +905,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     ? "/img/asm/wheels/" . $brandImg . ".webp?t=3" 
                                     : null; // Add null or fallback URL if brandImg is not found
 
-                            }elseif($feature['id_feature'] == 3) {
+                            }elseif($feature['id_feature'] == 5) {
                                 // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
                                 // pre($feature['values']);
                                 foreach ($feature['values'] as &$value) {
