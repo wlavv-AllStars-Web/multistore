@@ -7045,7 +7045,7 @@ select.form-control:not([size]):not([multiple]){
   margin: 2rem auto;
   background: #333;
   color: #fff;
-  max-width: 300px;
+  max-width: 400px;
   padding: .5rem 1rem;
   border-radius: .25rem;
   justify-content: center;
