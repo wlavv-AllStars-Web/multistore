@@ -900,8 +900,8 @@
                        <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" />
                    </div>
 
-                   {if $email_sent == 1}
-                    <div class="container_ask_successfull">
+                   {* {if $email_sent == 1} *}
+                    <div class="container_ask_successfull" style="display: none;">
                       <div class="question_buble">
 
                         <i class="material-icons question-success-icon">check_circle</i>
@@ -914,7 +914,7 @@
                       </div>
                     </div>
 
-                  {else}
+                  {* {else} *}
                    
                    
                    <form class="form-askquestion form-d col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
@@ -982,9 +982,10 @@
                             success: function(response) {
                                 console.log("Response:", response);
                                 if (response.email_sent) {
-                                    $("#responseMessage").html('<div class="alert alert-success">Your question has been sent successfully!</div>');
+                                    document.querySelector(".container_ask_successfull").style.display = "block";
+                                    document.querySelector(".form-askquestion.form-d").remove();
                                 } else {
-                                    $("#responseMessage").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
+                                    $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
                                 }
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
@@ -996,7 +997,7 @@
                         });
                     }
                     </script>
-                  {/if}
+                  {* {/if} *}
                   </div>
 
                   {* <div class="tab-pane fade in" id="product_reviews"  role="tabpanel">
