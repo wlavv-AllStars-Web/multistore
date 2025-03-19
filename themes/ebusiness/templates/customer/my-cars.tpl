@@ -64,7 +64,7 @@
         {else}
             <div class="cars-content">
                 {foreach $myCars.data AS $car}
-                <div class="car_container ">
+                <div class="car_container col-lg-2">
                     <div onclick="setCarSearch({$car['id_compat']})">
                         {* {assign var=check_path value="{$_SERVER['DOCUMENT_ROOT']}/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png"}
 
@@ -146,7 +146,7 @@
             max-width: 359.2px;
             flex: 1;
             margin: .5rem;
-            min-width: 350px;
+            min-width: 347px;
         }
         .car-container-details {
             text-align: center;
