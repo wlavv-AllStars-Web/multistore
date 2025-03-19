@@ -576,6 +576,25 @@ class OrderHistoryCore extends ObjectModel
                 
                 if( ( $order->id_shop == 3 || $order->id_shop == 1 || $order->id_shop == 2) && ( in_array( $this->id_order_state , [ 10, 6, 25, 4] ) ) ) $data = $this->setConfOrderInfo();
                 
+                $shop_id = $this->context->shop->id;
+                $base_url = _PS_BASE_URL_ . __PS_BASE_URI__; // Get shop base URL
+                if($shop_id == 2) {
+                    $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
+                    $shop_facebook = $base_url . 'img/asm/socials/facebook_mail.jpg';
+                    $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
+                    $shop_flickr = $base_url . 'img/asm/socials/flickr_mail.jpg';
+                    $shop_youtube = $base_url . 'img/asm/socials/youtube_mail.jpg';
+                }
+
+                $data = [
+                    '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
+                    '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
+                    '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
+                    '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
+                    '{payment_img}' => $payment_img ? $payment_img : '',
+                ];
+
+
                 
                 if (!Mail::Send(
                     (int) $order->id_lang,
@@ -767,22 +786,9 @@ class OrderHistoryCore extends ObjectModel
         
         // Full email logo URL
         $email_logo_url = $base_url . 'img/' . $email_logo_filename;
-
-        if($shop_id == 2) {
-            $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
-            $shop_facebook = $base_url . 'img/asm/socials/facebook_mail.jpg';
-            $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
-            $shop_flickr = $base_url . 'img/asm/socials/flickr_mail.jpg';
-            $shop_youtube = $base_url . 'img/asm/socials/youtube_mail.jpg';
-        }
             
 
         $data = [
-            '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
-            '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
-            '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
-            '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
-            '{payment_img}' => $payment_img ? $payment_img : '',
             '{shop_logo}' => $email_logo_url,
             '{firstname}' => $customer->firstname,
             '{lastname}' => $customer->lastname,
