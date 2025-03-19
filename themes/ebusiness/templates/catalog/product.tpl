@@ -486,7 +486,7 @@
                 </div>
                 <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
                 <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
-                  Close
+                  {l s='Close' d='Shop.Theme.Catalog'}
                 </div>
               </div>
 
@@ -910,7 +910,7 @@
                       </div>
                       <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
                       <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
-                        Close
+                        {l s='Close' d='Shop.Theme.Catalog'}
                       </div>
                     </div>
 
