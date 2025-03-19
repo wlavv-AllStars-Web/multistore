@@ -917,7 +917,7 @@
                   {else}
                    
                    
-                   <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
+                   <form class="form-askquestion form-d col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
 
                     <div class="form-group">
                       <div class="input-group-prepend">
@@ -959,7 +959,7 @@
       
                     <script>
                     function onSubmit(token) {
-                        document.querySelector(".container-askquestion-mobile .form-askquestion").submit();
+                        document.querySelector(".form-askquestion.form-d").submit();
                       }
                     </script>
                     
