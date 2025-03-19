@@ -591,7 +591,7 @@ abstract class PaymentModuleCore extends Module
                 $history = new OrderHistory();
                 $history->id_order = (int) $order->id;
                 $history->changeIdOrderState(
-                    (int) Configuration::get($order->hasBeenPaid() ? 'PS_OS_OUTOFSTOCK_PAID' : 'PS_OS_OUTOFSTOCK_UNPAID'),
+                    (int) Configuration::get($order->hasBeenPaid() ? 'PS_OS_OUTOFSTOCK' : 'PS_OS_BANKWIRE'),
                     $order,
                     true
                 );
