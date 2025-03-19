@@ -985,13 +985,12 @@
                                     document.querySelector(".container_ask_successfull").style.display = "block";
                                     document.querySelector(".form-askquestion.form-d").remove();
                                 } else {
-                                    $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
+                                    $(".container_ask_successfull").html('<div class="alert alert-danger">'+{l s='An error occurred, please try again.' d='Shop.Theme.Catalog'}+'</div>');
                                 }
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 console.error("AJAX Error:", textStatus, errorThrown);
                                 console.log("Response Text:", jqXHR.responseText);
-                                $("#responseMessage").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
                             }
                     
                         });
