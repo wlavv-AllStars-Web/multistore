@@ -6215,11 +6215,16 @@ body #main {
 
 #my-cars .car_container {
   padding: 1rem 0;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   border-radius: 0.25rem;
+  background: #d9d9d9;
 }
 #my-cars .car_container .bt {
   border-radius: 0.25rem !important;
+}
+
+#my-cars .car-container-details {
+  color: #333;
 }
 
 /* #my-cars .page-footer a {
