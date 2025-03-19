@@ -584,15 +584,17 @@ class OrderHistoryCore extends ObjectModel
                     $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
                     $shop_flickr = $base_url . 'img/asm/socials/flickr_mail.jpg';
                     $shop_youtube = $base_url . 'img/asm/socials/youtube_mail.jpg';
+
+                    $data = [
+                        '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
+                        '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
+                        '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
+                        '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
+                        '{payment_img}' => $payment_img ? $payment_img : '',
+                    ];
                 }
 
-                $data = [
-                    '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
-                    '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
-                    '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
-                    '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
-                    '{payment_img}' => $payment_img ? $payment_img : '',
-                ];
+
 
 
                 
