@@ -965,7 +965,7 @@
                    </form>
 
                   <script>
-                    function onSubmitDesktop(token) {
+                    function onSubmitdesktop(token) {
                         console.log("Generated reCAPTCHA Token:", token); // Check if token is received
                         if (!token) {
                             console.error("reCAPTCHA token is null or undefined!");
