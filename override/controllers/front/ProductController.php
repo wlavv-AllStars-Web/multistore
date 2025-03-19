@@ -579,7 +579,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
             }
 
 
-            Mail::Send(
+            $mail_sent = Mail::Send(
                 Tools::getValue('id_lang'), 
                 'product_question', 
                 'Product Question', 
@@ -598,7 +598,19 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
                 $var_list['{email_customer}']
             );
 
-            $this->context->smarty->assign(array( 'email_sent' => 1 ));
+            $response = [
+                'recaptcha' => $responseData,
+                'email_sent' => $mail_sent ? true : false
+            ];
+            
+            if (!$mail_sent) {
+                $response['error'] = "Email sending failed.";
+            }
+            
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
+
             }
         }
 

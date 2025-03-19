@@ -947,24 +947,55 @@
                     <button class="g-recaptcha btn btn-primary" 
                     name="submitMessage"
                     data-sitekey="6LdDD9AqAAAAAJsJhlRvLLGAlaB39VWInXCBSupZ" 
-                    data-callback='onSubmit' 
+                    data-callback='onSubmitdesktop' 
                     data-action='submit'>
                       {l s='Submit' d='Shop.Theme.Catalog'}
-                      <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
-                      <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
-                      <input type="hidden" name="product_askquestion" value="1">
-                      <input type="hidden" name="id_product" value="{$product.id}">
-                      <input type="hidden" name="category" value="">
+
                     </button>
+
+                    <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+                    <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+                    <input type="hidden" name="product_askquestion" value="1">
+                    <input type="hidden" name="id_product" value="{$product.id}">
+                    <input type="hidden" name="category" value="">
       
-                    <script>
-                    function onSubmit(token) {
-                        document.querySelector(".form-askquestion.form-d").submit();
-                      }
-                    </script>
+
                     
 
                    </form>
+
+                  <script>
+                    function onSubmitDesktop(token) {
+                        console.log("Generated reCAPTCHA Token:", token); // Check if token is received
+                        if (!token) {
+                            console.error("reCAPTCHA token is null or undefined!");
+                            return;
+                        }
+                    
+                        var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
+                    
+                        $.ajax({
+                            url: '{$link->getPageLink('product', true)}',
+                            type: 'POST',
+                            data: formData,
+                            dataType: 'json',
+                            success: function(response) {
+                                console.log("Response:", response);
+                                if (response.email_sent) {
+                                    $("#responseMessage").html('<div class="alert alert-success">Your question has been sent successfully!</div>');
+                                } else {
+                                    $("#responseMessage").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("AJAX Error:", textStatus, errorThrown);
+                                console.log("Response Text:", jqXHR.responseText);
+                                $("#responseMessage").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
+                            }
+                    
+                        });
+                    }
+                    </script>
                   {/if}
                   </div>
 
