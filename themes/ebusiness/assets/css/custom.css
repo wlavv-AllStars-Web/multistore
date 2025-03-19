@@ -6241,6 +6241,10 @@ body #main {
   width: 100%;
 }
 
+button[data-button-action="add-pack-to-cart"] {
+  min-height: 44px;
+}
+
 /* #my-cars .page-footer a {
   color: #fff;
 }
