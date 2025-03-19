@@ -400,14 +400,14 @@
                   if(data.success == false){
                     alert("error")
                   }else{
-                    $('.addToMyCarsButton').remove();
+                    $('.addToMyCarsButton').html('');
                     openMenuCars();
                   }
               },
               complete: function () {
                 button.data('loading', false); // Reset loading state
                 // button.prop('disabled', false); // Re-enable button
-                $('.addToMyCarsButton').remove();
+                $('.addToMyCarsButton').html('');
             }
           });
         }
