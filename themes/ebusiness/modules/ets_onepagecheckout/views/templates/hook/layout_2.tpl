@@ -209,6 +209,10 @@
                     </div>
                 </div>
             </div>
+
+            <div class="not-accepted-payments alert alert-danger">
+                {l s='Please accept Terms and Availability to view payment methods' d='Shop.Theme.Checkout'}
+            </div>
             <div class="" {if !$payment_methods} style="display:none"{/if} style="display: none;">
                 <div class="block-onepagecheckout block-payment" style="display: none;">
                     <div class="title-heading">

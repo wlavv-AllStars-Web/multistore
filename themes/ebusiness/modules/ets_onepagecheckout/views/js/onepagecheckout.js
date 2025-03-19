@@ -266,6 +266,8 @@ if (conditionsCheckboxA) {
 function togglePaymentBlock() {
     const conditionsChecked = conditionsCheckbox.checked;
 
+    const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
+
     if(availabilityCheckbox){
         const availabilityChecked = availabilityCheckbox.checked;
 
@@ -274,9 +276,11 @@ function togglePaymentBlock() {
         if (conditionsChecked && availabilityChecked) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
+            alert.style.display = "none";
         } else {
             paymentBlock.style.display = "none";
             paymentBlock.parentElement.style.display = "none";
+            alert.style.display = "block";
         }
     }else{
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
@@ -284,9 +288,11 @@ function togglePaymentBlock() {
         if (conditionsChecked) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
+            alert.style.display = "none";
         } else {
             paymentBlock.style.display = "none";
             paymentBlock.parentElement.style.display = "none";
+            alert.style.display = "block";
         }
     }
 
