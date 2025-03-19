@@ -126,10 +126,10 @@ if(cards){
   cards.forEach(element => {
       const cardImg = element.querySelector('.play img')
       element.addEventListener('mouseover', () => {
-          cardImg.setAttribute("src", "https://www.allstarsmotorsport.com/img/youtube_play_hover.png")
+          cardImg.setAttribute("src", "/img/youtube_play_hover.png")
       })
       element.addEventListener('mouseout', () => {
-          cardImg.setAttribute("src", "https://www.allstarsmotorsport.com/img/youtube_play.png")
+          cardImg.setAttribute("src", "/img/youtube_play.png")
       })
   });
 }
