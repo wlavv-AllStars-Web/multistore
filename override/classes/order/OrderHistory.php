@@ -585,7 +585,7 @@ class OrderHistoryCore extends ObjectModel
                     $shop_flickr = $base_url . 'img/asm/socials/flickr_mail.jpg';
                     $shop_youtube = $base_url . 'img/asm/socials/youtube_mail.jpg';
 
-                    $data = [
+                    $data += [
                         '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
                         '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
                         '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
