@@ -508,7 +508,46 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
      */
     public function postProcess()
     {
-        if(Tools::isSubmit('product_askquestion')) {
+        if($_POST['g-recaptcha-response']){
+            $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+            
+            if($this->context->shop->id == 2){
+                $resq_data = array( 
+                    'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+                    'response' => $_POST['g-recaptcha-response'], 
+                    'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                ); 
+            } else if($this->context->shop->id == 3){
+                $resq_data = array( 
+                    'secret' => '6LdZXeoqAAAAAIsvrwmj4X7gOOCpIEF8WIjkjTV4', 
+                    'response' => $_POST['g-recaptcha-response'], 
+                    'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                ); 
+            }
+
+            $curlConfig = array( 
+                CURLOPT_URL => $api_url, 
+                CURLOPT_POST => true, 
+                CURLOPT_RETURNTRANSFER => true, 
+                CURLOPT_POSTFIELDS => $resq_data, 
+                CURLOPT_SSL_VERIFYPEER => false 
+            ); 
+            
+            $ch = curl_init(); 
+            curl_setopt_array($ch, $curlConfig); 
+            $response = curl_exec($ch); 
+            
+            if (curl_errno($ch)) $api_error = curl_error($ch); 
+            
+            curl_close($ch); 
+            
+            $responseData = json_decode($response); 
+            // echo 'paulo';
+            // echo '<pre>'.print_r($responseData,1).'</pre>' ;
+            // exit;
+            
+            if(!empty($responseData) && $responseData->success){
+        // if(Tools::isSubmit('product_askquestion')) {
             // pre($_POST);
 
             // echo $this->context->language->id;
@@ -560,6 +599,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
             );
 
             $this->context->smarty->assign(array( 'email_sent' => 1 ));
+            }
         }
 
         if (Tools::isSubmit('submitCustomizedData')) {

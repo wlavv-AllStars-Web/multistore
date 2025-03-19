@@ -48,6 +48,7 @@
  
  {block name='content'}
   {* <pre>{$product|print_r}</pre> *}
+  <script src="https://www.google.com/recaptcha/api.js" ></script>
  
    <section id="main">
      <meta content="{$product.url}">
@@ -510,7 +511,20 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{l s='Write your question.' d='Shop.Theme.Catalog'}" name="question_customer"></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              {* <button type="submit" class="btn btn-primary">
+                {l s='Submit' d='Shop.Theme.Catalog'}
+                <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+                <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+                <input type="hidden" name="product_askquestion" value="1">
+                <input type="hidden" name="id_product" value="{$product.id}">
+                <input type="hidden" name="category" value="">
+              </button> *}
+
+              <button class="g-recaptcha btn btn-primary" 
+              name="submitMessage"
+              data-sitekey="6LdDD9AqAAAAAJsJhlRvLLGAlaB39VWInXCBSupZ" 
+              data-callback='onSubmit' 
+              data-action='submit'>
                 {l s='Submit' d='Shop.Theme.Catalog'}
                 <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
                 <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
@@ -518,6 +532,12 @@
                 <input type="hidden" name="id_product" value="{$product.id}">
                 <input type="hidden" name="category" value="">
               </button>
+
+              <script>
+              function onSubmit(token) {
+                  document.querySelector(".container-askquestion-mobile .form-askquestion").submit();
+                }
+              </script>
             
               </form>
             {/if}
@@ -915,15 +935,35 @@
                       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{l s='Write your question.' d='Shop.Theme.Catalog'}" name="question_customer"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    {* <button type="submit" class="btn btn-primary">
                       {l s='Submit' d='Shop.Theme.Catalog'}
                       <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
 											<input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
 											<input type="hidden" name="product_askquestion" value="1">
 											<input type="hidden" name="id_product" value="{$product.id}">
 											<input type="hidden" name="category" value="">
+                    </button> *}
+
+                    <button class="g-recaptcha btn btn-primary" 
+                    name="submitMessage"
+                    data-sitekey="6LdDD9AqAAAAAJsJhlRvLLGAlaB39VWInXCBSupZ" 
+                    data-callback='onSubmit' 
+                    data-action='submit'>
+                      {l s='Submit' d='Shop.Theme.Catalog'}
+                      <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+                      <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+                      <input type="hidden" name="product_askquestion" value="1">
+                      <input type="hidden" name="id_product" value="{$product.id}">
+                      <input type="hidden" name="category" value="">
                     </button>
-                  
+      
+                    <script>
+                    function onSubmit(token) {
+                        document.querySelector(".container-askquestion-mobile .form-askquestion").submit();
+                      }
+                    </script>
+                    
+
                    </form>
                   {/if}
                   </div>
