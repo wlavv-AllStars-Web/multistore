@@ -572,13 +572,13 @@ class OrderHistoryCore extends ObjectModel
                 } else {
                     $file_attachement = null;
                 }
-                echo $this->id_order_state;
+                // echo $this->id_order_state;
                 
                 if( ( $order->id_shop == 3 || $order->id_shop == 1 || $order->id_shop == 2) && ( in_array( $this->id_order_state , [ 10, 6, 25, 4] ) ) ) $data = $this->setConfOrderInfo();
                 
-                $shop_id = $this->context->shop->id;
+
                 $base_url = _PS_BASE_URL_ . __PS_BASE_URI__; // Get shop base URL
-                if($shop_id == 2) {
+                if($order->id_shop == 2) {
                     $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
                     $shop_facebook = $base_url . 'img/asm/socials/facebook_mail.jpg';
                     $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
