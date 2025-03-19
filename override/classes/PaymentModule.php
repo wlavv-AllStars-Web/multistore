@@ -592,12 +592,15 @@ abstract class PaymentModuleCore extends Module
                 $history->id_order = (int) $order->id;
 
                 // asg change order state to out of stock
-                $history->changeIdOrderState(
-                    (int) Configuration::get($order->hasBeenPaid() ? 'PS_OS_OUTOFSTOCK' : 'PS_OS_BANKWIRE'),
-                    $order,
-                    true
-                );
-                $history->addWithemail();
+                // asg change order state to out of stock
+                if($id_order_state != 10) {
+                    $history->changeIdOrderState(
+                        (int) Configuration::get($order->hasBeenPaid() ? 'PS_OS_OUTOFSTOCK' : 'PS_OS_BANKWIRE'),
+                        $order,
+                        true
+                    );
+                    $history->addWithemail();    
+                }
             }
 
             unset($order_detail);
