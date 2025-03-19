@@ -10,7 +10,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_c46ea97f2d883682b
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_0dc343b24ca4fef02e661f6d4cbfe75f'] = 'Dernière connexion avec PayPal';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_9fbc35f72af5d7089aaedf406f348b3b'] = 'Créé avec Facebook';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_c0dc5ae9a6949381c552130485d08581'] = 'Dernière connexion avec Facebook';
-$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_6ff063fbc860a79759a7369ac32cee22'] = 'Check-out';
+$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_6ff063fbc860a79759a7369ac32cee22'] = 'Checkout';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_a60f1ae8caa25c6b0d2a43c406751fdc'] = 'Valider ma commande';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_8cf04a9734132302f96da8e113e80ce5'] = 'Accueil';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_e530165f1037f88f95ac140a9e0dc397'] = 'Image supprimée avec succès';
