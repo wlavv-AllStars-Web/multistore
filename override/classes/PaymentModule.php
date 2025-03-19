@@ -590,7 +590,7 @@ abstract class PaymentModuleCore extends Module
                     $order_detail->product_quantity_in_stock < 0)) {
                 $history = new OrderHistory();
                 $history->id_order = (int) $order->id;
-                
+
                 // asg change order state to out of stock
                 $history->changeIdOrderState(
                     (int) Configuration::get($order->hasBeenPaid() ? 'PS_OS_OUTOFSTOCK' : 'PS_OS_BANKWIRE'),
@@ -709,6 +709,24 @@ abstract class PaymentModuleCore extends Module
 
                     if (is_array($extra_vars)) {
                         $data = array_merge($data, $extra_vars);
+                    }
+
+                    $shop_id = $this->context->shop->id;
+                    $base_url = _PS_BASE_URL_ . __PS_BASE_URI__; // Get shop base URL
+                    if($shop_id == 2) {
+                        $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
+                        $shop_facebook = $base_url . 'img/asm/socials/facebook_mail.jpg';
+                        $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
+                        $shop_flickr = $base_url . 'img/asm/socials/flickr_mail.jpg';
+                        $shop_youtube = $base_url . 'img/asm/socials/youtube_mail.jpg';
+    
+                        $data += [
+                            '{shop_facebook}' => $shop_facebook ? $shop_facebook : '',
+                            '{shop_instagram}' => $shop_instagram ? $shop_instagram : '',
+                            '{shop_flickr}' => $shop_flickr ? $shop_flickr : '',
+                            '{shop_youtube}' => $shop_youtube ? $shop_youtube : '',
+                            '{payment_img}' => $payment_img ? $payment_img : '',
+                        ];
                     }
 
                     if($this->context->shop->id != 3 && $this->context->shop->id != 2){
