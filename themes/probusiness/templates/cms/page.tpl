@@ -1516,11 +1516,21 @@
     
                   <div class="form-row ">
                     <div class="form-group col-md-2 col-sm-12 col-xs-12" style="display: flex;justify-content:start;">
-                      <button type="submit" class="btn btn-primary">{l s='Send' d='Shop.Theme.Career'}</button>
+                    <button class="g-recaptcha btn btn-primary" 
+                    name="submitMessage"
+                    data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+                    data-callback='onSubmitCareer' 
+                    data-action='submit'>{l s='Send' d='Shop.Theme.Career'}</button>
                     </div>
                   </div>
                 </form>
               </div>
+
+              <script>
+              function onSubmitCareer(token) {
+                document.querySelector(".form-career").submit();
+              }
+              </script>
 
 
           </div>
