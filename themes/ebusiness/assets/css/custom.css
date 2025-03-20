@@ -956,6 +956,12 @@ body {
     padding-bottom: 1rem;
   }
 
+  #product_shipping #totselectzone .totselectzone__title{
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
   #totselectzone .thead-dark th {
     padding: .5rem 0;
   }
