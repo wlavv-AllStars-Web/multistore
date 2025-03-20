@@ -517,3 +517,28 @@
     margin-bottom: 2rem;
     padding: .5rem 1rem;
 }
+
+#upsTabContent > div:nth-child(1) {
+    display: flex !important;
+}
+#upsTabContent > div {
+    display: none;
+}
+
+
+#product_grid_table tbody .column-name {
+    max-width: 200px;
+}
+
+#product_grid_table tbody .column-name a{
+    text-wrap: wrap !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+#product_grid_table tbody .column-ean13 {
+    text-wrap: nowrap !important;
+}

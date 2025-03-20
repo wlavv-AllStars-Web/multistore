@@ -73,6 +73,9 @@ class AsGroup extends Module
             $this->registerHook('actionCustomersKpiRowModifier') &&
             $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('actionOrderGridDefinitionModifier') &&
+            $this->registerHook('actionProductGridDefinitionModifier') &&
+            $this->registerHook('actionProductGridDataModifier') &&
+            $this->registerHook('actionProductGridQueryBuilderModifier') &&
             $this->registerHook('actionAdminOrdersControllerSaveBefore') &&
             $this->registerHook('actionDispatcherBefore') &&
             // $this->registerHook('actionAdminOrdersControllerView') &&
@@ -99,6 +102,9 @@ class AsGroup extends Module
         $this->unregisterHook('actionCustomersKpiRowModifier') &&
         $this->unregisterHook('actionAdminControllerSetMedia') &&
         $this->unregisterHook('actionOrderGridDefinitionModifier') &&
+        $this->unregisterHook('actionProductGridDefinitionModifier') &&
+        $this->unregisterHook('actionProductGridDataModifier') &&
+        $this->unregisterHook('actionProductGridQueryBuilderModifier') &&
         $this->unregisterHook('actionAdminOrdersControllerSaveBefore') &&
         $this->unregisterHook('actionOrderGridQueryBuilderModifier');
         $this->unregisterHook('actionDispatcherBefore');
@@ -512,6 +518,394 @@ class AsGroup extends Module
         $params['kpis'] = [];
 
         $params['kpis'][] = new AGCustomKpi(); 
+    }
+
+    public function hookActionProductGridDefinitionModifier(array $params)
+    {
+        if (empty($params['definition'])) {
+            return;
+        }
+
+        /** @var PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinitionInterface $definition */
+        $definition = $params['definition'];
+
+        // pre($definition->getColumns());
+
+        // remove column category
+        $definition->getColumns()->remove('category'); 
+        $definition->getColumns()->remove('final_price_tax_excluded'); 
+        $definition->getColumns()->remove('price_tax_included'); 
+
+        $definition->getFilters()->remove('category'); 
+        $definition->getFilters()->remove('final_price_tax_excluded'); 
+        $definition->getFilters()->remove('price_tax_included'); 
+        
+
+        // 
+
+
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'id_product',
+            (new PrestaShop\PrestaShop\Core\Grid\Column\Type\Common\ImageColumn('shop'))
+                ->setName($this->l('Shop'))
+                ->setOptions([
+                    'src_field' => 'shop', // This should match the field in hookActionProductGridDataModifier
+                    'clickable' => false,
+                ])
+        );
+
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'reference',
+            (new DataColumn('created_at'))
+                ->setName($this->l('Created'))
+                ->setOptions([
+                    'field' => 'created_at',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'created_at',
+            (new DataColumn('manufacturer_name'))
+                ->setName($this->l('Manufacturer'))
+                ->setOptions([
+                    'field' => 'manufacturer_name',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                ])
+        );
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'manufacturer_name',
+            (new DataColumn('housing'))
+                ->setName($this->l('Housing'))
+                ->setOptions([
+                    'field' => 'housing',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'housing',
+            (new DataColumn('ean13'))
+                ->setName($this->l('Ean13'))
+                ->setOptions([
+                    'field' => 'ean13',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'ean13',
+            (new DataColumn('dim_verify'))
+                ->setName($this->l('Size'))
+                ->setOptions([
+                    'field' => 'dim_verify',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'dim_verify',
+            (new DataColumn('stock_arrive'))
+                ->setName($this->l('Arrive'))
+                ->setOptions([
+                    'field' => 'stock_arrive',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'stock_arrive',
+            (new DataColumn('rrp'))
+                ->setName($this->l('RRP'))
+                ->setOptions([
+                    'field' => 'rrp',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'rrp',
+            (new DataColumn('margin'))
+                ->setName($this->l('Margin'))
+                ->setOptions([
+                    'field' => 'margin',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+        $definition
+        ->getColumns()
+        ->addAfter(
+            'margin',
+            (new DataColumn('discount'))
+                ->setName($this->l('Discount'))
+                ->setOptions([
+                    'field' => 'discount',
+                    'attr' => [
+                        'class' => 'text-center', 
+                    ],
+                    'clickable' => false,
+                ])
+        );
+
+
+
+
+        // filter product grid
+
+
+        /** @var PrestaShop\PrestaShop\Adapter\Form\ChoiceProvider\ManufacturerNameByIdChoiceProvider $manufacturerNameByIdChoiceProvider */
+        $manufacturerNameByIdChoiceProvider = $this->get('prestashop.adapter.form.choice_provider.manufacturer_name_by_id');
+
+        // $definition->getFilters()->add(
+        //     (new PrestaShop\PrestaShop\Core\Grid\Filter\Filter('manufacturer_name', Symfony\Component\Form\Extension\Core\Type\ChoiceType::class))
+        //         ->setAssociatedColumn('manufacturer_name')
+        //         ->setTypeOptions([
+        //             'required' => false,
+        //             'choices' => $manufacturerNameByIdChoiceProvider->getChoices(),
+        //             'translation_domain' => false,
+        //         ])
+        // );
+
+        $definition
+        ->getFilters()
+        ->add((new Filter('manufacturer_name', ChoiceType::class))
+            ->setTypeOptions([
+                'required' => false,
+                'choices' => $manufacturerNameByIdChoiceProvider->getChoices(),
+                'translation_domain' => false,
+            ])
+            ->setAssociatedColumn('manufacturer_name')
+            );
+
+        $definition
+        ->getFilters()
+        ->add((new Filter('housing', TextType::class))
+            ->setTypeOptions([
+                'required' => false,
+                'attr' => [
+                    'placeholder' => $this->trans('Housing', [], 'Admin.Actions'),
+                ],
+            ])
+            ->setAssociatedColumn('housing')
+            );
+
+        $definition
+        ->getFilters()
+        ->add((new Filter('ean13', TextType::class))
+            ->setTypeOptions([
+                'required' => false,
+                'attr' => [
+                    'placeholder' => $this->trans('Ean13', [], 'Admin.Actions'),
+                ],
+            ])
+            ->setAssociatedColumn('ean13')
+            );
+
+    }
+
+    public function hookActionProductGridDataModifier(array &$params)
+    {
+        // if (empty($params['data']) || !Configuration::get(static::CONFIGURATION_KEY_SHOW_LOGO)) {
+        //     return;
+        // }
+
+        /** @var PrestaShop\PrestaShop\Core\Grid\Data\GridData $gridData */
+        $gridData = $params['data'];
+        $modifiedRecords = $gridData->getRecords()->all();
+
+        /** @var PrestaShop\PrestaShop\Adapter\Manufacturer\ManufacturerLogoThumbnailProvider $manufacturerLogoThumbnailProvider */
+        $manufacturerLogoThumbnailProvider = $this->get('prestashop.adapter.manufacturer.manufacturer_logo_thumbnail_provider');
+
+        foreach ($modifiedRecords as $key => $data) {
+            if (isset($data['id_manufacturer'])) {
+                $modifiedRecords[$key]['manufacturer_logo'] = $manufacturerLogoThumbnailProvider->getPath($data['id_manufacturer']);
+            }
+
+            if(isset($data['shop'])){
+                // Get the shop's logo path
+                $logoFilename = Configuration::get('PS_LOGO', null, null, $data['shop']);
+            
+                if ($logoFilename) {
+                    $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/' . $logoFilename;
+                } else {
+                    // Provide a default logo if none is set
+                    $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/logo.jpg';
+                }
+            }
+
+            // if($data['id_product'] === 18136){
+            //     $price = (float) $data['price'];
+            //     echo $price;
+            //     pre($data);
+            // }
+            // pre($data);
+
+            if(isset($data['created_at'])){
+                $modifiedRecords[$key]['created_at'] = date('Y-m-d', strtotime($data['created_at']));
+            }
+
+            if(isset($data['dim_verify'])){
+                $modifiedRecords[$key]['dim_verify'] = $data['dim_verify'] == 1
+                ? '<i class="fa fa-check text-success"></i>'  
+                : '<i class="fa fa-times text-danger"></i>'; 
+            }
+
+            if (isset($data['stock_arrive']) && $data['stock_arrive'] !== null && $data['stock_arrive'] !== 0) {
+                $modifiedRecords[$key]['stock_arrive'] = (string) $data['stock_arrive']; // Convert to string to prevent "--"
+            } else {
+                $modifiedRecords[$key]['stock_arrive'] = '0'; // Explicitly set 0 instead of "--"
+            }
+
+
+            if(isset($data['wholesale_price']) && isset($data['price'])){
+                $wholesalePrice = (float) $data['wholesale_price'];
+                $price = (float) $data['price'];
+
+                    if ($price > 0) {
+                        $modifiedRecords[$key]['margin'] = number_format(-(($wholesalePrice / $price) - 1) * 100 , 0) . '%';
+                    } else {
+                        $modifiedRecords[$key]['margin'] = 'N/A'; // Avoid division by zero if price is 0
+                    }
+            }
+
+            if(isset($data['price'])){
+                $price = (float) $data['price'];
+                $modifiedRecords[$key]['rrp'] = '€'.number_format($price, 2, '.', ' ');
+            }
+
+            if(isset($data['discount'])){
+                $discount = (float) $data['discount'] * 100;
+                $modifiedRecords[$key]['discount'] = number_format($discount, 0) . '%';
+            }
+
+
+        }
+
+        $params['data'] = new PrestaShop\PrestaShop\Core\Grid\Data\GridData(
+            new PrestaShop\PrestaShop\Core\Grid\Record\RecordCollection($modifiedRecords),
+            $gridData->getRecordsTotal(),
+            $gridData->getQuery()
+        );
+    }
+
+
+    public function hookActionProductGridQueryBuilderModifier(array $params)
+    {
+        if (empty($params['search_query_builder']) || empty($params['search_criteria'])) {
+            return;
+        }
+
+        /** @var Doctrine\DBAL\Query\QueryBuilder $searchQueryBuilder */
+        $searchQueryBuilder = $params['search_query_builder'];
+
+        /** @var PrestaShop\PrestaShop\Core\Search\Filters\ProductFilters $searchCriteria */
+        $searchCriteria = $params['search_criteria'];
+
+        $searchQueryBuilder->addSelect(
+            'p.`id_manufacturer`, man.`name` AS `manufacturer_name`, man.`id_manufacturer` AS `manufacturer_id`'
+        );
+
+        $searchQueryBuilder->leftJoin(
+            'p',
+            '`' . _DB_PREFIX_ . 'manufacturer`',
+            'man',
+            'man.`id_manufacturer` = p.`id_manufacturer`'
+        );
+
+        $searchQueryBuilder->addSelect(
+            'sp.`reduction` AS `discount`'
+        );
+
+        $searchQueryBuilder->leftJoin(
+            'p',
+            '`' . _DB_PREFIX_ . 'specific_price`',
+            'sp',
+            'sp.`id_product` = p.`id_product`'
+        );
+
+
+        if ('manufacturer_name' === $searchCriteria->getOrderBy()) {
+            $searchQueryBuilder->orderBy('man.`manufacturer_name`', $searchCriteria->getOrderWay());
+        }
+
+        // pre($searchCriteria->getFilters());
+
+
+        // Apply manufacturer_name filter
+        foreach ($searchCriteria->getFilters() as $filterName => $filterValue) {
+            if ('manufacturer_name' === $filterName) {
+                // Use manufacturer_name for filtering, not manufacturer_id
+                $searchQueryBuilder->andWhere('man.`id_manufacturer` LIKE :manufacturer_name');
+                $searchQueryBuilder->setParameter('manufacturer_name', '%' . $filterValue . '%');  // Add % for LIKE query
+            }
+
+            if('housing' === $filterName){
+                $searchQueryBuilder->andWhere('p.`housing` LIKE :housing');
+                $searchQueryBuilder->setParameter('housing', '%' . $filterValue . '%');  // Add % for LIKE query
+            }
+
+            if('ean13' === $filterName){
+                $searchQueryBuilder->andWhere('p.`ean13` LIKE :ean13');
+                $searchQueryBuilder->setParameter('ean13', '' . $filterValue . '%');  // Add % for LIKE query
+            }
+        }
+
+        // shop part product grid
+        $searchQueryBuilder->addSelect(
+            'p.`id_shop_default` AS `shop`',
+            'p.`date_add` AS `created_at`',
+            'p.`housing`',
+            'p.`ean13`',
+            'p.`dim_verify`',
+            'p.`stock_arrive`',
+            'p.`product_type`',
+            'p.`price`',
+            'p.`wholesale_price`',
+            // 's.`discount_percentage` AS `discount`',
+        );
     }
 
 
