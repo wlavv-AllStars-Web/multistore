@@ -546,4 +546,5 @@
 #product_grid_table tbody .column-associated_shops{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
