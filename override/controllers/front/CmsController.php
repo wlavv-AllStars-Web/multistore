@@ -367,18 +367,38 @@ class CmsControllerCore extends FrontController
         
                     if (isset($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['name']) && !empty($_FILES['fileUpload']['tmp_name'])){
                         
-                    	$extension = array('.pdf');
-                    	$filename = uniqid().basename($_FILES['fileUpload']['name']);
-                    	$filename = str_replace(' ', '-', $filename);
-                    	$filename = strtolower($filename);
-                    	$filename = filter_var($filename, FILTER_SANITIZE_STRING);
-                    	$_FILES['fileUpload']['name'] = $filename;
-                    	$uploader = new UploaderCore();
-                    	$uploader->upload($_FILES['fileUpload']);
-                        $var_list['{cv}'] = '/upload/' . $filename;
+                        // Sanitize and process the file
+                        $filename = uniqid() . basename($_FILES['fileUpload']['name']);
+                        $filename = str_replace(' ', '-', $filename); // Remove spaces
+                        $filename = strtolower($filename);  // Convert to lowercase
+                        $filename = filter_var($filename, FILTER_SANITIZE_STRING); // Sanitize the filename
+                        
+                        // Define upload directory
+                        $uploadDir = _PS_UPLOAD_DIR_;
+                        $filePath = $uploadDir . $filename;
+                        
+                        if (move_uploaded_file($_FILES['fileUpload']['tmp_name'], $filePath)) {
+
+                            // Add file path to the email template
+                            $var_list['{cv}'] = '/upload/' . $filename;
+                
+                            // Prepare the file attachment
+                            $attachments = array(
+                                array(
+                                    'content' => file_get_contents($filePath), // Get file contents
+                                    'name' => $filename, // Use the sanitized filename
+                                    'mime' => 'application/pdf', // MIME type for PDF
+                                )
+                            );
+                        }
                     }
-        
-                    Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    
+                    if($attachments){
+                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@euromuscleparts.com', 'Job Application', null, null, $attachments, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    }else{
+                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    }
+                    
                     $this->context->smarty->assign(array( 'email_sent' => 2 ));
                     
                 }else{

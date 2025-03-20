@@ -1398,7 +1398,7 @@
               <div class="form-career-container" style="margin: 5rem 0;">
                 <h1 style="text-align: center;color:#000;margin-bottom:2rem;">{l s='JOB APPLICATION' d='Shop.Theme.Career'}</h1>
                 
-                <form class="form-career" action_job="form_job" method="post" name="application__form">
+                <form class="form-career" action_job="form_job" method="post" name="application__form"  enctype="multipart/form-data">
                   <input type="hidden" name="action_job" value="form_job">
                   <div class="form-row radio-btns-form  col-lg-12">
                     <div class="form-check col-lg-1 col-md-6">
@@ -1499,7 +1499,7 @@
                 <div class="form-row ">
                   <div class="form-group col-lg-4 col-md-6  col-sm-12">
                     <label for="fileUpload">{l s='Upload your CV ( only PDF files )' d='Shop.Theme.Career'} <span style="color:#ee302e;">*</span></label>
-                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload" style="background: #fff;width:100%;padding:6px 0.5rem;" required>
+                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload" style="background: #fff;width:100%;padding:6px 0.5rem;">
                   </div>
                 </div>
 
