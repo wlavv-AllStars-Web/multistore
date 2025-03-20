@@ -1576,7 +1576,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
     public function hookActionProductSave($params)
     {
         if (Tools::getValue('new_pack') == 1 && isset($params['product'])) {
-            pre($params['product']);
+            // pre($params['product']);
             $params['product']->addToCategories([$this->context->shop->id_category]);
             if ($this->shopUsesNewProductPage()) {
                 if (Tools::getValue('source_id_product')) {
