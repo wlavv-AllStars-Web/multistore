@@ -280,27 +280,33 @@
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
-            <div class="container-table-compats">
-              {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
-              <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Version</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Audi</td>
-                    <td>A3</td>
-                    <td>8V / 8.5V - 12-20</td>
-                    <td>2.0 TFSI - 190 / 220</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            {if $compats|count}
+              <div class="container-table-compats">
+                {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+                <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                      <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                      <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                      <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {foreach from=$compats item=compat}
+                    <tr>
+                      <td>{$compat.brand}</td>
+                      <td>{$compat.model}</td>
+                      <td>{$compat.type}</td>
+                      <td>{$compat.version}</td>
+                    </tr>
+                  {/foreach}
+                  </tbody>
+                </table>
+              </div>
+              {else}
+                <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+              {/if}
 
 
 
@@ -688,27 +694,32 @@
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
-                    <div class="container-table-compats">
-                      {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
-                      <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                        <thead class="thead-dark">
-                          <tr>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Version</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Audi</td>
-                            <td>A3</td>
-                            <td>8V / 8.5V - 12-20</td>
-                            <td>2.0 TFSI - 190 / 220</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    {if $compats|count}
+                      <div class="container-table-compats">
+                        <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {foreach from=$compats item=compat}
+                            <tr>
+                              <td>{$compat.brand}</td>
+                              <td>{$compat.model}</td>
+                              <td>{$compat.type}</td>
+                              <td>{$compat.version}</td>
+                            </tr>
+                          {/foreach}
+                          </tbody>
+                        </table>
+                      </div>
+                      {else}
+                        <h2 style="text-align: center;font-weight:500;padding:1rem;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                      {/if}
                   </div>
          
                   {* {block name='product_details'}
