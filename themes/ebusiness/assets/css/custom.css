@@ -956,6 +956,17 @@ body {
     padding-bottom: 1rem;
   }
 
+  #totselectzone .thead-dark th {
+    padding: .5rem 0;
+  }
+
+  #totselectzone tbody {
+    background: #d0d0d0;
+  }
+  #totselectzone tbody tr{
+    color: #333;
+  }
+
   .product-img-section{
     align-items: center;
   }
