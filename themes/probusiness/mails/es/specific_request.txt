@@ -1,0 +1,19 @@
+ 
+
+{shop_url}
+
+Hi,
+
+Message from customer
+
+You have received a new message regarding a specific request.
+
+Customer: {firstname} {lastname} ({email})
+
+Customer message:
+
+{aditional_info}
+
+[{shop_name}]({shop_url})
+
+Powered by [PrestaShop](https://www.prestashop-project.org/)

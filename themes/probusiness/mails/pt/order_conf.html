@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Message from {shop_name}</title>
+</head>
+
+<body>
+	<table class="table table-mail" style="padding:0 20px; width: 100%; margin-top: 10px; -moz-box-shadow: 0 0 5px #afafaf; -webkit-box-shadow: 0 0 5px #afafaf; -o-box-shadow: 0 0 5px #afafaf; box-shadow: 0 0 5px #afafaf; filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);" align="center">
+		<tbody style="font-family: Open-sans, sans-serif;">
+		    <tr><td colspan="12" style="text-align: center;border-bottom: 3px solid #0273eb;"><img src="https://www.all-stars-distribution.com/img/email_logo_asd.png?t=2213123123" /></td></tr>
+			<tr>
+				<td style="padding: 20px 0;" align="center">
+					<table class="table" style="width: 100%;" bgcolor="#fff">
+						<tbody>
+							<tr>
+								<td class="titleblock" style="padding: 20px 0;" align="center"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: small;" face="Open-sans, sans-serif" color="#888"> <span class="title" style="font-weight: 500; font-size: 32px; text-transform: uppercase; line-height: 33px;">CONFIRMAÇÃO DE ENCOMENDA</span>
+									
+								</td>
+							</tr>
+							
+							<tr class="order-details" style="width: 100%;background: #ffffff;padding: 1rem;outline: 2px solid #888;">
+								
+								<td style="padding: 10px 2rem;">
+									<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">
+										ENCOMENDA <span style="color: #0273eb;">{order_name}</span> - A AGUARDAR PAGAMENTO
+									</p> 
+									<p style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif">
+										A sua encomenda <span data-html-only="1" style="color: #0273eb;">{order_name}</span> foi confirmada e atualizada pelas nossas equipas. Os artigos ficam agora reservados na sua conta durante 5 dias a partir do envio desta confirmação, podendo agora proceder ao pagamento desta encomenda. Também pode visualizar o seu histórico de encomendas e documentos relacionados clicando <a href="https://asd.euromuscleparts.com/en/my-account" data-html-only="1" style="color: #0273eb;">aqui</span>.
+									</p>
+								</td>
+								
+							</tr>
+
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding: 20px 0;">
+					<table class="table" style="width: 100%;">
+						<tbody>
+							<tr>
+								<td class="box address" style="background: #ffffff;padding: 1rem;padding: 0;" width="310">
+									<table class="table" style="width: 100%;text-align:center;border-collapse: collapse;outline: 2px solid #888;">
+										<tbody>
+											<tr>
+												<td style="padding: 7px 0;" width="10"></td>
+												<td style="padding: 7px 0;">
+													<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 10px;color: #292929;">MORADA DE ENTREGA</p> <span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#888"><span data-html-only="1" style="color: #292929;"> {delivery_block_html} </span> </span>
+												</td>
+												<td style="padding: 7px 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+			    <td style="padding:20px 0">
+				    <table class="table" style="width: 100%;">
+				        <tbody>
+				            <tr>
+								<td class="box address" style="padding: 1rem;outline: 2px solid #888; padding: 0;text-align: end;" width="310">
+									<table class="table" style="width: 100%;text-align:center;">
+										<tbody>
+											<tr>
+												<td style="padding: 7px 0;" width="10"></td>
+												<td style="padding: 7px 0;">
+													<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 10px;color: #292929;">MORADA DE FATURAÇÃO</p> <span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#a7a7a7"><span data-html-only="1" style="color: #292929;"> {invoice_block_html} </span> </span>
+												</td>
+												<td style="padding: 7px 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+				        </tbody>
+				    </table>
+				</td>
+			</tr>
+			
+			{products}
+			
+			<tr>
+				<td style="padding: 20px 0;">
+					<table class="table table-recap" style="width: 100%; border-collapse: collapse;outline: 2px solid #888;">
+						<tbody>
+							
+							<!-- <tr>
+								<td colspan="6" style="text-align: center; color: #292929; padding: 7px 0;">{discounts}</td>
+							</tr> -->
+							<tr class="conf_body">
+								<td colspan="4" style="border-bottom:1px solid #888;color: #292929; padding: 7px 0;" bgcolor="#ffffff">
+									<table class="table" style="width: 100%; border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#888"> <strong>IVA</strong> </span></td>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+								<td colspan="4" style="border-bottom:1px solid #888;color: #292929; padding: 7px 0;" bgcolor="#ffffff">
+									<table class="table" style="width: 100%; border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#888"> {total_tax_paid} </span></td>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr class="conf_body">
+								<td colspan="4" style="color: #292929; padding: 7px 0;" bgcolor="#ffffff">
+									<table class="table" style="width: 100%; border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#888"> <strong>Total a pagar</strong> </span></td>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+								<td colspan="4" style="color: #292929; padding: 7px 0;" bgcolor="#ffffff">
+									<table class="table" style="width: 100%; border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: large;" face="Open-sans, sans-serif" color="#888"> {total_paid} </span></td>
+												<td style="color: #292929; padding: 0;" width="10"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr class="order-comments" style="width: 100%;background: #ffffff;padding: 1rem;outline: 2px solid #888;padding: 10px 0;display: table;margin: 20px 0;">
+				<td style="padding: 10px 2rem;">
+					<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">COMENTÁRIOS</p> 
+					<div style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif">{note}</div>
+				</td>
+			</tr>
+			<tr class="order-comments" style="width: 100%;background: #ffffff;padding: 1rem;outline: 2px solid #888;padding: 10px 0;display: table;margin: 40px 0;">
+				<td style="padding: 10px 2rem;">
+					<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">
+						PAGAMENTO
+					</p> 
+					<div style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif">
+						{message_payment}
+					</div>
+				</td>
+			</tr>
+			<tr class="order-comments" style="width: 100%;background: #ffffff;padding: 1rem;outline: 2px solid #888;padding: 10px 0;display: table;margin: 20px 0;">
+				<td style="padding: 10px 2rem;">
+					<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">
+						INFORMAÇÃO IMPORTANTE
+					</p> 
+					<span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif">
+						<p style="text-align:center;font-size: 16px;">Devido à grande quantidade de encomendas abandonadas após confirmação e de forma a manter um nível satisfatório de disponibilidade dos produtos, informamos que os artigos desta encomenda apenas ficam reservados por um período de 5 dias. Após este período e sem pagamento ou informação específica, a encomenda será automaticamente cancelada e os artigos colocados novamente à venda.</p>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<table style="width: 100%; border-top: 2px solid #0273EB; border-bottom: 2px solid #0273EB; padding: 5px 0;margin: 20px 0;">
+						<tbody>
+							<tr>
+								<td style="font-size: 20px;color: #292929;width: 100%;text-align: center;text-transform: uppercase;"> Departamento comercial </td>
+							</tr>
+							<tr>
+								<td  style="text-align: center;">
+									<a href="https://www.facebook.com/allstarsdistribution/" title="All Stars Distribution - Facebook" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-facebook-100.png?t=2213124123" style="width: 60px;"> </a>
+									<a href="https://www.instagram.com/allstarsdistribution/" title="All Stars Distribution - Instagram" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-instagram-100.png?t=2213124123" style="width: 60px;"> </a>
+									<a href="https://www.flickr.com/photos/allstarsdistribution/" title="All Stars Distribution - Flickr" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-flickr-100.png?t=2213124123" style="width: 60px;"> </a>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
