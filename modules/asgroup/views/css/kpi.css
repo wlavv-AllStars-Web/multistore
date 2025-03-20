@@ -542,3 +542,8 @@
 #product_grid_table tbody .column-ean13 {
     text-wrap: nowrap !important;
 }
+
+#product_grid_table tbody .column-associated_shops{
+    display: flex;
+    align-items: center;
+}

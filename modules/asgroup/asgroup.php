@@ -526,36 +526,65 @@ class AsGroup extends Module
             return;
         }
 
+        $shopContext = $this->context->cookie->shopContext; 
+
         /** @var PrestaShop\PrestaShop\Core\Grid\Definition\GridDefinitionInterface $definition */
         $definition = $params['definition'];
 
-        // pre($definition->getColumns());
+        // pre($definition);
+        // pre($this->context->shop);
+        // pre($this->context->cookie);
 
         // remove column category
         $definition->getColumns()->remove('category'); 
         $definition->getColumns()->remove('final_price_tax_excluded'); 
-        $definition->getColumns()->remove('price_tax_included'); 
+        $definition->getColumns()->remove('price_tax_included');
+         
+        if(!empty($shopContext)){
+            $definition->getColumns()->remove('associated_shops');
+        }
+
 
         $definition->getFilters()->remove('category'); 
         $definition->getFilters()->remove('final_price_tax_excluded'); 
         $definition->getFilters()->remove('price_tax_included'); 
         
 
+
         // 
 
 
+        if(!empty($shopContext)){
+            $definition
+            ->getColumns()
+            ->addAfter(
+                'id_product',
+                (new PrestaShop\PrestaShop\Core\Grid\Column\Type\Common\ImageColumn('shop'))
+                    ->setName($this->l('Shop'))
+                    ->setOptions([
+                        'src_field' => 'shop', // This should match the field in hookActionProductGridDataModifier
+                        'clickable' => false,
+                    ])
+            );
+        }else{
+            $definition
+            ->getColumns()
+            ->addAfter(
+                'id_product',
+                (new DataColumn('associated_shops'))
+                    ->setName($this->l('Store`s'))
+                    ->setOptions([
+                        'field' => 'associated_shops', // This should match the field in hookActionProductGridDataModifier
+                        'clickable' => false,
+                    ])
+            );
+        }
 
-        $definition
-        ->getColumns()
-        ->addAfter(
-            'id_product',
-            (new PrestaShop\PrestaShop\Core\Grid\Column\Type\Common\ImageColumn('shop'))
-                ->setName($this->l('Shop'))
-                ->setOptions([
-                    'src_field' => 'shop', // This should match the field in hookActionProductGridDataModifier
-                    'clickable' => false,
-                ])
-        );
+
+        
+
+
+        // pre($definition->getColumns());
 
 
         $definition
@@ -751,6 +780,7 @@ class AsGroup extends Module
         // if (empty($params['data']) || !Configuration::get(static::CONFIGURATION_KEY_SHOW_LOGO)) {
         //     return;
         // }
+        $shopContext = $this->context->cookie->shopContext; 
 
         /** @var PrestaShop\PrestaShop\Core\Grid\Data\GridData $gridData */
         $gridData = $params['data'];
@@ -764,24 +794,47 @@ class AsGroup extends Module
                 $modifiedRecords[$key]['manufacturer_logo'] = $manufacturerLogoThumbnailProvider->getPath($data['id_manufacturer']);
             }
 
-            if(isset($data['shop'])){
-                // Get the shop's logo path
-                $logoFilename = Configuration::get('PS_LOGO', null, null, $data['shop']);
-            
-                if ($logoFilename) {
-                    $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/' . $logoFilename;
-                } else {
-                    // Provide a default logo if none is set
-                    $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/logo.jpg';
+            if(!empty($shopContext)){
+                if(isset($data['shop'])){
+                    // Get the shop's logo path
+                    $logoFilename = Configuration::get('PS_LOGO', null, null, $data['shop']);
+                
+                    if ($logoFilename) {
+                        $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/' . $logoFilename;
+                    } else {
+                        // Provide a default logo if none is set
+                        $modifiedRecords[$key]['shop'] = _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/logo.jpg';
+                    }
                 }
             }
 
             // if($data['id_product'] === 18136){
             //     $price = (float) $data['price'];
             //     echo $price;
-            //     pre($data);
+                // pre($data);
             // }
+            if(empty($shopContext)){
+                if (isset($data['associated_shops_ids']) && is_array($data['associated_shops_ids'])) {
+                    $logos = [];
+                    
+                    foreach ($data['associated_shops_ids'] as $shopId) {
+                        $logoFilename = Configuration::get('PS_LOGO', null, null, $shopId);
+                        $shopLogoUrl = $logoFilename
+                            ? _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/' . $logoFilename
+                            : _PS_BASE_URL_ . __PS_BASE_URI__ . 'img/logo.jpg'; // Default logo
+                
+                        // Store as HTML img tag
+                        $logos[] = '<img src="' . htmlspecialchars($shopLogoUrl) . '" style="margin:2px;border-radius:5px;width:35px;height:fit-content;">';
+                    }
+                
+                    // Join multiple images into a single string (for proper rendering)
+                    $modifiedRecords[$key]['associated_shops'] = implode(' ', $logos);
+                }
+            }
+            
+
             // pre($data);
+            
 
             if(isset($data['created_at'])){
                 $modifiedRecords[$key]['created_at'] = date('Y-m-d', strtotime($data['created_at']));
