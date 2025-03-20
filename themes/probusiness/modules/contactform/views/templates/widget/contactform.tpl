@@ -180,7 +180,7 @@
  
                            <button class="g-recaptcha btn btn-primary" 
              name="submitMessage"
-             data-sitekey="6LdZXeoqAAAAAIjzGbbS_j_IgN8BrFxojdpbF3us" 
+             data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
              data-callback='onSubmit' 
              data-action='submit'>{l s='Send' d='Shop.Theme.Contactform'}</button>
            </div>

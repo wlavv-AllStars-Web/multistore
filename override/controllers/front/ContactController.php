@@ -14,19 +14,13 @@ class ContactControllerCore extends FrontController
         if($_POST['g-recaptcha-response']){
             $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
             
-            if($this->context->shop->id == 2){
+         
                 $resq_data = array( 
-                    'secret' => '6LdDD9AqAAAAAN2x0yAhiY6aJOo8QlwPpxbrkwaL', 
+                    'secret' => '6LePv_oqAAAAAL_fWcMUQtnc-oCStLGmrp6ESiyT', 
                     'response' => $_POST['g-recaptcha-response'], 
                     'remoteip' => $_SERVER['REMOTE_ADDR'] 
                 ); 
-            } else if($this->context->shop->id == 3){
-                $resq_data = array( 
-                    'secret' => '6LdZXeoqAAAAAIsvrwmj4X7gOOCpIEF8WIjkjTV4', 
-                    'response' => $_POST['g-recaptcha-response'], 
-                    'remoteip' => $_SERVER['REMOTE_ADDR'] 
-                ); 
-            }
+
 
             $curlConfig = array( 
                 CURLOPT_URL => $api_url, 

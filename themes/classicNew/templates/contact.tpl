@@ -35,8 +35,18 @@
   {/block}
 {else if $layout === 'layouts/layout-right-column.tpl'}
   {block name="right_column"}
+    {* <script src="https://www.google.com/recaptcha/api.js"></script> *}
+
     <div id="right-column" class="col-xs-12 col-sm-4 col-md-3">
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+
       {hook h='displayContactRightColumn'}
+      <div class="g-recaptcha" data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj"></div>
+      {* <button class="g-recaptcha" 
+        data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button> *}
+
     </div>
   {/block}
 {/if}

@@ -469,7 +469,7 @@
                <!--<button type="submit" class="btn btn-primary" onclick="validateForm()">{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button>-->
               <button class="g-recaptcha btn btn-primary" 
                  name="submitMessage"
-                 data-sitekey="6LdZXeoqAAAAAIjzGbbS_j_IgN8BrFxojdpbF3us" 
+                 data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
                  data-callback='validateForm' 
                  data-action='submit'>{l s='Submit' d='Shop.Theme.FormBecomedealer'}</button> 
               </div>
@@ -648,7 +648,7 @@
 
                                 <button class="g-recaptcha btn btn-primary" 
                                  name="submitMessage"
-                                 data-sitekey="6LdZXeoqAAAAAIjzGbbS_j_IgN8BrFxojdpbF3us" 
+                                 data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
                                  data-callback='submitSupplierForm'
                                  data-action='submit'>{l s='Submit' d='Shop.Theme.FormBecomesupplier'}</button> 
                                  
