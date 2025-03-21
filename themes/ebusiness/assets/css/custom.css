@@ -6315,6 +6315,7 @@ button[data-button-action="add-pack-to-cart"] {
 #manufacturer p.show-more {
   cursor: pointer;
   color: var(--asm-color);
+  padding: .25rem 1rem;
 }
 #manufacturer p.show-more:hover {
   cursor: pointer;
