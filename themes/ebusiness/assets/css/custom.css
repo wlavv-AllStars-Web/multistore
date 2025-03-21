@@ -7080,6 +7080,10 @@ select.form-control:not([size]):not([multiple]){
 }
 
 
+.not-to-display-payments {
+  display: none !important;
+}
+
 /* order confirmation */
 
 #order-confirmation #main{
