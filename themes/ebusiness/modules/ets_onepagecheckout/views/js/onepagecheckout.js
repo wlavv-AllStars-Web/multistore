@@ -358,14 +358,14 @@ $(document).on('change','.ets-onepage-js-country',function(){
         $('#shipping_address_vat_number').closest('.form-group').hide();
         $('#shipping_address_dni').closest('.form-group').show();
         $('#shipping_address_dni').prop('required', true);
-        $('#shipping_address_dni').closest('label').addClass('required');
+        $('#shipping_address_dni').closest('.form-group').find('label').addClass('required');
         // console.log("canarias")
     }else{
         // console.log("nao é canarias")
         $('#shipping_address_dni').closest('.form-group').hide();
         $('#shipping_address_vat_number').closest('.form-group').show();
         $('#shipping_address_dni').prop('required', false);
-        $('#shipping_address_dni').closest('label').removeClass('required');
+        $('#shipping_address_dni').closest('.form-group').find('label').removeClass('required');
     }
 
 
