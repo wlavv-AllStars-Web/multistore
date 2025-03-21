@@ -6312,11 +6312,11 @@ button[data-button-action="add-pack-to-cart"] {
   color: #fff !important;
 }
 
-#manufacturer-description p.show-more {
+#manufacturer p.show-more {
   cursor: pointer;
   color: var(--asm-color);
 }
-#manufacturer-description p.show-more:hover {
+#manufacturer p.show-more:hover {
   cursor: pointer;
   color: #333;
 }
