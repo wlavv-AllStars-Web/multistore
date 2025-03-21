@@ -25,13 +25,17 @@
 {include file='_partials/form-errors.tpl' errors=$errors['']}
 
 <form action="{$action}" id="customer-form" class="js-customer-form" method="post">
-  <section>
+  <section style="display: flex;flex-wrap:wrap;">
     {* <pre>{print_r($formFields,1)}</pre> *}
     {block "form_fields"}
       {foreach from=$formFields item="field"}
-        {block "form_field"}
-          {form_field field=$field}
-        {/block}
+        {if $field.name == 'id_gender'}
+          {continue}
+        {else}
+          {block "form_field"}
+            {form_field field=$field}
+          {/block}
+        {/if}
       {/foreach}
     {/block}
     
@@ -53,7 +57,10 @@
     // const company = document.querySelector("input[name='company']");
     // const siret = document.querySelector("input[name='siret']");
 
-    // if(siret || company) {
+    // if(siret) {
+      // siret.addEventListener("focusout", (e) => {
+      //   setCountryByVATNumber(e.target.value)
+      // })
     //   siret.setAttribute("readonly","readonly")
     //   company.setAttribute("readonly","readonly")
 
@@ -66,6 +73,48 @@
     //   parentsiret.querySelector(".form-control-comment").style.display = "none"
     //   parentcompany.querySelector(".form-control-comment").style.display = "none"
     // }
+
+
+    $( document ).ready(function() {
+        $('.clean_vat_number').val('');
+        $('.clean_vat_number').value='';
+    });
+
+    function setCountryByVATNumber(vatNumber){
+      console.log("setcountrybyvat")
+
+        $('select option').show();
+        
+        $("#id_country").attr("readonly", false);
+
+        $("select#id_country").css('pointer-events', 'initial');
+
+        let country_iso_code = vatNumber.substring(0,2);
+        
+        country_iso_code = country_iso_code.toUpperCase();
+        
+        if( !hasNumber(country_iso_code) ){
+            
+            id_country = $('#id_country option[iso_code="' + country_iso_code + '"]').val();
+
+            if(country_iso_code == 'PT'){
+                $('select option[mytag!=351]').hide();
+                $("select#id_country").val(id_country).change();
+            }else if(country_iso_code == 'FR'){
+                $('select option[mytag!=33]').hide();
+                $("select#id_country").val(id_country).change();
+            }else if(country_iso_code == 'ES'){
+                $('select option[mytag!=34]').hide();
+                $("select#id_country").val(id_country).change();
+            }else{
+                $("#id_country").attr("readonly", true);
+                $("select#id_country").val(id_country).change();
+                $("select#id_country").css('pointer-events', 'none');                
+            }
+        }
+    }
+    
+    function hasNumber(myString) { return /\d/.test(myString); }
   </script>
 
 <style>
