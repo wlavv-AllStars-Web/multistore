@@ -31,7 +31,7 @@
   
   <div class="form-group {if $page.page_name != 'registration'} row {else} col-lg-4 {/if} {if $page.page_name == 'address'} col-lg-4{/if}{if !empty($field.errors)} has-error{/if}">
     <label class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {elseif $page.page_name == 'address'} col-lg-12 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}" 
-      style="{if $page.page_name == 'registration'} text-align: start; {elseif $page.page_name == 'address'} text-align:center; {/if}">
+      style="{if $page.page_name == 'registration'} text-align: start; {elseif $page.page_name == 'address'} text-align:start; {/if}">
       {if $field.type !== 'checkbox'}
         {$field.label}
       {/if}
