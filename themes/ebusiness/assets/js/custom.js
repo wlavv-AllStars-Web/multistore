@@ -260,7 +260,7 @@ function backButtonBrand(){
 }
 
 function hoverCart(e) {
-  // console.log(e)
+  console.log(window.screen.width)
   if(window.screen.width > 992){
     const cartModalTop = e.querySelector(".cart-hover-content")
     cartModalTop.classList.toggle("show-cart-top-modal")
