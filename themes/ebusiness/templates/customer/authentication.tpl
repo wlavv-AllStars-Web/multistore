@@ -92,12 +92,15 @@
           <div class="col-xs-12 col-sm-6">
               <div class="no-account register_form">
                 <div class="register_form_cell">
-                    <a href="{$urls.pages.register}" data-link-action="display-register-form">
+                    {* <a href="{$urls.pages.register}" data-link-action="display-register-form">
                       {l s='No account? Create one here' d='Shop.Theme.CustomerAccount'}
-                    </a>
+                    </a> *}
+                    <label>{l s='No account? Create one here' d='Shop.Theme.CustomerAccount'}</label>
                     <div class="clearfix"></div>
                     <a class="btn btn-primary button-to-register-form" href="{$urls.pages.register}" data-link-action="display-register-form">
-                      {l s='Register' d='Shop.Theme.CustomerAccount'}
+                      {* {l s='Register' d='Shop.Theme.CustomerAccount'} *}
+                      {* {l s='No account? Create one here' d='Shop.Theme.CustomerAccount'} *}
+                      {l s='Create an account' d='Shop.Theme.CustomerAccount'}
                     </a>
                 </div>
               </div>

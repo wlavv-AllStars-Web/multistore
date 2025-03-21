@@ -5567,6 +5567,7 @@ ul {
   font-size: 1.25rem;
   text-transform: uppercase;
   user-select: none;
+  font-weight: 600;
 }
 
 #_desktop_top_menu .list-menu-desktop li:hover {
