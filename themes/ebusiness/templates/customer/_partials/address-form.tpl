@@ -48,7 +48,7 @@
       <div class="col-md-6">
         <input type="hidden" name="submitAddress" value="1">
         {block name='form_buttons'}
-          <button class="btn btn-outline-success pull-xs-right" type="submit" class="form-control-submit">
+          <button class="btn btn-outline-primary pull-xs-right" type="submit" class="form-control-submit">
             {l s='Save' d='Shop.Theme.Actions'}
           </button>
         {/block}
