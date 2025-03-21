@@ -151,22 +151,24 @@
                     </div>
                 </div>
             {/if}
+
             {if $key=='dni' && in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
-                <div class="form-group row px-lg-3">
-                    <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label{if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} required{/if}"> {l s='Identification number' mod='ets_onepagecheckout'} </label>
-                    <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
-                        <input id="{$address_type|escape:'html':'UTF-8'}_dni" class="form-control validate{if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isDniLite" name="{$address_type|escape:'html':'UTF-8'}[dni]" value="{$class_address->dni|escape:'html':'UTF-8'}" maxlength="128" type="text" data-validate-errors="{l s='Identification number is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='Identification number is required' mod='ets_onepagecheckout' js=1}"/>
-                    </div>
+            <div class="form-group row px-lg-3" {if $class_address->id_country != 249} style="display:none;" {/if}>
+                <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label{if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} required{/if}"> {l s='Identification number' mod='ets_onepagecheckout'} </label>
+                <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
+                    <input id="{$address_type|escape:'html':'UTF-8'}_dni" class="form-control validate{if in_array('dni',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isDniLite" name="{$address_type|escape:'html':'UTF-8'}[dni]" value="{$class_address->dni|escape:'html':'UTF-8'}" maxlength="128" type="text" data-validate-errors="{l s='Identification number is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='Identification number is required' mod='ets_onepagecheckout' js=1}"/>
                 </div>
+            </div>
             {/if}
             {if $key=='vatnumber' && in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
-                <div class="form-group row px-lg-3">
+                <div class="form-group row px-lg-3" {if $class_address->id_country == 249} style="display:none;" {/if}>
                     <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label{if in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} required{/if}"> {l s='VAT number' mod='ets_onepagecheckout'} </label>
                     <div class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-8{/if} opc_field_right">
                         <input id="{$address_type|escape:'html':'UTF-8'}_vat_number" class="form-control validate{if in_array('vat_number',$ETS_OPC_ADDRESS_DISPLAY_FIELD_REQUIRED)} is_required{/if}" data-validate="isGenericName" name="{$address_type|escape:'html':'UTF-8'}[vat_number]" value="{$class_address->vat_number|escape:'html':'UTF-8'}" maxlength="128" type="text" data-validate-errors="{l s='VAT number is not valid' mod='ets_onepagecheckout' js=1}" data-required-errors="{l s='VAT number is required' mod='ets_onepagecheckout' js=1}" />
                     </div>
                 </div>
             {/if}
+
             {if $key=='eicustomertype' && in_array('company',$ETS_OPC_ADDRESS_DISPLAY_FIELD)}
                 <div class="form-group row px-lg-3">
                     <label class="{if $opc_layout =='layout_3'}col-md-12{else}col-md-4{/if} form-control-label" for="field-{$address_type|escape:'html':'UTF-8'}-eicustomertype">

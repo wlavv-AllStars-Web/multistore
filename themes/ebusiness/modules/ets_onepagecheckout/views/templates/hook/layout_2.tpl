@@ -341,3 +341,8 @@
         </div>
     </div>
 </form>
+
+<script>
+    var notAcceptedPaymentsMessage = "{l s='Please accept Terms and Availability to view payment methods' d='Shop.Theme.Checkout'}";
+    var notAcceptedPaymentsMessageShipping = "{l s='Unfortunately, there are no payment methods available for your delivery address.' d='Shop.Theme.Checkout'}";
+</script>

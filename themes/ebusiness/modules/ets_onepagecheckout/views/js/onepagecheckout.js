@@ -352,6 +352,19 @@ $(document).on('change','select',function(){
 $(document).on('change','.ets-onepage-js-country',function(){
     var address_type = $(this).data('type');
     var id_country= $(this).val();
+    conditionsCheckbox.checked = false;
+
+    if(id_country == 249){
+        $('#shipping_address_vat_number').closest('.form-group').hide();
+        $('#shipping_address_dni').closest('.form-group').show();
+        // console.log("canarias")
+    }else{
+        // console.log("nao é canarias")
+        $('#shipping_address_dni').closest('.form-group').hide();
+        $('#shipping_address_vat_number').closest('.form-group').show();
+    }
+
+
     if($('#'+address_type+'_postal_code').length && $('#'+address_type+'_postal_code').val())
     {
         validate_field('#'+address_type+'_postal_code');
@@ -386,6 +399,18 @@ $(document).on('change','.ets-onepage-js-country',function(){
                     $('.block-shipping .block-content').html(json.shipping_methods);
                     ets_opc_displayShipping();
                     ets_refresh_shipping_cart(0);
+
+                    // asg shipping methods + paymnet
+                    if (json.shipping_methods && !json.shipping_methods.includes('alert-danger')) {
+                        $('.not-accepted-payments').css('display', 'block');
+                        $('.block-onepagecheckout.block-payment').css('display', 'none');
+                        $('.not-accepted-payments').html(notAcceptedPaymentsMessage);
+                        $('.not-to-display-payments').removeClass('not-to-display-payments');
+                    } else {
+                        $('.not-accepted-payments').css('display', 'block');
+                        $('.not-accepted-payments').html(notAcceptedPaymentsMessageShipping);
+                        $('.block-onepagecheckout.block-payment').parent().addClass('not-to-display-payments');
+                    }
                 }
                 $('.block-onepagecheckout').removeClass('loading');
             },
