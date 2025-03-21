@@ -43,9 +43,9 @@
     </section>
 
     <footer class="form-footer {if $page.page_name == 'address'}col-lg-6 {/if} clearfix">
-      <div class="col-md-3"></div>
+      <div class="col-md-4"></div>
 
-      <div class="col-md-6">
+      <div class="col-md-4" style="display: flex;justify-content: center;">
         <input type="hidden" name="submitAddress" value="1">
         {block name='form_buttons'}
           <button class="btn btn-outline-primary pull-xs-right" type="submit" class="form-control-submit">
@@ -54,7 +54,7 @@
         {/block}
       </div>
 
-      <div class="col-md-3"></div>
+      <div class="col-md-4"></div>
     </footer>
   </form>
 </div>
