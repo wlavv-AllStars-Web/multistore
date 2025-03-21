@@ -29,14 +29,14 @@
 
 {else}
   
-  <div class="form-group {if $page.page_name != 'registration'} row {else} col-lg-4 {/if} {if $page.page_name == 'address'} col-lg-6{/if}{if !empty($field.errors)} has-error{/if}">
-    <label class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}" 
+  <div class="form-group {if $page.page_name != 'registration'} row {else} col-lg-4 {/if} {if $page.page_name == 'address'} col-lg-4{/if}{if !empty($field.errors)} has-error{/if}">
+    <label class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {elseif $page.page_name == 'address'} col-lg-12 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}" 
       style="{if $page.page_name == 'registration'} text-align: start;{/if}">
       {if $field.type !== 'checkbox'}
         {$field.label}
       {/if}
     </label>
-    <div class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {else}col-md-6{/if}{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
+    <div class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {elseif $page.page_name == 'address'} col-lg-12 {else}col-md-6{/if}{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
 
       {if $field.type === 'select'}
 
@@ -161,7 +161,7 @@
 
     </div>
 
-    <div class="col-md-3 form-control-comment" {if $page.page_name == 'authentication'} style='display:none;'{/if}>
+    <div class="col-md-3 form-control-comment" style="{if $page.page_name == 'authentication'} display:none; {elseif $page.page_name == 'address'} min-height:28px; {/if}">
       {if (!$field.required && !in_array($field.type, ['radio-buttons', 'checkbox']))}
        {l s='Optional' d='Shop.Forms.Labels'}
       {/if}
