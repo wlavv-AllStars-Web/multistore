@@ -272,8 +272,10 @@ function togglePaymentBlock() {
         const availabilityChecked = availabilityCheckbox.checked;
 
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+
+        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments")
     
-        if (conditionsChecked && availabilityChecked) {
+        if (conditionsChecked && availabilityChecked && showBoolean == false) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
             alert.style.display = "none";
@@ -284,8 +286,10 @@ function togglePaymentBlock() {
         }
     }else{
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+
+        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments")
     
-        if (conditionsChecked) {
+        if (conditionsChecked && showBoolean == false) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
             alert.style.display = "none";
