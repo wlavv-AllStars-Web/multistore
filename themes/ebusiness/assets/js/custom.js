@@ -261,8 +261,10 @@ function backButtonBrand(){
 
 function hoverCart(e) {
   // console.log(e)
-  const cartModalTop = e.querySelector(".cart-hover-content")
-  cartModalTop.classList.toggle("show-cart-top-modal")
+  if(window.screen.width > 992){
+    const cartModalTop = e.querySelector(".cart-hover-content")
+    cartModalTop.classList.toggle("show-cart-top-modal")
+  }
 }
 
 function changeImgComments() {
