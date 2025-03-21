@@ -54,7 +54,7 @@
             {$manufacturer.short_description nofilter}
           </div>
 
-          <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
+          <p class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</p>
         {else}
           {$manufacturer.short_description nofilter}
         {/if}
@@ -63,7 +63,7 @@
         {if strlen($manufacturer.description) > 550}
         <div class="description" style="display: flex;flex-direction:column">
           <div id="manufacturer-description" class="text_description hiddenTextDescription">{$manufacturer.description nofilter}</div>
-          <button class="show-more btn-primary" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</button>
+          <p class="show-more" onclick="toggleDescription(this)">{l s='Show More' d='Shop.Theme.Actions'}</p>
         </div>
         {else}
           <div class="description" style="display: flex;flex-direction:column">
