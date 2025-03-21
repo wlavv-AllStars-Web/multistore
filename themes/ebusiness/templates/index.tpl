@@ -200,23 +200,23 @@
 
       @media screen and (max-width:768px) {
         .card-yourcar {
-          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=1597494218");
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_{$language.iso_code}.webp?t=1597494218");
           background-position: center;
           background-size: cover;
         }
         .card-news {
-          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_{$language.iso_code}.webp?t=1521401943");
           background-position: center;
           background-size: cover;
         }
         .card-brands {
-          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_{$language.iso_code}.webp?t=1849194914");
           background-position: center;
           background-size: cover;
         }
 
         .card-wheels {
-          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_{$language.iso_code}.webp?t=1743148996");
           background-position: center;
           background-size: cover;
         }
