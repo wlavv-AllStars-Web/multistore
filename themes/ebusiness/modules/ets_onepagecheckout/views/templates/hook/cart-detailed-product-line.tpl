@@ -59,7 +59,7 @@
       {/if}
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="cart-container-availability">
         {if $packProducts && $product.pack == 1}
           {assign var="minFutureStock" value=null}
@@ -156,7 +156,7 @@
       </script>
     </div>
 
-    <div class="hidden_mobile product-line-info col-lg-2 product-price h5 {if $product.has_discount}has-discount{/if}">
+    <div class="hidden_mobile product-line-info col-lg-3 product-price h5 {if $product.has_discount}has-discount{/if}">
       {if $product.has_discount}
         <div class="product-discount">
           <span class="regular-price">{$product.regular_price|escape:'html':'UTF-8'}</span>

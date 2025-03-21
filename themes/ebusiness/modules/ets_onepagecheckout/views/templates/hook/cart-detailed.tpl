@@ -22,8 +22,8 @@
       <div class="col-lg-1 pl-0">{l s="Product" d="Shop.Theme.Checkout"}</div>
       <div class="col-lg-6 pl-0">
         <div class="col-lg-6">{l s="Description" d="Shop.Theme.Checkout"}</div>
-        <div class="col-lg-4">{l s="Availability" d="Shop.Theme.Checkout"}</div>
-        <div class="col-lg-2">{l s="Unit Price" d="Shop.Theme.Checkout"}</div>
+        <div class="col-lg-3">{l s="Availability" d="Shop.Theme.Checkout"}</div>
+        <div class="col-lg-3">{l s="Unit Price" d="Shop.Theme.Checkout"}</div>
       </div>
       <div class="col-lg-5 px-4">
         <div class="col-md-10 px-0">
