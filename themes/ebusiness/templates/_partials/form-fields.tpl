@@ -29,13 +29,14 @@
 
 {else}
   
-  <div class="form-group row {if $page.page_name == 'address'} col-lg-6{/if}{if !empty($field.errors)} has-error{/if}">
-    <label class="{if $page.page_name == 'authentication'} col-md-10 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}">
+  <div class="form-group {if $page.page_name != 'registration'} row {else} col-lg-4 {/if} {if $page.page_name == 'address'} col-lg-6{/if}{if !empty($field.errors)} has-error{/if}">
+    <label class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {else}col-md-3{/if} form-control-label{if $field.required} required{/if}" 
+      style="{if $page.page_name == 'registration'} text-align: start;{/if}">
       {if $field.type !== 'checkbox'}
         {$field.label}
       {/if}
     </label>
-    <div class="{if $page.page_name == 'authentication'} col-md-10 {else}col-md-6{/if}{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
+    <div class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {else}col-md-6{/if}{if ($field.type === 'radio-buttons')} form-control-valign{/if}">
 
       {if $field.type === 'select'}
 
