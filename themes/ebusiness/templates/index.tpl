@@ -169,15 +169,15 @@
 
                     {if $mobileItem['id_compat'] > 0}
                       <a class="card-img card-itemMobile"  href="{$urls.current_url}cars-products?id_compat={$mobileItem['id_compat']}">
-                        <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
+                        <img src="{$mobileItem['image_{$language.iso_code}']}" style="width: 100%;"/>
                       </a>
                     {elseif $mobileItem['title_en'] === 'clearance'}
                       <a  class="card-itemMobile"  href="{$link->getCategoryLink(16)|escape:'html':'UTF-8'}">
-                        <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
+                        <img src="{$mobileItem['image_{$language.iso_code}']}" style="width: 100%;"/>
                       </a>
                     {else}
                       <a  class="card-itemMobile"  href="{l s="brand" d="Shop.Theme.Homepage"}/{$mobileItem['link']}">
-                        <img src="{$mobileItem['image_en']}" style="width: 100%;"/>
+                        <img src="{$mobileItem['image_{$language.iso_code}']}" style="width: 100%;"/>
                       </a>
                     {/if}
                
