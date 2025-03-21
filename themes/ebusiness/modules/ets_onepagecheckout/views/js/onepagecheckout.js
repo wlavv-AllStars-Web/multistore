@@ -357,11 +357,15 @@ $(document).on('change','.ets-onepage-js-country',function(){
     if(id_country == 249){
         $('#shipping_address_vat_number').closest('.form-group').hide();
         $('#shipping_address_dni').closest('.form-group').show();
+        $('#shipping_address_dni').prop('required', true);
+        $('#shipping_address_dni').closest('label').addClass('required');
         // console.log("canarias")
     }else{
         // console.log("nao é canarias")
         $('#shipping_address_dni').closest('.form-group').hide();
         $('#shipping_address_vat_number').closest('.form-group').show();
+        $('#shipping_address_dni').prop('required', false);
+        $('#shipping_address_dni').closest('label').removeClass('required');
     }
 
 
