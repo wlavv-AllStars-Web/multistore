@@ -4633,6 +4633,10 @@ ul {
   margin-right: unset !important;
 }
 
+#registration #customer-form .form-footer button{
+  margin-right: 1.5rem;
+}
+
 #customer-form .help-block li {
   background: #fff;
   color: var(--asm-color);
