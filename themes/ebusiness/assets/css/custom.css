@@ -1894,7 +1894,7 @@ body {
   .card-yourcar {
     height: 111px;
     width: 100%;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=93721499");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=93721499"); */
     background-position: center;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
     outline: 2px solid #111;
@@ -1911,7 +1911,7 @@ body {
     height: 111px;
     /* max-width: 185px; */
     max-height: 185px;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
@@ -1924,7 +1924,7 @@ body {
     height: 111px;
     /* max-width: 185px; */
     max-height: 185px;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
@@ -1938,7 +1938,7 @@ body {
     height: 111px;
     /* max-width: 185px; */
     max-height: 185px;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
@@ -3195,7 +3195,7 @@ body {
     min-height: 111px;
     width: 100%;
     min-width: 180px;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=1597494218");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=1597494218"); */
     background-position: center;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
     outline: 2px solid #111;
@@ -3214,7 +3214,7 @@ body {
     min-height: 111px;
     /* min-width: 120px; */
     min-width: 50%;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
@@ -3227,7 +3227,7 @@ body {
     height: 100%;
     min-height: 111px;
     min-width: 120px;
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);
@@ -3242,7 +3242,7 @@ body {
     min-height: 111px;
     min-width: 120px;
 
-    background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+    /* background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996"); */
     background-position: center;
     background-size: cover;
     box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.5);

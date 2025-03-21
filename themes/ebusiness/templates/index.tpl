@@ -196,15 +196,30 @@
       </section>
       <style>
 
-      /* @media screen and (max-width:560px) {
-        #content{
-          display: flex;justify-content:center;width:100%;padding:1rem;
+
+
+      @media screen and (max-width:768px) {
+        .card-yourcar {
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//yourcar_en.webp?t=1597494218");
         }
-      } */
-      .swiper-container {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+        .card-news {
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//news_en.webp?t=1521401943");
+        }
+        .card-brands {
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//brands_en.webp?t=1849194914");
+        }
+
+        .card-wheels {
+          background: url("https://www.all-stars-motorsport.com/themes/theme1164/mobile/img//wheels_en.webp?t=1743148996");
+        }
+      }
+
+
+
+    .swiper-container {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
     }
 
     .swiper-slide {
