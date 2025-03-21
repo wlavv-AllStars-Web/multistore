@@ -4628,6 +4628,11 @@ ul {
   margin: auto;
 }
 
+#registration #customer-form .form-footer {
+  margin-left: auto;
+  margin-right: unset !important;
+}
+
 #customer-form .help-block li {
   background: #fff;
   color: var(--asm-color);
@@ -6417,6 +6422,9 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  #registration #wrapper > .container {
+    min-height: 43dvh;
+  }
   /* compats */
   .versions_model_content {
     padding: .5rem 0;
