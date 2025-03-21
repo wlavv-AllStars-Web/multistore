@@ -210,14 +210,16 @@
                 </div>
             </div>
 
+            {assign var="no_shipping_methods" value=(strpos($shipping_methods, 'alert-danger') !== false)}
+
             <div class="not-accepted-payments alert alert-danger">
-            {if !$shipping_methods}
+            {if $no_shipping_methods}
                 {l s='Unfortunately, there are no payment methods available for your delivery address.' d='Shop.Theme.Checkout'}
             {else}
                 {l s='Please accept Terms and Availability to view payment methods' d='Shop.Theme.Checkout'}
             {/if}
             </div>
-            <div class="{if !$shipping_methods}not-to-display-payments{/if}" {if !$payment_methods} style="display:none"{/if} style="display: none;">
+            <div class="{if $no_shipping_methods}not-to-display-payments{/if}" {if !$payment_methods} style="display:none"{/if} style="display: none;">
                 <div class="block-onepagecheckout block-payment" style="display: none;">
                     <div class="title-heading">
                                     <span class="ets_icon_svg">
