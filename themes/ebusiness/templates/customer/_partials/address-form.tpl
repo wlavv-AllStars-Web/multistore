@@ -42,7 +42,7 @@
       {/block}
     </section>
 
-    <footer class="form-footer {if $page.page_name == 'address'}col-lg-6 {/if} clearfix">
+    <footer class="form-footer {if $page.page_name == 'address'}col-lg-12 {/if} clearfix">
       <div class="col-md-4"></div>
 
       <div class="col-md-4" style="display: flex;justify-content: center;">
