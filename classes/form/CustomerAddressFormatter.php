@@ -213,7 +213,7 @@ class CustomerAddressFormatterCore implements FormFormatterInterface
             case 'address2':
                 return $this->translator->trans('Address Complement', [], 'Shop.Forms.Labels');
             case 'postcode':
-                return $this->translator->trans('Zip/Postal Code', [], 'Shop.Forms.Labels');
+                return $this->translator->trans('Zip/Postal Code', [], 'Shop.Themes.FormAddress');
             case 'city':
                 return $this->translator->trans('City', [], 'Shop.Forms.Labels');
             case 'Country':
