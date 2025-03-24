@@ -8775,6 +8775,9 @@ input[type="checkbox"]:checked::after {
 }
 
 
+.my-garage-car-details span{
+  text-wrap: nowrap;
+}
 
 @media screen and (max-width: 1280px){
   .model_group_cars {
