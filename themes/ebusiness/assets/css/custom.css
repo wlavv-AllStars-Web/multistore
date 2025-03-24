@@ -8779,7 +8779,7 @@ input[type="checkbox"]:checked::after {
   text-wrap: nowrap;
 }
 
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1500px){
   .model_group_cars {
     display: flex;
     justify-content: flex-start !important; /* Aligns items to the start */
