@@ -74,7 +74,7 @@
 
   {* <pre>{$cart.subtotals|print_r}</pre> *}
   <div id="_desktop_cart">
-  <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" {if $cart.products_count > 0} onmouseover="hoverCart(this)" onmouseout="hoverCart(this)" {/if}  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
+  <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}"  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
     <div class="header">
       <a rel="nofollow" {if $cart.products_count > 0}href="{$order_url|escape:'html':'UTF-8'}"{/if}>
 
@@ -160,3 +160,27 @@
   font-size: 14px;
 }
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let cart = document.querySelector(".blockcart.cart-preview");
+        if (cart && cart.dataset.hasProducts === "true") {
+            if (window.innerWidth > 992) {
+                cart.setAttribute("onmouseover", "hoverCart(this)");
+                cart.setAttribute("onmouseout", "hoverCart(this)");
+            }
+        }
+    });
+
+    window.addEventListener("resize", function() {
+        let cart = document.querySelector(".blockcart.cart-preview");
+        if (cart) {
+            if (window.innerWidth > 992) {
+                cart.setAttribute("onmouseover", "hoverCart(this)");
+                cart.setAttribute("onmouseout", "hoverCart(this)");
+            } else {
+                cart.removeAttribute("onmouseover");
+                cart.removeAttribute("onmouseout");
+            }
+        }
+    });
+</script>
