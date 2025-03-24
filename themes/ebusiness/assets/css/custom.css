@@ -4653,7 +4653,7 @@ ul {
 
 #registration #customer-form .form-footer {
   margin-left: auto;
-  margin-right: unset !important;
+  /* margin-right: unset !important; */
 }
 
 #registration #customer-form .form-footer button{
@@ -6079,6 +6079,9 @@ ul {
 }
 
 /* my accout address */
+#addresses .page-header {
+  margin-left: 1.5rem;
+}
 
 #addresses .page-content .col-lg-4.col-md-6.col-sm-6 {
   width: 100% !important;
@@ -7203,7 +7206,11 @@ select.form-control:not([size]):not([multiple]){
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
-  padding: 1rem 0;
+  padding: 1rem 0rem;
+}
+
+#addresses .container-btns-myaccount{
+  padding: 1rem 1.5rem !important;
 }
 
 /* order-detail */
@@ -8477,6 +8484,22 @@ input[type="checkbox"]:checked::after {
   .sidenav a {font-size: 18px;}
 } 
 
+@media  screen and (min-width: 1400px) {
+
+  #identity #main {
+    max-width: 1350px;
+    margin:auto;
+    width: 100%;
+  }
+
+  #address #main {
+    max-width: 1350px;
+    margin:auto;
+    width: 100%;
+  }
+  
+}
+
 
 @media screen and (min-width: 1800px) {
   #productList .variantionsProductList{
@@ -8829,3 +8852,5 @@ input[type="checkbox"]:checked::after {
     max-width: 300px;
   }
 }
+
+

@@ -44,10 +44,10 @@
   
   </section>
 
-  <footer class="form-footer clearfix">
+  <footer class="form-footer d-flex justify-content-center">
     <input type="hidden" name="submitCreate" value="1">
     {block "form_buttons"}
-      <button class="btn btn-outline-primary form-control-submit pull-xs-right" data-link-action="save-customer" type="submit">
+      <button class="btn btn-outline-primary form-control-submit" data-link-action="save-customer" type="submit">
         {l s='Save' d='Shop.Theme.Actions'}
       </button>
     {/block}
