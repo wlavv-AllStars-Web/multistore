@@ -1149,8 +1149,13 @@ body {
   }
 }
 @media screen and (max-width: 992px) {
+  /* carthover */
   #_desktop_cart:hover .body.cart-hover-content::before{
     display:none !important;
+  }
+
+  #header .header-nav .cart-preview .body{
+    display: none !important;
   }
 
   .category-wheels-top:not(.show-filters){
