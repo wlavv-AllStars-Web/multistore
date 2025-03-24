@@ -132,6 +132,8 @@ class CartControllerCore extends FrontController
         $updatedProduct = reset($updatedProducts);
         $productQuantity = $updatedProduct['quantity'] ?? 0;
 
+        // pre($productQuantity);
+
         if (!$this->errors) {
             $presentedCart = $this->cart_presenter->present($this->context->cart);
 
@@ -228,6 +230,56 @@ class CartControllerCore extends FrontController
 
     public function postProcess()
     {
+        if(Tools::getValue('action') === 'outOfStockNotification'){
+            $email = Tools::getValue('email_customer');
+
+            if (!Validate::isEmail($email)) {
+                die(json_encode([
+                    'success' => false,
+                    'message' => 'Invalid email address.'
+                ]));
+            }
+
+
+            $productReference = Tools::getValue('productReference');
+            $customerLang = Tools::getValue('customerLang');
+            $product = Tools::getValue('id_product');
+            $productAttribute = Tools::getValue('id_product_attribute');
+
+
+
+            $db = Db::getInstance();
+
+
+            $existingRequest = $db->getValue(
+                'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . 'asm_email_alert` 
+                WHERE `reference` = "' . pSQL($productReference) . '" 
+                AND `email` = "' . pSQL($email) . '"'
+            );
+    
+            if ($existingRequest > 0) {
+                die(json_encode([
+                    'success' => true,
+                    'message' => 'You have already submitted a request for this product.'
+                ]));
+            }
+
+            $db->insert('asm_email_alert', [
+                'id_product' =>  pSQL($product),
+                'reference' => pSQL($productReference),
+                'id_combination' => pSQL($productAttribute),
+                'email' => pSQL($email),
+                'id_lang' => (int) $customerLang,
+                'date_add' => date('Y-m-d H:i:s')
+            ]);
+
+            // Respond with success
+            die(json_encode([
+                'success' => true,
+                'message' => 'Your request has been recorded. We will notify you when the product is available.'
+            ]));
+        }
+
         $this->updateCart();
     }
 
