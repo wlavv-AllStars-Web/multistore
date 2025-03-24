@@ -1068,7 +1068,7 @@ body {
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-next,
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-prev {
     color: var(--asm-color);
-    background: none;
+    /* background: none; */
     height: 80%;
     top: 50%;
     transform: translateY(-50%);
@@ -1081,7 +1081,7 @@ body {
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-next:hover,
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-prev:hover {
     color: #fff !important;
-    background: #f00;
+    /* background: #f00; */
     height: 80%;
     top: 50%;
     transform: translateY(-50%);
