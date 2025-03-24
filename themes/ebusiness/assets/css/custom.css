@@ -1060,7 +1060,7 @@ body {
 
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-prev {
     color: #ff0000;
-    background:#333;
+    background:none;
     width: 59px;
     left: 0;
   }
