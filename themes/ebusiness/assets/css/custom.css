@@ -5729,6 +5729,7 @@ ul {
   color: #333 !important;
   justify-content: start;
   font-size: 1rem;
+  font-weight: 500;
 }
 #_desktop_top_menu
   .list-menu-desktop
