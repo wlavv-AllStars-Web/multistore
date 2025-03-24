@@ -1053,7 +1053,7 @@ body {
 
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-next{
     color: #ff0000;
-    background:#333;
+    background: none;
     width: 59px;
     right: 0;
   }
