@@ -31,8 +31,8 @@
         <input type="hidden" name="id_product_attribute" value="{$product.id_product_attribute}">
         <input type="hidden" name="product_reference" value="{$product.reference}">
         <input type="hidden" name="customerLang" value="{$language.id}">
-        <input class="form-control col-lg-6" type="email" name="email_customer" id="email_customer" placeholder="{l s='Enter your email' d="Shop.Theme.Catalog"}" required>
-        <button type="submit" class="btn btn-primary col-lg-3" id="submit_request">
+        <input class="form-control col-lg-6" type="email" name="email_customer" id="email_customer" placeholder="{l s='Enter your email' d="Shop.Theme.Catalog"}" required style="background: #fff;">
+        <button type="submit" class="btn btn-primary col-lg-3" id="submit_request" style="max-width: 300px;width: 100%;">
           {l s='Submit request' d='Shop.Theme.Catalog'}
         </button>
       </div>
