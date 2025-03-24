@@ -8779,7 +8779,7 @@ input[type="checkbox"]:checked::after {
 @media screen and (max-width: 1280px){
   .model_group_cars {
     display: flex;
-    justify-content: flex-start; /* Aligns items to the start */
+    justify-content: flex-start !important; /* Aligns items to the start */
     overflow-x: auto; /* Enables horizontal scrolling */
     scroll-snap-type: x mandatory; /* Enables snapping */
     gap: 10px; /* Adds spacing between items */
@@ -8788,7 +8788,7 @@ input[type="checkbox"]:checked::after {
     white-space: nowrap; /* Prevents wrapping */
   }
   
-  
+
   
 
 }
