@@ -1149,6 +1149,10 @@ body {
   }
 }
 @media screen and (max-width: 992px) {
+  #_desktop_cart:hover .body.cart-hover-content::before{
+    display:none !important;
+  }
+
   .category-wheels-top:not(.show-filters){
     display: none !important;
   }
