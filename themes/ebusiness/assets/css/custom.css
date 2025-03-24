@@ -8773,3 +8773,22 @@ input[type="checkbox"]:checked::after {
 #address #main > header.page-header{
   padding-left: 2rem;
 }
+
+
+
+@media screen and (max-width: 1280px){
+  .model_group_cars {
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the start */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enables snapping */
+    gap: 10px; /* Adds spacing between items */
+    padding: 10px; /* Adds some space for scrolling */
+    width: 100%; /* Ensures it takes full width */
+    white-space: nowrap; /* Prevents wrapping */
+  }
+  
+  
+  
+
+}

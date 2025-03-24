@@ -355,3 +355,15 @@ function resetFilters() {
   document.querySelector("#carYearWheels").setAttribute("disabled","disabled")
   document.querySelector("#carModificationsWheels").setAttribute("disabled","disabled")
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  let scrollContainer = document.querySelector(".model_group_cars");
+  
+  if (scrollContainer) {
+      scrollContainer.addEventListener("wheel", function(event) {
+          event.preventDefault(); // Prevent vertical scroll
+          scrollContainer.scrollLeft += event.deltaY; // Scroll horizontally
+      });
+  }
+});
