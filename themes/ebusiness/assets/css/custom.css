@@ -5821,7 +5821,7 @@ ul {
 }
 
 #header .header-nav .cart-preview .body {
-  display: block !important;
+  display: block;
 }
 
 /* order page */
