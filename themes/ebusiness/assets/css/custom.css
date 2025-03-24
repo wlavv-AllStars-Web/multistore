@@ -1053,15 +1053,15 @@ body {
 
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-next{
     color: #ff0000;
-    background: none;
-    width: 59px;
+    background: #333;
+    width: 50px;
     right: 0;
   }
 
   .dropdown-menu.menu-logos .swiper-menu-brands .swiper-button-prev {
     color: #ff0000;
-    background:none;
-    width: 59px;
+    background: #333;
+    width: 50px;
     left: 0;
   }
 
