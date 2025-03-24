@@ -8791,6 +8791,7 @@ input[type="checkbox"]:checked::after {
 
 .my-garage-car-details span{
   text-wrap: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1500px){
@@ -8808,4 +8809,23 @@ input[type="checkbox"]:checked::after {
 
   
 
+}
+
+
+@media screen and (min-wuidth:768px) and (max-width: 1000px){
+  #my-garage-cars {
+    justify-content: center;
+  }
+  #my-garage-cars .my-garage-car {
+    max-width: 300px;
+  }
+}
+
+@media screen and (min-wuidth:768px) and (max-width: 1000px){
+  #my-garage-cars {
+    justify-content: center;
+  }
+  #my-garage-cars .my-garage-car {
+    max-width: 300px;
+  }
 }
