@@ -113,8 +113,8 @@ class HistoryControllerCore extends FrontController
 
     public static function getUrlToDeliverySlip($order=null, $context=null)
     {
-        echo '<pre>'.print_r($order).'</pre>';
-        exit;
+        // echo '<pre>'.print_r($order).'</pre>';
+        // exit;
         $currentLanguage = $context->language;
         $orderLanguage = new Language((int) $order->id_lang);
         $context->language = $orderLanguage;
