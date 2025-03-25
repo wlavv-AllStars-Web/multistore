@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Db;
+use Pack;
 use PrestaModule\AdvancedPack\ProductForm\CustomTabType;
 use PrestaShop\PrestaShop\Core\ConstraintValidator\Constraints\TypedRegex;
 use Symfony\Component\Validator\Constraints\Length;
@@ -62,7 +63,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     ): void {
         $idProduct = $productId->getValue();
 
-        $sql = 'SELECT youtube_code, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing, universal , real_photos
+        $sql = 'SELECT youtube_1, youtube_2 , dim_verify, wmdeprecated, not_to_order, nc, difficulty , disallow_stock, ec_approved , housing, universal , real_photos
         FROM
         `' . _DB_PREFIX_ . 'product` 
         WHERE id_product= '.$idProduct;
@@ -71,9 +72,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         // pre($result['difficulty']);
 
-        // $data['youtube_code'] = Configuration::get('youtube_code' . $idWkProduct);
+        
         $data['productId'] = $idProduct;
-        $data['youtube_code'] = $result['youtube_code'];
+        $data['youtube_1'] = $result['youtube_1'];
         $data['youtube_2'] = $result['youtube_2'];
         $data['dim_verify'] = $result['dim_verify'];
         $data['wmdeprecated'] = $result['wmdeprecated'];
@@ -139,7 +140,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
             'description',
-            'youtube_code',
+            'youtube_1',
             TextType::class,
             [
                 // you can remove the label if you dont need it by passing 'label' => false
@@ -154,7 +155,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
                     'class' => 'col-md-3',
                 ],
                 // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-                'data' => $data['youtube_code'] ,
+                'data' => $data['youtube_1'] ,
                 'empty_data' => '',
                 'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
             ]
@@ -162,8 +163,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
-            'youtube_code',
-            'youtube_code2',
+            'youtube_1',
+            'youtube_2',
             TextType::class,
             [
                 // you can remove the label if you dont need it by passing 'label' => false
@@ -188,7 +189,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
-            'youtube_code2',
+            'youtube_2',
             'hs_code',
             TextType::class,
             [
@@ -329,6 +330,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
             ]
         );
 
+
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
             'disallow_stock',
@@ -348,6 +350,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
                 'label_help_box' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Help'),
             ]
         );
+   
 
 
         // print ean btn
