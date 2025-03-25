@@ -656,7 +656,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
 
-        if($category == 227 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
+        if($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
 
             $filters = Tools::getValue('filters');
 
@@ -782,7 +782,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
         
-            $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (227)';
+            $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528)';
             // pre($sql_products_of_category);
         
 
@@ -918,7 +918,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     ? "/img/asm/wheels/" . $brandImg . ".webp?t=3" 
                                     : null; // Add null or fallback URL if brandImg is not found
 
-                            }elseif($feature['id_feature'] == 5) {
+                            }elseif($feature['id_feature'] == 19) {
                                 // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
                                 // pre($feature['values']);
                                 foreach ($feature['values'] as &$value) {

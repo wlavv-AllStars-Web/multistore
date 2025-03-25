@@ -29,7 +29,7 @@
 {if $confirmation}
   <div class="alert-success">
     <ul style="display: flex;justify-content: center;align-items: center;margin:0;padding:1rem;">
-      <li>Thank you for your message. It has been sent.</li>
+      <li>{l s="Thank you for your message. It has been sent." d="Shop.Theme.ContactForm"}</li>
     </ul>
   </div>
 {/if}
