@@ -111,7 +111,7 @@ class ManufacturerCore extends ObjectModel
             'meta_title' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255],
             'meta_description' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 512],
             'meta_keywords' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName'],
-            'warranty' => ['type' => self::TYPE_STRING, 'lang' => true, 'size' => 512],
+            'warranty' => ['type' => self::TYPE_STRING, 'lang' => true],
 
             // custom fields
             'bike_parts' => ['type' => self::TYPE_INT],
