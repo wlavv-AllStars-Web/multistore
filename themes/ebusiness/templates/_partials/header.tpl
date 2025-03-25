@@ -243,7 +243,7 @@
           </ul>
         </li>
         {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
-        <li><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
+        <li><a href="{$link->getCategoryLink(528)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
         <li><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
       </ul>
     
@@ -343,7 +343,7 @@
               </ul> *}
             </li>
             {* <li><a href="{$link->getPageLink('manufacturer', true)}">Brands</a></li> *}
-            <li class="nav-item"><a href="{$link->getCategoryLink(227)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
+            <li class="nav-item"><a href="{$link->getCategoryLink(528)}">{l s='Wheels' d='Shop.Theme.Homepage'}</a></li>
             <li class="nav-item"><a href="{$link->getPageLink('contact', true)}">{l s='Contact' d='Shop.Theme.Homepage'}</a></li>
           </ul>
         </div>
@@ -406,6 +406,10 @@
 
   .swiper-wrapper {
     width: max-content;
+  }
+
+  .swiper-menu-brands .swiper-slide {
+    margin-left: 20px;
   }
 
   /* .swiper-slide {
@@ -576,32 +580,36 @@ dropdownMenu.addEventListener("click", (event) => {
 
 
               var swiper = new Swiper(".swiper-menu-brands", {
-
-                slidesPerView: 15,
-                loop: true,
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev"
-                },
-                breakpoints: {
-                  640: {
-                    slidesPerView: 10,
-                    spaceBetween: 30,
+                  initialSlide: 1,
+                  loop: true, // Prevents duplicate slides causing cut-off issues
+                  slidesPerView: "auto",
+                  centeredSlides: false, // Ensures slides align properly
+                  spaceBetween: 10, // Adjust spacing if needed
+                  watchOverflow: true, // Prevents extra blank space
+                  navigation: {
+                      nextEl: ".swiper-button-next",
+                      prevEl: ".swiper-button-prev"
                   },
-                  768: {
-                    slidesPerView: 8,
-                    spaceBetween: 30,
-                  },
-                  1024: {
-                    slidesPerView: 10,
-                    spaceBetween: 30,
-                  },
-                  1500: {
-                    slidesPerView: 15,
-                    spaceBetween: 30,
+                  breakpoints: {
+                      640: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      768: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      1024: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      1500: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      }
                   }
-                },
               });
+
 
 
           //     var swiper = new Swiper(".swiper-menu-brands", {
