@@ -20,41 +20,41 @@ class IndexController extends IndexControllerCore
 
         $this->id_shop = (int)Context::getContext()->shop->id;
 
-        if($this->id_shop === 1){
+        // if($this->id_shop === 1){
 
-            $homepage_mobile = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'mobile' AND active=1 AND id_shop=".$this->id_shop." ORDER BY id");
+        //     $homepage_mobile = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'mobile' AND active=1 AND id_shop=".$this->id_shop." ORDER BY id");
     
             
-            $icon_videos = Db::getInstance()->executeS(
-                "SELECT * FROM "._DB_PREFIX_."asm_homepage_online 
-                WHERE destination = 'desktop' AND icon_type = 4 AND active = 1 AND id_shop = ".$this->id_shop
-            );
+        //     $icon_videos = Db::getInstance()->executeS(
+        //         "SELECT * FROM "._DB_PREFIX_."asm_homepage_online 
+        //         WHERE destination = 'desktop' AND icon_type = 4 AND active = 1 AND id_shop = ".$this->id_shop
+        //     );
             
     
-            $homepage_desktop = [
-                'banners'       => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=1 AND active=1 AND id_shop=".$this->id_shop),
-                'icones_50'     => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=2 AND active=1 AND id_shop=".$this->id_shop),
-                'icones_33'     => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=3 AND active=1 AND id_shop=".$this->id_shop),
-                'icones_videos' => $icon_videos
-            ];
+        //     $homepage_desktop = [
+        //         'banners'       => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=1 AND active=1 AND id_shop=".$this->id_shop),
+        //         'icones_50'     => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=2 AND active=1 AND id_shop=".$this->id_shop),
+        //         'icones_33'     => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=3 AND active=1 AND id_shop=".$this->id_shop),
+        //         'icones_videos' => $icon_videos
+        //     ];
     
-            $this->context->smarty->assign('desktop', $homepage_desktop);
-            $this->context->smarty->assign('mobile', $homepage_mobile);
-        }
+        //     $this->context->smarty->assign('desktop', $homepage_desktop);
+        //     $this->context->smarty->assign('mobile', $homepage_mobile);
+        // }
 
 
-        if($this->id_shop === 2 || $this->id_shop === 6){
+        if($this->id_shop === 1 || $this->id_shop === 2 || $this->id_shop === 6){
             $action = Tools::getValue('action', '');
 
             if($action == 'getMenuHtml'){
                 echo self::getMenu();
                 exit;
             }else{
-                if(isset($this->context->customer->id)){
-                    $my_cars = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_ukoo_customer WHERE id_customer = " . $this->context->customer->id);
-                }else{
-                    $my_cars = [];
-                }
+                // if(isset($this->context->customer->id)){
+                //     $my_cars = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_ukoo_customer WHERE id_customer = " . $this->context->customer->id);
+                // }else{
+                //     $my_cars = [];
+                // }
 
 
                 $homepage_mobile = Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'mobile' AND active=1 AND id_shop=".$this->id_shop." ORDER BY id");
@@ -64,6 +64,7 @@ class IndexController extends IndexControllerCore
                     WHERE destination = 'desktop' AND icon_type = 4 AND active = 1 AND id_shop = ".$this->id_shop
                 );
                 
+                // pre($homepage_mobile);
         
                 $homepage_desktop = [
                     'banners'       => Db::getInstance()->executes("Select * FROM "._DB_PREFIX_."asm_homepage_online WHERE destination = 'desktop' AND icon_type=1 AND active=1 AND id_shop=".$this->id_shop),
@@ -73,7 +74,7 @@ class IndexController extends IndexControllerCore
                 ];
 
 
-                $this->context->smarty->assign('myCars', $my_cars);
+                // $this->context->smarty->assign('myCars', $my_cars);
         
                 $this->context->smarty->assign('desktop', $homepage_desktop);
                 $this->context->smarty->assign('mobile', $homepage_mobile);
