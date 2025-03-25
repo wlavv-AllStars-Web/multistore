@@ -96,16 +96,16 @@ class asg_cars extends Module
             $tab->delete();
         }
 
-        $sql2 = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars_product`;";
-        if (!Db::getInstance()->execute($sql2)) {
-            return false;
-        }
+        // $sql2 = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars_product`;";
+        // if (!Db::getInstance()->execute($sql2)) {
+        //     return false;
+        // }
 
-        // Drop the table
-        $sql = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars`;";
-        if (!Db::getInstance()->execute($sql)) {
-            return false;
-        }
+        // // Drop the table
+        // $sql = "DROP TABLE IF EXISTS `" . _DB_PREFIX_ . "asg_cars`;";
+        // if (!Db::getInstance()->execute($sql)) {
+        //     return false;
+        // }
 
 
 
@@ -114,6 +114,8 @@ class asg_cars extends Module
 
     public function hookActionAdminControllerSetMedia()
     {
+        // $this->context->controller->addCss('https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
+        // $this->context->controller->addJs('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
         $this->context->controller->addCss('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
         $this->context->controller->addJs('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js');
         $this->context->controller->addJs('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js');
