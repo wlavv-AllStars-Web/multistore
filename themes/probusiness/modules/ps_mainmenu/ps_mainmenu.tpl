@@ -133,7 +133,7 @@
           </a>
       </li>
       <li style="width: 100%" class="mxsz cms-page" id="cms-page-25">
-          <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 700;line-height:50px;" class="bortextalign dropdown-item" href="{$link->getCategoryLink(16)|escape:'html':'UTF-8'}" data-depth="0">
+          <a style="color: white; text-align:center; padding-top: 6px; font-size: 16px; font-weight: 700;line-height:50px;" class="bortextalign dropdown-item" href="{$link->getCategoryLink(523)|escape:'html':'UTF-8'}" data-depth="0">
           {l s='Clearence' d='Shop.Theme.Menu'}
           </a>
       </li>
