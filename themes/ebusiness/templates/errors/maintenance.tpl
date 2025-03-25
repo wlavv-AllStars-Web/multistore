@@ -26,8 +26,9 @@
 
 {block name='content'}
 
-  <section id="main">
-
+  <section id="main" style="display: flex;">
+  <div class="maintenance-page">
+    <div class="maintenance-page-content">
     {block name='page_header_container'}
       <header class="page-header">
         <div class="logo"><img src="{$shop.logo}" alt="logo"></div>
@@ -49,7 +50,36 @@
     {block name='page_footer_container'}
 
     {/block}
-
+    </div>
+  </div>
   </section>
 
+  <style>
+
+    .maintenance-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100dvw;
+      height: 100dvh;
+      background: #f9f9f9;
+    }
+
+    .maintenance-page-content {
+      background: #d9d9d9;
+      padding: 2rem;
+      border-radius: .25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #333;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 500;
+    }
+    
+
+
+  </style>
 {/block}
