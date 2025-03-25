@@ -48,7 +48,12 @@
     <input type="hidden" name="submitCreate" value="1">
     {block "form_buttons"}
       <button class="btn btn-outline-primary form-control-submit" data-link-action="save-customer" type="submit">
-        {l s='Register' d='Shop.Theme.Actions'}
+        {if $page.page_name == 'identity'}
+          {l s='Save' d='Shop.Theme.Actions'}
+        {else}
+          {l s='Register' d='Shop.Theme.Actions'}
+        {/if}
+        
       </button>
     {/block}
   </footer>
