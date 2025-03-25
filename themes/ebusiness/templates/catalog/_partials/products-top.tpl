@@ -34,12 +34,12 @@
   {count($listing.products)} {l s="products" d="Shop.Theme.ProductList"}
   </div>
 
-  <div class="btn-toggleFilters mobile" {if $page.body_classes['category-id-227']} onclick="toggleFiltersWheels()"{else}onclick="toggleFilters()"{/if}>
+  <div class="btn-toggleFilters mobile" {if $page.body_classes['category-id-528']} onclick="toggleFiltersWheels()"{else}onclick="toggleFilters()"{/if}>
     <span><i class="fa-solid fa-filter"></i></span>
     <span>{l s="Apply Filters" d="Shop.Theme.ProductList"}</span>
   </div>
 
-{if $page.body_classes['category-id-227']} 
+{if $page.body_classes['category-id-528']} 
 
   <div class="category-wheels-top">
   {foreach $asw_features AS $feature key=key}
@@ -113,7 +113,7 @@
   <div class=" box-sortby wheels-accessories-filter">
     <div class="" style="display: flex;justify-content:center;align-items:center;height:100%;">
       <div class="">
-        <a class="select-title" href='{$link->getCategoryLink(228)}'>
+        <a class="select-title" href='{$link->getCategoryLink(549)}'>
           {l s='Wheels Accessories' d='Shop.Theme.ProductList'}
         </a>
       </div>
@@ -198,14 +198,14 @@
             {l s='By Category' d='Shop.Theme.Actions'}
           </span>
           {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
-          {if !$page.body_classes['category-id-228']}
+          {if !$page.body_classes['category-id-549']}
           <i class="material-icons pull-xs-right">arrow_drop_down</i>
           {/if}
         </a>
-        {if !$page.body_classes['category-id-228']}
+        {if !$page.body_classes['category-id-549']}
           <div class="dropdown-menu">
           {foreach from=$categories[2] item=parentCategory}
-            {if $parentCategory['infos']['id_category'] != 16 && $parentCategory['infos']['id_category'] != 227 && $parentCategory['infos']['id_category'] != 228}
+            {if $parentCategory['infos']['id_category'] != 523 && $parentCategory['infos']['id_category'] != 528 && $parentCategory['infos']['id_category'] != 549}
               <div 
                   id="category_element_{$parentCategory['infos']['id_category']}" 
                   
