@@ -356,7 +356,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['real_photos'])){
             $real_photos = $productData['description']['real_photos'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+
             Db::getInstance()->update('product', [
                 'real_photos' => pSQL($real_photos),
             ], 'id_product = ' . $idProduct);
@@ -364,23 +364,23 @@ class AsGroup extends Module
             error_log('Product data is not valid or real_photos is not set.');
         }
 
-        if (is_array($productData) && isset($productData['description']['youtube_code'])){
-            $youtube_code = $productData['description']['youtube_code'];
+        if (is_array($productData) && isset($productData['description']['youtube_1'])){
+            $youtube_1 = $productData['description']['youtube_1'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+        
             Db::getInstance()->update('product', [
-                'youtube_code' => pSQL($youtube_code),
+                'youtube_1' => pSQL($youtube_1),
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or youtube_code is not set.');
         }
 
-        if (is_array($productData) && isset($productData['description']['youtube_code2']) ){
-            $youtube_code2 = $productData['description']['youtube_code2'];
+        if (is_array($productData) && isset($productData['description']['youtube_2']) ){
+            $youtube_2 = $productData['description']['youtube_2'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+           
             Db::getInstance()->update('product', [
-                'youtube_2' => pSQL($youtube_code2),
+                'youtube_2' => pSQL($youtube_2),
             ], 'id_product = ' . $idProduct);
         }else{
             error_log('Product data is not valid or youtube_2 is not set.');
@@ -389,7 +389,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['hs_code']) ){
             $hs_code = $productData['description']['hs_code'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'nc' => pSQL($hs_code),
             ], 'id_product = ' . $idProduct);
@@ -400,7 +400,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['shipping']['dim_verify'])){
             $dim_verify = $productData['shipping']['dim_verify'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'dim_verify' => pSQL($dim_verify),
             ], 'id_product = ' . $idProduct);
@@ -411,7 +411,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['wmdeprecated'])){
             $wmdeprecated = $productData['description']['wmdeprecated'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'wmdeprecated' => pSQL($wmdeprecated),
             ], 'id_product = ' . $idProduct);
@@ -433,7 +433,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['not_to_order'])){
             $not_to_order = $productData['description']['not_to_order'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+           
             Db::getInstance()->update('product', [
                 'not_to_order' => pSQL($not_to_order),
             ], 'id_product = ' . $idProduct);
@@ -444,7 +444,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['difficulty'])){
             $difficulty = $productData['description']['difficulty'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'difficulty' => pSQL($difficulty),
             ], 'id_product = ' . $idProduct);
@@ -455,7 +455,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['ec_approved'])){
             $ec_approved = $productData['description']['ec_approved'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+           
             Db::getInstance()->update('product', [
                 'ec_approved' => pSQL($ec_approved),
             ], 'id_product = ' . $idProduct);
@@ -478,7 +478,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['description']['disallow_stock'])){
             $disallow_stock = $productData['description']['disallow_stock'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'disallow_stock' => pSQL($disallow_stock),
             ], 'id_product = ' . $idProduct);
@@ -491,7 +491,7 @@ class AsGroup extends Module
         if (is_array($productData) && isset($productData['shipping']['dimensions']['weight'])){
             $weight = $productData['shipping']['dimensions']['weight'];
             $idProduct = $params['id_product'];
-            // Configuration::updateValue('youtube_code' . $idWkProduct, $youtube_code);
+            
             Db::getInstance()->update('product', [
                 'weight' => pSQL($weight),
             ], 'id_product = ' . $idProduct);
