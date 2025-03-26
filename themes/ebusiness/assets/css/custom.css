@@ -9054,4 +9054,8 @@ input[type="checkbox"]:checked::after {
   #productList .product-miniature {
     margin-bottom: 0;
   }
+
+  #current_car_settings img {
+    width: 100%;
+  }
 }
