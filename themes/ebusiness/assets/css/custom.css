@@ -9072,6 +9072,15 @@ input[type="checkbox"]:checked::after {
   .details-info-car-dektop {
     display: none !important;
   }
+
+  .details-info-car-mobile {
+    color: #fff;
+    align-items: center;
+  }
+
+  #current_car_settings > div {
+    margin-bottom: 30px;
+  }
 }
 
 #current_car_settings img {
