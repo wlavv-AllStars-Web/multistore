@@ -71,7 +71,7 @@
                         {if !file_exists($check_path)}
                             <img class="img-responsive" src="/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png" style="margin: 10px auto 0 auto;width: 300px; cursor: pointer;">
                         {else} *}
-                            <img class="img-responsive" src="{$car['cartoon']}" style="margin: 0 auto; cursor: pointer;width:100%;">
+                            <img class="img-responsive" src="{$car['cartoon']}" style="margin: 0 auto; cursor: pointer;width:100%;max-width:300px;display:flex;">
                             {* <img class="img-responsive" src="/img/homepage/models/unknown.png" style="margin: 0 auto; cursor: pointer;"> *}
                         {* {/if} *}
                     </div>
