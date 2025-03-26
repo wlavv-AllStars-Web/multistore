@@ -792,7 +792,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
         
-            $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528)';
+            $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528) AND pp.visibility != "none"';
             // pre($sql_products_of_category);
         
 
@@ -1056,7 +1056,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 AND ps_product_lang.id_lang = '.$this->context->language->id.' 
                 AND ps_product_lang.id_shop = '.$this->context->shop->id.'
             WHERE ps_category_product.id_product IN (' . $idList . ')  
-            AND ps_product.active = 1 
+            AND ps_product.active = 1 AND ps_product.visibility != "none"
             AND ps_product_shop.id_shop = '.$this->context->shop->id;
 
             if ($category > 0) {
