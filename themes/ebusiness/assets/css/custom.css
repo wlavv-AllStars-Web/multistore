@@ -8531,7 +8531,6 @@ input[type="checkbox"]:checked::after {
     color: #fff !important;
     width: 100%;
     font-weight: 600;
-    width: max-content;
   }
 
 
@@ -8565,7 +8564,7 @@ input[type="checkbox"]:checked::after {
     right: -35%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 17rem;
+    top: -17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8733,6 +8732,10 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px){
+  .universals-product-list article .thumbnail-container {
+    outline-offset: 0px;
+  }
+
   #productList .variantionsProductList{
     /* min-height: 33px !important; */
     position: absolute;
@@ -8780,7 +8783,7 @@ input[type="checkbox"]:checked::after {
     right: -33%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: -19rem;
+    top: -20rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8813,7 +8816,7 @@ input[type="checkbox"]:checked::after {
     right: -31%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: -19rem;
+    top: -20rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8826,6 +8829,10 @@ input[type="checkbox"]:checked::after {
 }
 
 @media screen and (min-width: 544px) and (max-width: 564px){
+  .universals-product-list article{
+    padding: 10px;
+  }
+
   #productList .variantionsProductList{
     /* min-height: 33px !important; */
     position: absolute;
@@ -8845,7 +8852,7 @@ input[type="checkbox"]:checked::after {
     right: -28%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: -17rem;
+    top: -19rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8901,7 +8908,7 @@ input[type="checkbox"]:checked::after {
     right: -36%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: -20rem;
+    top: -22rem;
     background: #222;
     color: #fff !important;
     width: 100%;
