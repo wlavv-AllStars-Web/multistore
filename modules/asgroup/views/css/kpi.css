@@ -566,3 +566,7 @@
 #product_grid_table tbody .link-type.column-reference.text-left a{
     white-space: text-wrap !important;
 }
+
+#product_grid_table tbody .data-type.column-id_product.clickable.text-left.cursor-pointer{
+    min-width: 100px;
+}
