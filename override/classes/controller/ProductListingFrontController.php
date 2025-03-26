@@ -585,7 +585,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             LEFT JOIN ps_product_sale ON ps_product.id_product = ps_product_sale.id_product 
             LEFT JOIN ps_category_product ON ps_product.id_product = ps_category_product.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
             LEFT JOIN ps_product_attribute ON ps_product.id_product = ps_product_attribute.id_product
-            WHERE ps_product.active = 1
+            WHERE ps_product.active = 1 AND ps_product.visibility != "none"
             AND ps_product_shop.id_shop = 2';
                 
             if($category > 0) {
