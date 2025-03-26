@@ -548,3 +548,21 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+
+#product_grid_table tbody .toggle-type.column-active {
+    max-width: fit-content;
+}
+
+#product_grid_table tbody .toggle-type.column-active .ps-switch.ps-switch-sm {
+    min-width: 1.25rem;
+    max-width: 50px;
+}
+
+#product_grid_table tbody .link-type.column-reference.text-left {
+    max-width: fit-content;
+}
+
+#product_grid_table tbody .link-type.column-reference.text-left a{
+    white-space: text-wrap !important;
+}
