@@ -9063,6 +9063,15 @@ input[type="checkbox"]:checked::after {
   #js-product-list-top {
     width: 100%;
   }
+
+  #current_car_settings > div {
+    background:
+#efefef !important;
+  }
+
+  .details-info-car-dektop {
+    display: none;
+  }
 }
 
 #current_car_settings img {
