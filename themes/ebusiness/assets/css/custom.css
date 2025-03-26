@@ -8516,6 +8516,19 @@ input[type="checkbox"]:checked::after {
     font-weight: 600;
   }
 
+  .universals-product-list .variantionsProductList{
+    /* min-height: 33px !important; */
+    position: absolute;
+    right: -36%;
+    transform-origin: center;
+    transform: rotate(45deg);
+    top: 2rem;
+    background: #222;
+    color: #fff !important;
+    width: 100%;
+    font-weight: 600;
+  }
+
 
 
   #banner-news {
