@@ -9070,7 +9070,7 @@ input[type="checkbox"]:checked::after {
   }
 
   .details-info-car-dektop {
-    display: none;
+    display: none !important;
   }
 }
 
