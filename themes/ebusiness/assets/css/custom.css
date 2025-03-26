@@ -1833,6 +1833,9 @@ body {
 
   .show-filters{
     display: flex !important;
+    flex-direction: column;
+    background:#d0d0d0;
+    padding-bottom: 1rem;
   }
 
   .navbar-nav .nav-item + .nav-item{
