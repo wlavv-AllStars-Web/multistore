@@ -8970,6 +8970,10 @@ input[type="checkbox"]:checked::after {
     color: #fff;
   }
 
+  .universals-product-list article .thumbnail-container {
+    outline-offset: 0px !important;
+  }
+
 }
 
 
