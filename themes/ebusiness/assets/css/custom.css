@@ -1834,8 +1834,21 @@ body {
   .show-filters{
     display: flex !important;
     flex-direction: column;
-    background:#d0d0d0;
+    background:#888;
     padding-bottom: 1rem;
+  }
+
+  .products-selection.show-filters .products-sort-order .select-title {
+    background: #333;
+    border: 1px solid #333;
+  }
+
+  .products-selection.show-filters .products-sort-order .select-title #name_category{
+    color: #fff !important;
+  }
+
+  .products-selection.show-filters .products-sort-order .select-title #name_category > span{
+    color: var(--asm-color) !important;
   }
 
   .navbar-nav .nav-item + .nav-item{
