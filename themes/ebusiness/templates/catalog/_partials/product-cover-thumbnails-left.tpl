@@ -46,7 +46,7 @@
           <li class="thumb-container">
             <img
               class="thumb js-thumb {if $image.id_image == $product.cover.id_image} selected {/if}"
-              data-image-medium-src="{$image.bySize.medium_default.url}"
+              data-image-medium-src="{$image.bySize.tm_medium_default.url}"
               data-image-large-src="{$image.bySize.tm_thickbox_default.url}"
               src="{$image.bySize.home_default.url}"
               alt="{$image.legend}"
