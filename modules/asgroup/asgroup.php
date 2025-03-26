@@ -1131,7 +1131,7 @@ class AsGroup extends Module
 
             $searchQueryBuilder->addSelect(
                 '(CASE WHEN o.module IS NULL THEN "Error"
-                WHEN o.module = "ps_wirepayment" THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
+                WHEN o.module IN ("ps_wirepayment", "bankwire") THEN CONCAT("<img src=\"'.$imageBank.'\" style=\"width: 60px; height: auto;\" />")
                 WHEN o.module IN ("worldlineop", "ogone") THEN CONCAT("<img src=\"'.$imageCard.'\" style=\"width: 50px; height: auto;\" />")
                 WHEN o.module = "alma" THEN CONCAT("<img src=\"'.$imageAlma.'\" style=\"width: 50px; height: auto;\" />")
                 WHEN o.module = "paypal" THEN CONCAT("<img src=\"'.$imagePaypal.'\" style=\"width: 50px; height: auto;\" />")
