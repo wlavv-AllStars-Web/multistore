@@ -23,7 +23,7 @@
           let lastProductId = 0;
 
           window.addEventListener("scroll", function() {
-          if (document.querySelector(".noMoreProducts").getAttribute('list_complete') != 'true' && !isFetching && (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 1)) {
+          if (document.querySelector(".noMoreProducts").getAttribute('list_complete') != 'true' && !isFetching && (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
               isFetching = true;
         
               let displayedProducts = Array.from(document.querySelectorAll(".universals-product-list article[data-id-product]"));
