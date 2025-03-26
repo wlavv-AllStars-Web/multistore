@@ -1075,7 +1075,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
                     LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = '.$this->context->shop->id.'
                     WHERE ps_category_product.id_product IN (' . $idList . ')  
-                    AND ps_product.active = 1 AND ps_product_shop.id_shop = '.$this->context->shop->id;
+                    AND ps_product.active = 1 AND ps_product.visibility != "none" AND ps_product_shop.id_shop = '.$this->context->shop->id;
 
              
             if($category > 0) {
@@ -1110,9 +1110,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             if($query->getResultsPerPage()) {
 
-                if($query->getQueryType() == 'new-products' || $query->getQueryType() == 'category') {
-                    $query->setResultsPerPage(19);
-                }
+               
+                $query->setResultsPerPage(19);
+            
                 
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage(); // Get the current page from the query object
