@@ -8961,6 +8961,15 @@ input[type="checkbox"]:checked::after {
     flex: 1;
   }
 
+
+  .btn.disabled, .btn.disabled:hover {
+    background: var(--asm-color);
+  }
+
+  .btn-outline-primary.disabled, .btn-outline-primary:disabled { 
+    color: #fff;
+  }
+
 }
 
 
