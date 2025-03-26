@@ -346,6 +346,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             ->setIdManufacturer(Tools::getValue('id_manufacturer_layered'));
         }
 
+
+
         // we need to set a few parameters from back-end preferences
         $query
             ->setResultsPerPage($resultsPerPage)
@@ -776,7 +778,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // pre($product_options);
 
             // pre($selected_filter_feature);
-            $default_products_per_page = max(1, (int) Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $default_products_per_page = max(1, 19);
             $currentPage = (int) $query->getPage(); // Get the current page from the query object
             $offset = ($currentPage - 1) * $default_products_per_page;
 
@@ -1095,6 +1097,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             if($query->getResultsPerPage()) {
+
+                if($query->getQueryType() == 'new-products' || $query->getQueryType() == 'category') {
+                    $query->setResultsPerPage(19);
+                }
+                
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage(); // Get the current page from the query object
                 $offset = ($currentPage - 1) * $resultsPerPage;
