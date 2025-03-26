@@ -9055,7 +9055,16 @@ input[type="checkbox"]:checked::after {
     margin-bottom: 0;
   }
 
-  #current_car_settings img {
+  
+}
+
+@media screen and (max-width: 768px){
+
+  #js-product-list-top {
     width: 100%;
   }
+}
+
+#current_car_settings img {
+  width: 100%;
 }
