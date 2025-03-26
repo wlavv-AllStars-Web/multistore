@@ -46,7 +46,7 @@
         
                       if (data.success === true && data.product.length > 0) {
                           let productListUniversals = document.querySelector(".universals-product-list ");
-        
+                          productListUniversals.insertAdjacentHTML("beforeend", data.product);
                           // Append new products
                           lastProductId = data.lastProductId;
                       }else{
