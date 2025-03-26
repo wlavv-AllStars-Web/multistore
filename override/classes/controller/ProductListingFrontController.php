@@ -810,8 +810,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $formatted_products_227[] = ['id_product' => $product['id_product']];
             }
 
+            $sql_total_products = 'SELECT COUNT(*) as total FROM ps_category_product WHERE id_category IN (528)';
+            $total_products = Db::getInstance()->getValue($sql_total_products);
+
             $result->setProducts($formatted_products_227);
-            $result->setTotalProductsCount(count($formatted_products_227));
+            $result->setTotalProductsCount($total_products);
+            $query->setResultsPerPage(19);
 
             $pagination = $this->getTemplateVarPagination(
                 $query,
