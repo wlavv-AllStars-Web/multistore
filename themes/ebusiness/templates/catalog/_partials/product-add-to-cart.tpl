@@ -27,7 +27,7 @@
   <script src="https://www.google.com/recaptcha/api.js" ></script>
 
   <div class="form_product_outofstock_container">
-      <p>{l s='The ETA for this product is currently around 30 days, so it is temporarily unavailable for sale. To be informed as soon as the product is available, please enter your email below:' d='Shop.Theme.Catalog'}</p>
+      <p class="form-product-title-outofstock text-center">{l s='The ETA for this product is currently around 30 days, so it is temporarily unavailable for sale. To be informed as soon as the product is available, please enter your email below:' d='Shop.Theme.Catalog'}</p>
       <div class="form-fields d-flex justify-content-center">
         <input type="hidden" name="id_product" value="{$product.id_product}">
         <input type="hidden" name="id_product_attribute" value="{$product.id_product_attribute}">
