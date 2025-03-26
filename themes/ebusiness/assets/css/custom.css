@@ -9045,3 +9045,13 @@ input[type="checkbox"]:checked::after {
 }
 
 
+@media screen and (min-wuidth:768px) and (max-width: 992px){
+
+  .btn-toggleFilters.mobile {
+    display: none;
+  }
+
+  #productList .product-miniature {
+    margin-bottom: 0;
+  }
+}
