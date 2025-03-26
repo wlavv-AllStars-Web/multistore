@@ -22,6 +22,15 @@
           let isFetching = false;
           let lastProductId = 0;
 
+        function updateLastProductId() {
+                let productElements = document.querySelectorAll(".universals-product-list article[data-id-product]");
+                if (productElements.length > 0) {
+                    lastProductId = productElements[productElements.length - 1].getAttribute("data-id-product");
+                }
+        }
+
+        document.addEventListener("DOMContentLoaded", updateLastProductId);
+
           window.addEventListener("scroll", function() {
           if (document.querySelector(".noMoreProducts").getAttribute('list_complete') != 'true' && !isFetching && (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 5) {
               isFetching = true;
