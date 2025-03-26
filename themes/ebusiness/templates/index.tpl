@@ -84,7 +84,7 @@
                   <a href="{$urls.current_url}cars-products?id_compat={$item['id_compat']}">
                     <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
-                {elseif $item['title_en'] === 'clearance'}
+                {elseif $item['link']|substr:0:4 === '523-'}
                   <a href="{$link->getCategoryLink(523)|escape:'html':'UTF-8'}">
                     <img src="{$item["image_"|cat:$language.iso_code]}" />
                   </a>
