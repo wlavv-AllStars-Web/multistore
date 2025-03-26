@@ -1113,6 +1113,10 @@ body {
 /* ps_shoppingcart.tpl */
 
 @media (min-width: 768px) {
+  #current_car_settings .details-info-car-mobile{
+    display: none !important;
+  }
+
   .order-details-bottom-shipping{
     display: none;
   }
