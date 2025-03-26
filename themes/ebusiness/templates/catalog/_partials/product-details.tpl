@@ -54,7 +54,7 @@
                 <span id="product-availability">
 {* <pre>{$product.availability_message|print_r}</pre> *}
                   {if $product.show_availability && $product.availability_message && !$packLabel}
-                    {if $product.availability == 'available'}
+                    {if $product.available_later || $product.available_now}
                       {if $product.quantity < 1}
                         <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
                           <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
