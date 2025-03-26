@@ -45,7 +45,7 @@
   {if $manufacturer.name}
     <div class="description_box" style="display:flex;align-items:center;">
       <div class="webmaster-logomanufacturer" style="padding: 0 1rem;">
-        <img src="/img/m/{$manufacturer.id}-home_default.jpg" style="width: 170px;"/>
+        <img src="/img/m/{$manufacturer.id}-large_default.jpg" style="width: 170px;"/>
       </div>
       {if !empty($manufacturer.short_description)}
         <div class="description_short" style="display: flex;flex-direction:column;width:80%;">
