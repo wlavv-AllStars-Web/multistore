@@ -8501,6 +8501,9 @@ input[type="checkbox"]:checked::after {
   
 }
 
+.universals-product-list .product-flags{
+  width: 100%;
+}
 
 @media screen and (min-width: 1800px) {
   #productList .variantionsProductList{
@@ -8527,6 +8530,7 @@ input[type="checkbox"]:checked::after {
     color: #fff !important;
     width: 100%;
     font-weight: 600;
+    width: max-content;
   }
 
 
