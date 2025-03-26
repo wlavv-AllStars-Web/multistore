@@ -8964,6 +8964,7 @@ input[type="checkbox"]:checked::after {
 
   .btn.disabled, .btn.disabled:hover {
     background: var(--asm-color);
+    margin: 1rem auto !important;
   }
 
   .btn-outline-primary.disabled, .btn-outline-primary:disabled { 
