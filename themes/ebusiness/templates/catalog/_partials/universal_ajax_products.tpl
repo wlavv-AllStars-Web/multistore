@@ -20,6 +20,8 @@
     {if !$noMoreProducts}
         <script>
           let isFetching = false;
+          let lastProductId = 0;
+
           window.addEventListener("scroll", function() {
           if (document.querySelector(".noMoreProducts").getAttribute('list_complete') != 'true' && !isFetching && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
               isFetching = true;
@@ -36,7 +38,7 @@
                   type: 'GET',
                   data: {
                     getMoreProducts: 1,
-                    displayedProducts: displayedProducts.join(','),
+                    lastProductId: lastProductId,
                   },
                   success: function(response) {
                       document.querySelector(".loading-overlay-universals").classList.toggle("showLoading")
@@ -46,13 +48,7 @@
                           let productListUniversals = document.querySelector(".universals-product-list ");
         
                           // Append new products
-                          if(Array.isArray(data.product)){
-                          data.product.forEach(productHtml  => {
-                              productListUniversals.insertAdjacentHTML("beforeend", productHtml);
-                          });
-                          }else{
-                            productListUniversals.insertAdjacentHTML("beforeend", data.product);
-                          }
+                          lastProductId = data.lastProductId;
                       }else{
                         document.querySelector(".noMoreProducts").innerHTML = "{l s="No more products" d="Shop.Theme.Universals"}"
                         document.querySelector(".noMoreProducts").setAttribute('list_complete',true)

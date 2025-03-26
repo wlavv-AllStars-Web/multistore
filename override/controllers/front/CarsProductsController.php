@@ -272,21 +272,14 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
     private function returnMoreProducts()
     {
-        $displayedProducts = Tools::getValue('displayedProducts');
+        $lastProductId  = Tools::getValue('lastProductId');
 
         // pre($displayedProducts);
-
-        if ($displayedProducts) {
-            $displayedProductsArray = array_map('intval', explode(',', $displayedProducts)); // Convert to array of integers
-            $excludedProducts = implode(',', $displayedProductsArray); // Convert back to SQL format
-        } else {
-            $excludedProducts = '0'; // Prevent SQL error if empty
-        }
 
         $sql = 'SELECT pp.id_product 
         FROM ps_product AS pp
         LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-        WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 AND pp.id_product NOT IN (' . $excludedProducts . ') 
+        WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 AND pp.id_product > ' . (int)$lastProductId . ' 
         ORDER BY pp.id_product ASC LIMIT 20';
 
         $newProducts = Db::getInstance()->executeS($sql);
@@ -303,7 +296,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
     
             die(json_encode([
                 'success' => true,
-                'product' => $newHtml
+                'product' => $newHtml,
+                'lastProductId' => end($newProducts)['id_product']
             ]));
         } else {
 
