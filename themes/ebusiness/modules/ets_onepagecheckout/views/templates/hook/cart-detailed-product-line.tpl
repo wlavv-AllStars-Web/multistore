@@ -124,7 +124,11 @@
 
         {else}
           <div class="availability-message {if $product.quantity_available <= 0}low-stock{else}in-stock{/if}">
-            {$product.availability_message}
+            {if $product.quantity_available > 0}
+              {$product.available_now}
+            {else}
+              {$product.available_later}
+            {/if}
           </div>
           <div class="availability-tip">
             <a onmouseenter="showTooltip(this)" onmouseleave="removeTooltip(this)">
