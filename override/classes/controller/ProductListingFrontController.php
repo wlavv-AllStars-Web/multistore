@@ -629,6 +629,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             if($query->getResultsPerPage()) {
+                
+                if($query->getQueryType() == 'new-products'){
+                    $query->setResultsPerPage(19);
+                }
+
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage(); // Get the current page from the query object
                 $offset = ($currentPage - 1) * $resultsPerPage;
@@ -636,7 +641,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
 
-            
+            $pagination = $this->getTemplateVarPagination(
+                $query,
+                $result
+            );
 
             // pre($sql);
 
