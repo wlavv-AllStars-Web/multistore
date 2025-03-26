@@ -8565,7 +8565,7 @@ input[type="checkbox"]:checked::after {
     right: -35%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 2rem;
+    top: 17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8597,7 +8597,7 @@ input[type="checkbox"]:checked::after {
     right: -33%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 2rem;
+    top: -17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8633,7 +8633,7 @@ input[type="checkbox"]:checked::after {
     right: -31%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -16rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8666,7 +8666,7 @@ input[type="checkbox"]:checked::after {
     right: -33%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 2rem;
+    top: -17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8695,7 +8695,7 @@ input[type="checkbox"]:checked::after {
     right: -32%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8724,7 +8724,7 @@ input[type="checkbox"]:checked::after {
     right: -32%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -18rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8752,7 +8752,7 @@ input[type="checkbox"]:checked::after {
     right: -29%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -18rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8780,7 +8780,7 @@ input[type="checkbox"]:checked::after {
     right: -33%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -19rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8813,7 +8813,7 @@ input[type="checkbox"]:checked::after {
     right: -31%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -19rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8845,7 +8845,7 @@ input[type="checkbox"]:checked::after {
     right: -28%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 1.5rem;
+    top: -17rem;
     background: #222;
     color: #fff !important;
     width: 100%;
@@ -8901,7 +8901,7 @@ input[type="checkbox"]:checked::after {
     right: -36%;
     transform-origin: center;
     transform: rotate(45deg);
-    top: 2rem;
+    top: -20rem;
     background: #222;
     color: #fff !important;
     width: 100%;
