@@ -1170,8 +1170,16 @@ class AsGroup extends Module
                 }
             }else{
                 if ($filterName === 'payment_id' && !empty($filterValue)) {
-                    $searchQueryBuilder->andWhere('o.module = :payment_id')
-                        ->setParameter('payment_id', $filterValue);
+                    if ($filterValue === 'worldlineop') { // User selected Ingenico
+                        $searchQueryBuilder->andWhere('o.module IN (:payment_id)')
+                            ->setParameter('payment_id', ['worldlineop', 'ogone'], \Doctrine\DBAL\Connection::PARAM_STR_ARRAY);
+                    }elseif($filterValue === 'ps_wirepayment'){
+                        $searchQueryBuilder->andWhere('o.module IN (:payment_id)')
+                            ->setParameter('payment_id', ['ps_wirepayment', 'bankwire'], \Doctrine\DBAL\Connection::PARAM_STR_ARRAY);
+                    } else {
+                        $searchQueryBuilder->andWhere('o.module = :payment_id')
+                            ->setParameter('payment_id', $filterValue);
+                    }
                 }
             }
         }
