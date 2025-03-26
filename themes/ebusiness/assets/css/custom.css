@@ -6799,7 +6799,7 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 .loading-overlay-universals{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
