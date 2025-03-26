@@ -1843,11 +1843,11 @@ body {
     border: 1px solid #333;
   }
 
-  .products-selection.show-filters .products-sort-order .select-title #name_category{
+  .products-selection.show-filters .products-sort-order .select-title > span{
     color: #fff !important;
   }
 
-  .products-selection.show-filters .products-sort-order .select-title #name_category > span{
+  .products-selection.show-filters .products-sort-order .select-title > span > span{
     color: var(--asm-color) !important;
   }
 
