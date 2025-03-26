@@ -8729,6 +8729,10 @@ input[type="checkbox"]:checked::after {
     width: 100%;
     font-weight: 600;
   }
+
+  .universals-product-list article .thumbnail-container {
+    outline-offset: 0px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px){
