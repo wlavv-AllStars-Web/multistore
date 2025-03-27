@@ -8,9 +8,9 @@
             {include file='catalog/_partials/miniatures/product.tpl' product=$product}
         {/block}
     {/foreach}
-    </div>
-    <div class="loading-overlay-universals" role="status">
-        <span class="loading-spinner"></span>
+        <div class="loading-overlay-universals" role="status">
+            <span class="loading-spinner"></span>
+        </div>
     </div>
 
     <div class="noMoreProducts col-lg-12" list_complete="false" style="display: flex;justify-content:center;padding: 1rem;font-weight:600;color: #333;"></div>
