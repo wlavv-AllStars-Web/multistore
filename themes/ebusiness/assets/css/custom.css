@@ -11,6 +11,13 @@ body {
   margin: auto;
 }
 
+#product-comments-list-pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: unset;
+}
+
 .bannersHome .swiper-container {
   max-width: 1920px;
 }
