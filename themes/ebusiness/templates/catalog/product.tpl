@@ -360,7 +360,7 @@
                 </thead>
                 <tbody>
                 {foreach from=$compats item=compat}
-                  <tr>
+                  <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
                     <td>{$compat.brand}</td>
                     <td>{$compat.model}</td>
                     <td>{$compat.type}</td>
@@ -369,7 +369,27 @@
                 {/foreach}
                 </tbody>
               </table>
+
+              {if $compats|count > 5}
+                <div style="text-align: center;">
+                  <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">Show More</button>
+                </div>
+              {/if}
             </div>
+
+            <script>
+              function toggleRows() {
+                var hiddenRows = document.querySelectorAll(".hidden-row");
+                var btn = document.getElementById("showMoreBtn");
+                
+                hiddenRows.forEach(row => {
+                  row.style.display = row.style.display === "none" ? "table-row" : "none";
+                });
+
+                btn.textContent = btn.textContent === "Show More" ? "Show Less" : "Show More";
+              }
+            </script>
+
             {else}
               <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
             {/if}
