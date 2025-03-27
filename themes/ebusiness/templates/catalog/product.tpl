@@ -359,7 +359,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                {foreach from=$compats item=compat}
+                {foreach from=$compats item=compat name=compatLoop}
                   <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
                     <td>{$compat.brand}</td>
                     <td>{$compat.model}</td>
