@@ -17,6 +17,13 @@ body {
   margin-bottom: 2rem;
   position: unset;
 }
+#product-comments-list-pagination ul li.active span {
+  color: var(--asm-color);
+}
+
+#product-comments-list-pagination ul li span {
+  color: #333;
+}
 
 .bannersHome .swiper-container {
   max-width: 1920px;
