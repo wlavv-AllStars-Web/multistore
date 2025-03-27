@@ -347,7 +347,7 @@
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
             {if $compats|count}
-            <div class="container-table-compats">
+            <div class="container-table-compats table-mobile">
               {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
               <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                 <thead class="thead-dark">
@@ -372,21 +372,24 @@
 
               {if $compats|count > 5}
                 <div style="text-align: center;">
-                  <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">Show More</button>
+                  <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">{l s='Show More' d='Shop.Theme.Actions'}</button>
                 </div>
               {/if}
             </div>
 
             <script>
               function toggleRows() {
-                var hiddenRows = document.querySelectorAll(".hidden-row");
-                var btn = document.getElementById("showMoreBtn");
-                
-                hiddenRows.forEach(row => {
-                  row.style.display = row.style.display === "none" ? "table-row" : "none";
-                });
+                var hiddenRows = document.querySelectorAll(".table-mobile .hidden-row");
+                        var btn = document.getElementById("showMoreBtn");
 
-                btn.textContent = btn.textContent === "Show More" ? "Show Less" : "Show More";
+                        // Toggle rows visibility
+                        let isHidden = hiddenRows[0].style.display === "none";
+                        hiddenRows.forEach(row => {
+                          row.style.display = isHidden ? "table-row" : "none";
+                        });
+
+                        // Toggle button text
+                        btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
               }
             </script>
 
@@ -822,7 +825,7 @@
 
                       {if $compats|count > 5}
                         <div style="text-align: center;">
-                          <button id="showMoreBtnDesk" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">Show More</button>
+                          <button id="showMoreBtnDesk" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">{l s='Show More' d='Shop.Theme.Actions'}</button>
                         </div>
                       {/if}
 
