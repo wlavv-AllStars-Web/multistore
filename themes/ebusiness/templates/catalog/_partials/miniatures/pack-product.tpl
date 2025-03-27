@@ -34,7 +34,7 @@
           >
         </div>
       </div>
-      <div class="pack-product-name">
+      <div class="pack-product-name"  style="color: #333;">
         {$product.name}
       </div>
       <div class="pack-product-price">
