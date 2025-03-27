@@ -1123,12 +1123,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // $result->setProducts($$totalProducts);
             // $result->setTotalProductsCount($total_products);
-            $query->setResultsPerPage(19);
+            // $query->setResultsPerPage(19);
 
-            $pagination = $this->getTemplateVarPagination(
-                $query,
-                $result
-            );
+            // $pagination = $this->getTemplateVarPagination(
+            //     $query,
+            //     $result
+            // );
 
             // pre($pagination);
 
@@ -1141,7 +1141,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // fim test
 
-            
+
 
     
             $productsCar =  Db::getInstance()->executeS($sql);
