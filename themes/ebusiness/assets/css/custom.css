@@ -20,6 +20,11 @@ body {
   width: 100%;
 }
 
+.previous.js-search-link i,
+.next.js-search-link i {
+  pointer-events: none;
+}
+
 #main {
   width: 100%;
 }
