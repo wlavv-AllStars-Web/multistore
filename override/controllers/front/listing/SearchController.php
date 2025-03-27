@@ -88,8 +88,8 @@ class SearchControllerCore extends ProductListingFrontController
 
         if($this->context->shop->id == 2) {
             // $this->assignProductList();
-            $ukooObj = new UkooCompat();
-            $ukooData = $ukooObj->hookDisplayCompat(null);
+            // $ukooObj = new UkooCompat();
+            // $ukooData = $ukooObj->hookDisplayCompat(null);
             $manufacturerOBJ = new Manufacturer();
             $manufacturers = $manufacturerOBJ->getManufacturers();
 
@@ -101,7 +101,7 @@ class SearchControllerCore extends ProductListingFrontController
                 'category' => $categoryVar,
                 'manufacturers'        => $manufacturers,
                 // 'p' => $getData['p'],
-                'ukoodata'             => $ukooData,
+                // 'ukoodata'             => $ukooData,
             ]);
         }
 
