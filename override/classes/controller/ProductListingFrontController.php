@@ -655,7 +655,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // }
             // pre($products);
 
-            $productsQuery = Db::getInstance()->ExecuteS($sql);
+            $productsQuery = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql);
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $productsQuery
@@ -741,7 +741,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                     // pre($sqlFeature);
                     
-                    $feature_group = Db::getInstance()->getValue($sqlFeature);
+                    $feature_group = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeature);
 
                     
                     
@@ -756,7 +756,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                             AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1] .
                                             ' ORDER BY value DESC';
                         
-                        $feature_value = Db::getInstance()->getValue($sqlFeatureValue);
+                        $feature_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeatureValue);
     
                         $selected_filter_feature[] = $selected_feature[0];
                     
@@ -809,7 +809,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // pre($sql_products_of_category);
 
-            $products_227 = Db::getInstance()->ExecuteS( $sql_products_of_category );
+            $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS( $sql_products_of_category );
             
             // pre($products_227);
 
@@ -819,7 +819,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
             $sql_total_products = 'SELECT COUNT(*) as total FROM ps_category_product WHERE id_category IN (528)';
-            $total_products = Db::getInstance()->getValue($sql_total_products);
+            $total_products = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql_total_products);
 
             $result->setProducts($formatted_products_227);
             $result->setTotalProductsCount($total_products);
@@ -852,7 +852,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // $features_category = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat FROM ps_feature_product LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature AND id_lang=' . $this->context->language->id . ' WHERE id_product IN (' . implode(", ", $ids_prods) . ' ) ' . ' GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
 
             if (!empty($ids_prods)) {
-                $features_category = Db::getInstance()->ExecuteS(
+                $features_category = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS(
                     'SELECT ps_feature_product.id_feature, name, count(name) AS nr_repeat 
                     FROM ps_feature_product 
                     LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
@@ -863,7 +863,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     ORDER BY ps_feature.position ASC'
                 );
             } else {
-                $features_category = Db::getInstance()->ExecuteS(
+                $features_category = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS(
                     'SELECT ps_feature_product.id_feature, ps_feature_lang.name, COUNT(ps_feature_lang.name) AS nr_repeat , ps_feature_shop.id_shop 
                     FROM ps_feature_product 
                     LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
@@ -879,7 +879,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
                 // WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
                 // GROUP BY ps_feature_value_lang.id_feature_value ORDER BY ps_feature_value.id_feature');
-                $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' LEFT JOIN ps_feature_value ON ps_feature_value.id_feature_value = ps_feature_product.id_feature_value WHERE ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value');
+                $features_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS('SELECT ps_feature_product.id_feature, ps_feature_product.id_feature_value, value, count(value) AS nr_values FROM ps_feature_product LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_product.id_feature_value AND id_lang=' . $this->context->language->id . ' LEFT JOIN ps_feature_value ON ps_feature_value.id_feature_value = ps_feature_product.id_feature_value WHERE ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' GROUP BY ps_feature_value_lang.id_feature_value');
                 // pre($features_value);
 
                 $features[] = [
@@ -925,7 +925,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                             // pre($product_227);
                             if(!empty($product_227)) {
                                 $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
-                                $brandImg = Db::getInstance()->getValue($sqlBrandImg);
+                                $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
             
                                 // Add img field to $value
                                 $value['img'] = $brandImg 
@@ -940,7 +940,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                         $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name = "' . pSQL($value['value']) . '"';
                                         
                                         // Execute the query to check if the manufacturer exists
-                                        $brandImg = Db::getInstance()->getValue($sqlBrandImg);
+                                        $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
 
                                         // If a manufacturer is found, assign the image path
                                         if ($brandImg) {
@@ -1067,7 +1067,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
             }
 
-            $totalProducts = Db::getInstance()->getValue($sqlCount);
+            $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
     
             $sql = 'SELECT ps_category_product.id_category, ps_category_product.id_product, ps_category_product.position
                     FROM ps_category_product
@@ -1144,7 +1144,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
     
-            $productsCar =  Db::getInstance()->executeS($sql);
+            $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $productsCar
@@ -1173,7 +1173,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                             
                             
-            $universalProducts = Db::getInstance()->executeS($sqlUniversals);
+            $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
             // pre($universalProducts);
 
             $universals = $this->prepareMultipleProductsForTemplate(
@@ -1598,7 +1598,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             // echo 'SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"';
             // exit;
             foreach($search['products'] as $product){
-                $product['product_attribute_atr'] = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"');
+                $product['product_attribute_atr'] = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"');
             }
 
             // $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.pSQL(Tools::getValue('s')).'"');
