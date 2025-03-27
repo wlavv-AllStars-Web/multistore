@@ -538,7 +538,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // removi do proximo if porque tinha bug na barra de pesquisa || $this->context->shop->id == 2 && $query->getQueryType() == 'search'
        
         // asm wheels
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'){
+        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'|| $this->context->shop->id == 2 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
 
             
 
@@ -1121,6 +1121,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
 
+            // $result->setProducts($$totalProducts);
+            // $result->setTotalProductsCount($total_products);
+            $query->setResultsPerPage(19);
+
+            $pagination = $this->getTemplateVarPagination(
+                $query,
+                $result
+            );
 
             // pre($pagination);
 
@@ -1139,6 +1147,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $products = $this->prepareMultipleProductsForTemplate(
                 $productsCar
+            );
+
+            $formatted_productsCar = [];
+            foreach ($productsCar as $product) {
+                $formatted_productsCar[] = ['id_product' => $product['id_product']];
+            }
+
+            $result->setProducts($formatted_productsCar);
+            $result->setTotalProductsCount($totalProducts);
+
+            $pagination = $this->getTemplateVarPagination(
+                $query,
+                $result
             );
 
                     // universal products
