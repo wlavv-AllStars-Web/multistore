@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  position: unset;
+  position: unset !important;
 }
 #product-comments-list-pagination ul li.active span {
   color: var(--asm-color);
