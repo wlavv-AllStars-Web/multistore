@@ -67,21 +67,24 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
             $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
 
-            // pre($url);
-    
-            // Initialize cURL
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-    
-            // Execute cURL request
-            $json = curl_exec($ch);
-            curl_close($ch);
-    
-            // Decode the response into an associative array
-            $data = json_decode($json, true);
+            $cacheKey = 'compat_products_' . $id_compat;
 
+            // Check if data is cached
+            if (!Cache::isStored($cacheKey)) {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+                $json = curl_exec($ch);
+                curl_close($ch);
+
+                $data = json_decode($json, true);
+                
+                // Store data in cache
+                Cache::store($cacheKey, $data, 3600); // Cache for 1 hour
+            } else {
+                $data = Cache::retrieve($cacheKey);
+            }
 
 
             // pre($data);
@@ -174,7 +177,9 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         $sql = 'SELECT cp.id_category, cp.id_product, cp.position
                 FROM ' . _DB_PREFIX_ . 'category_product cp
                 LEFT JOIN ' . _DB_PREFIX_ . 'product_shop ps ON cp.id_product = ps.id_product
-                WHERE cp.id_product IN (' . $idList . ') GROUP BY cp.id_product';
+                WHERE cp.id_product IN (' . $idList . ') 
+                AND ps.active = 1 AND ps.visibility != "none"
+                GROUP BY cp.id_product';
                 
         // pre($sql);
 
