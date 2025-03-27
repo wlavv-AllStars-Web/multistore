@@ -23,7 +23,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
  {* <pre>{$product|print_r}</pre> *}
-{if $product.out_of_stock == 0}
+{if $product.out_of_stock == 0 && $product.quantity <= 0}
   <script src="https://www.google.com/recaptcha/api.js" ></script>
 
   <div class="form_product_outofstock_container">
