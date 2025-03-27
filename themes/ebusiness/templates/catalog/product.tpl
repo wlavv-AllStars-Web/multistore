@@ -841,7 +841,7 @@
                         });
 
                         // Toggle button text
-                        btn.textContent = isHidden ? "Show Less" : "Show More";
+                        btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
                       }
                     </script>
                     {else}
