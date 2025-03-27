@@ -963,6 +963,38 @@
 
                   {* {else} *}
                    
+                  <script>
+                  function onSubmitdesktop(token) {
+                      console.log("Generated reCAPTCHA Token:", token); // Check if token is received
+                      if (!token) {
+                          console.error("reCAPTCHA token is null or undefined!");
+                          return;
+                      }
+                  
+                      var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
+                  
+                      $.ajax({
+                          url: '{$link->getPageLink('product', true)}',
+                          type: 'POST',
+                          data: formData,
+                          dataType: 'json',
+                          success: function(response) {
+                              console.log("Response:", response);
+                              if (response.email_sent) {
+                                  document.querySelector(".container_ask_successfull").style.display = "block";
+                                  document.querySelector(".form-askquestion.form-d").remove();
+                              } else {
+                                  $(".container_ask_successfull").html('<div class="alert alert-danger">'+{l s='An error occurred, please try again.' d='Shop.Theme.Catalog'}+'</div>');
+                              }
+                          },
+                          error: function(jqXHR, textStatus, errorThrown) {
+                              console.error("AJAX Error:", textStatus, errorThrown);
+                              console.log("Response Text:", jqXHR.responseText);
+                          }
+                  
+                      });
+                  }
+                  </script>
                    
                    <form class="form-askquestion form-d col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
 
@@ -1012,38 +1044,7 @@
 
                    </form>
 
-                  <script>
-                    function onSubmitdesktop(token) {
-                        console.log("Generated reCAPTCHA Token:", token); // Check if token is received
-                        if (!token) {
-                            console.error("reCAPTCHA token is null or undefined!");
-                            return;
-                        }
-                    
-                        var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
-                    
-                        $.ajax({
-                            url: '{$link->getPageLink('product', true)}',
-                            type: 'POST',
-                            data: formData,
-                            dataType: 'json',
-                            success: function(response) {
-                                console.log("Response:", response);
-                                if (response.email_sent) {
-                                    document.querySelector(".container_ask_successfull").style.display = "block";
-                                    document.querySelector(".form-askquestion.form-d").remove();
-                                } else {
-                                    $(".container_ask_successfull").html('<div class="alert alert-danger">'+{l s='An error occurred, please try again.' d='Shop.Theme.Catalog'}+'</div>');
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.error("AJAX Error:", textStatus, errorThrown);
-                                console.log("Response Text:", jqXHR.responseText);
-                            }
-                    
-                        });
-                    }
-                    </script>
+
                   {* {/if} *}
                   </div>
 
