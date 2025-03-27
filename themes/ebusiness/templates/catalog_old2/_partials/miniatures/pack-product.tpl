@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <div class="pack-product-name">
+        <div class="pack-product-name" style="color: #333;">
           <a href="{$product.url}" title="{$product.name}">
             {$product.name}
           </a>
