@@ -17,6 +17,7 @@ body {
   margin-bottom: 2rem;
   position: unset !important;
 }
+
 #product-comments-list-pagination ul li.active span {
   color: var(--asm-color);
 }
@@ -2346,6 +2347,21 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  #password  > #content {
+    border: 0 !important;
+  }
+
+  #password  > #content .form-password-reset .form-control-label {
+    text-align: start;
+  }
+
+  #password  > #content .form-password-reset button{
+    width: 100%;
+    text-wrap:wrap;
+  }
+
+
   /* product page */
   #product-availability{
     display: flex !important;
