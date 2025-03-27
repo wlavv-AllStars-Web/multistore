@@ -1141,6 +1141,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // fim test
 
+            
 
     
             $productsCar =  Db::getInstance()->executeS($sql);
