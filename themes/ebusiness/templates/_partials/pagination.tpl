@@ -93,7 +93,7 @@
   // document.addEventListener("DOMContentLoaded", function() {
   // Use event delegation for dynamically added .js-search-link elements
   document.querySelector("#cars-products .pagination").addEventListener("click", function(e) {
-      if (e.target && e.target.matches(".js-search-link")) {
+      if (e.target && (e.target.matches(".js-search-link") || e.target.matches(".next.js-search-link") || e.target.matches(".previous.js-search-link"))) {
           e.preventDefault(); // Prevent the default behavior of the link (like navigating)
           console.log("Loading...");
 
