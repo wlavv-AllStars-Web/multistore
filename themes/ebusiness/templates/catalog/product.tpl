@@ -992,10 +992,10 @@
                     </button> *}
 
                     <button class="g-recaptcha btn btn-primary" 
-                    name="submitMessage"
-                    data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
-                    data-callback='onSubmitdesktop' 
-                    data-action='submit'>
+                      name="submitMessage"
+                      data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+                      data-callback='onSubmitdesktop' 
+                      data-action='submit'>
                       {l s='Submit' d='Shop.Theme.Catalog'}
 
                     </button>
@@ -1012,7 +1012,7 @@
                    </form>
 
                   <script>
-                    function onSubmitdesktop(token) {
+                    window.onSubmitdesktop = function(token) {
                         console.log("Generated reCAPTCHA Token:", token); // Check if token is received
                         if (!token) {
                             console.error("reCAPTCHA token is null or undefined!");
