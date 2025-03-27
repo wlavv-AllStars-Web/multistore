@@ -283,6 +283,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         ORDER BY pp.id_product ASC LIMIT 20';
 
         $newProducts = Db::getInstance()->executeS($sql);
+
+        // pre($newProducts);
     
         if ($newProducts) {
             $universalsGet = $this->prepareMultipleProductsForTemplate(
@@ -323,7 +325,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         $query = new CustomProductSearchQuery();
         $query
             ->setQueryType('search')
-            ->setSortOrder(new SortOrder('product', 'price', 'asc'))
+            ->setSortOrder(new SortOrder('product', 'price', 'desc'))
             ->setSearchString($this->search_string)
             ->setSearchTag($this->search_tag)
             ->setBrand($this->brand)
