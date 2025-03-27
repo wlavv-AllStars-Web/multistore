@@ -178,7 +178,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 
         // pre($sql);
 
-        return Db::getInstance()->executeS($sql);
+        return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
     }
 
         
@@ -239,7 +239,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                             LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
                             WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product LIMIT 8';
 
-        $universalProducts = Db::getInstance()->executeS($sqlUniversals);
+        $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
 
         $universals = $this->prepareMultipleProductsForTemplate(
             $universalProducts
@@ -250,7 +250,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                                 LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product AND pps.id_shop = 2
                                 WHERE pp.universal = 1 AND pp.active = 1';
 
-        $TotalUniversals = Db::getInstance()->getValue($sqlTotalUniversals);
+        $TotalUniversals = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlTotalUniversals);
         // pre($TotalUniversals);
 
 
@@ -282,7 +282,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 AND pp.id_product > ' . (int)$lastProductId . ' 
         ORDER BY pp.id_product ASC LIMIT 8';
 
-        $newProducts = Db::getInstance()->executeS($sql);
+        $newProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 
         // pre($newProducts);
     
