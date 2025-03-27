@@ -237,7 +237,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                             FROM ps_category_product AS pcp
                             LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
                             LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product LIMIT 20';
+                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product LIMIT 8';
 
         $universalProducts = Db::getInstance()->executeS($sqlUniversals);
 
@@ -280,7 +280,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         FROM ps_product AS pp
         LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
         WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 AND pp.id_product > ' . (int)$lastProductId . ' 
-        ORDER BY pp.id_product ASC LIMIT 20';
+        ORDER BY pp.id_product ASC LIMIT 8';
 
         $newProducts = Db::getInstance()->executeS($sql);
 
