@@ -809,7 +809,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        {foreach from=$compats item=compat}
+                        {foreach from=$compats item=compat name=compatLoop}
                           <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
                             <td>{$compat.brand}</td>
                             <td>{$compat.model}</td>
@@ -832,13 +832,16 @@
                     <script>
                       function toggleRowsDesk() {
                         var hiddenRows = document.querySelectorAll(".table-desk .hidden-row");
-                        var btn = document.getElementById("showMoreBtn.table-desk-btn");
-                        
+                        var btn = document.getElementById("showMoreBtn");
+
+                        // Toggle rows visibility
+                        let isHidden = hiddenRows[0].style.display === "none";
                         hiddenRows.forEach(row => {
-                          row.style.display = row.style.display === "none" ? "table-row" : "none";
+                          row.style.display = isHidden ? "table-row" : "none";
                         });
 
-                        btn.textContent = btn.textContent === "Show More" ? "Show Less" : "Show More";
+                        // Toggle button text
+                        btn.textContent = isHidden ? "Show Less" : "Show More";
                       }
                     </script>
                     {else}
