@@ -1192,50 +1192,50 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             if ($totalProducts > 0) {
                 // Calculate total pages
-                $pagesCount = ceil($totalProducts / $resultsPerPage);
-                $currentPage = max((int) $query->getPage(), 1);
+                // $pagesCount = ceil($totalProducts / $resultsPerPage);
+                // $currentPage = max((int) $query->getPage(), 1);
                 
-                // Ensure current page is within valid range
-                if ($currentPage > $pagesCount) {
-                    $currentPage = $pagesCount;
-                }
+                // // Ensure current page is within valid range
+                // if ($currentPage > $pagesCount) {
+                //     $currentPage = $pagesCount;
+                // }
             
-                // Now, calculate the offset for pagination
-                $offset = ($currentPage - 1) * $resultsPerPage;
+                // // Now, calculate the offset for pagination
+                // $offset = ($currentPage - 1) * $resultsPerPage;
             
-                // Add the LIMIT and OFFSET to the main SQL query
-                $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
+                // // Add the LIMIT and OFFSET to the main SQL query
+                // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             
-                // Assign pagination info to Smarty
-                $pagination = [
-                    'total_items' => $totalProducts,
-                    'items_shown_from' => $offset + 1,
-                    'items_shown_to' => min($offset + $resultsPerPage, $totalProducts),
-                    'current_page' => $currentPage,
-                    'pages_count' => $pagesCount,
-                    'pages' => [],
-                ];
+                // // Assign pagination info to Smarty
+                // $pagination = [
+                //     'total_items' => $totalProducts,
+                //     'items_shown_from' => $offset + 1,
+                //     'items_shown_to' => min($offset + $resultsPerPage, $totalProducts),
+                //     'current_page' => $currentPage,
+                //     'pages_count' => $pagesCount,
+                //     'pages' => [],
+                // ];
             
-                // Build the page links
-                for ($i = 1; $i <= $pagesCount; $i++) {
-                    // Generate URL without `page` parameter for page 1
-                    $url = ($i == 1) 
-                        ? $this->context->link->getPageLink('cars-products', null, null, [
-                            'id_compat' => Tools::getValue('id_compat'),
-                          ])
-                        : $this->context->link->getPageLink('cars-products', null, null, [
-                            'page' => $i,
-                            'id_compat' => Tools::getValue('id_compat'),
-                          ]);
+                // // Build the page links
+                // for ($i = 1; $i <= $pagesCount; $i++) {
+                //     // Generate URL without `page` parameter for page 1
+                //     $url = ($i == 1) 
+                //         ? $this->context->link->getPageLink('cars-products', null, null, [
+                //             'id_compat' => Tools::getValue('id_compat'),
+                //           ])
+                //         : $this->context->link->getPageLink('cars-products', null, null, [
+                //             'page' => $i,
+                //             'id_compat' => Tools::getValue('id_compat'),
+                //           ]);
             
-                    $pagination['pages'][$i] = [
-                        'type' => 'page',
-                        'page' => $i,
-                        'clickable' => $i != $currentPage,
-                        'current' => $i == $currentPage,
-                        'url' => $url,
-                    ];
-                }
+                //     $pagination['pages'][$i] = [
+                //         'type' => 'page',
+                //         'page' => $i,
+                //         'clickable' => $i != $currentPage,
+                //         'current' => $i == $currentPage,
+                //         'url' => $url,
+                //     ];
+                // }
 
                 // pre($query);
                 
