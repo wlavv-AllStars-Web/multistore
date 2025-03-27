@@ -20,8 +20,7 @@ body {
   width: 100%;
 }
 
-.previous.js-search-link i,
-.next.js-search-link i {
+.pagination a.previous i, .pagination a.next i {
   pointer-events: none;
 }
 
