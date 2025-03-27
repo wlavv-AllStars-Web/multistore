@@ -995,7 +995,7 @@
                       name="submitMessage"
                       data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
                       {* data-callback='onSubmitdesktop'  *}
-                      onclick="onSubmitdesktop(6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj)"
+                      onclick="onSubmitdesktop('6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj')"
                       data-action='submit'>
                       {l s='Submit' d='Shop.Theme.Catalog'}
 
