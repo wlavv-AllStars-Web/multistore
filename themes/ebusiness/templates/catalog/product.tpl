@@ -798,7 +798,7 @@
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
                     {if $compats|count}
-                    <div class="container-table-compats table-desk">
+                    <div class="container-table-compats table-desk mb-4">
                       <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                         <thead class="thead-dark">
                           <tr>
@@ -822,7 +822,7 @@
 
                       {if $compats|count > 5}
                         <div style="text-align: center;">
-                          <button id="showMoreBtn" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">Show More</button>
+                          <button id="showMoreBtnDesk" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">Show More</button>
                         </div>
                       {/if}
 
@@ -832,7 +832,7 @@
                     <script>
                       function toggleRowsDesk() {
                         var hiddenRows = document.querySelectorAll(".table-desk .hidden-row");
-                        var btn = document.getElementById("showMoreBtn");
+                        var btn = document.getElementById("showMoreBtnDesk");
 
                         // Toggle rows visibility
                         let isHidden = hiddenRows[0].style.display === "none";
