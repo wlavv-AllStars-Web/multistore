@@ -798,7 +798,7 @@
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
                     {if $compats|count}
-                    <div class="container-table-compats">
+                    <div class="container-table-compats table-desk">
                       <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
                         <thead class="thead-dark">
                           <tr>
@@ -810,7 +810,7 @@
                         </thead>
                         <tbody>
                         {foreach from=$compats item=compat}
-                          <tr>
+                          <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
                             <td>{$compat.brand}</td>
                             <td>{$compat.model}</td>
                             <td>{$compat.type}</td>
@@ -819,7 +819,28 @@
                         {/foreach}
                         </tbody>
                       </table>
+
+                      {if $compats|count > 5}
+                        <div style="text-align: center;">
+                          <button id="showMoreBtn" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">Show More</button>
+                        </div>
+                      {/if}
+
+
                     </div>
+
+                    <script>
+                      function toggleRowsDesk() {
+                        var hiddenRows = document.querySelectorAll(".table-desk .hidden-row");
+                        var btn = document.getElementById("showMoreBtn.table-desk-btn");
+                        
+                        hiddenRows.forEach(row => {
+                          row.style.display = row.style.display === "none" ? "table-row" : "none";
+                        });
+
+                        btn.textContent = btn.textContent === "Show More" ? "Show Less" : "Show More";
+                      }
+                    </script>
                     {else}
                       <h2 style="text-align: center;font-weight:500;padding:1rem;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
                     {/if}
