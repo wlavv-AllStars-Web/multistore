@@ -578,64 +578,73 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             // pre($query);
 
-            $sql = 'SELECT ps_product.id_product, ps_product.price
-            FROM ps_product
-            LEFT JOIN ps_product_shop ON ps_product.id_product = ps_product_shop.id_product
-            LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
-            LEFT JOIN ps_product_sale ON ps_product.id_product = ps_product_sale.id_product 
-            LEFT JOIN ps_category_product ON ps_product.id_product = ps_category_product.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = 2
-            LEFT JOIN ps_product_attribute ON ps_product.id_product = ps_product_attribute.id_product
-            WHERE ps_product.active = 1 AND ps_product.visibility != "none"
-            AND ps_product_shop.id_shop = 2';
-                
-            if($category > 0) {
-                $sql .= ' AND ps_category_product.id_category = ' . $category;
+            $sql = 'SELECT p.id_product, 
+                    p.price AS base_price, 
+                   COALESCE(
+                       (SELECT MAX(p.price + pa.price) 
+                        FROM ps_product_attribute_shop pa 
+                        WHERE pa.id_product = p.id_product 
+                          AND pa.id_shop = 2
+                       ), p.price
+                   ) AS final_price 
+            FROM ps_product p
+            LEFT JOIN ps_product_shop ps ON p.id_product = ps.id_product
+            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 2
+            LEFT JOIN ps_product_sale psale ON p.id_product = psale.id_product 
+            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 2
+            WHERE p.active = 1 AND p.visibility != "none" AND ps.id_shop = 2';
+    
+            if ($category > 0) {
+                $sql .= ' AND pc.id_category = ' . (int) $category;
             }
-
+            
             if ($manufacturer > 0) {
-                $sql .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
             }
-
+    
             if (!empty($searchString)) {
-                $sql .= ' AND (ps_product_lang.name LIKE "%' . pSQL($searchString) . '%" 
-                OR ps_product.reference LIKE "%' . pSQL($searchString) . '%"
-                OR ps_product_attribute.reference LIKE "%' . pSQL($searchString) . '%")';
+                $sql .= ' AND (pl.name LIKE "%' . pSQL($searchString) . '%" 
+                        OR p.reference LIKE "%' . pSQL($searchString) . '%"
+                        OR EXISTS (
+                            SELECT 1 FROM ps_product_attribute pa 
+                            WHERE pa.id_product = p.id_product 
+                              AND pa.reference LIKE "%' . pSQL($searchString) . '%"
+                        ))';
             }
-
-            if(!empty($type) && $type == 'new-products'){
-                $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT',null,null,2);
+    
+            if (!empty($type) && $type == 'new-products') {
+                $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT', null, null, 2);
                 $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
-                $sql .= ' AND ps_product.date_add >= "' . pSQL($newProductDate) . '"';
+                $sql .= ' AND p.date_add >= "' . pSQL($newProductDate) . '"';
             }
-
-            $sql .= ' GROUP BY ps_product.id_product';
-
-            if($query->getSortOrder()){
-                $sortOrder = $query->getSortOrder(); 
-                // pre($sortOrder);
+            
+            $sql .= ' GROUP BY p.id_product';
+            
+            if ($query->getSortOrder()) {
+                $sortOrder = $query->getSortOrder();
+                
                 if ($sortOrder->getField() === 'price') {
-                    $sql .= ' ORDER BY ps_product.price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    // Sort by final price correctly
+                    $sql .= ' ORDER BY final_price ' 
+                          . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'name') {
-                    $sql .= ' ORDER BY ps_product_lang.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'reference') {
-                    $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY p.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'sales') {
-                    $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY psale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'date_add') {
-                    $sql .= ' ORDER BY ps_product.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-
-
-
-            if($query->getResultsPerPage()) {
-                
-                if($query->getQueryType() == 'new-products'){
+            
+            if ($query->getResultsPerPage()) {
+                if ($query->getQueryType() == 'new-products') {
                     $query->setResultsPerPage(19);
                 }
-
+            
                 $resultsPerPage = (int) $query->getResultsPerPage();
-                $currentPage = (int) $query->getPage(); // Get the current page from the query object
+                $currentPage = (int) $query->getPage();
                 $offset = ($currentPage - 1) * $resultsPerPage;
             
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
