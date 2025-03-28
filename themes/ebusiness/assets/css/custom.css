@@ -6586,7 +6586,7 @@ body::-ms-scrollbar-thumb:hover {
     display: flex;
     align-items: center;
     color: #333;
-    margin-top: 2rem;
+    margin-block: 2rem;
   }
 
   #password .page-footer a:hover{
