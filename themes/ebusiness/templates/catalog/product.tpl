@@ -997,14 +997,14 @@
                     data-callback='onSubmitDesktop' 
                     data-action='submit'>
                       {l s='Submit' d='Shop.Theme.Catalog'}
+                      <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+                      <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+                      <input type="hidden" name="product_askquestion" value="1">
+                      <input type="hidden" name="id_product" value="{$product.id}">
+                      <input type="hidden" name="category" value="">
 
                     </button>
 
-                    <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
-                    <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
-                    <input type="hidden" name="product_askquestion" value="1">
-                    <input type="hidden" name="id_product" value="{$product.id}">
-                    <input type="hidden" name="category" value="">
       
 
                     
@@ -1013,37 +1013,37 @@
 
                   <script>
                   
-                      document.addEventListener("DOMContentLoaded", function() {
-                          function onSubmitdesktop(token) {
-                              console.log("Generated reCAPTCHA Token:", token);
-                              if (!token) {
-                                  console.error("reCAPTCHA token is null or undefined!");
-                                  return;
-                              }
-                      
-                              var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
-                      
-                              $.ajax({
-                                  url: '{$link->getPageLink('product', true)}',
-                                  type: 'POST',
-                                  data: formData,
-                                  dataType: 'json',
-                                  success: function(response) {
-                                      console.log("Response:", response);
-                                      if (response.email_sent) {
-                                          document.querySelector(".container_ask_successfull").style.display = "block";
-                                          document.querySelector(".form-askquestion.form-d").remove();
-                                      } else {
-                                          $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
-                                      }
-                                  },
-                                  error: function(jqXHR, textStatus, errorThrown) {
-                                      console.error("AJAX Error:", textStatus, errorThrown);
-                                      console.log("Response Text:", jqXHR.responseText);
-                                  }
-                              });
+                      // document.addEventListener("DOMContentLoaded", function() {
+                      function onSubmitDesktop(token) {
+                          console.log("Generated reCAPTCHA Token:", token);
+                          if (!token) {
+                              console.error("reCAPTCHA token is null or undefined!");
+                              return;
                           }
-                      });
+                  
+                          var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
+                  
+                          $.ajax({
+                              url: '{$link->getPageLink('product', true)}',
+                              type: 'POST',
+                              data: formData,
+                              dataType: 'json',
+                              success: function(response) {
+                                  console.log("Response:", response);
+                                  if (response.email_sent) {
+                                      document.querySelector(".container_ask_successfull").style.display = "block";
+                                      document.querySelector(".form-askquestion.form-d").remove();
+                                  } else {
+                                      $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
+                                  }
+                              },
+                              error: function(jqXHR, textStatus, errorThrown) {
+                                  console.error("AJAX Error:", textStatus, errorThrown);
+                                  console.log("Response Text:", jqXHR.responseText);
+                              }
+                          });
+                      }
+                      // });
                     </script>
             
                   {* {/if} *}
