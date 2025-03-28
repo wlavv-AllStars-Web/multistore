@@ -108,24 +108,24 @@ class SearchProvider implements FacetsRendererInterface, ProductSearchProviderIn
             $sortPosAsc->setLabel(
                 $translator->trans('Relevance', [], 'Modules.Facetedsearch.Shop')
             ),
-            $sortNameAsc->setLabel(
-                $translator->trans('Name, A to Z', [], 'Modules.Facetedsearch.Shop')
-            ),
-            $sortNameDesc->setLabel(
-                $translator->trans('Name, Z to A', [], 'Modules.Facetedsearch.Shop')
-            ),
+            // $sortNameAsc->setLabel(
+            //     $translator->trans('Name, A to Z', [], 'Modules.Facetedsearch.Shop')
+            // ),
+            // $sortNameDesc->setLabel(
+            //     $translator->trans('Name, Z to A', [], 'Modules.Facetedsearch.Shop')
+            // ),
             $sortPriceAsc->setLabel(
                 $translator->trans('Price, low to high', [], 'Modules.Facetedsearch.Shop')
             ),
             $sortPriceDesc->setLabel(
                 $translator->trans('Price, high to low', [], 'Modules.Facetedsearch.Shop')
             ),
-            $sortRefAsc->setLabel(
-                $translator->trans('Reference, A to Z', [], 'Modules.Facetedsearch.Shop')
-            ),
-            $sortRefDesc->setLabel(
-                $translator->trans('Reference, Z to A', [], 'Modules.Facetedsearch.Shop')
-            ),
+            // $sortRefAsc->setLabel(
+            //     $translator->trans('Reference, A to Z', [], 'Modules.Facetedsearch.Shop')
+            // ),
+            // $sortRefDesc->setLabel(
+            //     $translator->trans('Reference, Z to A', [], 'Modules.Facetedsearch.Shop')
+            // ),
         ];
 
         if ($query->getQueryType() == 'new-products') {
