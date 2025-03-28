@@ -500,7 +500,7 @@
             </div>
 
             {* {if $email_sent == 1} *}
-              <div class="container_ask_successfull" style="display: none;">
+              <div class="container_ask_successfull" style="display: none;padding:1rem;">
                 <div class="question_buble">
 
                   <i class="material-icons question-success-icon">check_circle</i>
