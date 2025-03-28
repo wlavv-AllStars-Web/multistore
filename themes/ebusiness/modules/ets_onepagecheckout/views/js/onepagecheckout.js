@@ -250,11 +250,12 @@ function loadKlarnaWidget_ets_opc() {
     loadKlarnaWidget(option.id, $(option).data('payment_method_category'));
 }
 
-const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput input")
-const availabilityCheckbox = document.querySelector("#availability-to-approve .checkbox.ets_checkinput input")
+const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput input");
+const availabilityCheckbox = document.querySelector("#availability-to-approve .checkbox.ets_checkinput input");
+const conditionsCheckboxA = document.querySelector("#conditions-to-approve a");
+const countrySelect = document.querySelector("#shipping_address_id_country");
 
-const conditionsCheckboxA = document.querySelector("#conditions-to-approve a")
-
+// Existing code for conditions link
 if (conditionsCheckboxA) {
     conditionsCheckboxA.addEventListener("click", (event) => {
         event.preventDefault(); 
@@ -263,6 +264,32 @@ if (conditionsCheckboxA) {
     });
 }
 
+// Add event listener for country select change
+if (countrySelect) {
+    countrySelect.addEventListener("change", function() {
+        // Uncheck both checkboxes
+        if (conditionsCheckbox) {
+            conditionsCheckbox.checked = false;
+        }
+        if (availabilityCheckbox) {
+            availabilityCheckbox.checked = false;
+        }
+        
+        // Hide payment block
+        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+        const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
+        
+        if (paymentBlock) {
+            paymentBlock.style.display = "none";
+            paymentBlock.parentElement.style.display = "none";
+        }
+        if (alert) {
+            alert.style.display = "block";
+        }
+    });
+}
+
+// Your existing togglePaymentBlock function remains the same
 function togglePaymentBlock() {
     const conditionsChecked = conditionsCheckbox.checked;
 
@@ -299,16 +326,7 @@ function togglePaymentBlock() {
             alert.style.display = "block";
         }
     }
-
-    
 }
-if(conditionsCheckbox){
-    conditionsCheckbox.addEventListener("change", togglePaymentBlock);
-}
-if(availabilityCheckbox){
-    availabilityCheckbox.addEventListener("change", togglePaymentBlock);
-}
-
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
     $('.js-additional-information,.js-payment-option-form').hide();
