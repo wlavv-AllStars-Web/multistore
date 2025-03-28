@@ -78,7 +78,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             ]));
         }else{
             die(json_encode([
-                'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable):'',
+                // 'isAvailable' => $isAvailable!==true ? $this->module->displayError($isAvailable):'',
                 'cart_detailed' => $this->module->display($this->module->getLocalPath(),'cart-detailed.tpl'),
                 'cart_detailed_totals' => $this->module->display($this->module->getLocalPath(),'cart-detailed-totals.tpl'),
                 'cart_summary_items_subtotal' => $this->module->display($this->module->getLocalPath(),'cart-summary-items-subtotal.tpl'),
@@ -4636,10 +4636,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             return true;
         }
 
-        // if ($product['active']) {
-        //     return sprintf($this->module->l('The item %s in your cart is no longer available in this quantity. You cannot proceed with your order until the quantity is adjusted.','order'),$product['name']);
-        // }
-        // return sprintf($this->module->l('This product %s is no longer available.','order'),$product['name']);
+        if ($product['active']) {
+            return sprintf($this->module->l('The item %s in your cart is no longer available in this quantity. You cannot proceed with your order until the quantity is adjusted.','order'),$product['name']);
+        }
+        return sprintf($this->module->l('This product %s is no longer available.','order'),$product['name']);
     }
     public function convertDateBirthday($date)
     {
