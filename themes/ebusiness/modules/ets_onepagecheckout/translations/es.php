@@ -167,7 +167,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1fb20e9ce771f1a32
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_bcc254b55c4a1babdf1dcb82c207506b'] = 'Teléfono';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_41c2fff4867cc204120f001e7af20f7a'] = 'Teléfono móvil';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Empresa';
-$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_7cb32e708d6b961d476baced73d362bb'] = 'Número de valor agregado';
+$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_7cb32e708d6b961d476baced73d362bb'] = 'Número de IVA';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_707c73d9fdcfa111db429ab18da2624f'] = 'DNI';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_6311ae17c1ee52b36e68aaf4ad066387'] = 'Otro';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_baa31a65f29121c32b637bb845d41acf'] = 'Dirección alias';
@@ -389,9 +389,9 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_address_b2ce8014820b1472658c0a28
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_b60bb13a87fe3ae5463aeb0980a5a8a1'] = 'Número de identificación';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_ba23ecda24e8228d9064ddec146861be'] = 'Número de identificación no es válida';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_cd2ed2988515d1eff3066c78a0b75076'] = 'Se requiere número de identificación';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_7cb32e708d6b961d476baced73d362bb'] = 'Número de valor agregado';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_4c53b0b8be9f393c1fc252d1551ad01a'] = 'Número de valor agregado no es válida';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_266550a535da415e3ffed661553c93a3'] = 'Se requiere número de valor agregado';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_7cb32e708d6b961d476baced73d362bb'] = 'Número de IVA';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_4c53b0b8be9f393c1fc252d1551ad01a'] = 'Número de IVA no es válido';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_266550a535da415e3ffed661553c93a3'] = 'Se requiere número de IVA';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_c04965cf9c9f0e08f96f03e36d5d07e3'] = 'Tipo de cliente';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_47f9082fc380ca62d531096aa1d110f1'] = 'Privado';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_52c45c40828ef2f375da02d2fb393ba5'] = 'Código SDI';
