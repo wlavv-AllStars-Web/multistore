@@ -50,7 +50,7 @@ body {
 }
 
 .btn.disabled, .btn:disabled {
-  opacity: .35;
+  opacity: .35 !important;
 }
 
 .cart_productname .product-name{
