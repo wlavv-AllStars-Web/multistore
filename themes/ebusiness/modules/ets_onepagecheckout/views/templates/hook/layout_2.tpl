@@ -92,7 +92,7 @@
             <!-- block customer -->
 
             {* {if !$checkout_customer->logged} *}
-            {if !$customer->is_logged }
+            {* {if !$customer->is_logged }
                 <div class="block-onepagecheckout block-customer ">
                     <div class="title-heading">
                         <span class="ets_icon_svg">
@@ -104,7 +104,7 @@
                         {include file='module:ets_onepagecheckout/views/templates/hook/login.tpl'}
                     </div>
                 </div>
-            {/if}
+            {/if} *}
 
 
             <!-- block address -->
