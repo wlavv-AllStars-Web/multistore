@@ -222,6 +222,7 @@
     <div class="add_to_cart_button-mobile d-mobile justify-content-center">
 
     {if count($product['attributes']) > 0}
+      {if !$complementary}
       <div class="add">
         <button
           class="btn btn-outline-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
@@ -240,6 +241,7 @@
 
         </button>
       </div>
+      {/if}
     {else}
       <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
               <input type="hidden" name="token" value="{$static_token}">
