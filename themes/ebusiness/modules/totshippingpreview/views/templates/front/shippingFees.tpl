@@ -34,8 +34,8 @@
     <thead  class="thead-dark">
         <tr class="totselectzone__row--head">
             <th scope="col" id="logo-shipping" class="has-image"></th>
-            <th scope="col" id="carrier-shipping">{l s='Carrier' mod='totshippingpreview'}</th>
-            <th scope="col">{l s='Shipping Cost' mod='totshippingpreview'}</th>
+            <th scope="col" id="carrier-shipping">{l s='Carrier' d='Shop.Theme.Product'}</th>
+            <th scope="col">{l s='Shipping Cost' d='Shop.Theme.Product'}</th>
         </tr>
     </thead>
     <tbody>
