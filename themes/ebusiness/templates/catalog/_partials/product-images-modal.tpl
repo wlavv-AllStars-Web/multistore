@@ -92,7 +92,7 @@
             {foreach from=$product.images item=image}
               {* <li class="thumb-container"> *}
               <div class="swiper-slide">
-                <img data-image-large-src="{$image.large.url}" class="thumb js-modal-thumb" src="{$image.large.url}" alt="{$image.legend}" title="{$image.legend}" width="{$image.medium.width}" itemprop="image">
+                <img data-image-large-src="{$image.tm_large.url}" class="thumb js-modal-thumb" src="{$image.large.url}" alt="{$image.legend}" title="{$image.legend}" width="{$image.medium.width}" itemprop="image">
               </div>
               {* </li> *}
             {/foreach}
