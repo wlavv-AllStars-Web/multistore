@@ -258,8 +258,8 @@ class ProductCore extends ObjectModel
     /** @var string real_photos */
     public $real_photos;
 
-    /** @var string youtube_code */
-    public $youtube_code;
+    /** @var string youtube_1 */
+    public $youtube_1;
     public $youtube_2;
 
     public $dim_verify;
@@ -269,6 +269,8 @@ class ProductCore extends ObjectModel
     public $difficulty;
 
     public $ec_approved;
+
+    public $universal;
 
 
     /**
@@ -484,7 +486,7 @@ class ProductCore extends ObjectModel
             'weight' => ['type' => self::TYPE_FLOAT, 'validate' => 'isUnsignedFloat'],
             'quantity_discount' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
             'ean13' => ['type' => self::TYPE_STRING, 'validate' => 'isEan13', 'size' => Ean13::MAX_LENGTH],
-            'youtube_code' => ['type' => self::TYPE_STRING, 'size' => 50],
+            'youtube_1' => ['type' => self::TYPE_STRING, 'size' => 50],
             'youtube_2' => ['type' => self::TYPE_STRING, 'size' => 50],
             'nc' => ['type' => self::TYPE_STRING, 'size' => 11],
             'dim_verify' => ['type' => self::TYPE_INT],
@@ -525,6 +527,7 @@ class ProductCore extends ObjectModel
                 'default' => ProductType::TYPE_UNDEFINED,
             ],
             'ec_approved' => ['type' => self::TYPE_INT],
+            'universal' => ['type' => self::TYPE_INT],
 
             /* Shop fields */
             'id_category_default' => ['type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'],
