@@ -900,6 +900,7 @@ window.addEventListener('resize', initializeModelGroupSwipers);
     .versions_cars .model_group_cars .swiper-container .swiper-wrapper{
         width: 100dvw;
         /*justify-content:center;*/
+        padding-bottom: 2rem
     }
     
     .versions_cars .model_group_cars .swiper-button-prev, .versions_cars .model_group_cars .swiper-button-next{
