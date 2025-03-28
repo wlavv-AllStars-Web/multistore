@@ -151,6 +151,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             }
             Tools::redirect($this->context->link->getPageLink('index'));
         }
+
+        // pre(Tools::getAllValues());
         
         if(Tools::isSubmit('id_country') && ($id_country = (int)Tools::getValue('id_country')))
         {
@@ -194,10 +196,12 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         //     $this->context->controller->errors[] = $this->trans('You need to fill you address before going to the checkout page.', [], 'Shop.Theme.Registration');
         //     Tools::redirect('index.php?controller=address');
         // }
+
         if(Tools::getValue('submitCustomerLogin'))
         {
             $this->_submitCustomerLogin();
         }
+ 
         // echo '1';
         // exit;
         if(Tools::isSubmit('ajax') && Tools::isSubmit('getAddressFrom')){
@@ -233,6 +237,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }
+
         //         echo '6';
         // exit;
         if(Tools::isSubmit('getShippingMethodByStates'))
@@ -245,6 +250,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
                 )
             );
         }
+  
         // echo $this->module->is17;
         // exit;
 
@@ -258,9 +264,12 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             )
         );
 
+        // pre(Tools::getAllValues());
+
 //  echo $this->module->is17;
 //         exit;
         // echo '<pre>'.print_r($this->module->is17,1).'</pre>';
+        // pre($this->module);
 
 
         if($this->module->is17){
@@ -274,6 +283,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
     {
         $id_customer = ($this->context->customer->id) ? (int)($this->context->customer->id) : 0;
         
+
 
         $id_group = null;
         if ($id_customer) {
@@ -289,7 +299,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             $tax=true;
             
         $id_address = $this->context->customer->isLogged() ?  Address::getFirstCustomerAddressId($this->context->customer->id):0;
-        
+
 
         
         if($id_address == 0){
@@ -318,7 +328,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         
         $lowestStock = null;
         $lowestStockProduct = null;
-        
+ 
         foreach ($presented_cart['products'] as $product) {
             if (!isset($product['stock_quantity'])) {
                 continue; // Skip if 'stock_quantity' is not set
@@ -366,6 +376,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // echo 'paulo';
         // exit;              
 // pre($this->displayBlockDeliveryAddress($id_address));
+
+// pre($id_address);
             
         $this->context->smarty->assign(
             array(
@@ -612,6 +624,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         // echo '<pre>'.print_r($delivery_option_list,1).'</pre>';
         // exit;
 
+
+
         if($delivery_option_list)
         {
             foreach($delivery_option_list as $id_address => &$option_list)
@@ -651,6 +665,8 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
         $layout = Configuration::get('ETS_OPC_DESIGN_LAYOUT');
         if(!$layout || !in_array($layout,array('layout_1','layout_2','layout_3','layout_4')))
             $layout = 'layout_1';
+
+
 
         $this->context->smarty->assign(
             array(
@@ -4620,10 +4636,10 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
             return true;
         }
 
-        if ($product['active']) {
-            return sprintf($this->module->l('The item %s in your cart is no longer available in this quantity. You cannot proceed with your order until the quantity is adjusted.','order'),$product['name']);
-        }
-        return sprintf($this->module->l('This product %s is no longer available.','order'),$product['name']);
+        // if ($product['active']) {
+        //     return sprintf($this->module->l('The item %s in your cart is no longer available in this quantity. You cannot proceed with your order until the quantity is adjusted.','order'),$product['name']);
+        // }
+        // return sprintf($this->module->l('This product %s is no longer available.','order'),$product['name']);
     }
     public function convertDateBirthday($date)
     {
