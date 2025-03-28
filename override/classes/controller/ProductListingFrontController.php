@@ -1078,57 +1078,65 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
     
-            $sql = 'SELECT ps_category_product.id_category, ps_category_product.id_product, ps_category_product.position
-                    FROM ps_category_product
-                    LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
-                    LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
-                    LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product AND ps_product_lang.id_lang = '.$this->context->language->id.' AND ps_product_lang.id_shop = '.$this->context->shop->id.'
-                    WHERE ps_category_product.id_product IN (' . $idList . ')  
-                    AND ps_product.active = 1 AND ps_product.visibility != "none" AND ps_product_shop.id_shop = '.$this->context->shop->id;
+            $sql = 'SELECT cp.id_category, 
+               cp.id_product, 
+               cp.position, 
+               COALESCE(
+                   (SELECT MAX(p.price + pa.price) 
+                    FROM ps_product_attribute_shop pa 
+                    WHERE pa.id_product = p.id_product 
+                      AND pa.id_shop = '.$this->context->shop->id.'
+                   ), p.price
+               ) AS final_price
+                FROM ps_category_product cp
+                LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
+                LEFT JOIN ps_product p ON cp.id_product = p.id_product
+                LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
+                    AND pl.id_lang = '.$this->context->language->id.' 
+                    AND pl.id_shop = '.$this->context->shop->id.'
+                WHERE cp.id_product IN (' . $idList . ')  
+                    AND p.active = 1 
+                    AND p.visibility != "none" 
+                    AND ps.id_shop = '.$this->context->shop->id;
 
-             
-            if($category > 0) {
-                $sql .= ' AND ps_category_product.id_category = ' . $category;
+            if ($category > 0) {
+                $sql .= ' AND cp.id_category = ' . (int) $category;
             }
 
             if ($manufacturer > 0) {
-                $sql .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
             }
 
+            $sql .= ' GROUP BY p.id_product';
 
-            
-            $sql .= ' GROUP BY ps_product.id_product';
+            // Sorting Fix
+            if ($query->getSortOrder()) {
+                $sortOrder = $query->getSortOrder();
 
-            // test
-            if($query->getSortOrder()){
-                $sortOrder = $query->getSortOrder(); 
-                // pre($sortOrder);
                 if ($sortOrder->getField() === 'price') {
-                    $sql .= ' ORDER BY ps_product.price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY final_price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'name') {
-                    $sql .= ' ORDER BY ps_product_lang.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'reference') {
-                    $sql .= ' ORDER BY ps_product.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY p.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'sales') {
-                    $sql .= ' ORDER BY ps_product_sale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY psale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'date_add') {
-                    $sql .= ' ORDER BY ps_product.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
 
-
-            if($query->getResultsPerPage()) {
-
-               
+            // Pagination
+            if ($query->getResultsPerPage()) {
                 $query->setResultsPerPage(19);
-            
                 
                 $resultsPerPage = (int) $query->getResultsPerPage();
-                $currentPage = (int) $query->getPage(); // Get the current page from the query object
+                $currentPage = (int) $query->getPage();
                 $offset = ($currentPage - 1) * $resultsPerPage;
-            
+
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
+
 
             // $result->setProducts($$totalProducts);
             // $result->setTotalProductsCount($total_products);
