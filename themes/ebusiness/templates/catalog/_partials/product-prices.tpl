@@ -51,7 +51,12 @@
         </div>
         <div class="tax-shipping-delivery-label">
         {if $configuration.display_taxes_label}
-          {$product.labels.tax_long}
+          {* {$product.labels.tax_long} *}
+          {if $product.price_amount|number_format:2 == $product.price_tax_exc|number_format:2}
+            {l s="Excl. VAT" d="Shop.Theme.Product"}
+          {else}
+              {l s="VAT incl." d="Shop.Theme.Product"}
+          {/if}
         {/if}
         {hook h='displayProductPriceBlock' product=$product type="price"}
         {hook h='displayProductPriceBlock' product=$product type="after_price"}
