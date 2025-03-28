@@ -2348,6 +2348,10 @@ body {
 
 @media (max-width: 563px) {
 
+  .block-onepagecheckout #delivery-addresses > .form-group:nth-child(1) {
+    padding: 0;
+  }
+
   #password  > #content {
     border: 0 !important;
   }
@@ -5685,7 +5689,7 @@ ul {
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands {
   display: none;
   position: absolute;
-  width: 100dvw;
+  width: 100%;
   left: 0;
   background: #f6f6f6;
   border-bottom: 3px solid var(--asm-color);
