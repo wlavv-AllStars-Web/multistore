@@ -583,7 +583,7 @@ class FrontControllerCore extends Controller
                 $html_garage .= '<div class="my-garage-cars" style="display:flex;flex-wrap:wrap;">';
 
                 foreach ($myCarsGarage['data'] as $key => $carGarage) {
-                    $html_garage .=   '<div class="my-garage-car col-lg-2" onclick="setCarSearch('.$carGarage['id_compat'].')">';
+                    $html_garage .=   '<div class="my-garage-car col-lg-2 col-md-3" onclick="setCarSearch('.$carGarage['id_compat'].')">';
                     $html_garage .=     '<img src="'.$carGarage['cartoon'].'" style="width:80%;display:flex;margin:auto;" />';
                     $html_garage .=     '<div class="my-garage-car-details" style="text-align:center;color:#fff;">
                                             <span>'.$carGarage['brand'].' '.$carGarage['model'].'</span>
@@ -2035,6 +2035,8 @@ class FrontControllerCore extends Controller
 
         $urls = $this->getTemplateVarUrls();
         $psImageUrl = $urls['img_ps_url'] ?? _PS_IMG_;
+
+        // pre($address);
 
         $shop = [
             'id' => $this->context->shop->id,
