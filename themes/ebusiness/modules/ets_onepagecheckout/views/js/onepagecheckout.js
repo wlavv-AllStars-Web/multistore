@@ -605,6 +605,8 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         contentType: false,              
         success: function(json){ 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
+            loadingContainer.remove();
+            
             if(json.java_script)
                 $('body').append(json.java_script);
             if(json.hasError)
