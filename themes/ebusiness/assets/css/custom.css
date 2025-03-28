@@ -1252,6 +1252,36 @@ body {
     display: flex !important;
   }
 
+  #password #main {
+    padding: 2rem;
+  }
+
+  #password #main #content {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+
+  #password #main #content .form-password-reset label{
+    text-align: center;
+  }
+
+  #password #main #content .form-password-reset .form-fields{
+    padding-bottom: 1rem;
+  }
+
+  #password .page-footer a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    margin-block: 2rem;
+  }
+
+  #password .page-footer a:hover{
+    color: var(--asm-color);
+  }
+
   /* .header-top #_desktop_top_menu {
     display: none !important;
   }
@@ -1713,6 +1743,36 @@ body {
   }
   .d-desktop{
     display: none !important;
+  }
+
+  #password #main {
+    padding: 2rem;
+  }
+
+  #password #main #content {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+
+  #password #main #content .form-password-reset label{
+    text-align: center;
+  }
+
+  #password #main #content .form-password-reset .form-fields{
+    padding-bottom: 1rem;
+  }
+
+  #password .page-footer a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    margin-block: 2rem;
+  }
+
+  #password .page-footer a:hover{
+    color: var(--asm-color);
   }
 
   .products-selection {
@@ -2347,6 +2407,41 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  #password #main {
+    padding: 2rem;
+  }
+
+  #password #main #content {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+
+  #password #main #content .form-password-reset label{
+    text-align: center;
+  }
+
+  #password #main #content .form-password-reset .form-fields{
+    padding-bottom: 1rem;
+  }
+
+  #password #main #content .form-password-reset footer{
+    display: flex;
+    justify-content: center;
+  }
+
+  #password .page-footer a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    margin-block: 2rem;
+  }
+
+  #password .page-footer a:hover{
+    color: var(--asm-color);
+  }
 
   .block-onepagecheckout #delivery-addresses > .form-group:nth-child(1) {
     padding: 0;
