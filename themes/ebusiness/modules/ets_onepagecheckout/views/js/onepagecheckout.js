@@ -289,20 +289,31 @@ if (countrySelect) {
     });
 }
 
-// Your existing togglePaymentBlock function remains the same
+// Function to check if any delivery option is selected
+function isDeliveryOptionSelected() {
+    const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
+    if (!deliveryOptions.length) return true; // If no options exist, consider it selected
+    
+    for (const option of deliveryOptions) {
+        if (option.checked) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Modified togglePaymentBlock function
 function togglePaymentBlock() {
     const conditionsChecked = conditionsCheckbox.checked;
-
     const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
+    const deliverySelected = isDeliveryOptionSelected();
 
     if(availabilityCheckbox){
         const availabilityChecked = availabilityCheckbox.checked;
-
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-
-        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments")
+        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments");
     
-        if (conditionsChecked && availabilityChecked && showBoolean == false) {
+        if (conditionsChecked && availabilityChecked && showBoolean == false && deliverySelected) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
             alert.style.display = "none";
@@ -311,12 +322,11 @@ function togglePaymentBlock() {
             paymentBlock.parentElement.style.display = "none";
             alert.style.display = "block";
         }
-    }else{
+    } else {
         const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-
-        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments")
+        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments");
     
-        if (conditionsChecked && showBoolean == false) {
+        if (conditionsChecked && showBoolean == false && deliverySelected) {
             paymentBlock.style.display = "block";
             paymentBlock.parentElement.style.display = "block";
             alert.style.display = "none";
@@ -327,6 +337,21 @@ function togglePaymentBlock() {
         }
     }
 }
+
+// Add event listeners
+if(conditionsCheckbox){
+    conditionsCheckbox.addEventListener("change", togglePaymentBlock);
+}
+if(availabilityCheckbox){
+    availabilityCheckbox.addEventListener("change", togglePaymentBlock);
+}
+
+// Also add event listener for delivery option changes
+const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
+deliveryOptions.forEach(option => {
+    option.addEventListener("change", togglePaymentBlock);
+});
+
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
     $('.js-additional-information,.js-payment-option-form').hide();
