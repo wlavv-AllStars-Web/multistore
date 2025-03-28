@@ -163,7 +163,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_dd7bf230fde8d4836
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1fb20e9ce771f1a3226b9915a14f7d58'] = 'Complément d\'adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_bcc254b55c4a1babdf1dcb82c207506b'] = 'Téléphone';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_41c2fff4867cc204120f001e7af20f7a'] = 'Téléphone portable';
-$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Compagnie';
+$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Société';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_7cb32e708d6b961d476baced73d362bb'] = 'numéro de TVA';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_707c73d9fdcfa111db429ab18da2624f'] = 'DNI';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_6311ae17c1ee52b36e68aaf4ad066387'] = 'Autre';
@@ -406,9 +406,9 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_address_c6631869fbb1e424e58bf74c
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_8d3f5eff9c40ee315d452392bed5309b'] = 'Nom de famille';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_d8923d0296c66f74340be4e6b2ca6859'] = 'Nom de famille n\'est pas valide';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_e51b62746c48b9311ae857890adb70ba'] = 'Nom de famille est obligatoire';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Compagnie';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_d73bb4e90b3ab6c3d7353c07a9fd9d84'] = 'Compagnie n\'est pas valide';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_21b48d8aa7b8076a90f85740f8a51565'] = 'Compagnie est obligatoire';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Société';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_d73bb4e90b3ab6c3d7353c07a9fd9d84'] = 'L\'sóciete n\'est pas valide';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_21b48d8aa7b8076a90f85740f8a51565'] = 'L\'sóciete est obligatoire';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_dd7bf230fde8d4836917806aff6a6b27'] = 'Adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_024d391fbc28c4feae076f242b5e9663'] = 'Adresse n\'est pas valide';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_52bd0196473896c04c13822352ac616d'] = 'Adresse est obligatoire';
