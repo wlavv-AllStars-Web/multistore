@@ -264,29 +264,32 @@ if (conditionsCheckboxA) {
     });
 }
 
+// Function to reset checkboxes and hide payment block
+function resetCheckboxesAndPayment() {
+    // Uncheck both checkboxes
+    if (conditionsCheckbox) {
+        conditionsCheckbox.checked = false;
+    }
+    if (availabilityCheckbox) {
+        availabilityCheckbox.checked = false;
+    }
+    
+    // Hide payment block
+    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+    const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
+    
+    if (paymentBlock) {
+        paymentBlock.style.display = "none";
+        paymentBlock.parentElement.style.display = "none";
+    }
+    if (alert) {
+        alert.style.display = "block";
+    }
+}
+
 // Add event listener for country select change
 if (countrySelect) {
-    countrySelect.addEventListener("change", function() {
-        // Uncheck both checkboxes
-        if (conditionsCheckbox) {
-            conditionsCheckbox.checked = false;
-        }
-        if (availabilityCheckbox) {
-            availabilityCheckbox.checked = false;
-        }
-        
-        // Hide payment block
-        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-        const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
-        
-        if (paymentBlock) {
-            paymentBlock.style.display = "none";
-            paymentBlock.parentElement.style.display = "none";
-        }
-        if (alert) {
-            alert.style.display = "block";
-        }
-    });
+    countrySelect.addEventListener("change", resetCheckboxesAndPayment);
 }
 
 // Function to check if any delivery option is selected
@@ -304,53 +307,48 @@ function isDeliveryOptionSelected() {
 
 // Modified togglePaymentBlock function
 function togglePaymentBlock() {
-    const conditionsChecked = conditionsCheckbox.checked;
+    const conditionsChecked = conditionsCheckbox ? conditionsCheckbox.checked : false;
+    const availabilityChecked = availabilityCheckbox ? availabilityCheckbox.checked : true; // If no availability checkbox, consider it checked
     const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
+    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
+    
+    if (!paymentBlock) return;
+    
+    const showBoolean = !paymentBlock.parentElement.classList.contains("not-to-display-payments");
     const deliverySelected = isDeliveryOptionSelected();
+    
+    const shouldShow = conditionsChecked && 
+                     (availabilityCheckbox ? availabilityChecked : true) && 
+                     showBoolean && 
+                     deliverySelected;
 
-    if(availabilityCheckbox){
-        const availabilityChecked = availabilityCheckbox.checked;
-        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments");
-    
-        if (conditionsChecked && availabilityChecked && showBoolean == false && deliverySelected) {
-            paymentBlock.style.display = "block";
-            paymentBlock.parentElement.style.display = "block";
-            alert.style.display = "none";
-        } else {
-            paymentBlock.style.display = "none";
-            paymentBlock.parentElement.style.display = "none";
-            alert.style.display = "block";
-        }
+    if (shouldShow) {
+        paymentBlock.style.display = "block";
+        paymentBlock.parentElement.style.display = "block";
+        if (alert) alert.style.display = "none";
     } else {
-        const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-        const showBoolean = paymentBlock.parentElement.classList.contains("not-to-display-payments");
-    
-        if (conditionsChecked && showBoolean == false && deliverySelected) {
-            paymentBlock.style.display = "block";
-            paymentBlock.parentElement.style.display = "block";
-            alert.style.display = "none";
-        } else {
-            paymentBlock.style.display = "none";
-            paymentBlock.parentElement.style.display = "none";
-            alert.style.display = "block";
-        }
+        paymentBlock.style.display = "none";
+        paymentBlock.parentElement.style.display = "none";
+        if (alert) alert.style.display = "block";
     }
 }
 
 // Add event listeners
-if(conditionsCheckbox){
+if (conditionsCheckbox) {
     conditionsCheckbox.addEventListener("change", togglePaymentBlock);
 }
-if(availabilityCheckbox){
+if (availabilityCheckbox) {
     availabilityCheckbox.addEventListener("change", togglePaymentBlock);
 }
 
-// Also add event listener for delivery option changes
+// Add event listeners for delivery options
 const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
 deliveryOptions.forEach(option => {
     option.addEventListener("change", togglePaymentBlock);
 });
+
+// Initial check
+togglePaymentBlock();
 
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
