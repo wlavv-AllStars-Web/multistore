@@ -285,6 +285,8 @@ function resetCheckboxesAndPayment() {
     if (alert) {
         alert.style.display = "block";
     }
+
+    ets_refresh_shipping_cart(0);
 }
 
 // Add event listener for country select change
