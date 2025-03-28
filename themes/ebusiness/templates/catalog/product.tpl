@@ -973,7 +973,7 @@
                    </div>
 
                    {* {if $email_sent == 1} *}
-                    <div class="container_ask_successfull" style="display: none;">
+                    <div class="container_ask_successfull container_ask_successfull_desktop" style="display: none;">
                       <div class="question_buble">
 
                         <i class="material-icons question-success-icon">check_circle</i>
@@ -1056,7 +1056,7 @@
                               success: function(response) {
                                   console.log("Response:", response);
                                   if (response.email_sent) {
-                                      document.querySelector(".form-askquestion.form-d .container_ask_successfull").style.display = "block";
+                                      document.querySelector(".container_ask_successfull_desktop").style.display = "block";
                                       document.querySelector(".form-askquestion.form-d").remove();
                                   } else {
                                       $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
