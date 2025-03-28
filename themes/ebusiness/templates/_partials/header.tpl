@@ -678,7 +678,7 @@ dropdownMenu.addEventListener("click", (event) => {
               let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
               brandsContainer.innerHTML = brands.html_model
 
-
+              initializeModelGroupSwipers();
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", status, error);
@@ -687,6 +687,118 @@ dropdownMenu.addEventListener("click", (event) => {
   }
 
 
+  function initializeModelGroupSwipers() {
+    const windowWidth = window.innerWidth;
+    
+    if (windowWidth >= 768 && windowWidth <= 1500) {
+        // Check if Swiper is already loaded
+        if (typeof Swiper === 'undefined') {
+            // Load Swiper CSS and JS dynamically if not already loaded
+            loadSwiperResources().then(() => {
+                createSwipers();
+            });
+        } else {
+            createSwipers();
+        }
+    }
+}
+
+function loadSwiperResources() {
+    return new Promise((resolve) => {
+        // Check if Swiper CSS is already loaded
+        if (!document.querySelector('link[href*="swiper-bundle.min.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
+            document.head.appendChild(link);
+        }
+        
+        // Check if Swiper JS is already loaded
+        if (typeof Swiper === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+            script.onload = resolve;
+            document.body.appendChild(script);
+        } else {
+            resolve();
+        }
+    });
+}
+
+function createSwipers() {
+    // Select all model groups
+    const modelGroups = document.querySelectorAll('.model_group_cars');
+    
+    modelGroups.forEach(group => {
+        // Wrap car items in a swiper container
+        const carItems = group.querySelectorAll('.car_item_holder');
+        
+        if (carItems.length <= 4) {
+            group.classList.add('no-more-cars');
+            return; // Skip Swiper initialization for these groups
+        }
+        
+        if (carItems.length > 1) { // Only create swiper if there are multiple items
+            const swiperContainer = document.createElement('div');
+            swiperContainer.className = 'swiper-container';
+            
+            const swiperWrapper = document.createElement('div');
+            swiperWrapper.className = 'swiper-wrapper';
+            
+            carItems.forEach(item => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.appendChild(item.cloneNode(true));
+                swiperWrapper.appendChild(slide);
+                item.remove(); // Remove original item
+            });
+            
+            swiperContainer.appendChild(swiperWrapper);
+            
+            // Add pagination if needed
+            const pagination = document.createElement('div');
+            pagination.className = 'swiper-pagination';
+            swiperContainer.appendChild(pagination);
+            
+            // Add navigation buttons if needed
+            const prevBtn = document.createElement('div');
+            prevBtn.className = 'swiper-button-prev';
+            const nextBtn = document.createElement('div');
+            nextBtn.className = 'swiper-button-next';
+            swiperContainer.appendChild(prevBtn);
+            swiperContainer.appendChild(nextBtn);
+            
+            group.appendChild(swiperContainer);
+            
+            // Initialize Swiper
+            new Swiper(swiperContainer, {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                centeredSlides: false,
+                loop: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                    },
+                    992: {
+                        slidesPerView: 4,
+                    },
+                },
+            });
+        }
+    });
+}
+
+// Also initialize on window resize
+window.addEventListener('resize', initializeModelGroupSwipers);
 
 
   function setCarSearch(idCompat) {
@@ -762,3 +874,52 @@ dropdownMenu.addEventListener("click", (event) => {
         }
     });
 </script>
+
+<style>
+@media screen and (min-width: 768px) and (max-width: 1500px){
+    .versions_cars {
+        margin-top: 2rem;    
+    }
+    
+    
+    .versions_cars .model_group_cars {
+        position: relative;
+        overflow: unset !important;
+        justify-content: center !important;
+    }
+    
+    .versions_cars .model_group_cars:nth-child(even){
+        background: #444;
+    }
+    
+    .versions_cars .model_group_cars .swiper-container{
+        width: 100dvw;
+        display:flex !important;
+    }
+    
+    .versions_cars .model_group_cars .swiper-container .swiper-wrapper{
+        width: 100dvw;
+        /*justify-content:center;*/
+    }
+    
+    .versions_cars .model_group_cars .swiper-button-prev, .versions_cars .model_group_cars .swiper-button-next{
+        top: 50%;
+        transform: translateY(-50%);
+        margin-top: 0;
+        padding-inline: 1rem;
+        border-radius: .25rem;
+        transition: all ease-in-out 250ms;
+        color: #fff;
+    }
+    
+    .versions_cars .model_group_cars .versions_model_content{
+        margin-top: .5rem;
+    }
+    
+    .versions_cars .model_group_cars .type_selector{
+        padding:.5rem 1rem;
+        background:#666;
+    }
+}
+
+</style>
