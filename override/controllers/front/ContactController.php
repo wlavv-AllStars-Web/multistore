@@ -205,6 +205,10 @@ class ContactControllerCore extends FrontController
                                     $var_list['{product_name}'] = $product->name[Context::getContext()->language->id];
                                 }
                             }
+
+                            if(Tools::getValue('name')){
+                                $var_list['{name}'] = (string)Tools::getValue('name');
+                            }
         
                             // echo Tools::getValue('name');
                             // exit;
