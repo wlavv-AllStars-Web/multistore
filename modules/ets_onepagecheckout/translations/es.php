@@ -167,7 +167,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1fb20e9ce771f1a32
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_bcc254b55c4a1babdf1dcb82c207506b'] = 'Teléfono';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_41c2fff4867cc204120f001e7af20f7a'] = 'Teléfono móvil';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Empresa';
-$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_7cb32e708d6b961d476baced73d362bb'] = 'Número de valor agregado';
+$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_7cb32e708d6b961d476baced73d362bb'] = 'Número de IVA';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_707c73d9fdcfa111db429ab18da2624f'] = 'DNI';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_6311ae17c1ee52b36e68aaf4ad066387'] = 'Otro';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_baa31a65f29121c32b637bb845d41acf'] = 'Dirección alias';
