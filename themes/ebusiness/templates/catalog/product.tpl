@@ -499,8 +499,8 @@
                 <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" />
             </div>
 
-            {if $email_sent == 1}
-              <div class="container_ask_successfull">
+            {* {if $email_sent == 1} *}
+              <div class="container_ask_successfull" style="display: none;">
                 <div class="question_buble">
 
                   <i class="material-icons question-success-icon">check_circle</i>
@@ -513,7 +513,7 @@
                 </div>
               </div>
 
-            {else}
+            {* {else} *}
               
               
               <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
@@ -558,12 +558,37 @@
 
               <script>
               function onSubmit(token) {
-                  document.querySelector(".container-askquestion-mobile .form-askquestion").submit();
-                }
+                  // Get the form element
+                  var form = document.querySelector(".container-askquestion-mobile .form-askquestion");
+                  
+                  // Create FormData object
+                  var formData = new FormData(form);
+                  formData.append('g-recaptcha-response', token);
+
+                  // Send AJAX request
+                  fetch(form.action, {
+                      method: 'POST',
+                      body: formData
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.email_sent) {
+                          // Show success message
+                          document.querySelector(".container-askquestion-mobile .container_ask_successfull").style.display = "block";
+                          form.style.display = "none";
+                      } else {
+                          alert("Error sending question: " + (data.error || "Unknown error"));
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                      alert("An error occurred while sending your question");
+                  });
+              }
               </script>
             
               </form>
-            {/if}
+            {* {/if} *}
 
           </div>
         </div>
@@ -1031,7 +1056,7 @@
                               success: function(response) {
                                   console.log("Response:", response);
                                   if (response.email_sent) {
-                                      document.querySelector(".container_ask_successfull").style.display = "block";
+                                      document.querySelector(".form-askquestion.form-d .container_ask_successfull").style.display = "block";
                                       document.querySelector(".form-askquestion.form-d").remove();
                                   } else {
                                       $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
