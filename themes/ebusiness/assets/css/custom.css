@@ -5605,6 +5605,11 @@ ul {
 }
 
 @media screen and (min-width: 768px) {
+  .has-discount.product-price {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
   #footer_sub_menu_4 li {
     width: 20%;
   }
