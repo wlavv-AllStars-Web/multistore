@@ -225,7 +225,7 @@
       {if !$complementary}
       <div class="add">
         <button
-          class="btn btn-outline-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
+          class="btn btn-outline-primary add-to-cart {if $product.out_of_stock == 0 && $product.quantity <= 0}disabled{/if}"
           {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
           {* data-button-action="add-to-cart"
           data-dismiss="modal"
@@ -256,6 +256,7 @@
                 data-dismiss="modal"
                 type="submit"
                 style="margin-top: 0;"
+                {if $product.out_of_stock == 0 && $product.quantity <= 0}disabled{/if}
                 {* {if !$product.add_to_cart_url}
                   disabled
                 {/if} *}

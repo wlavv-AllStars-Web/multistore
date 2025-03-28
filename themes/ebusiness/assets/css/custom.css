@@ -49,6 +49,10 @@ body {
   gap: .5rem;
 }
 
+.btn.disabled, .btn:disabled {
+  opacity: .35;
+}
+
 .cart_productname .product-name{
   overflow:hidden;
   display: -webkit-box;
