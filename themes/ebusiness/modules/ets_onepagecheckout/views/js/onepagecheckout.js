@@ -739,6 +739,7 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         { 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
             $("body#checkout").removeClass("loading")
+            loadingContainer.remove();
         }
     });
 });
