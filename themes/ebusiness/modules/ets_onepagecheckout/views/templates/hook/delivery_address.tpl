@@ -22,7 +22,7 @@
 
 
     {if !$customer_group_professional}
-    <div class="title yes_invoice_address" >{l s='Delivery address' mod='ets_onepagecheckout'}</div>
+    <div class="title yes_delivery_address" >{l s='Delivery address' mod='ets_onepagecheckout'}</div>
 
         {if $list_address}
             {if $use_address}
