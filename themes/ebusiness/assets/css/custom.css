@@ -2414,9 +2414,8 @@ body {
 
 
   /* checkout */
-  .block-onepagecheckout.block-address #delivery-addresses > .form-group.row,
-  .block-onepagecheckout.block-address #invoice-addresses > .form-group.row {
-    padding: 0;
+  #delivery-addresses .form-group.row, #invoice-addresses .form-group.row{
+    padding: 0 !important;
   }
 
   /*  */
