@@ -231,13 +231,13 @@ class CartControllerCore extends FrontController
     public function postProcess()
     {
         if(Tools::getValue('action') === 'outOfStockNotification'){
-            if(Tools::getValue('recaptchakey')){
+            if(Tools::getValue('recaptcha_response')){
                 $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
                 
              
                     $resq_data = array( 
                         'secret' => '6LePv_oqAAAAAL_fWcMUQtnc-oCStLGmrp6ESiyT', 
-                        'response' => Tools::getValue('recaptchakey'), 
+                        'response' => Tools::getValue('recaptcha_response'),
                         'remoteip' => $_SERVER['REMOTE_ADDR'] 
                     ); 
     
