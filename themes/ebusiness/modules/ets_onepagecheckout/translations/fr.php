@@ -295,7 +295,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_d15305d7a4e34e02489c74a5ef542f36
 $_MODULE['<{ets_onepagecheckout}prestashop>form_cf1f3637e7c861d6b87766dabb84bae4'] = 'Champ d\'affichage';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_b651efdb98a5d6bd2b3935d0c3f4a5e2'] = 'Obligatoire';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_b1c94ca2fbc3e78fc30069c8d0f01680'] = 'Tout';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Utiliser l\'adresse ';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Sélectionner l\'adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_a28a0b27995dc44fe4dc857d2cbb2c6c'] = 'Utiliser une autre adresse pour la facture';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_c770d8e0d1d1943ce239c64dbd6acc20'] = 'Ajouter mon IP';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_63f57742717e6101a066d7275360332d'] = 'Image importée :';
@@ -364,7 +364,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>layout_1_99b0a9110ebd2fa6dcd57f7daa5b
 $_MODULE['<{ets_onepagecheckout}prestashop>layout_1_0b2b8504441ea6513671c241b84c9202'] = 'et les respectera sans condition.';
 $_MODULE['<{ets_onepagecheckout}prestashop>layout_1_f2dc581f5ba99360e73a935ddd9454d1'] = 'Terminer ma commande';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_601d8c4b9f72fc1862013c19b677a499'] = 'Adresse de facturation';
-$_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Utiliser l\'adresse';
+$_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Sélectionner l\'adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_4e53c57c828378d67ffdb2338772cf10'] = 'Choisissez s\'il vous plaît';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_3184879661af0760035677650aa8ff10'] = 'Entrez une nouvelle adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_custom_field_eb355e1e37b7032959a89982263a3985'] = 'Vous pouvez ajouter des champs d\'informations supplémentaires pour obtenir des informations supplémentaires des clients via la page de paiement';
@@ -460,10 +460,10 @@ $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_aa74397584da0fd719c7f349
 $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_ec211f7c20af43e742bf2570c3cb84f9'] = 'Ajouter';
 $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_12a7a93d72ded50311b52c7d0a853e3c'] = 'Profitez de nos offres exclusives:';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_af0f5bdc5be121b9307687aeeae38c17'] = 'Adresse de livraison';
-$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Utiliser l\'adresse';
+$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Sélectionner l\'adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_4e53c57c828378d67ffdb2338772cf10'] = 'Choisissez s\'il vous plaît';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_3184879661af0760035677650aa8ff10'] = 'Entrez une nouvelle adresse';
-$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_56d0ed7cd789dd772be59aa6b1e437de'] = 'L\'adresse sélectionnée sera utilisée à la fois comme votre adresse personnelle (pour la facture) et comme votre adresse de livraison.';
+$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_56d0ed7cd789dd772be59aa6b1e437de'] = 'L\'adresse sélectionnée sera utilisée comme adresse de facturation et de livraison.';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_a28a0b27995dc44fe4dc857d2cbb2c6c'] = 'Utilisez une autre adresse pour la facture';
 $_MODULE['<{ets_onepagecheckout}prestashop>social_4275b5e2b6b3c50554bf434d935c526f'] = 'OU connectez-vous avec';
 $_MODULE['<{ets_onepagecheckout}prestashop>social_8bfec24d97f4d622ff7caafc6094ae19'] = 'Connectez-vous avec PayPal';
