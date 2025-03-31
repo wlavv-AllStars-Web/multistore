@@ -1556,11 +1556,11 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
             'ap5_modalErrorClose' => $this->trans('Close', [], 'Admin.Actions'),
             'ap5_modalErrorTitle' => $this->l('An error has occurred'),
         ]);
-        $groupPriceDisplayMethod = (int)Group::getCurrent()->price_display_method;
-        if ($groupPriceDisplayMethod || Configuration::get('PS_TAX_DISPLAY')) {
-            $this->context->controller->registerJavascript('modules-' . $this->name . '-js-shopping-cart-refresh', 'modules/' . $this->name . '/views/js/shopping-cart-refresh-17.js', ['position' => 'bottom', 'priority' => 80]);
-            Media::addJsDef(['ap5_cartRefreshUrl' => $this->context->link->getModuleLink('pm_advancedpack', 'ajax_cart', ['ajax' => 1, 'action' => 'refresh'])]);
-        }
+        // $groupPriceDisplayMethod = (int)Group::getCurrent()->price_display_method;
+        // if ($groupPriceDisplayMethod || Configuration::get('PS_TAX_DISPLAY')) {
+        //     $this->context->controller->registerJavascript('modules-' . $this->name . '-js-shopping-cart-refresh', 'modules/' . $this->name . '/views/js/shopping-cart-refresh-17.js', ['position' => 'bottom', 'priority' => 80]);
+        //     Media::addJsDef(['ap5_cartRefreshUrl' => $this->context->link->getModuleLink('pm_advancedpack', 'ajax_cart', ['ajax' => 1, 'action' => 'refresh'])]);
+        // }
         $cartPackProducts = $this->getFormatedPackAttributes($this->context->cart);
         Media::addJsDef(['ap5_cartPackProducts' => $cartPackProducts]);
         if (Validate::isLoadedObject($product) && (AdvancedPack::isValidPack($product->id) || self::_isFilledArray(AdvancedPack::getIdPacksByIdProduct($product->id))) && ($groupPriceDisplayMethod || Configuration::get('PS_TAX_DISPLAY') || AdvancedPack::getPackAllowRemoveProduct($product->id))) {
