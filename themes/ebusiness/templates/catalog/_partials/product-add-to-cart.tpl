@@ -23,7 +23,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
  {* <pre>{$product|print_r}</pre> *}
-{if $product.out_of_stock == 0 && $product.quantity <= 0}
+ {if $product.out_of_stock == 0 && $product.quantity <= 0}
   <script src="https://www.google.com/recaptcha/api.js" ></script>
 
   <div class="form_product_outofstock_container">
@@ -34,8 +34,13 @@
         <input type="hidden" name="product_reference" value="{$product.reference}">
         <input type="hidden" name="customerLang" value="{$language.id}">
         <input class="form-control col-lg-6" type="email" name="email_customer" id="email_customer" placeholder="{l s='Enter your email' d="Shop.Theme.Catalog"}" required style="background: #fff;">
-        <button type="submit" class="btn btn-primary col-lg-3" id="submit_request" style="max-width: 300px;width: 100%;">
-          {l s='Submit request' d='Shop.Theme.Catalog'}
+        <button type="submit"
+            class="btn btn-primary col-lg-3 g-recaptcha"
+            id="submit_request"
+            style="max-width: 300px;width: 100%;"
+            data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj"
+            data-callback="onSubmitEmailSave">
+            {l s='Submit request' d='Shop.Theme.Catalog'}
         </button>
       </div>
       <div class="container-form-outofstock-response mt-2">
@@ -44,9 +49,7 @@
   </div>
 
   <script>
-  $(document).ready(function () {
-    $('#submit_request').on('click', function (e) {
-      e.preventDefault();
+function onSubmitEmailSave(token) {
 
       var productId = $('input[name="id_product"]').val();
       var productAttributeId = $('input[name="id_product_attribute"]').val();
@@ -58,6 +61,8 @@
         alert('Please enter your email.');
         return;
       }
+      
+      var recaptchaResponse = grecaptcha.getResponse();
 
       $.ajax({
         type: 'POST',
@@ -70,7 +75,7 @@
           productReference: productReference,
           customerLang: customerLang,
           email_customer: emailCustomer,
-          recaptchakey: '6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj',
+          recaptcha_response: recaptchaResponse,
         },
         dataType: 'json',
         success: function (response) {
@@ -84,8 +89,7 @@
           $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> {l s="An unexpected error occurred. Please try again later." d="Shop.Theme.Catalog"} </div>');
         }
       });
-    });
-  });
+}
 </script>
 
 {else}
