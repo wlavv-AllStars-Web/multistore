@@ -2412,6 +2412,15 @@ body {
 
 @media (max-width: 563px) {
 
+
+  /* checkout */
+  .block-onepagecheckout.block-address #delivery-addresses > .form-group.row,
+  .block-onepagecheckout.block-address #invoice-addresses > .form-group.row {
+    padding: 0;
+  }
+
+  /*  */
+
   #password #main {
     padding: 2rem;
   }
@@ -4985,6 +4994,8 @@ ul {
   border: 1px solid #dedede;
   overflow: hidden;
   height: 100%;
+  display:flex;
+  align-items: center;
 }
 
 .mySwiper-thumb-images .js-thumb-container img {
