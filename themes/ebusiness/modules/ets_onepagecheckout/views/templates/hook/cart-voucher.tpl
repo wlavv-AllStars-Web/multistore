@@ -17,7 +17,7 @@
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
 {if isset($cart.vouchers.allowed) &&  $cart.vouchers.allowed}
-    <div class="block-promo">
+    {* <div class="block-promo">
       <div class="cart-voucher ets-cart-voucher">
         {if $cart.vouchers.added}
             <ul class="promo-name card-block">
@@ -66,5 +66,5 @@
           </ul>
         {/if}
       </div>
-    </div>
+    </div> *}
 {/if}
