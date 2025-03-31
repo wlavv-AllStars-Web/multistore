@@ -297,7 +297,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_d15305d7a4e34e02489c74a5ef542f36
 $_MODULE['<{ets_onepagecheckout}prestashop>form_cf1f3637e7c861d6b87766dabb84bae4'] = 'Campo de visualización';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_b651efdb98a5d6bd2b3935d0c3f4a5e2'] = 'Necesario';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_b1c94ca2fbc3e78fc30069c8d0f01680'] = 'Todas';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Usar dirección';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Seleccionar dirección';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_a28a0b27995dc44fe4dc857d2cbb2c6c'] = 'Utilice otra dirección para la factura';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_c770d8e0d1d1943ce239c64dbd6acc20'] = 'Agregar mi IP';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_63f57742717e6101a066d7275360332d'] = 'Imagen cargada:';
@@ -344,7 +344,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_aa74397584da0fd719c7f349
 $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_ec211f7c20af43e742bf2570c3cb84f9'] = 'Añadir';
 $_MODULE['<{ets_onepagecheckout}prestashop>cart-voucher_12a7a93d72ded50311b52c7d0a853e3c'] = 'Aproveche nuestras ofertas exclusivas:';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_af0f5bdc5be121b9307687aeeae38c17'] = 'Dirección de entrega';
-$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Usar dirección';
+$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Seleccionar dirección';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_4e53c57c828378d67ffdb2338772cf10'] = 'por favor elige';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_3184879661af0760035677650aa8ff10'] = 'Ingrese nueva dirección';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_56d0ed7cd789dd772be59aa6b1e437de'] = 'La dirección seleccionada se utilizará como su dirección personal (para factura) y como su dirección de entrega.';
@@ -434,7 +434,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_custom_field_cb5feb1b7314637725a
 $_MODULE['<{ets_onepagecheckout}prestashop>form_custom_field_34e2d1989a1dbf75cd631596133ee5ee'] = 'Vídeo';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_custom_field_be53a0541a6d36f6ecb879fa2c584b08'] = 'Imagen';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_601d8c4b9f72fc1862013c19b677a499'] = 'Dirección de facturación';
-$_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Usar dirección';
+$_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_aaffa320d37ecd3bcf2f59d8363c4de1'] = 'Seleccionar dirección';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_4e53c57c828378d67ffdb2338772cf10'] = 'por favor elige';
 $_MODULE['<{ets_onepagecheckout}prestashop>invoice_address_3184879661af0760035677650aa8ff10'] = 'Ingrese nueva dirección';
 $_MODULE['<{ets_onepagecheckout}prestashop>layout_1_f2fc7490cbdb0db5cd6f1a4e7edb0da1'] = 'Su cuenta';
