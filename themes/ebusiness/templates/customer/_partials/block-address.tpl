@@ -27,7 +27,7 @@
     <h4>{$address.alias}</h4>
     <address>{$address.formatted nofilter}</address>
   </div>
-  {if $customer.id_default_group != 5}
+  {if $customer.id_default_group != 4}
   <div class="address-footer">
     <a href="{url entity=address id=$address.id}" data-link-action="edit-address">
       <i class="material-icons">&#xE254;</i>
