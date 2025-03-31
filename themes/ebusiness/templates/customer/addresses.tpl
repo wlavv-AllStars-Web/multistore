@@ -30,7 +30,7 @@
 
 {block name='page_content'}
   <div class="container-customer-addresses">
-  {if $customer.id_default_group != 5}
+  {if $customer.id_default_group != 4}
     {foreach $customer.addresses as $address}
       <div class="col-lg-3 col-md-6 col-sm-6">
       {block name='customer_address'}
@@ -52,7 +52,7 @@
   </div>
   <div class="clearfix"></div>
   <div class="addresses-footer">
-  {if $customer.id_default_group != 5}
+  {if $customer.id_default_group != 4}
     <a href="{$urls.pages.address}" data-link-action="add-address">
       <i class="material-icons">&#xE145;</i>
       <span>{l s='Create new address' d='Shop.Theme.Actions'}</span>
