@@ -34,13 +34,8 @@
         <input type="hidden" name="product_reference" value="{$product.reference}">
         <input type="hidden" name="customerLang" value="{$language.id}">
         <input class="form-control col-lg-6" type="email" name="email_customer" id="email_customer" placeholder="{l s='Enter your email' d="Shop.Theme.Catalog"}" required style="background: #fff;">
-        <button type="submit"
-            class="btn btn-primary col-lg-3 g-recaptcha"
-            id="submit_request"
-            style="max-width: 300px;width: 100%;"
-            data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj"
-            data-callback="onSubmit">
-            {l s='Submit request' d='Shop.Theme.Catalog'}
+        <button type="submit" class="btn btn-primary col-lg-3" id="submit_request" style="max-width: 300px;width: 100%;">
+          {l s='Submit request' d='Shop.Theme.Catalog'}
         </button>
       </div>
       <div class="container-form-outofstock-response mt-2">
@@ -49,55 +44,48 @@
   </div>
 
   <script>
-function onSubmit(token) {
-    console.log("🔵 onSubmit triggered with token:", token);
+  $(document).ready(function () {
+    $('#submit_request').on('click', function (e) {
+      e.preventDefault();
 
-    var productId = $('input[name="id_product"]').val();
-    var productAttributeId = $('input[name="id_product_attribute"]').val();
-    var productReference = $('input[name="product_reference"]').val();
-    var customerLang = $('input[name="customerLang"]').val();
-    var emailCustomer = $('#email_customer').val();
+      var productId = $('input[name="id_product"]').val();
+      var productAttributeId = $('input[name="id_product_attribute"]').val();
+      var productReference = $('input[name="product_reference"]').val();
+      var customerLang = $('input[name="customerLang"]').val();
+      var emailCustomer = $('#email_customer').val();
 
-    if (!emailCustomer) {
+      if (!emailCustomer) {
         alert('Please enter your email.');
         return;
-    }
+      }
 
-    console.log("🟡 Sending AJAX request...");
-
-    $.ajax({
+      $.ajax({
         type: 'POST',
-        url: prestashop.urls.pages.product,
+        url: prestashop.urls.pages.cart, // Change this if using a different controller
         data: {
-            ajax: true,
-            action: 'outOfStockNotification',
-            id_product: productId,
-            id_product_attribute: productAttributeId,
-            productReference: productReference,
-            customerLang: customerLang,
-            email_customer: emailCustomer,
-            'g-recaptcha-response': token, // Send the token received from Google
+          ajax: true,
+          action: 'outOfStockNotification', // Define this action in your controller
+          id_product: productId,
+          id_product_attribute: productAttributeId,
+          productReference: productReference,
+          customerLang: customerLang,
+          email_customer: emailCustomer,
+          recaptchakey: '6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj',
         },
         dataType: 'json',
         success: function (response) {
-            console.log("🟢 Full Response:", response);
-
-            if (response.email_sent === true || response.email_sent === "true") {
-                console.log("✅ Email sent successfully!");
-                $('.container-form-outofstock-response').html('<div class="alert alert-success" role="alert"> Email successfully added </div>');
-            } else {
-                console.log("❌ Email sending failed.");
-                $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> An unexpected error occurred. Please try again later. </div>');
-            }
+          if (response.success) {
+            $('.container-form-outofstock-response').html('<div class="alert alert-success" role="alert"> {l s="Email successfully added" d="Shop.Theme.Catalog"} </div>');
+          } else {
+            $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> {l s="An unexpected error occurred. Please try again later." d="Shop.Theme.Catalog"} </div>');
+          }
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("🔴 AJAX Error:", textStatus, errorThrown);
-            console.error("🔴 Server Response:", jqXHR.responseText);
-            $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> An unexpected error occurred. Please try again later. </div>');
+        error: function () {
+          $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> {l s="An unexpected error occurred. Please try again later." d="Shop.Theme.Catalog"} </div>');
         }
+      });
     });
-}
-
+  });
 </script>
 
 {else}
