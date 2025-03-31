@@ -480,7 +480,7 @@ class Ets_onepagecheckoutOrderModuleFrontController extends ModuleFrontControlle
 
 
         if($this->context->customer->logged || $this->context->cookie->logged){
-            $customer_group_professional = $this->context->customer->id_default_group == 5 ? 1 : 0;
+            $customer_group_professional = $this->context->customer->id_default_group == 4 ? 1 : 0;
             $this->context->smarty->assign(array(
                 'customer_group_professional' => $customer_group_professional,
                 'use_address' => in_array('use_address',$address_field) ? true : false,
