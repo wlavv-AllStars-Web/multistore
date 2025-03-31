@@ -273,6 +273,8 @@ function resetCheckboxesAndPayment() {
     if (availabilityCheckbox) {
         availabilityCheckbox.checked = false;
     }
+
+    
     
     // Hide payment block
     const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
@@ -286,6 +288,8 @@ function resetCheckboxesAndPayment() {
         alert.style.display = "block";
     }
 
+    ets_opc_displayShipping();
+    
     ets_refresh_shipping_cart(0);
 }
 
