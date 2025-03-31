@@ -27,10 +27,12 @@
     <div class="cart-summary-line cart-total">
       {if isset($configuration.taxes_enabled) && $configuration.taxes_enabled}
         {if isset($configuration.display_prices_tax_incl) && $configuration.display_prices_tax_incl}
-          <span class="label">{$cart.totals.total_including_tax.label|escape:'html':'UTF-8'}</span>
+          {* <span class="label">{$cart.totals.total_including_tax.label|escape:'html':'UTF-8'}</span> *}
+          <span class="label">{l s="Total" d="Shop.Theme.Checkout"}</span>
           <span class="value">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
         {else}
-          <span class="label">{$cart.totals.total_excluding_tax.label|escape:'html':'UTF-8'}</span>
+          {* <span class="label">{$cart.totals.total_excluding_tax.label|escape:'html':'UTF-8'}</span> *}
+          <span class="label">{l s="Total" d="Shop.Theme.Checkout"}</span>
           <span class="value">{$cart.totals.total_excluding_tax.value|escape:'html':'UTF-8'}</span>
         {/if}
       {else}
