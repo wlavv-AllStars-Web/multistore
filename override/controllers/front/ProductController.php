@@ -453,6 +453,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
 
             $productBrandUrl = $this->context->link->getManufacturerLink($productManufacturer->id);
 
+
             // ASG add compats to the product
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -512,11 +513,11 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
             $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
             
             
-        $resq_data = array( 
-            'secret' => '6LePv_oqAAAAAL_fWcMUQtnc-oCStLGmrp6ESiyT', 
-            'response' => $_POST['g-recaptcha-response'], 
-            'remoteip' => $_SERVER['REMOTE_ADDR'] 
-        ); 
+            $resq_data = array( 
+                'secret' => '6LePv_oqAAAAAL_fWcMUQtnc-oCStLGmrp6ESiyT', 
+                'response' => $_POST['g-recaptcha-response'], 
+                'remoteip' => $_SERVER['REMOTE_ADDR'] 
+            ); 
 
 
             $curlConfig = array( 
