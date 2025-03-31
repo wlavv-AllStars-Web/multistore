@@ -464,7 +464,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_aaffa320d37ecd3bcf2f
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_4e53c57c828378d67ffdb2338772cf10'] = 'Choisissez s\'il vous plaît';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_3184879661af0760035677650aa8ff10'] = 'Entrez une nouvelle adresse';
 $_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_56d0ed7cd789dd772be59aa6b1e437de'] = 'L\'adresse sélectionnée sera utilisée comme adresse de facturation et de livraison.';
-$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_a28a0b27995dc44fe4dc857d2cbb2c6c'] = 'Utilisez une autre adresse pour la facture';
+$_MODULE['<{ets_onepagecheckout}prestashop>delivery_address_a28a0b27995dc44fe4dc857d2cbb2c6c'] = 'Sélectionner une autre adresse de facturation';
 $_MODULE['<{ets_onepagecheckout}prestashop>social_4275b5e2b6b3c50554bf434d935c526f'] = 'OU connectez-vous avec';
 $_MODULE['<{ets_onepagecheckout}prestashop>social_8bfec24d97f4d622ff7caafc6094ae19'] = 'Connectez-vous avec PayPal';
 $_MODULE['<{ets_onepagecheckout}prestashop>social_d7085e2b5b40144896a996a297e3847d'] = 'Connectez-vous avec Facebook';
