@@ -62,7 +62,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_f32bf016310aa8526
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_07d469d42e80477b61ed2a4b863f6d16'] = 'El nombre de archivo \"%s\" no tiene el formato correcto, formatos aceptados: %s';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_58396956171a19b359a2b703520b5e72'] = 'El nombre de archivo \"%s\" es demasiado grande. Límite: %s';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_5e74f2daf4ae8030571ceee5b4837579'] = 'Titulo social';
-$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre de pila';
+$_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_8d3f5eff9c40ee315d452392bed5309b'] = 'Apellido';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_ce8ae9da5b7cd6c3df2929543a9af92d'] = 'Correo electrónico';
 $_MODULE['<{ets_onepagecheckout}prestashop>ets_onepagecheckout_dc647eb65e6711e155375218212b3964'] = 'Contraseña';
@@ -303,7 +303,7 @@ $_MODULE['<{ets_onepagecheckout}prestashop>form_c770d8e0d1d1943ce239c64dbd6acc20
 $_MODULE['<{ets_onepagecheckout}prestashop>form_63f57742717e6101a066d7275360332d'] = 'Imagen cargada:';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_687cbf3e103f4ec4facecab72e3008a4'] = 'Haga clic para ver la imagen a tamaño completo';
 $_MODULE['<{ets_onepagecheckout}prestashop>register_3226a5cbb9d3dd6e02df79d35c822370'] = 'Registrar correo electrónico';
-$_MODULE['<{ets_onepagecheckout}prestashop>register_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre de pila';
+$_MODULE['<{ets_onepagecheckout}prestashop>register_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre';
 $_MODULE['<{ets_onepagecheckout}prestashop>register_8d3f5eff9c40ee315d452392bed5309b'] = 'Apellido';
 $_MODULE['<{ets_onepagecheckout}prestashop>register_b357b524e740bc85b9790a0712d84a30'] = 'Dirección de correo electrónico';
 $_MODULE['<{ets_onepagecheckout}prestashop>register_0ba7583639a274c434bbe6ef797115a4'] = 'Registrar';
@@ -353,9 +353,9 @@ $_MODULE['<{ets_onepagecheckout}prestashop>detail-invoice_801ab24683a4a8c433c6eb
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_effdb9ce6c5d44df31b89d7069c8e0fb'] = 'Alias';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_5ec8c620fd5b3c48d608ad5bea2ef3af'] = 'Alias no es válida';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_5ef185d9005280f6c3241b8782871890'] = 'Se requiere alias';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre de pila';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_3933a0133eaf8a34df35f82fe79c0652'] = 'Nombre de pila no es válida';
-$_MODULE['<{ets_onepagecheckout}prestashop>form_address_c6631869fbb1e424e58bf74cdbc387cc'] = 'Se requiere nombre de pila ';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_20db0bfeecd8fe60533206a2b5e9891a'] = 'Nombre';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_3933a0133eaf8a34df35f82fe79c0652'] = 'Nombre no es válida';
+$_MODULE['<{ets_onepagecheckout}prestashop>form_address_c6631869fbb1e424e58bf74cdbc387cc'] = 'Se requiere nombre';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_8d3f5eff9c40ee315d452392bed5309b'] = 'Apellido';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_d8923d0296c66f74340be4e6b2ca6859'] = 'Apellido no es válida';
 $_MODULE['<{ets_onepagecheckout}prestashop>form_address_e51b62746c48b9311ae857890adb70ba'] = 'Se requiere apellido';
