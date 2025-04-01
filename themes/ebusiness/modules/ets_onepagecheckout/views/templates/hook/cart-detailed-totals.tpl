@@ -39,7 +39,7 @@
     {/foreach}
     <div id="cart-subtotal-vat" class="cart-summary-line">
       <span class="label">{l s="Vat" d="Shop.Theme.Checkout"}</span>
-      <span class="value"> €{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '}</span>
+      <span class="value">{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '} €</span>
     </div>
   </div>
   {include file='module:ets_onepagecheckout/views/templates/hook/cart-summary-totals.tpl' cart=$cart}
