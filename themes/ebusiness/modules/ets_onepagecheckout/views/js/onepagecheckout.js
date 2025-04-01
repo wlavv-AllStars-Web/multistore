@@ -371,6 +371,8 @@ deliveryOptions.forEach(option => {
 // Initial check
 togglePaymentBlock();
 
+resetCheckboxesAndPayment();
+
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
     $('.js-additional-information,.js-payment-option-form').hide();
