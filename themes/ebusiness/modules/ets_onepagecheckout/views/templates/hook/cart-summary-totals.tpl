@@ -33,7 +33,7 @@
         {else}
           {* <span class="label">{$cart.totals.total_excluding_tax.label|escape:'html':'UTF-8'}</span> *}
           <span class="label">{l s="Total" d="Shop.Theme.Checkout"}</span>
-          <span class="value">{$cart.totals.total_excluding_tax.value|escape:'html':'UTF-8'}</span>
+          <span class="value">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
         {/if}
       {else}
         <span class="label">{$cart.totals.total.label|escape:'html':'UTF-8'}</span>
