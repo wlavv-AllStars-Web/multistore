@@ -102,10 +102,18 @@
                 <span class="value" style="font-weight: 600;">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
               </div>
             {/foreach}
+
+            {if $customer.id_default_group != 4}
             <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
               <span class="label">{l s="VAT" d="Shop.Theme.CartQuick"}</span>
-              <span class="value" style="font-weight: 600;">€{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}</span>
+              <span class="value" style="font-weight: 600;">{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}€</span>
             </div>
+            {else}
+            <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
+              <span class="label">{l s="VAT" d="Shop.Theme.CartQuick"}</span>
+              <span class="value" style="font-weight: 600;">0.00€</span>
+            </div>
+            {/if}
           </div>
           {if isset($cart.totals.total)}
             <div class="cart-total">
