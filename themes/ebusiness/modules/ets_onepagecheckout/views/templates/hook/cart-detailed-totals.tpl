@@ -37,12 +37,19 @@
         </div>
       {/if}
     {/foreach}
-    {if isset($configuration.display_prices_tax_incl) && $configuration.display_prices_tax_incl}
-    <div id="cart-subtotal-vat" class="cart-summary-line">
-      <span class="label">{l s="Vat" d="Shop.Theme.Checkout"}</span>
-      <span class="value">{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '} €</span>
-    </div>
+
+    {if $customer.id_default_group != 4}
+      <div id="cart-subtotal-vat" class="cart-summary-line">
+        <span class="label">{l s="Vat" d="Shop.Theme.Checkout"}</span>
+        <span class="value">{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '} €</span>
+      </div>
+      {else}
+      <div id="cart-subtotal-vat" class="cart-summary-line">
+        <span class="label">{l s="Vat" d="Shop.Theme.Checkout"}</span>
+        <span class="value">0.00 €</span>
+      </div>
     {/if}
+
   </div>
   {include file='module:ets_onepagecheckout/views/templates/hook/cart-summary-totals.tpl' cart=$cart}
 </div>
