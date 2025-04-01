@@ -254,6 +254,7 @@ const conditionsCheckbox = document.querySelector("#conditions-to-approve .check
 const availabilityCheckbox = document.querySelector("#availability-to-approve .checkbox.ets_checkinput input");
 const conditionsCheckboxA = document.querySelector("#conditions-to-approve a");
 const countrySelect = document.querySelector("#shipping_address_id_country");
+const addressSelect = document.querySelector("#use_shipping_address");
 
 // Existing code for conditions link
 if (conditionsCheckboxA) {
@@ -262,6 +263,16 @@ if (conditionsCheckboxA) {
         const url = conditionsCheckboxA.href; 
         window.open(url, "_blank"); 
     });
+}
+
+function setPaymentClick(e) {
+    const payment_methods = document.querySelectorAll("#checkout-payment-step .payment-options .ets_payment_method")
+    payment_methods.forEach((m) => m.classList.remove("payment_method_selected"));
+
+    e.classList.add("payment_method_selected");
+
+    console.log("setPaymentClick triggered", element);
+    alert("Clicked!"); // Debugging
 }
 
 // Function to reset checkboxes and hide payment block
@@ -289,13 +300,17 @@ function resetCheckboxesAndPayment() {
     }
 
     ets_opc_displayShipping();
-    
+
     ets_refresh_shipping_cart(0);
 }
 
 // Add event listener for country select change
 if (countrySelect) {
     countrySelect.addEventListener("change", resetCheckboxesAndPayment);
+}
+
+if (addressSelect) {
+    addressSelect.addEventListener("change", resetCheckboxesAndPayment);
 }
 
 // Function to check if any delivery option is selected
@@ -765,6 +780,7 @@ $(document).mouseup(function (e)
     
 });
 $(document).on('change','.delivery-options-list input[type="radio"]',function(){
+    resetCheckboxesAndPayment()
     $('.block-onepagecheckout.block-payment').addClass('loading');
     $('#onepagecheckout-information-errros').html('');
     $.ajax({
