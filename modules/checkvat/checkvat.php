@@ -86,7 +86,7 @@ class CheckVat extends Module
 
 	$this->context->smarty->assign('professional_vat', $hasSiret);
 	
-	Tools::redirect($this->context->link->getPageLink('address'));
+// 	Tools::redirect($this->context->link->getPageLink('address'));
 
     // Save the VAT number
 //     if (!$this->saveVatNumber($idCustomer, $vatNumber)) {
@@ -98,7 +98,7 @@ class CheckVat extends Module
 //     }
 
     // Redirect back to the account page
-    // Tools::redirect($this->context->link->getPageLink('my-account'));
+    Tools::redirect($this->context->link->getPageLink('my-account'));
 }
 
 	public function deleteCaracteres()
@@ -1071,6 +1071,9 @@ class CheckVat extends Module
 // 		$iso_code = $this->getIsoCodeForCustomer($id_customer);
         $iso_code = substr(Tools::getValue('siret'), 0, 2);
 		$id_group = (int)$this->getIdGroupForAnIsoCode($iso_code);
+		
+		PrestaShopLogger::addLog('$iso_code called'.$iso_code, 3);
+		PrestaShopLogger::addLog('$id_group called'.$id_group, 3);
 
 		if (!Db::getInstance()->update('customer', array('id_default_group' => $id_group), '`id_customer` = '.$id_customer, 1))
 			return false;
@@ -1097,8 +1100,8 @@ class CheckVat extends Module
         
 
 		if(isset($id_country) && ($id_country == 9 || $id_country == 15)){
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=3 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=3 WHERE `id_customer` = '.(int)$id_customer);
 		}else{
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
