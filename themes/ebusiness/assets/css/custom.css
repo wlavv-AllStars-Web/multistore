@@ -2418,6 +2418,10 @@ body {
     padding: 0 !important;
   }
 
+  #order-confirmation main .back-to-orders{
+    padding: 0 1rem;
+  }
+
   /*  */
 
   #password #main {
