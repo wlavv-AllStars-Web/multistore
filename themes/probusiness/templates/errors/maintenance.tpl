@@ -27,7 +27,7 @@
     {block name='page_header_container'}
       <header class="page-header">
         {block name='page_header_logo'}
-        <div class="logo"><img src="{$shop.logo|escape:'html':'UTF-8'}" alt="logo"></div>
+        {* <div class="logo"><img src="{$shop.logo|escape:'html':'UTF-8'}" alt="logo"></div> *}
         {/block}
 
         {block name='hook_maintenance'}
