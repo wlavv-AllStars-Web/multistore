@@ -1100,8 +1100,8 @@ class CheckVat extends Module
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=3 WHERE `id_customer` = '.(int)$id_customer);
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=3 WHERE `id_customer` = '.(int)$id_customer);
 		}else{
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=5 WHERE `id_customer` = '.(int)$id_customer);
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=5 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
 		}
 
 // 		if(Tools::getValue('submitCreate') == 1) {
