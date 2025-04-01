@@ -225,6 +225,12 @@
           background-position: center;
           background-size: cover;
         }
+
+        .footer-asm .title { 
+          background: url("/img/asm/homepage/info_{$language.iso_code}.webp?t=1743148996");
+          background-position: center;
+          background-size: cover;
+        }
       }
 
 
