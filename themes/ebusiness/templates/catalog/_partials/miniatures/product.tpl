@@ -272,7 +272,7 @@
     </div>
     {* <pre>{$product.prices|print_r}</pre> *}
 
-    {if str_contains($product['category'] ,'clearance')}
+    {if str_contains($product['category'] ,'clearance') || str_contains($product['category'] ,'liquidacion') || str_contains($product['category'] ,'destockage')}
       <div style="position: absolute;top:1rem; left:0; width: fit-content;height:31px;background: #222;border-radius:0 50px 50px 0;display:flex;align-items:center;gap:0.5rem;min-width:200px;font-weight:600;font-size:18px;padding:0 0.5rem;border: 2px solid #222;border-left: 0;">
       <span style="color: #fff;font-weight:600;">{l s="CLEARANCE" d="Shop.Theme.ProductList"}</span>  
       <span style="color: var(--asm-color);font-size: 1rem; font-weight: 700;">{$product.discount_percentage}</span>  
