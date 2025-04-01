@@ -67,19 +67,15 @@ class CheckVat extends Module
         Tools::redirect($this->context->link->getPageLink('my-account'));
     }
 
-    $sql = 'UPDATE ' . _DB_PREFIX_ . 'customer SET siret="'.$vatNumber.'" WHERE id_customer = '.$idCustomer;
-    // echo $sql;
-    // exit;
-
-
-    Db::getInstance()->execute($sql);
+    // $sql = 'UPDATE ' . _DB_PREFIX_ . 'customer SET siret="'.$vatNumber.'" WHERE id_customer = '.$idCustomer;
+    // Db::getInstance()->execute($sql);
     
     
-	$sql1 = 'UPDATE ' . _DB_PREFIX_ . 'address 
-	SET deleted = 1 
-	WHERE id_customer = ' . (int)$idCustomer;
+	// $sql1 = 'UPDATE ' . _DB_PREFIX_ . 'address 
+	// SET deleted = 1 
+	// WHERE id_customer = ' . (int)$idCustomer;
 
-	Db::getInstance()->execute($sql1);
+	// Db::getInstance()->execute($sql1);
 
 	$sql2 = 'SELECT siret FROM ps_customer WHERE id_customer ='.$idCustomer;
 	$hasSiret = DB::getInstance()->getValue($sql2);
@@ -1062,6 +1058,17 @@ class CheckVat extends Module
 		$vat_number = $this->nettoyeVat($vat_number);
 		$iso_code = substr($vat_number, 0, 2);
 		if ($number_vat_valid == 1 && $this->getValidationAuto($iso_code))
+			if($id_customer) {
+				$sql = 'UPDATE ' . _DB_PREFIX_ . 'customer SET siret="'.$vat_number.'" WHERE id_customer = '.$id_customer;
+				Db::getInstance()->execute($sql);
+				
+				$sql1 = 'UPDATE ' . _DB_PREFIX_ . 'address 
+				SET deleted = 1 
+				WHERE id_customer = ' . (int)$id_customer;
+			
+				Db::getInstance()->execute($sql1);
+			}
+
 			$this->validerClient($id_customer);
 			Tools::redirect('index.php?controller=my-account');
 	}
@@ -1103,6 +1110,7 @@ class CheckVat extends Module
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
 		}
+
 
 // 		if(Tools::getValue('submitCreate') == 1) {
 		    
