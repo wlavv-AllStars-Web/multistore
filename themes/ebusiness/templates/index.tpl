@@ -177,7 +177,7 @@
                         <img src="{$mobileItem[$image_key]}" style="width: 100%;"/>
                       </a>
                     {elseif $mobileItem['title_en'] === 'clearance'}
-                      <a  class="card-itemMobile"  href="{$link->getCategoryLink(16)|escape:'html':'UTF-8'}">
+                      <a  class="card-itemMobile"  href="{$link->getCategoryLink(523)|escape:'html':'UTF-8'}">
                         <img src="{$mobileItem[$image_key]}" style="width: 100%;"/>
                       </a>
                     {else}
