@@ -1097,8 +1097,8 @@ class CheckVat extends Module
         
 
 		if(isset($id_country) && ($id_country == 9 || $id_country == 15)){
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=3 WHERE `id_customer` = '.(int)$id_customer);
-			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=3 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
+			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
 		}else{
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer_group SET id_group=4 WHERE `id_customer` = '.(int)$id_customer);
 			Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'customer SET id_default_group=4 WHERE `id_customer` = '.(int)$id_customer);
