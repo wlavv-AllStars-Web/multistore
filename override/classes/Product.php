@@ -5702,7 +5702,7 @@ class ProductCore extends ObjectModel
         }
 
         //ASG euromuscle originproduct
-        $row['origin_product'] = Db::getInstance()->getValue('SELECT c.name FROM ' . _DB_PREFIX_ . 'country_lang c LEFT JOIN ' ._DB_PREFIX_. 'address a ON c.id_country = a.id_country WHERE a.id_supplier = ' . $row['id_supplier'] . 'AND c.id_lang = ' . $context->language->id);
+        $row['origin_product'] = Db::getInstance()->getValue('SELECT c.name FROM ' . _DB_PREFIX_ . 'country_lang c LEFT JOIN ' ._DB_PREFIX_. 'address a ON c.id_country = a.id_country WHERE a.id_supplier = ' . $row['id_supplier'] . ' AND c.id_lang = ' . $id_lang);
 
         $row['attribute_price'] = 0;
         if ($id_product_attribute) {
