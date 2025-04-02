@@ -406,7 +406,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content {
   display: none;
   position: absolute;
-  background: #091b2f;
+  background: var(--euromus-color-600);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -416,7 +416,7 @@ btnBrandsMobile.addEventListener('click', () => {
   padding: 2rem 0;
 }
 .dropdown:hover .dropbtn {
-  background: #091b2f;
+  background: #142c46e3;
   color: #fff;
 }
 
