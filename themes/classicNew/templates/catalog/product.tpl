@@ -157,6 +157,7 @@
                      </script>
                    {/block}
                    </div>
+                   
 
                    {* <pre>{$product|print_r}</pre> *}
  
