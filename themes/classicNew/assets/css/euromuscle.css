@@ -4822,6 +4822,12 @@ a:focus {
   text-align: center;
 }
 
+/* product page desktop*/
+
+.product-prices .tax-shipping-delivery-label {
+  font-size: .9rem;
+}
+
 
 @media screen and (min-width:1920px) {
   .videosContainer {
