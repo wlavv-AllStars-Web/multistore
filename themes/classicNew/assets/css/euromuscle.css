@@ -54,6 +54,10 @@
   color: var(--euromus-color-200);
 }
 
+.product-discount .regular-price {
+  font-size: 1rem;
+}
+
 #pagenotfound .page-not-found, #products .page-not-found{
   max-width: 570px;
   padding: 1rem;
