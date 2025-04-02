@@ -3,7 +3,7 @@
 {assign var="currentShop" value=Context::getContext()->shop->id}
 {assign var=cardNumber value=0}
 
-
+{if $currentShop == 1}
     {foreach $array_icons_50 AS $index_50 => $icons_50}
         {if $currentShop == 1}
         <h1 style="font-weight: 700;width:100%">Card {$index_50 + 1}</h1>
@@ -21,7 +21,7 @@
                         <input type="hidden" id="homepage_manufacturer_id_manufacturer_{$icons_33['id']}" name="homepage_manufacturer_id_manufacturer[{$icons_33['id']}]" value="{$id_manufacturer[0]}">
                         <input type="hidden" id="homepage_manufacturer_id_{$icons_33['id']}" name="homepage_manufacturer_id[{$icons_33['id']}]" value="">
                         <img id="image_{$icons_33['id']}" inputparentcard="1" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" 
-                            {if $currentShop == 1} onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')" 
+                            {if $currentShop == 1} onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature',{$id_shop})" 
                             {else} onclick="setModal({$icons_33['id']},3,$('#select_brand_{$icons_33['id']}'))" {/if}>
                         
                         {if $currentShop != 1}
@@ -43,7 +43,7 @@
                                 <label>Select car</label> 
                                 {assign var="compat" value="`$icons_50['id_compat']`"}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');" style="padding:5px;">
-                                    <option value="">---</option>
+                                    <option value="0">---</option>
                                     
                                     {foreach $cars AS $car}
                                         <option value="{$car['id_compat']}" {if $car['id_compat'] == $compat} selected {/if}>{$car['name']}</option>
@@ -72,7 +72,7 @@
                                 <label>Select car</label> 
                                 {assign var="compat" value="`$icons_50['id_compat']`"}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]" onclick="setIdToZero(this, {$icons_33['id']});" style="padding:5px;">
-                                    <option value="">---</option>
+                                    <option value="0">---</option>
                                     
                                     {foreach $cars AS $car}
                                         <option value="{$car['id_compat']}" {if $car['id_compat'] == $compat} selected {/if}>{$car['name']}</option>
@@ -109,7 +109,7 @@
                 {assign var=id_manufacturer value="_"|explode:$icons_33['link']}
                 <input type="hidden" id="homepage_manufacturer_id_manufacturer_{$icons_33['id']}" name="homepage_manufacturer_id_manufacturer[{$icons_33['id']}]" value="{$id_manufacturer[0]}">
                 <input type="hidden" id="homepage_manufacturer_id_{$icons_33['id']}" name="homepage_manufacturer_id[{$icons_33['id']}]" value="">
-                <img id="image_{$icons_33['id']}" inputparentcard="2" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')">
+                <img id="image_{$icons_33['id']}" inputparentcard="2" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature',{$id_shop})">
                 {* <div style="width: 40%;float: left;">
                     <label>Select brand</label> 
                     <select id="select_brand_{$icons_33['id']}" name="link[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_brand_{$icons_33['id']}')" style="padding:5px;">
@@ -190,7 +190,7 @@
                 {assign var=id_manufacturer value="_"|explode:$icons_33['link']}
                 <input type="hidden" id="homepage_manufacturer_id_manufacturer_{$icons_33['id']}" name="homepage_manufacturer_id_manufacturer[{$icons_33['id']}]" value="{$id_manufacturer[0]}">
                 <input type="hidden" id="homepage_manufacturer_id_{$icons_33['id']}" name="homepage_manufacturer_id[{$icons_33['id']}]" value="">
-                <img id="image_{$icons_33['id']}" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')">
+                <img id="image_{$icons_33['id']}" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature',{$id_shop})">
                 {* <div style="width: 40%;float: left;">
                     <label>Select brand</label> 
                     <select id="select_brand_{$icons_33['id']}" name="link[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_brand_{$icons_33['id']}')" style="padding:5px;">
@@ -264,6 +264,70 @@
         {/foreach}
         </div>
     {/foreach}
+{else}
+
+    {foreach $array_icons_33 AS $index_33 => $icons_33} 
+            
+                
+                    <div style="border: 1px solid #666;flex:1;padding: 5px;min-height:560px;background:#808080;color:#fff">
+                        <input type="hidden" name="position[{$icons_33['id']}]" value="{$index+1}">
+                        <input type="hidden" name="type[{$icons_33['id']}]" value="desktop">
+                        <input type="hidden" name="icon_type[{$icons_33['id']}]" value="3">
+                        <input type="hidden" value="1" name="active[{$icons_33['id']}]"> 
+                        {assign var=id_manufacturer value="_"|explode:$icons_33['link']}
+                        <input type="hidden" id="homepage_manufacturer_id_manufacturer_{$icons_33['id']}" name="homepage_manufacturer_id_manufacturer[{$icons_33['id']}]" value="{$id_manufacturer[0]}">
+                        <input type="hidden" id="homepage_manufacturer_id_{$icons_33['id']}" name="homepage_manufacturer_id[{$icons_33['id']}]" value="">
+                        <img id="image_{$icons_33['id']}" inputparentcard="1" src="{$icons_33['image_en']}{if strlen($icons_33['image_en']) > 0}?t={rand()}{/if}" style="background-color: #fff;margin-bottom: 10px;width: 100%;border: 1px solid #000;min-height: 365px;background-image: url('/modules/wmmodule_homepage/views/images/upload.webp');background-position: center;background-repeat: no-repeat;object-fit: cover;max-height: 365px;" 
+                            {if $currentShop == 1} onclick="setModal({$icons_33['id']},3,$('#select_mini_{$icons_33['id']}'),'miniature')" 
+                            {else} onclick="setModal({$icons_33['id']},3,$('#select_brand_{$icons_33['id']}'))" {/if}>
+                        
+                        
+                        <div style="display:flex;">
+                            <div style="width: 45%;">
+                                <label>Select brand</label> 
+                                <select id="select_brand_{$icons_33['id']}" name="link[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_brand_{$icons_33['id']}')" style="padding:5px;">
+                                    <option value="">---</option>
+                                    <option value="523_clearance" {if $icons_33['link']|replace:'-':'-' == "523-clearance"} selected {/if}>Clearance</option>
+                                    {foreach $manufacturers AS $manufacturer}
+                                        <option value="{$manufacturer['link_data']}" {if $manufacturer['link_data'] == $icons_33['link']|replace:'-':'_'} selected {/if}>{$manufacturer['name']}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <div style="width: 10%;">
+                                <div style="color: black; font-weight: bolder; font-size: 1rem; text-transform: uppercase; text-align: center; padding: 15px 15px 0px 15px;" > OR </div>
+                            </div>
+                            <div style="width: 45%;">
+                                <label>Select car</label> 
+                                {assign var="compat" value="`$icons_33['id_compat']`"}
+                                <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');" style="padding:5px;">
+                                    <option value="">---</option>
+                                    
+                                    {foreach $cars AS $car}
+                                        <option value="{$car['id_compat']}" {if $car['id_compat'] == $compat} selected {/if}>{$car['name']}</option>
+                                    {/foreach}
+                                
+                                </select>
+                            </div>
+                        </div>
+                        
+
+
+
+                    
+
+                        <div style="color: #666; text-transform: uppercase; background-color: #808080;color:#fff;padding: 5px;display: inline-block;">
+                            <span  style="width: 80px; float: left;padding: 5px 0;">Inglês</span>
+                            <input style="width: calc(100% - 80px); float: left;" name="title_en[{$icons_33['id']}]" type="text" value="{$icons_33['title_en']}" placeholder="Titulo em inglês" id="title_en_{$icons_33['id']}">
+                            <span  style="width: 80px; float: left;padding: 5px 0;">Espanhol</span>
+                            <input style="width: calc(100% - 80px); float: left;" name="title_es[{$icons_33['id']}]" type="text" value="{$icons_33['title_es']}" placeholder="Titulo em espanhol" id="title_es_{$icons_33['id']}">
+                            <span  style="width: 80px; float: left;padding: 5px 0;">Francês</span>
+                            <input style="width: calc(100% - 80px); float: left;" name="title_fr[{$icons_33['id']}]" type="text" value="{$icons_33['title_fr']}" placeholder="Titulo em francês" id="title_fr_{$icons_33['id']}">
+                        </div>
+                    </div>
+                    
+    {/foreach}
+
+{/if}
 </div>
 
 
