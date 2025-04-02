@@ -4338,6 +4338,10 @@ justify-content: center;
   padding: 1.5rem;
 }
 
+#description .product-description p {
+  padding: 0 !important;
+}
+
 /* .tabs .nav-tabs{
   border-top: var(--euromus-color-400) 2px solid;
 } */
