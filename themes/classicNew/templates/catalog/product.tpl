@@ -164,13 +164,13 @@
                    {* features *}
                      <div class="product_features" >
                        {* <pre>{print_r($product.features,1)}</pre> *}
-                        <div style="padding: 0.2rem 2rem;"><b>EC Approval:</b> {if $product.ec_approved == 0}No{else}Yes{/if}</div>
+                        <div style="padding: 0.2rem 2rem;"><b>EC Approval:</b> <span>{if $product.ec_approved == 0}No{else}Yes{/if}</span></div>
                         {if !empty($product.origin_product)}
-                          <div style="padding: 0.2rem 2rem;"><b>Origin:</b> {$product.origin_product}</div>
+                          <div style="padding: 0.2rem 2rem;"><b>Origin:</b> <span>{$product.origin_product}</span></div>
                         {/if}
 
                        {foreach from=$product.features item=feature}
-                         <div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> {$feature.value}</div>
+                         <div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> <span>{$feature.value}</span></div>
                        {/foreach}
                      </div>
  
