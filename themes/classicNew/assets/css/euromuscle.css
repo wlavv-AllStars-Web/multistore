@@ -50,6 +50,10 @@
   margin-bottom: 1.1rem;
 }
 
+.has-discount .page-content.page-cms ul, .has-discount p, .has-discount.product-price, .page-content.page-cms .has-discount ul {
+  color: var(--euromus-color-200);
+}
+
 #pagenotfound .page-not-found, #products .page-not-found{
   max-width: 570px;
   padding: 1rem;
