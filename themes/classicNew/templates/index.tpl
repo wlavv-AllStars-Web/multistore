@@ -65,7 +65,112 @@
                 <input type="hidden" id="custom_filter_4" name="filters4" value="866">
               </form>
             </div>
-            {$HOOK_HOME nofilter}
+            {* {$HOOK_HOME nofilter} *}
+
+            <div class="section menu-select-car">
+              <div class="menu-select-car-container">
+                <div class="menu-select-car-header">
+                    <h1>{l s='SELECT YOUR VEHICLE' d='Shop.Theme.Global'}</h1>
+                </div>
+                
+                <div class="menu-select-car-content">
+                  <select class="custom-select custom-select-lg">
+                    <option selected>{l s="Brand" d="Shop.Theme.Homepage"}</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <select class="custom-select custom-select-lg disabled">
+                    <option selected>{l s="Model" d="Shop.Theme.Homepage"}</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <select class="custom-select custom-select-lg disabled">
+                    <option selected>{l s="Type" d="Shop.Theme.Homepage"}</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <select class="custom-select custom-select-lg disabled">
+                    <option selected>{l s="Version" d="Shop.Theme.Homepage"}</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+
+                    <button id="" type="submit" name="" class="button btn btn-default button-medium" disabled="disabled">
+                      <span>Search</span>
+                    </button>
+                
+                </div>
+              </div>
+            </div>
+
+            <style>
+              .menu-select-car{
+                background-color: var(--euromus-color-200);
+                background-image: url(/img/eurmuscle/tire.webp);
+                background-repeat: no-repeat;
+                background-position: right top;
+                background-size: auto;
+              }
+
+              .menu-select-car-container {
+                width: 100%;
+                max-width: 1440px;
+                margin: auto;
+                padding-bottom: 4rem;
+              }
+
+              .menu-select-car-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 3rem 0;
+              }
+              .menu-select-car-header h1 {
+                color: #fff;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
+                font-size: 40px;
+                line-height: 44px;
+                font-weight: 400;
+              }
+
+              .menu-select-car-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+              }
+
+              .menu-select-car .custom-select {
+                padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+                height: 3rem;
+                color: var(--euromus-color-100);
+                border-radius: 0.25rem;
+                font-family: 'Roboto', Arial,Helvetica,sans-serif;
+                border: none;
+                font-size: 16px;
+                appearance: none;
+                background: #eee;
+                flex: 1;
+                font-weight: 600;
+              }
+
+              .menu-select-car .custom-select.disabled {
+                opacity: .8;
+              }
+
+              .menu-select-car button{
+                background: var(--euromus-color-300) !important;
+                border-radius: 0.25rem;
+                height: 48px;
+                font-size: 1rem;
+                text-transform: uppercase;
+                flex: 1;
+              }
+            </style>
 
             <div class="lines-tablet" style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;transform: rotate(180deg);"></div>
             
