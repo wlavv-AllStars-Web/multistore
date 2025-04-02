@@ -114,50 +114,46 @@
                    {block name='product_prices'}
                      {include file='catalog/_partials/product-prices.tpl'}
                    {/block}
-                   {block name='product_availability'}
-               
-                     <span id="product-availability" class="js-product-availability" >
-                       {if $product.show_availability && $product.availability_message}
-                         {if $product.availability == 'available'}
-                         {* <i class="material-icons rtl-no-flip product-available">&#xE5CA;</i> *}
-                         
-                         {elseif $product.availability == 'last_remaining_items'}
-                           {* <i class="material-icons product-last-items">&#xE002;</i> *}
-                           <div style="font-weight: 700;">Availability: <span style="background: #ff9a52;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$product.availability_message}</span></div>
-                           {else}
-                             {* <i class="material-icons product-unavailable">&#xE14B;</i> *}
-                             <div style="font-weight: 700;">Availability: <span style="background: #ee302e;color:#f2f2f2;padding: 0.25rem 1rem;">{$product.availability_message}</span>
-                             <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                               <div class="tooltiptext">This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item.</div>
-                             </div>
-                             </div>
-                           {/if}
-                       {else}
-                         <div style="font-weight: 700;">Availability: 
-                           <span style="background: #5eac2d;color:#f2f2f2;padding: 0.25rem 0.5rem;">In Stock</span>
-                           <div class="tooltip" onclick="OpenTooltip(this)" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                             <div class="tooltiptext">This product is in stock in our warehouses and will ship the same day if ordered before 12:30 or next weekday if ordered later</div>
-                           </div>
-                         </div>
-                       {/if}
-                     </span>
-                     <script>
-                       function OpenTooltip(element){
-                         const tooltip = element;
-                         const tooltipText = element.querySelector(".tooltiptext");
-                         tooltipText.style.visibility = "visible";
-                         document.body.addEventListener("click", function(event) {
-                             // Check if the click is outside the tooltip
-                             if (!tooltip.contains(event.target)) {
-                                 // If outside, hide the tooltip
-                                 tooltipText.style.visibility = "hidden";
-                             }
-                         });
-                       }
-                     </script>
-                   {/block}
+
+              {block name='product_availability'}
+
+                <span id="product-availability">
+{* <pre>{$product.availability_message|print_r}</pre> *}
+                  {if $product.show_availability && $product.availability_message && !$packLabel}
+                    {if $product.available_later || $product.available_now}
+                      {if $product.quantity < 1}
+                        <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
+                          <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
+                            <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
+                          </div>
+                          <span style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.available_later}</span>
+                        </div>
+                      {else}
+                        <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#333;padding: 0.25rem 0.5rem;">{$product.available_now}</span></div>
+                      {/if}
+                    {elseif $product.availability == 'last_remaining_items'}
+                      <i class="material-icons product-last-items">&#xE002;</i>
+                    {else}
+                      <i class="material-icons product-unavailable">block</i>
+                    {/if}
+                  {/if}
+                  {* {if $packLabel}
+                    {if $packLabelStock < 1}
+                      <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
+                          <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
+                            <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
+                          </div>
+                          <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$packLabel}</span>
+                        </div>
+                    {else}
+                      <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$packLabel}</span></div>
+                    {/if}
+                    
+                  {/if} *}
+                </span>
+              {/block}
                    </div>
-                   
+
 
                    {* <pre>{$product|print_r}</pre> *}
  
