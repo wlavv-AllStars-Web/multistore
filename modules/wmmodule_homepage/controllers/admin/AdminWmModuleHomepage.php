@@ -22,6 +22,7 @@ class AdminWmModuleHomepageController extends AdminController{
 
         // pre(Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=2 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
        
+        $this->context->smarty->assign('id_shop', $this->id_shop);
         $this->context->smarty->assign("banners",        Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=1 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
         $this->context->smarty->assign("array_icons_50", Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=2 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
         $this->context->smarty->assign("array_icons_33", Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'asm_homepage_temp WHERE destination="desktop" AND icon_type=3 AND id_shop='.$this->id_shop.' ORDER BY id ASC'));
@@ -435,6 +436,10 @@ class AdminWmModuleHomepageController extends AdminController{
     public function getImagesOfZone($id_image, $id_element, $zone, $element, $id_shop ,$id_compat)
     {
         // pre($id_element);
+        if (empty($id_compat)) {
+            $id_compat = 0;
+        }
+
 
         if (strpos($id_element, "_") !== false) {
             $id_elements = explode("_", $id_element);
