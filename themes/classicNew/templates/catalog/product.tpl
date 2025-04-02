@@ -158,7 +158,7 @@
                    {/block}
                    </div>
 
-                   <pre>{$product|print_r}</pre>
+                   {* <pre>{$product|print_r}</pre> *}
  
                    <div class="features_productdetails" >
                    {* features *}
