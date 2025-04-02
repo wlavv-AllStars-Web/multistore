@@ -173,6 +173,7 @@ class AsGroup extends Module
     
             $availableToBuy = Db::getInstance()->getValue($sql);
             // pre($availableToBuy);
+            $availableToBuy = ($availableToBuy == 2) ? 1 : $availableToBuy;
         }
 
 
