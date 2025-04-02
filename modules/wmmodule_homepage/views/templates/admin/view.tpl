@@ -116,7 +116,7 @@
     $("#select_mini_14").on("change",  function () { setModal(14, 3, $(this), 'miniature' ) });
     $("#select_mini_15").on("change",  function () { setModal(15, 3, $(this), 'miniature' ) });
 
-    $("#select_mini_29").on("change",  function () { setModal(29, 3, $(this), 'miniature' ) });
+    $("#select_mini_29").on("change",  function () { setModal(29, 3, $(this), 'miniature') });
     $("#select_mini_30").on("change",  function () { setModal(30, 3, $(this), 'miniature' ) });
     $("#select_mini_31").on("change",  function () { setModal(31, 3, $(this), 'miniature' ) });
 
@@ -144,6 +144,8 @@
     $("#select_mini_63").on("change",  function () { setModal(63, 3, $(this), 'miniature' ) });
     $("#select_mini_64").on("change",  function () { setModal(64, 3, $(this), 'miniature' ) });
     
+    
+    
     $(document).on("click","#uploadSubmitButton", function(){
         var dataForm = new FormData($('#uploadForm')[0]);
 
@@ -169,8 +171,8 @@
     function setModal(id_image, type, selectElement, element, id_shop){
 
         let id_element = 0;
-
-        console.log(element)
+        
+        
 
         if(element === undefined){
 
