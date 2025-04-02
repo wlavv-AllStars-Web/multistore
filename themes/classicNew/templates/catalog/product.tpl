@@ -157,12 +157,18 @@
                      </script>
                    {/block}
                    </div>
+
+                   <pre>{$product|print_r}</pre>
  
                    <div class="features_productdetails" >
                    {* features *}
                      <div class="product_features" >
                        {* <pre>{print_r($product.features,1)}</pre> *}
                         <div style="padding: 0.2rem 2rem;"><b>EC Approval:</b> {if $product.ec_approved == 0}No{else}Yes{/if}</div>
+                        {if !empty($product.origin_product)}
+                          <div style="padding: 0.2rem 2rem;"><b>Origin:</b> {$product.origin_product}</div>
+                        {/if}
+
                        {foreach from=$product.features item=feature}
                          <div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> {$feature.value}</div>
                        {/foreach}
