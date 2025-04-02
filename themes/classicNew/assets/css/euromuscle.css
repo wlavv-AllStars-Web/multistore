@@ -663,6 +663,7 @@ a:focus{
     border-bottom: 0;
     background: #dedede;
     padding: 1rem;
+    gap: 1rem;
   }
 
   .tabs .nav-tabs .nav-item {
