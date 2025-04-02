@@ -24,7 +24,7 @@
  *}
 {if $product.show_price}
   <div class="product-prices js-product-prices">
-   <div>
+   <div class="product-prices-container">
     {block name='product_price'}
       <div
         class="product-price h5 {if $product.has_discount}has-discount{/if}">
