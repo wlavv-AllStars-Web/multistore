@@ -3217,7 +3217,7 @@ header.page-header {
   border-radius: .25rem;
   padding: 1.5rem 1rem;
 }
-.page-my-account #content .links a:hover span {
+.page-my-account #content .links a span {
   transition: all 0.3s ease-in-out;
 }
 
