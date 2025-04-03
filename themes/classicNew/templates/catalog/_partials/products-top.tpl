@@ -44,7 +44,7 @@
     {* {$urls.current_url}
     <br>
     {$link->getCategoryLink(226)} *}
-    <div class="col-lg-5 hidden-sm-down total-products pt-0">
+    <div class="col-lg-5 hidden-sm-down total-products p-0">
     {if $urls.current_url == "{$urls.pages.new_products}"}
       {* <div style="width: fit-content;padding: 0.5rem 1rem;background: var(--euromus-color-800);border-radius: 0.5rem;outline: 2px solid var(--euromus-color-200);">
         <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2>
@@ -76,7 +76,7 @@
       {* <pre>{$urls.pages.new_products|print_r}</pre> *}
       <div style="display: flex;align-items:center;gap:1rem;">
         <img src="/img/m/{$manufacturer.id}-tm_medium_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
-        <h2 style="color:var(--euromus-color-600);font-weight: 600;">{$manufacturer.name}</h2>
+        {* <h2 style="color:var(--euromus-color-600);font-weight: 600;">{$manufacturer.name}</h2> *}
       </div>
     {else}
       
