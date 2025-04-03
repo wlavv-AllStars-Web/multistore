@@ -3574,7 +3574,7 @@ Roboto, Oxygen-Sans, Ubuntu, Cantarell,
 #cms_shipping .shipping-content {
   display: flex;
   background-color: #eee;
-  font-family: Roboto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
   width: 1440px;
   margin: 0 auto;
   text-align: center;
