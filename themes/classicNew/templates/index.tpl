@@ -333,8 +333,11 @@
                     </a>
                     {elseif $linkBrand != ''}
                       </a>
+                    {else}
+                      </a>
                     {/if}
                     </div>
+
                   <div class="card-min-img">
                   {foreach from=$desktop['icones_33'] item=child key=childkey name=childname}
                     {assign var="urlMini" value=$child["image_{$currentLanguageIso}"]}
@@ -362,7 +365,9 @@
                             </a>
                             {elseif $linkBrandMini != ''}
                               </a>
-                          {/if}
+                            {else}
+                              </a>
+                            {/if}
 
 {* aqiiiii *}
                             {* <a href="/{$currentLanguageIso}/{$child['link']}-product.html">
@@ -424,6 +429,8 @@
                 {if $mobileItem['id_compat'] > 0}
                 </a>
                 {elseif $linkBrand != ''}
+                  </a>
+                {else}
                   </a>
                 {/if}
                 
