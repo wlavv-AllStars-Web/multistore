@@ -50,8 +50,8 @@
         <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2>
       </div> *}
     {elseif $urls.current_url === "{$link->getCategoryLink(523)}"}
-      <div style="width: fit-content;padding: 0.25rem 1rem;background: var(--euromus-color-800);border-radius: 0.25rem;outline: 1px solid var(--euromus-color-200);min-width: 340px;text-align:center;">
-        <h2 style="color: var(--euromus-color-200);font-size: 1.5rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;line-height: normal;">{l s='Clearance' d='Shop.Theme.Catalog'}</h2>
+      <div style="width: fit-content;">
+        <h2 style="color: var(--euromus-color-600);font-size: 1.5rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;line-height: normal;">{l s='Clearance' d='Shop.Theme.Catalog'}</h2>
       </div>
     {elseif $urls.current_url === "{$link->getCategoryLink(221)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2> *}
