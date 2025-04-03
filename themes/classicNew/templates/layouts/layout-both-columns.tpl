@@ -59,9 +59,9 @@
         {/block}
 
         {hook h="displayWrapperTop"}
-        {* {block name='breadcrumb'}
+        {block name='breadcrumb'}
           {include file='_partials/breadcrumb.tpl'}
-        {/block} *}
+        {/block}
 
         {if $page.page_name === "contact"}
           <div class="banner_contact" style="position: relative;">

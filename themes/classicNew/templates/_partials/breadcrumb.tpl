@@ -31,7 +31,7 @@
 
 {if $breadcrumb.links}
   <nav data-depth="{$breadcrumb.count}" class="breadcrumb">
-    <ol>
+    <ol style="max-width: 1440px;margin:auto;width:100%;padding:0 2rem 1rem 2rem;">
       {block name='breadcrumb'}
         {foreach from=$breadcrumb.links item=path name=breadcrumb}
           {block name='breadcrumb_item'}
