@@ -466,9 +466,9 @@
                    <h4 style="padding: 1rem;">Product Manufacturer</h4>
                    <div style="padding: 1rem;">
                     {if !empty($product_manufacturer->short_description)}
-                      {$product_manufacturer->short_description}
+                      {$product_manufacturer->short_description|strip_tags|replace:'<p>':''|replace:'</p>':''}
                     {else if !empty($product_manufacturer->description)}
-                      {$product_manufacturer->description}
+                      {$product_manufacturer->description|strip_tags|replace:'<p>':''|replace:'</p>':''}
                     {else}
                       <p>{l s='No description' d='Shop.Theme.Actions'}</p>
                     {/if}
