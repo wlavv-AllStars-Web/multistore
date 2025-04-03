@@ -3217,7 +3217,14 @@ header.page-header {
   border-radius: .25rem;
   padding: 1.5rem 1rem;
 }
+.page-my-account #content .links a:hover span {
+  transition: all 0.3s ease-in-out;
+}
 
+.page-my-account #content .links a:hover span {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 0.3s ease-in-out;
+}
 
 /* #js-product-list-header {
   height: 1rem;
