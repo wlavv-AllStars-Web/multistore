@@ -5502,7 +5502,7 @@
                     modal: "#modal, .js-checkout-modal",
                     touchspin: ".js-touchspin",
                     checkout: {
-                        termsLink: ".js-terms a",
+                        // termsLink: ".js-terms a",
                         giftCheckbox: ".js-gift-checkbox",
                         imagesLink: ".card-block .cart-summary-products p a, .js-show-details",
                         carrierExtraContent: ".carrier-extra-content, .js-carrier-extra-content",
