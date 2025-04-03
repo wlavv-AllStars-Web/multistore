@@ -3304,6 +3304,18 @@ header.page-header {
   width: auto;
 }
 
+#product .breadcrumb {
+  display: none;
+}
+
+#new-products .breadcrumb {
+  display: none;
+}
+
+#contact .breadcrumb {
+  display: none;
+}
+
 
 #blockcart-modal .cart-content-btn .btn-primary{
   display: flex;
