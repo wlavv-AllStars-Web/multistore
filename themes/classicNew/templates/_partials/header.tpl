@@ -142,7 +142,7 @@
             {foreach from=$manufacturers item=$manufacturer }
               <li class="col-lg-3">
               <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
-              <img src="/img/m/{$manufacturer.id_manufacturer}-cart_default.webp" width="100" height="45" style="max-width: 100px;" />
+              <img src="/img/m/{$manufacturer.id_manufacturer}-cart_default.webp" width="100" height="45" style="max-width: 100px;" loading="lazy" />
               </a>
               </li>
             {/foreach}
@@ -158,8 +158,8 @@
     <ul class="mainmenuDesktop">
         <li class="{if $currentUrl === $link->getPageLink('index', true)}activeLinkDesk{/if}" ><a href="{$link->getPageLink('index', true)}">{l s='Home' d='Shop.Theme.Global'}</a></li>
         <li class="{if $currentUrl === $link->getPageLink('new-products', true)}activeLinkDesk{/if}" ><a href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Global'}</a></li> 
-        <li class="dropdown ">
-          <div class="dropbtn" onclick="openLinkBrands()">{l s='BRANDS' d='Shop.Theme.Global'}</div>
+        <li class="dropdown brands-drop">
+          <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
           <ul class="dropdown-content hidden-md-down">
           {* <pre>{print_r($manufacturers,1)}</pre> *}
           {foreach from=$manufacturers item=$manufacturer }
@@ -266,69 +266,37 @@ window.onclick = function(event) {
   }
 }
 
-// window.onload = function() {
-//   const searchIconMobile = document.querySelector('.header-nav #_mobile_cart .search');
-//   const searchBarMobile = document.querySelector('.header-top-right #search_widget');
 
-//   if (searchIconMobile) {
-//     searchIconMobile.addEventListener('click', () => {
+// const dropdownBrands = document.querySelector('li .dropbtn');
+// // const dropdownBrandsCaret = document.querySelector('li.dropdown i');
+// const dropdownContent = document.querySelector('ul.dropdown-content');
 
-//       if (!searchBarMobile.style.display || searchBarMobile.style.display === "none") {
-//         searchBarMobile.style.display = "block";
-//       } else {
-//         searchBarMobile.style.display = "none";
-//       }
-//     });
-//   }
-// };
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const searchIconMobile = document.querySelector('.header-nav #_mobile_cart .search');
-//     const searchBarMobile = document.querySelector('.header-top-right #search_widget');
-
-//     if (searchIconMobile && searchBarMobile) {
-//         alert("tem");
-
-//         searchIconMobile.addEventListener('click', function() {
-//             if (!searchBarMobile.style.display || searchBarMobile.style.display === "none") {
-//                 searchBarMobile.style.display = "block";
-//             } else {
-//                 searchBarMobile.style.display = "none";
-//             }
-//         });
-//     }
+// dropdownBrands.addEventListener('click', (e) => {
+//   e.stopPropagation();
+//   toggleDropdown();
 // });
 
-const dropdownBrands = document.querySelector('li .dropbtn');
-// const dropdownBrandsCaret = document.querySelector('li.dropdown i');
-const dropdownContent = document.querySelector('ul.dropdown-content');
+// // Add event listener to close dropdown on clicks outside
+// document.addEventListener('click', (e) => {
+//   const isClickInsideDropdown = dropdownBrands.contains(e.target) || dropdownContent.contains(e.target);
 
-dropdownBrands.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleDropdown();
-});
+//   if (!isClickInsideDropdown) {
+//     closeDropdown();
+//   }
+// });
 
-// Add event listener to close dropdown on clicks outside
-document.addEventListener('click', (e) => {
-  const isClickInsideDropdown = dropdownBrands.contains(e.target) || dropdownContent.contains(e.target);
+// function toggleDropdown() {
+//   if (!dropdownContent.style.display || dropdownContent.style.display === "none") {
+//     dropdownContent.style.display = "flex";
+//     dropdownContent.style.flexWrap = "wrap";
+//   } else {
+//     closeDropdown();
+//   }
+// }
 
-  if (!isClickInsideDropdown) {
-    closeDropdown();
-  }
-});
-
-function toggleDropdown() {
-  if (!dropdownContent.style.display || dropdownContent.style.display === "none") {
-    dropdownContent.style.display = "flex";
-    dropdownContent.style.flexWrap = "wrap";
-  } else {
-    closeDropdown();
-  }
-}
-
-function closeDropdown() {
-  dropdownContent.style.display = "none";
-}
+// function closeDropdown() {
+//   dropdownContent.style.display = "none";
+// }
 
 
 // mobile
@@ -420,8 +388,12 @@ btnBrandsMobile.addEventListener('click', () => {
   color: #fff;
 }
 
+.dropdown .dropdown-content {
+  display: none;
+}
+
 .dropdown:hover .dropdown-content {
-  display: flex ;
+  display: flex !important;
   min-height: fit-content;
   flex-wrap: wrap;
   /* padding: 2rem 0; */
@@ -451,7 +423,7 @@ btnBrandsMobile.addEventListener('click', () => {
   font-weight: 500;
 }
 .dropdown-content li a:hover{
-  color: #ee302e !important;
+  color: var(--euromus-color-100) !important;
   background: transparent !important;
 }
 
