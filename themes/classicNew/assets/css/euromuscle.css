@@ -3316,6 +3316,10 @@ header.page-header {
   display: none;
 }
 
+#checkout .breadcrumb {
+  display: none;
+}
+
 
 #blockcart-modal .cart-content-btn .btn-primary{
   display: flex;
