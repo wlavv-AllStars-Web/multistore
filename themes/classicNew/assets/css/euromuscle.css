@@ -34,6 +34,8 @@
   100% { offset-distance: 100%;}
 } */
 
+
+
 .dropdown-toggle-brands{
   user-select: none;
 }
@@ -3138,6 +3140,11 @@ header.page-header {
   max-width: 1139px !important;
 }
 
+#login-form {
+  max-width: 400px;
+  margin: auto;
+}
+
 #login-form .form-control-label{
   color: var(--euromus-color-200)!important;
 }
@@ -3184,6 +3191,7 @@ header.page-header {
 #authentication #login-form .form-control-label {
   font-size: 1rem;
   color: var(--euromus-color-200)!important;
+  text-align: start;
 }
 #registration #customer-form .radio-inline{
   color: var(--euromus-color-200)!important;
