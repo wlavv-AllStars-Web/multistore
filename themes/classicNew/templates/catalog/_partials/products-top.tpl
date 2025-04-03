@@ -75,7 +75,7 @@
       {* {$link->getCategoryLink(10)} *}
       {* <pre>{$urls.pages.new_products|print_r}</pre> *}
       <div style="display: flex;align-items:center;gap:1rem;">
-        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-home_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
+        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-tm_medium_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
         {* <h2 style="text-transform: uppercase;color:#103054">{$listing['products'][0]['manufacturer_name']}</h2> *}
       </div>
     {else}
