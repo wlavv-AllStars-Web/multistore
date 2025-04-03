@@ -28,7 +28,7 @@
   <input type="hidden" name="{$field.name}" value="{$field.value}">
 
 {else}
-{($field.name != 'customer_privacy' || $field.name != 'psgdpr')}
+
   <div class="form-group {if $page.page_name == 'registration' && ($field.name != 'customer_privacy' && $field.name != 'psgdpr') || $page.page_name == 'identity'} col-lg-4 {elseif $field.name == 'customer_privacy' || $field.name == 'psgdpr'} col-lg-12 {else} row {/if} {if $page.page_name == 'address'} col-lg-4 {/if}{if !empty($field.errors)} has-error{/if}" style="{if $page.page_name == 'address'}margin-bottom:0;{/if}">
     <label class="{if $page.page_name == 'authentication'} col-md-10 {elseif $page.page_name == 'registration'} col-lg-12 {elseif $page.page_name == 'address'} col-lg-12 {elseif $page.page_name == 'identity'} col-lg-12  {else}col-md-3{/if} form-control-label{if $field.required} required{/if}" 
       style="{if $page.page_name == 'registration' || $page.page_name == 'identity'} text-align: start; {elseif $page.page_name == 'address'} text-align:start;padding-top:0; {/if}">
