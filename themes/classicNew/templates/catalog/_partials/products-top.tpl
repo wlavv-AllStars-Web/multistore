@@ -25,8 +25,8 @@
  {* <pre>{print_r($listing['products'][0]['manufacturer_name'],1)}</pre> *}
  {* <pre>{print_r($listing['products'][0]['id_manufacturer'],1)}</pre> *}
  {* <pre>{print_r($listing['products'],1)}</pre> *}
-{assign var="name_manufacturer" value=$listing['products'][0]['manufacturer_name']}
-{assign var="id_manufacturer" value=$listing['products'][0]['id_manufacturer']}
+{assign var="name_manufacturer" value=$manufacturer.name}
+{assign var="id_manufacturer" value=$manufacturer.id}
 
  {if $urls.current_url == "{$urls.pages.new_products}"}
   <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
@@ -75,8 +75,8 @@
       {* {$link->getCategoryLink(10)} *}
       {* <pre>{$urls.pages.new_products|print_r}</pre> *}
       <div style="display: flex;align-items:center;gap:1rem;">
-        <img src="/img/m/{$listing['products'][0]['id_manufacturer']}-tm_medium_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
-        {* <h2 style="text-transform: uppercase;color:#103054">{$listing['products'][0]['manufacturer_name']}</h2> *}
+        <img src="/img/m/{$manufacturer.id}-tm_medium_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
+        <h2 style="color:var(--euromus-color-600);font-weight: 600;">{$manufacturer.name}</h2>
       </div>
     {else}
       
