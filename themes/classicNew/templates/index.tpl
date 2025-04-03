@@ -328,7 +328,8 @@
                       
                     {/if}
                       <img src="{$item["image_{$currentLanguageIso}"]}" alt="banner{$linkBrand}"/>
-                    {if isset($numbers)}
+
+                    {if $item['id_compat'] > 0}
                     </a>
                     {elseif $linkBrand != ''}
                       </a>
@@ -357,7 +358,7 @@
                             {/if}
                               <div class="layerHover">{$child["title_{$currentLanguageIso}"]}</div>
                               <img src="{$child["image_{$currentLanguageIso}"]}" loading="lazy" alt="banner_{$child.id_parent_card}_{$childkey}" />
-                            {if isset($numbersMini)}
+                            {if $child['id_compat'] > 0}
                             </a>
                             {elseif $linkBrandMini != ''}
                               </a>
@@ -406,8 +407,7 @@
               {/if} *}
 
                 {if $mobileItem['id_compat'] > 0}
-                <a class="card-img" style="cursor: pointer; position: relative;"
-                onclick="setCarAndSearch({$mobileItem['id_compat']})">
+                  <a class="card-img" style="cursor: pointer; position: relative;" onclick="setCarAndSearch({$mobileItem['id_compat']})">
                 {elseif $linkBrand != ''}
                   {if $linkBrand|is_numeric}
                     <a href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
@@ -421,7 +421,7 @@
                   <img src="{$mobileItem["image_{$currentLanguageIso}"]}" style="width: 100%;" loading="lazy" alt="banner{$mobilekey}"/>
                   <div class="layerHovermobile">{$mobileItem["title_{$currentLanguageIso}"]}</div>
 
-                {if isset($numbers)}
+                {if $mobileItem['id_compat'] > 0}
                 </a>
                 {elseif $linkBrand != ''}
                   </a>
