@@ -222,7 +222,7 @@
                             </div>
                             <div class="condition-label">
                                 <label class="js-terms required" for="conditions_to_approve">
-                                    {l s='I agree to the'  d="Shop.Theme.Checkout"} <a href="{$link->getCMSLink(Configuration::get('PS_CONDITIONS_CMS_ID'))|escape:'html':'UTF-8'}" target="_blank">{l s='terms of service'  d="Shop.Theme.Checkout"}</a>
+                                    {l s='I agree to the'  d="Shop.Theme.Checkout"} <a href="{$link->getCMSLink(43)|escape:'html':'UTF-8'}" target="_blank">{l s='terms of service'  d="Shop.Theme.Checkout"}</a>
                                 </label>
                             </div>
                         </li>
