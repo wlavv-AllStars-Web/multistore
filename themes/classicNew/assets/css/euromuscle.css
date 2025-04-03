@@ -3226,6 +3226,13 @@ header.page-header {
   transition: all 0.3s ease-in-out;
 }
 
+/* address */
+
+.address-form form section.form-fields{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* #js-product-list-header {
   height: 1rem;
 } */
