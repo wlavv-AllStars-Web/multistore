@@ -45,6 +45,14 @@
 }
 
 
+.modal .product-prices.js-product-prices .current-price-value {
+  font-size: 2rem;
+}
+
+.modal #product-description-short p {
+  color: var(--euromus-color-text);
+}
+
 
 .dropdown-toggle-brands{
   user-select: none;
