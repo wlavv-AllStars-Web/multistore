@@ -475,6 +475,10 @@ a:focus{
     line-height: 3rem;
   }
 
+  #cms_shipping {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
+  }
+
   /* cms about us mobile */
 
   #about-us .about-content{
