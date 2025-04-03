@@ -760,7 +760,7 @@
                         </div>
                       </a>
                     {else}
-                      {if $category.link_rewrite !== 'clearance' || $category.link_rewrite !== 'liquidacion' ||  $category.link_rewrite !== 'destockage'}
+                      {if $category.link_rewrite !== 'clearance' && $category.link_rewrite !== 'liquidacion' &&  $category.link_rewrite !== 'destockage'}
                       <a rel="nofollow" href="/{$language.iso_code}/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
                         <div class="category {$category.name}">
                           <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" loading="lazy" alt="category {$category.name}">
