@@ -74,32 +74,32 @@
                 </div>
                 
                 <div class="menu-select-car-content">
-                  <select class="custom-select custom-select-lg">
+                  <select class="custom-select custom-select-lg brands-select">
                     <option selected>{l s="Brand" d="Shop.Theme.Homepage"}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    {foreach from=$brands item=brand}
+                        <option value="{$brand.id_brand}">{$brand.name}</option>
+                    {/foreach}
                   </select>
-                  <select class="custom-select custom-select-lg disabled">
+                  <select class="custom-select custom-select-lg models-select disabled">
                     <option selected>{l s="Model" d="Shop.Theme.Homepage"}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <select class="custom-select custom-select-lg disabled">
+                  <select class="custom-select custom-select-lg types-select disabled">
                     <option selected>{l s="Type" d="Shop.Theme.Homepage"}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
-                  <select class="custom-select custom-select-lg disabled">
+                  <select class="custom-select custom-select-lg versions-select disabled">
                     <option selected>{l s="Version" d="Shop.Theme.Homepage"}</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
 
-                    <button id="" type="submit" name="" class="button btn btn-default button-medium" disabled="disabled">
+                    <button id="search-button-car" type="submit" name="" class="button btn btn-default button-medium" disabled="disabled">
                       <span>Search</span>
                     </button>
                 
@@ -107,7 +107,131 @@
               </div>
             </div>
 
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                const brandSelect = $(".brands-select"); // ✅ jQuery object
+                const modelSelect = $(".models-select");
+                const typeSelect = $(".types-select");
+                const versionSelect = $(".versions-select");
+                const searchButton = $("#search-button-car");
+
+                // Reset and disable a select field
+                function resetSelect(selectElement, placeholder) {
+                    selectElement.innerHTML = '<option selected disabled>'+placeholder+'</option>';
+                    selectElement.disabled = true;
+                }
+
+                // Fetch data from the server
+                function fetchOptions(params, selectElement, placeholder) {
+                    $.ajax({
+                        url: '{url entity="frontController"}',
+                        type: 'GET',
+                        data: params,
+                        dataType: 'json',
+                        success: function (data) {
+                          console.log(data)
+                            resetSelect(selectElement, placeholder);
+                            if (data.length > 0) {
+                                selectElement.prop("disabled", false);
+                                $.each(data, function (index, item) {
+                                    selectElement.append('<option value="'+item.id+'">'+item.name+'</option>');
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("AJAX Error:", error);
+                        }
+                    });
+                }
+
+                // Event: Select Brand → Fetch Models
+                brandSelect.change(function () {
+                    const brandId = $(this).val();
+                    resetSelect(modelSelect, "Model");
+                    resetSelect(typeSelect, "Type");
+                    resetSelect(versionSelect, "Version");
+                    searchButton.prop("disabled", true);
+
+                    fetchOptions({
+                        getdataBrandsEuromus: 1,
+                        type: 'model',
+                        id_brand: brandId,
+                        storeId: {Context::getContext()->shop->id}
+                    }, modelSelect, "Model");
+                });
+
+                // Event: Select Model → Fetch Types
+                modelSelect.change(function () {
+                    const modelId = $(this).val();
+                    resetSelect(typeSelect, "Type");
+                    resetSelect(versionSelect, "Version");
+                    searchButton.prop("disabled", true);
+
+                    fetchOptions({
+                      getdataBrandsEuromus: 1,
+                        type: 'type',
+                        id_model: modelId,
+                        storeId: {Context::getContext()->shop->id}
+                    }, typeSelect, "Type");
+                });
+
+                // Event: Select Type → Fetch Versions
+                typeSelect.change(function () {
+                    const typeId = $(this).val();
+                    resetSelect(versionSelect, "Version");
+                    searchButton.prop("disabled", true);
+
+                    fetchOptions({
+                      getdataBrandsEuromus: 1,
+                        type: 'version',
+                        id_type: typeId,
+                        storeId: {Context::getContext()->shop->id}
+                    }, versionSelect, "Version");
+                });
+
+                // Event: Select Version → Enable Search Button
+                versionSelect.change(function () {
+                    searchButton.prop("disabled", false);
+                });
+
+                // Event: Click Search Button → Send Data
+                searchButton.click(function () {
+                    const searchParams = {
+                        brand_id: brandSelect.val(),
+                        model_id: modelSelect.val(),
+                        type_id: typeSelect.val(),
+                        version_id: versionSelect.val(),
+                    };
+
+                    console.log("Search Params:", searchParams);
+
+                    // Perform search action (redirect or AJAX request)
+                    window.location.href = "/search-results?" + $.param(searchParams);
+                });
+              });
+  
+
+            </script>
+
             <style>
+              select::-webkit-scrollbar {
+                width: 8px; /* Adjust scrollbar width */
+              }
+
+              select::-webkit-scrollbar-thumb {
+                background-color: #888; /* Scrollbar handle color */
+                border-radius: 4px; /* Rounded corners */
+              }
+
+              select::-webkit-scrollbar-track {
+                background-color: #f1f1f1; /* Track background color */
+              }
+
+              select {
+                scrollbar-width: thin; /* Options: auto, thin, none */
+                scrollbar-color: #888 #f1f1f1; /* thumb color | track color */
+              }
+
               .menu-select-car{
                 background-color: var(--euromus-color-200);
                 background-image: url(/img/eurmuscle/tire.webp);
@@ -636,7 +760,7 @@
                         </div>
                       </a>
                     {else}
-                      {if $category.link_rewrite !== 'clearance'}
+                      {if $category.link_rewrite !== 'clearance' || $category.link_rewrite !== 'liquidacion' ||  $category.link_rewrite !== 'destockage'}
                       <a rel="nofollow" href="/{$language.iso_code}/{$category.id_category}-{$category.link_rewrite}" class="select-list ">
                         <div class="category {$category.name}">
                           <img src="/img/eurmuscle/bannersHome/{$category.link_rewrite}.webp" loading="lazy" alt="category {$category.name}">
