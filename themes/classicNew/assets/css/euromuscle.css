@@ -35,6 +35,16 @@
 } */
 
 
+#block_myaccount_infos .myaccount-title a, 
+#header a, 
+#wrapper .breadcrumb li a, 
+.block-contact .block-contact-title, 
+.block-contact .navbar-toggler .material-icons, 
+.linklist .blockcms-title a {
+  color: var(--euromus-color-text);
+}
+
+
 
 .dropdown-toggle-brands{
   user-select: none;
