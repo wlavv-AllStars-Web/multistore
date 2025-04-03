@@ -463,7 +463,7 @@
                    <div class="banner-tabs" >
                        <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
                    </div>
-                   <h4 style="padding: 1rem;">Product Manufacturer</h4>
+                   <h4 style="padding: 1rem;">{$product_manufacturer->name}</h4>
                    <div style="padding: 1rem;">
                     {if !empty($product_manufacturer->short_description)}
                       {$product_manufacturer->short_description|strip_tags|replace:'<p>':''|replace:'</p>':''}
