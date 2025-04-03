@@ -34,7 +34,7 @@
       <a class="label" href="{$product.url|escape:'html':'UTF-8'}" data-id_customization="{$product.id_customization|intval}">{$product.name|escape:'html':'UTF-8'}</a>
     </div>
     <div class="product-ref">
-      <span>{$product.reference}</span>
+     <span class="ref-lable">{l s="Reference" d="Shop.Theme.Checkout"}:</span> <span class="ref-value">{$product.reference}</span>
     </div>
       {if isset($product.attributes) && $product.attributes}
         {foreach from=$product.attributes key="attribute" item="value"}
