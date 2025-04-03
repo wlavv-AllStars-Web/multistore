@@ -50,9 +50,9 @@
         <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2>
       </div> *}
     {elseif $urls.current_url === "{$link->getCategoryLink(523)}"}
-      <div style="width: fit-content;">
+      {* <div style="width: fit-content;">
         <h2 style="color: var(--euromus-color-600);font-size: 1.5rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;line-height: normal;">{l s='Clearance' d='Shop.Theme.Catalog'}</h2>
-      </div>
+      </div> *}
     {elseif $urls.current_url === "{$link->getCategoryLink(221)}"}
       {* <h2 style="text-transform: uppercase;color:#103054">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2> *}
 

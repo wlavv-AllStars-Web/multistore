@@ -3315,12 +3315,12 @@ header.page-header {
   padding-bottom: 0;
 }
 
-.categoryCars .MERCHANDISING img {
+.categoryCars .Merchandising img {
   object-fit: contain !important;
   transform: scale(0.9) !important;
   object-position: 2px center !important;
 }
-.categoryCars .MERCHANDISING:hover img {
+.categoryCars .Merchandising:hover img {
   transform: scale(0.85) !important;
 }
 
