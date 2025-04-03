@@ -34,6 +34,10 @@
   100% { offset-distance: 100%;}
 } */
 
+.dropdown-toggle-brands{
+  user-select: none;
+}
+
 .mainmenuDesktop .dropdown:not(.open) .dropdown-content {
   display: none;
 }
