@@ -34,6 +34,10 @@
   100% { offset-distance: 100%;}
 } */
 
+.mainmenuDesktop .dropdown:not(.open) .dropdown-content {
+  display: none;
+}
+
 .product-price.has-discount {
   margin-bottom: 0;
 }
