@@ -1574,7 +1574,8 @@ a:focus{
         margin-bottom: 0;
       }
       #js-product-list .product article .thumbnail-container .product-thumbnail img{
-        max-width: 250px;
+        max-width: 280px;
+        padding-top: .5rem;
       }
 
       .product-comment-list-item{
@@ -2256,7 +2257,8 @@ a:focus{
       margin-bottom: 0;
     }
     #js-product-list .product article .thumbnail-container .product-thumbnail img{
-      max-width: 250px;
+      max-width: 280px;
+      padding-top: .5rem;
     }
 
     #_desktop_user_info .user-info a:focus {
