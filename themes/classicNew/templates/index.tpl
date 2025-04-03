@@ -306,18 +306,19 @@
 
                 
                 
-                {if $numberString != $url}
+                {* {if $numberString != $url}
                   {assign var="numbers" value=[]}
                     {assign var="numbers" value=explode(",", $numberString)}
-                {/if}
+                {/if} *}
+
                 <div class="card-img-container">
                   <div class="card-big">
                     <div class="layerHover">
                       <h5>{$item["title_{$currentLanguageIso}"]}</h5>
                     </div>
-                    {if $numberString != $url}
+                    {if $item['id_compat'] > 0}
                     <a style="cursor: pointer;"
-                    onclick="setCarAndSearch({$numbers[0]},{$numbers[1]},{$numbers[2]},{$numbers[3]})">
+                    onclick="setCarAndSearch({$item['id_compat']})">
                     {elseif $linkBrand != ''}
                       {if $linkBrand|is_numeric}
                         <a href="/{$currentLanguageIso}/{$linkBrand}-product.html">
@@ -339,18 +340,18 @@
                     {assign var="numberStringMini" value="`$urlMini`"|regex_replace:"/.*\/(\d+)_(\d+)_(\d+)_(\d+)_.*$/":"$1,$2,$3,$4"}
                     {assign var="linkBrandMini" value=$child["link"]}
                 
-                    {if $numberStringMini != $urlMini}
+                    {* {if $numberStringMini != $urlMini}
                       {assign var="numbersMini" value=[]}
                         {assign var="numbersMini" value=explode(",", $numberStringMini)}
-                    {/if}
+                    {/if} *}
 
                         {if $key == 0 && $child.id_parent_card == 1}
                           <div class="card-img ">
 {* aquui *}
 
-                          {if $numberStringMini != $urlMini}
+                          {if  $child['id_compat'] > 0}
                             <a style="cursor: pointer;"
-                            onclick="setCarAndSearch({$numbersMini[0]},{$numbersMini[1]},{$numbersMini[2]},{$numbersMini[3]})">
+                            onclick="setCarAndSearch({$child['id_compat']})">
                             {elseif $linkBrandMini != ''}
                               <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                             {/if}
@@ -399,14 +400,14 @@
               {assign var="numberString" value="`$url`"|regex_replace:"/.*\/(\d+)_(\d+)_(\d+)_(\d+)_.*$/":"$1,$2,$3,$4"}
               {assign var="linkBrand" value=$mobileItem["link"]}
 
-              {if $numberString != $url}
+              {* {if $numberString != $url}
                 {assign var="numbers" value=[]}
                   {assign var="numbers" value=explode(",", $numberString)}
-              {/if}
+              {/if} *}
 
-                {if $numberString != $url}
+                {if $mobileItem['id_compat'] > 0}
                 <a class="card-img" style="cursor: pointer; position: relative;"
-                onclick="setCarAndSearch({$numbers[0]},{$numbers[1]},{$numbers[2]},{$numbers[3]})">
+                onclick="setCarAndSearch({$mobileItem['id_compat']})">
                 {elseif $linkBrand != ''}
                   {if $linkBrand|is_numeric}
                     <a href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
