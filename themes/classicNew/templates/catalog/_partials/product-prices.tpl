@@ -75,11 +75,11 @@
       {/if}
     {/block}
 
-    {block name='product_pack_price'}
+    {* {block name='product_pack_price'}
       {if $displayPackPrice}
         <p class="product-pack-price"><span>{l s='Instead of %price%' d='Shop.Theme.Catalog' sprintf=['%price%' => $noPackPrice]}</span></p>
       {/if}
-    {/block}
+    {/block} *}
 
     {block name='product_ecotax'}
         {if !$product.is_virtual && $product.ecotax.amount > 0}
