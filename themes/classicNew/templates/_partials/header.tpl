@@ -422,9 +422,11 @@ btnBrandsMobile.addEventListener('click', () => {
   font-size: 1em;
   font-weight: 500;
 }
+
 .dropdown-content li a:hover{
   color: var(--euromus-color-100) !important;
   background: transparent !important;
+  font-weight: 700;
 }
 
 /* Show the dropdown menu on hover */
