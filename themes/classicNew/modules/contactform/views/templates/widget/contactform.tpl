@@ -54,8 +54,8 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label" for="firstname">{l s='Name' d='Shop.Forms.Labels'}</label>
+        <div class="form-group row col-lg-4">
+          <label class="col-md-12 form-control-label" for="firstname">{l s='Name' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
               id="firstname"
@@ -68,8 +68,8 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label" for="phone">{l s='Phone' d='Shop.Forms.Labels'}</label>
+        <div class="form-group row col-lg-4">
+          <label class="col-md-12 form-control-label" for="phone">{l s='Phone' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
               id="phone"
@@ -82,8 +82,8 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}</label>
+        <div class="form-group row col-lg-4">
+          <label class="col-md-12 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
               id="email"
@@ -97,8 +97,8 @@
         </div>
 
         {if $contact.orders}
-          <div class="form-group row">
-            <label class="col-md-2 form-control-label" for="id-order">{l s='Order reference' d='Shop.Forms.Labels'}</label>
+          <div class="form-group row col-lg-4">
+            <label class="col-md-12 form-control-label" for="id-order">{l s='Order reference' d='Shop.Forms.Labels'}</label>
             <div class="col-md-12 col-sm-12">
               <select id="id-order" name="id_order" class="form-control form-control-select">
                 <option value="">{l s='Select reference' d='Shop.Forms.Help'}</option>
@@ -127,8 +127,8 @@
           </div>
         {/if} *}
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label" for="contactform-message">{l s='Message' d='Shop.Forms.Labels'}</label>
+        <div class="form-group row col-lg-8">
+          <label class="col-md-12 form-control-label" for="contactform-message">{l s='Message' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <textarea
               id="contactform-message"
