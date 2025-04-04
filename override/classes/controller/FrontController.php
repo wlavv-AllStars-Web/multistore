@@ -1285,6 +1285,16 @@ class FrontControllerCore extends Controller
 
         if($this->context->shop->id == 1){
             $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css', ['media' => 'all', 'priority' => 51]);
+
+            $this->registerStylesheet(
+                'font-awesome-cdn',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+                [
+                    'server' => 'remote',
+                    'media' => 'all',
+                    'priority' => 40,
+                ]
+            );
         }
 
         if ($this->context->language->is_rtl) {
