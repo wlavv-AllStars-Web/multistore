@@ -7240,4 +7240,18 @@ transform: translate(-50%,-50%);
     width: 100%;
     padding: .85rem 1rem;
   }
+
+  /* legal notice mobile */
+
+  #legal .legal-line {
+    flex-direction: column;
+  }
+
+  /* about us mobile */
+  #about-us .about-content > .row {
+    flex-direction: column;
+  }
+  #about-us .about-content-cards > .row {
+    flex-direction: column;
+  }
 }
