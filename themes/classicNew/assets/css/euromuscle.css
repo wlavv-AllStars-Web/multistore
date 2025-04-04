@@ -7249,7 +7249,7 @@ transform: translate(-50%,-50%);
   /*  */
 
   .menu-select-car-header{
-    padding: 3rem 1rem;
+    padding: 3rem 0 0rem 0;
     text-align: center;
   }
 
