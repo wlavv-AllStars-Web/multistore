@@ -7233,7 +7233,7 @@ transform: translate(-50%,-50%);
 
   .menu-select-car .custom-select {
     width: 100%;
-    padding: .85rem 1rem;
+    padding: .85rem 1rem !important;
   }
 
   .menu-select-car #search-button-car {
