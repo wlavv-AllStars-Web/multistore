@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="form-group row col-lg-4">
+        <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="firstname">{l s='Name' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
@@ -68,7 +68,7 @@
           </div>
         </div>
 
-        <div class="form-group row col-lg-4">
+        <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="phone">{l s='Phone' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="form-group row col-lg-4">
+        <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <input
@@ -97,7 +97,7 @@
         </div>
 
         {if $contact.orders}
-          <div class="form-group row col-lg-4">
+          <div class="form-group  col-lg-4">
             <label class="col-md-12 form-control-label" for="id-order">{l s='Order reference' d='Shop.Forms.Labels'}</label>
             <div class="col-md-12 col-sm-12">
               <select id="id-order" name="id_order" class="form-control form-control-select">
@@ -127,7 +127,7 @@
           </div>
         {/if} *}
 
-        <div class="form-group row col-lg-8">
+        <div class="form-group  col-lg-8">
           <label class="col-md-12 form-control-label" for="contactform-message">{l s='Message' d='Shop.Forms.Labels'}</label>
           <div class="col-md-12 col-sm-12">
             <textarea
@@ -141,7 +141,7 @@
         </div>
 
         {if isset($id_module)}
-          <div class="form-group row col-lg-12">
+          <div class="form-group  col-lg-12">
             <div class="offset-md-3">
               {hook h='displayGDPRConsent' id_module=$id_module}
             </div>
@@ -150,7 +150,7 @@
 
       </section>
 
-      <footer class="form-footer text-sm-right col-lg-12">
+      <footer class="form-footer text-sm-center col-lg-12">
         <style>
           input[name=url] {
             display: none !important;
