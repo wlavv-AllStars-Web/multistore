@@ -1292,7 +1292,7 @@ class FrontControllerCore extends Controller
                 [
                     'server' => 'remote',
                     'media' => 'all',
-                    'priority' => 40,
+                    'priority' => 52,
                 ]
             );
         }
