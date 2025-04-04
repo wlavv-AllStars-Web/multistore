@@ -7296,6 +7296,10 @@ transform: translate(-50%,-50%);
     margin: auto;
   }
 
+  .categoryCars .Merchandising img{
+    object-position: center !important;
+  }
+
   /* legal notice mobile */
 
   #legal .legal-line {
