@@ -7286,6 +7286,15 @@ transform: translate(-50%,-50%);
     padding: .85rem 1rem;
   }
 
+  .categoryCars .select-list {
+    width: 100%;
+  }
+
+  .otherCars .categoryCars .category {
+    width: 100% !important;
+    max-width: 450px !important;
+  }
+
   /* legal notice mobile */
 
   #legal .legal-line {
