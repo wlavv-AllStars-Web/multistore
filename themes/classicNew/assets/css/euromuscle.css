@@ -7301,6 +7301,15 @@ transform: translate(-50%,-50%);
     object-position: center !important;
   }
 
+  .otherCars .categoryCars .category .model-type-overlay {
+    background: var(--euromus-color-600);
+  }
+
+  .otherCars .categoryCars .category .model-type-overlay{
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
   /* legal notice mobile */
 
   #legal .legal-line {
