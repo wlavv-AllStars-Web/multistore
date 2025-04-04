@@ -40,6 +40,9 @@
   gap: 1rem;
 }
 
+.product-details-options .product-add-to-cart{
+  padding: .5rem 0rem !important;
+}
 
 #block_myaccount_infos .myaccount-title a, 
 #header a, 
