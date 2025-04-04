@@ -4967,6 +4967,12 @@ a:focus {
   }
 }
 
+@media screen and (min-width:992px) {
+  #js-product-list-top {
+    margin-bottom: 3rem;
+  }
+}
+
 @media screen and (max-width:1640px) {
   .videosContainer .video{
     width: 462px;
