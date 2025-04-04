@@ -34,6 +34,12 @@
   100% { offset-distance: 100%;}
 } */
 
+.product-details-options .product-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 
 #block_myaccount_infos .myaccount-title a, 
 #header a, 
