@@ -7294,6 +7294,7 @@ transform: translate(-50%,-50%);
     width: 100% !important;
     max-width: 450px !important;
     margin: auto;
+    padding-bottom: 2rem;
   }
 
   .categoryCars .Merchandising img{
