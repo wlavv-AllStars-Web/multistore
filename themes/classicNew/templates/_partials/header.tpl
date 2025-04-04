@@ -142,7 +142,7 @@
             {foreach from=$manufacturers item=$manufacturer }
               <li class="col-lg-3">
               <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
-              <img src="/img/m/{$manufacturer.id_manufacturer}-cart_default.webp" width="100" height="45" style="max-width: 100px;" loading="lazy" />
+              <img src="/img/m/{$manufacturer.id_manufacturer}-tm_medium_default.webp" width="100" height="45" style="max-width: 100px;" loading="lazy" />
               </a>
               </li>
             {/foreach}
