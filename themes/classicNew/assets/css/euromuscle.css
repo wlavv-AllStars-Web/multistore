@@ -341,6 +341,22 @@ a:focus{
   display: none;
 }
 
+#addresses .breadcrumb {
+  display: none;
+}
+
+#history .breadcrumb {
+  display: none;
+}
+
+#order-slip .breadcrumb {
+  display: none;
+}
+
+#module-psgdpr-gdpr .breadcrumb {
+  display: none;
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
@@ -7264,5 +7280,11 @@ transform: translate(-50%,-50%);
   }
   #about-us .about-content-cards > .row {
     flex-direction: column;
+  }
+
+  /* personal data */
+
+  #module-psgdpr-gdpr #exportDataToCsv {
+    margin-bottom: 1rem;
   }
 }
