@@ -7245,6 +7245,9 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
+  #js-product-list .product.category .thumbnail-top img {
+    object-position: 0px center !important;
+  }
 
   /*  */
 
