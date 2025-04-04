@@ -150,7 +150,7 @@
 
       </section>
 
-      <footer class="form-footer text-sm-center col-lg-12">
+      <footer class="form-footer text-sm-right col-lg-12 px-2">
         <style>
           input[name=url] {
             display: none !important;
