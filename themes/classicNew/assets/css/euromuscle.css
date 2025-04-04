@@ -7253,7 +7253,7 @@ transform: translate(-50%,-50%);
 
   #js-product-list .products .js-product.product.category {
     height: 260px !important;
-    outline: 2px solid var(--euromus-color-600) !important;
+    outline: 2px solid var(--euromus-color-700) !important;
   }
 
   #js-product-list .products .js-product.product.category .thumbnail-container{
