@@ -7245,6 +7245,10 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
+  .breadcrumb {
+    display: none;
+  }
+
   /* product page */
 
   #js-product-list .products .js-product.product.category {
