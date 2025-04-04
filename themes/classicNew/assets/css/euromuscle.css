@@ -4943,6 +4943,14 @@ a:focus {
     width: 1440px;
     max-width: 100%;
   }
+  /* contact form */
+  .contact-form .form-fields .form-group {
+    flex-direction: column;
+    text-align: start;
+  }
+  .contact-form .form-fields .form-group .form-control-label{
+    text-align: start;
+  }
 
   .videosContainer {
     justify-content: space-around;
