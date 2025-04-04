@@ -7249,6 +7249,10 @@ transform: translate(-50%,-50%);
     display: none !important;
   }
 
+  .pagination {
+    text-align: center;
+  }
+
   /* product page */
 
   #js-product-list .products .js-product.product.category {
