@@ -7217,3 +7217,27 @@ transform: translate(-50%,-50%);
   padding-bottom: 1rem;
 }
 
+/* mobile search compat */
+
+@media screen and (max-width: 564px) {
+
+  .menu-select-car-header{
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .menu-select-car-content {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .menu-select-car .custom-select {
+    width: 100%;
+    padding: .85rem 1rem;
+  }
+
+  .menu-select-car #search-button-car {
+    width: 100%;
+    padding: .85rem 1rem;
+  }
+}
