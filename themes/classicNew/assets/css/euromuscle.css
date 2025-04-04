@@ -7225,12 +7225,6 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
-  /* myaccount */
-
-  #identity .breadcrumb {
-    display: none;
-  }
-
 
   /*  */
 
