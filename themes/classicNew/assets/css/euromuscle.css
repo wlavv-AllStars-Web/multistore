@@ -357,6 +357,10 @@ a:focus{
   display: none;
 }
 
+#search .breadcrumb {
+  display: none;
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
