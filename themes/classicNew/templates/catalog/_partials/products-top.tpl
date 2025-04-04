@@ -31,7 +31,7 @@
  {if $urls.current_url == "{$urls.pages.new_products}"}
   <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
  {/if}
-<div id="js-product-list-top" class="row products-selection" style="display: flex;align-items:center;gap:0rem;margin-bottom: 3rem;">
+<div id="js-product-list-top" class="row products-selection mb-lg-3" style="display: flex;align-items:center;gap:0rem;">
 
   {if $ukoo_name_1}
     <div class="col-lg-2  total-products">
