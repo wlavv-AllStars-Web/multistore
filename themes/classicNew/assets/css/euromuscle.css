@@ -7245,8 +7245,11 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
-  #js-product-list .product.category .thumbnail-top img {
-    object-position: 0px center !important;
+  /* product page */
+
+  #js-product-list .products .js-product.product.category {
+    height: 260px !important;
+    outline: 2px solid var(--euromus-color-600) !important;
   }
 
   /*  */
