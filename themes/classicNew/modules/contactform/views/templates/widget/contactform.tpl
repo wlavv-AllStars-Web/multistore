@@ -141,7 +141,7 @@
         </div>
 
         {if isset($id_module)}
-          <div class="form-group row">
+          <div class="form-group row col-lg-12">
             <div class="offset-md-3">
               {hook h='displayGDPRConsent' id_module=$id_module}
             </div>
@@ -150,7 +150,7 @@
 
       </section>
 
-      <footer class="form-footer text-sm-right">
+      <footer class="form-footer text-sm-right col-lg-12">
         <style>
           input[name=url] {
             display: none !important;
