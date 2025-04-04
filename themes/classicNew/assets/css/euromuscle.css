@@ -4054,6 +4054,10 @@ justify-content: center;
   color: var(--euromus-color-600);
 }
 
+.contact-form .form-fields input {
+  border-radius: .25rem;
+}
+
 @media screen and (max-width: 768px) {
   .row.product-container.js-product-container .left-side{
     height: auto !important;
