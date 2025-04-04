@@ -7293,6 +7293,7 @@ transform: translate(-50%,-50%);
   .otherCars .categoryCars .category {
     width: 100% !important;
     max-width: 450px !important;
+    margin: auto;
   }
 
   /* legal notice mobile */
