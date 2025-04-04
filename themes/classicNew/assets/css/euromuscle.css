@@ -4050,6 +4050,10 @@ justify-content: center;
   color: var(--euromus-color-300);
 }
 
+#checkout .product-ref .ref-value {
+  color: var(--euromus-color-600);
+}
+
 @media screen and (max-width: 768px) {
   .row.product-container.js-product-container .left-side{
     height: auto !important;
