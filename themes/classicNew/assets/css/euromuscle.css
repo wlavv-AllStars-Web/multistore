@@ -4045,6 +4045,11 @@ justify-content: center;
   width: 100%;
 }
 
+.has-discount .discount{
+  background: transparent;
+  color: var(--euromus-color-300);
+}
+
 @media screen and (max-width: 768px) {
   .row.product-container.js-product-container .left-side{
     height: auto !important;
