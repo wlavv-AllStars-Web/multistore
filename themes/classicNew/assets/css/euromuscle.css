@@ -4057,6 +4057,12 @@ justify-content: center;
 .contact-form .form-fields input {
   border-radius: .25rem;
 }
+.contact-form .form-fields select {
+  border-radius: .25rem;
+}
+.contact-form .form-fields textarea {
+  border-radius: .25rem;
+}
 
 @media screen and (max-width: 768px) {
   .row.product-container.js-product-container .left-side{
