@@ -7252,6 +7252,10 @@ transform: translate(-50%,-50%);
     outline: 2px solid var(--euromus-color-600) !important;
   }
 
+  #js-product-list .products .js-product.product.category .thumbnail-container{
+    background: #fff !important;
+  }
+
   /*  */
 
   .menu-select-car-header{
