@@ -3389,14 +3389,14 @@ header.page-header {
   transform: scale(0.85) !important;
 }
 
-.categoryCars .COMERCIALIZACIÓN img
+.categoryCars .Comercialización img
 {
   object-fit: contain !important;
   transform: scale(0.9) !important;
   object-position: 2px center !important;
 }
 
-.categoryCars .COMERCIALIZACIÓN:hover img {
+.categoryCars .Comercialización:hover img {
   transform: scale(1.2) !important;
 }
 
