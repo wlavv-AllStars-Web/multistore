@@ -158,7 +158,22 @@
         </style>
         <input type="text" name="url" value=""/>
         <input type="hidden" name="token" value="{$token}" />
-        <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='Send' d='Shop.Theme.Actions'}">
+        {* <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='Send' d='Shop.Theme.Actions'}"> *}
+
+        <div style="width: fit-content; height: fit-content; position: relative; padding: .5rem !important;">
+          <button class="g-recaptcha btn btn-primary" 
+          name="submitMessage"
+          data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+          data-callback='onSubmit' 
+          data-action='submit'>{l s='SEND' d='Shop.Theme.Actions'}</button>
+          
+        </div>
+
+      <script defer="defer">
+        function onSubmit(token) {
+            document.querySelector(".contact-form form").submit();
+          }
+      </script>
       </footer>
     {/if}
 
