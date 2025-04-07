@@ -16,6 +16,9 @@
   bottom: 5rem !important;
 }
 
+.shipped-eu a, .payment-plans a {
+  color: var(--euromus-color-100);
+}
 /* #motion-demo {
   offset-path: path("M20,20 C20,100 200,0 200,100");
   animation: move 3000ms infinite linear;
