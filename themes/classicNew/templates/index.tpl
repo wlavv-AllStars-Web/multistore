@@ -100,7 +100,7 @@
                   </select>
 
                     <button id="search-button-car" type="submit" name="" class="button btn btn-default button-medium" disabled="disabled">
-                      <span>Search</span>
+                      <span>{l s="Search" d="Shop.Theme.Homepage"}</span>
                     </button>
                 
                 </div>
