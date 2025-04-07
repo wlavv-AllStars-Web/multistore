@@ -1,87 +1,306 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Message from {shop_name}</title>
-</head>
-<body>
-        <table class="table table-mail" style="width: 80%; margin-top: 10px; -moz-box-shadow: 0 0 5px #afafaf; -webkit-box-shadow: 0 0 5px #afafaf; -o-box-shadow: 0 0 5px #afafaf; box-shadow: 0 0 5px #afafaf; filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);" align="center">
-<tbody>
-<tr>
-<td class="space" style="width: 20px; padding: 7px 0;">&nbsp;</td>
-<td style="padding: 7px 0;" align="center">
-<table class="table" style="width: 100%;" bgcolor="#ffffff">
-<tbody>
-<tr>
-<td class="logo" align="center"><a title="{shop_name}" href="{shop_url}" style="color: #337ff1;"> <img src="{shop_logo}" alt="{shop_name}" /> </a></td>
-</tr>
-<tr>
-<td class="space_footer" style="padding: 0;">&nbsp;</td>
-</tr>
-<tr>
-<td align="center" style="border-bottom: 4px solid #dd170e; padding: 20px;">
-<h1 style="font-weight: 500; font-size: 28px; text-transform: uppercase; line-height: 33px; color: #777777;">HOLA {firstname} {lastname},</h1>
-</td>
-</tr>
-<tr>
-<td class="space_footer" style="padding: 10px;">&nbsp;</td>
-</tr>
-<tr>
-<td class="textContent" valign="top" style="padding: 0 50px 40px 50px;">
-<div mc:edit="body" style="text-align: center; font-family: Helvetica,Arial,sans-serif; font-size: 20px; margin-bottom: 0; color: #5f5f5f; line-height: 135%;">Nos complace informarle de que su pedido {order_name} est&aacute; listo y puesto en nuestra zona de despacho. Su paquete ser&aacute; recogido en los pr&oacute;ximos minutos por el transportista que haya seleccionado y podr&aacute;, pr&oacute;ximamente, seguir en l&iacute;nea su entrega a trav&eacute;s del enlace a continuaci&oacute;n tan pronto como el n&uacute;mero de seguimiento est&eacute; activo en el sitio del transportista (dentro de las 24 a 48 horas) :</div>
-<h3 mc:edit="header" style="color: #5f5f5f; line-height: 125%; font-family: Helvetica,Arial,sans-serif; font-size: 20px; font-weight: normal; margin-top: 40px; margin-bottom: 3px; text-align: center;">N&uacute;mero de seguimiento : <span style="color: #dd170e;">{shipping_number}</span></h3>
-</td>
-</tr>
-<tr>
-<td valign="top" align="center">
-<table class="emailButton" style="background-color: #dd170e; margin-bottom: 50px;" width="250px" cellspacing="0" cellpadding="0" border="0">
-<tbody>
-<tr>
-<td class="buttonContent" style="padding: 15px; color: #5f5f5f;" valign="middle" align="center"><a style="color: #ffffff; text-decoration: none; font-family: Helvetica,Arial,sans-serif; font-size: 20px; line-height: 135%;" href="{followup}" target="_blank">SEGUIMENTO</a></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td class="textContent" valign="top">
-<div style="width: 100%; padding: 0 1rem;">
-<h3 mc:edit="header" style="color: #dd170e; line-height: 125%; font-family: Helvetica,Arial,sans-serif; font-size: 20px; font-weight: normal; margin-top: 0; margin-bottom: 3px; text-align: center;">ATENCI&Oacute;N</h3>
-<div mc:edit="body" style="text-align: center; font-family: Helvetica,Arial,sans-serif; font-size: 18px; margin-bottom: 0; color: #5f5f5f; line-height: 135%;"></div>
-<div mc:edit="body" style="text-align: center; font-family: Helvetica,Arial,sans-serif; font-size: 18px; margin-bottom: 0; color: #5f5f5f; line-height: 135%;">Un pedido que ya se encuentra en estado "Enviado" ya no se puede cancelar.</div>
-<div mc:edit="body" style="text-align: center; font-family: Helvetica,Arial,sans-serif; font-size: 18px; margin-bottom: 0; color: #5f5f5f; line-height: 135%;">Al recibir su paquete, aseg&uacute;rese de que est&aacute; en buenas condiciones y completo. Si no es el caso, notif&iacute;quelo al repartidor, quien tendr&aacute; que indicarlo en el albar&aacute;n de entrega. Si no se hacen observaciones en presencia del repartidor y que no se indican en el albar&aacute;n, no ser&aacute; posi-ble ninguna reclamaci&oacute;n sobre la entrega del paquete.</div>
-</div>
-</td>
-</tr>
-<tr>
-<td style="padding: 20px;">&nbsp;</td>
-</tr>
-<tr>
-<td class="titleblock" style="padding: 7px 0;" align="center">
-<div class="subtitle" style="font-family: Open-sans, sans-serif; font-weight: 500; color: #5f5f5f; font-size: 16px; line-height: 25px;">
-<div>Gracias, una vez m&aacute;s, por su confianza en nuestra empresa</div>
-<div>El equipo logistico de All Stars Motorsport</div>
-</div>
-</td>
-</tr>
-<tr>
-<td class="space_footer" style="padding: 0;">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="3" style="border-top: 4px solid #dd170e; padding: 15px 0; text-align: center;">
-<section class="footer-block"><a href="https://www.facebook.com/allstarsmotorsport" style="padding: 0 10px; text-decoration: none; color: #888; text-transform: uppercase;"> <img alt="Facebook" src="{shop_facebook}" border="0" /> </a> <a href="https://www.flickr.com/photos/allstarsmotorsport/" style="padding: 0 10px; text-decoration: none; color: #888; text-transform: uppercase;"> <img alt="Flickr" src="{shop_flickr}" border="0" /> </a> <a href="https://instagram.com/allstarsmotorsport" style="padding: 0 10px; text-decoration: none; color: #888; text-transform: uppercase;"> <img alt="Instagram" src="{shop_instagram}" border="0" /> </a> <a href="https://www.youtube.com/user/allstarsmotorsport" style="padding: 0 10px; text-decoration: none; color: #888; text-transform: uppercase;"> <img alt="Youtube" src="{shop_youtube}" border="0" /> </a>
-<table class="table" style="width: 100%;"></table>
-</section>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-<td class="space" style="width: 20px; padding: 7px 0;">&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<p></p>
-
-</body>
+  </head>
+  <body>
+    <table
+      class="table table-mail"
+      style="
+        width: 80%;
+        margin-top: 10px;
+        -moz-box-shadow: 0 0 5px #afafaf;
+        -webkit-box-shadow: 0 0 5px #afafaf;
+        -o-box-shadow: 0 0 5px #afafaf;
+        box-shadow: 0 0 5px #afafaf;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);
+      "
+      align="center"
+    >
+      <tbody>
+        <tr>
+          <td class="space" style="width: 20px; padding: 7px 0">&nbsp;</td>
+          <td style="padding: 7px 0" align="center">
+            <table class="table" style="width: 100%" bgcolor="#ffffff">
+              <tbody>
+                <tr>
+                  <td class="logo" align="center">
+                    <a
+                      title="{shop_name}"
+                      href="{shop_url}"
+                      style="color: #337ff1"
+                    >
+                      <img src="{shop_logo}" alt="{shop_name}" />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="space_footer" style="padding: 0">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td
+                    align="center"
+                    style="border-bottom: 4px solid #dd170e; padding: 20px"
+                  >
+                    <h1
+                      style="
+                        font-weight: 500;
+                        font-size: 28px;
+                        text-transform: uppercase;
+                        line-height: 33px;
+                        color: #777777;
+                      "
+                    >
+                      HOLA {firstname} {lastname},
+                    </h1>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="space_footer" style="padding: 10px">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td
+                    class="textContent"
+                    valign="top"
+                    style="padding: 0 50px 40px 50px"
+                  >
+                    <div
+                      mc:edit="body"
+                      style="
+                        text-align: center;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-size: 20px;
+                        margin-bottom: 0;
+                        color: #5f5f5f;
+                        line-height: 135%;
+                      "
+                    >
+                      Nos complace informarle de que su pedido {order_name}
+                      est&aacute; listo y puesto en nuestra zona de despacho. Su
+                      paquete ser&aacute; recogido en los pr&oacute;ximos
+                      minutos por el transportista que haya seleccionado y
+                      podr&aacute;, pr&oacute;ximamente, seguir en l&iacute;nea
+                      su entrega a trav&eacute;s del enlace a
+                      continuaci&oacute;n tan pronto como el n&uacute;mero de
+                      seguimiento est&eacute; activo en el sitio del
+                      transportista (dentro de las 24 a 48 horas) :
+                    </div>
+                    <h3
+                      mc:edit="header"
+                      style="
+                        color: #5f5f5f;
+                        line-height: 125%;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-size: 20px;
+                        font-weight: normal;
+                        margin-top: 40px;
+                        margin-bottom: 3px;
+                        text-align: center;
+                      "
+                    >
+                      N&uacute;mero de seguimiento :
+                      <span style="color: #dd170e">{shipping_number}</span>
+                    </h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center">
+                    <table
+                      class="emailButton"
+                      style="background-color: #dd170e; margin-bottom: 50px"
+                      width="250px"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            class="buttonContent"
+                            style="padding: 15px; color: #5f5f5f"
+                            valign="middle"
+                            align="center"
+                          >
+                            <a
+                              style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                font-family: Helvetica, Arial, sans-serif;
+                                font-size: 20px;
+                                line-height: 135%;
+                              "
+                              href="{followup}"
+                              target="_blank"
+                              >SEGUIMENTO</a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="textContent" valign="top">
+                    <div style="width: 100%; padding: 0 1rem">
+                      <h3
+                        mc:edit="header"
+                        style="
+                          color: #dd170e;
+                          line-height: 125%;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 20px;
+                          font-weight: normal;
+                          margin-top: 0;
+                          margin-bottom: 3px;
+                          text-align: center;
+                        "
+                      >
+                        ATENCI&Oacute;N
+                      </h3>
+                      <div
+                        mc:edit="body"
+                        style="
+                          text-align: center;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 18px;
+                          margin-bottom: 0;
+                          color: #5f5f5f;
+                          line-height: 135%;
+                        "
+                      ></div>
+                      <div
+                        mc:edit="body"
+                        style="
+                          text-align: center;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 18px;
+                          margin-bottom: 0;
+                          color: #5f5f5f;
+                          line-height: 135%;
+                        "
+                      >
+                        Un pedido que ya se encuentra en estado "Enviado" ya no
+                        se puede cancelar.
+                      </div>
+                      <div
+                        mc:edit="body"
+                        style="
+                          text-align: center;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 18px;
+                          margin-bottom: 0;
+                          color: #5f5f5f;
+                          line-height: 135%;
+                        "
+                      >
+                        Al recibir su paquete, aseg&uacute;rese de que
+                        est&aacute; en buenas condiciones y completo. Si no es
+                        el caso, notif&iacute;quelo al repartidor, quien
+                        tendr&aacute; que indicarlo en el albar&aacute;n de
+                        entrega. Si no se hacen observaciones en presencia del
+                        repartidor y que no se indican en el albar&aacute;n, no
+                        ser&aacute; posi-ble ninguna reclamaci&oacute;n sobre la
+                        entrega del paquete.
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 20px">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="titleblock" style="padding: 7px 0" align="center">
+                    <div
+                      class="subtitle"
+                      style="
+                        font-family: Open-sans, sans-serif;
+                        font-weight: 500;
+                        color: #5f5f5f;
+                        font-size: 16px;
+                        line-height: 25px;
+                      "
+                    >
+                      <div>
+                        Gracias, una vez m&aacute;s, por su confianza en nuestra
+                        empresa
+                      </div>
+                      <div>El equipo logistico de All Stars Motorsport</div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="space_footer" style="padding: 0">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td
+                    colspan="3"
+                    style="
+                      border-top: 4px solid #dd170e;
+                      padding: 15px 0;
+                      text-align: center;
+                    "
+                  >
+                    <section class="footer-block">
+                      <a
+                        href="https://www.facebook.com/allstarsmotorsport"
+                        style="
+                          padding: 0 10px;
+                          text-decoration: none;
+                          color: #888;
+                          text-transform: uppercase;
+                        "
+                      >
+                        <img alt="Facebook" src="https://euromuscleparts.com/img/facebook2.png" border="0" />
+                      </a>
+                      <a
+                        href="https://www.flickr.com/photos/allstarsmotorsport/"
+                        style="
+                          padding: 0 10px;
+                          text-decoration: none;
+                          color: #888;
+                          text-transform: uppercase;
+                        "
+                      >
+                        <img alt="Flickr" src="https://euromuscleparts.com/img/flickr2.png" border="0" />
+                      </a>
+                      <a
+                        href="https://instagram.com/allstarsmotorsport"
+                        style="
+                          padding: 0 10px;
+                          text-decoration: none;
+                          color: #888;
+                          text-transform: uppercase;
+                        "
+                      >
+                        <img
+                          alt="Instagram"
+                          src="https://euromuscleparts.com/img/instagram2.png"
+                          border="0"
+                        />
+                      </a>
+                      <a
+                        href="https://www.youtube.com/user/allstarsmotorsport"
+                        style="
+                          padding: 0 10px;
+                          text-decoration: none;
+                          color: #888;
+                          text-transform: uppercase;
+                        "
+                      >
+                        <img alt="Youtube" src="https://euromuscleparts.com/img/youtube2.png" border="0" />
+                      </a>
+                      <table class="table" style="width: 100%"></table>
+                    </section>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td class="space" style="width: 20px; padding: 7px 0">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <p></p>
+  </body>
 </html>
