@@ -716,7 +716,7 @@ abstract class PaymentModuleCore extends Module
 
                     $shop_id = $this->context->shop->id;
                     $base_url = _PS_BASE_URL_ . __PS_BASE_URI__; // Get shop base URL
-                    if($shop_id == 2) {
+                    if($shop_id == 2 || $shop_id == 1){ {
                         $payment_img = $base_url . 'img/asm/all_stars_bank_info_1.jpg';
                         $shop_facebook = $base_url . 'img/asm/socials/facebook_mail.jpg';
                         $shop_instagram = $base_url . 'img/asm/socials/insta_mail.jpg';
