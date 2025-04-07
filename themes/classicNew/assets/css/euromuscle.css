@@ -4725,10 +4725,10 @@ body#checkout section.checkout-step .address-selector {
   padding: 1rem 2rem;
 }
 .form_specificRequest h5{
-  color: var(--euromus-color-200)!important;
+  color: var(--euromus-color-text)!important;
 }
 .form_specificRequest label{
-  color: var(--euromus-color-200)!important;
+  color: var(--euromus-color-500)!important;
 }
 
 .btn-submit-specific {
