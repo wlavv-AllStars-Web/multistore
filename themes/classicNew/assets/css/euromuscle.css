@@ -370,6 +370,18 @@ a:focus{
   display: none;
 }
 
+#authentication .breadcrumb {
+  display: none;
+}
+
+#password .breadcrumb {
+  display: none;
+}
+
+#registration .breadcrumb {
+  display: none;
+}
+
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
     padding: 0 0.85rem;
@@ -3200,7 +3212,7 @@ header.page-header {
 }
 
 .page-registration #content{
-  max-width: 1139px !important;
+  max-width: 100% !important;
 }
 
 #login-form {
@@ -5012,6 +5024,10 @@ a:focus {
   #js-product-list-top {
     margin-bottom: 3rem !important;
   }
+
+  .tabs .nav-tabs {
+    gap: 1rem;
+  }
 }
 
 @media screen and (max-width:1640px) {
@@ -5154,11 +5170,6 @@ transform: translate(-50%,-50%);
   color: var(--euromus-color-200)!important;
 }
 
-@media screen and (min-width: 992px) {
-  .tabs .nav-tabs {
-    gap: 1rem;
-  }
-}
 
 
 @media screen and (max-width: 540px) {
