@@ -2099,7 +2099,7 @@ a:focus{
       position:absolute;
       bottom:58px;
       width:100%;
-      z-index:1;
+      z-index:0;
     }
     .linesHeaderDesktop {
       border-top: 6px solid #103054;
