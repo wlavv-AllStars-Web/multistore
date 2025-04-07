@@ -11,7 +11,9 @@
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-
+.grecaptcha-badge{
+  z-index: 999;
+}
 
 /* #motion-demo {
   offset-path: path("M20,20 C20,100 200,0 200,100");
