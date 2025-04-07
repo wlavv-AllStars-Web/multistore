@@ -218,6 +218,8 @@ class ContactControllerCore extends FrontController
                                     $var_list, 'info@euromuscleparts.com', $contact->name, null, null,
                                             $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
                                     $this->errors[] = Tools::displayError('An error occurred while sending the message.');
+                                }else{
+                                    $this->context->smarty->assign('confirmation', 1);
                                 }
                                 
                                 // Mail::Send($this->context->language->id, 'contact_form', Mail::l('Message from contact form').' [no_sync]',
