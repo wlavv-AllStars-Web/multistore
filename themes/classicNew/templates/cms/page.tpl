@@ -50,22 +50,22 @@
               <h5 class="col-md-12">{l s='Personal Information' d='Shop.Forms.SpecificRequest'}</h5>
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">{l s='First name' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" id="validationCustom01" name="firstname" placeholder="First name"  value="{$customer.firstname}" required>
+                <input type="text" class="form-control" id="validationCustom01" name="firstname" placeholder="{l s='First name' d='Shop.Forms.SpecificRequest'}"  value="{$customer.firstname}" required>
                 <div class="invalid-feedback">
                     {l s='Please insert your a valid first name.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationCustom02">{l s='Last name' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" id="validationCustom02" name="lastname" placeholder="Last name"  value="{$customer.lastname}" required>
+                <input type="text" class="form-control" id="validationCustom02" name="lastname" placeholder="{l s='Last name' d='Shop.Forms.SpecificRequest'}"  value="{$customer.lastname}" required>
                 <div class="invalid-feedback">
                     {l s='Please insert your a valid last name.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-4 mb-3">
-                <label for="validationCustomEmail">Email</label>
+                <label for="validationCustomEmail">{l s='Email' d='Shop.Forms.SpecificRequest'}</label>
                 <div class="input-group">
-                  <input type="email" class="form-control" id="validationCustomEmail" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" value="{$customer.email}" required>
+                  <input type="email" class="form-control" id="validationCustomEmail" name="email" placeholder="{l s='Email' d='Shop.Forms.SpecificRequest'}" aria-describedby="inputGroupPrepend" value="{$customer.email}" required>
                   <div class="invalid-feedback">
                     {l s='Please insert a valid email.' d='Shop.Forms.SpecificRequest'}
                   </div>
@@ -76,28 +76,28 @@
               <h5 class="col-md-12">{l s='Car Information' d='Shop.Forms.SpecificRequest'}</h5>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom03">{l s='Brand' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="brand" id="validationCustom03" placeholder="Brand" required>
+                <input type="text" class="form-control" name="brand" id="validationCustom03" placeholder="{l s='Brand' d='Shop.Forms.SpecificRequest'}" required>
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Brand.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom04">{l s='Model' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="model" id="validationCustom04" placeholder="Model" required>
+                <input type="text" class="form-control" name="model" id="validationCustom04" placeholder="{l s='Model' d='Shop.Forms.SpecificRequest'}" required>
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Model.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom05">{l s='Type' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="type" id="validationCustom05" placeholder="Type" required>
+                <input type="text" class="form-control" name="type" id="validationCustom05" placeholder="{l s='Type' d='Shop.Forms.SpecificRequest'}" required>
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Type.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom06">{l s='Version' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="version" id="validationCustom06" placeholder="Version" required>
+                <input type="text" class="form-control" name="version" id="validationCustom06" placeholder="{l s='Version' d='Shop.Forms.SpecificRequest'}" required>
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Version.' d='Shop.Forms.SpecificRequest'}
                 </div>
@@ -107,14 +107,14 @@
               <h5 class="col-md-12">{l s='Product Information' d='Shop.Forms.SpecificRequest'}</h5>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom07">{l s='Product Brand' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="product_brand" id="validationCustom07" placeholder="Product Brand" >
+                <input type="text" class="form-control" name="product_brand" id="validationCustom07" placeholder="{l s='Product Brand' d='Shop.Forms.SpecificRequest'}" >
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Product Brand.' d='Shop.Forms.SpecificRequest'}
                 </div>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationCustom08">{l s='Product Type' d='Shop.Forms.SpecificRequest'}</label>
-                <input type="text" class="form-control" name="product_type" id="validationCustom08" placeholder="Product Type" >
+                <input type="text" class="form-control" name="product_type" id="validationCustom08" placeholder="{l s='Product Type' d='Shop.Forms.SpecificRequest'}" >
                 <div class="invalid-feedback">
                   {l s='Please provide a valid Model.' d='Shop.Forms.SpecificRequest'}
                 </div>
