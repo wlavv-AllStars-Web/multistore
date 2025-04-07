@@ -17,7 +17,11 @@
 }
 
 .shipped-eu a, .payment-plans a {
-  color: var(--euromus-color-100);
+  color: var(--euromus-color-100) !important;
+}
+
+.shipped-eu a:hover, .payment-plans a:hover {
+  color: var(--euromus-color-300) !important;
 }
 /* #motion-demo {
   offset-path: path("M20,20 C20,100 200,0 200,100");
