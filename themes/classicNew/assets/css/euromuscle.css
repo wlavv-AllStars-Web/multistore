@@ -5154,6 +5154,12 @@ transform: translate(-50%,-50%);
   color: var(--euromus-color-200)!important;
 }
 
+@media screen and (min-width: 992px) {
+  .tabs .nav-tabs {
+    gap: 1rem;
+  }
+}
+
 
 @media screen and (max-width: 540px) {
   #search #wrapper {
