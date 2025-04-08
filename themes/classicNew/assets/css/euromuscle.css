@@ -7408,3 +7408,16 @@ transform: translate(-50%,-50%);
     margin-bottom: 1rem;
   }
 }
+
+
+
+/* cars page */
+
+#cars-products > .container {
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+#cars-products #products #js-product-list{
+  padding: 0 2rem !important;
+}
