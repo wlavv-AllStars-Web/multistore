@@ -5202,7 +5202,7 @@ transform: translate(-50%,-50%);
 }
 
 #product #compatibilities table thead {
-  background: var(--euromus-color-600);
+  background: var(--euromus-color-500);
   color: #fff;
 }
 
