@@ -5,7 +5,7 @@
     <div class="universals-product-list d-flex py-3" style="flex-wrap: wrap;position:relative;">
         {foreach from=$universals item=product name=products}
             {block name='product_miniature'}
-                {include file='catalog/_partials/miniatures/product.tpl' product=$product universals=1}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClass="col-xs-12 col-sm-6 col-xl-4"}
             {/block}
         {/foreach}
         <div class="loading-overlay-universals" role="status">
