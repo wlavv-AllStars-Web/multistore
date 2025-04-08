@@ -106,7 +106,7 @@
                             console.log('selectElement', selectElement)
                             console.log('placeholder', placeholder)
                             if (data.length > 0) {
-                                modelSelect.removeAttr("disabled");
+                                selectElement.removeAttr("disabled").removeClass("disabled");;
                                 
                                 $.each(data, function (index, item) {
                                   if(placeholder == "Model") {
