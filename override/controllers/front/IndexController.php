@@ -185,6 +185,38 @@ class IndexController extends IndexControllerCore
             exit;
         }
 
+        if(Tools::getValue('getProductsIdCompat') == 1){
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $brand = Tools::getValue('id_brand');
+            $model = Tools::getValue('id_model');
+            $type = Tools::getValue('id_type');
+            $version = Tools::getValue('id_version');
+            // $store = Tools::getValue('storeId');
+            $store = 2;
+
+            $urlProductIdCompat = 'https://webtools.all-stars-motorsport.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlProductIdCompat);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $versionsEuromus = json_decode($json, true);
+
+            // pre($modelsEuromus['data']);
+            ob_clean();
+            header('Content-Type: application/json');
+            echo json_encode($versionsEuromus['data']);
+            exit;
+        }
+
+
+
 
 
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';

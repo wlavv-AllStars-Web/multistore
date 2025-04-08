@@ -185,10 +185,18 @@
                         version_id: versionSelect.val(),
                     };
 
-                    console.log("Search Params:", searchParams);
+                    fetchOptions({
+                      getProductsIdCompat: 1,
+                        brand_id: searchParams.brand_id,
+                        model_id: searchParams.model_id,
+                        type_id: searchParams.type_id,
+                        version_id: searchParams.version_id,
+                    },searchButton,"Search")
+
+                    // console.log("Search Params:", searchParams);
 
                     // Perform search action (redirect or AJAX request)
-                    window.location.href = "/search-results?" + $.param(searchParams);
+                    // window.location.href = "/search-results?" + $.param(searchParams);
                 });
               });
   
