@@ -2319,12 +2319,12 @@ a:focus{
     }
 
     #js-product-list .product {
-      width: 100%;
+      /* width: 100%; */
       padding: 0;
       overflow: hidden;
       /* outline: 3px solid #103054; */
       border-radius: 0.25rem;
-      max-width: 340px;
+      /* max-width: 340px; */
     }
     #js-product-list .product article{
       width: 100%;
@@ -7230,7 +7230,7 @@ transform: translate(-50%,-50%);
   margin: 0;
 }
 
-#js-product-list .products {
+/* #js-product-list .products {
   width: 100%;
   display: grid !important;
   grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
@@ -7242,7 +7242,7 @@ transform: translate(-50%,-50%);
 
 #js-product-list .products .js-product.product{
   max-width: 340px;
-}
+} */
 
 #product .nav-tabs::after, #product .navbar::after{
   content: none !important;
@@ -7421,3 +7421,4 @@ transform: translate(-50%,-50%);
 #cars-products #products #js-product-list{
   padding: 0 2rem !important;
 }
+
