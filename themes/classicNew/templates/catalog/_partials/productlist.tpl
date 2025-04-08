@@ -27,51 +27,6 @@
 {assign var="count_products" value=$products|count}
     
 <div class="products{if !empty($cssClass)} {$cssClass}{/if}">
-    {if isset($search)}
-        {$filter1 = Tools::getValue('filters1')}
-        {$filter2 = Tools::getValue('filters2')}
-        {$filter3 = Tools::getValue('filters3')}
-        {$filter4 = Tools::getValue('filters4')}
-
-        {assign var="compatvalues" value=IndexController::getBrandAndModel($filter1,$filter2,$filter3,$filter4,2)}
-
-        {foreach from=$compatvalues item=item}
-            {foreach from=$item.name_brand item=brand}
-            {assign var="brand" value=$brand.value}
-            {/foreach}
-            {foreach from=$item.name_model item=model}
-            {assign var="model" value=$model.value}
-            {/foreach}
-            {foreach from=$item.name_type item=type}
-            {assign var="type" value=$type.value}
-            {/foreach}
-            {foreach from=$item.name_version item=version}
-            {assign var="version" value=$version.value}
-            {/foreach}
-        {/foreach}
-
-        <div class="js-product product car{if !empty($productClasses)} {$productClasses}{/if}" style="display: flex;justify-content:center;outline: 3px solid #103054;">
-            <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" style="min-height: 266px;">
-                <div class="thumbnail-container" style="background:#1030543d;display: flex;flex-direction: column;justify-content: center;">
-                    <div class="thumbnail-top">
-                        <picture>
-                            <img src="/img/eurmuscle/cardCarsHome/{$brand}{$model}.png" style="width: 100%;background:transparent;max-height: 175px;
-                            object-fit: cover;"/>
-                        </picture>
-                    </div>
-                    <div class="product-descriptionn" style="background: transparent;display: flex;flex-direction: column;align-items: center;color:#fff;gap:0.5rem;">
-                        <div style="display: flex;gap:1rem;font-size: 1.25rem;font-weight: 600;color:#103054;">
-                            <span>{$brand}</span>|<span>{$model}</span>
-                        </div>
-                        <div style="display: flex;flex-direction:column;align-items: center;gap:0.25rem;color:#103054;font-weight: 400;font-size: 1rem;">
-                        <span>{$type}</span>
-                        <span>{$version}</span>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        
-    {/if}
 
     {if $cars_products_page}
         {if $compat}
@@ -122,8 +77,33 @@
     </div>
     {/if}
 
-    {foreach from=$products item="product" key="position"}
+    {if $listing.products|count < 1 || $no_products}
+        <div style="
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: center;
+          font-size: 2rem;
+          color: #222;
+          margin-bottom: 30px;
+        ">
+          <div class="container-not-found-filters" style="text-align: center;">
+            <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);">error_outline</i>
+            <h1 style="font-weight: 600;font-size: 2rem;">{l s='No Result Found' d='Shop.Theme.ProductList'}</h1>
+            <span style="font-size: 1.25rem;color: #555;">{l s='We can\'t find any item matching your search' d='Shop.Theme.ProductList'}</span>
+          </div>
+        </div>
+      {else}
+        {foreach from=$listing.products item="product"}
+            {* <pre>{$product|print_r}</pre> *}
+            {block name='product_miniature'}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product}
+            {/block}
+        {/foreach}
+      {/if}
+
+    {* {foreach from=$products item="product" key="position"}
         {include file="catalog/_partials/miniatures/product.tpl" product=$product position=$position productClasses=$productClasses }
-    {/foreach}
+    {/foreach} *}
 </div>
 
