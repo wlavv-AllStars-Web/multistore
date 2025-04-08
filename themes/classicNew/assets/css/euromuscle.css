@@ -7397,6 +7397,13 @@ transform: translate(-50%,-50%);
   max-width: unset !important;
 }
 
+#blockcart-modal .product-name{
+  padding-top: .5rem;
+  color: var(--euromus-color-600);
+}
+
+
+
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
