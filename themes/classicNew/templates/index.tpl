@@ -111,8 +111,10 @@
                                 $.each(data, function (index, item) {
                                   if(placeholder == "Model") {
                                     selectElement.append('<option value="'+item.id_model+'">'+item.name+'</option>');
-                                  }else{
-                                    selectElement.append('<option value="'+item.id+'">'+item.name+'</option>');
+                                  }elseif(placeholder == "Type") {
+                                    selectElement.append('<option value="'+item.id_type+'">'+item.name+'</option>');
+                                  }elseif(placeholder == "Version") {
+                                    selectElement.append('<option value="'+item.id_version+'">'+item.name+'</option>');
                                   }
                                 });
                             }
