@@ -133,7 +133,7 @@
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
-                        getdataBrandsEuromus: 1,
+                        getdataModelsEuromus: 1,
                         type: 'model',
                         id_brand: brandId,
                         storeId: {Context::getContext()->shop->id}
@@ -148,7 +148,7 @@
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
-                      getdataBrandsEuromus: 1,
+                      getdataTypesEuromus: 1,
                         type: 'type',
                         id_model: modelId,
                         storeId: {Context::getContext()->shop->id}
@@ -162,7 +162,7 @@
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
-                      getdataBrandsEuromus: 1,
+                      getdataVersionsEuromus: 1,
                         type: 'version',
                         id_type: typeId,
                         storeId: {Context::getContext()->shop->id}

@@ -104,7 +104,7 @@ class IndexController extends IndexControllerCore
 
     public static function getBrandsWebTools($id_shop){
 
-        if(Tools::getValue('getdataBrandsEuromus') == 1){
+        if(Tools::getValue('getdataModelsEuromus') == 1){
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $brand = Tools::getValue('id_brand');
@@ -130,6 +130,62 @@ class IndexController extends IndexControllerCore
             echo json_encode($modelsEuromus['data']);
             exit;
         }
+
+        if(Tools::getValue('getdataTypesEuromus') == 1){
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $model = Tools::getValue('id_model');
+            // $store = Tools::getValue('storeId');
+            $store = 2;
+
+            $urlTypes = 'https://webtools.all-stars-motorsport.com/api/get/type/'.$model.'/'.$store.'/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlTypes);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $typesEuromus = json_decode($json, true);
+
+            // pre($modelsEuromus['data']);
+            ob_clean();
+            header('Content-Type: application/json');
+            echo json_encode($typesEuromus['data']);
+            exit;
+        }
+
+        if(Tools::getValue('getdataVersionsEuromus') == 1){
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $type = Tools::getValue('id_type');
+            // $store = Tools::getValue('storeId');
+            $store = 2;
+
+            $urlTypes = 'https://webtools.all-stars-motorsport.com/api/get/version/'.$type.'/'.$store.'/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlTypes);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $versionsEuromus = json_decode($json, true);
+
+            // pre($modelsEuromus['data']);
+            ob_clean();
+            header('Content-Type: application/json');
+            echo json_encode($versionsEuromus['data']);
+            exit;
+        }
+
+
 
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         // $brand = Tools::getValue('id_brand');
