@@ -4108,6 +4108,15 @@ justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
+
+  .details-info-car-mobile{
+    display: flex;
+  }
+
+  .details-info-car-dektop{
+    display: none;
+  }
+
   .row.product-container.js-product-container .left-side{
     height: auto !important;
     width: 100%;
@@ -5192,6 +5201,16 @@ transform: translate(-50%,-50%);
   color: var(--euromus-color-200)!important;
 }
 
+
+@media screen and (min-width: 769px) {
+  .details-info-car-mobile{
+    display: none;
+  }
+
+  .details-info-car-dektop{
+    display: flex;
+  }
+}
 
 
 @media screen and (max-width: 540px) {
@@ -7334,6 +7353,8 @@ transform: translate(-50%,-50%);
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
+
+
 
   .breadcrumb {
     display: none !important;
