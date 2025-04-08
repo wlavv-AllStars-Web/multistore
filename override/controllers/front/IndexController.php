@@ -73,11 +73,17 @@ class IndexController extends IndexControllerCore
                     'icones_videos' => $icon_videos
                 ];
 
+                // pre($homepage_desktop);
+
 
                 // $this->context->smarty->assign('myCars', $my_cars);
         
                 $this->context->smarty->assign('desktop', $homepage_desktop);
                 $this->context->smarty->assign('mobile', $homepage_mobile);
+            }
+
+            if($this->context->shop->id == 1) {
+                $this->context->smarty->assign('brandsEuromus', self::getBrandsWebTools($this->context->shop->id));
             }
         }
 
@@ -94,6 +100,38 @@ class IndexController extends IndexControllerCore
         
 
         $this->setTemplate('index');
+    }
+
+    public static function getBrandsWebTools($id_shop){
+
+        $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        // $brand = Tools::getValue('id_brand');
+
+        // alterar para $id_shop
+        $store = 2;
+
+        $urlBrands = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$store.'/'. $key;
+
+        // $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
+
+
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL,$urlBrands);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+        // Decode JSON string into an associative array
+        $brandsWebTools = json_decode($json, true);
+
+        return $brandsWebTools['data'];
+
+        // pre($brandsWebTools['data']);
+        // header('Content-Type: application/json');
+        // echo json_encode($modelsEuromus['data']);
+        // exit;
+
     }
 
     public static function getBrandAndModel($filter1,$filter2,$filter3,$filter4,$id_lang){

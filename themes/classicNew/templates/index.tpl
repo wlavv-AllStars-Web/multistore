@@ -44,27 +44,7 @@
         {block name='page_content'}
 
           {block name='hook_home'}
-            <div style="display: none;">
-              <form id="ukoocompat_my_cars_custom_form" action="/en/module/ukoocompat/listing" method="GET"> 
-                <input type="hidden" name="id_search" value="1"> 
-                <input type="hidden" name="id_search3" value="1"> 
-                <input type="hidden" name="id_lang" value="1"> 
-                <input type="hidden" id="multiFilter_news" name="news_compats" value="0"> 
-                <input type="hidden" id="multiFilter_order_by" name="order_by_compats" value="price"> 
-                <input type="hidden" id="multiFilter_order_by_orientation" name="order_by_orientation_compats" value="DESC"> 
-                <input type="hidden" id="multiFilter_id_manufacturer" name="id_manufacturer_compats" value=""> 
-                <input type="hidden" id="multiFilter_nr_items" name="nr_items_compats" value="20"> 
-                <input type="hidden" id="multiFilter_n_items" name="n" value="20"> 
-                <input type="hidden" id="multiFilter_page_number" name="p" value="1"> 
-                <input type="hidden" id="multiFilter_id_category" name="id_category" value="0"> 
-                <input type="hidden" id="multiFilter_root_page" name="root_page" value=""> 
-                <input type="hidden" id="check_form" name="check_form" value="99585"> 
-                <input type="hidden" id="custom_filter_1" name="filters1" value="87"> 
-                <input type="hidden" id="custom_filter_2" name="filters2" value="864"> 
-                <input type="hidden" id="custom_filter_3" name="filters3" value="865"> 
-                <input type="hidden" id="custom_filter_4" name="filters4" value="866">
-              </form>
-            </div>
+
             {* {$HOOK_HOME nofilter} *}
 
             <div class="section menu-select-car">
@@ -76,7 +56,7 @@
                 <div class="menu-select-car-content">
                   <select class="custom-select custom-select-lg brands-select">
                     <option selected>{l s="Brand" d="Shop.Theme.Homepage"}</option>
-                    {foreach from=$brands item=brand}
+                    {foreach from=$brandsEuromus item=brand}
                         <option value="{$brand.id_brand}">{$brand.name}</option>
                     {/foreach}
                   </select>
