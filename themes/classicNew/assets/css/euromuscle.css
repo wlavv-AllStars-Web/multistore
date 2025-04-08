@@ -3929,7 +3929,7 @@ justify-content: center;
 
 .row.product-container.js-product-container {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 1rem;
   /* align-items: center; */
 }
 
@@ -5227,10 +5227,6 @@ transform: translate(-50%,-50%);
 
   /* page product */
 
-  .product-actions .product-details-options {
-    width: 50%;
-    background: var(--euromus-color-700);
-  }
 
   .product-actions .product-details-options .product-variants{
     width: 100%;

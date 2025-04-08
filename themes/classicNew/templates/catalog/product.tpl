@@ -52,7 +52,7 @@
      <meta content="{$product.url}">
  
      <div class="row product-container js-product-container">
-       <div class="col-md-6 left-side" >
+       <div class="col-md-7 left-side" >
          {block name='page_content_container'}
            <section class="page-content" id="content" >
              {block name='page_content'}
@@ -71,7 +71,7 @@
            </section>
          {/block}
          </div>
-         <div class="col-md-6 right-side" >
+         <div class="col-md-5 right-side" >
            {block name='page_header_container'}
              {block name='page_header'}
                <h1 class="h1">{block name='page_title'}{$product.name}{/block}</h1>
@@ -224,7 +224,7 @@
        </div>
      </div>
      <div class="hidden-md-down"
-   style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin:4rem 0 0 0"></div>
+   style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin: 0"></div>
  <div class="section_tabs_video" style="display: flex;{if empty($product.youtube_1)}justify-content:center;{/if}">
              {* inicio tabs *}
              <div class="column_tabs" style="width:100%">
