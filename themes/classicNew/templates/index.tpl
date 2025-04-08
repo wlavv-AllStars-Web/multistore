@@ -106,9 +106,14 @@
                             console.log('selectElement', selectElement)
                             console.log('placeholder', placeholder)
                             if (data.length > 0) {
-                                selectElement.prop("disabled", false);
+                                selectElement.removeAttribute("disabled");
+                                
                                 $.each(data, function (index, item) {
+                                  if(placeholder == "Model") {
+                                    selectElement.append('<option value="'+item.id_model+'">'+item.name+'</option>');
+                                  }else{
                                     selectElement.append('<option value="'+item.id+'">'+item.name+'</option>');
+                                  }
                                 });
                             }
                         },
