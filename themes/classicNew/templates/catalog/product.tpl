@@ -82,13 +82,13 @@
            {assign var="manufacturers" value=Manufacturer::getManufacturers()}
  
            <div class="subtitles-details">
-             <div class="details-reference"><b>Reference:</b> {$product.reference}</div>
+             <div class="details-reference"><b>{l s="Reference" d="Shop.Theme.Pageproduct"}:</b> {$product.reference}</div>
              {foreach from=$manufacturers item=item}
                {if $item.name === $product.manufacturer_name}
-               <div class="details-brand"><b>Brand:</b> <span><a href="/brand/{$item.id_manufacturer}-{$item.link_rewrite}">{$product.manufacturer_name}</a></span></div>
+               <div class="details-brand"><b>{l s="Brand" d="Shop.Theme.Pageproduct"}:</b> <span><a href="/brand/{$item.id_manufacturer}-{$item.link_rewrite}">{$product.manufacturer_name}</a></span></div>
                {/if}
              {/foreach}
-             <div class="details-payment"><a href="{$linkPayment}">Pay in 3 or 4 Installment</a></div>
+             <div class="details-payment"><a href="{$linkPayment}">{l s="Pay in 3 or 4 Installment" d="Shop.Theme.Pageproduct"}</a></div>
            </div>
            
  
@@ -161,9 +161,9 @@
                    {* features *}
                      <div class="product_features" >
                        {* <pre>{print_r($product.features,1)}</pre> *}
-                        <div style="padding: 0.2rem 2rem;"><b>EC Approval:</b> <span>{if $product.ec_approved == 0}No{else}Yes{/if}</span></div>
+                        <div style="padding: 0.2rem 2rem;"><b>{l s="EC Approval" d="Shop.Theme.Pageproduct"}:</b> <span>{if $product.ec_approved == 0}{l s="No" d="Shop.Theme.Pageproduct"}{else}{l s="Yes" d="Shop.Theme.Pageproduct"}{/if}</span></div>
                         {if !empty($product.origin_product)}
-                          <div style="padding: 0.2rem 2rem;"><b>Origin:</b> <span>{$product.origin_product}</span></div>
+                          <div style="padding: 0.2rem 2rem;"><b>{l s="Origin" d="Shop.Theme.Pageproduct"}:</b> <span>{$product.origin_product}</span></div>
                         {/if}
 
                        {foreach from=$product.features item=feature}
