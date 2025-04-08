@@ -1258,9 +1258,9 @@ class AsGroup extends Module
         
         $storeId = $this->context->shop->id;
 
-        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/brands/'.$storeId.'/'.$key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/bo/brands/'.$storeId.'/'.$key;
 
-        $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
+        $urlCompats = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
 
         // pre($product);
 
@@ -1305,7 +1305,7 @@ class AsGroup extends Module
     public function getModelsFromBrand($brand, $shop_id, $key)
     {
         // Build the API URL
-        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/models/' . $brand . '/' . $shop_id . '/' . $key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/bo/models/' . $brand . '/' . $shop_id . '/' . $key;
 
         // Initialize cURL
         $ch = curl_init();
@@ -1336,7 +1336,7 @@ class AsGroup extends Module
     public function getTypesFromModel($brand,$modelV,$shop_id, $key)
     {
         // Build the API URL
-        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/types/' . $brand . '/'.$modelV.'/' . $shop_id . '/' . $key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/bo/types/' . $brand . '/'.$modelV.'/' . $shop_id . '/' . $key;
         // pre($url);
 
         // Initialize cURL
@@ -1370,7 +1370,7 @@ class AsGroup extends Module
     public function getVersionsFromTypes($brand,$modelV,$type,$shop_id, $key)
     {
         // Build the API URL
-        $url = 'https://webtools.all-stars-motorsport.com/api/get/bo/versions/' . $brand . '/'.$modelV.'/'.$type.'/' . $shop_id . '/' . $key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/bo/versions/' . $brand . '/'.$modelV.'/'.$type.'/' . $shop_id . '/' . $key;
         // pre($url);
 
         // Initialize cURL
@@ -1402,10 +1402,10 @@ class AsGroup extends Module
     }
 
     public function saveCompat($brand, $model, $type, $version, $product,$shop_id, $key) {
-        $url = 'https://webtools.all-stars-motorsport.com/api/create/bo/compats/' . $brand . '/'.$model.'/'.$type.'/'.$version.'/'.$product.'/' . $shop_id . '/' . $key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/create/bo/compats/' . $brand . '/'.$model.'/'.$type.'/'.$version.'/'.$product.'/' . $shop_id . '/' . $key;
 
         $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-        $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/'.$product .'/'.$shop_id.'/'.$keyFront;
+        $urlCompats = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/product/compats/'.$product .'/'.$shop_id.'/'.$keyFront;
         
         // Initialize cURL
         $ch = curl_init();
@@ -1452,7 +1452,7 @@ class AsGroup extends Module
 
     public function deleteCompat($id_compat, $product, $shop_id) {
         $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
-        $urlCompatRemove = 'https://webtools.all-stars-motorsport.com/api/remove/bo/compats/'.$id_compat.'/'.$product .'/'.$shop_id.'/'.$key;
+        $urlCompatRemove = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/remove/bo/compats/'.$id_compat.'/'.$product .'/'.$shop_id.'/'.$key;
 
         
         // Initialize cURL
