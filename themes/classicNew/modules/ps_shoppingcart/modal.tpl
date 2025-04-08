@@ -38,7 +38,7 @@
               <div class="col-md-12">
                 {if $product.default_image}
                   <img
-                    src="{$product.default_image.tm_home_default.url}"
+                    src="{$product.default_image.medium.url}"
                     data-full-size-image-url="{$product.default_image.large.url}"
                     title="{$product.default_image.legend}"
                     alt="{$product.default_image.legend}"
