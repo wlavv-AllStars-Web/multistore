@@ -213,11 +213,11 @@ main {
 }
 
 .product-miniature .highlighted-informations .quick-view{
-  color: #fff;
+  color: #fff !important;
 }
 
 .product-miniature .highlighted-informations .quick-view{
-  color: var(--euromus-color-700);
+  color: var(--euromus-color-700) !important;
 }
 
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
