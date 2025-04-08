@@ -1023,7 +1023,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $shop_id = $this->context->shop->id; 
 
-            $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+            $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
             // pre($url);
     
             // Initialize cURL
