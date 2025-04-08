@@ -7391,6 +7391,12 @@ transform: translate(-50%,-50%);
   padding-bottom: 1rem;
 }
 
+#blockcart-modal .product-image{
+  margin: 0;
+  width: 100%;
+  max-width: unset;
+}
+
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
