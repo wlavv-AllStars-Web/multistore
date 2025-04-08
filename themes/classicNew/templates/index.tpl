@@ -62,21 +62,13 @@
                   </select>
                   <select class="custom-select custom-select-lg models-select disabled">
                     <option selected>{l s="Model" d="Shop.Theme.Homepage"}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+
                   </select>
                   <select class="custom-select custom-select-lg types-select disabled">
                     <option selected>{l s="Type" d="Shop.Theme.Homepage"}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                   </select>
                   <select class="custom-select custom-select-lg versions-select disabled">
                     <option selected>{l s="Version" d="Shop.Theme.Homepage"}</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                   </select>
 
                     <button id="search-button-car" type="submit" name="" class="button btn btn-default button-medium" disabled="disabled">
@@ -89,7 +81,7 @@
 
             <script>
               document.addEventListener("DOMContentLoaded", function () {
-                const brandSelect = $(".brands-select"); // ✅ jQuery object
+                const brandSelect = $(".brands-select"); 
                 const modelSelect = $(".models-select");
                 const typeSelect = $(".types-select");
                 const versionSelect = $(".versions-select");
@@ -111,6 +103,8 @@
                         success: function (data) {
                           console.log(data)
                             resetSelect(selectElement, placeholder);
+                            console.log('selectElement', selectElement)
+                            console.log('placeholder', placeholder)
                             if (data.length > 0) {
                                 selectElement.prop("disabled", false);
                                 $.each(data, function (index, item) {
