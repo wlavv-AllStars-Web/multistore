@@ -139,9 +139,10 @@ class IndexController extends IndexControllerCore
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $brand = Tools::getValue('id_brand');
-            $store = Tools::getValue('storeId');
+            // $store = Tools::getValue('storeId');
+            $store = 2;
 
-            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
+            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/model/'.$brand.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -154,7 +155,7 @@ class IndexController extends IndexControllerCore
             // Decode JSON string into an associative array
             $modelsEuromus = json_decode($json, true);
 
-            pre($modelsEuromus['data']);
+            // pre($modelsEuromus['data']);
             header('Content-Type: application/json');
             echo json_encode($modelsEuromus['data']);
             exit;
