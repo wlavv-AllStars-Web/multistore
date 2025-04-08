@@ -5203,13 +5203,20 @@ transform: translate(-50%,-50%);
 
 
 @media screen and (min-width: 769px) {
+  #current_car_settings {
+    outline: 2px solid var(--euromus-color-700);
+    box-shadow: var(--euromus-shadow);
+    padding: 0;
+  }
+
   .details-info-car-mobile{
     display: none;
   }
 
   .details-info-car-dektop{
-    display: flex;
+    display: block;
   }
+
 }
 
 
