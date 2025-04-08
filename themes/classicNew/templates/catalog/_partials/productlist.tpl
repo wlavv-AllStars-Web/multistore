@@ -72,6 +72,39 @@
         </div>
         
     {/if}
+
+    {if $cars_products_page}
+        {if $compat}
+          <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xl-2 col-lg-4 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;border-radius:0.25rem;" id_compat="{$compat['id_compat']}">
+          <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
+            <div style="width: 100%;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
+                <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;width:100%;">
+              </div>
+              <div class="current-car-content">
+                {if !$compat['subscribed']}
+                <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: var(--euromus-color-300);font-weight:600;"
+                onclick="addToMyCars({$compat['id_compat']})">
+                  {l s='Click to receive updates about new products for this car' d='Shop.Theme.ProductList'}
+                </div>
+                {/if}
+    
+                <div class="mobile details-info-car-mobile">
+                  <span><img src="{$compat['brand_logo']}" style="width: 40px;"/></span>
+                  <span>|</span>
+                  <span style="color: var(--asm-color) !important;">{$compat['model']}</span>
+                  <span>|</span>
+                  <span>{$compat['type']}</span>
+                </div>
+                <div class="desktop details-info-car-dektop">
+                  <div>{$compat['brand']} | {$compat['model']}</div>
+                  <div style="margin-top: 11px;"> {$compat['type']} | {$compat['version']}</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        {/if}
+    {/if}
+
     {if $category.id == 550 ||$category.id == 551 ||$category.id == 552 ||$category.id == 553 ||$category.id == 554 ||$category.id == 555}
     <div class="js-product product category{if !empty($productClasses)} {$productClasses}{/if}" style="display: flex;justify-content:center;outline: 3px solid #103054;">
         <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
