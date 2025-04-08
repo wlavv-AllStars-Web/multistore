@@ -38,8 +38,8 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            // $shop_id = $this->context->shop->id; 
-            $shop_id = 2; 
+            $shop_id = $this->context->shop->id; 
+            // $shop_id = 2; 
             $exists = 0;
             if($this->context->customer->id){
                 $id_customer = $this->context->customer->id;
