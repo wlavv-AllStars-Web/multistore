@@ -5201,6 +5201,14 @@ transform: translate(-50%,-50%);
   color: var(--euromus-color-200)!important;
 }
 
+#product #compatibilities table thead {
+  background: var(--euromus-color-600);
+  color: #fff;
+}
+
+#product #compatibilities table tbody {
+  background: var(--euromus-color-700);
+}
 
 @media screen and (min-width: 769px) {
   #current_car_settings {
