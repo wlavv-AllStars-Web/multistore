@@ -124,9 +124,9 @@
             {/if}
           {/block}
   
-          {block name='product_reviews'}
+          {* {block name='product_reviews'}
             {hook h='displayProductListReviews' product=$product}
-          {/block}
+          {/block} *}
         </div>
   
         {* {include file='catalog/_partials/product-flags.tpl'} *}
