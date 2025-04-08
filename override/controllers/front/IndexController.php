@@ -108,8 +108,8 @@ class IndexController extends IndexControllerCore
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $brand = Tools::getValue('id_brand');
-            // $store = Tools::getValue('storeId');
-            $store = 2;
+            $store = Tools::getValue('storeId');
+            // $store = 2;
 
             $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/model/'.$brand.'/'.$store.'/'.$key;
 
@@ -135,8 +135,8 @@ class IndexController extends IndexControllerCore
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $model = Tools::getValue('id_model');
-            // $store = Tools::getValue('storeId');
-            $store = 2;
+            $store = Tools::getValue('storeId');
+            // $store = 2;
 
             $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
 
@@ -162,8 +162,8 @@ class IndexController extends IndexControllerCore
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $type = Tools::getValue('id_type');
-            // $store = Tools::getValue('storeId');
-            $store = 2;
+            $store = Tools::getValue('storeId');
+            // $store = 2;
 
             $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/version/'.$type.'/'.$store.'/'.$key;
 
@@ -192,8 +192,8 @@ class IndexController extends IndexControllerCore
             $model = Tools::getValue('model_id');
             $type = Tools::getValue('type_id');
             $version = Tools::getValue('version_id');
-            // $store = Tools::getValue('storeId');
-            $store = 2;
+            $store = Tools::getValue('storeId');
+            // $store = 2;
 
             $urlProductIdCompat = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
 
@@ -223,7 +223,7 @@ class IndexController extends IndexControllerCore
         // $brand = Tools::getValue('id_brand');
 
         // alterar para $id_shop
-        $store = 2;
+        $store = $id_shop;
 
         $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
 

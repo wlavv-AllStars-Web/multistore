@@ -1333,11 +1333,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     'q' => $result->getEncodedFacets(),
                 ]),
             ];
+            
         }elseif($this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
             
             $id_compat = Tools::getValue('id_compat');
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            $shop_id = 2; 
+            $shop_id = $this->context->shop->id; 
 
             $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
             // pre($url);
