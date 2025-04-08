@@ -5225,6 +5225,22 @@ transform: translate(-50%,-50%);
     display: block;
   }
 
+  /* page product */
+
+  .product-actions .product-details-options {
+    width: 50%;
+  }
+
+  .product-actions .product-details-options .product-variants{
+    width: 100%;
+  }
+
+  .product-actions .product-details-options .product-variants .product-variants-item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
 }
 
 
