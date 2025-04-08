@@ -62,10 +62,10 @@
          
          {block name='product_list'}
             
-            {include file='catalog/_partials/products.tpl' listing=$listingCompat compat=$compat productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/products.tpl' listing=$listingCompat compat=$compat productClass="col-xs-12 col-sm-6 col-xl-2"}
 
             {if $universals}
-            {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-2"}
             {/if}
          {/block}
  
