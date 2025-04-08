@@ -111,7 +111,7 @@ class IndexController extends IndexControllerCore
             // $store = Tools::getValue('storeId');
             $store = 2;
 
-            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/model/'.$brand.'/'.$store.'/'.$key;
+            $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/model/'.$brand.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -138,7 +138,7 @@ class IndexController extends IndexControllerCore
             // $store = Tools::getValue('storeId');
             $store = 2;
 
-            $urlTypes = 'https://webtools.all-stars-motorsport.com/api/get/type/'.$model.'/'.$store.'/'.$key;
+            $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -165,7 +165,7 @@ class IndexController extends IndexControllerCore
             // $store = Tools::getValue('storeId');
             $store = 2;
 
-            $urlTypes = 'https://webtools.all-stars-motorsport.com/api/get/version/'.$type.'/'.$store.'/'.$key;
+            $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/version/'.$type.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -195,7 +195,7 @@ class IndexController extends IndexControllerCore
             // $store = Tools::getValue('storeId');
             $store = 2;
 
-            $urlProductIdCompat = 'https://webtools.all-stars-motorsport.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
+            $urlProductIdCompat = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -225,9 +225,9 @@ class IndexController extends IndexControllerCore
         // alterar para $id_shop
         $store = 2;
 
-        $urlBrands = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$store.'/'. $key;
+        $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
 
-        // $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
+        // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
 
 
         $ch = curl_init();
