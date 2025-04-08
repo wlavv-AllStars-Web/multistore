@@ -3884,7 +3884,7 @@ justify-content: center;
 .right-side .features_productdetails {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
 }
 
 .right-side .product_features{
@@ -5229,6 +5229,7 @@ transform: translate(-50%,-50%);
 
   .product-actions .product-details-options {
     width: 50%;
+    background: var(--euromus-color-700);
   }
 
   .product-actions .product-details-options .product-variants{
