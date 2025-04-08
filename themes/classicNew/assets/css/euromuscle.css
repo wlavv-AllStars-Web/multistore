@@ -3983,6 +3983,7 @@ justify-content: center;
 
 .right-side .product-actions {
   background: #f2f2f2 !important;
+  padding: 0 10px;
 }
 
 .right-side .product-actions .product-pack{
