@@ -295,7 +295,12 @@ class CarsProductsControllerCore extends ProductListingFrontController{
         $sql = 'SELECT pp.id_product 
         FROM ps_product AS pp
         LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-        WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 AND pp.id_product > ' . (int)$lastProductId . ' 
+        WHERE pp.universal = 1 
+        AND pp.active = 1 
+        AND pps.visibility != "none"
+        AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
+        AND pps.id_shop = '.$this->context->shop->id.' 
+        AND pp.id_product > ' . (int)$lastProductId . ' 
         ORDER BY pp.id_product ASC LIMIT 8';
 
         $newProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
