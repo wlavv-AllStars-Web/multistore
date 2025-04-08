@@ -115,6 +115,8 @@
                                     selectElement.append('<option value="'+item.id_type+'">'+item.name+'</option>');
                                   }else if(placeholder == "Version") {
                                     selectElement.append('<option value="'+item.id_version+'">'+item.name+'</option>');
+                                  }else if(placeholder == "Search") {
+                                    window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+item.id_compat
                                   }
                                 });
                             }
