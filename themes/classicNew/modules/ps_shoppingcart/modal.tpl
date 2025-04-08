@@ -48,7 +48,7 @@
                   >
                 {else}
                   <img
-                    src="{$urls.no_picture_image.bySize.medium_default.url}"
+                    src="{$urls.no_picture_image.bySize.tm_home_default.url}"
                     loading="lazy"
                     class="product-image"
                     style="max-width: 125px;margin:auto;"
