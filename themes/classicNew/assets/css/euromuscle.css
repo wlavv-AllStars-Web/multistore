@@ -7413,7 +7413,7 @@ transform: translate(-50%,-50%);
 
 /* cars page */
 
-#cars-products > .container {
+#cars-products #wrapper > .container {
   padding: 0 !important;
   width: 100% !important;
 }
