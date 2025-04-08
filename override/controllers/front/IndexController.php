@@ -206,12 +206,12 @@ class IndexController extends IndexControllerCore
             curl_close($ch);
 
             // Decode JSON string into an associative array
-            $versionsEuromus = json_decode($json, true);
+            $compat = json_decode($json, true);
 
             // pre($modelsEuromus['data']);
             ob_clean();
             header('Content-Type: application/json');
-            echo json_encode($versionsEuromus['data']);
+            echo json_encode($compat['data']);
             exit;
         }
 
