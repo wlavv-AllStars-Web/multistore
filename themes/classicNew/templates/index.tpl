@@ -104,7 +104,7 @@
                 // Fetch data from the server
                 function fetchOptions(params, selectElement, placeholder) {
                     $.ajax({
-                        url: '{url entity="indexController"}',
+                        url: '{$link->getPageLink('index')}',
                         type: 'GET',
                         data: params,
                         dataType: 'json',
