@@ -134,6 +134,33 @@ class IndexController extends IndexControllerCore
 
     }
 
+    public function postProcessAjax(){
+        if(Tools::getValue('getdataBrandsEuromus') == 1){
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $brand = Tools::getValue('id_brand');
+            $store = Tools::getValue('storeId');
+
+            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlModels);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $modelsEuromus = json_decode($json, true);
+
+            pre($modelsEuromus['data']);
+            header('Content-Type: application/json');
+            echo json_encode($modelsEuromus['data']);
+            exit;
+        }
+    }
+
     public static function getBrandAndModel($filter1,$filter2,$filter3,$filter4,$id_lang){
         $array_NameModel = [];
         $brandnamesql = "Select value

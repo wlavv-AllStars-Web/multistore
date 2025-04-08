@@ -104,7 +104,7 @@
                 // Fetch data from the server
                 function fetchOptions(params, selectElement, placeholder) {
                     $.ajax({
-                        url: '{url entity="frontController"}',
+                        url: '{url entity="indexController"}',
                         type: 'GET',
                         data: params,
                         dataType: 'json',
