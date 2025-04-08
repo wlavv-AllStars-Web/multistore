@@ -188,10 +188,10 @@ class IndexController extends IndexControllerCore
         if(Tools::getValue('getProductsIdCompat') == 1){
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            $brand = Tools::getValue('id_brand');
-            $model = Tools::getValue('id_model');
-            $type = Tools::getValue('id_type');
-            $version = Tools::getValue('id_version');
+            $brand = Tools::getValue('brand_id');
+            $model = Tools::getValue('model_id');
+            $type = Tools::getValue('type_id');
+            $version = Tools::getValue('version_id');
             // $store = Tools::getValue('storeId');
             $store = 2;
 
