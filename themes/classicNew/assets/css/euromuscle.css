@@ -7422,3 +7422,25 @@ transform: translate(-50%,-50%);
   padding: 0 2rem !important;
 }
 
+.universals-product-list {
+  display: flex;
+  padding-inline: 2rem;
+}
+
+.universals-product-list .js-product.product {
+  padding: 0;
+  outline: 2px solid var(--euromus-color-700);
+  box-shadow: var(--euromus-shadow);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.universals-product-list .js-product.product:hover{
+  outline: 3px solid var(--euromus-color-300);
+  border-radius: 0.25rem;
+}
+
+.universals-product-list .js-product.product .thumbnail-container{
+  margin-bottom: 0;
+}
+
