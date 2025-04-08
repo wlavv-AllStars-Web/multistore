@@ -7392,9 +7392,9 @@ transform: translate(-50%,-50%);
 }
 
 #blockcart-modal .product-image{
-  margin: 0;
+  margin: 0 !important;
   width: 100%;
-  max-width: unset;
+  max-width: unset !important;
 }
 
 /* mobile search compat */
