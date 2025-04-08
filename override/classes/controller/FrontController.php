@@ -536,30 +536,6 @@ class FrontControllerCore extends Controller
     {
         // if(Tools::getValue('getBrandsModelProducts')){
 
-        if(Tools::getValue('getdataBrandsEuromus') == 1){
-
-            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            $brand = Tools::getValue('id_brand');
-            $store = Tools::getValue('storeId');
-
-            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
-
-
-            $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL,$urlModels);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
-            $json = curl_exec($ch);
-            curl_close($ch);
-
-            // Decode JSON string into an associative array
-            $modelsEuromus = json_decode($json, true);
-
-            pre($modelsEuromus['data']);
-            header('Content-Type: application/json');
-            echo json_encode($modelsEuromus['data']);
-            exit;
-        }
 
         if($this->context->shop->id == 2){
 
@@ -925,17 +901,19 @@ class FrontControllerCore extends Controller
     }
 
     public function verifyLastNotification() {
-        if($this->context->customer->id){
-            $sqlLastid = "SELECT MAX(id) AS lastIdNotification FROM "._DB_PREFIX_."asd_alert_messages WHERE message_status=1 AND deleted=0";
-            $valueTableAlert = Db::getInstance()->getRow($sqlLastid);
+        if($this->context->shop->id == 3){
+            if($this->context->customer->id){
+                $sqlLastid = "SELECT MAX(id) AS lastIdNotification FROM "._DB_PREFIX_."asd_alert_messages WHERE message_status=1 AND deleted=0";
+                $valueTableAlert = Db::getInstance()->getRow($sqlLastid);
+            
+                $sqlCustomeridnotification = "SELECT id_notification AS currentIdNotification FROM "._DB_PREFIX_."customer WHERE id_customer=".$this->context->customer->id;
+                $valueCustomerNotification = Db::getInstance()->getRow($sqlCustomeridnotification);
         
-            $sqlCustomeridnotification = "SELECT id_notification AS currentIdNotification FROM "._DB_PREFIX_."customer WHERE id_customer=".$this->context->customer->id;
-            $valueCustomerNotification = Db::getInstance()->getRow($sqlCustomeridnotification);
-    
-            if( $valueTableAlert['lastIdNotification'] <= $valueCustomerNotification['currentIdNotification']){
-                return 0;
-            }else{
-                return 1;
+                if( $valueTableAlert['lastIdNotification'] <= $valueCustomerNotification['currentIdNotification']){
+                    return 0;
+                }else{
+                    return 1;
+                }
             }
         }
     }
@@ -2610,24 +2588,26 @@ class FrontControllerCore extends Controller
         $shop = (int)Context::getContext()->shop->id;
         $Allcms = CMS::getCMSPages($lang,null,true,$shop);
        
-        foreach ($Allcms as $cms) {
-            if($cms['id_cms'] == 58){
-                $this->context->smarty->assign('Graphic', $cms);	
-            }
-            if($cms['id_cms'] == 59){
-                $this->context->smarty->assign('Web', $cms);	
-            }
-            if($cms['id_cms'] == 60){
-                $this->context->smarty->assign('Customer', $cms);	
-            }
-            if($cms['id_cms'] == 61){
-                $this->context->smarty->assign('Picker', $cms);	
-            }
-            if($cms['id_cms'] == 62){
-                $this->context->smarty->assign('Associate', $cms);	
-            }
-            if($cms['id_cms'] == 63){
-                $this->context->smarty->assign('General', $cms);	
+        if($shop == 3){
+            foreach ($Allcms as $cms) {
+                if($cms['id_cms'] == 58){
+                    $this->context->smarty->assign('Graphic', $cms);	
+                }
+                if($cms['id_cms'] == 59){
+                    $this->context->smarty->assign('Web', $cms);	
+                }
+                if($cms['id_cms'] == 60){
+                    $this->context->smarty->assign('Customer', $cms);	
+                }
+                if($cms['id_cms'] == 61){
+                    $this->context->smarty->assign('Picker', $cms);	
+                }
+                if($cms['id_cms'] == 62){
+                    $this->context->smarty->assign('Associate', $cms);	
+                }
+                if($cms['id_cms'] == 63){
+                    $this->context->smarty->assign('General', $cms);	
+                }
             }
         }
     }
