@@ -173,7 +173,7 @@
  
                      <div class="product-details-options" >
                        
-                       {block name='product_pack'}
+                       {* {block name='product_pack'}
                          {if $packItems}
                            <section class="product-pack">
                              <p class="h4">{l s='This pack contains' d='Shop.Theme.Catalog'}</p>
@@ -184,7 +184,7 @@
                              {/foreach}
                          </section>
                          {/if}
-                       {/block}
+                       {/block} *}
  
                        {block name='product_discounts'}
                          {include file='catalog/_partials/product-discounts.tpl'}
