@@ -552,12 +552,12 @@ class FrontControllerCore extends Controller
 
                 $id_customer = Context::getContext()->customer->id;
 
-                $urlCarsGarage = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$values['storeId'].'/'.$key;
+                $urlCarsGarage = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/cars/'.$id_customer.'/'.$values['storeId'].'/'.$key;
 
                 if(Tools::getValue('type') == 'brand'){
-                    $url = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$values['storeId'].'/'.$key;
+                    $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$values['storeId'].'/'.$key;
                 }elseif(Tools::getValue('type') == 'model') {
-                    $url = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$values['id_brand'].'/'.$values['storeId'].'/'.$key;
+                    $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$values['id_brand'].'/'.$values['storeId'].'/'.$key;
                 }
 
 
@@ -2613,7 +2613,7 @@ class FrontControllerCore extends Controller
     }
 
     public function saveCarGarage() {
-        // https://webtools.all-stars-motorsport.com/api/add/car/{id_customer}/{id_compat}/{iso_code}/{store}/{token}
+        // https://webtools.'.$_SERVER['SERVER_NAME'].'/api/add/car/{id_customer}/{id_compat}/{iso_code}/{store}/{token}
         // pre(Tools::getAllValues());
         $email = Tools::getValue('email');
 
@@ -2630,7 +2630,7 @@ class FrontControllerCore extends Controller
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         $shop_id = $this->context->shop->id; 
 
-        $url = 'https://webtools.all-stars-motorsport.com/api/add/car/'. $id_customer . '/' . $id_compat . '/'. $iso_code . '/'. $shop_id . '/' . $key;
+        $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/add/car/'. $id_customer . '/' . $id_compat . '/'. $iso_code . '/'. $shop_id . '/' . $key;
         // pre($url);
 
         // Initialize cURL
