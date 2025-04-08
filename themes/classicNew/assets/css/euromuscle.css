@@ -209,7 +209,15 @@ main {
 }
 
 .product-miniature .highlighted-informations {
-  background: unset !important;
+  background: var(--euromus-color-300) !important;
+}
+
+.product-miniature .highlighted-informations .quick-view{
+  color: #fff;
+}
+
+.product-miniature .highlighted-informations .quick-view{
+  color: var(--euromus-color-700);
 }
 
 #module-ukoocompat-listing #ukoocompat_search_block_form_1 {
