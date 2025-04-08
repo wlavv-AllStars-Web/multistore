@@ -3884,7 +3884,7 @@ justify-content: center;
 .right-side .features_productdetails {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .right-side .product_features{
@@ -5233,12 +5233,14 @@ transform: translate(-50%,-50%);
 
   .product-actions .product-details-options .product-variants{
     width: 100%;
+    margin-bottom: 1rem;
   }
 
   .product-actions .product-details-options .product-variants .product-variants-item{
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin: 0;
   }
 
 }
