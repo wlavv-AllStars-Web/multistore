@@ -57,12 +57,12 @@
               </div>
               <div class="col-md-12">
                 <h6 class="h6 product-name">{$product.name}</h6>
-                <span class="product-price label" style="color: #103054;">{l s='Price' d='Shop.Theme.Checkout'}: <strong>{$product.price}</strong></span>
+                <span class="product-price label" style="color: #103054;"><strong>{l s='Price' d='Shop.Theme.Checkout'}:</strong> <span>{$product.price}</span></span>
                 {hook h='displayProductPriceBlock' product=$product type="unit_price"}
                 {foreach from=$product.attributes item="property_value" key="property"}
-                <span class="{$property|lower} label">{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
+                <span class="{$property|lower} label"><strong>{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}</strong> <span> {$property_value}</span></span><br>
                 {/foreach}
-                <span class="product-quantity label">{l s='Quantity:' d='Shop.Theme.Checkout'}&nbsp;<strong>{$product.cart_quantity}</strong></span>
+                <span class="product-quantity label"><strong>{l s='Quantity:' d='Shop.Theme.Checkout'}</strong>&nbsp;<span>{$product.cart_quantity}</span></span>
               </div>
             </div>
           </div>
