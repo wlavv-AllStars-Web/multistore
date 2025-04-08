@@ -2,12 +2,12 @@
     <div style="width: 100%;background:#222;border-bottom: 3px solid;border-color:var(--asm-color);">
         <h1 style="margin: auto;text-align:center;color:#fff;padding:.75rem 1rem;">( {$total} ) {l s="Universal Products" d="Shop.Theme.Universals"}</h1>
     </div>
-    <div class="universals-product-list d-flex p-3" style="flex-wrap: wrap;position:relative;">
-    {foreach from=$universals item=product name=products}
-        {block name='product_miniature'}
-            {include file='catalog/_partials/miniatures/product.tpl' product=$product}
-        {/block}
-    {/foreach}
+    <div class="universals-product-list d-flex py-3" style="flex-wrap: wrap;position:relative;">
+        {foreach from=$universals item=product name=products}
+            {block name='product_miniature'}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product page='universals'}
+            {/block}
+        {/foreach}
         <div class="loading-overlay-universals" role="status">
             <span class="loading-spinner"></span>
         </div>
