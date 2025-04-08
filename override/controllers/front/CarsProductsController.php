@@ -243,7 +243,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                             FROM ps_category_product AS pcp
                             LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
                             LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product LIMIT 8';
+                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = '.$this->context->shop->id.' GROUP BY pcp.id_product LIMIT 8';
 
         $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
 
@@ -253,7 +253,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
 
         $sqlTotalUniversals = 'SELECT COUNT(*)
                                 FROM ps_product AS pp
-                                LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product AND pps.id_shop = 2
+                                LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product AND pps.id_shop = '.$this->context->shop->id.'
                                 WHERE pp.universal = 1 AND pp.active = 1';
 
         $TotalUniversals = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlTotalUniversals);
