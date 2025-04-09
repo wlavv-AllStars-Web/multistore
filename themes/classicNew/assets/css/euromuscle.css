@@ -4856,6 +4856,10 @@ body#checkout section.checkout-step .address-selector {
   border-radius: 0.25rem;
 }
 
+.product-miniature .thumbnail-container .product-thumbnail img{
+  margin: 4px auto;
+  border-radius: .25rem;
+}
 
 #module-ukoocompat-listing .product-price-and-shipping .price::after {
   content: '€';
