@@ -1,4 +1,4 @@
-<script>
+<script defer="defer">
     function setOrder(element) {
         console.log(element)
         const elementValue = element.getAttribute("value")
