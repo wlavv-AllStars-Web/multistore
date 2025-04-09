@@ -7543,7 +7543,10 @@ transform: translate(-50%,-50%);
 .products-sort-order .dropdown-menu {
   overflow-y: auto;
   max-height: 360px;
-  padding-bottom: 0;
+  padding-block: 0;
+  width: 100%;
+  border: 2px solid var(--euromus-color-500);
+  border-radius: .25rem;
 }
 
 .products-sort-order .select-title {
@@ -7554,6 +7557,11 @@ transform: translate(-50%,-50%);
   padding: 0 0 0 1rem !important;
   border-radius: .25rem;
   user-select: none;
+}
+
+.brands-sort .select-list:hover, .products-sort-order .select-list:hover, .suppliers-sort .select-list:hover{
+  color: #fff !important;
+  background: var(--euromus-color-500) !important;
 }
 
 #name_category {
@@ -7612,7 +7620,7 @@ transform: translate(-50%,-50%);
 
 .btn-remove-filter-wheel {
   border-radius: 50%;
-  color: #333 !important;
+  color: var(--euromus-color-300) !important;
 }
 
 #name_items_per_page {
