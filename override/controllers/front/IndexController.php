@@ -317,37 +317,10 @@ class IndexController extends IndexControllerCore
             // Decode JSON string into an associative array
             $typesEuromus = json_decode($json, true);
 
-            $typesEuromus = $typesEuromus['data'];
             // get versions
+            
 
-            $compat = [];
-
-
-            if (is_array($typesEuromus)) {
-                foreach ($typesEuromus as $type) {
-                    if (!isset($type['id_type'])) {
-                        continue; // skip if no id found
-                    }
-        
-                    $typeId = $type['id_type'];
-                    $urlVersions = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $key;
-        
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $urlVersions);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-                    $json = curl_exec($ch);
-                    curl_close($ch);
-        
-                    $versions = json_decode($json, true);
-        
-                    if (is_array($versions)) {
-                        $compat[$typeId] = $versions;
-                    }
-                }
-            }
-        
-            return $compat;
+            pre($typesEuromus);
             
         }
         // echo $idBrand;
