@@ -317,6 +317,7 @@ class IndexController extends IndexControllerCore
             // Decode JSON string into an associative array
             $typesEuromus = json_decode($json, true);
 
+            $typesEuromus = $typesEuromus['data'];
             // get versions
 
             $compat = [];
