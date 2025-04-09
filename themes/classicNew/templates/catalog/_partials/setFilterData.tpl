@@ -103,7 +103,7 @@
         } else {
 
             if( typeof(create_url) === typeof(Function)) {
-                if(compat_elem){
+                if(compat_elem.length > 0){
                     window.location.href = create_url(1);
                 }else{
                     window.location.href = create_url();
