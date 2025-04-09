@@ -31,7 +31,7 @@
  {if $urls.current_url == "{$urls.pages.new_products}"}
   <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
  {/if}
- 
+
 <div id="js-product-list-top" class="row products-selection mb-lg-3" style="display: flex;align-items:center;gap:0rem;">
 
     {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
@@ -55,7 +55,7 @@
   
 
 
-    <div class="col-lg-7 col-xs-12" style="display: flex;flex-direction:column;justify-content:center;padding-right:0;">
+    <div class="col-lg-12 col-xs-12" style="display: flex;flex-direction:column;justify-content:center;padding-right:0;">
       {if $smarty.server.REQUEST_URI == "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}" || $smarty.server.REQUEST_URI === "/en/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
         <img class="hidden-md-up" src="/img/m/{$listing['products'][0]['id_manufacturer']}-medium_default.jpg" width="100%" style="max-width: 125px;padding:0.5rem;background:#fff;border-radius:0.5rem;margin:auto;">
       {/if}
