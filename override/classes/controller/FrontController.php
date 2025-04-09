@@ -879,7 +879,7 @@ class FrontControllerCore extends Controller
      */
     public function initContent()
     {
-        // $this->getManufacturers();
+        $this->getManufacturers();
         $this->assignGeneralPurposeVariables();
         $this->getCategories();
         $this->getAllCMS();
