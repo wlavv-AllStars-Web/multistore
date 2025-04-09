@@ -5087,7 +5087,7 @@ a:focus {
 
 @media screen and (min-width:992px) {
   #js-product-list-top {
-    margin-bottom: 1rem !important;
+    margin-bottom: 3rem !important;
   }
 
   .tabs .nav-tabs {
