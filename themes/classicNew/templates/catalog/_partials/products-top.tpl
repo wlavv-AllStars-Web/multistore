@@ -151,21 +151,83 @@
       </script>
       {/if}
 
-    {* sort by *}
-    <div class="box-sortby col-md-3">
+  {* bybrand *}
+  
+  {if $page.page_name != "search"}
+    <div class=" box-sortby col-md-3">
       <div class="row sort-by-row">
-        {block name='sort_by'}
-          {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
-        {/block}
-        {* {if !empty($listing.rendered_facets)}
-          <div class="col-xs-4 col-sm-3 hidden-md-up filter-button">
-            <button id="search_filter_toggler" class="btn btn-secondary js-search-toggler">
-              {l s='Filter' d='Shop.Theme.Actions'}
-            </button>
-          </div>
-        {/if} *}
+        <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+          <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span id="name_brand">
+            
+              {l s='By Brand' d='Shop.Theme.Actions'}
+            </span>
+            {if $page.page_name != "manufacturer"}
+            <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            {/if}
+          </a>
+          {if $page.page_name != "manufacturer"}
+            <div class="dropdown-menu">
+            {foreach $manufacturers AS $manufacturer}
+                <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
+                      class="select-list js-search-link"
+                      onclick="setManufacturer($(this), {$manufacturer['id_manufacturer']})">{$manufacturer['name']}
+                </div>
+            {/foreach}
+            </div>
+          {/if}
+        </div>
       </div>
     </div>
+    {/if}
+
+    {if $page.page_name != "search"}
+      {* SortBy *}
+      <div class="box-sortby col-md-3">
+        <div class="row sort-by-row">
+          {if !empty($listing.rendered_facets)}
+            {* <div class="col-sm-3 col-xs-4 hidden-md-up filter-button">
+              <button id="search_filter_toggler" class="btn btn-secondary">
+                {l s='Filter' d='Shop.Theme.Actions'}
+              </button>
+            </div> *}
+          {/if}
+          {block name='sort_by'}
+            {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
+          {/block}
+        </div>
+      </div>
+    {/if}
+
+
+      {* bypage *}
+    {if $page['page_name'] != 'search'}
+      <div class="box-sortby col-md-3">
+        <div class="row sort-by-row">
+          {* <div class="col-sm-3 col-xs-4 hidden-md-up filter-button">
+            <button id="search_filter_toggler" class="btn btn-secondary">
+              {l s='Filter' d='Shop.Theme.Actions'}
+            </button>
+          </div> *}
+    
+          <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+            <a  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span  id="name_items_per_page">{l s='By Page' d='Shop.Theme.Actions'}</span>
+              {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
+              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            </a>
+            <div class="dropdown-menu dropdown-perpage" onchange="setProductsPerPage('change')">
+              <form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="wm-hiddennbr nbrItemPage" style="width:100%;">
+                {foreach from=$n_array item=nValue}
+                  <div class="select-list"  value="{$nValue|escape:'html':'UTF-8'}" {if $nb_products == $nValue}selected="selected"{/if}>{$nValue|escape:'html':'UTF-8'}</div>
+                {/foreach}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {/if}
+    
 
   </div>
 
