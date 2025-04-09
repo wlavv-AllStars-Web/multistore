@@ -318,9 +318,8 @@ class IndexController extends IndexControllerCore
             $typesEuromus = json_decode($json, true);
 
             // get versions
-            
 
-            pre($typesEuromus);
+            // pre($typesEuromus);
             
         }
         // echo $idBrand;
