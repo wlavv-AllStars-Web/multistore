@@ -34,18 +34,14 @@
 
 <div id="js-product-list-top" class="row products-selection mb-lg-3" style="display: flex;align-items:center;gap:0rem;">
 
-    {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
-      {* <pre>{$urls|print_r}</pre> *}
-      {* {$link->getCategoryLink(10)} *}
-      {* <pre>{$urls.pages.new_products|print_r}</pre> *}
+    {* {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       <div class="col-lg-5 hidden-sm-down total-products p-0">
         <div style="display: flex;align-items:center;gap:1rem;">
           <img src="/img/m/{$manufacturer.id}-tm_medium_default.jpg" width="100%" style="max-width: 110px;padding:0.5rem;background:#fff;border-radius:0.5rem;outline: 1px solid #dedede;box-shadow:var(--euromus-shadow);">
-          {* <h2 style="color:var(--euromus-color-600);font-weight: 600;">{$manufacturer.name}</h2> *}
         </div>
       </div>     
     {/if}
-  
+   *}
 
     {* {if $listing.products|count > 1}
       <p>{l s='There are %product_count% products.' d='Shop.Theme.Catalog' sprintf=['%product_count%' => $listing.products|count]}</p>
