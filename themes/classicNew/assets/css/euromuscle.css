@@ -7502,6 +7502,9 @@ transform: translate(-50%,-50%);
 }
 
 /* sort filters */
+.products-sort-order{
+  width: 100%;
+}
 
 .products-sort-order .dropdown-menu {
   overflow-y: auto;
