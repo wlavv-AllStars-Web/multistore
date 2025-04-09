@@ -35,41 +35,10 @@
 
   {if $ukoo_name_1}
     <div class="col-lg-2  total-products">
-    {* <div class="brand-logo">
-      <span style="color:#0d2540;">
-        <img src="/img/eurmuscle/brandsCars/{$ukoo_name_1}.png" style="width: 80px;background-color: #0d2540;padding: 0.5rem;border-radius: 0.5rem;gap:2rem;" />
-      </span>
-    </div> *}
   {else}
-    {* {$urls.current_url}
-    <br>
-    {$link->getCategoryLink(226)} *}
+
     <div class="col-lg-5 hidden-sm-down total-products p-0">
-    {if $urls.current_url == "{$urls.pages.new_products}"}
-      {* <div style="width: fit-content;padding: 0.5rem 1rem;background: var(--euromus-color-800);border-radius: 0.5rem;outline: 2px solid var(--euromus-color-200);">
-        <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='NEW PRODUCTS' d='Shop.Theme.Catalog'}</h2>
-      </div> *}
-    {elseif $urls.current_url === "{$link->getCategoryLink(523)}"}
-      {* <div style="width: fit-content;">
-        <h2 style="color: var(--euromus-color-600);font-size: 1.5rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;line-height: normal;">{l s='Clearance' d='Shop.Theme.Catalog'}</h2>
-      </div> *}
-    {elseif $urls.current_url === "{$link->getCategoryLink(221)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2> *}
 
-      {* <div style="width: fit-content;padding: 0.5rem 1rem;background: var(--euromus-color-800);border-radius: 0.5rem;outline: 2px solid var(--euromus-color-200);">
-        <img src="/img/eurmuscle/bannersHome/truck.webp" style="width: 100%;max-width:180px;">
-        <h2 style="color: var(--euromus-color-200);font-size: 2rem;font-weight: 600;text-transform: uppercase;margin-bottom: 0;">{l s='TRUCK' d='Shop.Theme.Catalog'}</h2>
-      </div> *}
-
-    {elseif $urls.current_url === "{$link->getCategoryLink(220)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='4X4' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $urls.current_url === "{$link->getCategoryLink(222)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='CLASSICS' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $urls.current_url === "{$link->getCategoryLink(223)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='MODERN' d='Shop.Theme.Catalog'}</h2> *}
-    {elseif $urls.current_url === "{$link->getCategoryLink(224)}"}
-      {* <h2 style="text-transform: uppercase;color:#103054">{l s='TOOLS' d='Shop.Theme.Catalog'}</h2> *}
-    {/if}
     {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       {* <pre>{$urls|print_r}</pre> *}
       {* {$link->getCategoryLink(10)} *}
@@ -89,17 +58,7 @@
       <p>{l s='There is 1 product.' d='Shop.Theme.Catalog'}</p>
     {/if} *}
   </div>
-  {if $ukoo_name_1}
-    {* <div class="col-lg-5 ukooListTitle">
-      <span id="ukoo1">{$ukoo_name_1}</span>
-      <i style="margin:5px 10px;color: #103054;" class="fa fa-caret-right"></i>
-      <span id="ukoo2">{$ukoo_name_2}</span>
-      <i style="margin:5px 10px;color: #103054;" class="fa fa-caret-right"></i>
-      <span id="ukoo3">{$ukoo_name_3}</span>
-      <i style="margin:5px 10px;color: #103054;" class="fa fa-caret-right"></i>
-      <span id="ukoo4">{$ukoo_name_4}</span>
-    </div> *}
-  {/if}
+
   {if $ukoo_name_1}
     <div class="col-lg-6 col-xs-12">
   {else}
@@ -123,6 +82,98 @@
       <img class="hidden-md-up" src="/img/m/{$listing['products'][0]['id_manufacturer']}-medium_default.jpg" width="100%" style="max-width: 125px;padding:0.5rem;background:#fff;border-radius:0.5rem;margin:auto;">
     {/if}
   {/if}
+
+    {* by category *}
+
+    {if $page.page_name != "search"}
+      {* bycategory *}
+      <div class="box-sortby col-md-3">
+        <div class="row sort-by-row">
+          {* <div class="col-sm-3 col-xs-4 hidden-md-up filter-button">
+            <button id="search_filter_toggler" class="btn btn-secondary">
+              {l s='Filter' d='Shop.Theme.Actions'}
+            </button>
+          </div> *}
+    
+          <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
+            <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span id="name_category">
+                {l s='By Category' d='Shop.Theme.Actions'}
+              </span>
+              {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
+              {if !$page.body_classes['category-id-549']}
+              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+              {/if}
+            </a>
+            {if !$page.body_classes['category-id-549']}
+              <div class="dropdown-menu">
+              {foreach from=$categories[2] item=parentCategory}
+                {if $parentCategory['infos']['id_category'] != 523 && $parentCategory['infos']['id_category'] != 528 && $parentCategory['infos']['id_category'] != 549}
+                  <div 
+                      id="category_element_{$parentCategory['infos']['id_category']}" 
+                      
+                    class="select-list {if $categories[{$parentCategory['infos']['id_category']}]}has-children-category{/if}"
+                    > 
+                    <div class="container-dropdown-category">
+                      <div onclick="setCategory({$parentCategory['infos']['id_category']}, this)">
+                        {$parentCategory['infos']['name']}
+                      </div>
+                      {if $categories[{$parentCategory['infos']['id_category']}]}
+                        <button class="btn-custom-category" type="button" data-toggle="collapse" data-target="#collapse{$parentCategory['infos']['id_category']}" aria-expanded="false" aria-controls="collapse{$parentCategory['infos']['id_category']}">
+                          <i class="material-icons">arrow_drop_down</i>
+                        </button>
+                      {/if}
+                    </div>
+                    <div class="collapse-container-category collapse" id="collapse{$parentCategory['infos']['id_category']}">
+                      {foreach from=$categories[{$parentCategory['infos']['id_category']}] item=categoryChildren}
+                        {if $categoryChildren['infos']['id_parent'] == $parentCategory['infos']['id_category']}
+                          
+                            <li onclick="setCategory({$categoryChildren['infos']['id_category']}, this)">{$categoryChildren['infos']['name']}</li>
+                          
+                        {/if}
+                        {* {if $category['id_category'] != 16}
+                        <div 
+                          id="category_element_{$category['id_category']}" 
+                          onclick="setCategory({$category['id_category']})"
+                          class="select-list"
+                        >
+                            {$category['name']}
+                        </div>
+                        {/if} *}
+                      {/foreach}
+                    </div>
+                  </div>
+                {/if}
+              {/foreach}
+              </div>
+            {/if}
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.dropdown-menu button[data-toggle="collapse"]').forEach((collapseElement) => {
+                // Prevent dropdown from closing when interacting with collapsible content
+                collapseElement.addEventListener('click',(e) => {
+                    e.stopPropagation();
+    
+                    let collapseEl = collapseElement.parentElement.nextElementSibling
+                    // Toggle the `collapsed` class on the button dynamically
+                    if (collapseEl.classList.contains('collapsed')) {
+                        collapseEl.classList.remove('collapsed');
+                        collapseEl.classList.add('collapse');
+                    } else {
+                        collapseEl.classList.add('collapsed');
+                        collapseEl.classList.remove('collapse');
+                    }
+                });
+            });
+        });
+    
+      </script>
+      {/if}
+
+    {* sort by *}
       <div class="row sort-by-row">
         {block name='sort_by'}
           {include file='catalog/_partials/sort-orders.tpl' sort_orders=$listing.sort_orders}
