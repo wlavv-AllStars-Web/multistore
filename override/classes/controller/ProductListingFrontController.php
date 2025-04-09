@@ -1278,7 +1278,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 // pre($query);
 
-
             }   
 
         // pre(count($products));
@@ -1317,296 +1316,280 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 ]),
             ];
             
-        }elseif($this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
-            
-            $id_compat = Tools::getValue('id_compat');
-            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            $shop_id = $this->context->shop->id; 
-
-            $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
-            // pre($url);
-    
-            // Initialize cURL
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-    
-            // Execute cURL request
-            $json = curl_exec($ch);
-            curl_close($ch);
-    
-            // Decode the response into an associative array
-            $data = json_decode($json, true);
-
-            $productsC = $data['data'];
-
-            // pre($query);
-            $category = Tools::getValue('id_category_layered');
-            $manufacturer = Tools::getValue('id_manufacturer_layered');
-
-            // $search = $this->getProductSearchVariables();
+        }elseif($this->context->shop->id == 1 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 1 && $query->getQueryType() == 'category' || $this->context->shop->id == 1 && $query->getQueryType() == 'manufacturer'|| $this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
         
-            // Fetch products related to the selected car product
-            if (empty($productsC)) {
-                return [];
-            }
-    
-            $ids = array_map('intval', (array) $productsC);
-            $idList = implode(',', $ids);
-
-            // count products
-            // Query to count total products matching the filters
-            $sqlCount = 'SELECT COUNT(DISTINCT ps_category_product.id_product) 
-            FROM ps_category_product
-            LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
-            LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
-            LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
-                AND ps_product_lang.id_lang = '.$this->context->language->id.' 
-                AND ps_product_lang.id_shop = '.$this->context->shop->id.'
-            WHERE ps_category_product.id_product IN (' . $idList . ')  
-            AND ps_product.active = 1 AND ps_product.visibility != "none"
-            AND ps_product_shop.id_shop = '.$this->context->shop->id;
-
-            if ($category > 0) {
-            $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
-            }
-
-            if ($manufacturer > 0) {
-            $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
-            }
-
-            $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
-    
-            $sql = 'SELECT cp.id_category, 
-               cp.id_product, 
-               cp.position, 
-               COALESCE(
-                   (SELECT MAX(p.price + pa.price) 
-                    FROM ps_product_attribute_shop pa 
-                    WHERE pa.id_product = p.id_product 
-                      AND pa.id_shop = '.$this->context->shop->id.'
-                   ), p.price
-               ) AS final_price
-                FROM ps_category_product cp
-                LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
-                LEFT JOIN ps_product p ON cp.id_product = p.id_product
-                LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
-                    AND pl.id_lang = '.$this->context->language->id.' 
-                    AND pl.id_shop = '.$this->context->shop->id.'
-                WHERE cp.id_product IN (' . $idList . ')  
-                    AND p.active = 1 
-                    AND p.visibility != "none" 
-                    AND ps.id_shop = '.$this->context->shop->id;
-
-            if ($category > 0) {
-                $sql .= ' AND cp.id_category = ' . (int) $category;
-            }
-
-            if ($manufacturer > 0) {
-                $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
-            }
-
-            $sql .= ' GROUP BY p.id_product';
-
-            // Sorting Fix
-            if ($query->getSortOrder()) {
-                $sortOrder = $query->getSortOrder();
-
-                if ($sortOrder->getField() === 'price') {
-                    $sql .= ' ORDER BY final_price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
-                } elseif ($sortOrder->getField() === 'name') {
-                    $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
-                } elseif ($sortOrder->getField() === 'reference') {
-                    $sql .= ' ORDER BY p.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
-                } elseif ($sortOrder->getField() === 'sales') {
-                    $sql .= ' ORDER BY psale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
-                } elseif ($sortOrder->getField() === 'date_add') {
-                    $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
-                }
-            }
-
-            // Pagination
-            if ($query->getResultsPerPage()) {
-                $query->setResultsPerPage(19);
+            if($this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
                 
-                $resultsPerPage = (int) $query->getResultsPerPage();
-                $currentPage = (int) $query->getPage();
-                $offset = ($currentPage - 1) * $resultsPerPage;
-
-                $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
-            }
-
-
-            // $result->setProducts($$totalProducts);
-            // $result->setTotalProductsCount($total_products);
-            // $query->setResultsPerPage(19);
-
-            // $pagination = $this->getTemplateVarPagination(
-            //     $query,
-            //     $result
-            // );
-
-            // pre($pagination);
-
-
-            
-            // pre($pagination);
-            // $productsCarTotal =  Db::getInstance()->executeS($sql);
-
-            // pre($sql);
-
-            // fim test
-
-
-
+                $id_compat = Tools::getValue('id_compat');
+                $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+                $shop_id = $this->context->shop->id; 
     
-            $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
-
-            $products = $this->prepareMultipleProductsForTemplate(
-                $productsCar
-            );
-
-            $formatted_productsCar = [];
-            foreach ($productsCar as $product) {
-                $formatted_productsCar[] = ['id_product' => $product['id_product']];
-            }
-
-            $result->setProducts($formatted_productsCar);
-            $result->setTotalProductsCount($totalProducts);
-
-            $pagination = $this->getTemplateVarPagination(
-                $query,
-                $result
-            );
-
-                    // universal products
-            $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
-                    FROM ps_category_product AS pcp
-                    LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
-                    LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-                    WHERE pp.universal = 1 
-                    AND pp.active = 1 
-                    AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
-                    AND pps.id_shop = '.$this->context->shop->id.' 
-                    AND pps.visibility != "none"
-                    GROUP BY pcp.id_product';
-
-
-                            
-                            
-            $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
-            // pre($universalProducts);
-
-            $universals = $this->prepareMultipleProductsForTemplate(
-                $universalProducts
-            );
-            $noProducts = 1;
-            // pre($products);
-            if (empty($products) || !is_array($products)) {
-                $noProducts = 1;
-            } else {
-                $noProducts = count($products) < 1 ? 1 : 0;
-            }
-
-            // pre($noProducts);
-            
-
-            if ($totalProducts > 0) {
-                // Calculate total pages
-                // $pagesCount = ceil($totalProducts / $resultsPerPage);
-                // $currentPage = max((int) $query->getPage(), 1);
-                
-                // // Ensure current page is within valid range
-                // if ($currentPage > $pagesCount) {
-                //     $currentPage = $pagesCount;
-                // }
-            
-                // // Now, calculate the offset for pagination
-                // $offset = ($currentPage - 1) * $resultsPerPage;
-            
-                // // Add the LIMIT and OFFSET to the main SQL query
-                // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
-            
-                // // Assign pagination info to Smarty
-                // $pagination = [
-                //     'total_items' => $totalProducts,
-                //     'items_shown_from' => $offset + 1,
-                //     'items_shown_to' => min($offset + $resultsPerPage, $totalProducts),
-                //     'current_page' => $currentPage,
-                //     'pages_count' => $pagesCount,
-                //     'pages' => [],
-                // ];
-            
-                // // Build the page links
-                // for ($i = 1; $i <= $pagesCount; $i++) {
-                //     // Generate URL without `page` parameter for page 1
-                //     $url = ($i == 1) 
-                //         ? $this->context->link->getPageLink('cars-products', null, null, [
-                //             'id_compat' => Tools::getValue('id_compat'),
-                //           ])
-                //         : $this->context->link->getPageLink('cars-products', null, null, [
-                //             'page' => $i,
-                //             'id_compat' => Tools::getValue('id_compat'),
-                //           ]);
-            
-                //     $pagination['pages'][$i] = [
-                //         'type' => 'page',
-                //         'page' => $i,
-                //         'clickable' => $i != $currentPage,
-                //         'current' => $i == $currentPage,
-                //         'url' => $url,
-                //     ];
-                // }
-
+                $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+                // pre($url);
+        
+                // Initialize cURL
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+        
+                // Execute cURL request
+                $json = curl_exec($ch);
+                curl_close($ch);
+        
+                // Decode the response into an associative array
+                $data = json_decode($json, true);
+    
+                $productsC = $data['data'];
+    
                 // pre($query);
+                $category = Tools::getValue('id_category_layered');
+                $manufacturer = Tools::getValue('id_manufacturer_layered');
+    
+                // $search = $this->getProductSearchVariables();
+            
+                // Fetch products related to the selected car product
+                if (empty($productsC)) {
+                    return [];
+                }
+        
+                $ids = array_map('intval', (array) $productsC);
+                $idList = implode(',', $ids);
+    
+                // count products
+                // Query to count total products matching the filters
+                $sqlCount = 'SELECT COUNT(DISTINCT ps_category_product.id_product) 
+                FROM ps_category_product
+                LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
+                LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
+                LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
+                    AND ps_product_lang.id_lang = '.$this->context->language->id.' 
+                    AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+                WHERE ps_category_product.id_product IN (' . $idList . ')  
+                AND ps_product.active = 1 AND ps_product.visibility != "none"
+                AND ps_product_shop.id_shop = '.$this->context->shop->id;
+    
+                if ($category > 0) {
+                $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
+                }
+    
+                if ($manufacturer > 0) {
+                $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                }
+    
+                $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
+        
+                $sql = 'SELECT cp.id_category, 
+                   cp.id_product, 
+                   cp.position, 
+                   COALESCE(
+                       (SELECT MAX(p.price + pa.price) 
+                        FROM ps_product_attribute_shop pa 
+                        WHERE pa.id_product = p.id_product 
+                          AND pa.id_shop = '.$this->context->shop->id.'
+                       ), p.price
+                   ) AS final_price
+                    FROM ps_category_product cp
+                    LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
+                    LEFT JOIN ps_product p ON cp.id_product = p.id_product
+                    LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
+                        AND pl.id_lang = '.$this->context->language->id.' 
+                        AND pl.id_shop = '.$this->context->shop->id.'
+                    WHERE cp.id_product IN (' . $idList . ')  
+                        AND p.active = 1 
+                        AND p.visibility != "none" 
+                        AND ps.id_shop = '.$this->context->shop->id;
+    
+                if ($category > 0) {
+                    $sql .= ' AND cp.id_category = ' . (int) $category;
+                }
+    
+                if ($manufacturer > 0) {
+                    $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
+                }
+    
+                $sql .= ' GROUP BY p.id_product';
+    
+                // Sorting Fix
+                if ($query->getSortOrder()) {
+                    $sortOrder = $query->getSortOrder();
+    
+                    if ($sortOrder->getField() === 'price') {
+                        $sql .= ' ORDER BY final_price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    } elseif ($sortOrder->getField() === 'name') {
+                        $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    } elseif ($sortOrder->getField() === 'reference') {
+                        $sql .= ' ORDER BY p.reference ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    } elseif ($sortOrder->getField() === 'sales') {
+                        $sql .= ' ORDER BY psale.quantity ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    } elseif ($sortOrder->getField() === 'date_add') {
+                        $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    }
+                }
+    
+                // Pagination
+                if ($query->getResultsPerPage()) {
+                    $query->setResultsPerPage(19);
+                    
+                    $resultsPerPage = (int) $query->getResultsPerPage();
+                    $currentPage = (int) $query->getPage();
+                    $offset = ($currentPage - 1) * $resultsPerPage;
+    
+                    $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
+                }
+    
+    
+        
+                $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
+    
+                $products = $this->prepareMultipleProductsForTemplate(
+                    $productsCar
+                );
+    
+                $formatted_productsCar = [];
+                foreach ($productsCar as $product) {
+                    $formatted_productsCar[] = ['id_product' => $product['id_product']];
+                }
+    
+                $result->setProducts($formatted_productsCar);
+                $result->setTotalProductsCount($totalProducts);
+    
+                $pagination = $this->getTemplateVarPagination(
+                    $query,
+                    $result
+                );
+    
+                        // universal products
+                $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
+                        FROM ps_category_product AS pcp
+                        LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
+                        LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
+                        WHERE pp.universal = 1 
+                        AND pp.active = 1 
+                        AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
+                        AND pps.id_shop = '.$this->context->shop->id.' 
+                        AND pps.visibility != "none"
+                        GROUP BY pcp.id_product';
+    
+    
+                                
+                                
+                $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
+                // pre($universalProducts);
+    
+                $universals = $this->prepareMultipleProductsForTemplate(
+                    $universalProducts
+                );
+                $noProducts = 1;
+                // pre($products);
+                if (empty($products) || !is_array($products)) {
+                    $noProducts = 1;
+                } else {
+                    $noProducts = count($products) < 1 ? 1 : 0;
+                }
+    
+                // pre($noProducts);
                 
-                // $compat = $query->getCompat();
-                // pre($compat);
-                // Assign the pagination to Smarty
+    
+                if ($totalProducts > 0) {
+                    // Calculate total pages
+                    // $pagesCount = ceil($totalProducts / $resultsPerPage);
+                    // $currentPage = max((int) $query->getPage(), 1);
+                    
+                    // // Ensure current page is within valid range
+                    // if ($currentPage > $pagesCount) {
+                    //     $currentPage = $pagesCount;
+                    // }
+                
+                    // // Now, calculate the offset for pagination
+                    // $offset = ($currentPage - 1) * $resultsPerPage;
+                
+                    // // Add the LIMIT and OFFSET to the main SQL query
+                    // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
+                
+                    // // Assign pagination info to Smarty
+                    // $pagination = [
+                    //     'total_items' => $totalProducts,
+                    //     'items_shown_from' => $offset + 1,
+                    //     'items_shown_to' => min($offset + $resultsPerPage, $totalProducts),
+                    //     'current_page' => $currentPage,
+                    //     'pages_count' => $pagesCount,
+                    //     'pages' => [],
+                    // ];
+                
+                    // // Build the page links
+                    // for ($i = 1; $i <= $pagesCount; $i++) {
+                    //     // Generate URL without `page` parameter for page 1
+                    //     $url = ($i == 1) 
+                    //         ? $this->context->link->getPageLink('cars-products', null, null, [
+                    //             'id_compat' => Tools::getValue('id_compat'),
+                    //           ])
+                    //         : $this->context->link->getPageLink('cars-products', null, null, [
+                    //             'page' => $i,
+                    //             'id_compat' => Tools::getValue('id_compat'),
+                    //           ]);
+                
+                    //     $pagination['pages'][$i] = [
+                    //         'type' => 'page',
+                    //         'page' => $i,
+                    //         'clickable' => $i != $currentPage,
+                    //         'current' => $i == $currentPage,
+                    //         'url' => $url,
+                    //     ];
+                    // }
+    
+                    // pre($query);
+                    
+                    // $compat = $query->getCompat();
+                    // pre($compat);
+                    // Assign the pagination to Smarty
+                    $this->context->smarty->assign([
+                        // 'compat' => $compat[0],
+                        'cars_products_page' => 1,
+                        'pagination' => $pagination,
+                        'products' => $products,  // the list of products fetched after applying pagination
+                        'noProducts' => $noProducts,
+                        'universals' => $universals,
+                    ]);
+                    
+                    
+                }
+    
+            }
+                
+                $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
+                $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
+    
+    
                 $this->context->smarty->assign([
-                    // 'compat' => $compat[0],
-                    'cars_products_page' => 1,
-                    'pagination' => $pagination,
-                    'products' => $products,  // the list of products fetched after applying pagination
-                    'noProducts' => $noProducts,
-                    'universals' => $universals,
+                    'nb_products'       => $pagination['total_items'],
+                    'n_array' => $n_array,
                 ]);
-            }
-
+    
+                // Loop through each sorting option
+                foreach ($sort_orders as &$order) {
+                    // Generate the order URL using the setOrder() function
+                    $order['url'] = '';
+                    $order['value'] = $order['field'].':'.$order['direction'];
+                }
+                
+                
+    
+                $searchVariables = [
+                    'result' => $result,
+                    'label' => $this->getListingLabel(),
+                    'products' => $products,
+                    'sort_orders' => $sort_orders,
+                    'sort_selected' => $sort_selected,
+                    'pagination' => $pagination,
+                    'rendered_facets' => $rendered_facets,
+                    'rendered_active_filters' => $rendered_active_filters,
+                    'js_enabled' => $this->ajax,
+                    'current_url' => $this->updateQueryString([
+                        'q' => $result->getEncodedFacets(),
+                    ]),
+                ];
             
-            $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
-            $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
-
-
-            $this->context->smarty->assign([
-                'nb_products'       => $pagination['total_items'],
-                'n_array' => $n_array,
-            ]);
-
-            // Loop through each sorting option
-            foreach ($sort_orders as &$order) {
-                // Generate the order URL using the setOrder() function
-                $order['url'] = '';
-                $order['value'] = $order['field'].':'.$order['direction'];
-            }
-            
-            
-
-            $searchVariables = [
-                'result' => $result,
-                'label' => $this->getListingLabel(),
-                'products' => $products,
-                'sort_orders' => $sort_orders,
-                'sort_selected' => $sort_selected,
-                'pagination' => $pagination,
-                'rendered_facets' => $rendered_facets,
-                'rendered_active_filters' => $rendered_active_filters,
-                'js_enabled' => $this->ajax,
-                'current_url' => $this->updateQueryString([
-                    'q' => $result->getEncodedFacets(),
-                ]),
-            ];
         }else{
 
             $searchVariables = [
