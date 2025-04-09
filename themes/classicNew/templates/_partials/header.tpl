@@ -38,6 +38,30 @@
 {assign var="currentUrl" value=Tools::getCurrentUrl()}
 {assign var="manufacturers" value=Manufacturer::getManufacturers()}
 
+<div style="display: none;">
+                            
+  <form id="ukoocompat_clear_my_cars_custom_form" action="/en/module/ukoocompat/listing" method="POST"> 
+      <input type="hidden" name="id_search" value="1"> 
+      <input type="hidden" name="id_search3" value="1"> 
+      <input type="hidden" name="id_lang" value="{Context::getContext()->language->id|escape:'html':'UTF-8'}">
+      <input type="hidden" id="multiFilter_news" name="news_compats" value="0"> 
+      <input type="hidden" id="multiFilter_order_by" name="order_by_compats" value="price"> 
+      <input type="hidden" id="multiFilter_order_by_orientation" name="order_by_orientation_compats" value="DESC"> 
+      <input type="hidden" id="multiFilter_id_manufacturer" name="id_manufacturer_compats" value=""> 
+      <input type="hidden" id="multiFilter_nr_items" name="nr_items_compats" value="20"> 
+      <input type="hidden" id="multiFilter_n_items" name="n" value="20"> 
+      <input type="hidden" id="multiFilter_page_number" name="p" value="1"> 
+      <input type="hidden" id="multiFilter_id_category" name="id_category" value="0"> 
+      <input type="hidden" id="multiFilter_root_page" name="root_page" value="">
+      <input type="hidden" id="check_form" name="check_form" value="99585">
+      <input type="hidden" id="custom_filter_1" name="filters1" value="0">
+      <input type="hidden" id="custom_filter_2" name="filters2" value="0">
+      <input type="hidden" id="custom_filter_3" name="filters3" value="0">
+      <input type="hidden" id="custom_filter_4" name="filters4" value="0">
+  </form>    
+            
+</div>
+
 {block name='header_banner'}
   <div class="header-banner">
     {hook h='displayBanner'}
