@@ -39,9 +39,9 @@
         
     }
 
-    if($("#nb_item").length) {
-        document.getElementById("nb_item").addEventListener("change", setProductsPerPage, true);
-    }
+    // if($("#nb_item").length) {
+    //     document.getElementById("nb_item").addEventListener("change", setProductsPerPage, true);
+    // }
 
     document.querySelectorAll('.dropdown-menu.dropdown-perpage .select-list').forEach(function(item) {
         item.addEventListener('click', function() {
