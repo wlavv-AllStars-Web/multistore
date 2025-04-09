@@ -4840,7 +4840,7 @@ body#checkout section.checkout-step .address-selector {
   /* outline: 3px solid #103054;
   border-radius: 0.5rem; */
 }
-#js-product-list .js-product.product:hover {
+#js-product-list .js-product.product:hover .product-miniature{
   outline: 3px solid var(--euromus-color-300);
   border-radius: 0.25rem;
 }
