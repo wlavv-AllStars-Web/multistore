@@ -324,11 +324,11 @@ class IndexController extends IndexControllerCore
 
             if (is_array($typesEuromus)) {
                 foreach ($typesEuromus as $type) {
-                    if (!isset($type['id'])) {
+                    if (!isset($type['id_type'])) {
                         continue; // skip if no id found
                     }
         
-                    $typeId = $type['id'];
+                    $typeId = $type['id_type'];
                     $urlVersions = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $key;
         
                     $ch = curl_init();
