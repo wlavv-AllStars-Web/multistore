@@ -27,12 +27,12 @@
 {assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
 {assign var="currentLanguage" value=Context::getContext()->language->id}
 {assign var="categories" value=Category::getCategories($currentLanguage)}
-{assign var="versionsFordMustang" value=IndexController::getCarsOfBrand("Ford","Mustang",$currentLanguage)}
-{assign var="versionsChevroletCamaro" value=IndexController::getCarsOfBrand("Chevrolet","Camaro",$currentLanguage)}
-{assign var="versionsChevroletCorvette" value=IndexController::getCarsOfBrand("Chevrolet","Corvette",$currentLanguage)}
-{assign var="versionsDodgeChallenger" value=IndexController::getCarsOfBrand("Dodge","Challenger",$currentLanguage)}
-{assign var="versionsRamTrx" value=IndexController::getCarsOfBrand("Ram","Trx",$currentLanguage)}
-{assign var="versionsFordBronco" value=IndexController::getCarsOfBrand("Ford","Bronco",$currentLanguage)}
+{assign var="versionsFordMustang" value=IndexController::getCarsOfBrand(92,100,$currentLanguage)}
+{assign var="versionsChevroletCamaro" value=IndexController::getCarsOfBrand(1058,1061,$currentLanguage)}
+{assign var="versionsChevroletCorvette" value=IndexController::getCarsOfBrand(1058,1064,$currentLanguage)}
+{assign var="versionsDodgeChallenger" value=IndexController::getCarsOfBrand(1067,1069,$currentLanguage)}
+{assign var="versionsRamTrx" value=IndexController::getCarsOfBrand(1067,1072,$currentLanguage)}
+{assign var="versionsFordBronco" value=IndexController::getCarsOfBrand(92,1076,$currentLanguage)}
 
 
 {extends file='page.tpl'}
@@ -435,7 +435,7 @@
 
             <div class="hidden-md-up"
   style="border-top:4px solid var(--euromus-color-200);border-bottom:4px solid var(--euromus-color-300);padding-block:2px;width: 100%;background: #fff;"></div>
-
+{* cars section *}
 <div class="cars-container">
   <div class="cars-cards col-12">
     <div class="card col-lg-3">

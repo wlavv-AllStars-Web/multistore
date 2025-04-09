@@ -295,6 +295,31 @@ class IndexController extends IndexControllerCore
 
     public static function getCarsOfBrand($idBrand,$idModel=NULL,$idLang=NULL){
         
+        if(Context::getContext()->shop->id == 1) {
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $brand = $idBrand;
+            $model = $idModel;
+            $lang = $idLang;
+            $store = Context::getContext()->shop->id;
+
+            // getTypes
+
+            $urlTypesHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlTypesHome);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $typesEuromus = json_decode($json, true);
+
+            pre($typesEuromus);
+            
+        }
         // echo $idBrand;
         // echo _DB_PREFIX_;
         // exit;
