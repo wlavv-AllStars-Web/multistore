@@ -37,7 +37,7 @@
       rel="nofollow"
       {* href="{$sort_order.url}" *}
       onclick="setOrder(this)"
-      value="{$sort_order.value}"
+      value="{$sort_order.urlParameter}"
       class="select-list {['current' => $sort_order.current, 'js-search-link' => false]|classnames}"
     >
       {$sort_order.label}
