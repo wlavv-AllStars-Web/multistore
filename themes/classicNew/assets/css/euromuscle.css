@@ -48,6 +48,10 @@ body {
   100% { offset-distance: 100%;}
 } */
 
+#manufacturer #wrapper {
+  padding-top: 0 !important;
+}
+
 .product-details-options .product-variants {
   display: flex;
   flex-wrap: wrap;
