@@ -2336,7 +2336,7 @@ a:focus{
 
     #js-product-list .product {
       /* width: 100%; */
-      padding: 0;
+      /* padding: 0; */
       overflow: hidden;
       /* outline: 3px solid #103054; */
       border-radius: 0.25rem;
