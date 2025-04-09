@@ -248,11 +248,11 @@
 {include file='catalog/_partials/setFilterData.tpl'}
 {include file='catalog/_partials/getDataFromUrl.tpl'}
 
-<script>
+<script defer="defer">
   $('document').ready(function () {
 
-  disable_cursor_hover();
-  $('#nb_item').unbind('change');
+  // disable_cursor_hover();
+  // $('#nb_item').unbind('change');
   getDataFromUrl();
 
   });
