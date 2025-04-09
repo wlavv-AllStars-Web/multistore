@@ -89,8 +89,9 @@
 
                 // Reset and disable a select field
                 function resetSelect(selectElement, placeholder) {
-                    selectElement.innerHTML = '<option selected disabled>'+placeholder+'</option>';
-                    selectElement.disabled = true;
+                    selectElement.empty();
+                    selectElement.append(`<option selected disabled>`+placeholder+`</option>`);
+                    selectElement.prop('disabled', true);
                 }
 
                 // Fetch data from the server
