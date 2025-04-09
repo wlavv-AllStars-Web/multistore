@@ -41,8 +41,8 @@
             <span class="image">
               {if !empty($product.default_image)}
                 <picture>
-                  {if !empty($product.default_image.bySize.tm_large_default.sources.avif)}<source srcset="{$product.default_image.medium.sources.avif}" type="image/avif">{/if}
-                  {if !empty($product.default_image.bySize.tm_large_default.sources.webp)}<source srcset="{$product.default_image.medium.sources.webp}" type="image/webp">{/if}
+                  {if !empty($product.default_image.bySize.tm_large_default.sources.avif)}<source srcset="{$product.default_image.bySize.tm_large_default.sources.avif}" type="image/avif">{/if}
+                  {if !empty($product.default_image.bySize.tm_large_default.sources.webp)}<source srcset="{$product.default_image.bySize.tm_large_default.sources.webp}" type="image/webp">{/if}
                   <img src="{$product.default_image.bySize.tm_large_default.url}" loading="lazy" />
                 </picture>
               {else}
