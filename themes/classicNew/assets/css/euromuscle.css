@@ -4841,7 +4841,7 @@ body#checkout section.checkout-step .address-selector {
   border-radius: 0.5rem; */
 }
 #js-product-list .js-product.product:hover .product-miniature{
-  outline: 3px solid var(--euromus-color-300);
+  border: 2px solid var(--euromus-color-300);
   border-radius: 0.25rem;
 }
 #module-ukoocompat-listing .product-price-and-shipping .price::after {
