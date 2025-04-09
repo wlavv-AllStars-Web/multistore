@@ -1301,23 +1301,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             
             
-            // $pagination['total_items'] = $productsCarTotal ? count($productsCarTotal) : count($products);
-            // $pagination['total_items'] = $pagination['total_items'];
-
-            // if($query->getResultsPerPage() && (count($products) >= $query->getResultsPerPage())){
-            //     $pagination['items_shown_to'] = $query->getResultsPerPage();
-            // }
-
-            // if($query->getResultsPerPage() && (count($products) < $query->getResultsPerPage())){
-            //     $pagination['items_shown_to'] = $productsCarTotal ? count($productsCarTotal) : count($products);;
-            // }
-
-            // echo count($products);
-            // exit;
-
-            // pre($pagination);
-
-            
 
             $searchVariables = [
                 'result' => $result,
@@ -1499,10 +1482,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                     // universal products
             $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
-                            FROM ps_category_product AS pcp
-                            LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
-                            LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
-                            WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product';
+                    FROM ps_category_product AS pcp
+                    LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
+                    LEFT JOIN ps_product_shop AS pps ON pps.id_product = pp.id_product
+                    WHERE pp.universal = 1 
+                    AND pp.active = 1 
+                    AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
+                    AND pps.id_shop = '.$this->context->shop->id.' 
+                    AND pps.visibility != "none"
+                    GROUP BY pcp.id_product';
 
 
                             
@@ -1585,6 +1573,40 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     'universals' => $universals,
                 ]);
             }
+
+            
+            $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
+
+
+            $this->context->smarty->assign([
+                'nb_products'       => $pagination['total_items'],
+                'n_array' => $n_array,
+            ]);
+
+            // Loop through each sorting option
+            foreach ($sort_orders as &$order) {
+                // Generate the order URL using the setOrder() function
+                $order['url'] = '';
+                $order['value'] = $order['field'].':'.$order['direction'];
+            }
+            
+            
+
+            $searchVariables = [
+                'result' => $result,
+                'label' => $this->getListingLabel(),
+                'products' => $products,
+                'sort_orders' => $sort_orders,
+                'sort_selected' => $sort_selected,
+                'pagination' => $pagination,
+                'rendered_facets' => $rendered_facets,
+                'rendered_active_filters' => $rendered_active_filters,
+                'js_enabled' => $this->ajax,
+                'current_url' => $this->updateQueryString([
+                    'q' => $result->getEncodedFacets(),
+                ]),
+            ];
         }else{
 
             $searchVariables = [
