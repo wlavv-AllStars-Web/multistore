@@ -73,7 +73,10 @@
             $('#multiFilter_n_items').val(nrItems);
             $('#multiFilter_nr_items').val(nrItems);
         }
-        if(url.searchParams.get("id_manufacturer_layered")) idManufacturer = url.searchParams.get("id_manufacturer_layered");
+        if(url.searchParams.get("id_manufacturer_layered")){
+             idManufacturer = url.searchParams.get("id_manufacturer_layered");
+             $('#multiFilter_id_manufacturer').val(idManufacturer); 
+        }
         if(url.searchParams.get("id_category_layered")){
             idCategory = url.searchParams.get("id_category_layered");
             $('#multiFilter_id_category').val(idCategory);
