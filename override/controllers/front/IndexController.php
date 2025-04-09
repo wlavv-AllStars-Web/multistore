@@ -346,7 +346,7 @@ class IndexController extends IndexControllerCore
                 }
             }
         
-            pre($compat);
+            return $compat;
             
         }
         // echo $idBrand;
