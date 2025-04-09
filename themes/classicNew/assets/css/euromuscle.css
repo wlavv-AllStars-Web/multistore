@@ -2344,6 +2344,8 @@ a:focus{
     }
     #js-product-list .product article{
       width: 100%;
+      border: 2px solid var(--euromus-color-700);
+      border-radius: .25rem;
     }
     #js-product-list .product article .thumbnail-container{
       width: 100%;
@@ -4833,8 +4835,8 @@ body#checkout section.checkout-step .address-selector {
   justify-content: center;
 }
 #js-product-list .js-product.product{
-  outline: 2px solid var(--euromus-color-700);
-  box-shadow: var(--euromus-shadow);
+  /* outline: 2px solid var(--euromus-color-700);
+  box-shadow: var(--euromus-shadow); */
   /* outline: 3px solid #103054;
   border-radius: 0.5rem; */
 }
