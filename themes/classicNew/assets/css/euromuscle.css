@@ -2330,7 +2330,7 @@ a:focus{
 
     #js-product-list .products {
       justify-content: start;
-      gap: 1rem;
+      /* gap: 1rem; */
       width: 100%;
     }
 
