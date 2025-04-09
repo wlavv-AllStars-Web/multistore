@@ -4845,10 +4845,18 @@ body#checkout section.checkout-step .address-selector {
   /* outline: 3px solid #103054;
   border-radius: 0.5rem; */
 }
+
 #js-product-list .js-product.product:hover .product-miniature .thumbnail-container{
   border: 2px solid var(--euromus-color-300);
   border-radius: 0.25rem;
 }
+
+.product-miniature .thumbnail-container{
+  border: 2px solid var(--euromus-color-700);
+  border-radius: 0.25rem;
+}
+
+
 #module-ukoocompat-listing .product-price-and-shipping .price::after {
   content: '€';
 }
