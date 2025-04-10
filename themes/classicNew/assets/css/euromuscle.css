@@ -55,9 +55,12 @@ body #wrapper {
 
 
 /* contact page */
+#contact #wrapper {
+  background: #fff;
+}
 
 #contact #wrapper .banner_contact_desk{
-  padding-inline: 2rem;
+  margin-bottom: 2rem;
 }
 
 #contact #wrapper .container-contact{
