@@ -64,6 +64,10 @@ body #wrapper {
   padding: 1rem;
 }
 
+#contact .wrapper_desktop {
+  padding-block: 0 !important;
+}
+
 
 
 
