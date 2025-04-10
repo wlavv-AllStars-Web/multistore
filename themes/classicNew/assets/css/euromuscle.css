@@ -395,6 +395,10 @@ main {
 
 /* new address page */
 
+.container-addresses {
+  width: 100%;
+}
+
 #address .address-form .form-control-label {
   width: 100%;
 }
