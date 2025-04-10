@@ -585,7 +585,7 @@
              {foreach from=$accessories item="product_accessory" key="position"}
                {if $position < 4}
                  {block name='product_miniature'}
-                   {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
+                   {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"}
                  {/block}
                {/if}
              {/foreach}
