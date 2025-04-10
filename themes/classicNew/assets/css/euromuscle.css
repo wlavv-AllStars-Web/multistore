@@ -412,6 +412,10 @@ main {
   row-gap: 1rem;
 }
 
+.page-addresses .address .address-body address{
+  color: var(--euromus-color-500);
+}
+
 
 #addresses .grid-container-addresses .address-customer .address{
   height: 100%;
