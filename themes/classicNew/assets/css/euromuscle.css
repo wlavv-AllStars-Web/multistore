@@ -72,6 +72,15 @@ main > #wrapper {
   padding-block: 0 !important;
 }
 
+/* checkout */
+
+.container-order-confirmation {
+  max-width: 1441px;
+}
+
+.container-checkout {
+  max-width: 1441px;
+}
 
 
 
