@@ -409,6 +409,7 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); */
   gap: 1rem;
   padding: 1rem 0;
+  flex-wrap: wrap;
 }
 
 /* #addresses .grid-container-addresses .address-customer{
