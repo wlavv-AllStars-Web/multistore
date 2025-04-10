@@ -5935,6 +5935,18 @@ transform: translate(-50%,-50%);
 
 }
 
+@media screen and (min-width: 992px) {
+  
+  .filters-mobile{
+    display: none;
+  }
+
+  .filters-desktop{
+    display: flex;
+  }
+  
+}
+
 @media screen and  (max-width: 992px) {
   #js-product-list-top {
     margin-bottom: 2rem;
@@ -5950,6 +5962,14 @@ transform: translate(-50%,-50%);
 
   .products-selection > div {
     display: none !important;
+  }
+
+  .filters-mobile{
+    display: flex;
+  }
+
+  .filters-desktop{
+    display: none;
   }
 }
 
