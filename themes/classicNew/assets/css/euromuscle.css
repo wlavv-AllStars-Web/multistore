@@ -101,6 +101,10 @@ body #wrapper {
   justify-content: end;
 }
 
+.container-my-account {
+  margin-bottom: 2rem;
+}
+
 
 main > #wrapper {
   padding-block: 0 !important;
@@ -5395,10 +5399,6 @@ transform: translate(-50%,-50%);
 @media screen and (max-width: 1300px) {
   #js-product-list-top {
     max-width: 100%;
-  }
-
-  .container-my-account {
-    margin-bottom: 2rem;
   }
 }
 
