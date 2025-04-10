@@ -5948,6 +5948,9 @@ transform: translate(-50%,-50%);
     padding: 1rem;
   }
 
+  .products-selection > div {
+    display: none !important;
+  }
 }
 
 /* normal tablet */
