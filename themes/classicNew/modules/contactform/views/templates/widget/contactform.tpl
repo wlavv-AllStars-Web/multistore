@@ -23,6 +23,34 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 <script src="https://www.google.com/recaptcha/api.js" ></script>
+
+  <div class="banner_contact" style="position: relative;">
+    <img class="contact_Banner" src="/img/eurmuscle/cmsBanners/Banners-contact.webp" />
+    <h2 class="" style="position: absolute;bottom:1rem;color: #fff;">{l s="CONTACTS" d="Shop.Theme.Cms"}</h2>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const screenSize = screen.width;
+      const banner_contact = document.querySelector(".banner_contact");
+      const img_banner_contact = document.querySelector(".contact_Banner");
+
+      const wrapper = document.getElementById("wrapper")
+
+      if(screenSize > 390){
+        banner_contact.classList.remove("banner_contact_mobile");
+        banner_contact.classList.add("banner_contact_desk");
+        wrapper.classList.add("wrapper_desktop");
+        img_banner_contact.setAttribute("src", "/img/eurmuscle/cmsBanners/Banners-contact.webp")
+
+      }else{
+        banner_contact.classList.remove("banner_contact_desk");
+        banner_contact.classList.add("banner_contact_mobile");
+        wrapper.classList.add("wrapper_mobile");
+        img_banner_contact.setAttribute("src", "/img/eurmuscle/cmsBanners/Banners-contactMobile.webp")
+      }
+    });
+  </script>
 <section class="contact-form">
   <form action="{$urls.pages.contact}" method="post" {if $contact.allow_file_upload}enctype="multipart/form-data"{/if}>
     {if $notifications}
