@@ -19,7 +19,8 @@ body #wrapper {
   flex: 1;
 }
 .breadcrumb ol{
-  padding: 1rem 2rem;
+  max-width: unset !important;
+  padding: 1rem 2rem !important;
   background: var(--euromus-color-700);
   display: flex;
   flex: 1;
