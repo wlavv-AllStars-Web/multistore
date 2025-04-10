@@ -28,7 +28,7 @@
 
 {if $layout === 'layouts/layout-left-column.tpl'}
   {block name="left_column"}
-    <div id="left-column" class="col-xs-12 col-sm-4 col-md-3">
+    <div id="left-column" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
       {hook h='displayContactLeftColumn'}
       <div><b>{l s='Working Hours' d='Shop.Theme.Contact'}:</b> 9:00h - 18:00h </div>
     </div>
