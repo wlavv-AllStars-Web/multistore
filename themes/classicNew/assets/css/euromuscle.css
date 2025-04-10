@@ -6232,20 +6232,27 @@ transform: translate(-50%,-50%);
 
   .bannersHome {
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    gap: .5rem;
+    padding: .5rem;
   }
 
   .bannersHome .card-img-container{
     width: 100%;
   }
 
+  .bannersHome .card-big img {
+    width: 100%;
+    object-fit: cover;
+    flex: 1;
+    height: 210px !important;
+  }
+
   .bannersHome .card-big{
     padding: 0;
     border-radius: 0.25rem;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    outline: 2px solid #103054;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    /* outline: 2px solid #103054; */
   }
 
   .bannersHome .card-big .layerHover{
