@@ -5942,7 +5942,7 @@ transform: translate(-50%,-50%);
   }
 
   .filters-desktop{
-    display: flex;
+    display: block;
   }
   
 }
@@ -5961,7 +5961,12 @@ transform: translate(-50%,-50%);
   }
 
   .products-selection > div {
-    display: none !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .products-selection > div .box-sortby{
+    width: 100%;
   }
 
   .filters-mobile{
