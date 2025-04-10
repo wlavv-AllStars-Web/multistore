@@ -395,6 +395,10 @@ main {
 
 /* new address page */
 
+a:hover{
+  color:  var(--euromus-color-300) !important;
+}
+
 .container-addresses {
   width: 100%;
 }
