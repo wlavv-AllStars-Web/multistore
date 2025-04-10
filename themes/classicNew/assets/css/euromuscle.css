@@ -5979,6 +5979,10 @@ transform: translate(-50%,-50%);
     background: var(--euromus-color-700);
     border-radius: .25rem;
   }
+
+  .js-product.product article {
+    max-width: 400px;
+  } 
 }
 
 /* normal tablet */
