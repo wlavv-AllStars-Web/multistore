@@ -673,6 +673,15 @@ a:focus{
   font-weight: 600;
 }
 
+#order-detail .order-infos-content {
+  color: var(--euromus-color-600);
+}
+
+#order-detail .addresses address {
+  color: var(--euromus-color-600);
+  font-weight: 500;
+}
+
 #order-detail .order-shipping-container table td {
   background: #fff;
 }
