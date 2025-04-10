@@ -32,7 +32,7 @@
   {if $customer.addresses}
     <div class="grid-container-addresses">
     {foreach $customer.addresses as $address}
-      <div class="col-lg-3 col-md-6 col-sm-6 address-customer">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 address-customer">
       {block name='customer_address'}
         {include file='customer/_partials/block-address.tpl' address=$address}
       {/block}
