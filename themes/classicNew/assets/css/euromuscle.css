@@ -30,6 +30,10 @@ body #wrapper {
   display: none !important;
 }
 
+#js-product-list-top {
+  max-width: 80%;
+  margin: auto;
+}
 
 
 .grecaptcha-badge{
