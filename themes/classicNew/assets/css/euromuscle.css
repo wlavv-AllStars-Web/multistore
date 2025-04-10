@@ -661,9 +661,11 @@ a:focus{
 
 #order-detail .order-state-history th{
   color: var(--euromus-color-600);
+  font-weight: 600;
 }
 #order-detail .order-state-history td{
   background: #fff;
+  font-weight: 600;
 }
 
 #order-detail .order-shipping-container table th {
@@ -685,6 +687,7 @@ a:focus{
 
 #order-detail #order-products thead th {
   color: var(--euromus-color-600);
+  font-weight: 600;
 }
 #order-detail #order-products tbody td {
   color: var(--euromus-color-600);
