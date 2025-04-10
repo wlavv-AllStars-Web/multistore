@@ -5289,7 +5289,14 @@ a:focus {
   }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width: 400px) {
+  /* contact page */
+
+  .page-my-account #content .links a span.link-item {
+    font-size: .85rem;
+  }
+
+  /*  */
   .videosContainer{
       width: 95vw;
   }
@@ -5984,6 +5991,13 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and  (max-width: 992px) {
+  /* my account */
+
+  .container-my-account {
+    margin-bottom: 2rem;
+  }
+
+  /*  */
   #js-product-list-top {
     margin-bottom: 2rem;
   }
