@@ -7611,6 +7611,10 @@ transform: translate(-50%,-50%);
     left: 1rem;
   }
 
+  #contact .notifications-container.container {
+    padding: 0 !important;
+  }
+
   /*  */
 
   /* .breadcrumb {
