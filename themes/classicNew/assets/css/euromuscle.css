@@ -682,6 +682,10 @@ a:focus{
   font-weight: 500;
 }
 
+.page-order-detail .order-items .order-item {
+  padding: 0 !important;
+}
+
 #order-detail .order-shipping-container table td {
   background: #fff;
 }

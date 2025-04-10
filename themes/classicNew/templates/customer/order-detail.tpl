@@ -249,7 +249,7 @@
      {/block}
    </section>
  
-   <section class="order-details-bottom-shipping hidden-md-up">
+   <section class="order-details-bottom-shipping hidden-sm-up">
      <div class="title-shipping-bottom">
        <h3>{l s="Shipping" d="Shop.Theme.OrderDetails"}</h3>
      </div>
