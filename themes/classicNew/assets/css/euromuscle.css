@@ -4458,6 +4458,7 @@ form .form-control-label {
   /* order details */
   .page-order-detail .box{
     background: #f6f6f6;
+    padding: 1rem !important;
   }
   
   #order-detail .order-shipping-container table td {
