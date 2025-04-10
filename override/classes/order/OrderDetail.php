@@ -552,7 +552,7 @@ class OrderDetailCore extends ObjectModel
                 'PS_OS_ERROR',
                 'PS_OS_WAITING_PAYMENT'
             ]);
-        }else if($this->context->shop->id == 2){
+        }else if($this->context->shop->id == 2 ||  $this->context->shop->id == 1){
             $dismissOrderStateIds = Configuration::getMultiple([
                 'PS_OS_CANCELED',
                 'PS_OS_ERROR',

@@ -745,7 +745,7 @@ class OrderHistoryCore extends ObjectModel
                     $product_list_html_shipped = $this->getEmailTemplateContent('order_conf_product_list_1_shipped.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
                 }else if($this->context->shop->id === 1){
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
-                    $product_list_html = $this->getEmailTemplateContent('order_conf_product_list_1.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
+                    $product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
                 }else{
                     $product_list_txt = $this->getEmailTemplateContent('order_conf_product_list.txt', Mail::TYPE_TEXT, $product_var_tpl_list);
                     $product_list_html = $this->getEmailTemplateContent('order_conf_product_list.tpl', Mail::TYPE_HTML, $product_var_tpl_list);
