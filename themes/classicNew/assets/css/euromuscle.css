@@ -92,9 +92,6 @@ body #wrapper {
   justify-content: end;
 }
 
-.contact-form footer > div{
-  padding: 1rem !important;
-}
 
 main > #wrapper {
   padding-block: 0 !important;
