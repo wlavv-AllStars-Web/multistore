@@ -49,6 +49,13 @@ body #wrapper {
   margin: auto;
 }
 
+#new-products #wrapper {
+  padding-block: 0 !important;
+}
+
+
+
+
 
 .grecaptcha-badge{
   z-index: 999;
@@ -403,7 +410,7 @@ a:focus{
   font-family: "Open Sans", sans-serif !important;
 }
 
-#my-account .breadcrumb {
+/* #my-account .breadcrumb {
   display: none;
 }
 
@@ -445,7 +452,7 @@ a:focus{
 
 #cars-products .breadcrumb {
   display: none;
-}
+} */
 
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
@@ -1642,12 +1649,12 @@ a:focus{
         justify-content: center;
       }
 
-      #authentication .breadcrumb {
+      /* #authentication .breadcrumb {
         display: none;
       }
       #registration .breadcrumb {
         display: none;
-      }
+      } */
 
       #registration .register-form:first-child p{
         padding: 0.625rem 0;
@@ -3395,9 +3402,9 @@ header.page-header {
   color: var(--euromus-color-200)!important;
 }
 
-#js-product-list-header .breadcrumb {
+/* #js-product-list-header .breadcrumb {
   display: none !important;
-}
+} */
 
 
 .attachment .btn_downloadInstructions {
@@ -3425,7 +3432,7 @@ header.page-header {
   width: auto;
 }
 
-#product .breadcrumb {
+/* #product .breadcrumb {
   display: none;
 }
 
@@ -3439,7 +3446,7 @@ header.page-header {
 
 #checkout .breadcrumb {
   display: none;
-}
+} */
 
 
 #blockcart-modal .cart-content-btn .btn-primary{
@@ -3497,9 +3504,9 @@ header.page-header {
 
 /* ...................................CMS--------------------------------------- */
 /* geral */
-#cms .breadcrumb {
+/* #cms .breadcrumb {
   display: none;
-}
+} */
 #cms #content-wrapper .page-header{
   display: none;
 }
@@ -7473,9 +7480,9 @@ transform: translate(-50%,-50%);
 
 
 
-  .breadcrumb {
+  /* .breadcrumb {
     display: none !important;
-  }
+  } */
 
   .pagination {
     text-align: center;
