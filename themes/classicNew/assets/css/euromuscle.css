@@ -409,11 +409,9 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); */
   padding: 1rem 0;
   flex-wrap: wrap;
+  row-gap: 1rem;
 }
 
-/* #addresses .grid-container-addresses .address-customer{
-  width: 100%;
-} */
 
 #addresses .grid-container-addresses .address-customer .address{
   height: 100%;
