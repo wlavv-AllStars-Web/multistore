@@ -24,6 +24,12 @@ main > #wrapper {
 }
 
 
+/* breadcrumb */
+.breadcrumb {
+  font-size: .85rem;
+}
+
+
 .breadcrumb ol{
   max-width: unset !important;
   padding: 1rem 2rem !important;
@@ -4307,11 +4313,6 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
-  /* breadcrumb */
-  .breadcrumb {
-    font-size: .85rem;
-  }
-
   /*  */
 
   .details-info-car-mobile{
