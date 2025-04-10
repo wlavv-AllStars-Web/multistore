@@ -208,7 +208,7 @@
          <a href="{$order.follow_up}">{$order.follow_up}</a>
        </div>
      {/if} *}
-     <div class="col-lg-5 pl-0">
+     <div class="col-lg-5 col-md-12 pl-0">
      {block name='addresses'}
        <div class="addresses">
          {if $order.addresses.delivery}
