@@ -540,9 +540,6 @@ a:focus{
   width: 100%;
 }
 
-.page-order-detail .box{
-  background: #f6f6f6;
-}
 
 #order-detail .page-content {
   border: 0;
@@ -686,8 +683,8 @@ a:focus{
   background: #f6f6f6;
 }
 
-#order-detail .order-shipping-container table td {
-  background: #fff;
+.page-order-detail .box{
+  padding: 1rem 0;
 }
 
 #order-detail .addresses {
@@ -4458,6 +4455,15 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  /* order details */
+  .page-order-detail .box{
+    background: #f6f6f6;
+  }
+  
+  #order-detail .order-shipping-container table td {
+    background: #fff;
+  }
+
   /*  */
 
   .details-info-car-mobile{
