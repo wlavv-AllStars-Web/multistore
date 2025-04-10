@@ -57,7 +57,7 @@
 
         <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="firstname">{l s='Name' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-12 col-sm-12">
+          <div class="col-md-12 col-sm-12 px-0">
             <input
               id="firstname"
               class="form-control"
@@ -71,7 +71,7 @@
 
         <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="phone">{l s='Phone' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-12 col-sm-12">
+          <div class="col-md-12 col-sm-12 px-0">
             <input
               id="phone"
               class="form-control"
@@ -85,7 +85,7 @@
 
         <div class="form-group  col-lg-4">
           <label class="col-md-12 form-control-label" for="email">{l s='Email address' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-12 col-sm-12">
+          <div class="col-md-12 col-sm-12 px-0">
             <input
               id="email"
               class="form-control"
@@ -100,7 +100,7 @@
         {if $contact.orders}
           <div class="form-group  col-lg-4">
             <label class="col-md-12 form-control-label" for="id-order">{l s='Order reference' d='Shop.Forms.Labels'}</label>
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12 px-0" >
               <select id="id-order" name="id_order" class="form-control form-control-select">
                 <option value="">{l s='Select reference' d='Shop.Forms.Help'}</option>
                 {foreach from=$contact.orders item=order}
@@ -130,7 +130,7 @@
 
         <div class="form-group  col-lg-8">
           <label class="col-md-12 form-control-label" for="contactform-message">{l s='Message' d='Shop.Forms.Labels'}</label>
-          <div class="col-md-12 col-sm-12">
+          <div class="col-md-12 col-sm-12 px-0">
             <textarea
               id="contactform-message"
               class="form-control"
