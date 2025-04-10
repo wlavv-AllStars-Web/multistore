@@ -91,7 +91,7 @@
             });
             </script>
         {/if}
-        <div class="container-fluid">
+        <div class="container-fluid container-{$page.page_name}">
           
 
           <div class="row">
