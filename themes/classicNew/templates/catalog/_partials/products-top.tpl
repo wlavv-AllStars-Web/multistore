@@ -32,14 +32,6 @@
   <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
  {/if}
 
- <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
- <div id="sidenavCarSpecs" class="sidenav">
-   <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
-     <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
-       <i class="fa-solid fa-xmark fa-xl"></i>
-     </button>
-   </div>
- </div>
 
 
 <style>
@@ -118,7 +110,7 @@
  border-bottom: 0 !important;
 }
 </style>
- <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>
+
 
 <div id="js-product-list-top" class="row products-selection mb-lg-3" style="display: flex;align-items:center;gap:0rem;">
 
