@@ -39,28 +39,6 @@
        <i class="fa-solid fa-xmark fa-xl"></i>
      </button>
    </div>
-   <div id="car-select-filters" style="padding: .5rem;background-color: #fff;">
-     <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-align:center;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
-     <div style="padding: 10px; ">
-       <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
-           <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
-           {foreach $car_brands AS $key => $car_brand}
-             <option value="{$key}"> {$car_brand} </option>
-           {/foreach}
-       </select>
-     </div>
-     <div style="padding: 10px;">
-       <select id="carModelWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
-     </div>
-     <div style="padding: 10px;">
-       <select id="carYearWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
-     </div>
-     <div style="padding: 10px;">
-       <select id="carModificationsWheels" class="form-control"  style="text-align: center;height:auto;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
-     </div>
-     {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
-   </div>
-   <div style="padding: .5rem 0;display: none !important;" id="carSpecs"></div>
  </div>
 
 
