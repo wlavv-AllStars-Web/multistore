@@ -30,6 +30,14 @@ body #wrapper {
   display: none !important;
 }
 
+/* index page */
+
+.container-index {
+  padding: 0 !important;
+}
+
+/*  */
+
 #js-product-list-top {
   max-width: 80%;
   margin: auto;
@@ -7605,6 +7613,24 @@ transform: translate(-50%,-50%);
   color: var(--euromus-color-300);
 }
 
+
+@media screen and (min-width: 565px) and (max-width: 768px) {
+  .menu-select-car-content {
+    flex-direction: column;
+  }
+
+  .menu-select-car .custom-select {
+    width: 100%;
+    max-width: 80vw;
+    padding: 0.85rem 1rem;
+  }
+
+  .menu-select-car #search-button-car{
+    padding: 0.85rem 1rem;
+    width: 100%;
+    max-width: 80vw;
+  }
+}
 
 
 /* mobile search compat */
