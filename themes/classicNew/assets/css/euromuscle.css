@@ -35,6 +35,20 @@ body #wrapper {
   margin: auto;
 }
 
+.container-new-products {
+  width: 100%;
+}
+
+
+.container-new-products #main > .banner {
+  display: flex;
+}
+
+.container-new-products #main > .banner img {
+  max-width: 1441px;
+  margin: auto;
+}
+
 
 .grecaptcha-badge{
   z-index: 999;
