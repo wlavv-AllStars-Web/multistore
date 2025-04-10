@@ -600,7 +600,7 @@ a:focus{
 
 #order-detail .order-details-top h6{
   margin-bottom: .5rem;
-  color: #333;
+  color: var(--euromus-color-600);
   font-weight: 600;
 }
 
