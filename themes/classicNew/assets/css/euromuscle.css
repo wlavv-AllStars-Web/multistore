@@ -534,49 +534,159 @@ a:focus{
   background: #f6f6f6;
 }
 
-/* #my-account .breadcrumb {
-  display: none;
+/* order-detail */
+
+#order-detail .page-content {
+  border: 0;
 }
 
-#identity .breadcrumb {
-  display: none;
+#order-detail #notifications {
+  margin: 0;
 }
 
-#addresses .breadcrumb {
-  display: none;
+#order-detail #main {
+  padding: 1rem;
 }
 
-#history .breadcrumb {
-  display: none;
+#order-detail .addresses {
+  margin: 0;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-#order-slip .breadcrumb {
-  display: none;
+#order-detail .order-details-top {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#module-psgdpr-gdpr .breadcrumb {
-  display: none;
+#order-detail .order-details-top > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
-#search .breadcrumb {
-  display: none;
+#order-detail .order-details-top > div:nth-child(1) {
+  min-width: 280px;
 }
 
-#authentication .breadcrumb {
-  display: none;
+#order-detail .order-details-top > div:nth-child(1) > div {
+  flex: 1;
+  min-width: 400px;
+  max-width: unset;
 }
 
-#password .breadcrumb {
-  display: none;
+#order-detail .order-details-top > div:nth-child(1) > div:nth-child(2) {
+  padding-left: 0;
 }
 
-#registration .breadcrumb {
-  display: none;
+#order-detail .order-details-top > div:nth-child(2) > div > div {
+  flex: 1;
+  min-width: 280px;
+  max-width: unset;
 }
 
-#cars-products .breadcrumb {
-  display: none;
+#order-detail .order-details-top h3{
+  border-bottom: 1px solid #333;
+  padding: .5rem 0;
+}
+
+#order-detail .order-details-top h6{
+  margin-bottom: .5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+#order-detail .order-details-top .order-details-card1{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 350px;
+  flex: 1;
+}
+
+#order-detail #order-history .container-current-state {
+  display: flex;
+  max-width: 500px;
+}
+
+/* #order-detail #order-history .order-state-history {
+  display: flex;
 } */
+
+#order-detail #order-history .order-state-label-date{
+  /* min-width: fit-content; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  padding: .5rem 1rem;
+  color: #fff;
+}
+
+#order-detail #order-history .order-state-label-title{
+  /* min-width: fit-content; */
+  padding: .5rem 1rem;
+  background: #e7e7e7;
+  color: #333;
+  flex: 1;
+  text-align: center;
+  transition: all ease-in-out 150ms;
+  user-select: none;
+}
+
+#order-detail #order-history .order-state-label-title:hover{
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: all ease-in-out 150ms;
+}
+
+#order-detail #order-history .order-state-label-date .ostate_name-label{
+  min-width: fit-content;
+}
+
+#order-detail .order-state-history {
+  display: none;
+}
+#order-detail .order-state-history.show-state {
+  display: flex;
+}
+
+#order-detail .order-state-history th{
+  color: #333;
+}
+#order-detail .order-state-history td{
+  background: #fff;
+}
+
+#order-detail .order-shipping-container table th {
+  color: #333;
+}
+
+#order-detail .order-shipping-container table td {
+  background: #fff;
+}
+
+#order-detail .addresses {
+  display: flex;
+  flex: 1;
+}
+
+#order-detail .order-details-bottom {
+  margin-top: 2rem;
+}
+
+#order-detail #order-products thead th {
+  color: #333;
+}
+#order-detail #order-products tbody td {
+  color: #333;
+}
+#order-detail #order-products tfoot td {
+  color: #333;
+  background: #f6f6f6;
+}
+
+
 
 @media screen and (max-width:360px){
   .bannersHomeMobile .layerHovermobile {
