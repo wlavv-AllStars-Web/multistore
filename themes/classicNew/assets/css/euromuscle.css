@@ -56,6 +56,14 @@ body #wrapper {
 
 /* contact page */
 
+#contact #wrapper .banner_contact_desk{
+  padding-inline: 2rem;
+}
+
+#contact #wrapper .container-contac{
+  padding-inline: 2rem;
+}
+
 .container-contact {
   width: 100%;
   max-width: 1441px;
