@@ -148,8 +148,12 @@
             backdrop-filter: blur(2px);
             display: none;
           }
+
+          .is-open .bg-mobile_top_menu {
+            display: flex !important;
+          }
         </style>
-        
+
       <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
 
         
