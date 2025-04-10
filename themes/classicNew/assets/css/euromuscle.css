@@ -1026,7 +1026,7 @@ a:focus{
     max-width: 80vw;
     min-height: 100dvh;
     background: white;
-    z-index: 2;
+    z-index: 9999;
     transition: all 0.25s ease-in-out;
     padding-left: 0;
     padding-right: 0;
