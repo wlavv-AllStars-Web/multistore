@@ -34,6 +34,7 @@ body #wrapper {
 
 .container-index {
   padding: 0 !important;
+  width: 100%;
 }
 
 /*  */
@@ -7622,7 +7623,7 @@ transform: translate(-50%,-50%);
   .menu-select-car .custom-select {
     width: 100%;
     max-width: 80vw;
-    padding: 0.85rem 1rem;
+    padding: 0.85rem 1rem !important;
   }
 
   .menu-select-car #search-button-car{
