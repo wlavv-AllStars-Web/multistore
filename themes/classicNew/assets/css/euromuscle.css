@@ -5935,6 +5935,12 @@ transform: translate(-50%,-50%);
 
 }
 
+@media screen and  (max-width: 992px) {
+  #js-product-list-top {
+    margin-bottom: 2rem;
+  }
+}
+
 /* normal tablet */
 @media screen and (min-width: 768px) and (max-width: 992px) {
   #footer .links{
