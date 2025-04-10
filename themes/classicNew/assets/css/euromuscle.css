@@ -7615,6 +7615,24 @@ transform: translate(-50%,-50%);
 }
 
 
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .menu-select-car-content {
+    flex-direction: column;
+  }
+
+  .menu-select-car .custom-select {
+    width: 100%;
+    max-width: 80vw;
+    padding: 0.85rem 1rem !important;
+  }
+
+  .menu-select-car #search-button-car{
+    padding: 0.85rem 1rem;
+    width: 100%;
+    max-width: 80vw;
+  }
+}
+
 @media screen and (min-width: 565px) and (max-width: 768px) {
   .menu-select-car-content {
     flex-direction: column;
