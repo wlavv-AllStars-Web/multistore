@@ -530,6 +530,10 @@ a:focus{
   font-family: "Open Sans", sans-serif !important;
 }
 
+.orders.hidden-md-up > .order:nth-child(even){
+  background: #f6f6f6;
+}
+
 /* #my-account .breadcrumb {
   display: none;
 }
