@@ -68,6 +68,10 @@ body #wrapper {
   padding-block: 0 !important;
 }
 
+main > #wrapper {
+  padding-block: 0 !important;
+}
+
 
 
 
