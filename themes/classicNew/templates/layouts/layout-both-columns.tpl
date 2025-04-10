@@ -91,7 +91,7 @@
             });
             </script>
         {/if}
-        <div class="container">
+        <div class="container-fluid">
           
 
           <div class="row">

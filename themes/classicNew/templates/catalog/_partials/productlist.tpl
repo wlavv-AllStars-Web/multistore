@@ -61,7 +61,7 @@
     {/if}
 
     {if $category.id == 550 ||$category.id == 551 ||$category.id == 552 ||$category.id == 553 ||$category.id == 554 ||$category.id == 555}
-    <div class="js-product product category{if !empty($productClasses)} {$productClasses}{/if}" style="display: flex;justify-content:center;outline: 3px solid #103054;">
+    <div class="js-product product category{if !empty($productClasses)} {$productClasses}{/if}" style="display: flex;justify-content:center;">
         <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
             <div class="thumbnail-container" style="background:#1030543d;display: flex;flex-direction: row;justify-content: center;align-items:center;">
                 <div class="thumbnail-top" style="flex: 1;height:100%;">
