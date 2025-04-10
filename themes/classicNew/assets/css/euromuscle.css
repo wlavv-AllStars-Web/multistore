@@ -40,11 +40,11 @@ body #wrapper {
 }
 
 
-.container-new-products #main #products > .banner {
+.container-new-products #main #products .filters-desktop > .banner {
   display: flex;
 }
 
-.container-new-products #main #products > .banner img {
+.container-new-products #main #products .filters-desktop > .banner img {
   max-width: 1441px;
   margin: auto;
 }
