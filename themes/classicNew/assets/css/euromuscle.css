@@ -49,6 +49,12 @@ main > #wrapper {
   width: 100%;
 }
 
+/* order history */
+
+.container-history {
+  width: 100%;
+}
+
 /*  */
 
 #js-product-list-top {
@@ -472,14 +478,14 @@ a:hover{
 }
 
 #history #content table thead th{
-  background: var(--euromus-color-800);
-  border: 1px solid var(--euromus-color-500);
+  background: var(--euromus-color-700);
+  border: 1px solid var(--euromus-color-800);
   font-weight: 700;
-  color: var(--euromus-color-200);
+  color: var(--euromus-color-text);
 }
 
 #history #content table tbody td {
-  border: 1px solid var(--euromus-color-500);
+  border: 1px solid var(--euromus-color-800);
   background: #f6f6f6;
   color: var(--euromus-color-600);
 }
