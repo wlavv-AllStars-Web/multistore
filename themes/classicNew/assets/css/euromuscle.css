@@ -536,6 +536,10 @@ a:focus{
 
 /* order-detail */
 
+.container-order-detail {
+  width: 100%;
+}
+
 #order-detail .page-content {
   border: 0;
 }
