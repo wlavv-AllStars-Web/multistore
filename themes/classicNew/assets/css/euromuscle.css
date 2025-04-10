@@ -7682,6 +7682,11 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
+  /* breadcrumb */
+  .breadcrumb {
+    font-size: .85rem;
+  }
+
   /* contact page */
 
   #contact #wrapper .container-contact {
