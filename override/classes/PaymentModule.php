@@ -732,7 +732,7 @@ abstract class PaymentModuleCore extends Module
                         ];
                     }
 
-                    if($this->context->shop->id != 3 && $this->context->shop->id != 2){
+                    if($this->context->shop->id != 3 && $this->context->shop->id != 2 && $this->context->shop->id != 1) {
                         
                         Mail::Send(
                         (int) $order->id_lang,
@@ -755,7 +755,7 @@ abstract class PaymentModuleCore extends Module
                         (int) $order->id_shop
                         );
                     
-                    }elseif( $this->context->shop->id == 2){
+                    }elseif( $this->context->shop->id == 2 && $this->context->shop->id == 1){
                         Mail::Send(
                         (int) $order->id_lang,
                         'order_created',
