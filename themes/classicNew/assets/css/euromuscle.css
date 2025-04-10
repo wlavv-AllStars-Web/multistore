@@ -399,16 +399,21 @@ main {
   width: 100%;
 }
 
+.container-addresses {
+  margin-bottom: 2rem;
+}
+
 #addresses .grid-container-addresses {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+  display: flex;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); */
   gap: 1rem;
   padding: 1rem 0;
 }
 
-#addresses .grid-container-addresses .address-customer{
+/* #addresses .grid-container-addresses .address-customer{
   width: 100%;
-}
+} */
 
 #addresses .grid-container-addresses .address-customer .address{
   height: 100%;
