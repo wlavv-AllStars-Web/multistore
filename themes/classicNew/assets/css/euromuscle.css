@@ -5943,6 +5943,11 @@ transform: translate(-50%,-50%);
   #products .products, .featured-products .products {
     justify-content: start;
   }
+
+  .product-miniature .thumbnail.product-thumbnail img{
+    padding: 1rem;
+  }
+
 }
 
 /* normal tablet */
