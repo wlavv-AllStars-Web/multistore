@@ -541,7 +541,7 @@ a:focus{
 }
 
 .page-order-detail .box{
-  padding: 1rem 0 !important;
+  background: #f6f6f6;
 }
 
 #order-detail .page-content {
@@ -683,7 +683,7 @@ a:focus{
 }
 
 .page-order-detail .order-items .order-item {
-  padding: 0 !important;
+  background: #f6f6f6;
 }
 
 #order-detail .order-shipping-container table td {
