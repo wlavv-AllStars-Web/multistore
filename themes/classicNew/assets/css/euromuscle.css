@@ -3496,6 +3496,7 @@ header.page-header {
   border-radius: .25rem;
   padding: 1.5rem 1rem;
   background: #f6f6f6;
+  outline: 2px solid var(--euromus-color-700);
 }
 .page-my-account #content .links a span {
   transition: all 0.3s ease-in-out;
