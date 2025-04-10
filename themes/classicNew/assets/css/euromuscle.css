@@ -54,6 +54,16 @@ body #wrapper {
 }
 
 
+/* contact page */
+
+.container-contact {
+  width: 100%;
+  max-width: 1441px;
+  margin: 0 auto 2rem auto;
+  background: #fff;
+  padding: 1rem;
+}
+
 
 
 
@@ -6949,9 +6959,9 @@ transform: translate(-50%,-50%);
     padding: 0 !important;
   }
 
-  #contact .wrapper_desktop {
+  /* #contact .wrapper_desktop {
     padding-block: 0 !important;
-  }
+  } */
 
   .banner_contact .contact_Banner{
     width: 100%;
