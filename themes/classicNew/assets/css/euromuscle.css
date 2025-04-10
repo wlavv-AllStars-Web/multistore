@@ -64,6 +64,10 @@ body #wrapper {
   padding: 1rem;
 }
 
+.container-contact .contact-form .form-control-label {
+  text-align: start;
+}
+
 #contact .wrapper_desktop {
   padding-block: 0 !important;
 }
