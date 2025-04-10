@@ -43,6 +43,19 @@
 
 
 <style>
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.25s;
+}
+
 #sidenavCarSpecs{
  background-color: #fff;
  border-right: 4px solid var(--asm-color);
