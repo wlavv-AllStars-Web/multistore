@@ -5939,6 +5939,10 @@ transform: translate(-50%,-50%);
   #js-product-list-top {
     margin-bottom: 2rem;
   }
+
+  #products .products, .featured-products .products {
+    justify-content: start;
+  }
 }
 
 /* normal tablet */
