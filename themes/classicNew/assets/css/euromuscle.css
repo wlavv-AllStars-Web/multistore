@@ -7604,7 +7604,13 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 564px) {
 
+  /* contact page */
 
+  #contact #wrapper .container-contact {
+    padding: 0 !important;
+  }
+
+  /*  */
 
   /* .breadcrumb {
     display: none !important;
