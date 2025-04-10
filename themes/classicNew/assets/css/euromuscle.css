@@ -5976,6 +5976,14 @@ transform: translate(-50%,-50%);
   .filters-desktop{
     display: none;
   }
+
+  .filters-sort-btn {
+    margin-bottom: 1rem;
+    color: var(--euromus-color-200);
+    padding: .5rem 1rem;
+    background: var(--euromus-color-700);
+    border-radius: .25rem;
+  }
 }
 
 /* normal tablet */
