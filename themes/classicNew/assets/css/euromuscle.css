@@ -413,6 +413,7 @@ a:hover{
 
 .container-address {
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 #addresses .grid-container-addresses {
