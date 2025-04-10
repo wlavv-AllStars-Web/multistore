@@ -5335,6 +5335,12 @@ transform: translate(-50%,-50%);
   background: var(--euromus-color-700);
 }
 
+@media screen and (max-width: 1300px) {
+  #js-product-list-top {
+    max-width: 100%;
+  }
+}
+
 @media screen and (min-width: 769px) {
   #current_car_settings {
     outline: 2px solid var(--euromus-color-700);
