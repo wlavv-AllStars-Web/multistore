@@ -83,6 +83,10 @@ body #wrapper {
   padding-block: 0 !important;
 }
 
+#contact .container-contact #content-wrapper .page-content {
+  padding: 0;
+}
+
 main > #wrapper {
   padding-block: 0 !important;
 }
