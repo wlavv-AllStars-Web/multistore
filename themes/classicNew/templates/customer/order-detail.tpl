@@ -30,7 +30,7 @@
  
  {block name='page_content'}
    <section class="order-details-top">
-     <div class="col-lg-7 px-0 py-3">
+     <div class="col-lg-7 px-0">
        <div class="col-lg-5 order-details-card1 pl-0">
          {block name='order_infos'}
            <div id="order-infos">
@@ -208,7 +208,7 @@
          <a href="{$order.follow_up}">{$order.follow_up}</a>
        </div>
      {/if} *}
-     <div class="col-lg-5 pl-0 py-3">
+     <div class="col-lg-5 pl-0">
      {block name='addresses'}
        <div class="addresses">
          {if $order.addresses.delivery}
