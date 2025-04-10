@@ -18,6 +18,12 @@ body {
 body #wrapper {
   flex: 1;
 }
+
+main > #wrapper {
+  background: #fff;
+}
+
+
 .breadcrumb ol{
   max-width: unset !important;
   padding: 1rem 2rem !important;
@@ -3489,6 +3495,7 @@ header.page-header {
 .page-my-account #content .links a span.link-item {
   border-radius: .25rem;
   padding: 1.5rem 1rem;
+  background: #f6f6f6;
 }
 .page-my-account #content .links a span {
   transition: all 0.3s ease-in-out;
