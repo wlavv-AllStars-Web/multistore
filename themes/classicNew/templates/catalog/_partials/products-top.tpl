@@ -33,6 +33,102 @@
  {/if}
 
 <div id="js-product-list-top" class="row products-selection mb-lg-3" style="display: flex;align-items:center;gap:0rem;">
+  <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
+  <div id="sidenavCarSpecs" class="sidenav">
+    <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
+      <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </button>
+    </div>
+    <div id="car-select-filters" style="padding: .5rem;background-color: #fff;">
+      <div style="color: black; font-weight: bolder; font-size: 18px;padding: 20px 0;text-align:center;">{l s='SELECT YOUR CAR CONFIGURATION' d='Shop.Theme.ProductList'}</div>
+      <div style="padding: 10px; ">
+        <select id="carBrandWheels" class="form-control" style="text-align: center;height:auto;" onchange="callForModelData()">
+            <option value="0"> {l s='BRAND' d='Shop.Theme.ProductList'} </option>
+            {foreach $car_brands AS $key => $car_brand}
+              <option value="{$key}"> {$car_brand} </option>
+            {/foreach}
+        </select>
+      </div>
+      <div style="padding: 10px;">
+        <select id="carModelWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForYearData()" disabled="disabled"> <option> {l s='MODEL' d='Shop.Theme.ProductList'} </option> </select>
+      </div>
+      <div style="padding: 10px;">
+        <select id="carYearWheels" class="form-control"  style="text-align: center;height:auto;" onchange="callForModificationsData()" disabled="disabled"> <option> {l s='YEAR' d='Shop.Theme.ProductList'} </option> </select>
+      </div>
+      <div style="padding: 10px;">
+        <select id="carModificationsWheels" class="form-control"  style="text-align: center;height:auto;" disabled="disabled"> <option> {l s='MODIFICATIONS' d='Shop.Theme.ProductList'} </option> </select>
+      </div>
+      {* <div style="padding: 10px;display: none;" id="carSpecs"></div> *}
+    </div>
+    <div style="padding: .5rem 0;display: none !important;" id="carSpecs"></div>
+  </div>
+
+
+<style>
+#sidenavCarSpecs{
+  background-color: #fff;
+  border-right: 4px solid var(--asm-color);
+  padding: 1rem 0rem;
+  opacity: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.bg-sidenavCarSpecs{
+  width: 100dvw;
+  height: 100dvh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+  display: none;
+}
+
+#car-select-filters{
+  border-radius: .25rem;
+}
+
+#car-select-filters select{
+  border: 1px solid #d0d0d0;
+  border-radius: .15rem;
+  padding: .25rem 1rem;
+  font-size: 1rem;
+  color: #111;
+}
+#car-select-filters select:hover:not(:disabled){
+  cursor: pointer;
+  border: 1px solid #b1b1b1;
+}
+#car-select-filters select:disabled{
+  opacity: .4;
+}
+
+#car-select-filters select option {
+  font-size: 1rem;
+}
+
+#carSpecs tbody tr{
+  background-color: #e7e7e7 !important;
+}
+
+#carSpecs tbody tr:hover{
+  background-color: #555 !important;
+  cursor: pointer;
+  color: #fff !important;
+  transition: .35s;
+}
+
+#carSpecs tbody tr:hover i{
+  color: #fff !important;
+}
+
+#carSpecs tbody tr:last-child{
+  border-bottom: 0 !important;
+}
+</style>
+  <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>
 
     {* {if $smarty.server.REQUEST_URI == "/{$language.iso_code}/brand/{$id_manufacturer}-{$name_manufacturer|lower}"}
       <div class="col-lg-5 hidden-sm-down total-products p-0">
