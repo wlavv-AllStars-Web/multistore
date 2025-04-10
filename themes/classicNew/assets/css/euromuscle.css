@@ -4458,6 +4458,9 @@ form .form-control-label {
   /* order details */
   .page-order-detail .box{
     background: #f6f6f6;
+  }
+
+  .page-order-detail .order-totals {
     padding: 1rem !important;
   }
   
