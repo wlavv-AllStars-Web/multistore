@@ -83,7 +83,25 @@ main > #wrapper {
 }
 
 
+/* clearance */
 
+.container-category{
+  width: 100%;
+}
+
+/*  my account */
+
+.container-identity {
+  width: 100%;
+  max-width: 1441px;
+  padding-bottom: 2rem;
+}
+
+.container-history {
+  padding-bottom: 2rem;
+}
+
+/*  */
 .grecaptcha-badge{
   z-index: 999;
   bottom: 5rem !important;
