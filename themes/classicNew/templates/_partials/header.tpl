@@ -136,23 +136,6 @@
         </div>
         
       <div class="bg-mobile_top_menu" onclick="closeMenu()"></div>
-        <style>
-          .bg-mobile_top_menu {
-            width: 100dvw;
-            height: 100dvh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(0,0,0,.4);
-            z-index: 9999;
-            backdrop-filter: blur(2px);
-            display: none;
-          }
-
-          .is-open .bg-mobile_top_menu {
-            display: flex !important;
-          }
-        </style>
 
       <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
 
