@@ -5396,6 +5396,10 @@ transform: translate(-50%,-50%);
   #js-product-list-top {
     max-width: 100%;
   }
+
+  .container-my-account {
+    margin-bottom: 2rem;
+  }
 }
 
 @media screen and (min-width: 769px) {
