@@ -5495,10 +5495,6 @@ transform: translate(-50%,-50%);
     margin: 0;
   }
 
-  .banner_contact_desk h2{
-    font-size: clamp(3rem,7vw,5rem);
-    left: 1rem;
-  }
 
   #contact .wrapper_desktop{
     padding-block: 0;
@@ -7608,6 +7604,11 @@ transform: translate(-50%,-50%);
 
   #contact #wrapper .container-contact {
     padding: 0 !important;
+  }
+
+  .banner_contact_desk h2 {
+    font-size: clamp(2rem,7vw,5rem);
+    left: 1rem;
   }
 
   /*  */
