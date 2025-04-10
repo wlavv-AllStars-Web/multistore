@@ -5924,11 +5924,6 @@ transform: translate(-50%,-50%);
     padding: 1rem;
   }
 
-  .products-sort-order{
-    padding: 2rem 0;
-    max-width: 400px;
-  }
-
   #js-product-list-top .col-lg-7{
     padding: 0;
   }
