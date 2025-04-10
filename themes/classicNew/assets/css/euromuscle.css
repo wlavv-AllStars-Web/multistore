@@ -4295,7 +4295,13 @@ justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
+  /* breadcrumb */
+  .breadcrumb {
+    font-size: .85rem;
+  }
 
+  /*  */
+  
   .details-info-car-mobile{
     display: flex;
   }
@@ -7701,11 +7707,6 @@ transform: translate(-50%,-50%);
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
-
-  /* breadcrumb */
-  .breadcrumb {
-    font-size: .85rem;
-  }
 
   /* contact page */
 
