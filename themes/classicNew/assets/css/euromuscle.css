@@ -540,6 +540,10 @@ a:focus{
   width: 100%;
 }
 
+.page-order-detail .box{
+  padding: 1rem 0 !important;
+}
+
 #order-detail .page-content {
   border: 0;
 }
