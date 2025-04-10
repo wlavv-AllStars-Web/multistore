@@ -6253,6 +6253,7 @@ transform: translate(-50%,-50%);
     overflow: hidden;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     /* outline: 2px solid #103054; */
+    margin-bottom: 0;
   }
 
   .bannersHome .card-big .layerHover{
