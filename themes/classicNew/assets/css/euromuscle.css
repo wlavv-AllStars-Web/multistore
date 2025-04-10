@@ -87,6 +87,14 @@ body #wrapper {
   padding: 0;
 }
 
+.contact-form footer {
+  display: flex;
+}
+
+.contact-form footer > div{
+  padding: 1rem !important;
+}
+
 main > #wrapper {
   padding-block: 0 !important;
 }
