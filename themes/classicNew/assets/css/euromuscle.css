@@ -670,6 +670,7 @@ a:focus{
 
 #order-detail .order-shipping-container table th {
   color: var(--euromus-color-600);
+  font-weight: 600;
 }
 
 #order-detail .order-shipping-container table td {
