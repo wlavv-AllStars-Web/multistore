@@ -7641,6 +7641,11 @@ transform: translate(-50%,-50%);
   width: fit-content;
 }
 
+.cars-cards .card-title {
+  font-size: 2rem;
+  color: #fff;
+}
+
 
 /* cars page */
 
