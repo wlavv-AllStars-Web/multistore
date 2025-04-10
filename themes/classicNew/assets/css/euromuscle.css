@@ -500,7 +500,7 @@ a:hover{
 }
 
 #history #content table tbody th {
-  border: 1px solid var(--euromus-color-500);
+  border: 1px solid var(--euromus-color-800);
   background: #f6f6f6;
   color: var(--euromus-color-600);
 }
