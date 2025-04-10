@@ -594,7 +594,7 @@ a:focus{
 }
 
 #order-detail .order-details-top h3{
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--euromus-color-600);
   padding: .5rem 0;
 }
 
@@ -634,7 +634,7 @@ a:focus{
   /* min-width: fit-content; */
   padding: .5rem 1rem;
   background: #e7e7e7;
-  color: #333;
+  color: var(--euromus-color-600);
   flex: 1;
   text-align: center;
   transition: all ease-in-out 150ms;
@@ -642,7 +642,7 @@ a:focus{
 }
 
 #order-detail #order-history .order-state-label-title:hover{
-  background: #333;
+  background: var(--euromus-color-600);
   color: #fff;
   cursor: pointer;
   transition: all ease-in-out 150ms;
@@ -660,14 +660,14 @@ a:focus{
 }
 
 #order-detail .order-state-history th{
-  color: #333;
+  color: var(--euromus-color-600);
 }
 #order-detail .order-state-history td{
   background: #fff;
 }
 
 #order-detail .order-shipping-container table th {
-  color: #333;
+  color: var(--euromus-color-600);
 }
 
 #order-detail .order-shipping-container table td {
@@ -684,13 +684,13 @@ a:focus{
 }
 
 #order-detail #order-products thead th {
-  color: #333;
+  color: var(--euromus-color-600);
 }
 #order-detail #order-products tbody td {
-  color: #333;
+  color: var(--euromus-color-600);
 }
 #order-detail #order-products tfoot td {
-  color: #333;
+  color: var(--euromus-color-600);
   background: #f6f6f6;
 }
 
