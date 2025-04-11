@@ -32,7 +32,7 @@
         {if $compat}
           <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;border-radius:0.25rem;" id_compat="{$compat['id_compat']}">
           <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
-            <div style="width: 100%;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
+            <div style="width: 100%;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;position:relative;">
                 <img class="img-responsive" src="{$compat['cartoon']}" 
                 onerror="this.onerror=null;this.src='/img/eurmuscle/compat/unknown.png';" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;width:100%;">
               </div>
@@ -56,8 +56,8 @@
                   <div style="margin-top: 11px;"> {$compat['type']} | {$compat['version']}</div>
                 </div>
               </div>
-              <div class="logo_brand_compat">
-                <img src="{$compat['brand_logo']}" style="width: 40px;"/>
+              <div class="logo_brand_compat" style="display: flex;justify-content:end;width:100%;position:absolute;bottom:0;right:0;">
+                <img src="{$compat['brand_logo']}" style="width: 80px;background: var(--euromus-color-200);padding:.25rem;border-radius: .25rem 0 0 0;"/>
               </div>
             </div>
           </article>
