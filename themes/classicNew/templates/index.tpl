@@ -848,8 +848,7 @@
                   }
 
                   function getCarVersions(e,brand,model,type) {
-                    console.log(e)
-                    console.log(e.nextElementSibling)
+
                     $.ajax({
                       url: '{$link->getPageLink('index')}',
                       type: 'GET',
@@ -877,8 +876,8 @@
                             }
                           });
 
-                          const carVersionSpan = $(this).closest('.card-link').find('.car_version');  // Find the sibling span with the class 'car_version'
-                          console.log(carVersionSpan)
+                          const carVersionSpan = e.nextElementSibling;  // Find the sibling span with the class 'car_version'
+
                           if (carVersionSpan.length > 0) {
                             carVersionSpan.html(spanContent); // Insert the generated span content
                           }
