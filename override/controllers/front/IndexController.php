@@ -379,8 +379,55 @@ class IndexController extends IndexControllerCore
                 $typesEuromus = json_decode($json, true);
                 $typesEuromus = $typesEuromus['data'];
 
-                foreach($typesEuromus as $key => $type) {
-                    $typesEuromus[$key]['id_brand'] = $brand; 
+                // foreach($typesEuromus as $key => $type) {
+                //     $typesEuromus[$key]['id_brand'] = $brand; 
+                // }
+
+                foreach ($typesEuromus as $key => $type) {
+                    $typesEuromus[$key]['id_brand'] = $brand;
+        
+                    // Fetch versions for each type
+                    $typeId = $type['id_type']; // Adjust this key based on your data structure
+                    $urlVersionsHome = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $key;
+        
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $urlVersionsHome);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+                    $json = curl_exec($ch);
+                    curl_close($ch);
+        
+                    // Decode JSON response for versions
+                    $versionsEuromus = json_decode($json, true);
+                    $versionsEuromus = $versionsEuromus['data'];
+        
+                    // Add versions to each type
+                    if (isset($versionsEuromus)) {
+                        foreach ($versionsEuromus as &$version) {
+                            $versionId = $version['id_version'];
+        
+                            // Fetch compat data for each version
+                            $urlCompat = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/compats/' . $brand . '/' . $model . '/' . $typeId . '/' . $versionId . '/' . $store . '/' . $key;
+        
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_URL, $urlCompat);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+                            $compat = curl_exec($ch);
+                            curl_close($ch);
+        
+                            // Decode compat JSON response
+                            $compat = json_decode($compat, true);
+        
+                            // Check if compat data exists and append to version
+                            if (isset($compat['data'])) {
+                                $version['compat_data'] = $compat['data'];
+                            }
+                        }
+        
+                        // Append the fetched versions data to the type
+                        $typesEuromus[$key]['versions'] = $versionsEuromus;
+                    }
                 }
 
                 return $typesEuromus;
