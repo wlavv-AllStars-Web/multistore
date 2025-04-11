@@ -273,8 +273,8 @@ class IndexController extends IndexControllerCore
             $versionsEuromus = $versionsEuromus['data'];
 
             // get compats
-            if (isset($versionsEuromus['data'])) {
-                $versionsEuromus = $versionsEuromus['data'];
+            if (isset($versionsEuromus)) {
+                $versionsEuromus = $versionsEuromus;
         
                 // Iterate over each version
                 foreach ($versionsEuromus as &$version) {
