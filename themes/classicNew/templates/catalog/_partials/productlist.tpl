@@ -56,6 +56,9 @@
                   <div style="margin-top: 11px;"> {$compat['type']} | {$compat['version']}</div>
                 </div>
               </div>
+              <div class="logo_brand_compat">
+                <img src="{$compat['brand_logo']}" style="width: 40px;"/>
+              </div>
             </div>
           </article>
         {/if}
