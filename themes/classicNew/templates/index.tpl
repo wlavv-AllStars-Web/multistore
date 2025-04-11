@@ -456,9 +456,15 @@
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
+              
                 {foreach from=$versionsFordMustang item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="getCarVersions(this,{$item.id_brand},{$item.id_model},{$item.id_type})">{$item.name}</a><span class="car_version"></span>
+                      onclick="showCarVersions(this)">{$item.name}</a>
+                      <div class="container-versions-car" style="display: none;">
+                        {foreach from=$item.versions item=version key=versionkey}
+                          <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                        {/foreach}
+                      </div>
                   </div>
                 {/foreach}
               </div>
@@ -871,16 +877,21 @@
                             if (version.compat_data && version.compat_data.length > 0) {
                               // Loop through each compat_data item in this version and create a span for it
                               version.compat_data.forEach(function(compatData) {
-                                spanContent += '<span onclick="searchCompat('+ compatData.id_compat +')">'+ compatData.name +'</span>';
+                                spanContent += '<span onclick="searchCompat('+ compatData.id_compat +')">'+ compatData.version +'</span>';
                               });
                             }
                           });
 
-                          const carVersionSpan = e.nextElementSibling;  // Find the sibling span with the class 'car_version'
+                          const carVersionSpan = $(e).closest('.card-link').find('.car_version');;  // Find the sibling span with the class 'car_version'
+                          
+                          console.log(carVersionSpan.length)
+                          console.log(carVersionSpan)
 
-                          // if (carVersionSpan.length > 0) {
-                          carVersionSpan.innerHTML(spanContent); // Insert the generated span content
-                          // }
+
+                           if (carVersionSpan.length > 0) {
+                              console.log(carVersionSpan)
+                          carVersionSpan.html(spanContent); // Insert the generated span content
+                           }
                         } else {
                           console.error("No compat data found in the response.");
                         }
@@ -890,6 +901,16 @@
                           console.error("AJAX Error:", status, error);
                       }
                     })
+                  }
+
+                  function showCarVersions(e) {
+                    const element = e.nextElementSibling;
+
+                    if (element.style.display === "none") {
+                      element.style.display = "block";
+                    } else {
+                      element.style.display = "none";
+                    }
                   }
 
                   function searchCompat(id_compat) {
