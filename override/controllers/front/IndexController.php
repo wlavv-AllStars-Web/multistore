@@ -249,7 +249,7 @@ class IndexController extends IndexControllerCore
 
     }
 
-    public function postProcessAjax(){
+    public function postProcess(){
         if (Tools::getValue('getCarVersions') == 1) {
             echo 'paulo';
             exit;
