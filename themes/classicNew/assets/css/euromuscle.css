@@ -50,16 +50,17 @@ main > #wrapper {
 }
 
 .card-link a.show {
-  color: var(--euromus-color-300);
+  color: var(--euromus-color-300) !important;
 }
 
 .container-versions-car .car_version {
   cursor: pointer;
+  color: var(--euromus-color-400) !important;
 }
 
 .container-versions-car .car_version:hover {
   cursor: pointer;
-  color: var(--euromus-color-300);
+  color: var(--euromus-color-300) !important;
 }
 
 /* order history */
