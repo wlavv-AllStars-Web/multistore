@@ -908,8 +908,10 @@
 
                     if (element.style.display === "none") {
                       element.style.display = "block";
+                      element.classList.add("show");
                     } else {
                       element.style.display = "none";
+                      element.classList.remove("show");
                     }
                   }
 

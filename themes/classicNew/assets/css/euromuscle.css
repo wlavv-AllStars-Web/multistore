@@ -5783,6 +5783,19 @@ transform: translate(-50%,-50%);
 
   /* homepage */
 
+  .container-versions-car .car_version {
+    cursor: pointer;
+  }
+
+  .container-versions-car.show{
+    color: var(--euromus-color-300);
+  }
+
+  .container-versions-car .car_version:hover {
+    cursor: pointer;
+    color: var(--euromus-color-300);
+  }
+
   .bannersHomeMobile .layerHovermobile{
     height: unset;
   }
