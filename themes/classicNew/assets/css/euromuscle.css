@@ -60,7 +60,7 @@ main > #wrapper {
 
 .container-versions-car .car_version:hover {
   cursor: pointer;
-  color: var(--euromus-color-300) !important;
+  color: var(--euromus-color-500) !important;
 }
 
 /* order history */
