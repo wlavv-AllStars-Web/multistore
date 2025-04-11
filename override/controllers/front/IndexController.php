@@ -430,6 +430,8 @@ class IndexController extends IndexControllerCore
                     }
                 }
 
+                pre($typesEuromus);
+
                 return $typesEuromus;
             }
 
