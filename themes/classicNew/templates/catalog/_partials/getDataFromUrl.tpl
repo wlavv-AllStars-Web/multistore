@@ -122,16 +122,13 @@
             // }
  
         }
-        $('.name_sort_by').each(function () {
-            $(this).html(
-                deleteHtmlParameters + 
-                '{l s="Sort By" d="Shop.Theme.SortOrders"} ' + 
-                '<span style="color:#444;font-size: 0.85rem;">' + 
-                $('.products-sort-order .dropdown-menu .current').text() + 
-                '</span>'
-            );
-        });
-
+        $('#js-product-list-top:visible').find('.name_sort_by').html(
+  deleteHtmlParameters +
+  '{l s="Sort By" d="Shop.Theme.SortOrders"} ' +
+  '<span style="color:#444;font-size: 0.85rem;">' +
+  $('.products-sort-order .dropdown-menu .current').text() +
+  '</span>'
+);
 
         $('#name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>');
 
