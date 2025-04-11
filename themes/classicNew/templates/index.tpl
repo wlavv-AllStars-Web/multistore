@@ -705,7 +705,7 @@
             </h5>
           </div>
 
-          <div id="collapseFive" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div id="collapseEight" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
               {foreach from=$versionsFordBronco item=item key=key name=name}
