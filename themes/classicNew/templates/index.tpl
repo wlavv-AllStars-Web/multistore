@@ -27,7 +27,7 @@
 {assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
 {assign var="currentLanguage" value=Context::getContext()->language->id}
 {assign var="categories" value=Category::getCategories($currentLanguage)}
-{* {assign var="versionsFordMustang" value=IndexController::getCarsOfBrand(92,100,$currentLanguage,true)} *}
+{assign var="versionsFordMustang" value=IndexController::getCarsOfBrand(92,100,$currentLanguage,true)}
 {assign var="versionsChevroletCamaro" value=IndexController::getCarsOfBrand(1058,1061,$currentLanguage,true)}
 {assign var="versionsChevroletCorvette" value=IndexController::getCarsOfBrand(1058,1064,$currentLanguage,true)}
 {assign var="versionsDodgeChallenger" value=IndexController::getCarsOfBrand(1067,1069,$currentLanguage,true)}
