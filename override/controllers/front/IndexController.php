@@ -250,7 +250,10 @@ class IndexController extends IndexControllerCore
     }
 
     public function postProcessAjax(){
-
+        if (Tools::getValue('getCarVersions') == 1) {
+            echo 'paulo';
+            exit;
+        }
     }
 
     public static function getBrandAndModel($filter1,$filter2,$filter3,$filter4,$id_lang){
@@ -320,6 +323,8 @@ class IndexController extends IndexControllerCore
                 $typesEuromus = $typesEuromus['data'];
 
                 return $typesEuromus;
+            }else{
+
             }
 
             // get versions

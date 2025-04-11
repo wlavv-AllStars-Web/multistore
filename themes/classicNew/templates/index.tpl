@@ -458,7 +458,7 @@
               <div class="card-text">
                 {foreach from=$versionsFordMustang item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="getCarVersions({$item.id_type})">{$item.name}</a><span class="car_version"></span>
+                      onclick="({$item.id_type})">{$item.name}</a><span class="car_version"></span>
                   </div>
                 {/foreach}
               </div>
@@ -815,37 +815,55 @@
                 </div>
 
               <script>
-const videosContainer = Array.from(document.querySelector('.videosContainer').children);
+                const videosContainer = Array.from(document.querySelector('.videosContainer').children);
 
-videosContainer.forEach((item) => {
-  const img = item.querySelector('.play img');
-  if (img) {
-    item.addEventListener('mouseover', () => {
-      img.setAttribute('src', "/img/youtube_play_hover.png")
-    });
-    item.addEventListener('mouseleave', () => {
-      img.setAttribute('src', "/img/youtube_play.png")
-    });
-  }
-});
+                videosContainer.forEach((item) => {
+                  const img = item.querySelector('.play img');
+                  if (img) {
+                    item.addEventListener('mouseover', () => {
+                      img.setAttribute('src', "/img/youtube_play_hover.png")
+                    });
+                    item.addEventListener('mouseleave', () => {
+                      img.setAttribute('src', "/img/youtube_play.png")
+                    });
+                  }
+                });
 
-if (window.screen.width < 768) {
-  videosContainer.forEach((item) => {
-    const img = item.querySelector('.play img');
-    if (img) {
-      img.setAttribute("src", "/img/youtube_play_hover.png")
-    }
-  })
-}
+                if (window.screen.width < 768) {
+                  videosContainer.forEach((item) => {
+                    const img = item.querySelector('.play img');
+                    if (img) {
+                      img.setAttribute("src", "/img/youtube_play_hover.png")
+                    }
+                  })
+                }
 
 
-function setCarAndSearch(brand, model, type, version) {
-    $("#custom_filter_1").prop('value', brand);
-    $("#custom_filter_2").prop('value', model);
-    $("#custom_filter_3").prop('value', type);
-    $("#custom_filter_4").prop('value', version);
-    $('#ukoocompat_my_cars_custom_form').submit();
-  }
+                function setCarAndSearch(brand, model, type, version) {
+                    $("#custom_filter_1").prop('value', brand);
+                    $("#custom_filter_2").prop('value', model);
+                    $("#custom_filter_3").prop('value', type);
+                    $("#custom_filter_4").prop('value', version);
+                    $('#ukoocompat_my_cars_custom_form').submit();
+                  }
+
+                  function getCarVersions(type) {
+                    $.ajax({
+                      url: '{$link->getPageLink('index')}',
+                      type: 'GET',
+                      data: {
+                        getCarVersions: 1,
+                        type: type,
+                        storeId: {Context::getContext()->shop->id}
+                      },
+                      success: function(response) {
+
+                      },
+                      error: function(xhr, status, error) {
+                          console.error("AJAX Error:", status, error);
+                      }
+                    })
+                  }
 
               </script>
 
