@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="logo_brand_compat" style="display: flex;justify-content:end;width:100%;position:absolute;bottom:0;right:0;">
-                <img src="{$compat['brand_logo']}" style="width: 80px;background: var(--euromus-color-200);padding:.25rem;border-radius: .25rem 0 0 0;"/>
+                <img src="{$compat['brand_logo']}" style="width: 80px;background: var(--euromus-color-text2);padding:.25rem;border-radius: .25rem 0 0 0;"/>
               </div>
             </div>
           </article>
