@@ -20,6 +20,7 @@
     width: 100%;
     clear: both;
     line-height: 16px;
+    position: absolute;
 }
 .text-center {
     text-align: center;
