@@ -876,6 +876,7 @@
                           });
 
                           const carVersionSpan = $(this).siblings('.car_version'); // Find the sibling span with the class 'car_version'
+                          console.log(carVersionSpan)
                           if (carVersionSpan.length > 0) {
                             carVersionSpan.html(spanContent); // Insert the generated span content
                           }
