@@ -875,8 +875,10 @@
                             }
                           });
 
-                          // Add the generated spans to the next sibling element
-                          this.nextElementSibling.innerHTML = spanContent;
+                          const carVersionSpan = $(this).siblings('.car_version'); // Find the sibling span with the class 'car_version'
+                          if (carVersionSpan.length > 0) {
+                            carVersionSpan.html(spanContent); // Insert the generated span content
+                          }
                         } else {
                           console.error("No compat data found in the response.");
                         }
