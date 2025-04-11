@@ -52,61 +52,7 @@
     <section id="products">
       {if $listing.products|count}
 
-        <div id="filters-mobile-container"></div>
-        <div id="filters-desktop-container"></div>
-
-      <script>
-        function loadFiltersByScreenSize() {
-          const isMobile = window.innerWidth <= 768;
-          
-          const mobileContainer = document.getElementById('filters-mobile-container');
-          const desktopContainer = document.getElementById('filters-desktop-container');
-
-          // Clear previous content
-          mobileContainer.innerHTML = '';
-          desktopContainer.innerHTML = '';
-
-          if (isMobile) {
-            // Load mobile filters content dynamically
-            mobileContainer.innerHTML = 
-            '<div class="filters-mobile">' +
-              '<div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>' +
-              '<div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>' +
-              '<div id="sidenavCarSpecs" class="sidenav">' +
-                '<div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">' +
-                  '<button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">' +
-                    '<i class="fa-solid fa-xmark fa-xl"></i>' +
-                  '</button>' +
-                '</div>' +
-                '<div>' +
-                  '{block name="product_list_top_mobile"}' +
-                    '{include file="catalog/_partials/products-top.tpl" listing=$listing}' +
-                  '{/block}' +
-                '</div>' +
-              '</div>' +
-            '</div>';
-            ;
-          } else {
-            // Load desktop filters content dynamically
-            desktopContainer.innerHTML = 
-            '<div class="filters-desktop">' +
-              '{block name="product_list_top_desktop"}' +
-                '{include file="catalog/_partials/products-top.tpl" listing=$listing}' +
-              '{/block}' +
-            '</div>';
-            ;
-          }
-        }
-
-        // Initial check when the page loads
-        loadFiltersByScreenSize();
-
-        // Re-check on window resize
-        window.addEventListener('resize', loadFiltersByScreenSize);
-      </script>
-
-
-        {* <div class="filters-mobile">
+        <div class="filters-mobile">
           <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>
           
           <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
@@ -128,7 +74,7 @@
         {block name='product_list_top'}
           {include file='catalog/_partials/products-top.tpl' listing=$listing}
         {/block}
-        </div> *}
+        </div>
 
         {block name='product_list_active_filters'}
           <div class="hidden-sm-down">
@@ -189,4 +135,39 @@
     {hook h="displayFooterCategory"}
 
   </section>
+
+  <script>
+    function swapFiltersByScreenSize() {
+  const isMobile = window.innerWidth <= 768; // Check if it's a mobile screen
+  const mobileContainer = document.querySelector('.filters-mobile');
+  const desktopContainer = document.querySelector('.filters-desktop');
+
+  const parentElement = mobileContainer.parentElement;
+
+  if (isMobile) {
+    // Swap to put mobile filters first
+    if (!parentElement.contains(mobileContainer)) {
+      parentElement.appendChild(mobileContainer);
+    }
+    if (parentElement.contains(desktopContainer)) {
+      parentElement.removeChild(desktopContainer);
+    }
+  } else {
+    // Swap to put desktop filters first
+    if (!parentElement.contains(desktopContainer)) {
+      parentElement.appendChild(desktopContainer);
+    }
+    if (parentElement.contains(mobileContainer)) {
+      parentElement.removeChild(mobileContainer);
+    }
+  }
+}
+
+// Initial check when the page loads
+swapFiltersByScreenSize();
+
+// Re-check on window resize
+window.addEventListener('resize', swapFiltersByScreenSize);
+
+  </script>
 {/block}
