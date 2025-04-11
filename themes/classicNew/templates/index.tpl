@@ -878,9 +878,9 @@
 
                           const carVersionSpan = e.nextElementSibling;  // Find the sibling span with the class 'car_version'
 
-                          if (carVersionSpan.length > 0) {
-                            carVersionSpan.html(spanContent); // Insert the generated span content
-                          }
+                          // if (carVersionSpan.length > 0) {
+                          carVersionSpan.html(spanContent); // Insert the generated span content
+                          // }
                         } else {
                           console.error("No compat data found in the response.");
                         }
