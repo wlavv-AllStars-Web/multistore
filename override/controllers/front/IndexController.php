@@ -251,6 +251,8 @@ class IndexController extends IndexControllerCore
 
     public function postProcess(){
         if (Tools::getValue('getCarVersions') == 1) {
+            $brand = Tools::getValue('brand');
+            $model = Tools::getValue('model');
             $type = Tools::getValue('type');
             $store = Context::getContext()->shop->id;
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -270,9 +272,45 @@ class IndexController extends IndexControllerCore
             $versionsEuromus = json_decode($json, true);
             $versionsEuromus = $versionsEuromus['data'];
 
-            header('Content-Type: application/json');
-            echo json_encode($versionsEuromus);
-            exit;
+            // get compats
+            if (isset($versionsEuromus['data'])) {
+                $versionsEuromus = $versionsEuromus['data'];
+        
+                // Iterate over each version
+                foreach ($versionsEuromus as &$version) {
+                    // Get the version ID
+                    $versionId = $version['version']; // Adjust this key if necessary
+                    
+                    // Construct the URL for the compat request
+                    $urlCompat = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$versionId.'/'.$store.'/'.$key;
+        
+        pre($urlCompat);
+                    // Initialize cURL to get the compat data for the version
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $urlCompat);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+                    $compat = curl_exec($ch);
+                    curl_close($ch);
+        
+                    // Decode the compat JSON response
+                    $compat = json_decode($compat, true);
+        
+                    // Check if compat data is available, then append it to the version data
+                    if (isset($compat['data'])) {
+                        // You can append the compat data as needed, for example:
+                        $version['compat_data'] = $compat['data'];
+                    }
+                }
+                
+                header('Content-Type: application/json');
+                echo json_encode($versionsEuromus);
+                exit;
+            }else {
+                // Handle the case where no 'data' was found in the response
+                echo json_encode(['error' => 'No versions data found']);
+                exit;
+            }
         }
     }
 
