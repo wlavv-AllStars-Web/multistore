@@ -63,6 +63,16 @@ main > #wrapper {
   color: var(--euromus-color-500) !important;
 }
 
+/* compat page */
+.container-cars-products{
+  width: 100%;
+  padding: 0;
+}
+
+.container-cars-products > div > #content-wrapper {
+  padding: 0;
+}
+
 /* order history */
 
 .container-history {
