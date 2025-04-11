@@ -75,7 +75,7 @@ main > #wrapper {
 }
 
 .container-not-found-filters {
-  color: var(--euromus-color-text2);
+  color: var(--euromus-color-300);
 }
 
 /* order history */
