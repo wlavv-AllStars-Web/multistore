@@ -356,7 +356,7 @@ class IndexController extends IndexControllerCore
     public static function getCarsOfBrand($idBrand,$idModel=NULL,$idLang=NULL,$isModel=false){
         
         if(Context::getContext()->shop->id == 1) {
-            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            $keyToken = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $brand = $idBrand;
             $model = $idModel;
             $lang = $idLang;
@@ -365,7 +365,7 @@ class IndexController extends IndexControllerCore
             // getTypes
 
             if($isModel == true){
-                $urlTypesHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
+                $urlTypesHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$keyToken;
 
 
                 $ch = curl_init();
@@ -388,7 +388,7 @@ class IndexController extends IndexControllerCore
         
                     // Fetch versions for each type
                     $typeId = $type['id_type']; // Adjust this key based on your data structure
-                    $urlVersionsHome = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $key;
+                    $urlVersionsHome = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $keyToken;
         
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $urlVersionsHome);
@@ -407,7 +407,7 @@ class IndexController extends IndexControllerCore
                             $versionId = $version['id_version'];
         
                             // Fetch compat data for each version
-                            $urlCompat = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/compats/' . $brand . '/' . $model . '/' . $typeId . '/' . $versionId . '/' . $store . '/' . $key;
+                            $urlCompat = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/compats/' . $brand . '/' . $model . '/' . $typeId . '/' . $versionId . '/' . $store . '/' . $keyToken;
         
                             $ch = curl_init();
                             curl_setopt($ch, CURLOPT_URL, $urlCompat);
@@ -429,8 +429,6 @@ class IndexController extends IndexControllerCore
                         $typesEuromus[$key]['versions'] = $versionsEuromus;
                     }
                 }
-
-                pre($typesEuromus);
 
                 return $typesEuromus;
             }
