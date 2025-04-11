@@ -458,7 +458,7 @@
               <div class="card-text">
                 {foreach from=$versionsFordMustang item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="getCarVersions({$item.id_brand},{$item.id_model},{$item.id_type})">{$item.name}</a><span class="car_version"></span>
+                      onclick="getCarVersions(this,{$item.id_brand},{$item.id_model},{$item.id_type})">{$item.name}</a><span class="car_version"></span>
                   </div>
                 {/foreach}
               </div>
@@ -847,8 +847,9 @@
                     $('#ukoocompat_my_cars_custom_form').submit();
                   }
 
-                  function getCarVersions(brand,model,type) {
-                    console.log(e.target)
+                  function getCarVersions(e,brand,model,type) {
+                    console.log(e)
+                    console.log($(e).closest('.car_version'))
                     $.ajax({
                       url: '{$link->getPageLink('index')}',
                       type: 'GET',
