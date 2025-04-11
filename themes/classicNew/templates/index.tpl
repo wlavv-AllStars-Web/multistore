@@ -493,6 +493,7 @@
           <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
+              <pre>{$versionsChevroletCamaro|print_r}</pre>
               {foreach from=$versionsChevroletCamaro item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
                     onclick="showCarVersions(this)">{$item.name}</a>
