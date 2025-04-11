@@ -861,12 +861,18 @@
                       success: function(response) {
                         console.log(response)
                               // Check if compat_data exists and has at least one item
-                        if (response.compat_data && response.compat_data.length > 0) {
+                        if (response && response.length > 0) {
                           let spanContent = ''; // This will store the HTML for the spans
-        
-                          // Loop through each compat_data item and create a span for it
-                          response.compat_data.forEach(function(compatData) {
-                            spanContent += '<span onclick="searchCompat('+ compatData.id_compat +')">'+ compatData.name +'</span>';
+                          
+                          // Loop through each version object
+                          response.forEach(function(version) {
+                            // Check if compat_data exists within each version object
+                            if (version.compat_data && version.compat_data.length > 0) {
+                              // Loop through each compat_data item in this version and create a span for it
+                              version.compat_data.forEach(function(compatData) {
+                                spanContent += '<span onclick="searchCompat('+ compatData.id_compat +')">'+ compatData.name +'</span>';
+                              });
+                            }
                           });
 
                           // Add the generated spans to the next sibling element
