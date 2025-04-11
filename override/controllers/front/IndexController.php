@@ -279,12 +279,11 @@ class IndexController extends IndexControllerCore
                 // Iterate over each version
                 foreach ($versionsEuromus as &$version) {
                     // Get the version ID
-                    $versionId = $version['version']; // Adjust this key if necessary
+                    $versionId = $version['id_version']; // Adjust this key if necessary
                     
                     // Construct the URL for the compat request
                     $urlCompat = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$versionId.'/'.$store.'/'.$key;
         
-        pre($urlCompat);
                     // Initialize cURL to get the compat data for the version
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $urlCompat);
