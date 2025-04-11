@@ -49,12 +49,12 @@ main > #wrapper {
   width: 100%;
 }
 
-.container-versions-car .car_version {
-  cursor: pointer;
+.card-link a.show {
+  color: var(--euromus-color-300);
 }
 
-.container-versions-car.show{
-  color: var(--euromus-color-300);
+.container-versions-car .car_version {
+  cursor: pointer;
 }
 
 .container-versions-car .car_version:hover {
