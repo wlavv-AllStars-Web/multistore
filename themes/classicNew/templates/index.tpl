@@ -849,7 +849,7 @@
 
                   function getCarVersions(e,brand,model,type) {
                     console.log(e)
-                    console.log($(e).closest('.car_version'))
+                    console.log(e.nextElementSibling)
                     $.ajax({
                       url: '{$link->getPageLink('index')}',
                       type: 'GET',
