@@ -251,8 +251,26 @@ class IndexController extends IndexControllerCore
 
     public function postProcess(){
         if (Tools::getValue('getCarVersions') == 1) {
-            echo 'paulo';
-            exit;
+            $type = Tools::getValue('type');
+            $store = Context::getContext()->shop->id;
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+
+
+            $urlVersionsHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/versions/'.$type.'/'.$store.'/'.$key;
+
+
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlVersionsHome);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+
+            // Decode JSON string into an associative array
+            $versionsEuromus = json_decode($json, true);
+            $versionsEuromus = $versionsEuromus['data'];
+
+            return $versionsEuromus;
         }
     }
 
