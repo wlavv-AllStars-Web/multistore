@@ -288,6 +288,21 @@ $(document).on('change','select',function(){
 $(document).on('change','.ets-onepage-js-country',function(){
     var address_type = $(this).data('type');
     var id_country= $(this).val();
+
+    if(id_country == 249){
+        $('#shipping_address_vat_number').closest('.form-group').hide();
+        $('#shipping_address_dni').closest('.form-group').show();
+        $('#shipping_address_dni').prop('required', true);
+        $('#shipping_address_dni').closest('.form-group').find('label').addClass('required');
+        // console.log("canarias")
+    }else{
+        // console.log("nao é canarias")
+        $('#shipping_address_dni').closest('.form-group').hide();
+        $('#shipping_address_vat_number').closest('.form-group').show();
+        $('#shipping_address_dni').prop('required', false);
+        $('#shipping_address_dni').closest('.form-group').find('label').removeClass('required');
+    }
+
     if($('#'+address_type+'_postal_code').length && $('#'+address_type+'_postal_code').val())
     {
         validate_field('#'+address_type+'_postal_code');
