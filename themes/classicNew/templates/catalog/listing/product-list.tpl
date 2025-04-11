@@ -68,33 +68,33 @@
 
           if (isMobile) {
             // Load mobile filters content dynamically
-            mobileContainer.innerHTML = `
-              <div class="filters-mobile">
-                <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>
-                <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
-                <div id="sidenavCarSpecs" class="sidenav">
-                  <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
-                    <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
-                      <i class="fa-solid fa-xmark fa-xl"></i>
-                    </button>
-                  </div>
-                  <div>
-                    {block name='product_list_top_mobile'}
-                      {include file='catalog/_partials/products-top.tpl' listing=$listing}
-                    {/block}
-                  </div>
-                </div>
-              </div>
-            `;
+            mobileContainer.innerHTML = 
+            '<div class="filters-mobile">' +
+              '<div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>' +
+              '<div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>' +
+              '<div id="sidenavCarSpecs" class="sidenav">' +
+                '<div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">' +
+                  '<button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">' +
+                    '<i class="fa-solid fa-xmark fa-xl"></i>' +
+                  '</button>' +
+                '</div>' +
+                '<div>' +
+                  '{block name="product_list_top_mobile"}' +
+                    '{include file="catalog/_partials/products-top.tpl" listing=$listing}' +
+                  '{/block}' +
+                '</div>' +
+              '</div>' +
+            '</div>';
+            ;
           } else {
             // Load desktop filters content dynamically
-            desktopContainer.innerHTML = `
-              <div class="filters-desktop">
-                {block name='product_list_top_desktop'}
-                  {include file='catalog/_partials/products-top.tpl' listing=$listing}
-                {/block}
-              </div>
-            `;
+            desktopContainer.innerHTML = 
+            '<div class="filters-desktop">' +
+              '{block name="product_list_top_desktop"}' +
+                '{include file="catalog/_partials/products-top.tpl" listing=$listing}' +
+              '{/block}' +
+            '</div>';
+            ;
           }
         }
 
