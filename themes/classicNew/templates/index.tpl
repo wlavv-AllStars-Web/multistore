@@ -862,11 +862,15 @@
                         console.log(response)
                               // Check if compat_data exists and has at least one item
                         if (response.compat_data && response.compat_data.length > 0) {
-                          // Safely access the first item in compat_data
-                          const compatData = response.compat_data[0];
-                          
-                          // Use the compat_data in your next step
-                          this.nextElementSibling.innerHTML = '<span onclick="searchCompat('+ compatData.id_compat +')">'+ response.name +'</span>';
+                          let spanContent = ''; // This will store the HTML for the spans
+        
+                          // Loop through each compat_data item and create a span for it
+                          response.compat_data.forEach(function(compatData) {
+                            spanContent += '<span onclick="searchCompat('+ compatData.id_compat +')">'+ compatData.name +'</span>';
+                          });
+
+                          // Add the generated spans to the next sibling element
+                          this.nextElementSibling.innerHTML = spanContent;
                         } else {
                           console.error("No compat data found in the response.");
                         }
