@@ -458,7 +458,7 @@
               <div class="card-text">
                 {foreach from=$versionsFordMustang item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="({$item.id_type})">{$item.name}</a><span class="car_version"></span>
+                      onclick="getCarVersions({$item.id_type})">{$item.name}</a><span class="car_version"></span>
                   </div>
                 {/foreach}
               </div>
