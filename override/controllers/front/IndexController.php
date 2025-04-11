@@ -256,7 +256,7 @@ class IndexController extends IndexControllerCore
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
 
 
-            $urlVersionsHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/versions/'.$type.'/'.$store.'/'.$key;
+            $urlVersionsHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/version/'.$type.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
