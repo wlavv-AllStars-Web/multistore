@@ -270,7 +270,9 @@ class IndexController extends IndexControllerCore
             $versionsEuromus = json_decode($json, true);
             $versionsEuromus = $versionsEuromus['data'];
 
-            return $versionsEuromus;
+            header('Content-Type: application/json');
+            echo json_encode($versionsEuromus);
+            exit;
         }
     }
 
@@ -341,11 +343,9 @@ class IndexController extends IndexControllerCore
                 $typesEuromus = $typesEuromus['data'];
 
                 return $typesEuromus;
-            }else{
-
             }
 
-            // get versions
+           
             
         }
         // echo $idBrand;
