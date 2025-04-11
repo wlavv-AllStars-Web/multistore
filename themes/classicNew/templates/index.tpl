@@ -916,7 +916,7 @@
                   }
 
                   function searchCompat(id_compat) {
-                    console.log(id_compat)
+                    window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+id_compat
                   }
 
               </script>
