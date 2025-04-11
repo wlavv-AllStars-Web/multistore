@@ -1,7 +1,4 @@
 <script>
-if (!window.newsInitialized) {
-    window.newsInitialized = true;
-
     let category_name='{l s="All" d="Shop.Theme.GetdataFilters"}';
     let manufacturer = '{l s="All" d="Shop.Theme.GetdataFilters"}';
     let orderBy_orderWay = '---';
@@ -21,8 +18,6 @@ if (!window.newsInitialized) {
     let deleteHtmlNrItems = '';
     let deleteHtmlManufacturers = '';
     let deleteHtmlCategory = '';
-
-}
 
     function getDataFromUrl(){
         setDataFromUrl();
@@ -127,14 +122,7 @@ if (!window.newsInitialized) {
             // }
  
         }
-        $('#js-product-list-top:visible').find('.name_sort_by').html(
-            deleteHtmlParameters +
-            '{l s="Sort By" d="Shop.Theme.SortOrders"} ' +
-            '<span style="color:#444;font-size: 0.85rem;">' +
-            $('.products-sort-order .dropdown-menu .current').text() +
-            '</span>'
-        );
-
+        $('#name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="color:#444;font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
         $('#name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>');
 
         if ($('body#category').length > 0) {
