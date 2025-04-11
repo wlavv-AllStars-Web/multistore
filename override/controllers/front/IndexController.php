@@ -293,7 +293,7 @@ class IndexController extends IndexControllerCore
         return $array_NameModel;
     }
 
-    public static function getCarsOfBrand($idBrand,$idModel=NULL,$idLang=NULL){
+    public static function getCarsOfBrand($idBrand,$idModel=NULL,$idLang=NULL,$isModel=false){
         
         if(Context::getContext()->shop->id == 1) {
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -304,22 +304,24 @@ class IndexController extends IndexControllerCore
 
             // getTypes
 
-            $urlTypesHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
+            if($isModel == true){
+                $urlTypesHome = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
 
 
-            $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL,$urlTypesHome);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
-            $json = curl_exec($ch);
-            curl_close($ch);
+                $ch = curl_init();
+                curl_setopt($ch,CURLOPT_URL,$urlTypesHome);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+                $json = curl_exec($ch);
+                curl_close($ch);
 
-            // Decode JSON string into an associative array
-            $typesEuromus = json_decode($json, true);
+                // Decode JSON string into an associative array
+                $typesEuromus = json_decode($json, true);
+            }
 
             // get versions
 
-            // pre($typesEuromus);
+            pre($typesEuromus);
             
         }
         // echo $idBrand;
