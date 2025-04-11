@@ -317,11 +317,12 @@ class IndexController extends IndexControllerCore
 
                 // Decode JSON string into an associative array
                 $typesEuromus = json_decode($json, true);
+                $typesEuromus = $typesEuromus['data'];
+
+                return $typesEuromus;
             }
 
             // get versions
-
-            pre($typesEuromus);
             
         }
         // echo $idBrand;
