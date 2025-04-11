@@ -74,6 +74,10 @@ main > #wrapper {
   padding: 0;
 }
 
+.container-not-found-filters {
+  color: var(--euromus-color-text2);
+}
+
 /* order history */
 
 .container-history {
