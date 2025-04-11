@@ -80,6 +80,12 @@ main > #wrapper {
   padding-block: 0 !important;
 }
 
+/* manufactuer page */
+
+.container-manufacturer{
+  width: 100%;
+}
+
 
 /* contact page */
 #contact #wrapper {
