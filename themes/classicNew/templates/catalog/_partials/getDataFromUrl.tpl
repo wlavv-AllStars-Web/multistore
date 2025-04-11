@@ -107,9 +107,15 @@
         let deleteHtmlManufacturers = '';
         let deleteHtmlCategory = '';
         
-        orderParameters = $('.products-sort-order .dropdown-menu .current').attr('value');
+        orderParameters = $('.products-sort-order .dropdown-menu .current').each(function() {
+            $(this).attr('value')
+        });
         
-        if( $('.products-sort-order .dropdown-menu .current').length ) deleteHtmlParameters = deleteHtml('removeOrderParametersAndReload');
+        if( $('.products-sort-order .dropdown-menu .current').length ) {
+            $('.products-sort-order .dropdown-menu .current').each(function() {
+                deleteHtmlParameters = deleteHtml('removeOrderParametersAndReload');
+            });
+        }
 
         if( nrItems != 20) deleteHtmlNrItems = deleteHtml('removeItemPerPageParametersAndReload');
         if( !($('body#manufacturer').length > 0) && (idManufacturer)) deleteHtmlManufacturers = deleteHtml('removeManufacturerParametersAndReload');
