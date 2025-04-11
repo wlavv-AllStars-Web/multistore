@@ -860,12 +860,17 @@
                       },
                       success: function(response) {
                         console.log(response)
-                        
+                        this.nextElementSibling.innerHTML = '<span onclick="searchCompat('+response.compat_data[0].id_compat+')">'+response.name+'</span>';
+
                       },
                       error: function(xhr, status, error) {
                           console.error("AJAX Error:", status, error);
                       }
                     })
+                  }
+
+                  function searchCompat(id_compat) {
+                    console.log(id_compat)
                   }
 
               </script>
