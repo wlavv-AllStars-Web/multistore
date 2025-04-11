@@ -33,6 +33,10 @@
 {assign var="versionsDodgeChallenger" value=IndexController::getCarsOfBrand(1067,1069,$currentLanguage,true)}
 {assign var="versionsRamTrx" value=IndexController::getCarsOfBrand(1067,1072,$currentLanguage,true)}
 {assign var="versionsFordBronco" value=IndexController::getCarsOfBrand(92,1076,$currentLanguage,true)}
+{assign var="versionsDodgeCharger" value=IndexController::getCarsOfBrand(1067,1079,$currentLanguage,true)}
+{assign var="versionsJeepCherokee" value=IndexController::getCarsOfBrand(1085,1086,$currentLanguage,true)}
+{assign var="versionsJeepWrangler" value=IndexController::getCarsOfBrand(1085,1094,$currentLanguage,true)}
+{assign var="versionsFordShelby" value=IndexController::getCarsOfBrand(92,1091,$currentLanguage,true)}
 
 
 {extends file='page.tpl'}
@@ -636,7 +640,7 @@
           <div id="collapseSix" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-              {foreach from=$versionsRamTrx item=item key=key name=name}
+              {foreach from=$versionsDodgeCharger item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
                     onclick="showCarVersions(this)">{$item.name}</a>
                     <div class="container-versions-car" style="display: none;">
@@ -708,7 +712,7 @@
           <div id="collapseEight" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-              {foreach from=$versionsFordBronco item=item key=key name=name}
+              {foreach from=$versionsJeepCherokee item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
                     onclick="showCarVersions(this)">{$item.name}</a>
                     <div class="container-versions-car" style="display: none;">
@@ -744,7 +748,7 @@
           <div id="collapseNine" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-              {foreach from=$versionsFordBronco item=item key=key name=name}
+              {foreach from=$versionsFordShelby item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
                     onclick="showCarVersions(this)">{$item.name}</a>
                     <div class="container-versions-car" style="display: none;">
@@ -779,7 +783,7 @@
           <div id="collapseTen" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-              {foreach from=$versionsFordBronco item=item key=key name=name}
+              {foreach from=$versionsJeepWrangler item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
                     onclick="showCarVersions(this)">{$item.name}</a>
                     <div class="container-versions-car" style="display: none;">
