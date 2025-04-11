@@ -342,6 +342,10 @@ class IndexController extends IndexControllerCore
                 $typesEuromus = json_decode($json, true);
                 $typesEuromus = $typesEuromus['data'];
 
+                foreach($typesEuromus as $key => $type) {
+                    $typesEuromus[$key]['id_brand'] = $brand; 
+                }
+
                 return $typesEuromus;
             }
 
