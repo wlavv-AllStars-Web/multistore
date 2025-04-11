@@ -495,7 +495,12 @@
               <div class="card-text">
               {foreach from=$versionsChevroletCamaro item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
-                    onclick="setCarAndSearch({$item.id_brand},{$item.id_model},{$item.id_type},{$item.id_version})">{$item.type}</a><span>{$item.version}</span>
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
                 </div>
               {/foreach}
               </div>
@@ -526,7 +531,12 @@
               <div class="card-text">
               {foreach from=$versionsDodgeChallenger item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
-                    onclick="setCarAndSearch({$item.id_brand},{$item.id_model},{$item.id_type},{$item.id_version})">{$item.type}</a><span>{$item.version}</span>
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
                 </div>
               {/foreach}
               </div>
@@ -556,7 +566,12 @@
               <div class="card-text">
                 {foreach from=$versionsChevroletCorvette item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="setCarAndSearch({$item.id_brand},{$item.id_model},{$item.id_type},{$item.id_version})">{$item.type}</a><span>{$item.version}</span>
+                      onclick="showCarVersions(this)">{$item.name}</a>
+                      <div class="container-versions-car" style="display: none;">
+                        {foreach from=$item.versions item=version key=versionkey}
+                          <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                        {/foreach}
+                      </div>
                   </div>
                 {/foreach}
               </div>
@@ -587,7 +602,12 @@
               <div class="card-text">
               {foreach from=$versionsRamTrx item=item key=key name=name}
                 <div class="card-link"><a style="cursor: pointer;"
-                    onclick="setCarAndSearch({$item.id_brand},{$item.id_model},{$item.id_type},{$item.id_version})">{$item.type}</a><span>{$item.version}</span>
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
                 </div>
               {/foreach}
               </div>
@@ -616,8 +636,16 @@
           <div id="collapseSix" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-                <div class="card-link"><a href="">DT 5700 V8 HEMI</a><span>(2019 -)</span></div>
-                <div class="card-link"><a href="">DS 5700 V8 HEMI Classic</a><span>(2013 - 2022)</span></div>
+              {foreach from=$versionsRamTrx item=item key=key name=name}
+                <div class="card-link"><a style="cursor: pointer;"
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
+                </div>
+              {/foreach}
               </div>
             </div>
           </div>
@@ -646,7 +674,12 @@
               <div class="card-text">
                 {foreach from=$versionsFordBronco item=item key=key name=name}
                   <div class="card-link"><a style="cursor: pointer;"
-                      onclick="setCarAndSearch({$item.id_brand},{$item.id_model},{$item.id_type},{$item.id_version})">{$item.type}</a><span>{$item.version}</span>
+                      onclick="showCarVersions(this)">{$item.name}</a>
+                      <div class="container-versions-car" style="display: none;">
+                        {foreach from=$item.versions item=version key=versionkey}
+                          <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                        {/foreach}
+                      </div>
                   </div>
                 {/foreach}
               </div>
@@ -675,8 +708,16 @@
           <div id="collapseFive" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-                <div class="card-link"><a href="">DT 5700 V8 HEMI</a><span>(2019 -)</span></div>
-                <div class="card-link"><a href="">DS 5700 V8 HEMI Classic</a><span>(2013 - 2022)</span></div>
+              {foreach from=$versionsFordBronco item=item key=key name=name}
+                <div class="card-link"><a style="cursor: pointer;"
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
+                </div>
+              {/foreach}
               </div>
             </div>
           </div>
@@ -703,8 +744,16 @@
           <div id="collapseNine" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-                <div class="card-link"><a href="">DT 5700 V8 HEMI</a><span>(2019 -)</span></div>
-                <div class="card-link"><a href="">DS 5700 V8 HEMI Classic</a><span>(2013 - 2022)</span></div>
+              {foreach from=$versionsFordBronco item=item key=key name=name}
+                <div class="card-link"><a style="cursor: pointer;"
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
+                </div>
+              {/foreach}
               </div>
             </div>
           </div>
@@ -730,8 +779,16 @@
           <div id="collapseTen" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="card-text">
-                <div class="card-link"><a href="">DT 5700 V8 HEMI</a><span>(2019 -)</span></div>
-                <div class="card-link"><a href="">DS 5700 V8 HEMI Classic</a><span>(2013 - 2022)</span></div>
+              {foreach from=$versionsFordBronco item=item key=key name=name}
+                <div class="card-link"><a style="cursor: pointer;"
+                    onclick="showCarVersions(this)">{$item.name}</a>
+                    <div class="container-versions-car" style="display: none;">
+                      {foreach from=$item.versions item=version key=versionkey}
+                        <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
+                      {/foreach}
+                    </div>
+                </div>
+              {/foreach}
               </div>
             </div>
           </div>
