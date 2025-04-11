@@ -860,7 +860,16 @@
                       },
                       success: function(response) {
                         console.log(response)
-                        this.nextElementSibling.innerHTML = '<span onclick="searchCompat('+response.compat_data[0].id_compat+')">'+response.name+'</span>';
+                              // Check if compat_data exists and has at least one item
+                        if (response.compat_data && response.compat_data.length > 0) {
+                          // Safely access the first item in compat_data
+                          const compatData = response.compat_data[0];
+                          
+                          // Use the compat_data in your next step
+                          this.nextElementSibling.innerHTML = '<span onclick="searchCompat('+ compatData.id_compat +')">'+ response.name +'</span>';
+                        } else {
+                          console.error("No compat data found in the response.");
+                        }
 
                       },
                       error: function(xhr, status, error) {
