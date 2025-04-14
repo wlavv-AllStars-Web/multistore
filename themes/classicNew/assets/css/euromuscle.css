@@ -8328,13 +8328,13 @@ transform: translate(-50%,-50%);
 }
 
 #cars-products #products #js-product-list{
-  padding: 0 2rem !important;
+  padding: 0 1rem !important;
   margin-top: 2rem;
 }
 
 .universals-product-list {
   display: flex;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
 }
 
 .universals-product-list .js-product.product {
