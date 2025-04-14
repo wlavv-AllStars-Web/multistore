@@ -8360,11 +8360,11 @@ transform: translate(-50%,-50%);
 }
 
 .features_productdetails .product-quantity .qty {
-  width: 81px;
+  width: 81px !important;
 }
 
 .features_productdetails .product-quantity .add {
-  width: unset;
+  width: unset !important;
   flex: 1;
 }
 
