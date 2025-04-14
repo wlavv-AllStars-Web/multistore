@@ -229,7 +229,7 @@ class IndexController extends IndexControllerCore
         $store = $id_shop;
 
         $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
-        echo 'urlbrands' . $urlBrands;
+        echo 'urlbrands: ' . $urlBrands;
         // exit;
 
         // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
