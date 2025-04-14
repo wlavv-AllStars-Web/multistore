@@ -5465,6 +5465,10 @@ a:focus {
   width: 100%;
 }
 
+.product-comment-list-item {
+  background: var(--euromus-color-700);
+}
+
 
 @media screen and (min-width:1920px) {
   .container {
