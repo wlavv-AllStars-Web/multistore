@@ -61,7 +61,7 @@
         }
 
         .totselectzone__table{
-            width: 60%;
+            width: 100%;
         }
     }
 
