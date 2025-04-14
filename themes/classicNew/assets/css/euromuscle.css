@@ -1105,6 +1105,10 @@ a:focus{
     padding: 1rem 0.5rem !important;
   }
 
+  .swiper-pagination-bullet-active{
+    background: var(--euromus-color-200) !important;
+  }
+
   .tabs .nav-tabs {
     border-bottom: 0;
     background: #dedede;
