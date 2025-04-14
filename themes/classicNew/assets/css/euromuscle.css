@@ -6279,9 +6279,10 @@ transform: translate(-50%,-50%);
     font-size: 1rem;
     margin-bottom: 1rem;
   }
-  
+
   #totselectzone .thead-dark th {
     padding: .5rem 0;
+    background: #efefef;
   }
 
   #totselectzone tbody {
