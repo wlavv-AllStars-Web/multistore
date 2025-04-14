@@ -115,13 +115,14 @@ class IndexController extends IndexControllerCore
     
             // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
     
-            $cacheFile = _PS_CACHE_DIR_ . 'brands_'.$store.'.json';
 
-            if (!file_exists($cacheFile) || filemtime($cacheFile) < time() - 3600) { // 1 hour cache
+            $cacheId = 'brands_webtools_'.$store;
+
+            if (!Cache::isStored($cacheId)) {
                 $ch = curl_init();
-                curl_setopt($ch,CURLOPT_URL,$urlBrands);
-                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+                curl_setopt($ch, CURLOPT_URL, $urlBrands);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
                 $json = curl_exec($ch);
                 curl_close($ch);
             
@@ -132,13 +133,18 @@ class IndexController extends IndexControllerCore
                     exit;
                 }
             
-                file_put_contents($cacheFile, $json);
+                $brandsWebTools = json_decode($json, true);
+                Cache::store($cacheId, $brandsWebTools['data']);
             } else {
-                $json = file_get_contents($cacheFile);
+                $brandsWebTools['data'] = Cache::retrieve($cacheId);
             }
-
-            ob_clean();
+            
+            // Tell the browser to cache the response for 1 hour (3600 seconds)
             header('Content-Type: application/json');
+            header('Cache-Control: public, max-age=3600'); // 1 hour
+            header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 3600) . ' GMT');
+            
+            ob_clean();
             echo json_encode($brandsWebTools['data']);
             exit;
         }
