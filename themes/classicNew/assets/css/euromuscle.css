@@ -4506,6 +4506,11 @@ form .form-control-label {
   .d-desktop{
     display: none !important;
   }
+
+  #current_car_settings {
+    border: 2px solid var(--euromus-color-700);
+  }
+
   /* order details */
   .page-order-detail .box{
     background: #f6f6f6;
@@ -4524,6 +4529,8 @@ form .form-control-label {
   .details-info-car-mobile{
     display: flex;
     gap: .5rem;
+    background: var(--euromus-color-700);
+    align-items: center;
   }
 
   .details-info-car-dektop{
