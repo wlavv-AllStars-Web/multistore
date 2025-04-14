@@ -5355,8 +5355,8 @@ a:focus {
 
 .modal.in .modal-dialog {
   /* -webkit-transform: translate(0, 0); */
-  transform: translate(0, -25%);
-  top: 50%;
+  /* transform: translate(0, -25%);
+  top: 50%; */
   /* LEFT: 50%; */
   /* transform: unset; */
 }
