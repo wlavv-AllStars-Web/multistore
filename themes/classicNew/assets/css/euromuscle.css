@@ -146,7 +146,7 @@ main > #wrapper {
 
 .container-contact {
   width: 100%;
-  max-width: 1441px;
+  max-width: 1441px !important;
   margin: 0 auto 2rem auto;
   background: #fff;
   padding: 1rem;
