@@ -39,15 +39,21 @@
         </tr>
     </thead>
     <tbody>
-    {foreach from=$shipping_fee key=carrier item=carrier_value name=carrier_table}
-        {if $carrier_value.fees >= 0 && $carrier_value.wm_id != 765 && $carrier_value.wm_id != 752 && $carrier_value.wm_id != 768}
-            <tr class="{if $smarty.foreach.carrier_table.first}totselectzone__row--first {elseif $smarty.foreach.carrier_table.first}totselectzone__row--last {/if}{if $smarty.foreach.carrier_table.index % 2 == 0}totselectzone__row--odd {/if}">
-                <td class="has-image">{if $carrier_value.logo}<img src="{$carrier_value.logo|escape:'html':'UTF-8'}" alt="{$carrier|escape:'html':'UTF-8'}" style="height: 65px; width: 65px;">{/if}</td>
-                <td>{$carrier|escape:'html':'UTF-8'} - {$carrier_value.delay|escape:'html':'UTF-8'}</td>
-                <td class="fees">{if $carrier_value.fees > 0}{$carrier_value.fees|escape:'htmlall':'UTF-8'}€ {elseif $carrier_value.fees == 0}{l s='Free' mod='totshippingpreview'}{/if}</td>
-            </tr>
-        {/if}
-    {/foreach}
+    {if $shipping_fee|count > 0}
+        {foreach from=$shipping_fee key=carrier item=carrier_value name=carrier_table}
+            {if $carrier_value.fees >= 0 && $carrier_value.wm_id != 765 && $carrier_value.wm_id != 752 && $carrier_value.wm_id != 768}
+                <tr class="{if $smarty.foreach.carrier_table.first}totselectzone__row--first {elseif $smarty.foreach.carrier_table.first}totselectzone__row--last {/if}{if $smarty.foreach.carrier_table.index % 2 == 0}totselectzone__row--odd {/if}">
+                    <td class="has-image">{if $carrier_value.logo}<img src="{$carrier_value.logo|escape:'html':'UTF-8'}" alt="{$carrier|escape:'html':'UTF-8'}" style="height: 65px; width: 65px;">{/if}</td>
+                    <td>{$carrier|escape:'html':'UTF-8'} - {$carrier_value.delay|escape:'html':'UTF-8'}</td>
+                    <td class="fees">{if $carrier_value.fees > 0}{$carrier_value.fees|escape:'htmlall':'UTF-8'}€ {elseif $carrier_value.fees == 0}{l s='Free' mod='totshippingpreview'}{/if}</td>
+                </tr>
+            {/if}
+        {/foreach}
+    {else}
+        <tr class="totselectzone__row--first totselectzone__row--last totselectzone__row--odd">
+            <td colspan="3" class="text-center">{l s='No shipping fees available' d='Shop.Theme.Product'}</td>
+        </tr>
+    {/if}
     </tbody>
 </table>
 
