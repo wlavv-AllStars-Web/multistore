@@ -8322,6 +8322,10 @@ transform: translate(-50%,-50%);
 
 /* cars page */
 
+#cars-products .filters-mobile {
+  padding: 0 1rem;
+}
+
 #cars-products #wrapper > .container {
   padding: 0 !important;
   width: 100% !important;
