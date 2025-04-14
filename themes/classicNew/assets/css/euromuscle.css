@@ -2706,7 +2706,7 @@ a:focus{
       /* outline: 3px solid #103054; */
       border-radius: 0.25rem;
       /* max-width: 340px; */
-      margin-top: 1rem;
+      /* margin-top: 1rem; */
     }
 
     #js-product-list .product article{
