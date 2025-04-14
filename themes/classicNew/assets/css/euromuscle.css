@@ -5414,6 +5414,10 @@ a:focus {
   font-size: .9rem;
 }
 
+.container-product {
+  width: 100%;
+}
+
 
 @media screen and (min-width:1920px) {
   .container {
