@@ -4523,6 +4523,7 @@ form .form-control-label {
 
   .details-info-car-mobile{
     display: flex;
+    gap: .5rem;
   }
 
   .details-info-car-dektop{
