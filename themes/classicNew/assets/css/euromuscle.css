@@ -4511,6 +4511,10 @@ form .form-control-label {
     border: 2px solid var(--euromus-color-700);
   }
 
+  #cars-products #products #js-product-list {
+    margin-top: 0;
+  }
+
   /* order details */
   .page-order-detail .box{
     background: #f6f6f6;
