@@ -1990,16 +1990,17 @@ a:focus{
 
       #js-product-list .products {
         gap:1rem;
-        padding: 0 1rem;
+        padding: 0;
       }
+
       #js-product-list .product {
         width: 100%;
         padding: 0;
         overflow: hidden;
         /* outline: 3px solid #103054; */
         border-radius: 0.25rem;
-        height: 266px;
-        max-width: 300px;
+        /* height: 266px;
+        max-width: 300px; */
         margin: auto;
       }
 
