@@ -261,6 +261,15 @@
                        aria-controls="product-details"
                        {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
                    </li>
+                   <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        data-toggle="tab"
+                        href="#product_shipping"
+                        role="tab"
+                        aria-controls="product-details"
+                        {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
+                    </li>
                    {* {if $product.attachments}
                      <li class="nav-item">
                        <a
@@ -455,6 +464,15 @@
                         <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
                       {/if}
                     </div>
+                  </div>
+
+                  <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
+                    <div class="banner-tabs" >
+                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+                    </div>
+                   <div class="tab">
+                     {hook h='extraRight' mod='totshippingpreview' mobile=0}
+                   </div>
                   </div>
          
                   {* {block name='product_details'}
