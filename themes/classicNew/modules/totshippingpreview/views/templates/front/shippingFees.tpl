@@ -29,7 +29,7 @@
 	{/foreach}
 </table>
 *}
-
+{if $shipping_fee|count > 0}
 <table class="totselectzone__table">
     <thead  class="thead-dark">
         <tr class="totselectzone__row--head">
@@ -39,7 +39,7 @@
         </tr>
     </thead>
     <tbody>
-    {if $shipping_fee|count > 0}
+    
         {foreach from=$shipping_fee key=carrier item=carrier_value name=carrier_table}
             {if $carrier_value.fees >= 0 && $carrier_value.wm_id != 765 && $carrier_value.wm_id != 752 && $carrier_value.wm_id != 768}
                 <tr class="{if $smarty.foreach.carrier_table.first}totselectzone__row--first {elseif $smarty.foreach.carrier_table.first}totselectzone__row--last {/if}{if $smarty.foreach.carrier_table.index % 2 == 0}totselectzone__row--odd {/if}">
@@ -49,13 +49,12 @@
                 </tr>
             {/if}
         {/foreach}
-    {else}
-        <tr class="totselectzone__row--first totselectzone__row--last totselectzone__row--odd">
-            <td colspan="3" class="text-center">{l s='No shipping fees available' d='Shop.Theme.Product'}</td>
-        </tr>
-    {/if}
+
     </tbody>
 </table>
+{else}
+    <p>{l s='No shipping fees available' d='Shop.Theme.Product'}</p>
+{/if}
 
 <style>
     @media screen and (min-width:560px){
