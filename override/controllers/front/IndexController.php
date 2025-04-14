@@ -115,8 +115,9 @@ class IndexController extends IndexControllerCore
     
             // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
     
-            $cacheId = 'brands_webtools_'.$store;
-            if (!Cache::isStored($cacheId)) {
+            $cacheFile = _PS_CACHE_DIR_ . 'brands_'.$store.'.json';
+
+            if (!file_exists($cacheFile) || filemtime($cacheFile) < time() - 3600) { // 1 hour cache
                 $ch = curl_init();
                 curl_setopt($ch,CURLOPT_URL,$urlBrands);
                 curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
@@ -131,10 +132,9 @@ class IndexController extends IndexControllerCore
                     exit;
                 }
             
-                $brandsWebTools = json_decode($json, true);
-                Cache::store($cacheId, $brandsWebTools['data']);
+                file_put_contents($cacheFile, $json);
             } else {
-                $brandsWebTools['data'] = Cache::retrieve($cacheId);
+                $json = file_get_contents($cacheFile);
             }
 
             ob_clean();
