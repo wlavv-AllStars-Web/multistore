@@ -6278,6 +6278,11 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 992px) {
+
+  main #wrapper > .container-fluid {
+    max-width: 1920px;
+    margin: auto;
+  }
   
   .filters-mobile{
     display: none;
