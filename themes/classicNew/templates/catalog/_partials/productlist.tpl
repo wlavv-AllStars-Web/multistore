@@ -101,7 +101,7 @@
         {foreach from=$listing.products item="product"}
             {* <pre>{$product|print_r}</pre> *}
             {block name='product_miniature'}
-                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3"}
             {/block}
         {/foreach}
       {/if}
