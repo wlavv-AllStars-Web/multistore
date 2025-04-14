@@ -4531,6 +4531,8 @@ form .form-control-label {
     gap: .5rem;
     background: var(--euromus-color-700);
     align-items: center;
+    border-radius: .25rem;
+    overflow: hidden;
   }
 
   .details-info-car-dektop{
