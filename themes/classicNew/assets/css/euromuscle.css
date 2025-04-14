@@ -8350,7 +8350,7 @@ transform: translate(-50%,-50%);
 
 @media screen and (max-width: 568px) {
   .row.product-container.js-product-container {
-    
+    flex-direction: column;
   }
 
 
