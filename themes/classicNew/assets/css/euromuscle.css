@@ -1095,6 +1095,7 @@ a:focus{
     width: 100%;
     margin: 0;
     height: 259px;
+    margin-top: 0 !important;
   }
   .row.product-container.js-product-container .left-side{
     padding: 0;
