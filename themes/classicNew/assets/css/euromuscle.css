@@ -8342,7 +8342,7 @@ transform: translate(-50%,-50%);
 
 .universals-product-list .js-product.product .thumbnail-container{
   margin-bottom: 0;
-  outline: 2px solid var(--euromus-color-700);
+  /* outline: 2px solid var(--euromus-color-700); */
   border: 0;
 }
 
