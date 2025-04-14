@@ -2699,7 +2699,7 @@ a:focus{
 
     #js-product-list .product article{
       width: 100%;
-
+      min-height: 274px;
     }
 
     #js-product-list .product article .thumbnail-container{
