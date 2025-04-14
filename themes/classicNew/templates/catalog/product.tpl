@@ -595,42 +595,30 @@
  
  
  
- {block name='product_accessories'}
-  {if $accessories}
-     <div class="complementary-products-flag">
-       {l s='Complementary Products' d='Shop.Theme.Catalog'}
-     </div>
-    <section class="product-accessories clearfix">
-
-       {* <div class="products d-desktop"> 
-        {foreach from=$accessories item="product_accessory" key="position"}
-          {if $position < 4}
-            {block name='product_miniature'}
-              {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
-            {/block}
-          {/if}
-        {/foreach}
-      </div>  *}
-
-      <div class="swiper products-mobile ">
-       <div class="swiper-wrapper">
-        {foreach from=$accessories item="product_accessory" key="position"}
-          {if $position < 4}
-           <div class="swiper-slide">
-            {block name='product_miniature'}
-              {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses="col-xs-12 col-sm-6 col-lg-4 col-xl-3" complementary=true}
-            {/block}
+     {block name='product_accessories'}
+       {if $accessories}
+         <section class="product-accessories clearfix" style="margin-top: 4rem;">
+           <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p>
+           <div class="products row">
+            <div class="swiper products-mobile">
+              <div class="swiper-wrapper">
+              {foreach from=$accessories item="product_accessory" key="position"}
+                {if $position < 4}
+                  <div class="swiper-slide">
+                  {block name='product_miniature'}
+                    {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses="col-xs-12 col-sm-6 col-lg-4 col-xl-3" complementary=true}
+                  {/block}
+                  </div>
+                {/if}
+              {/foreach}
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
            </div>
-          {/if}
-        {/foreach}
-       </div>
-       <div class="swiper-button-next"></div>
-       <div class="swiper-button-prev"></div>
-      </div>
-
-    </section>
-  {/if}
-{/block}
+         </section>
+       {/if}
+     {/block}
  
      {* {block name='product_footer'}
        {hook h='displayFooterProduct' product=$product category=$category}
