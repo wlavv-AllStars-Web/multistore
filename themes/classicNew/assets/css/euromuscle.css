@@ -4369,7 +4369,7 @@ justify-content: center;
 .right-side .prices-availability{
   display: flex;
   justify-content:center;
-  align-items:center;
+  align-items:baseline;
 }
 
 .right-side .prices-availability #product-availability {
@@ -8366,6 +8366,18 @@ transform: translate(-50%,-50%);
 .features_productdetails .product-quantity .add {
   width: unset !important;
   flex: 1;
+}
+
+#product-availability{
+  width: 100%;
+}
+
+.tax-shipping-delivery-label {
+  min-width: 100px;
+}
+
+.product-prices.js-product-prices {
+  flex-wrap: wrap;
 }
 
 /* fim product page */
