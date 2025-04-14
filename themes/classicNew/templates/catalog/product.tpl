@@ -250,7 +250,7 @@
                        href="#product-installation"
                        role="tab"
                        aria-controls="product-installation"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTALLATION & FITMENT' d='Shop.Theme.Catalog'}</a>
+                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
                    </li>
                    <li class="nav-item">
                      <a
