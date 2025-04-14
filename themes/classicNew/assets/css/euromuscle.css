@@ -30,7 +30,7 @@ main > #wrapper {
 }
 
 .cms-id-47 main > #wrapper {
-  background: #fff;
+  background: #fff !important;
 }
 
 /* breadcrumb */
