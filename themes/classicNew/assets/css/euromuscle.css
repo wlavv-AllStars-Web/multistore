@@ -8362,6 +8362,10 @@ transform: translate(-50%,-50%);
   .row.product-container.js-product-container {
     flex-direction: column;
   }
+
+  .container-cms{
+    padding: 0;
+  }
 }
 
 .features_productdetails .product-quantity .qty {
