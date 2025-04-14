@@ -26,17 +26,19 @@
   {block name='product_cover'}
 
   <div class="d-mobile">
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-      {foreach from=$product.images item=item key=key name=name}
-        <div class="swiper-slide">
-          <img src="{$item.bySize.tm_large_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
+    <div class="container-imgs-mobile">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+        {foreach from=$product.images item=item key=key name=name}
+          <div class="swiper-slide">
+            <img src="{$item.bySize.tm_large_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
+          </div>
+        {/foreach}
         </div>
-      {/foreach}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
   </div>
 
