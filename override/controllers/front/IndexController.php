@@ -112,6 +112,7 @@ class IndexController extends IndexControllerCore
             // $store = 2;
 
             $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/model/'.$brand.'/'.$store.'/'.$key;
+            echo 'urlModels: ' . $urlModels;
 
 
             $ch = curl_init();
@@ -139,6 +140,7 @@ class IndexController extends IndexControllerCore
             // $store = 2;
 
             $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/type/'.$model.'/'.$store.'/'.$key;
+            echo 'urltypes: '.$urlTypes;
 
 
             $ch = curl_init();
@@ -165,11 +167,12 @@ class IndexController extends IndexControllerCore
             $store = $id_shop;
             // $store = 2;
 
-            $urlTypes = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/version/'.$type.'/'.$store.'/'.$key;
+            $urlVersions = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/version/'.$type.'/'.$store.'/'.$key;
+            echo 'urlversions: '. $urlVersions;
 
 
             $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL,$urlTypes);
+            curl_setopt($ch,CURLOPT_URL,$urlVersions);
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
             curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
             $json = curl_exec($ch);
@@ -226,8 +229,8 @@ class IndexController extends IndexControllerCore
         $store = $id_shop;
 
         $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
-        echo $urlBrands;
-        exit;
+        echo 'urlbrands' . $urlBrands;
+        // exit;
 
         // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
 
