@@ -5668,6 +5668,32 @@ transform: translate(-50%,-50%);
 
 
 @media screen and (max-width: 540px) {
+  /* totshipping */
+
+  #totselectzone #shipping_zone {
+    width: 100% !important; 
+  }
+
+  #totselectzone #shipping_zone .select-wrapper{
+    display: flex;
+    padding: 1rem;
+  }
+
+  #totselectzone #shipping_zone .select-wrapper .select2{
+    margin: auto;
+  }
+
+  .select2-container.select2-container--default.select2-container--open {
+    width: 100% !important;
+    max-width: 83dvw;
+  }
+  
+  .totselectzone__table th{
+    color: #333;
+    background-color: #d0d0d0;
+    font-weight: 600;
+  }
+  /*  */
   #search #wrapper {
     background: unset !important;
   }
@@ -5870,6 +5896,23 @@ transform: translate(-50%,-50%);
 /* small tablet */
 
 @media screen and (min-width: 540px) and (max-width: 768px) {
+      /* tot shipping */
+      #totselectzone #shipping_zone {
+        width: 100% !important; 
+      }
+    
+      #totselectzone #shipping_zone .select-wrapper{
+        display: flex;
+        padding: 1rem;
+      }
+    
+      #totselectzone #shipping_zone .select-wrapper .select2{
+        margin: auto;
+      }
+    
+      .select2-container.select2-container--default.select2-container--open {
+        width: 100% !important;
+      }
 
   /* specific request */
 
@@ -6224,6 +6267,29 @@ transform: translate(-50%,-50%);
   .filters-desktop{
     display: block;
   }
+
+  /* tot shipping */
+
+  #product_shipping #totselectzone {
+    padding-bottom: 1rem;
+  }
+
+  #product_shipping #totselectzone .totselectzone__title{
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #totselectzone .thead-dark th {
+    padding: .5rem 0;
+  }
+
+  #totselectzone tbody {
+    background: #d0d0d0;
+  }
+  #totselectzone tbody tr{
+    color: #333;
+  }
   
 }
 
@@ -6279,6 +6345,31 @@ transform: translate(-50%,-50%);
 
 /* normal tablet */
 @media screen and (min-width: 768px) and (max-width: 992px) {
+  /* tot shipping */
+  #totselectzone #shipping_zone {
+    width: 75% !important; 
+  }
+
+  #totselectzone #shipping_zone .select-wrapper{
+    display: flex;
+    padding: 1rem;
+  }
+
+  #totselectzone #shipping_zone .select-wrapper .select2{
+    margin: auto;
+  }
+
+  .select2-container.select2-container--default.select2-container--open {
+    width: 75% !important;
+  }
+
+  .totselectzone__table th{
+    color: #333;
+    background-color: #d0d0d0;
+    font-weight: 600;
+  }
+  /*  */
+
   #footer .links{
     max-width: unset;
     flex: unset;
