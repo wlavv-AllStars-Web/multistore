@@ -127,6 +127,10 @@
     .d-mobile .mySwiper .swiper-wrapper{
       display: flex;
     }
+
+    .d-mobile .mySwiper .swiper-wrapper .swiper-slide img {
+      width: 100vw;
+    }
   </style>
 
   <script>
