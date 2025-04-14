@@ -8359,4 +8359,13 @@ transform: translate(-50%,-50%);
   }
 }
 
+.features_productdetails .product-quantity .qty {
+  width: 81px;
+}
+
+.features_productdetails .product-quantity .add {
+  width: unset;
+  flex: 1;
+}
+
 /* fim product page */

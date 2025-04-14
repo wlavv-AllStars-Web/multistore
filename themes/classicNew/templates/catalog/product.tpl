@@ -52,7 +52,7 @@
      <meta content="{$product.url}">
  
      <div class="row product-container js-product-container">
-       <div class="col-lg-7 left-side" >
+       <div class="col-xl-7 col-lg-5 left-side" >
          {block name='page_content_container'}
            <section class="page-content" id="content" >
              {block name='page_content'}
@@ -71,7 +71,7 @@
            </section>
          {/block}
          </div>
-         <div class="col-lg-5 right-side" >
+         <div class="col-xl-5 col-lg-7 right-side" >
            {block name='page_header_container'}
              {block name='page_header'}
                <h1 class="h1">{block name='page_title'}{$product.name}{/block}</h1>
