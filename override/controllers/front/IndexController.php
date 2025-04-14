@@ -122,6 +122,13 @@ class IndexController extends IndexControllerCore
             curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
             $json = curl_exec($ch);
             curl_close($ch);
+
+            if ($json === false) {
+                ob_clean();
+                http_response_code(500);
+                echo json_encode(['error' => 'WebTools API unreachable']);
+                exit;
+            }
     
             // Decode JSON string into an associative array
             $brandsWebTools = json_decode($json, true);
@@ -253,9 +260,16 @@ class IndexController extends IndexControllerCore
     }
 
     public function postProcess(){
-        if(Tools::getValue('getdataBrandsEuromus') == 1){
+        if (
+            Tools::getIsset('getdataBrandsEuromus') ||
+            Tools::getIsset('getdataModelsEuromus') ||
+            Tools::getIsset('getdataTypesEuromus') ||
+            Tools::getIsset('getdataVersionsEuromus') ||
+            Tools::getIsset('getProductsIdCompat')
+        ) {
             self::getBrandsWebTools($this->context->shop->id);
         }
+        
 
         if (Tools::getValue('getCarVersions') == 1) {
             $brand = Tools::getValue('brand');
