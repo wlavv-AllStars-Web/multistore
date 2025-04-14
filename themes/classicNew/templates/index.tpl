@@ -61,9 +61,6 @@
                 <div class="menu-select-car-content">
                   <select class="custom-select custom-select-lg brands-select">
                     <option selected>{l s="Brand" d="Shop.Theme.Homepage"}</option>
-                    {foreach from=$brandsEuromus item=brand}
-                        <option value="{$brand.id_brand}">{$brand.name}</option>
-                    {/foreach}
                   </select>
                   <select class="custom-select custom-select-lg models-select disabled">
                     <option selected>{l s="Model" d="Shop.Theme.Homepage"}</option>
