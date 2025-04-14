@@ -82,9 +82,6 @@ class IndexController extends IndexControllerCore
                 $this->context->smarty->assign('mobile', $homepage_mobile);
             }
 
-            if($this->context->shop->id == 1) {
-                $this->context->smarty->assign('brandsEuromus', self::getBrandsWebTools($this->context->shop->id));
-            }
         }
 
 
@@ -256,6 +253,10 @@ class IndexController extends IndexControllerCore
     }
 
     public function postProcess(){
+        if(Tools::getValue('getdataBrandsEuromus') == 1){
+            self::getBrandsWebTools($this->context->shop->id);
+        }
+
         if (Tools::getValue('getCarVersions') == 1) {
             $brand = Tools::getValue('brand');
             $model = Tools::getValue('model');
