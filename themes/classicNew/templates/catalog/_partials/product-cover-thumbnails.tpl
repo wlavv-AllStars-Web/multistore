@@ -120,7 +120,11 @@
     </div>
   
   <style>
-    .d-mobile .mySwiper #swiper-wrapper{
+    .d-mobile .mySwiper{
+      width: 100vw;
+    }
+
+    .d-mobile .mySwiper .swiper-wrapper{
       display: flex;
     }
   </style>
