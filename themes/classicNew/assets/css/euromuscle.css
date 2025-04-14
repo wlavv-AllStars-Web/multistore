@@ -170,7 +170,7 @@ main > #wrapper {
 }
 
 .container-checkout {
-  max-width: 1441px;
+  max-width: 1441px !important;
 }
 
 
@@ -8347,6 +8347,11 @@ transform: translate(-50%,-50%);
 }
 
 /* product page */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .container-product {
+    padding: 0;
+  }
+}
 
 @media screen and (min-width: 569px) and (max-width: 768px) {
   .row.product-container.js-product-container {
