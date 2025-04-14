@@ -24,7 +24,7 @@
  *}
 
 
-{* {assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
+{assign var="currentLanguageIso" value=Context::getContext()->language->iso_code}
 {assign var="currentLanguage" value=Context::getContext()->language->id}
 {assign var="categories" value=Category::getCategories($currentLanguage)}
 {assign var="versionsFordMustang" value=IndexController::getCarsOfBrand(92,100,$currentLanguage,true)}
@@ -37,7 +37,7 @@
 {assign var="versionsJeepCherokee" value=IndexController::getCarsOfBrand(1085,1086,$currentLanguage,true)}
 {assign var="versionsJeepWrangler" value=IndexController::getCarsOfBrand(1085,1094,$currentLanguage,true)}
 {assign var="versionsFordShelby" value=IndexController::getCarsOfBrand(92,1091,$currentLanguage,true)}
- *}
+
 
 {extends file='page.tpl'}
 
