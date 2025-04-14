@@ -118,6 +118,12 @@
         {/foreach}
       </ul>
     </div>
+  
+  <style>
+    .d-mobile .mySwiper #swiper-wrapper{
+      display: flex;
+    }
+  </style>
 
   <script>
     var swiper = new Swiper(".mySwiper", {
