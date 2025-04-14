@@ -104,6 +104,37 @@ class IndexController extends IndexControllerCore
 
     public static function getBrandsWebTools($id_shop){
 
+        if(Tools::getValue('getdataBrandsEuromus') == 1) {
+
+            $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+            // $brand = Tools::getValue('id_brand');
+    
+            // alterar para $id_shop
+            $store = $id_shop;
+    
+            $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
+            echo 'urlbrands: ' . $urlBrands;
+            // exit;
+    
+            // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
+    
+    
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL,$urlBrands);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
+    
+            // Decode JSON string into an associative array
+            $brandsWebTools = json_decode($json, true);
+
+            ob_clean();
+            header('Content-Type: application/json');
+            echo json_encode($brandsWebTools['data']);
+            exit;
+        }
+
         if(Tools::getValue('getdataModelsEuromus') == 1){
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
@@ -217,36 +248,6 @@ class IndexController extends IndexControllerCore
             echo json_encode($compat['data']);
             exit;
         }
-
-
-
-
-
-        $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-        // $brand = Tools::getValue('id_brand');
-
-        // alterar para $id_shop
-        $store = $id_shop;
-
-        $urlBrands = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brands/'.$store.'/'. $key;
-        echo 'urlbrands: ' . $urlBrands;
-        // exit;
-
-        // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
-
-
-        $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL,$urlBrands);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
-        $json = curl_exec($ch);
-        curl_close($ch);
-
-        // Decode JSON string into an associative array
-        $brandsWebTools = json_decode($json, true);
-
-        return $brandsWebTools['data'];
-
         // pre($brandsWebTools['data']);
         // header('Content-Type: application/json');
         // echo json_encode($modelsEuromus['data']);

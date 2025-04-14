@@ -83,7 +83,7 @@
               </div>
             </div>
 
-            <script>
+            <script defer="defer">
               document.addEventListener("DOMContentLoaded", function () {
                 const brandSelect = $(".brands-select"); 
                 const modelSelect = $(".models-select");
@@ -114,7 +114,9 @@
                                 selectElement.removeAttr("disabled").removeClass("disabled");;
                                 
                                 $.each(data, function (index, item) {
-                                  if(placeholder == "Model") {
+                                  if(placeholder == "Brand") {
+                                    selectElement.append('<option value="'+item.id_brand+'">'+item.name+'</option>');
+                                  }else if(placeholder == "Model") {
                                     selectElement.append('<option value="'+item.id_model+'">'+item.name+'</option>');
                                   }else if(placeholder == "Type") {
                                     selectElement.append('<option value="'+item.id_type+'">'+item.name+'</option>');
@@ -132,6 +134,13 @@
                         }
                     });
                 }
+
+                // fetch brands
+                fetchOptions({
+                    getdataBrandsEuromus: 1,
+                    type: 'brand',
+                    storeId: {Context::getContext()->shop->id}
+                }, brandSelect, "Brand");
 
                 // Event: Select Brand → Fetch Models
                 brandSelect.change(function () {
