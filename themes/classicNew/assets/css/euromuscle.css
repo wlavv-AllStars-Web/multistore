@@ -29,6 +29,10 @@ main > #wrapper {
   background: #e6e6e6;
 }
 
+.cms-id-47 main > #wrapper {
+  background: #fff;
+}
+
 /* breadcrumb */
 .breadcrumb {
   font-size: .85rem;
