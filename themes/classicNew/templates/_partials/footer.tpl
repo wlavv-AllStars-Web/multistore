@@ -59,12 +59,12 @@
         <a aria-label="Instagram" id="footer_insta" class="social-icon" style="margin-right: 5px;" href="https://www.instagram.com/euromusclepart" target="_NEW">
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a aria-label="Flickr" id="footer_flickr" class="social-icon" style="margin-right: 5px;" href="https://www.flickr.com/photos/allstarsmotorsport/" target="_NEW">
+        {* <a aria-label="Flickr" id="footer_flickr" class="social-icon" style="margin-right: 5px;" href="https://www.flickr.com/photos/allstarsmotorsport/" target="_NEW">
           <i class="fa-brands fa-flickr"></i>
         </a>
         <a aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/allstarsmotorsport" target="_NEW">
           <i class="fa-brands fa-youtube"></i>
-        </a>
+        </a> *}
       </div>
     </div>
     <div class="row">
@@ -80,12 +80,12 @@
       <a aria-label="Instagram" id="footer_insta" class="social-icon" style="margin-right: 5px;" href="https://www.instagram.com/euromusclepart" target="_NEW">
         <i class="fa-brands fa-instagram"></i>
       </a>
-      <a aria-label="Flickr" id="footer_flickr" class="social-icon" style="margin-right: 5px;" href="https://www.flickr.com/photos/allstarsmotorsport/" target="_NEW">
+      {* <a aria-label="Flickr" id="footer_flickr" class="social-icon" style="margin-right: 5px;" href="https://www.flickr.com/photos/allstarsmotorsport/" target="_NEW">
         <i class="fa-brands fa-flickr"></i>
       </a>
       <a aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/allstarsmotorsport" target="_NEW">
         <i class="fa-brands fa-youtube"></i>
-      </a>
+      </a> *}
       </div>
       <div class="col-md-12 copyrights">
         <p class="text-sm-center">
