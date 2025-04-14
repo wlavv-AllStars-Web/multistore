@@ -53,6 +53,7 @@
 
             <div class="section menu-select-car">
               <div class="menu-select-car-container">
+                <input name="id_store" type="hidden" id="id_store" value="{Context::getContext()->shop->id}">
                 <div class="menu-select-car-header">
                     <h1>{l s='SELECT YOUR VEHICLE' d='Shop.Theme.Global'}</h1>
                 </div>
@@ -136,11 +137,15 @@
                 }
 
                 // fetch brands
+              setTimeout(() => {
+                const storeId = $(".menu-select-car-container #id_store").val();
+
                 fetchOptions({
                     getdataBrandsEuromus: 1,
                     type: 'brand',
-                    storeId: {Context::getContext()->shop->id}
+                    storeId: storeId
                 }, brandSelect, "Brand");
+              }, 100);
 
                 // Event: Select Brand → Fetch Models
                 brandSelect.change(function () {
