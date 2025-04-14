@@ -591,7 +591,7 @@
            </script>
  </div>
  <div class=""
- style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin:0 0 4rem 0"></div>
+ style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin:0 0 1rem 0"></div>
  
  
  
