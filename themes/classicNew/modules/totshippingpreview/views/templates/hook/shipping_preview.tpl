@@ -190,6 +190,7 @@
 }
 .select2-results__options li span p{
    margin: 0;
+   color: #333;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
@@ -247,7 +248,7 @@
 }
 
 #totselectzone #shipping_zone{
-	width: 30%;
+	width: 65%;
 }
 
 #tot_zone_1 {
