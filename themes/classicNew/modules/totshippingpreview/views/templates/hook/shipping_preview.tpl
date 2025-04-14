@@ -190,7 +190,7 @@
 }
 .select2-results__options li span p{
    margin: 0;
-   color: #333;
+   color: #333 !important;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
