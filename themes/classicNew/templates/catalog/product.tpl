@@ -600,8 +600,8 @@
          <section class="product-accessories clearfix" style="margin-top: 4rem;">
            <p class="h5 text-uppercase">{l s='You might also like' d='Shop.Theme.Catalog'}</p>
            <div class="products row">
-            <div class="swiper products-mobile">
-              <div class="swiper-wrapper">
+            {* <div class="swiper products-mobile">
+              <div class="swiper-wrapper"> *}
               {foreach from=$accessories item="product_accessory" key="position"}
                 {if $position < 4}
                   <div class="swiper-slide">
@@ -611,10 +611,10 @@
                   </div>
                 {/if}
               {/foreach}
-              </div>
-              <div class="swiper-button-next"></div>
+              {* </div> *}
+              {* <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
-            </div>
+            </div> *}
            </div>
          </section>
        {/if}
