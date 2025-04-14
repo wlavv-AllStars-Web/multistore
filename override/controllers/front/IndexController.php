@@ -115,23 +115,27 @@ class IndexController extends IndexControllerCore
     
             // $urlModels = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/brand/'.$brand.'/2/'.$key;
     
-    
-            $ch = curl_init();
-            curl_setopt($ch,CURLOPT_URL,$urlBrands);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
-            $json = curl_exec($ch);
-            curl_close($ch);
-
-            if ($json === false) {
-                ob_clean();
-                http_response_code(500);
-                echo json_encode(['error' => 'WebTools API unreachable']);
-                exit;
+            $cacheId = 'brands_webtools_'.$store;
+            if (!Cache::isStored($cacheId)) {
+                $ch = curl_init();
+                curl_setopt($ch,CURLOPT_URL,$urlBrands);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+                $json = curl_exec($ch);
+                curl_close($ch);
+            
+                if ($json === false) {
+                    ob_clean();
+                    http_response_code(500);
+                    echo json_encode(['error' => 'WebTools API unreachable']);
+                    exit;
+                }
+            
+                $brandsWebTools = json_decode($json, true);
+                Cache::store($cacheId, $brandsWebTools['data']);
+            } else {
+                $brandsWebTools['data'] = Cache::retrieve($cacheId);
             }
-    
-            // Decode JSON string into an associative array
-            $brandsWebTools = json_decode($json, true);
 
             ob_clean();
             header('Content-Type: application/json');
