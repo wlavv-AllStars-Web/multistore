@@ -87,7 +87,7 @@
     {if $product.images|count == 0}
     <div class="js-qv-mask mask" style="display: none !important;">
       {else}
-    <div class="js-qv-mask mask" style="">
+    <div class="js-qv-mask mask d-desktop" style="">
     {/if}
       
       <ul class="product-images js-qv-product-images" >
