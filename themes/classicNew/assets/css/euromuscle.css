@@ -6396,6 +6396,10 @@ transform: translate(-50%,-50%);
     border-bottom: 2px solid var(--euromus-color-700);
   }
 
+  .section-content-product .container-drop img {
+    width: 100%;
+  }
+
   .section_tabs_video {
     display: none !important;
   }
