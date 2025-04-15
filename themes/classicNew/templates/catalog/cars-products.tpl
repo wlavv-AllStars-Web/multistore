@@ -50,7 +50,7 @@
 
           {if $listingCompat.products|count > 0 }
             <div class="filters-mobile">
-              <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> Filters</div>
+              <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons">filter_list</i> {l s='Filters' d='Shop.Theme.ProductList'}</div>
               
               <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
               <div id="sidenavCarSpecs" class="sidenav">
