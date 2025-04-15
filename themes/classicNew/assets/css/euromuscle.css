@@ -4543,7 +4543,7 @@ form .form-control-label {
 
 @media screen and (max-width: 768px) {
 
-  #js-product-list .products .js-product.product.category {
+  #js-product-list .products .js-product.product.category .thumbnail-container{
     min-height: 260px;
   }
 
