@@ -40,6 +40,18 @@ main > #wrapper {
   background: #f6f6f6 !important;
 }
 
+/* my cars */
+
+.container-my-cars {
+  width: 100%;
+}
+
+.container-my-cars .car_container {
+  border: 2px solid var(--euromus-color-800);
+  border-radius: .25rem;
+}
+
+
 /* breadcrumb */
 .breadcrumb {
   font-size: .85rem;
