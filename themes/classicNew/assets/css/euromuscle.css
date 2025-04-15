@@ -6381,9 +6381,13 @@ transform: translate(-50%,-50%);
 @media screen and  (max-width: 992px) {
   /* product page */
   /* tabs mobile */
+  .d-mobile.section-content-product {
+    margin-bottom: 1rem;
+  }
+
   .d-mobile.section-content-product .nav-link{
     text-transform: uppercase;
-    padding: 1rem;
+    padding: .85rem;
   }
 
   .section-content-product .nav-link{
