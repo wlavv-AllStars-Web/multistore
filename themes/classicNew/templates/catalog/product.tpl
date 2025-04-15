@@ -231,93 +231,99 @@
              {block name='product_tabs'}
                {* <pre>{print_r($product,1)}</pre> *}
                <div class="tabs" style="background: #f6f6f6;margin-top:0;">
-                 <ul class="nav nav-tabs" role="tablist" style="display: flex;justify-content:space-between;">
-                   {* {if $product.description} *}
-                     <li class="nav-item">
-                        <a
-                          class="nav-link active js-product-nav-active"
-                          data-toggle="tab"
-                          href="#description"
-                          role="tab"
-                          aria-controls="description"
-                          {if $product.description} aria-selected="true"{/if}>{l s='DESCRIPTION' d='Shop.Theme.Catalog'}</a>
-                     </li>
-                   {* {/if} *}
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#product-installation"
-                       role="tab"
-                       aria-controls="product-installation"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
-                   </li>
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#compatibilities"
-                       role="tab"
-                       aria-controls="product-details"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
-                   </li>
-                   <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        data-toggle="tab"
-                        href="#product_shipping"
-                        role="tab"
-                        aria-controls="product-details"
-                        {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
-                    </li>
-                   {* {if $product.attachments}
-                     <li class="nav-item">
-                       <a
-                         class="nav-link"
-                         data-toggle="tab"
-                         href="#attachments"
-                         role="tab"
-                         aria-controls="attachments">{l s='Instructions' d='Shop.Theme.Catalog'}</a>
-                     </li>
-                   {/if} *}
-                   {foreach from=$product.extraContent item=extra key=extraKey}
-                     <li class="nav-item">
-                       <a
-                         class="nav-link"
-                         data-toggle="tab"
-                         href="#extra-{$extraKey}"
-                         role="tab"
-                         aria-controls="extra-{$extraKey}">{$extra.title}</a>
-                     </li>
-                   {/foreach}
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#product_reviews"
-                       role="tab"
-                       aria-controls="product-details"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='REVIEWS' d='Shop.Theme.Catalog'}</a>
-                   </li>
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#product_warranty"
-                       role="tab"
-                       aria-controls="product-details"
-                       {if !$product.description} aria-selected="true"{/if}>{l s='WARRANTY' d='Shop.Theme.Catalog'}</a>
-                   </li>
-                   <li class="nav-item">
-                     <a
-                       class="nav-link"
-                       data-toggle="tab"
-                       href="#product_brand"
-                       role="tab"
-                       aria-controls="product-details"
-                       {if !$product.description} aria-selected="true"{/if}>{$product.manufacturer_name}</a>
-                   </li>
-                 </ul>
+               <ul class="nav nav-tabs" role="tablist">
+               {* {if $product.description} *}
+                 <li class="nav-item d-desktop">
+                    <a
+                      class="nav-link active js-product-nav-active"
+                      data-toggle="tab"
+                      href="#description"
+                      role="tab"
+                      aria-controls="description"
+                      {if $product.description} aria-selected="true"{/if}>{l s='DESCRIPTION' d='Shop.Theme.Catalog'}</a>
+                 </li>
+               {* {/if} *}
+               <li class="nav-item">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#compatibilities"
+                   role="tab"
+                   aria-controls="product-details"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
+               </li>
+               <li class="nav-item">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#product_shipping"
+                   role="tab"
+                   aria-controls="product-details"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
+               </li>
+               <li class="nav-item">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#product_instructions"
+                   role="tab"
+                   aria-controls="product_instructions"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
+               </li>
+               
+               {* {if $product.attachments}
+                 <li class="nav-item">
+                   <a
+                     class="nav-link"
+                     data-toggle="tab"
+                     href="#attachments"
+                     role="tab"
+                     aria-controls="attachments">{l s='Instructions' d='Shop.Theme.Catalog'}</a>
+                 </li>
+               {/if} *}
+               {foreach from=$product.extraContent item=extra key=extraKey}
+                 <li class="nav-item">
+                   <a
+                     class="nav-link"
+                     data-toggle="tab"
+                     href="#extra-{$extraKey}"
+                     role="tab"
+                     aria-controls="extra-{$extraKey}">{$extra.title}</a>
+                 </li>
+               {/foreach}
+
+               {if $product_manufacturer->warranty}
+               <li class="nav-item">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#product_warranty"
+                   role="tab"
+                   aria-controls="product-details"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='Warranty' d='Shop.Theme.Catalog'}</a>
+               </li>
+              {/if}
+
+               <li class="nav-item">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#product_askquestion"
+                   role="tab"
+                   aria-controls="product-details"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='ASK A QUESTION' d='Shop.Theme.Catalog'}</a>
+               </li>
+               <li class="nav-item mobile">
+                 <a
+                   class="nav-link"
+                   data-toggle="tab"
+                   href="#product_reviews"
+                   role="tab"
+                   aria-controls="product_reviews"
+                   {if !$product.description} aria-selected="true"{/if}>{l s='Reviews' d='Shop.Theme.Catalog'}</a>
+               </li>
+               
+             </ul>
          
                  {* tabs content *}
          
