@@ -8186,6 +8186,14 @@ transform: translate(-50%,-50%);
     background: #fff;
   }
 
+  .right-side .prices-availability #product-availability {
+    margin-bottom: 0 !important;
+  }
+
+  .features_productdetails {
+    padding: 0 !important;
+  }
+
   /* product page */
   .container-imgs-mobile .swiper-button-next , .container-imgs-mobile .swiper-button-prev {
     color: var(--asm-color);
