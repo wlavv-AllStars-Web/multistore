@@ -373,20 +373,27 @@ class CheckVat extends Module
 	/**
 	* HOOK hookTop
 	*/
-	public function hookDisplayTop()
-	{
-		PrestaShopLogger::addLog('hookDisplayTop called', 1);
-		$vat_required_old_customer = Configuration::get('VAT_REQUIRED_OLD_CUSTOMER');
-		if (!$this->context->customer->id)
-			return;
-		$vat_customer = array();
-		$vat_customer = $this->getvatCustomer();
-		
-
-		if ($vat_required_old_customer == 1 && !$vat_customer && $this->context->controller->php_self != 'my-account')
-		    PrestaShopLogger::addLog('hookDisplayHeader: Redirecting to my-account', 1);
-			Tools::redirect('index.php?controller=my-account');
-	}
+    public function hookDisplayTop()
+    {
+        PrestaShopLogger::addLog('hookDisplayTop called', 1);
+        
+        $vat_required_old_customer = Configuration::get('VAT_REQUIRED_OLD_CUSTOMER');
+    
+        if (!$this->context->customer->id) {
+            return;
+        }
+    
+        $vat_customer = $this->getvatCustomer();
+    
+        if (
+            $vat_required_old_customer == 1 &&
+            !$vat_customer &&
+            $this->context->controller->php_self != 'my-account'
+        ) {
+            PrestaShopLogger::addLog('hookDisplayHeader: Redirecting to my-account', 1);
+            Tools::redirect('index.php?controller=my-account');
+        }
+    }
 
 	/**
 	* HOOK hookcreateAccountForm
