@@ -225,483 +225,606 @@
      </div>
      <div class="hidden-md-down"
    style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin:1rem 0 0 0"></div>
+
+   <div class="d-mobile section-content-product" style="margin-top: 1rem;flex-direction:column;gap:.25rem;">
+   <div class="container-compat-mobile" style="flex-direction: column;width:100%;">
+     <div class="nav-link" data-toggle="collapse" href="#compatMobile" role="button" aria-expanded="false" aria-controls="compatMobile" style="width: 100%;background: #fff;text-align:center;">
+       {l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}
+     </div>
+   
+     <div class="collapse container-drop" id="compatMobile">
+       
+       <div class="banner-tabs" >
+         <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
+       </div>
+               {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
+       {if $compats|count}
+       <div class="container-table-compats table-mobile">
+         {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+         <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+           <thead class="thead-dark">
+             <tr>
+               <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+               <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+               <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+               <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+             </tr>
+           </thead>
+           <tbody>
+           {foreach from=$compats item=compat name=compatLoop}
+             <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
+               <td>{$compat.brand}</td>
+               <td>{$compat.model}</td>
+               <td>{$compat.type}</td>
+               <td>{$compat.version}</td>
+             </tr>
+           {/foreach}
+           </tbody>
+         </table>
+
+         {if $compats|count > 5}
+           <div style="text-align: center;">
+             <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">{l s='Show More' d='Shop.Theme.Actions'}</button>
+           </div>
+         {/if}
+       </div>
+
+       <script>
+         function toggleRows() {
+           var hiddenRows = document.querySelectorAll(".table-mobile .hidden-row");
+                   var btn = document.getElementById("showMoreBtn");
+
+                   // Toggle rows visibility
+                   let isHidden = hiddenRows[0].style.display === "none";
+                   hiddenRows.forEach(row => {
+                     row.style.display = isHidden ? "table-row" : "none";
+                   });
+
+                   // Toggle button text
+                   btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
+         }
+       </script>
+
+       {else}
+         <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+       {/if}
+
+
+     </div>
+   </div>
+   
+   <div class="container-shipping-mobile" style="flex-direction: column;width:100%;">
+     <div class="nav-link" data-toggle="collapse" href="#shippingMobile" role="button" aria-expanded="false" aria-controls="shippingMobile" style="width: 100%;background: #fff;text-align:center;">
+       {l s='SHIPPING' d='Shop.Theme.Catalog'}
+     </div>
+   
+     <div class="collapse container-drop" id="shippingMobile">
+       
+       <div class="banner-tabs" >
+         <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+       </div>
+       <div class="tab">
+         {hook h='extraRight' mod='totshippingpreview' mobile=1}
+       </div>
+
+     </div>
+   </div>
+
+
+   <div class="container-instructions-mobile" style="flex-direction: column;width:100%;">
+     <div class="nav-link" data-toggle="collapse" href="#instructionsMobile" role="button" aria-expanded="false" aria-controls="instructionsMobile" style="width: 100%;background: #fff;text-align:center;">
+       {l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}
+     </div>
+   
+     <div class="collapse container-drop" id="instructionsMobile">
+       
+     {block name='product_attachments'}
+       {if $product.attachments}
+        <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
+           <div class="banner-tabs" >
+             <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+           </div>
+           <section class="product-attachments tab">
+             {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
+             {foreach from=$product.attachments item=attachment}
+               <div class="attachment">
+                 {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
+                 {* <p>{$attachment.description}</p> *}
+                 <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                   <i class="material-icons">file_download</i>
+                   {l s='Download Instructions' d='Shop.Theme.Actions'}
+                 </a>
+
+                 <div class="difficulty-level">
+                   <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
+                   <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" />
+                 </div>
+               </div>
+             {/foreach}
+           </section>
+         </div>
+       {else}
+
+         
+         
+          <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
+            <div class="banner-tabs" >
+              <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+            </div>
+            {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
+             <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
+             <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
+             <div class="difficulty-level">
+                     <span>Difficulty Level:</span>
+                     <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
+               </div>
+            </div> *}
+
+           <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
+               <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
+                 <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">{l s='No Instructions' d='Shop.Theme.Catalog'}</h4>
+               {if $product.difficulty > 0}
+                 <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
+                 <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
+                     <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
+                     <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                 </div>
+               {/if}
+               </div>
+           </div>
+
+          </div>
+       {/if}
+     {/block}
+
+     </div>
+   </div>
+
+   <div class="container-askquestion-mobile" style="flex-direction: column;width:100%;">
+     <div class="nav-link" data-toggle="collapse" href="#askquestionMobile" role="button" aria-expanded="false" aria-controls="askquestionMobile" style="width: 100%;background: #fff;text-align:center;">
+       {l s='ASK A QUESTION' d='Shop.Theme.Catalog'}
+     </div>
+   
+     <div class="collapse container-drop" id="askquestionMobile">
+       
+       <div class="banner-tabs" >
+           <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" />
+       </div>
+
+       {* {if $email_sent == 1} *}
+         <div class="container_ask_successfull" style="display: none;padding:1rem;">
+           <div class="question_buble">
+
+             <i class="material-icons question-success-icon">check_circle</i>
+             <h1 class="question-success-title">{l s='Great!' d='Shop.Theme.Catalog'}</h1>
+             <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
+           </div>
+           <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
+           <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
+             {l s='Close' d='Shop.Theme.Catalog'}
+           </div>
+         </div>
+
+       {* {else} *}
+         
+         
+         <form class="form-askquestion col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
+
+         <div class="form-group">
+           <div class="input-group-prepend">
+             <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
+           </div>
+           <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="{l s='Name' d='Shop.Theme.Catalog'}" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
+         </div>
+         <div class="form-group">
+           <div class="input-group-prepend">
+             <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
+           </div>
+           <input type="email" class="form-control" id="inputEmail" placeholder="{l s='Email' d='Shop.Theme.Catalog'}" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
+         </div>
+         <div class="form-group">
+           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{l s='Write your question.' d='Shop.Theme.Catalog'}" name="question_customer"></textarea>
+         </div>
+
+         {* <button type="submit" class="btn btn-primary">
+           {l s='Submit' d='Shop.Theme.Catalog'}
+           <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+           <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+           <input type="hidden" name="product_askquestion" value="1">
+           <input type="hidden" name="id_product" value="{$product.id}">
+           <input type="hidden" name="category" value="">
+         </button> *}
+
+         <button class="g-recaptcha btn btn-primary" 
+         name="submitMessage"
+         data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+         data-callback='onSubmit' 
+         data-action='submit'>
+           {l s='Submit' d='Shop.Theme.Catalog'}
+           <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
+           <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
+           <input type="hidden" name="product_askquestion" value="1">
+           <input type="hidden" name="id_product" value="{$product.id}">
+           <input type="hidden" name="category" value="">
+         </button>
+
+         <script>
+         function onSubmit(token) {
+             // Get the form element
+             var form = document.querySelector(".container-askquestion-mobile .form-askquestion");
+             
+             // Create FormData object
+             var formData = new FormData(form);
+             formData.append('g-recaptcha-response', token);
+
+             // Send AJAX request
+             fetch(form.action, {
+                 method: 'POST',
+                 body: formData
+             })
+             .then(response => response.json())
+             .then(data => {
+                 if (data.email_sent) {
+                     // Show success message
+                     document.querySelector(".container-askquestion-mobile .container_ask_successfull").style.display = "block";
+                     form.style.display = "none";
+                 } else {
+                     alert("Error sending question: " + (data.error || "Unknown error"));
+                 }
+             })
+             .catch(error => {
+                 console.error('Error:', error);
+                 alert("An error occurred while sending your question");
+             });
+         }
+         </script>
+       
+         </form>
+       {* {/if} *}
+
+     </div>
+   </div>
+
+   <div class="container-reviews-mobile" style="flex-direction: column;width:100%;">
+     <div class="nav-link" data-toggle="collapse" href="#reviewsMobile" role="button" aria-expanded="false" aria-controls="reviewsMobile" style="width: 100%;background: #fff;text-align:center;">
+       {l s='Reviews' d='Shop.Theme.Catalog'}
+     </div>
+   
+     <div class="collapse container-drop" id="reviewsMobile">
+       <div class="banner-content">
+         {block name='product_miniature_item'}
+           {block name='product_reviews'}
+             {hook h='displayFooterProduct' mod='productcomments'  product=$product  category=$category}
+           {/block}
+         {/block}
+       </div>
+     </div>
+   </div>
+
+ </div>
+
  <div class="section_tabs_video" style="display: flex;{if empty($product.youtube_1)}justify-content:center;{/if}">
              {* inicio tabs *}
              <div class="column_tabs" style="width:100%">
              {block name='product_tabs'}
                {* <pre>{print_r($product,1)}</pre> *}
                <div class="tabs" style="background: #f6f6f6;margin-top:0;">
-               <ul class="nav nav-tabs" role="tablist">
-               {* {if $product.description} *}
-                 <li class="nav-item d-desktop">
-                    <a
-                      class="nav-link active js-product-nav-active"
-                      data-toggle="tab"
-                      href="#description"
-                      role="tab"
-                      aria-controls="description"
-                      {if $product.description} aria-selected="true"{/if}>{l s='DESCRIPTION' d='Shop.Theme.Catalog'}</a>
-                 </li>
-               {* {/if} *}
-               <li class="nav-item">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#compatibilities"
-                   role="tab"
-                   aria-controls="product-details"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
-               </li>
-               <li class="nav-item">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#product_shipping"
-                   role="tab"
-                   aria-controls="product-details"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
-               </li>
-               <li class="nav-item">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#product_instructions"
-                   role="tab"
-                   aria-controls="product_instructions"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
-               </li>
-               
-               {* {if $product.attachments}
-                 <li class="nav-item">
-                   <a
-                     class="nav-link"
-                     data-toggle="tab"
-                     href="#attachments"
-                     role="tab"
-                     aria-controls="attachments">{l s='Instructions' d='Shop.Theme.Catalog'}</a>
-                 </li>
-               {/if} *}
-               {foreach from=$product.extraContent item=extra key=extraKey}
-                 <li class="nav-item">
-                   <a
-                     class="nav-link"
-                     data-toggle="tab"
-                     href="#extra-{$extraKey}"
-                     role="tab"
-                     aria-controls="extra-{$extraKey}">{$extra.title}</a>
-                 </li>
-               {/foreach}
-
-               {if $product_manufacturer->warranty}
-               <li class="nav-item">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#product_warranty"
-                   role="tab"
-                   aria-controls="product-details"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='Warranty' d='Shop.Theme.Catalog'}</a>
-               </li>
-              {/if}
-
-               <li class="nav-item">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#product_askquestion"
-                   role="tab"
-                   aria-controls="product-details"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='ASK A QUESTION' d='Shop.Theme.Catalog'}</a>
-               </li>
-               <li class="nav-item mobile">
-                 <a
-                   class="nav-link"
-                   data-toggle="tab"
-                   href="#product_reviews"
-                   role="tab"
-                   aria-controls="product_reviews"
-                   {if !$product.description} aria-selected="true"{/if}>{l s='Reviews' d='Shop.Theme.Catalog'}</a>
-               </li>
-               
-             </ul>
+                 <ul class="nav nav-tabs" role="tablist" style="display: flex;justify-content:space-between;">
+                   {* {if $product.description} *}
+                     <li class="nav-item">
+                        <a
+                          class="nav-link active js-product-nav-active"
+                          data-toggle="tab"
+                          href="#description"
+                          role="tab"
+                          aria-controls="description"
+                          {if $product.description} aria-selected="true"{/if}>{l s='DESCRIPTION' d='Shop.Theme.Catalog'}</a>
+                     </li>
+                   {* {/if} *}
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product-installation"
+                       role="tab"
+                       aria-controls="product-installation"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='INSTRUCTIONS' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#compatibilities"
+                       role="tab"
+                       aria-controls="product-details"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        data-toggle="tab"
+                        href="#product_shipping"
+                        role="tab"
+                        aria-controls="product-details"
+                        {if !$product.description} aria-selected="true"{/if}>{l s='SHIPPING' d='Shop.Theme.Catalog'}</a>
+                    </li>
+                   {* {if $product.attachments}
+                     <li class="nav-item">
+                       <a
+                         class="nav-link"
+                         data-toggle="tab"
+                         href="#attachments"
+                         role="tab"
+                         aria-controls="attachments">{l s='Instructions' d='Shop.Theme.Catalog'}</a>
+                     </li>
+                   {/if} *}
+                   {foreach from=$product.extraContent item=extra key=extraKey}
+                     <li class="nav-item">
+                       <a
+                         class="nav-link"
+                         data-toggle="tab"
+                         href="#extra-{$extraKey}"
+                         role="tab"
+                         aria-controls="extra-{$extraKey}">{$extra.title}</a>
+                     </li>
+                   {/foreach}
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product_reviews"
+                       role="tab"
+                       aria-controls="product-details"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='REVIEWS' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product_warranty"
+                       role="tab"
+                       aria-controls="product-details"
+                       {if !$product.description} aria-selected="true"{/if}>{l s='WARRANTY' d='Shop.Theme.Catalog'}</a>
+                   </li>
+                   <li class="nav-item">
+                     <a
+                       class="nav-link"
+                       data-toggle="tab"
+                       href="#product_brand"
+                       role="tab"
+                       aria-controls="product-details"
+                       {if !$product.description} aria-selected="true"{/if}>{$product.manufacturer_name}</a>
+                   </li>
+                 </ul>
          
                  {* tabs content *}
          
                  <div class="tab-content" id="tab-content">
-                 <div class="tab-pane fade in active" id="description" role="tabpanel">
-                 {* {debug} *}
-                  {if $product.description}
-                    <div class="banner-tabs" >
-                      <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
-                    </div>
-                    <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
-                      {block name='product_description'}
-                        <div class="product-description">{$product.description nofilter}</div>
-                      {/block}
-                      <div class="videos-container" style="display: flex;gap: 1rem;">
+                  <div class="tab-pane fade in active" id="description" role="tabpanel">
+                   {if $product.description}
+                     <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                     </div>
+                     <div class="tab-description" style="display: flex;justify-content:center;">
+                       {block name='product_description'}
+                         <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">{$product.description nofilter}</div>
+                       {/block}
                        {if !empty($product.youtube_1)}
-                        <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
-                          <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
-                            <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                            <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
-                              <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
-                                <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
-                              </div>
-                            </div>
-                            <div  class="iframeClass"  style="display:none;height:318px">
-                              <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
-                              </iframe>
-                            </div>
-                          </div>
-                        </div>
-                       {/if}
-                       {if !empty($product.youtube_2)}
-                        <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
-                          <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
-                            <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                            <img src="https://i3.ytimg.com/vi/{$product.youtube_2}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
-                              <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
-                                <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
-                              </div>
-                            </div>
-                            <div  class="iframeClass"  style="display:none;height:318px">
-                              <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_2}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
-                              </iframe>
-                            </div>
-                          </div>
-                        </div>
-                       {/if}
-                      </div>
-                        <small style="text-align: center;">{l s='Content protected by copyright © 2024 - All rights reserved' d='Shop.Theme.Catalog'}</small>
-                    </div>
-                    {* {if $product.features}
-                      <div class="product_features">
-                          {foreach from=$product.features item=feature}
-                            <div style="padding: 0.5rem 1rem;"><b>{$feature.name}:</b> {$feature.value}</div>
-                          {/foreach}
-                        </div>
-                        {/if} *}
-                  {else}
-                    <div class="banner-tabs" >
-                     <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
-                    </div>
-                    <div class="tab-description tab" style="display: flex;">
-                      {block name='product_description'}
-                        <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">
-                          <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
-                        </div>
-                      {/block}
-                      {if !empty($product.youtube_1)}
-                        <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
-                          <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
-                            <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                            <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
-                              <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
-                                <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
-                              </div>
-                            </div>
-                            <div  class="iframeClass"  style="display:none;height:318px">
-                              <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
-                              </iframe>
-                            </div>
-                          </div>
-                        </div>
-                        {/if}
-                      {* fim tabs *}
-                      
-                    </div>
-
-                  {/if}
-                  <script>
-                      addEventListener("DOMContentLoaded", (event) => {
-                        const videoProduct =  document.querySelector(".column_video .video");
-                        const imgPlay = document.querySelector(".image_play")
-                        if(videoProduct && imgPlay){
-                          videoProduct.addEventListener('mouseover', () => {
-                            imgPlay.setAttribute('src', "/img/youtube_play_hover.png")
-                          });
-                          videoProduct.addEventListener('mouseleave', () => {
-                            imgPlay.setAttribute('src', "/img/youtube_play.png")
-                          });
-                        }
-                        
-                      });
-                      </script>
-                 </div>
-        
-                 {* <div class="tab-pane fade in" id="product-installation" role="tabpanel">
-                   <div>product-installation</div>
-                 </div> *}
-                 
-        
-                 <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
-                    <div class="banner-tabs" >
-                      <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
-                    </div>
-                   {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
-                   {if $compats|count}
-                   <div class="container-table-compats table-desk mb-4">
-                     <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                       <thead class="thead-dark">
-                         <tr>
-                           <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
-                           <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
-                           <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
-                           <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
-                         </tr>
-                       </thead>
-                       <tbody>
-                       {foreach from=$compats item=compat name=compatLoop}
-                         <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
-                           <td>{$compat.brand}</td>
-                           <td>{$compat.model}</td>
-                           <td>{$compat.type}</td>
-                           <td>{$compat.version}</td>
-                         </tr>
-                       {/foreach}
-                       </tbody>
-                     </table>
-
-                     {if $compats|count > 5}
-                       <div style="text-align: center;">
-                         <button id="showMoreBtnDesk" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">{l s='Show More' d='Shop.Theme.Actions'}</button>
-                       </div>
-                     {/if}
-
-
-                   </div>
-
+                         <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+                           <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
+                             <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                               <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                                 <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                               </div>
+                             </div>
+                             <div  class="iframeClass"  style="display:none;height:318px">
+                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                               </iframe>
+                             </div>
+                           </div>
+                         </div>
+                         {/if}
+                     </div>
+                     {* {if $product.features}
+                       <div class="product_features">
+                           {foreach from=$product.features item=feature}
+                             <div style="padding: 0.5rem 1rem;"><b>{$feature.name}:</b> {$feature.value}</div>
+                           {/foreach}
+                         </div>
+                         {/if} *}
+                   {else}
+                     <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                     </div>
+                     <div class="tab-description" style="display: flex;">
+                       {block name='product_description'}
+                         <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">
+                           <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
+                         </div>
+                       {/block}
+                       {if !empty($product.youtube_1)}
+                         <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+                           <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
+                             <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                             <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                               <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                                 <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                               </div>
+                             </div>
+                             <div  class="iframeClass"  style="display:none;height:318px">
+                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                               </iframe>
+                             </div>
+                           </div>
+                         </div>
+                         {/if}
+                       {* fim tabs *}
+                       
+                     </div>
+ 
+                   {/if}
                    <script>
-                     function toggleRowsDesk() {
-                       var hiddenRows = document.querySelectorAll(".table-desk .hidden-row");
-                       var btn = document.getElementById("showMoreBtnDesk");
-
-                       // Toggle rows visibility
-                       let isHidden = hiddenRows[0].style.display === "none";
-                       hiddenRows.forEach(row => {
-                         row.style.display = isHidden ? "table-row" : "none";
+                       addEventListener("DOMContentLoaded", (event) => {
+                         const videoProduct =  document.querySelector(".column_video .video");
+                         const imgPlay = document.querySelector(".image_play")
+                         if(videoProduct && imgPlay){
+                           videoProduct.addEventListener('mouseover', () => {
+                             imgPlay.setAttribute('src', "/img/youtube_play_hover.png")
+                           });
+                           videoProduct.addEventListener('mouseleave', () => {
+                             imgPlay.setAttribute('src', "/img/youtube_play.png")
+                           });
+                         }
+                         
                        });
-
-                       // Toggle button text
-                       btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
-                     }
-                   </script>
-                   {else}
-                     <h2 style="text-align: center;font-weight:500;padding:1rem;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
-                   {/if}
-
-                 </div>
-        
-                 {* {block name='product_details'}
-                   {include file='catalog/_partials/product-details.tpl'}
-                 {/block} *}
-        
-                 <div class="tab-pane fade in" id="product_instructions" role="tabpanel">
-                 {block name='product_attachments'}
-                   {if $product.attachments}
-                       <div class="banner-tabs" >
-                         <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
-                       </div>
-                       <section class="product-attachments tab">
-                         {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
-                         {foreach from=$product.attachments item=attachment}
-                           <div class="attachment">
-                             {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
-                             {* <p>{$attachment.description}</p> *}
-                             <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                               <i class="material-icons">file_download</i>
-                               {l s='Download Instructions' d='Shop.Theme.Actions'}
-                             </a>
-
-                             <div class="verticalLign" style="height:100%;width:2px; background:#c0c0c0;"></div>
-
-                             <div class="difficulty-level">
-                               <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
-                               <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp"  alt="Difficulty{$product.difficulty}"/>
-                             </div>
-                           </div>
-                         {/foreach}
-                       </section>
-                   {else}
-
-                        <div class="banner-tabs" >
-                          <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
-                        </div>
-                        {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
-                         <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
-                         <div class="separator-line" style="height:50px;width:3px; background:#b3b3b3;"></div>
-                         <div class="difficulty-level">
-                                 <span>Difficulty Level:</span>
-                                 <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_{$product.difficulty}.webp" />
-                           </div>
-                        </div> *}
-
-                       <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
-                           <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
-                             <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">{l s='No Instructions' d='Shop.Theme.Catalog'}</h4>
-                           {if $product.difficulty > 0}
-                             <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
-                             <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
-                                 <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
-                                 <img src="/img/asm/difficulty/difficulty_{$product.difficulty}.webp" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
-                             </div>
-                           {/if}
-                           </div>
-                       </div>
-
-                      
-                   {/if}
-                 {/block}
-                 </div>
-        
-                 {foreach from=$product.extraContent item=extra key=extraKey}
-                 <div class="tab-pane fade in {$extra.attr.class}" id="extra-{$extraKey}" role="tabpanel" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
-                   {$extra.content nofilter}
-                 </div>
-                 {/foreach}
-        
-                 <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
-                  <div class="banner-tabs" >
-                   <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+                       </script>
                   </div>
+         
+                  {* <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+                    <div>product-installation</div>
+                  </div> *}
+                  
+         
+                  <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
+                     <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+                     </div>
+                    <div>
+                    {if $compats|count}
+                      <div class="container-table-compats table-mobile">
+                        {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+                        <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {foreach from=$compats item=compat name=compatLoop}
+                            <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
+                              <td>{$compat.brand}</td>
+                              <td>{$compat.model}</td>
+                              <td>{$compat.type}</td>
+                              <td>{$compat.version}</td>
+                            </tr>
+                          {/foreach}
+                          </tbody>
+                        </table>
+          
+                        {if $compats|count > 5}
+                          <div style="text-align: center;">
+                            <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">{l s='Show More' d='Shop.Theme.Actions'}</button>
+                          </div>
+                        {/if}
+                      </div>
+          
+                      <script>
+                        function toggleRows() {
+                          var hiddenRows = document.querySelectorAll(".table-mobile .hidden-row");
+                                  var btn = document.getElementById("showMoreBtn");
+          
+                                  // Toggle rows visibility
+                                  let isHidden = hiddenRows[0].style.display === "none";
+                                  hiddenRows.forEach(row => {
+                                    row.style.display = isHidden ? "table-row" : "none";
+                                  });
+          
+                                  // Toggle button text
+                                  btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
+                        }
+                      </script>
+          
+                      {else}
+                        <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                      {/if}
+                    </div>
+                  </div>
+
+                  <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
+                    <div class="banner-tabs" >
+                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+                    </div>
                    <div class="tab">
                      {hook h='extraRight' mod='totshippingpreview' mobile=0}
                    </div>
-                 </div>
-
-                 <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
-                  <div class="banner-tabs" >
-                    <img src="/img/asm/banners/warranty/warranty_{$language.iso_code}.webp" />
                   </div>
-                  {* <pre>{$product_manufacturer|print_r}</pre> *}
-                  <div style="max-width: 1350px;margin:auto;">
-                   {if $product_manufacturer->warranty}
-                     <p class="tab" style="color: #333;">{$product_manufacturer->warranty}</p>
-                   {/if}
+         
+                  {* {block name='product_details'}
+                    {include file='catalog/_partials/product-details.tpl'}
+                  {/block} *}
+         
+                  {block name='product_attachments'}
+                    {if $product.attachments}
+                     <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+                     <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                     </div>
+                        <section class="product-attachments">
+                          {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
+                          {foreach from=$product.attachments item=attachment}
+                            <div class="attachment">
+                              {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
+                              {* <p>{$attachment.description}</p> *}
+                              <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
+                                {l s='Download Instructions' d='Shop.Theme.Actions'}
+                              </a>
+                            </div>
+                          {/foreach}
+                        </section>
+                      </div>
+                     {else}
+                      
+                       <div class="tab-pane fade in" id="product-installation" role="tabpanel">
+                         <div class="banner-tabs" >
+                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                         </div>
+                         <p>{l s='No Instructions' d='Shop.Theme.Actions'}</p>
+                       </div>
+                    {/if}
+                  {/block}
+         
+                  {foreach from=$product.extraContent item=extra key=extraKey}
+                  <div class="tab-pane fade in {$extra.attr.class}" id="extra-{$extraKey}" role="tabpanel" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>
+                    {$extra.content nofilter}
                   </div>
-                 </div>
-
-                 <div  class="tab-pane fade in" id="product_askquestion"  role="tabpanel">
-                  <div class="banner-tabs" >
-                      <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" />
-                  </div>
-
-                  {* {if $email_sent == 1} *}
-                   <div class="container_ask_successfull container_ask_successfull_desktop" style="display: none;">
-                     <div class="question_buble">
-
-                       <i class="material-icons question-success-icon">check_circle</i>
-                       <h1 class="question-success-title">{l s='Great!' d='Shop.Theme.Catalog'}</h1>
-                       <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
-                     </div>
-                     <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
-                     <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
-                       {l s='Close' d='Shop.Theme.Catalog'}
-                     </div>
-                   </div>
-
-                 {* {else} *}
-                  
-                  
-                  <form class="form-askquestion form-d col-lg-9 tab" action="{$link->getPageLink('product', true)}" method="post">
-
-                   <div class="form-group">
-                     <div class="input-group-prepend">
-                       <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
-                     </div>
-                     <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="{l s='Name' d='Shop.Theme.Catalog'}" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
-                   </div>
-                   <div class="form-group">
-                     <div class="input-group-prepend">
-                       <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
-                     </div>
-                     <input type="email" class="form-control" id="inputEmail" placeholder="{l s='Email' d='Shop.Theme.Catalog'}" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
-                   </div>
-                   <div class="form-group">
-                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{l s='Write your question.' d='Shop.Theme.Catalog'}" name="question_customer"></textarea>
-                   </div>
-
-                   {* <button type="submit" class="btn btn-primary">
-                     {l s='Submit' d='Shop.Theme.Catalog'}
-                     <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
-                     <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
-                     <input type="hidden" name="product_askquestion" value="1">
-                     <input type="hidden" name="id_product" value="{$product.id}">
-                     <input type="hidden" name="category" value="">
-                   </button> *}
-
-                   <button class="g-recaptcha btn btn-primary" 
-                   name="submitMessage"
-                   data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
-                   data-callback='onSubmitDesktop' 
-                   data-action='submit'>
-                     {l s='Submit' d='Shop.Theme.Catalog'}
-                     <input type="hidden" name="id_lang" value="{$language.id|escape:'htmlall':'UTF-8'}">
-                     <input type="hidden" name="id_shop" value="{$shop.id|escape:'htmlall':'UTF-8'}">
-                     <input type="hidden" name="product_askquestion" value="1">
-                     <input type="hidden" name="id_product" value="{$product.id}">
-                     <input type="hidden" name="category" value="">
-
-                   </button>
-
-     
-
-                   
-
-                  </form>
-
-                 <script>
-                 
-                     // document.addEventListener("DOMContentLoaded", function() {
-                     function onSubmitDesktop(token) {
-                         console.log("Generated reCAPTCHA Token:", token);
-                         if (!token) {
-                             console.error("reCAPTCHA token is null or undefined!");
-                             return;
-                         }
-                 
-                         var formData = $(".form-askquestion.form-d").serialize() + "&g-recaptcha-response=" + token;
-                 
-                         $.ajax({
-                             url: '{$link->getPageLink('product', true)}',
-                             type: 'POST',
-                             data: formData,
-                             dataType: 'json',
-                             success: function(response) {
-                                 console.log("Response:", response);
-                                 if (response.email_sent) {
-                                     document.querySelector(".container_ask_successfull_desktop").style.display = "block";
-                                     document.querySelector(".form-askquestion.form-d").remove();
-                                 } else {
-                                     $(".container_ask_successfull").html('<div class="alert alert-danger">An error occurred, please try again.</div>');
-                                 }
-                             },
-                             error: function(jqXHR, textStatus, errorThrown) {
-                                 console.error("AJAX Error:", textStatus, errorThrown);
-                                 console.log("Response Text:", jqXHR.responseText);
-                             }
-                         });
-                     }
-                     // });
-                   </script>
-           
-                 {* {/if} *}
-                 </div>
-
-                 {* <div class="tab-pane fade in" id="product_reviews"  role="tabpanel">
+                  {/foreach}
+         
+                  <div  class="tab-pane fade in" id="product_reviews"  role="tabpanel">
                    <div class="banner-tabs" >
-                      <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+                     <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
                    </div>
-                   <div class="banner-content">
-                   {block name='product_reviews'}
-                     {hook h='displayFooterProduct' product=$product}
-                   {/block}
+                   {hook h='displayFooterProduct' product=$product category=$category}
+                  </div>
+                  <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
+                   <div class="banner-tabs" >
+                     <img src="https://www.all-stars-motorsport.com/img/app_icons/warranty_en.webp" />
                    </div>
-                 </div> *}
-
-              </div>
-               
-              </div>
+                   <p>Product Warranty</p>
+                  </div>
+                  
+                  <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
+                   <div class="banner-tabs" >
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                   </div>
+                   <h4 style="padding: 1rem;">{$product_manufacturer->name}</h4>
+                   <div style="padding: 1rem;">
+                    {if !empty($product_manufacturer->short_description)}
+                      {$product_manufacturer->short_description|strip_tags|replace:'<p>':''|replace:'</p>':''}
+                    {else if !empty($product_manufacturer->description)}
+                      {$product_manufacturer->description|strip_tags|replace:'<p>':''|replace:'</p>':''}
+                    {else}
+                      <p>{l s='No description' d='Shop.Theme.Actions'}</p>
+                    {/if}
+                  </div>
+                   {* <pre>{print_r($product_manufacturer->description,1)}</pre> *}
+                  </div>
+         
+               </div>
+               </div>
              {/block}
  
              </div>
