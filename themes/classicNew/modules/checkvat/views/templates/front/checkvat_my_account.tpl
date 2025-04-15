@@ -26,7 +26,7 @@
 				
 				<form action="index.php?fc=module&module=checkvat&controller=default&action=saveVat" method="post" style="display:flex;flex-wrap: nowrap;padding-left: 0px;padding-right:0px;gap:0.5rem;">
 					<input class="form-control" placeholder="{l s="VAT number" d="Shop.Theme.CustomerAccount"}" aria-label="TVA number" name="vat_number" type="text" value="{if isset($smarty.post.vat_number)}{$smarty.post.vat_number}{/if}" style="background: #fff;"/>
-					<button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
+					<button class="btn" type="submit" value="save" style="border-radius: 0.25rem;background: var(--euromus-color-500);">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
 				</form>
 				<small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
 			</span>
