@@ -6383,15 +6383,19 @@ transform: translate(-50%,-50%);
   /* tabs mobile */
   .d-mobile.section-content-product .nav-link{
     text-transform: uppercase;
+    padding: 1rem;
   }
+
   .section-content-product .nav-link{
     color: #fff;
-    background: #555 !important;
+    background: var(--euromus-color-text) !important;
+    border-bottom: 2px solid var(--euromus-color-700);
   }
 
   .section_tabs_video {
     display: none !important;
   }
+
 
   /* my account */
 
@@ -8130,8 +8134,8 @@ transform: translate(-50%,-50%);
 
   .section-content-product .nav-link{
     color: #fff;
-    background: #333 !important;
-    border-bottom: 2px solid #555;
+    background: var(--euromus-color-text) !important;
+    border-bottom: 2px solid var(--euromus-color-700);
   }
 
   .section-content-product .container-drop{
