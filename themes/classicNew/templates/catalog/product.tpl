@@ -436,7 +436,7 @@
                </div>
             </div> *}
 
-           <div style="text-align: center;display:flex;justify-content:center; min-width: 800px;">
+           <div style="text-align: center;display:flex;justify-content:center;">
                <div style="display:flex;align-items:center;justify-content:space-between;height:fit-content;margin:3rem 0;gap:2rem;">
                  <h4 style="font-size:18px;margin:0;text-transform:uppercase;font-weight:500;">{l s='No Instructions' d='Shop.Theme.Catalog'}</h4>
                {* {if $product.difficulty > 0}
