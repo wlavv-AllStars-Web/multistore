@@ -112,15 +112,15 @@
                                 selectElement.removeAttr("disabled").removeClass("disabled");;
                                 
                                 $.each(data, function (index, item) {
-                                  if(placeholder == "Brand") {
+                                  if(placeholder == "{l s='Brand' d='Shop.Theme.Homepage'}") {
                                     selectElement.append('<option value="'+item.id_brand+'">'+item.name+'</option>');
-                                  }else if(placeholder == "Model") {
+                                  }else if(placeholder == "{l s='Model' d='Shop.Theme.Homepage'}") {
                                     selectElement.append('<option value="'+item.id_model+'">'+item.name+'</option>');
-                                  }else if(placeholder == "Type") {
+                                  }else if(placeholder == "{l s='Type' d='Shop.Theme.Homepage'}") {
                                     selectElement.append('<option value="'+item.id_type+'">'+item.name+'</option>');
-                                  }else if(placeholder == "Version") {
+                                  }else if(placeholder == "{l s='Version' d='Shop.Theme.Homepage'}") {
                                     selectElement.append('<option value="'+item.id_version+'">'+item.name+'</option>');
-                                  }else if(placeholder == "Search") {
+                                  }else if(placeholder == "{l s='Search' d='Shop.Theme.Homepage'}") {
                                     window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+item.id_compat
                                   }
                                 });
