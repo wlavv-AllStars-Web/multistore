@@ -37,3 +37,72 @@
     </a>
   </div> *}
 </div>
+
+<script>
+
+  function addToMyCars(id_compat){
+
+        let complete = 0;
+        let logged = {if $customer.is_logged}1{else}0{/if};
+        let id_customer = {if $customer.id}{$customer.id}{else}0{/if};
+        let email = '{$customer.email}';
+
+            // Prevent multiple clicks
+        let button = $('.addToMyCarsButton');
+        if (button.data('loading')) {
+            return; // Stop if a request is already in progress
+        }
+        button.data('loading', true); // Set loading state
+        button.prop('disabled', true); // Disable button
+        
+        if(logged == 1){
+            
+          complete = 1;
+
+        } else {
+            email = prompt("{l s='Please enter your email.'}");
+
+            if (email != null) {
+                complete = 1;
+                // Additional logic can be placed here if needed
+            } else {
+                alert("{l s='You did not enter an email. Please try again!'}");
+                button.data('loading', false); // Reset loading state
+                button.prop('disabled', false); // Re-enable button
+                return; // Exit the function if no email is entered
+            } 
+        }
+        
+        if(complete){
+          $.ajax({
+              url: '{url entity="frontController"}',
+              type: 'POST',
+              data: {
+                  'saveCarGarage': 1,
+                  'id_compat': id_compat,
+                  'email': email,
+                  'id_customer': id_customer,
+                  'iso_code': "{Context::getContext()->language->iso_code}"
+              },
+              dataType: 'json',
+              success: function (data) {
+                  if(data.success == false){
+                    alert("error")
+                  }else{
+                    $('.addToMyCarsButton').html('');
+                    openMenuCars();
+                  }
+              },
+              complete: function () {
+                button.data('loading', false); // Reset loading state
+                // button.prop('disabled', false); // Re-enable button
+                $('.addToMyCarsButton').html('');
+            }
+          });
+        }
+        
+    }
+
+
+
+</script>
