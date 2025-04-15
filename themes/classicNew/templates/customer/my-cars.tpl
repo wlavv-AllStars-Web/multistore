@@ -167,17 +167,10 @@
             padding: .5rem 1rem;
         }
 
-        .car-button-delete .btn{
-            border-radius: .25rem;
-            background: var(--asm-color);
-            cursor: pointer;
-        }
         .car-button-delete .btn i{
             color: #fff;
         }
-        .car-button-delete .btn:hover{
-            background: #333;
-        }
+  
     
         @media only screen and (max-width: 768px) {
             
