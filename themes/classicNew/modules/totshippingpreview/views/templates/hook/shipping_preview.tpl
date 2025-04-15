@@ -543,9 +543,9 @@ if (sessionStorage.getItem('scriptExecuted')) {
     // Initialize totShippingSelectors array
     let totShippingSelectors = [];
 
-    // if (document.querySelector("#shippingMobile #tot_zone_1")) {
-    //     totShippingSelectors.push({ element: document.querySelector("#shippingMobile #tot_zone_1") });
-    // }
+    if (document.querySelector("#shippingMobile #tot_zone_1")) {
+        totShippingSelectors.push({ element: document.querySelector("#shippingMobile #tot_zone_1") });
+    }
 
     if (document.querySelector(".section_tabs_video #tot_zone_1")) {
         totShippingSelectors.push({ element: document.querySelector(".section_tabs_video #tot_zone_1") });
