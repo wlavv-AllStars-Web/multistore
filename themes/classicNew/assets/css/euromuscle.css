@@ -40,6 +40,12 @@ main > #wrapper {
   background: #f6f6f6 !important;
 }
 
+/* addresses */
+.container-addresses .address-customer article{
+  border: 2px solid var(--euromus-color-800);
+  border-radius: .25rem;
+}
+
 /* my cars */
 
 .container-my-cars {
