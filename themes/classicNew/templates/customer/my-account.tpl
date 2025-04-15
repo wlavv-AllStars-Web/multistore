@@ -91,6 +91,13 @@
         </a>
       {/if}
 
+      <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$urls.pages.my_cars}">
+        <span class="link-item">
+          <i class="fa-solid fa-car"></i>
+          {l s='My Cars' d='Shop.Theme.CustomerAccount'}
+        </span>
+      </a>
+
       {block name='display_customer_account'}
         {hook h='displayCustomerAccount'}
       {/block}
