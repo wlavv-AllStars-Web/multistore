@@ -8202,6 +8202,11 @@ transform: translate(-50%,-50%);
     padding: 0 !important;
   }
 
+  .product-comment-list-item {
+    flex-direction: column;
+    align-items: start;
+  }
+
   /* product page */
   .container-imgs-mobile .swiper-button-next , .container-imgs-mobile .swiper-button-prev {
     color: var(--asm-color);
