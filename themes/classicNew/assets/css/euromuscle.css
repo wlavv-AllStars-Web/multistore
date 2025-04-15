@@ -6404,6 +6404,17 @@ transform: translate(-50%,-50%);
     display: none !important;
   }
 
+  #compatMobile .container-table-compats{
+    padding: .5rem;
+  }
+
+  .difficulty-level {
+    display: none;
+  }
+
+  #askquestionMobile .form-askquestion {
+    padding: 1rem;
+  }
 
   /* my account */
 
