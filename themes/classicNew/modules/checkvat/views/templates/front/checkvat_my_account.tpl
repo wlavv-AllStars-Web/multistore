@@ -18,7 +18,7 @@
 
 	{if $bloc_checkvat}
 		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 d-flex">
-			<div class="myaccount-link-list" id="check_vat" style="display: flex;flex-direction: column;margin-bottom: 1.875rem !important;justify-content: center;padding:0 1rem;
+			<span class="myaccount-link-list link-item" id="check_vat" style="display: flex;flex-direction: column;margin-bottom: 1.875rem !important;justify-content: center;padding:0 1rem;
 			align-items: center;
 			box-shadow: 2px 2px 11px 0px rgba(0, 0, 0, 0.1);width:100%;">
 				<h3>{l s='VAT number (Companies only)' d='Shop.Theme.CustomerAccount'} :</h3>
@@ -29,7 +29,7 @@
 					<button class="btn" type="submit" value="save" style="border-radius: 0.25rem;">{l s='Save' d='Shop.Theme.CustomerAccount'}</button>
 				</form>
 				<small style="text-align: start;">{l s='(Ex: FR99999999999 / GR999999999)' d='Shop.Theme.CustomerAccount'}</small>
-			</div>
+			</span>
 		</div>
 
 	{/if}
