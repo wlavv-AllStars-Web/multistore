@@ -147,9 +147,9 @@
                 // Event: Select Brand → Fetch Models
                 brandSelect.change(function () {
                     const brandId = $(this).val();
-                    resetSelect(modelSelect, "Model");
-                    resetSelect(typeSelect, "Type");
-                    resetSelect(versionSelect, "Version");
+                    resetSelect(modelSelect, "{l s='Model' d='Shop.Theme.Homepage'}");
+                    resetSelect(typeSelect, "{l s='Type' d='Shop.Theme.Homepage'}");
+                    resetSelect(versionSelect, "{l s='Version' d='Shop.Theme.Homepage'}");
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
@@ -163,8 +163,8 @@
                 // Event: Select Model → Fetch Types
                 modelSelect.change(function () {
                     const modelId = $(this).val();
-                    resetSelect(typeSelect, "Type");
-                    resetSelect(versionSelect, "Version");
+                    resetSelect(typeSelect, "{l s='Type' d='Shop.Theme.Homepage'}");
+                    resetSelect(versionSelect, "{l s='Version' d='Shop.Theme.Homepage'}");
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
@@ -178,7 +178,7 @@
                 // Event: Select Type → Fetch Versions
                 typeSelect.change(function () {
                     const typeId = $(this).val();
-                    resetSelect(versionSelect, "Version");
+                    resetSelect(versionSelect, "{l s='Version' d='Shop.Theme.Homepage'}");
                     searchButton.prop("disabled", true);
 
                     fetchOptions({
