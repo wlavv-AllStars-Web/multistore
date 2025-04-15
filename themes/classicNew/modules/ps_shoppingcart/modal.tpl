@@ -85,9 +85,9 @@
                 <p class="product-total"><span class="label">{$cart.totals.total.label} {if $configuration.taxes_enabled && $configuration.display_taxes_label}{$cart.labels.tax_short}{/if}:</span><span class="value">{$cart.totals.total.value}</span></p>
               {/if}
 
-              {if $cart.subtotals.tax}
+              {* {if $cart.subtotals.tax}
                 <p class="product-tax">{l s='%label%:' sprintf=['%label%' => $cart.subtotals.tax.label] d='Shop.Theme.Global'}: <span class="value">{$cart.subtotals.tax.value}</span></p>
-              {/if}
+              {/if} *}
               {hook h='displayCartModalContent' product=$product}
               <div class="cart-content-btn" style="width: 100%;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100%;font-size: .85rem;">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
