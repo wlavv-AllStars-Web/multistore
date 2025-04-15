@@ -226,7 +226,86 @@
      <div class="hidden-md-down"
    style="border-bottom:4px solid #103054;border-top:4px solid #ee302e;padding-block:2px;width: 100%;margin:1rem 0 0 0"></div>
 
-   <div class="d-mobile section-content-product" style="margin-top: 1rem;flex-direction:column;gap:.25rem;">
+  <div class="d-mobile section-content-product" style="margin-top: 1rem;flex-direction:column;gap:.25rem;">
+    <div class="container-description-mobile" style="flex-direction: column;width:100%;">
+      <div class="nav-link" data-toggle="collapse" href="#descriptionMobile" role="button" aria-expanded="false" aria-controls="descriptionMobile" style="width: 100%;background: #fff;text-align:center;">
+        {l s='DESCRIPTION' d='Shop.Theme.Catalog'}
+      </div>
+
+      <div class="collapse container-drop" id="descriptionMobile">
+        
+        <div class="banner-tabs" >
+          <img src="/img/asm/banners/description/description_{$language.iso_code}.webp" />
+        </div>
+                {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
+                {if $product.description}
+                  <div class="banner-tabs" >
+                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
+                  </div>
+                  <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
+                    {block name='product_description'}
+                      <div class="product-description">{$product.description nofilter}</div>
+                    {/block}
+                    {if !empty($product.youtube_1)}
+                      <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
+                        <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
+                          <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                            <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                              <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                            </div>
+                          </div>
+                          <div  class="iframeClass"  style="display:none;height:318px">
+                            <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                            </iframe>
+                          </div>
+                        </div>
+                      </div>
+                      {/if}
+                      <small style="text-align: center;">{l s="Content protected by copyright © 2024 - All rights reserved" d="Shop.Theme.Catalog"}</small>
+                  </div>
+                  {* {if $product.features}
+                    <div class="product_features">
+                        {foreach from=$product.features item=feature}
+                          <div style="padding: 0.5rem 1rem;"><b>{$feature.name}:</b> {$feature.value}</div>
+                        {/foreach}
+                      </div>
+                      {/if} *}
+                {else}
+                  <div class="banner-tabs" >
+                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
+                  </div>
+                  <div class="tab-description tab" style="display: flex;">
+                    {block name='product_description'}
+                      <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">
+                        <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
+                      </div>
+                    {/block}
+                    {if !empty($product.youtube_1)}
+                      <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+                        <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
+                          <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                            <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                              <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                            </div>
+                          </div>
+                          <div  class="iframeClass"  style="display:none;height:318px">
+                            <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                            </iframe>
+                          </div>
+                        </div>
+                      </div>
+                      {/if}
+                    {* fim tabs *}
+                    
+                  </div>
+          
+                {/if}
+
+      </div>
+    </div>
+
    <div class="container-compat-mobile" style="flex-direction: column;width:100%;">
      <div class="nav-link" data-toggle="collapse" href="#compatMobile" role="button" aria-expanded="false" aria-controls="compatMobile" style="width: 100%;background: #fff;text-align:center;">
        {l s='COMPATIBILITIES' d='Shop.Theme.Catalog'}
