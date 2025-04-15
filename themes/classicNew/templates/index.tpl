@@ -141,7 +141,7 @@
                     getdataBrandsEuromus: 1,
                     type: 'brand',
                     storeId: storeId
-                }, brandSelect, "Brand");
+                }, brandSelect, "{l s='Brand' d='Shop.Theme.Homepage'}");
               }, 100);
 
                 // Event: Select Brand → Fetch Models
