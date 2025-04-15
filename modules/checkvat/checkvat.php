@@ -391,7 +391,7 @@ class CheckVat extends Module
             $this->context->controller->php_self != 'my-account'
         ) {
             PrestaShopLogger::addLog('hookDisplayHeader: Redirecting to my-account', 1);
-            Tools::redirect('index.php?controller=my-account');
+            // Tools::redirect('index.php?controller=my-account');
         }
     }
 
