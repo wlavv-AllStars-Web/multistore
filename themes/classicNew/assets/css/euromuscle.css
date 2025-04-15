@@ -6391,9 +6391,9 @@ transform: translate(-50%,-50%);
   }
 
   .section-content-product .nav-link{
-    color: #fff;
-    background: var(--euromus-color-500) !important;
-    border-bottom: 2px solid var(--euromus-color-700);
+    color: var(--euromus-color-600);
+    background: var(--euromus-color-700) !important;
+    border-bottom: 2px solid var(--euromus-color-400);
   }
 
   .section-content-product .container-drop img {
@@ -8152,9 +8152,9 @@ transform: translate(-50%,-50%);
   }
 
   .section-content-product .nav-link{
-    color: #fff;
-    background: var(--euromus-color-500) !important;
-    border-bottom: 2px solid var(--euromus-color-700);
+    color: var(--euromus-color-600);
+    background: var(--euromus-color-700) !important;
+    border-bottom: 2px solid var(--euromus-color-400);
   }
 
   .section-content-product .container-drop{
