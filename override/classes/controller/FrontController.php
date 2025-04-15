@@ -536,7 +536,13 @@ class FrontControllerCore extends Controller
     {
         // if(Tools::getValue('getBrandsModelProducts')){
 
-        if($this->context->shop->id == 2 || $this->context->shop->id == 1){
+        if($this->context->shop->id == 1){
+            if(Tools::getValue('saveCarGarage')){
+                $this->saveCarGarage();
+            }
+        }
+
+        if($this->context->shop->id == 2){
 
         
 
