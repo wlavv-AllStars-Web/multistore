@@ -157,7 +157,7 @@
                         type: 'model',
                         id_brand: brandId,
                         storeId: {Context::getContext()->shop->id}
-                    }, modelSelect, "Model");
+                    }, modelSelect, "{l s='Model' d='Shop.Theme.Homepage'}");
                 });
 
                 // Event: Select Model → Fetch Types
@@ -172,7 +172,7 @@
                         type: 'type',
                         id_model: modelId,
                         storeId: {Context::getContext()->shop->id}
-                    }, typeSelect, "Type");
+                    }, typeSelect, "{l s='Type' d='Shop.Theme.Homepage'}");
                 });
 
                 // Event: Select Type → Fetch Versions
@@ -186,7 +186,7 @@
                         type: 'version',
                         id_type: typeId,
                         storeId: {Context::getContext()->shop->id}
-                    }, versionSelect, "Version");
+                    }, versionSelect, "{l s='Version' d='Shop.Theme.Homepage'}");
                 });
 
                 // Event: Select Version → Enable Search Button
@@ -209,7 +209,7 @@
                         model_id: searchParams.model_id,
                         type_id: searchParams.type_id,
                         version_id: searchParams.version_id,
-                    },searchButton,"Search")
+                    },searchButton,"{l s='Search' d='Shop.Theme.Homepage'}")
 
                     // console.log("Search Params:", searchParams);
 
