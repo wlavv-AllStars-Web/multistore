@@ -6392,7 +6392,7 @@ transform: translate(-50%,-50%);
 
   .section-content-product .nav-link{
     color: #fff;
-    background: var(--euromus-color-text) !important;
+    background: var(--euromus-color-500) !important;
     border-bottom: 2px solid var(--euromus-color-700);
   }
 
@@ -8138,7 +8138,7 @@ transform: translate(-50%,-50%);
 
   .section-content-product .nav-link{
     color: #fff;
-    background: var(--euromus-color-text) !important;
+    background: var(--euromus-color-500) !important;
     border-bottom: 2px solid var(--euromus-color-700);
   }
 
