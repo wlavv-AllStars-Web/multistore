@@ -130,6 +130,12 @@ main > #wrapper {
   width: 100%;
 }
 
+/* my account */
+
+.page-my-account #content .links a i {
+  padding-bottom: 0 !important;
+  margin-bottom: 1rem;
+}
 
 /* contact page */
 #contact #wrapper {
