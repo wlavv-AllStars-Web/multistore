@@ -51,6 +51,15 @@ main > #wrapper {
   border-radius: .25rem;
 }
 
+.car-button-delete .btn {
+  border-radius: .25rem;
+  background: var(--euromus-color-600);
+  cursor: pointer;
+}
+
+.car-button-delete .btn:hover {
+  background: var(--euromus-color-300);
+}
 
 /* breadcrumb */
 .breadcrumb {
