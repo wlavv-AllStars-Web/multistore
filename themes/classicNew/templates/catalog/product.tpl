@@ -234,9 +234,6 @@
 
       <div class="collapse container-drop" id="descriptionMobile">
         
-        <div class="banner-tabs" >
-          <img src="/img/asm/banners/description/description_{$language.iso_code}.webp" />
-        </div>
                 {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
                 {if $product.description}
                   <div class="banner-tabs" >
