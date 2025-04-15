@@ -4542,6 +4542,11 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+
+  #js-product-list .products .js-product.product.category {
+    min-height: 260px;
+  }
+
   .d-mobile{
     display: flex !important;
   }
@@ -8292,7 +8297,7 @@ transform: translate(-50%,-50%);
   }
 
   #js-product-list .products .js-product.product.category .thumbnail-container{
-    background: #fff !important;
+    background: var(--euromus-color-800) !important;
   }
 
   /*  */
