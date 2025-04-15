@@ -197,7 +197,7 @@ main > #wrapper {
 }
 
 .container-my-account {
-  margin-bottom: 2rem;
+  margin-bottom: 2rem !important;
 }
 
 
