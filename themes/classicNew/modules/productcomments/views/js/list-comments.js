@@ -28,43 +28,43 @@ jQuery(document).ready(function () {
 
   const isDesktop = window.screen.width >= 769;
 
-  const commentsList = isDesktop ? $('#product_reviews.desktop #product-comments-list') : $('#reviewsMobile #product-comments-list');
-  const emptyProductComment = isDesktop ? $('#product_reviews.desktop #empty-product-comment') : $('#reviewsMobile #empty-product-comment') ;
+  const commentsList = isDesktop ? $('#product_reviews #product-comments-list') : $('#reviewsMobile #product-comments-list');
+  const emptyProductComment = isDesktop ? $('#product_reviews #empty-product-comment') : $('#reviewsMobile #empty-product-comment') ;
   const commentsListUrl = commentsList.data('list-comments-url');
   const updateCommentUsefulnessUrl = commentsList.data('update-comment-usefulness-url');
   const reportCommentUrl = commentsList.data('report-comment-url');
   const commentPrototype = commentsList.data('comment-item-prototype');
 
-  const pagesListId = isDesktop ? '#product_reviews.desktop #product-comments-list-pagination' : '#reviewsMobile #product-comments-list-pagination';
-  const pageIdPrefix = isDesktop? '#product_reviews.desktop #pcl_page_' : '#reviewsMobile #pcl_page_';
+  const pagesListId = isDesktop ? '#product_reviews #product-comments-list-pagination' : '#reviewsMobile #product-comments-list-pagination';
+  const pageIdPrefix = isDesktop? '#product_reviews #pcl_page_' : '#reviewsMobile #pcl_page_';
   const totalPages = commentsList.data('total-pages');
   const prevCount = 0;
   const nextCount = totalPages + 1;
   const gapText = '&hellip;';
 
-  isDesktop ? $('#product_reviews.desktop .grade-stars').rating() : $('#reviewsMobile .grade-stars').rating();
+  isDesktop ? $('#product_reviews .grade-stars').rating() : $('#reviewsMobile .grade-stars').rating();
 
   prestashop.on('updatedProduct', function() {
-    isDesktop ?  $('#product_reviews.desktop .product-comments-additional-info .grade-stars').rating() : $('#reviewsMobile .product-comments-additional-info .grade-stars').rating();
+    isDesktop ?  $('#product_reviews .product-comments-additional-info .grade-stars').rating() : $('#reviewsMobile .product-comments-additional-info .grade-stars').rating();
   })
 
   document.addEventListener('updateRating', function() {
-    isDesktop ? $('#product_reviews.desktop .grade-stars').rating() : $('#reviewsMobile .grade-stars').rating();
+    isDesktop ? $('#product_reviews .grade-stars').rating() : $('#reviewsMobile .grade-stars').rating();
   });
 
-  const updateCommentPostErrorModal = isDesktop ? $('#product_reviews.desktop #update-comment-usefulness-post-error') : $('#reviewsMobile #update-comment-usefulness-post-error');
+  const updateCommentPostErrorModal = isDesktop ? $('#product_reviews #update-comment-usefulness-post-error') : $('#reviewsMobile #update-comment-usefulness-post-error');
 
-  const confirmAbuseModal = isDesktop ? $('#product_reviews.desktop #report-comment-confirmation') : $('#reviewsMobile #report-comment-confirmation');
-  const reportCommentPostErrorModal = isDesktop ? $('#product_reviews.desktop #report-comment-post-error') : $('#reviewsMobile #report-comment-post-error');
-  const reportCommentPostedModal =  isDesktop ? $('#product_reviews.desktop #report-comment-posted') : $('#reviewsMobile #report-comment-posted');
+  const confirmAbuseModal = isDesktop ? $('#product_reviews #report-comment-confirmation') : $('#reviewsMobile #report-comment-confirmation');
+  const reportCommentPostErrorModal = isDesktop ? $('#product_reviews #report-comment-post-error') : $('#reviewsMobile #report-comment-post-error');
+  const reportCommentPostedModal =  isDesktop ? $('#product_reviews #report-comment-posted') : $('#reviewsMobile #report-comment-posted');
 
   function showUpdatePostCommentErrorModal(errorMessage) {
-    isDesktop ? $('#product_reviews.desktop #update-comment-usefulness-post-error-message').html(errorMessage) : $('#reviewsMobile #update-comment-usefulness-post-error-message').html(errorMessage);
+    isDesktop ? $('#product_reviews #update-comment-usefulness-post-error-message').html(errorMessage) : $('#reviewsMobile #update-comment-usefulness-post-error-message').html(errorMessage);
     updateCommentPostErrorModal.modal('show');
   }
 
   function showReportCommentErrorModal(errorMessage) {
-    isDesktop ? $('#product_reviews.desktop #report-comment-post-error-message').html(errorMessage) : $('#reviewsMobile #report-comment-post-error-message').html(errorMessage);
+    isDesktop ? $('#product_reviews #report-comment-post-error-message').html(errorMessage) : $('#reviewsMobile #report-comment-post-error-message').html(errorMessage);
     reportCommentPostErrorModal.modal('show');
   }
 
