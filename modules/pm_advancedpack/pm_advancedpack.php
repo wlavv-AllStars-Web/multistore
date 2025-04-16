@@ -1678,13 +1678,13 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                     $duplicateId = (int)$request->get('id');
                 }
             }
-            // if ($duplicateAction && !empty($duplicateId)) {
-            //     $originalPack = new Product((int)$duplicateId);
-            //     if (!Validate::isLoadedObject($originalPack) || !AdvancedPack::isValidPack($originalPack->id)) {
-            //         return;
-            //     }
-            //     $this->duplicatePack($originalPack, $idProduct);
-            // }
+            if ($duplicateAction && !empty($duplicateId)) {
+                $originalPack = new Product((int)$duplicateId);
+                if (!Validate::isLoadedObject($originalPack) || !AdvancedPack::isValidPack($originalPack->id)) {
+                    return;
+                }
+                $this->duplicatePack($originalPack, $idProduct);
+            }
         }
     }
     public function hookActionProductUpdate($params)
