@@ -1683,7 +1683,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
                 if (!Validate::isLoadedObject($originalPack) || !AdvancedPack::isValidPack($originalPack->id)) {
                     return;
                 }
-                $this->duplicatePack($originalPack, $idProduct);
+                // $this->duplicatePack($originalPack, $idProduct);
             }
         }
     }
