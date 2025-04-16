@@ -38,6 +38,7 @@
     </div>
       {if isset($product.attributes) && $product.attributes}
         {foreach from=$product.attributes key="attribute" item="value"}
+          <pre>{$attribute|print_r}</pre>
           <div class="product-line-info attribute">
             <span class="label">{$attribute|escape:'html':'UTF-8'}:</span>
             <span class="value">{$value|escape:'html':'UTF-8'}</span>
