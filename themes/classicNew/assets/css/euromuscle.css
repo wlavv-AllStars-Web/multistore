@@ -4581,7 +4581,7 @@ form .form-control-label {
 
   }
 
-  #current_car_settings .miniature {
+  #current_car_settings .miniature-car {
     background: var(--euromus-color-text) !important;
     border: 2px solid var(--euromus-color-500);
     max-width: 400px;
