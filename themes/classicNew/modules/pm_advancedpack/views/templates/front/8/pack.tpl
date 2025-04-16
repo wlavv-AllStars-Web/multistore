@@ -101,7 +101,7 @@
                 <div class="details-brand"><b>{l s="Brand" d="Shop.Theme.Pageproduct"}:</b> <span><a href="/brand/{$item.id_manufacturer}-{$item.link_rewrite}">{$product.manufacturer_name}</a></span></div>
                 {/if}
               {/foreach}
-              <div class="details-payment"><a href="{$linkPayment}">{l s="Pay in 3 or 4 Installment" d="Shop.Theme.Pageproduct"}</a></div>
+              <div class="details-payment" style="width:100%;"><a href="{$linkPayment}">{l s="Pay in 3 or 4 Installment" d="Shop.Theme.Pageproduct"}</a></div>
             </div>
  
            <div class="product-information">
