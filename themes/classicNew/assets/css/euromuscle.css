@@ -1070,6 +1070,10 @@ a:focus{
 
 
   /* checkout page */
+    .btn_update_address:hover{
+      background: var(--euromus-color-500) !important;
+    }
+
     #checkout .row-checkout {
       margin: 0 !important;
       padding: 0 !important;
