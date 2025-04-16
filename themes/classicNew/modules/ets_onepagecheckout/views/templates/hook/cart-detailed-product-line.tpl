@@ -16,7 +16,7 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
-{debug}
+<pre>{$product|print_r}</pre>
 <div class="product-line-grid">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-md-3 col-xs-4">
