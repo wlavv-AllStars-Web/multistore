@@ -4697,6 +4697,10 @@ form .form-control-label {
     max-width: 400px;
   }
 
+  #current_car_settings .current-car-content .addToMyCarsButton{
+    margin-bottom: 1rem;
+  }
+
   #current_car_settings .current-car-content .details-info-car-mobile{
     outline: 2px solid var(--euromus-color-700);
     border-radius: .25rem;
