@@ -4578,7 +4578,7 @@ form .form-control-label {
   }
 
   #current_car_settings {
-    background: var(--euromus-color-text);
+    background: var(--euromus-color-text) !important;
     border: 2px solid var(--euromus-color-500);
   }
 
