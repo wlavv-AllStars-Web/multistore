@@ -355,6 +355,19 @@ class AdvancedPack extends Product
                     } else {
                         $packProduct['features'] = $packProduct['productObj']->getFrontFeatures((int)$idLang);
                     }
+
+                    //ASG euromuscle originproduct
+                    if (!empty($packProduct['productObj']->id_supplier) && !empty($idLang)) {
+                        $packProduct['origin_product'] = Db::getInstance()->getValue(
+                            'SELECT c.name FROM ' . _DB_PREFIX_ . 'country_lang c
+                            LEFT JOIN ' . _DB_PREFIX_ . 'address a ON c.id_country = a.id_country
+                            WHERE a.id_supplier = ' . (int)$packProduct['productObj']->id_supplier . '
+                            AND c.id_lang = ' . (int)$idLang
+                        );
+                    } else {
+                        $packProduct['origin_product'] = null;
+                    }
+
                     $packProduct['accessories'] = $packProduct['productObj']->getAccessories((int)$idLang);
                     $packProduct['attachments'] = (($packProduct['productObj']->cache_has_attachments) ? $packProduct['productObj']->getAttachments((int)$idLang) : []);
                     if ($gsrModuleInstance) {
@@ -3483,7 +3496,6 @@ class AdvancedPack extends Product
         if (!empty($productAttributeId)) {
             $query->where('ap.`default_id_product_attribute` = ' . (int)$productAttributeId);
         }
-        $query->groupBy('a.id_pack');
         $query->orderBy('ap.`quantity` ASC');
         $bundles = Db::getInstance()->executeS($query);
         if (is_array($bundles) && count($bundles)) {
