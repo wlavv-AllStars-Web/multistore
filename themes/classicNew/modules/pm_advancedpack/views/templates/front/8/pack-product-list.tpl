@@ -63,6 +63,23 @@
 								<span class="reference-value-pack-product"><span class="reference-title-pack">{l s="SKU:" d="Shop.Theme.PackProduct"}</span>{$productPack.presentation.reference_to_display}</span>
 							</h2>
 
+							<div class="info_pack">
+								<span class="info_pack_btn">+ Info</span>
+								<div class="info_pack_content" style="display: none;">
+									<div class="product_features" >
+										{* <pre>{print_r($product.features,1)}</pre> *}
+										<div style="padding: 0.2rem 2rem;"><b>{l s="EC Approval" d="Shop.Theme.Pageproduct"}:</b> <span>{if $product.ec_approved == 0}{l s="No" d="Shop.Theme.Pageproduct"}{else}{l s="Yes" d="Shop.Theme.Pageproduct"}{/if}</span></div>
+										{if !empty($productPack.origin_product)}
+										<div style="padding: 0.2rem 2rem;"><b>{l s="Origin" d="Shop.Theme.Pageproduct"}:</b> <span>{$productPack.origin_product}</span></div>
+										{/if}
+				
+										{foreach from=$productPack.features item=feature}
+										<div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> <span>{$feature.value}</span></div>
+										{/foreach}
+									</div>
+								</div>
+							</div>
+
 							{* if image *}
 
 							{* <div class="ap5-pack-product-image" style="max-width: 150px;margin:auto;">
