@@ -61,14 +61,87 @@
                     <span class="ets_icon_svg">
                         <svg viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1024 1131q0-64-9-117.5t-29.5-103-60.5-78-97-28.5q-6 4-30 18t-37.5 21.5-35.5 17.5-43 14.5-42 4.5-42-4.5-43-14.5-35.5-17.5-37.5-21.5-30-18q-57 0-97 28.5t-60.5 78-29.5 103-9 117.5 37 106.5 91 42.5h512q54 0 91-42.5t37-106.5zm-157-520q0-94-66.5-160.5t-160.5-66.5-160.5 66.5-66.5 160.5 66.5 160.5 160.5 66.5 160.5-66.5 66.5-160.5zm925 509v-64q0-14-9-23t-23-9h-576q-14 0-23 9t-9 23v64q0 14 9 23t23 9h576q14 0 23-9t9-23zm0-260v-56q0-15-10.5-25.5t-25.5-10.5h-568q-15 0-25.5 10.5t-10.5 25.5v56q0 15 10.5 25.5t25.5 10.5h568q15 0 25.5-10.5t10.5-25.5zm0-252v-64q0-14-9-23t-23-9h-576q-14 0-23 9t-9 23v64q0 14 9 23t23 9h576q14 0 23-9t9-23zm256-320v1216q0 66-47 113t-113 47h-352v-96q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v96h-768v-96q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v96h-352q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1728q66 0 113 47t47 113z"/></svg>
                     </span>
-                    {l s='Address' d='Shop.Theme.Checkout'}
+                    {l s='Address' mod='ets_onepagecheckout'}
                 </div>
-                <div id="delivery-addresses" class="address-selector js-address-selector">
-                    {$shipping_address nofilter}
+                {* {debug}
+                {$checkout_customer->logged}
+                <pre>{print_r($customer,1)}</pre> *}
+                {* {max(array_keys($customer.addresses))} *}
+                <div class="container-addresses d-flex">
+                    {if !$customer_group_professional}
+                        <div id="delivery-addresses" class="address-selector js-address-selector">
+                            {$shipping_address nofilter}
+                        </div>
+                        <div id="invoice-addresses" class="address-selector js-address-selector" style="display:none">
+                            {$invoice_address nofilter}
+                        </div>
+                    {else}
+                        <div id="delivery-addresses_professional" style="float: none;padding:1rem;flex: .5;">
+                            {assign var="last_id_address" value=max(array_keys($customer.addresses))}
+                            {foreach from=$customer.addresses[$last_id_address] item=item key=key name=name}
+                                {if $key == 'id'}
+                                <input type="hidden" name="shipping_address[id_address]" value="{$item}"/>
+                                {else}
+                                    <input type="hidden" name="shipping_address[{$key}]" value="{$item}"/>
+                                {/if}
+                            {/foreach}
+
+                            <div class="delivery_addresses_professional_title">
+                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">{l s="Delivery address" d="Shop.Theme.Checkout"}</div>
+                            </div>
+                            <div class="customer_name">
+                                {$customer.firstname} {$customer.lastname}
+                            </div>
+                            <div class="customer_address">
+                                {$customer.addresses[$last_id_address]['address1']}
+                            </div>
+                            <div class="customer_postcode">
+                                {$customer.addresses[$last_id_address]['postcode']} {$customer.addresses[$last_id_address]['city']}
+                            </div>
+                            <div class="customer_country">
+                                {$customer.addresses[$last_id_address]['country']}
+                            </div>
+                            <div class="customer_phone">
+                                {$customer.addresses[$last_id_address]['phone']}
+                            </div>
+                        </div>
+
+                        <div id="billing-addresses_professional" style="float: none;padding:1rem;flex: .5;">
+                            {assign var="last_id_address" value=max(array_keys($customer.addresses))}
+                            {foreach from=$customer.addresses[$last_id_address] item=item key=key name=name}
+                                {if $key == 'id'}
+                                    <input type="hidden" name="invoice_address[id_address]" value="{$item}"/>
+                                {else}
+                                    <input type="hidden" name="invoice_address[{$key}]" value="{$item}"/>
+                                {/if}
+                            {/foreach}
+                            <div class="billing_addresses_professional_title">
+                                <div style="font-size:1.25rem;border-bottom: 2px solid #d0d0d0;padding-bottom: .5rem;margin-bottom:.5rem;">{l s="Billing address" d="Shop.Theme.Checkout"}</div>
+                            </div>
+                            <div class="customer_name">
+                                {$customer.firstname} {$customer.lastname}
+                            </div>
+                            <div class="customer_address">
+                                {$customer.addresses[$last_id_address]['address1']}
+                            </div>
+                            <div class="customer_postcode">
+                                {$customer.addresses[$last_id_address]['postcode']} {$customer.addresses[$last_id_address]['city']}
+                            </div>
+                            <div class="customer_country">
+                                {$customer.addresses[$last_id_address]['country']}
+                            </div>
+                            <div class="customer_phone">
+                                {$customer.addresses[$last_id_address]['phone']}
+                            </div>
+                        </div>
+
+                    {/if}
                 </div>
-                <div id="invoice-addresses" class="address-selector js-address-selector" style="display:none">
-                    {$invoice_address nofilter}
-                </div>
+                {if $customer_group_professional}
+                    <div class="btn_update_address_container" style="padding: 1rem;">
+                        <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: #444;color: #fff;">{l s="Update my address" d="Shop.Theme.Checkout"} <i class="material-icons">autorenew</i></a>
+                    </div>
+                {/if}
             </div>
             <div {if !$shipping_methods} style="display:none"{/if}>
                 <div class="block-onepagecheckout block-shipping">
