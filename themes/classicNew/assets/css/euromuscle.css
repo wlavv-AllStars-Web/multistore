@@ -297,7 +297,10 @@ main > #wrapper {
 }
 
 .container-order-confirmation {
-  max-width: 1441px;
+  max-width: 1441px !important;
+  outline: 1px solid var(--euromus-color-700);
+  border-radius: .25rem;
+  margin-bottom: 1rem !important;
 }
 
 .container-checkout {
