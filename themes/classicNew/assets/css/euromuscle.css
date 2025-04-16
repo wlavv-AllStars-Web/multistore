@@ -302,6 +302,7 @@ main > #wrapper {
 
 .container-checkout {
   max-width: 1441px !important;
+  width: 100%;
 }
 
 
