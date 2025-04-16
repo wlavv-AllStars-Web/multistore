@@ -42,7 +42,7 @@ main > #wrapper {
 
 /* order slips esconder */
 #order-slips-link {
-  display: none;
+  display: none !important;
 }
 
 /* addresses */
