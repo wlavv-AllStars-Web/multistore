@@ -40,6 +40,11 @@ main > #wrapper {
   background: #f6f6f6 !important;
 }
 
+/* order slips esconder */
+#order-slips-link {
+  display: none;
+}
+
 /* addresses */
 .container-addresses .address-customer article{
   border: 2px solid var(--euromus-color-800);
