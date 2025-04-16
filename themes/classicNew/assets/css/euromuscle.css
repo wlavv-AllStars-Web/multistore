@@ -309,6 +309,25 @@ main > #wrapper {
 }
 
 
+/* pack page info */
+.info_pack {
+  position: relative;
+}
+
+.info_pack .info_pack_btn {
+  cursor: pointer;
+  color: var(--euromus-color-300);
+}
+
+.info_pack .info_pack_content {
+  position: absolute;
+  width: 100%;
+  background: var(--euromus-color-700);
+  border: 2px solid var(--euromus-color-800);
+  border-radius: 0.25rem;
+}
+
+
 /* clearance */
 
 .container-category{
