@@ -213,6 +213,19 @@ main > #wrapper {
 
 /* checkout */
 
+.btn_update_address:hover{
+  background: var(--euromus-color-500) !important;
+}
+
+#checkout .customer_name,
+#checkout .customer_address,
+#checkout .customer_postcode,
+#checkout .customer_country,
+#checkout .customer_phone {
+  font-size: .85rem;
+  color: var(--euromus-color-600);
+}
+
 .container-order-confirmation {
   max-width: 1441px;
 }
@@ -1070,19 +1083,6 @@ a:focus{
 
 
   /* checkout page */
-    .btn_update_address:hover{
-      background: var(--euromus-color-500) !important;
-    }
-
-    #checkout .customer_name,
-    #checkout .customer_address,
-    #checkout .customer_postcode,
-    #checkout .customer_country,
-    #checkout .customer_phone {
-      font-size: .85rem;
-      color: var(--euromus-color-600);
-    }
-
     #checkout .row-checkout {
       margin: 0 !important;
       padding: 0 !important;
