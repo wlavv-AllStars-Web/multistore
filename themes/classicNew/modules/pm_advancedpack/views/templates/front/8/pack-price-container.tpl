@@ -85,11 +85,28 @@
                                 </span>
                             {/block}
 
-                            {block name='ap5_add_to_cart_container'}
-                                <div class="ap5-add-to-cart-container">
-                                    {include file='catalog/_partials/product-add-to-cart.tpl'}
+                            <div class="features_productdetails" >
+                            {* features *}
+                                <div class="product_features" >
+                                {* <pre>{print_r($product.features,1)}</pre> *}
+                                    <div style="padding: 0.2rem 2rem;"><b>{l s="EC Approval" d="Shop.Theme.Pageproduct"}:</b> <span>{if $product.ec_approved == 0}{l s="No" d="Shop.Theme.Pageproduct"}{else}{l s="Yes" d="Shop.Theme.Pageproduct"}{/if}</span></div>
+                                    {if !empty($product.origin_product)}
+                                    <div style="padding: 0.2rem 2rem;"><b>{l s="Origin" d="Shop.Theme.Pageproduct"}:</b> <span>{$product.origin_product}</span></div>
+                                    {/if}
+
+                                {foreach from=$product.features item=feature}
+                                    <div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> <span>{$feature.value}</span></div>
+                                {/foreach}
                                 </div>
-                            {/block}
+
+                                <div class="product-details-options" >
+                                    {block name='ap5_add_to_cart_container'}
+                                        <div class="ap5-add-to-cart-container">
+                                            {include file='catalog/_partials/product-add-to-cart.tpl'}
+                                        </div>
+                                    {/block}
+                                </div>
+                            </div>
                             {* {include file='catalog/_partials/product-additional-info.tpl'} *}
                         {/if}
                     </form>
