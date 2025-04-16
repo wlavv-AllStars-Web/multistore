@@ -2567,6 +2567,7 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         }
     
         $editedProductList = $params['data']->getRecords()->all();
+        // ASG adicionei esta parte do codigo para remover linhas duplicadas de packs
         $deduplicatedProducts = [];
     
         foreach ($editedProductList as $product) {
