@@ -4689,6 +4689,7 @@ form .form-control-label {
 
   #current_car_settings {
     align-items: center;
+    padding: 0;
   }
 
   #current_car_settings .miniature-car {
