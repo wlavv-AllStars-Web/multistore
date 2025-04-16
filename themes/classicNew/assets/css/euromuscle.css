@@ -4578,7 +4578,13 @@ form .form-control-label {
   }
 
   #current_car_settings {
-    border: 2px solid var(--euromus-color-700);
+    background: var(--euromus-color-text);
+    border: 2px solid var(--euromus-color-500);
+  }
+
+  #current_car_settings .current-car-content {
+    outline: 2px solid var(--euromus-color-700);
+    border-radius: .25rem;
   }
 
   #cars-products #products #js-product-list {
