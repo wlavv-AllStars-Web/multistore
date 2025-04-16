@@ -57,11 +57,11 @@ main > #wrapper {
   margin: auto;
 }
 .ap5-add-to-cart-container .product-add-to-cart .product-quantity {
-  display: flex;
+  display: flex !important;
   justify-content: center;
 }
 .ap5-add-to-cart-container .product-add-to-cart .product-quantity .add{
-  width: 100%;
+  width: 100% !important;
   flex: 1;
   max-width: 300px;
 }
