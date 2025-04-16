@@ -731,6 +731,9 @@ abstract class PaymentModuleCore extends Module
                             '{payment_img}' => $payment_img ? $payment_img : '',
                         ];
                     }
+                    if($shop_id == 1){
+                        $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
+                    }
 
                     if($this->context->shop->id != 3 && $this->context->shop->id != 2 && $this->context->shop->id != 1) {
                         

@@ -594,6 +594,10 @@ class OrderHistoryCore extends ObjectModel
                     ];
                 }
 
+                if($shop_id == 1){
+                    $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
+                }
+
 
 
 
