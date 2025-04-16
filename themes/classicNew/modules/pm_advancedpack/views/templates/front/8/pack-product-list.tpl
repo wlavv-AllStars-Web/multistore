@@ -61,10 +61,9 @@
 									{$productPack.presentation.name}
 								</a>
 								<span class="reference-value-pack-product"><span class="reference-title-pack">{l s="SKU:" d="Shop.Theme.PackProduct"}</span>{$productPack.presentation.reference_to_display}</span>
-							</h2>
-
-							<div class="info_pack">
-								<span class="info_pack_btn">+ Info</span>
+								
+								<div class="info_pack">
+								<span class="info_pack_btn" onclick="toggleFeatures(this)">+ Info</span>
 								<div class="info_pack_content" style="display: none;">
 									<div class="product_features" >
 										{* <pre>{print_r($product.features,1)}</pre> *}
@@ -79,6 +78,22 @@
 									</div>
 								</div>
 							</div>
+							<script defer="defer">
+								function toggleFeatures(element) {
+									const container = element.closest(".info_pack");
+									const content = container.querySelector(".info_pack_content");
+
+									if (content) {
+									content.style.display = (content.style.display === "none" || content.style.display === "")
+										? "block"
+										: "none";
+									}
+								}
+							</script>
+							
+							</h2>
+
+
 
 							{* if image *}
 
