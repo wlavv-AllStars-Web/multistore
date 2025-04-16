@@ -16,6 +16,7 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
+{debug}
 <div class="product-line-grid">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-md-3 col-xs-4">
@@ -38,7 +39,6 @@
     </div>
       {if isset($product.attributes) && $product.attributes}
         {foreach from=$product.attributes key="attribute" item="value"}
-          <pre>{$attribute|print_r}</pre>
           <div class="product-line-info attribute">
             <span class="label">{$attribute|escape:'html':'UTF-8'}:</span>
             <span class="value">{$value|escape:'html':'UTF-8'}</span>
