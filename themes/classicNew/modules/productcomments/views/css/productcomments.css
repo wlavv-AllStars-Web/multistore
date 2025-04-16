@@ -350,6 +350,11 @@
   margin: 1rem auto;
 }
 
+.product-comment-list-item .comment-author {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 #empty-product-comment {
   text-align: center;
 }
