@@ -53,7 +53,7 @@ main > #wrapper {
 
 /* page pack */
 .ap5-add-to-cart-container .product-add-to-cart {
-  width: fit-content;
+  width: fit-content !important;
   margin: auto;
 }
 .ap5-add-to-cart-container .product-add-to-cart .product-quantity {
