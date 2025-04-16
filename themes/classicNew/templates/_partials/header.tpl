@@ -151,20 +151,20 @@
           
           <div id="_mobile_login" class="{if $currentUrl === "http://euromus.local/en/login?back=my-account"}activeLink{/if}">
             {if $customerId }
-            <a href="{$linkMyaccount}" style="width: fit-content;"><i class="fa-solid fa-user"></i>{l s='My account' d='Shop.Theme.Global'}</a>
+            <a href="{$linkMyaccount}" style="width: fit-content;"><i class="fa-solid fa-user"></i>{l s='My account' d='Shop.Theme.MenuMobile'}</a>
             {else}
-              <a href="{$linkMyaccount}"><i class="fa-solid fa-user"></i>{l s='Login' d='Shop.Theme.Global'}</a>
+              <a href="{$linkMyaccount}"><i class="fa-solid fa-user"></i>{l s='Login' d='Shop.Theme.MenuMobile'}</a>
             {/if}
           </div>
-          <div id="homeLinkMobile" class="{if $currentUrl === $link->getPageLink('index', true)}activeLink{/if}"><a href="/"><i class="fa-solid fa-house"></i>{l s='Home' d='Shop.Theme.euromuscle'}</a></div>
-          <div id="NewsLinkMobile" class="{if $currentUrl === $link->getPageLink('new-products', true)}activeLink{/if}"><a href="{$link->getPageLink('new-products', true)}"><i class="fa-solid fa-newspaper"></i>{l s='News' d='Shop.Theme.Global'}</a></div>
-          <div id="_mobile_contact_link" class="{if $currentUrl === $link->getPageLink('contact', true)}activeLink{/if}"><a href="{$link->getPageLink('contact', true)}"><i class="fa-solid fa-phone"></i>{l s='Contacts' d='Shop.Theme.Global'}</a></div>
-          <div id="_mobile_shipping_link" class="{if $currentUrl === $linkShipping}activeLink{/if}"><a href="{$linkShipping}"><i class="fa-solid fa-truck-fast"></i>{l s='Shipping' d='Shop.Theme.Global'}</a></div>
-          <div id="_mobile_payment_link" class="{if $currentUrl === $linkPayment}activeLink{/if}"><a href="{$linkPayment}"><i class="fa-solid fa-credit-card"></i>{l s='Payment' d='Shop.Theme.Global'}</a></div>
+          <div id="homeLinkMobile" class="{if $currentUrl === $link->getPageLink('index', true)}activeLink{/if}"><a href="/"><i class="fa-solid fa-house"></i>{l s='Home' d='Shop.Theme.MenuMobile'}</a></div>
+          <div id="NewsLinkMobile" class="{if $currentUrl === $link->getPageLink('new-products', true)}activeLink{/if}"><a href="{$link->getPageLink('new-products', true)}"><i class="fa-solid fa-newspaper"></i>{l s='News' d='Shop.Theme.MenuMobile'}</a></div>
+          <div id="_mobile_contact_link" class="{if $currentUrl === $link->getPageLink('contact', true)}activeLink{/if}"><a href="{$link->getPageLink('contact', true)}"><i class="fa-solid fa-phone"></i>{l s='Contacts' d='Shop.Theme.MenuMobile'}</a></div>
+          <div id="_mobile_shipping_link" class="{if $currentUrl === $linkShipping}activeLink{/if}"><a href="{$linkShipping}"><i class="fa-solid fa-truck-fast"></i>{l s='Shipping' d='Shop.Theme.MenuMobile'}</a></div>
+          <div id="_mobile_payment_link" class="{if $currentUrl === $linkPayment}activeLink{/if}"><a href="{$linkPayment}"><i class="fa-solid fa-credit-card"></i>{l s='Payment' d='Shop.Theme.MenuMobile'}</a></div>
           
-          <div id="button_modal_language"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.Global'}</p></div>
+          <div id="button_modal_language"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
           <div id="brands_mobile">
-            <div class="btn-brandsMobile"><i class="fa-solid fa-list"></i>{l s='Brands' d='Shop.Theme.euromuscle'}<i class="fa-solid fa-caret-down"></i></div>
+            <div class="btn-brandsMobile"><i class="fa-solid fa-list"></i>{l s='Brands' d='Shop.Theme.MenuMobile'}<i class="fa-solid fa-caret-down"></i></div>
             <ul class="content_brands">
             {foreach from=$manufacturers item=$manufacturer }
               <li class="col-lg-3">
