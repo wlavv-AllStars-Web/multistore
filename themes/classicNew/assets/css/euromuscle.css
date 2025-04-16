@@ -5753,10 +5753,8 @@ transform: translate(-50%,-50%);
 
 @media screen and (min-width: 769px) {
   #current_car_settings {
-    outline: 2px solid var(--euromus-color-700);
     box-shadow: var(--euromus-shadow);
     padding: 0;
-    min-height: 269px;
   }
 
   .details-info-car-mobile{
@@ -6532,6 +6530,12 @@ transform: translate(-50%,-50%);
 
 /* normal tablet */
 @media screen and (min-width: 768px) and (max-width: 992px) {
+
+  /* page compat */
+  #current_car_settings {
+    min-height: 284px !important;
+    border: 2px solid var(--euromus-color-700);
+  }
 
   /* tot shipping */
   #totselectzone #shipping_zone {
