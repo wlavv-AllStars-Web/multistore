@@ -210,7 +210,7 @@
 }
 
 .product-comment-list-item .comment-content{
-  border-left: 2px solid #dedede;
+  border-left: 2px solid var(--euromus-color-text2);
 }
 
 /**
@@ -344,7 +344,7 @@
 .product-comment-list-item {
   padding: 26px 0;
   /* margin: 0 0 20px; */
-  background-color: #f6f6f6;
+  background-color: var(--euromus-color-700);
   text-align: left;
   max-width: 1200px;
   margin: 1rem auto;
