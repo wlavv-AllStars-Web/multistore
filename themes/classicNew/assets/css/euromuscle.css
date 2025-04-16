@@ -2727,7 +2727,11 @@ a:focus{
 
 
 
-  @media screen and (min-width:768px){
+  @media screen and (min-width: 768px){
+    /* product comments */
+
+
+    /*  */
     .d-mobile{
       display: none !important;
     }
@@ -5350,11 +5354,12 @@ body#checkout section.checkout-step .address-selector {
 
 #product-comments-list .comment-content .comment-buttons{
   display: flex;
-  justify-content: flex-end;
+  justify-content: start;
 }
 
 #product-comments-list .comment-content p {
   text-align: start !important;
+  padding: 0;
 }
 
 body#checkout section.checkout-step .custom-radio input[type="radio"] {
