@@ -317,6 +317,7 @@ main > #wrapper {
 .info_pack .info_pack_btn {
   cursor: pointer;
   color: var(--euromus-color-300);
+  user-select: none;
 }
 
 .info_pack .info_pack_content {
@@ -326,6 +327,7 @@ main > #wrapper {
   border: 2px solid var(--euromus-color-800);
   border-radius: 0.25rem;
   z-index: 2;
+  user-select: none;
 }
 
 
