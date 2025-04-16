@@ -325,6 +325,7 @@ main > #wrapper {
   background: var(--euromus-color-700);
   border: 2px solid var(--euromus-color-800);
   border-radius: 0.25rem;
+  z-index: 2;
 }
 
 
