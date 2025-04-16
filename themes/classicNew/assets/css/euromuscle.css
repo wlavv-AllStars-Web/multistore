@@ -2784,6 +2784,7 @@ a:focus{
       justify-content: start;
       /* gap: 1rem; */
       width: 100%;
+      row-gap: 1rem;
     }
 
     #js-product-list .product {
