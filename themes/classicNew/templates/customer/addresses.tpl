@@ -30,14 +30,26 @@
 
 {block name='page_content'}
   {if $customer.addresses}
-    <div class="grid-container-addresses">
-    {foreach $customer.addresses as $address}
-      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 address-customer">
-      {block name='customer_address'}
-        {include file='customer/_partials/block-address.tpl' address=$address}
-      {/block}
-      </div>
-    {/foreach}
+    <div class="container-customer-addresses">
+    {if $customer.id_default_group != 4}
+      {foreach $customer.addresses as $address}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+        {block name='customer_address'}
+          {include file='customer/_partials/block-address.tpl' address=$address}
+        {/block}
+        </div>
+      {/foreach}
+    {else}
+      {assign var="last_address" value=$customer.addresses|@array_slice:-1}
+      {foreach $last_address as $address}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          {block name='customer_address'}
+            {include file='customer/_partials/block-address.tpl' address=$address}
+          {/block}
+        </div>
+      {/foreach}
+  
+    {/if}
     </div>
   {else}
     <div class="alert alert-info" role="alert" data-alert="info">
