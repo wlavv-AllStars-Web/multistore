@@ -30,10 +30,10 @@
 
 {block name='page_content'}
   {if $customer.addresses}
-    <div class="container-customer-addresses">
+    <div class="grid-container-addresses">
     {if $customer.id_default_group != 4}
       {foreach $customer.addresses as $address}
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6 address-customer">
         {block name='customer_address'}
           {include file='customer/_partials/block-address.tpl' address=$address}
         {/block}
