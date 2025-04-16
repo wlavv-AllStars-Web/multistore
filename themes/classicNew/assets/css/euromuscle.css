@@ -5359,7 +5359,7 @@ body#checkout section.checkout-step .address-selector {
 
 #product-comments-list .comment-content p {
   text-align: start !important;
-  padding: 0;
+  padding: 0 !important;
 }
 
 body#checkout section.checkout-step .custom-radio input[type="radio"] {
