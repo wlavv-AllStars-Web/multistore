@@ -6375,7 +6375,15 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 992px) {
+  #current_car_settings {
+    min-height: 284px !important;
+    border: 2px solid var(--euromus-color-text2);
+    background: var(--euromus-color-700);
+  }
 
+  .current-car-content {
+    color: var(--euromus-color-text);
+  }
 
   main #wrapper > .container-fluid {
     max-width: 1920px;
@@ -6534,7 +6542,12 @@ transform: translate(-50%,-50%);
   /* page compat */
   #current_car_settings {
     min-height: 284px !important;
-    border: 2px solid var(--euromus-color-700);
+    border: 2px solid var(--euromus-color-text2);
+    background: var(--euromus-color-700);
+  }
+
+  .current-car-content {
+    color: var(--euromus-color-text);
   }
 
   /* tot shipping */
