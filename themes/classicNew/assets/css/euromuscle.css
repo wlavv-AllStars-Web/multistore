@@ -51,6 +51,23 @@ main > #wrapper {
   border-radius: .25rem;
 }
 
+/* page pack */
+.ap5-add-to-cart-container .product-add-to-cart {
+  width: fit-content;
+  margin: auto;
+}
+.ap5-add-to-cart-container .product-add-to-cart .product-quantity {
+  display: flex;
+  justify-content: center;
+}
+.ap5-add-to-cart-container .product-add-to-cart .product-quantity .add{
+  width: 100%;
+  flex: 1;
+  max-width: 300px;
+}
+
+
+
 /* my cars */
 
 .container-my-cars {
