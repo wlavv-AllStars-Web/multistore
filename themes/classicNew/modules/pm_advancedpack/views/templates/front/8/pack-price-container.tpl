@@ -42,6 +42,7 @@
                                 {/block}
                             </div>
                         {else}
+                        <div class="prices-availability">
                             {block name='ap5_price_container'}
                                 <div id="ap5-price-container">
                                     {include file='catalog/_partials/product-prices.tpl'}
@@ -83,6 +84,7 @@
                                     {/if} *}
                                 </span>
                             {/block}
+                        </div>
 
                             {block name='ap5_add_to_cart_container'}
                                 <div class="ap5-add-to-cart-container">
