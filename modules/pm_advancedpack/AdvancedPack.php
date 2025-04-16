@@ -3483,6 +3483,7 @@ class AdvancedPack extends Product
         if (!empty($productAttributeId)) {
             $query->where('ap.`default_id_product_attribute` = ' . (int)$productAttributeId);
         }
+        $query->groupBy('a.id_pack');
         $query->orderBy('ap.`quantity` ASC');
         $bundles = Db::getInstance()->executeS($query);
         if (is_array($bundles) && count($bundles)) {
