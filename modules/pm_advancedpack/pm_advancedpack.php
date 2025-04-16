@@ -2565,17 +2565,26 @@ class pm_advancedpack extends AdvancedPackCoreClass implements WidgetInterface
         if (!$this->shopUsesNewProductPage()) {
             return;
         }
+    
         $editedProductList = $params['data']->getRecords()->all();
-        foreach ($editedProductList as &$product) {
-            if (AdvancedPack::isValidPack($product['id_product'])) {
-                $product['quantity'] = AdvancedPack::getPackAvailableQuantity($product['id_product']);
-                $product['price'] = Tools::displayPrice(AdvancedPack::getPackPrice($product['id_product'], false, true));
-                $product['price_final'] = Tools::displayPrice(AdvancedPack::getPackPrice($product['id_product'], true, true));
+        $deduplicatedProducts = [];
+    
+        foreach ($editedProductList as $product) {
+            $productId = $product['id_product'];
+            // Only keep the first occurrence of this id_product
+            if (!isset($deduplicatedProducts[$productId])) {
+                if (AdvancedPack::isValidPack($productId)) {
+                    $product['quantity'] = AdvancedPack::getPackAvailableQuantity($productId);
+                    $product['price'] = Tools::displayPrice(AdvancedPack::getPackPrice($productId, false, true));
+                    $product['price_final'] = Tools::displayPrice(AdvancedPack::getPackPrice($productId, true, true));
+                }
+                $deduplicatedProducts[$productId] = $product;
             }
         }
+    
         $params['data'] = new PrestaShop\PrestaShop\Core\Grid\Data\GridData(
-            new PrestaShop\PrestaShop\Core\Grid\Record\RecordCollection($editedProductList),
-            $params['data']->getRecordsTotal(),
+            new PrestaShop\PrestaShop\Core\Grid\Record\RecordCollection(array_values($deduplicatedProducts)),
+            count($deduplicatedProducts),
             $params['data']->getQuery()
         );
     }
