@@ -42,73 +42,17 @@
                                 {/block}
                             </div>
                         {else}
-                            <div class="prices-availability"> 
-                                {block name='ap5_price_container'}
-                                    <div id="ap5-price-container">
-                                        {include file='catalog/_partials/product-prices.tpl'}
-                                    </div>
-                                {/block}
-
-                                {block name='product_availability'}
-                                    <span id="product-availability">
-                    
-                                        {if $product.show_availability && $product.availability_message && !$packLabel}
-                                        {if $product.available_later || $product.available_now}
-                                            {if $product.quantity < 1}
-                                            <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
-                                                <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                                                <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
-                                                </div>
-                                                <span style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.available_later}</span>
-                                            </div>
-                                            {else}
-                                            <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#333;padding: 0.25rem 0.5rem;">{$product.available_now}</span></div>
-                                            {/if}
-                                        {elseif $product.availability == 'last_remaining_items'}
-                                            <i class="material-icons product-last-items">&#xE002;</i>
-                                        {else}
-                                            <i class="material-icons product-unavailable">block</i>
-                                        {/if}
-                                        {/if}
-                                        {* {if $packLabel}
-                                        {if $packLabelStock < 1}
-                                            <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
-                                                <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
-                                                <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
-                                                </div>
-                                                <span style="background: #f6ed1d;color:#222;padding: 0.25rem 0.5rem;">{$packLabel}</span>
-                                            </div>
-                                        {else}
-                                            <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#f2f2f2;padding: 0.25rem 0.5rem;">{$packLabel}</span></div>
-                                        {/if}
-                                        
-                                        {/if} *}
-                                    </span>
-                                {/block}
-                            </div>
-
-                            <div class="features_productdetails" >
-                            {* features *}
-                                <div class="product_features" >
-                                {* <pre>{print_r($product.features,1)}</pre> *}
-                                    <div style="padding: 0.2rem 2rem;"><b>{l s="EC Approval" d="Shop.Theme.Pageproduct"}:</b> <span>{if $product.ec_approved == 0}{l s="No" d="Shop.Theme.Pageproduct"}{else}{l s="Yes" d="Shop.Theme.Pageproduct"}{/if}</span></div>
-                                    {if !empty($product.origin_product)}
-                                    <div style="padding: 0.2rem 2rem;"><b>{l s="Origin" d="Shop.Theme.Pageproduct"}:</b> <span>{$product.origin_product}</span></div>
-                                    {/if}
-
-                                {foreach from=$product.features item=feature}
-                                    <div style="padding: 0.2rem 2rem;"><b>{$feature.name}:</b> <span>{$feature.value}</span></div>
-                                {/foreach}
+                            {block name='ap5_price_container'}
+                                <div id="ap5-price-container">
+                                    {include file='catalog/_partials/product-prices.tpl'}
                                 </div>
+                            {/block}
 
-                                <div class="product-details-options" >
-                                    {block name='ap5_add_to_cart_container'}
-                                        <div class="ap5-add-to-cart-container">
-                                            {include file='catalog/_partials/product-add-to-cart.tpl'}
-                                        </div>
-                                    {/block}
+                            {block name='ap5_add_to_cart_container'}
+                                <div class="ap5-add-to-cart-container">
+                                    {include file='catalog/_partials/product-add-to-cart.tpl'}
                                 </div>
-                            </div>
+                            {/block}
                             {* {include file='catalog/_partials/product-additional-info.tpl'} *}
                         {/if}
                     </form>
