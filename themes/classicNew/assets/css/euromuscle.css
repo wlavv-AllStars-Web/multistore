@@ -11,7 +11,20 @@
   --euromus-color-text2 : #7a7a7a;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+/* swiper */
+  .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+    top: unset;
+    bottom: 0;
+  }
 
+  .swiper-button-next, .swiper-button-prev {
+    color: var(--euromus-color-200);
+  }
+
+  .mySwiper .swiper-slide img {
+    width: 100%;
+  }
+/*  */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
 }
