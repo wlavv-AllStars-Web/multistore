@@ -36,14 +36,14 @@
     <div class="product-ref">
      <span class="ref-lable">{l s="Reference" d="Shop.Theme.Checkout"}:</span> <span class="ref-value">{$product.reference}</span>
     </div>
-      {if isset($product.attributes) && $product.attributes}
+      {* {if isset($product.attributes) && $product.attributes}
         {foreach from=$product.attributes key="attribute" item="value"}
           <div class="product-line-info attribute">
             <span class="label">{$attribute|escape:'html':'UTF-8'}:</span>
             <span class="value">{$value|escape:'html':'UTF-8'}</span>
           </div>
         {/foreach}
-      {/if}
+      {/if} *}
     <div class="hidden_mobile product-line-info product-price h5 {if $product.has_discount}has-discount{/if}">
       {if $product.has_discount}
         <div class="product-discount">
