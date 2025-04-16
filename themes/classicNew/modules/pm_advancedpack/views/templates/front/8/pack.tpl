@@ -573,6 +573,7 @@
                   aria-controls="product-details"
                   {if !$product.description} aria-selected="true"{/if}>{l s='WARRANTY' d='Shop.Theme.Catalog'}</a>
               </li>
+              {if !empty($product.manufacturer_name)}
               <li class="nav-item">
                 <a
                   class="nav-link"
@@ -582,6 +583,7 @@
                   aria-controls="product-details"
                   {if !$product.description} aria-selected="true"{/if}>{$product.manufacturer_name}</a>
               </li>
+              {/if}
             </ul>
 
             {* tabs content *}
