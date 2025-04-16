@@ -184,7 +184,9 @@
     </style>
     
     <script>
-        
+        function setCarSearch(idCompat) {
+            window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+idCompat
+        }
         // function setCarSearch(brand, model, type, version){
             
         //     $("#custom_filter_1").prop('value', brand);
