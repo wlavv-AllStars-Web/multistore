@@ -163,7 +163,17 @@
           <div id="_mobile_shipping_link" class="{if $currentUrl === $linkShipping}activeLink{/if}"><a href="{$linkShipping}"><i class="fa-solid fa-truck-fast"></i>{l s='Shipping' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="_mobile_payment_link" class="{if $currentUrl === $linkPayment}activeLink{/if}"><a href="{$linkPayment}"><i class="fa-solid fa-credit-card"></i>{l s='Payment' d='Shop.Theme.MenuMobile'}</a></div>
           
-          <div id="button_modal_language"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
+          <div id="button_modal_language2" onclick="showLanguagesMobile()"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
+          <div id="container-languages-mobile">
+            {if $language.id_lang == 2 ||$language.id_lang == 4 ||$language.id_lang == 5 }
+            <div style="display: flex;gap:1rem;align-items:center;width:90%;padding:0.5rem;border-radius: 4px;{if $currentLanguage->iso_code === $language.iso_code}background:#ee302e;{/if}">
+              <img src="/img/flags/{$language.iso_code}.jpg" width="16" height="11" alt="flag_{$language.iso_code}"/>
+              {* <div id="_mobile_language_selector"></div> *}
+              <a href="/{$language.iso_code}" data-iso="{$language.iso_code}" style="{if $currentLanguage->iso_code === $language.iso_code}color:#fff;{/if}">{$language.name}</a>
+              </div>
+              {/if}
+            {/foreach}
+          </div>
           <div id="brands_mobile">
             <div class="btn-brandsMobile"><i class="fa-solid fa-list"></i>{l s='Brands' d='Shop.Theme.MenuMobile'}<i class="fa-solid fa-caret-down"></i></div>
             <ul class="content_brands">
@@ -241,7 +251,22 @@
   {hook h='displayNavFullWidth'}
 {/block}
 
+<style>
+  .container-languages-mobile {
+    display: none;
+  }
+  .container-languages-mobile.show-languages {
+    display: block;
+  }
+</style>
+
 <script>
+function showLanguagesMobile() {
+  const containerLanguagesMobile = document.querySelector('.container-languages-mobile');
+
+  containerLanguagesMobile.classList.toggle('show-languages');
+}
+
 window.addEventListener('scroll', () => {
   const footer = document.querySelector('footer#footer.js-footer');
   if (footer) {
