@@ -4729,6 +4729,10 @@ form .form-control-label {
     margin-bottom: 2rem;
   }
 
+  .page-content-password {
+    padding: 0 !important;
+  }
+
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
     display: flex;
