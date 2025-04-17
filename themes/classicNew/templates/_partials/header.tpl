@@ -254,7 +254,7 @@
 
 <style>
   #container-languages-mobile {
-    display: none;
+    display: none !important;
   }
   #container-languages-mobile.show-languages {
     display: flex;
@@ -266,7 +266,7 @@
 <script>
 
 function showLanguagesMobile() {
-  const containerLanguagesMobile = document.querySelector('.container-languages-mobile');
+  const containerLanguagesMobile = document.querySelector('#container-languages-mobile');
 
   containerLanguagesMobile.classList.toggle('show-languages');
 }
