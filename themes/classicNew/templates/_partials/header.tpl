@@ -253,11 +253,13 @@
 {/block}
 
 <style>
-  .container-languages-mobile {
+  #container-languages-mobile {
     display: none;
   }
-  .container-languages-mobile.show-languages {
-    display: block;
+  #container-languages-mobile.show-languages {
+    display: flex;
+    flex-direction: column;
+    height: fit-content !important;
   }
 </style>
 
