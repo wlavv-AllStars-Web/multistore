@@ -88,6 +88,10 @@
     </div>
   </section>
 
+  <section class="back-to-orders">
+    <a class="btn-orders" href="{$urls.pages.history}">{l s='View your order history' d="Shop.Theme.Checkout"}</a>
+  </section>
+
   {* {block name='hook_payment_return'}
     {if ! empty($HOOK_PAYMENT_RETURN)}
     <section id="content-hook_payment_return" class="card definition-list">
