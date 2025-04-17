@@ -4713,6 +4713,20 @@ form .form-control-label {
     padding: 1rem !important;
   }
 
+  .container-registration {
+    padding: 0;
+  }
+
+  .container-registration #content{
+    padding: 0 !important;
+  }
+
+  .container-registration #content .register-form > p{
+    text-align: center;
+  }
+
+
+
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
     display: flex;
