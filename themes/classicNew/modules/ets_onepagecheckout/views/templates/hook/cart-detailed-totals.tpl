@@ -38,7 +38,7 @@
       {/if}
     {/foreach}
 
-    {if $customer.id_default_group != 4}
+    {if $customer.id_default_group != 4 || ($customer.id_default_group == 4 && $class_address->id_country == 15)}
       <div id="cart-subtotal-vat" class="cart-summary-line">
         <span class="label">{l s="Vat" d="Shop.Theme.Checkout"}</span>
         <span class="value">{($cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount)|number_format:2:'.':' '} €</span>
