@@ -4743,6 +4743,13 @@ form .form-control-label {
     margin-top: 0;
   }
 
+  .container-not-found-filters h1 {
+    font-size: 1.5rem;
+  }
+  .container-not-found-filters span {
+    font-size: 1.25rem;
+  }
+
   /* order details */
   .page-order-detail .box{
     background: #f6f6f6;
