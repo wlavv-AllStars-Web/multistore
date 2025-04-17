@@ -257,9 +257,13 @@
     display: none !important;
   }
   #container-languages-mobile.show-languages {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     height: fit-content !important;
+  }
+
+  #button_modal_language2 {
+    padding: 0.625rem;
   }
 </style>
 
