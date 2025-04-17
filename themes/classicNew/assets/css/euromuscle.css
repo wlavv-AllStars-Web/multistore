@@ -4696,6 +4696,10 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  /* proiduct list */
+  .container-new-products {
+    padding: 0;
+  }
 
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
