@@ -82,7 +82,10 @@
     <div class="card-block">
         <div class="row">
           <div class="col-md-12">
-            <img src="/img/euromus_bank_info.jpg" style="width:100%;max-width:800px;"/>
+            <img src="/img/euromus_bank_info_1.jpg" style="width:100%;max-width:800px;"/>
+          </div>
+          <div class="col-md-12">
+            <img src="/img/euromus_bank_info_2.jpg" style="width:100%;max-width:800px;"/>
           </div>
         </div>
     </div>
