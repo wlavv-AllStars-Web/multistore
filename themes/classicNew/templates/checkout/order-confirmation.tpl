@@ -81,10 +81,10 @@
   <section id="section-payment-bank" class="card definition-list" style="display: flex;justify-content: center;margin: 2rem 0;max-width: 1000px;margin:auto;">
     <div class="card-block">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 container-img">
             <img src="/img/euromus_bank_info_1.jpg" style="width:100%;max-width:800px;"/>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  container-img">
             <img src="/img/euromus_bank_info_2.jpg" style="width:100%;max-width:800px;"/>
           </div>
         </div>
