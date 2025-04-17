@@ -156,11 +156,11 @@
                 {l s='By Category' d='Shop.Theme.Actions'}
               </span>
               {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
-              {if !$page.body_classes['category-id-549']}
+              {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523']}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>
               {/if}
             </a>
-            <pre>{$page.body_classes|print_r}</pre>
+
             {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523']}
               <div class="dropdown-menu">
               {foreach from=$categories[2] item=parentCategory}
