@@ -4725,7 +4725,9 @@ form .form-control-label {
     text-align: center;
   }
 
-
+  .container-password {
+    margin-bottom: 2rem;
+  }
 
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
