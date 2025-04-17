@@ -24,6 +24,27 @@
   .mySwiper .swiper-slide img {
     width: 100%;
   }
+
+  /* order confirmation */
+
+  .order-confirmation .back-to-orders {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+  
+  .order-confirmation .back-to-orders .btn-orders{
+    background: var(--euromus-color-600);
+    color: #fff;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+  }
+
+  .order-confirmation .back-to-orders .btn-orders:hover{
+    background: var(--euromus-color-500) !important;
+    color: #fff !important;
+  }
+
 /*  */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
