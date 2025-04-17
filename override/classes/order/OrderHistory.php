@@ -594,7 +594,7 @@ class OrderHistoryCore extends ObjectModel
                     ];
                 }
 
-                if($shop_id == 1){
+                if($order->id_shop == 1){
                     $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
                 }
 
@@ -681,7 +681,7 @@ class OrderHistoryCore extends ObjectModel
                     $price_wt = Product::getPriceStatic((int) $product['id_product'], true, ($product['product_attribute_id'] ? (int) $product['product_attribute_id'] : null), 2, null, false, true, $product['product_quantity'], false, (int) $order->id_customer, (int) $order->id_cart, (int) $order->{Configuration::get('PS_TAX_ADDRESS_TYPE')}, $specific_price, true, true, null, true, $product['id_customization']);
                 }
 
-                $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($product['product_price'], Context::getContext()->getComputingPrecision()) : $price_wt;
+                $product_price = Product::getTaxCalculationMethod() == PS_TAX_EXC ? Tools::ps_round($price, Context::getContext()->getComputingPrecision()) : $price_wt;
                 
 
                 $image_link= new Link();
