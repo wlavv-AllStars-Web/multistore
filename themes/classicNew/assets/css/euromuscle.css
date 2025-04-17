@@ -4697,6 +4697,17 @@ form .form-control-label {
 
 @media screen and (max-width: 768px) {
 
+  /* order confirmation */
+  #order-confirmation #section-payment-bank .container-img {
+    display: flex;
+    justify-content: center;
+  }
+  #order-confirmation #section-payment-bank img {
+    max-width: 400px;
+  }
+
+  /*  */
+
   #js-product-list .products .js-product.product.category .thumbnail-container{
     min-height: 260px;
   }
