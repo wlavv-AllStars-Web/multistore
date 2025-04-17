@@ -11,6 +11,10 @@
   --euromus-color-text2 : #7a7a7a;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+  .page-product-notfound{
+    margin: 2rem;
+  }
 /* swiper */
   .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
     top: unset !important;
