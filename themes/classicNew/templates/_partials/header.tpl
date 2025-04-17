@@ -158,7 +158,7 @@
           </div>
           <div id="homeLinkMobile" class="{if $currentUrl === $link->getPageLink('index', true)}activeLink{/if}"><a href="/"><i class="fa-solid fa-house"></i>{l s='Home' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="NewsLinkMobile" class="{if $currentUrl === $link->getPageLink('new-products', true)}activeLink{/if}"><a href="{$link->getPageLink('new-products', true)}"><i class="fa-solid fa-newspaper"></i>{l s='News' d='Shop.Theme.MenuMobile'}</a></div>
-          <div id="ClearanceLinkMobile" class="{if $currentUrl === $link->getCategoryLink(523)}activeLink{/if}"><a href="{$link->getCategoryLink(523)}"><i class="fa-solid fa-newspaper"></i>{l s='Clearance' d='Shop.Theme.MenuMobile'}</a></div>
+          <div id="ClearanceLinkMobile" class="{if $currentUrl === $link->getCategoryLink(523)}activeLink{/if}"><a href="{$link->getCategoryLink(523)}"><i class="fa-solid fa-tag"></i>{l s='Clearance' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="_mobile_contact_link" class="{if $currentUrl === $link->getPageLink('contact', true)}activeLink{/if}"><a href="{$link->getPageLink('contact', true)}"><i class="fa-solid fa-phone"></i>{l s='Contacts' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="_mobile_shipping_link" class="{if $currentUrl === $linkShipping}activeLink{/if}"><a href="{$linkShipping}"><i class="fa-solid fa-truck-fast"></i>{l s='Shipping' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="_mobile_payment_link" class="{if $currentUrl === $linkPayment}activeLink{/if}"><a href="{$linkPayment}"><i class="fa-solid fa-credit-card"></i>{l s='Payment' d='Shop.Theme.MenuMobile'}</a></div>
