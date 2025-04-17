@@ -4709,6 +4709,10 @@ form .form-control-label {
     padding: 0;
   }
 
+  #empty-product-comment {
+    padding: 1rem !important;
+  }
+
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
     display: flex;
