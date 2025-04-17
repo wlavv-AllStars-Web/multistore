@@ -118,7 +118,7 @@
               {block name='product_availability'}
 
                 <span id="product-availability">
-{* <pre>{$product.availability_message|print_r}</pre> *}
+
                   {if $product.show_availability && $product.availability_message && !$packLabel}
                     {if $product.available_later || $product.available_now}
                       {if $product.quantity < 1}
@@ -362,7 +362,9 @@
        </script>
 
        {else}
+        <div class="container-no-compats">
          <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+        </div>
        {/if}
 
 
