@@ -4744,10 +4744,10 @@ form .form-control-label {
   }
 
   .container-not-found-filters h1 {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
   .container-not-found-filters span {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
   }
 
   /* order details */
