@@ -76,7 +76,7 @@ main > #wrapper {
 
 .mySwiper-thumb-images .swiper-button-next {
   padding: 0 0.5rem;
-  background: #333;
+  background: var(--euromus-color-700);
   color: #fff;
   bottom: 1rem;
   top: calc(100% - 3.4rem);
@@ -92,7 +92,7 @@ main > #wrapper {
 
 .mySwiper-thumb-images .swiper-button-prev {
   padding: 0 0.5rem;
-  background: #333;
+  background: var(--euromus-color-700);
   color: #fff;
   top: -1.75rem;
   transform: rotate(90deg) translateX(-50%);
