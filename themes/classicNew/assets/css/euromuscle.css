@@ -6606,7 +6606,7 @@ transform: translate(-50%,-50%);
 
   main #wrapper > .container-fluid {
     max-width: 1920px;
-    margin: auto;
+    margin: 0 auto;
   }
   
   .filters-mobile{
