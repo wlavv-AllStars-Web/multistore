@@ -162,7 +162,7 @@
             </a>
 
             {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523']}
-              <div class="dropdown-menu">
+              <div class="dropdown-menu dropdown-category">
               {foreach from=$categories[2] item=parentCategory}
                 {if $parentCategory['infos']['id_category'] != 523 && $parentCategory['infos']['id_category'] != 528 && $parentCategory['infos']['id_category'] != 549}
                   <div 
