@@ -4701,6 +4701,14 @@ form .form-control-label {
     padding: 0;
   }
 
+  .container-manufacturer {
+    padding: 0;
+  }
+
+  .container-category {
+    padding: 0;
+  }
+
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
     display: flex;
