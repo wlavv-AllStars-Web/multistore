@@ -165,6 +165,7 @@
           
           <div id="button_modal_language2" onclick="showLanguagesMobile()"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
           <div id="container-languages-mobile">
+            {foreach from=$languages item=$language }
             {if $language.id_lang == 2 ||$language.id_lang == 4 ||$language.id_lang == 5 }
             <div style="display: flex;gap:1rem;align-items:center;width:90%;padding:0.5rem;border-radius: 4px;{if $currentLanguage->iso_code === $language.iso_code}background:#ee302e;{/if}">
               <img src="/img/flags/{$language.iso_code}.jpg" width="16" height="11" alt="flag_{$language.iso_code}"/>
@@ -261,6 +262,7 @@
 </style>
 
 <script>
+
 function showLanguagesMobile() {
   const containerLanguagesMobile = document.querySelector('.container-languages-mobile');
 
