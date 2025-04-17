@@ -4703,7 +4703,7 @@ form .form-control-label {
     justify-content: center;
   }
   #order-confirmation #section-payment-bank img {
-    max-width: 400px;
+    max-width: 400px !important;
   }
 
   /*  */
