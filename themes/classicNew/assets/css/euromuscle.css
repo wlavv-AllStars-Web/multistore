@@ -27,20 +27,20 @@
 
   /* order confirmation */
 
-  .order-confirmation .back-to-orders {
+  #order-confirmation .back-to-orders {
     display: flex;
     justify-content: center;
     margin: 1rem;
   }
   
-  .order-confirmation .back-to-orders .btn-orders{
+  #order-confirmation .back-to-orders .btn-orders{
     background: var(--euromus-color-600);
     color: #fff;
     padding: .5rem 1rem;
     border-radius: .25rem;
   }
 
-  .order-confirmation .back-to-orders .btn-orders:hover{
+  #order-confirmation .back-to-orders .btn-orders:hover{
     background: var(--euromus-color-500) !important;
     color: #fff !important;
   }
