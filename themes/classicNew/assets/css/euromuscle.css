@@ -25,6 +25,14 @@
     width: 100%;
   }
 
+  .dropdown-menu .select-list {
+    padding: 0;
+  }
+
+  .dropdown-menu .select-list > div > div{
+    padding: 0.625rem 1.25rem;
+  }
+
   /* order confirmation */
 
   #order-confirmation .back-to-orders {
