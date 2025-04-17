@@ -126,7 +126,7 @@
         $('#name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="color: #444;font-size: 0.85rem;">'+ nrItems + '</span>');
 
         if ($('body#category').length > 0) {
-            category_name = document.querySelector("nav.breadcrumb li:last-child a span").textContent
+            category_name = document.querySelector("nav.breadcrumb li:last-child span").textContent
             idCategory =  $('[name="id_category_layered"]').val();
         }else{
                 category_name = $('[onclick="setCategory(' + idCategory + ', this)"]').text();
