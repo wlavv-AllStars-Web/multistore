@@ -938,14 +938,16 @@
                   })
                 }
 
-
-                function setCarAndSearch(brand, model, type, version) {
-                    $("#custom_filter_1").prop('value', brand);
-                    $("#custom_filter_2").prop('value', model);
-                    $("#custom_filter_3").prop('value', type);
-                    $("#custom_filter_4").prop('value', version);
-                    $('#ukoocompat_my_cars_custom_form').submit();
-                  }
+                function setCarSearch(idCompat) {
+                    window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+idCompat
+                }
+                // function setCarAndSearch(brand, model, type, version) {
+                //     $("#custom_filter_1").prop('value', brand);
+                //     $("#custom_filter_2").prop('value', model);
+                //     $("#custom_filter_3").prop('value', type);
+                //     $("#custom_filter_4").prop('value', version);
+                //     $('#ukoocompat_my_cars_custom_form').submit();
+                //   }
 
                   function getCarVersions(e,brand,model,type) {
 
