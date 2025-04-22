@@ -8450,7 +8450,7 @@ transform: translate(-50%,-50%);
   /* mycars */
 
   .container-my-cars {
-    padding: 0 !important;
+    padding: 1rem 0 !important;
   }
 
   .container-my-cars .cars-content {
