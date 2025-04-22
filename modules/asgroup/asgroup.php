@@ -687,6 +687,7 @@ class AsGroup extends Module
                         'class' => 'text-center', 
                     ],
                     'clickable' => false,
+                    'sortable' => true,
                 ])
         );
 
@@ -924,6 +925,11 @@ class AsGroup extends Module
         if ('manufacturer_name' === $searchCriteria->getOrderBy()) {
             $searchQueryBuilder->orderBy('man.`manufacturer_name`', $searchCriteria->getOrderWay());
         }
+
+        if ('rrp' === $searchCriteria->getOrderBy()) {
+            $searchQueryBuilder->orderBy('p.`price`', $searchCriteria->getOrderWay());
+        }
+        
 
         // pre($searchCriteria->getFilters());
 
