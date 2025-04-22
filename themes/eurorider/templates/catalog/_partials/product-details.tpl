@@ -174,7 +174,7 @@
       {/if}
     {/block} *}
 
-    {block name='product_condition'}
+    {* {block name='product_condition'}
       {if $product.condition}
         <div class="product-condition">
           <label class="label">{l s='Condition' d='Shop.Theme.Catalog'} </label>
@@ -182,5 +182,5 @@
           <span>{$product.condition.label}</span>
         </div>
       {/if}
-    {/block}
+    {/block} *}
 </div>
