@@ -8447,6 +8447,16 @@ transform: translate(-50%,-50%);
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
+  /* mycars */
+
+  .container-my-cars {
+    padding: 0 !important;
+  }
+
+  .container-my-cars .car_container {
+    margin: 0 !important;
+  }
+
   /* tabs mobile */
   .d-mobile.section-content-product {
     gap: 0 !important;
