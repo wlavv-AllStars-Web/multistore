@@ -45,7 +45,7 @@
 
 <div class="description_box" style="display:flex;align-items:center;">
   <div class="webmaster-logomanufacturer" style="width:10%;padding: 0 1rem;">
-    <img src="/img/m/{$manufacturer.id}-medium_default.jpg" style="width:100%;height: auto;"/>
+    <img src="/img/m/{$manufacturer.id}-large_default.jpg" style="width:100%;height: auto;"/>
   </div>
   {if !empty($manufacturer.short_description)}
     <div class="description_short" style="display: flex;flex-direction:column;width:80%;">
