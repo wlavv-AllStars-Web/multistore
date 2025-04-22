@@ -40,7 +40,7 @@
                             </div>
                             <div style="width: 45%;">
                                 <label>Select car</label> 
-                                {assign var="compat" value="`$icons_50['id_compat']`"}
+                                {assign var="compat" value=$icons_33['id_compat']}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');" style="padding:5px;">
                                     <option value="0">---</option>
                                     
@@ -69,7 +69,7 @@
                             </div>
                             <div style="width: 100%;">
                                 <label>Select car</label> 
-                                {assign var="compat" value="`$icons_50['id_compat']`"}
+                                {assign var="compat" value=$icons_33['id_compat']}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]"  onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');"  onclick="setIdToZero(this, {$icons_33['id']});" style="padding:5px;">
                                     <option value="0">---</option>
                                     
@@ -152,7 +152,7 @@
                 </div>
                 <div style="width: 100%;">
                     <label>Select car</label> 
-                    {assign var="compat" value="`$icons_50['id_compat']`"}
+                    {assign var="compat" value=$icons_33['id_compat']}
                     <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]"  onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');"  onclick="setIdToZero(this, {$icons_33['id']});" style="padding:5px;">
                         <option value="">---</option>
                         
@@ -233,7 +233,7 @@
                             </div>
                             <div style="width: 100%;">
                                 <label>Select car</label> 
-                                {assign var="compat" value="`$icons_50['id_compat']`"}
+                                {assign var="compat" value=$icons_33['id_compat']}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]"  onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');"  onclick="setIdToZero(this, {$icons_33['id']});" style="padding:5px;">
                                     <option value="">---</option>
                                     
@@ -298,7 +298,7 @@
                             </div>
                             <div style="width: 45%;">
                                 <label>Select car</label> 
-                                {assign var="compat" value="`$icons_33['id_compat']`"}
+                                {assign var="compat" value=$icons_33['id_compat']}
                                 <select id="select_car_{$icons_33['id']}" name="car[{$icons_33['id']}]" onclick="setImageText(this, {$icons_33['id']}, 'select_car_{$icons_33['id']}');" style="padding:5px;">
                                     <option value="">---</option>
                                     
