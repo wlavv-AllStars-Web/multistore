@@ -777,6 +777,7 @@ body {
 
   .images-container.js-images-container .mySwiper-thumb-images .swiper-slide {
     width: fit-content;
+    height: auto;
   }
 
   #product_shipping #totselectzone {
