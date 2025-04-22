@@ -273,16 +273,20 @@
           
             {l s='By Brand' d='Shop.Theme.Actions'}
           </span>
-          <i class="material-icons pull-xs-right">arrow_drop_down</i>
+          {if $page.page_name != "manufacturer"}
+            <i class="material-icons pull-xs-right">arrow_drop_down</i>
+          {/if}
         </a>
-        <div class="dropdown-menu">
-        {foreach $manufacturers AS $manufacturer}
-            <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
-                  class="select-list js-search-link"
-                  onclick="setManufacturer($(this), {$manufacturer['id_manufacturer']})">{$manufacturer['name']}
-            </div>
-        {/foreach}
-        </div>
+        {if $page.page_name != "manufacturer"}
+          <div class="dropdown-menu">
+          {foreach $manufacturers AS $manufacturer}
+              <div  id="manufacturer_{$manufacturer['id_manufacturer']}" 
+                    class="select-list js-search-link"
+                    onclick="setManufacturer($(this), {$manufacturer['id_manufacturer']})">{$manufacturer['name']}
+              </div>
+          {/foreach}
+          </div>
+        {/if}
       </div>
     </div>
   </div>
