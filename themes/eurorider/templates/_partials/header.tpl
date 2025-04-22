@@ -191,7 +191,21 @@
           <a href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
         </li>
 
-        <li {if $page.page_name =='index'}class="dropdown" {/if}>
+        <li class="dropdown-brands">
+          <a class="link-logosMenu" aria-expanded="false"  >{l s='Your Ride' d='Shop.Theme.Homepage'}</a>
+          <div class="dropdown-menu menu-logos" style="background: #333;border-bottom: 3px solid var(--asm-color)">
+            <div class="my-cars-garage"></div>
+            <div class="brands-menu-title"><h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">{l s="Select a Vehicle" d="Shop.Theme.Header"}</h1></div>
+            <div class="swiper swiper-menu-brands"></div>
+
+            <div class="versions_cars"></div>
+            <div class="loading-overlay-cars dont_show" role="status">
+                <span class="loading-spinner"></span>
+            </div>
+          </div>
+        </li>
+
+        {* <li {if $page.page_name =='index'}class="dropdown" {/if}>
             <a class="link-logosMenu"  {if $page.page_name !='index'}role="link" href="/en/?open=yourCar"{else} data-toggle="dropdown" aria-expanded="false" {/if} >{l s='Your Ride' d='Shop.Theme.Homepage'}</a>
               <div class="dropdown-menu menu-logos">
           {if $page.page_name =='index'}
@@ -225,7 +239,7 @@
                   {hook h="displayHome" mod="ukoocompat"}
               </div>
           {/if}
-        </li>
+        </li> *}
 
         <li class="dropdown brands-drop">
           <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
@@ -356,19 +370,325 @@
 
 <script>
 
-    // function setCarAndSearch(brand, model, type, version){
+function toogleClasslistCar(elem) {
+    event.stopPropagation(); 
+    elem.nextElementSibling.querySelector(".model_name").click()
+  }
+
+  function toogleClasslist(elem) {
+    event.stopPropagation(); 
+    elem.nextElementSibling.classList.toggle("dont_show")
+  }
+
+  // document.addEventListener("scroll", function () {
+  //   const header = document.getElementById("header");
+  //   if (window.scrollY > 80) { // Adjust scroll threshold as needed
+  //     header.classList.add("scrolled");
+  //   } else {
+  //     header.classList.remove("scrolled");
+  //   }
+  // });
+
+  let lastScrollY = window.scrollY;
+  let isHidden = false;
+
+  document.addEventListener("scroll", function () {
+    requestAnimationFrame(() => {
+      const header = document.getElementById("header");
+      let currentScrollY = window.scrollY;
+
+      if (currentScrollY > 100) {
+        // User scrolled past 100px, hide the header
+        if (!isHidden) {
+          header.classList.add("scrolled");
+          isHidden = true;
+        }
+      } else if (currentScrollY === 0) {
+        // User is back at the top, show the header
+        if (isHidden) {
+          header.classList.remove("scrolled");
+          isHidden = false;
+        }
+      }
+
+      lastScrollY = currentScrollY;
+    });
+  });
+
+
+
+const dropdownButton = document.querySelector(".dropdown-brands");
+const dropdownMenu = document.querySelector(".dropdown-menu.menu-logos");
+
+// Toggle dropdown on click
+dropdownButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent event from reaching document
+    
+    console.log("cliquei");
+    // Toggle display
+    if (dropdownMenu.style.display === "block") {
+        dropdownMenu.style.display = "none";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "false");
+    } else {
+        dropdownMenu.style.display = "block";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "true");
+    }
+});
+
+// Hide dropdown when clicking outside
+document.addEventListener("click", (event) => {
+    if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdownMenu.style.display = "none";
+        document.querySelector(".link-logosMenu").setAttribute("aria-expanded", "false");
+    }
+});
+
+// Prevent clicks inside the dropdown from closing it
+dropdownMenu.addEventListener("click", (event) => {
+    event.stopPropagation(); // Stop the event from reaching document click event
+});
+
+
+
+
+
+  function openMenuCars(){
+    $.ajax({
+            url: '{url entity='frontController'}', // Replace with your endpoint
+            type: 'GET',
+            data: {
+              getdataBrands: 1,
+              type: 'brand',
+              storeId: {Context::getContext()->shop->id}
+            },
+            success: function(brands) {
+              if(brands.html_garage){
+                let garageContainer = document.querySelector(".dropdown-menu.menu-logos .my-cars-garage")
+
+                let garageTitle = `<div class="my-garage-title">
+                    <h1 style="color:#fff;text-align:center;font-weight:600;padding:1rem;">
+                      {l s="Your Garage" d="Shop.Theme.Header"}
+                    </h1>
+                </div>`;
+
+                garageContainer.innerHTML = garageTitle + brands.html_garage;
+              }
+              let brandsContainer = document.querySelector(".dropdown-menu.menu-logos .swiper-menu-brands")
+              if(brandsContainer){
+                brandsContainer.innerHTML = brands.html_brands
+              }
+
+              let brandsContainerMobile = document.querySelector(".car_brands_mobile")
+              if(brandsContainerMobile) {
+                brandsContainerMobile.innerHTML = brands.html_brands_mobile
+              }
+
+              let librands = brandsContainer.querySelectorAll("li")
+
+              librands.forEach((brand) => {
+                brand.addEventListener("mouseenter", function () {
+                  brand.querySelector(".original_img").classList.add("dont_show")
+                  brand.querySelector(".hover_img").classList.remove("dont_show")
+                  brand.querySelector(".name_brand").style.color = "#ff0000"
+                });
+                brand.addEventListener("mouseleave", function () {
+                  brand.querySelector(".original_img").classList.remove("dont_show")
+                  brand.querySelector(".hover_img").classList.add("dont_show")
+                  brand.querySelector(".name_brand").style.color = "#fff"
+                });
+              });
+
+
+              var swiper = new Swiper(".swiper-menu-brands", {
+                  initialSlide: 1,
+                  loop: true, // Prevents duplicate slides causing cut-off issues
+                  slidesPerView: "auto",
+                  centeredSlides: false, // Ensures slides align properly
+                  spaceBetween: 10, // Adjust spacing if needed
+                  watchOverflow: true, // Prevents extra blank space
+                  navigation: {
+                      nextEl: ".swiper-button-next",
+                      prevEl: ".swiper-button-prev"
+                  },
+                  breakpoints: {
+                      640: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      768: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      1024: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      },
+                      1500: {
+                          slidesPerView: "auto",
+                          spaceBetween: 20,
+                      }
+                  }
+              });
+
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
+          })
+  }
+
+  openMenuCars()
+
+  function openModels(element,id_brand){
+    event.stopPropagation(); 
+    document.querySelector(".dropdown-menu .versions_cars").innerHTML = ''
+    document.querySelector(".loading-overlay-cars").classList.remove("dont_show")
+    $.ajax({
+            url: '{url entity='frontController'}', // Replace with your endpoint
+            type: 'GET',
+            data: {
+              getdataBrands: 1,
+              type: 'model',
+              id_brand: id_brand,
+              storeId: {Context::getContext()->shop->id}
+            },
+            success: function(brands) {
+              document.querySelector(".loading-overlay-cars").classList.add("dont_show")
+              let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
+              brandsContainer.innerHTML = brands.html_model
+
+              initializeModelGroupSwipers();
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+            }
+          })
+  }
+
+
+  function initializeModelGroupSwipers() {
+    const windowWidth = window.innerWidth;
+    
+    if (windowWidth >= 768 && windowWidth <= 1500) {
+        // Check if Swiper is already loaded
+        if (typeof Swiper === 'undefined') {
+            // Load Swiper CSS and JS dynamically if not already loaded
+            loadSwiperResources().then(() => {
+                createSwipers();
+            });
+        } else {
+            createSwipers();
+        }
+    }
+}
+
+function loadSwiperResources() {
+    return new Promise((resolve) => {
+        // Check if Swiper CSS is already loaded
+        if (!document.querySelector('link[href*="swiper-bundle.min.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
+            document.head.appendChild(link);
+        }
         
-    //     $("#custom_filter_1").prop('value', brand);
-    //     $("#custom_filter_2").prop('value', model);
-    //     $("#custom_filter_3").prop('value', type);
-    //     $("#custom_filter_4").prop('value', version);
+        // Check if Swiper JS is already loaded
+        if (typeof Swiper === 'undefined') {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+            script.onload = resolve;
+            document.body.appendChild(script);
+        } else {
+            resolve();
+        }
+    });
+}
+
+function createSwipers() {
+    // Select all model groups
+    const modelGroups = document.querySelectorAll('.model_group_cars');
+    
+    modelGroups.forEach(group => {
+        // Wrap car items in a swiper container
+        const carItems = group.querySelectorAll('.car_item_holder');
         
-    //     $('#ukoocompat_my_cars_custom_form').submit();
+        if (carItems.length <= 4) {
+            group.classList.add('no-more-cars');
+            return; // Skip Swiper initialization for these groups
+        }
         
-    // }
+        if (carItems.length > 1) { // Only create swiper if there are multiple items
+            const swiperContainer = document.createElement('div');
+            swiperContainer.className = 'swiper-container';
+            
+            const swiperWrapper = document.createElement('div');
+            swiperWrapper.className = 'swiper-wrapper';
+            
+            carItems.forEach(item => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.appendChild(item.cloneNode(true));
+                swiperWrapper.appendChild(slide);
+                item.remove(); // Remove original item
+            });
+            
+            swiperContainer.appendChild(swiperWrapper);
+            
+            // Add pagination if needed
+            const pagination = document.createElement('div');
+            pagination.className = 'swiper-pagination';
+            swiperContainer.appendChild(pagination);
+            
+            // Add navigation buttons if needed
+            const prevBtn = document.createElement('div');
+            prevBtn.className = 'swiper-button-prev';
+            const nextBtn = document.createElement('div');
+            nextBtn.className = 'swiper-button-next';
+            swiperContainer.appendChild(prevBtn);
+            swiperContainer.appendChild(nextBtn);
+            
+            group.appendChild(swiperContainer);
+            
+            // Initialize Swiper
+            new Swiper(swiperContainer, {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                centeredSlides: false,
+                loop: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                    },
+                    992: {
+                        slidesPerView: 4,
+                    },
+                },
+            });
+        }
+    });
+}
+
+// Also initialize on window resize
+window.addEventListener('resize', initializeModelGroupSwipers);
+
+
+  function setCarSearch(idCompat) {
+    window.location.href = "{$link->getPageLink('cars-products')}?id_compat="+idCompat
+  }
+
+  
 
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
         const queryString = window.location.search;
         console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
@@ -396,3 +716,53 @@
         }
     });
 </script>
+
+<style>
+@media screen and (min-width: 768px) and (max-width: 1500px){
+    .versions_cars {
+        margin-top: 2rem;    
+    }
+    
+    
+    .versions_cars .model_group_cars {
+        position: relative;
+        overflow: unset !important;
+        justify-content: center !important;
+    }
+    
+    .versions_cars .model_group_cars:nth-child(even){
+        background: #444;
+    }
+    
+    .versions_cars .model_group_cars .swiper-container{
+        width: 100dvw;
+        display:flex !important;
+    }
+    
+    .versions_cars .model_group_cars .swiper-container .swiper-wrapper{
+        width: 100dvw;
+        /*justify-content:center;*/
+        padding-bottom: 2rem
+    }
+    
+    .versions_cars .model_group_cars .swiper-button-prev, .versions_cars .model_group_cars .swiper-button-next{
+        top: 50%;
+        transform: translateY(-50%);
+        margin-top: 0;
+        padding-inline: 1rem;
+        border-radius: .25rem;
+        transition: all ease-in-out 250ms;
+        color: #fff;
+    }
+    
+    .versions_cars .model_group_cars .versions_model_content{
+        margin-top: .5rem;
+    }
+    
+    .versions_cars .model_group_cars .type_selector{
+        padding:.5rem 1rem;
+        background:#666;
+    }
+}
+
+</style>
