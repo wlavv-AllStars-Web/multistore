@@ -63,9 +63,9 @@
           
          >
        </picture>
-       <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+       {* <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal"> *}
          {* <i class="material-icons zoom-in">search</i> *}
-       </div>
+       {* </div> *}
      {else}
        <picture>
          {if !empty($urls.no_picture_image.bySize.tm_thickbox_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.tm_thickbox_default.sources.avif}" type="image/avif">{/if}
