@@ -479,7 +479,7 @@ body {
 }
 
 @media (min-width: 992px) {
-  .contact-form .bootstrap-filestyle.input-group {
+  .input-group {
     z-index: 0;
   }
 
