@@ -104,10 +104,7 @@
                         data: params,
                         dataType: 'json',
                         success: function (data) {
-                          console.log(data)
                             resetSelect(selectElement, placeholder);
-                            console.log('selectElement', selectElement)
-                            console.log('placeholder', placeholder)
                             if (data.length > 0) {
                                 selectElement.removeAttr("disabled").removeClass("disabled");;
                                 
@@ -962,7 +959,7 @@
                         storeId: {Context::getContext()->shop->id}
                       },
                       success: function(response) {
-                        console.log(response)
+                      
                               // Check if compat_data exists and has at least one item
                         if (response && response.length > 0) {
                           let spanContent = ''; // This will store the HTML for the spans
@@ -980,12 +977,9 @@
 
                           const carVersionSpan = $(e).closest('.card-link').find('.car_version');;  // Find the sibling span with the class 'car_version'
                           
-                          console.log(carVersionSpan.length)
-                          console.log(carVersionSpan)
 
 
                            if (carVersionSpan.length > 0) {
-                              console.log(carVersionSpan)
                           carVersionSpan.html(spanContent); // Insert the generated span content
                            }
                         } else {
