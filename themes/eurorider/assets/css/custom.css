@@ -479,6 +479,10 @@ body {
 }
 
 @media (min-width: 992px) {
+  .contact-form .bootstrap-filestyle.input-group {
+    z-index: 0;
+  }
+
   /* hpmepage */
   #index #main #content {
     background-image: url("/img/eurorider/fundo.svg");
