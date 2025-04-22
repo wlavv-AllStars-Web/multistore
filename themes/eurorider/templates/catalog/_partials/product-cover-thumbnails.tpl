@@ -46,11 +46,11 @@
    <div class="product-cover d-desktop">
      {if $product.default_image}
        <picture>
-         {* {if !empty($product.default_image.bySize.large_default.sources.avif)}<source srcset="{$product.default_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
-         {if !empty($product.default_image.bySize.large_default.sources.webp)}<source srcset="{$product.default_image.bySize.large_default.sources.webp}" type="image/webp">{/if} *}
+         {* {if !empty($product.default_image.bySize.tm_thickbox_default.sources.avif)}<source srcset="{$product.default_image.bySize.tm_thickbox_default.sources.avif}" type="image/avif">{/if}
+         {if !empty($product.default_image.bySize.tm_thickbox_default.sources.webp)}<source srcset="{$product.default_image.bySize.tm_thickbox_default.sources.webp}" type="image/webp">{/if} *}
          <img
            class="js-qv-product-cover img-fluid"
-           src="{$product.default_image.bySize.large_default.url}"
+           src="{$product.default_image.bySize.tm_thickbox_default.url}"
            {if !empty($product.default_image.legend)}
              alt="{$product.default_image.legend}"
              title="{$product.default_image.legend}"
@@ -58,8 +58,8 @@
              alt="{$product.name}"
            {/if}
            loading="lazy"
-           width="{$product.default_image.bySize.large_default.width}"
-           height="{$product.default_image.bySize.large_default.height}"
+           width="{$product.default_image.bySize.tm_thickbox_default.width}"
+           height="{$product.default_image.bySize.tm_thickbox_default.height}"
           
          >
        </picture>
@@ -68,14 +68,14 @@
        </div>
      {else}
        <picture>
-         {if !empty($urls.no_picture_image.bySize.large_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.avif}" type="image/avif">{/if}
-         {if !empty($urls.no_picture_image.bySize.large_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.large_default.sources.webp}" type="image/webp">{/if}
+         {if !empty($urls.no_picture_image.bySize.tm_thickbox_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.tm_thickbox_default.sources.avif}" type="image/avif">{/if}
+         {if !empty($urls.no_picture_image.bySize.tm_thickbox_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.tm_thickbox_default.sources.webp}" type="image/webp">{/if}
          <img
            class="img-fluid"
-           src="{$urls.no_picture_image.bySize.large_default.url}"
+           src="{$urls.no_picture_image.bySize.tm_thickbox_default.url}"
            loading="lazy"
-           width="{$urls.no_picture_image.bySize.large_default.width}"
-           height="{$urls.no_picture_image.bySize.large_default.height}"
+           width="{$urls.no_picture_image.bySize.tm_thickbox_default.width}"
+           height="{$urls.no_picture_image.bySize.tm_thickbox_default.height}"
          >
        </picture>
      {/if}
@@ -107,10 +107,10 @@
              {if !empty($image.bySize.small_default.sources.webp)}<source srcset="{$image.bySize.small_default.sources.webp}" type="image/webp">{/if}
              <img
                class="thumb js-thumb {if $image.id_image == $product.default_image.id_image} selected js-thumb-selected {/if}"
-               data-image-medium-src="{$image.bySize.large_default.url}"
-               {if !empty($image.bySize.large_default.sources)}data-image-medium-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
-               data-image-large-src="{$image.bySize.large_default.url}"
-               {if !empty($image.bySize.large_default.sources)}data-image-large-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
+               data-image-medium-src="{$image.bySize.tm_thickbox_default.url}"
+               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-medium-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
+               data-image-large-src="{$image.bySize.tm_thickbox_default.url}"
+               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-large-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
                src="{$image.bySize.small_default.url}"
                {if !empty($image.legend)}
                  alt="{$image.legend}"
@@ -139,10 +139,10 @@
              {if !empty($image.bySize.medium_default.sources.webp)}<source srcset="{$image.bySize.medium_default.sources.webp}" type="image/webp">{/if}
              <img
                class="thumb js-thumb {if $image.id_image == $product.default_image.id_image} selected js-thumb-selected {/if}"
-               data-image-medium-src="{$image.bySize.large_default.url}"
-               {if !empty($image.bySize.large_default.sources)}data-image-medium-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
-               data-image-large-src="{$image.bySize.large_default.url}"
-               {if !empty($image.bySize.large_default.sources)}data-image-large-sources="{$image.bySize.large_default.sources|@json_encode}"{/if}
+               data-image-medium-src="{$image.bySize.tm_thickbox_default.url}"
+               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-medium-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
+               data-image-large-src="{$image.bySize.tm_thickbox_default.url}"
+               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-large-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
                src="{$image.bySize.medium_default.url}"
                {if !empty($image.legend)}
                  alt="{$image.legend}"
