@@ -765,4 +765,88 @@ window.addEventListener('resize', initializeModelGroupSwipers);
     }
 }
 
+  .dont_show {
+    display: none;
+  }
+
+  .dropdown-brands{
+    transition: all ease-in-out 250ms;
+  }
+
+  .link-logosMenu {
+    user-select: none;
+  }
+
+  .version_model_container .model_name > span {
+    color: #fff;
+    font-weight: 600;
+  }
+  .version_model_container .model_name:hover > span {
+    color: #ff0000 !important;
+  }
+
+  .versions_model_content.dont_show{
+    display: none;
+  }
+
+  .model_name {
+    user-select: none;
+  }
+
+  .type_selector span {
+    user-select: none;
+    color: #d0d0d0;
+    /* padding: 1rem; */
+  }
+  .type_selector:hover span {
+    user-select: none;
+    color: #ff0000;
+  }
+
+  .swiper-menu-brands {
+    width: 100%;
+  }
+
+  .swiper-wrapper {
+    width: max-content;
+  }
+
+  .swiper-menu-brands .swiper-slide {
+    margin-left: 20px;
+  }
+
+  /* .swiper-slide {
+    width: 100% !important;
+  } */
+
+  .model_group_cars {
+    display: flex;
+    justify-content: center;
+  }
+
+  .loading-overlay-cars:not(.dont_show) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .loading-overlay-cars{
+    display: none;
+  }
+
+  .my-garage-cars{
+    background: #393939;
+  }
+
+  .my-garage-car-details {
+    padding: 0 0 1rem 0;
+  }
+
+  .my-garage-car:hover .my-garage-car-details span{
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+  }
+
+
 </style>
