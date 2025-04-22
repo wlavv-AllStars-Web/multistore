@@ -385,7 +385,6 @@
 
                           </div>
                         {elseif  $key == 1 && $child.id_parent_card == 2}
-                          <pre>{$child|print_r}</pre>
                           <div class="card-img ">
                             {if  $child['id_compat'] > 0}
                               <a style="cursor: pointer;"
