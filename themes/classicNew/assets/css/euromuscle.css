@@ -8461,6 +8461,11 @@ transform: translate(-50%,-50%);
     min-width: unset !important;
   }
 
+  #order-detail #order-history .order-state-label-title {
+    display: flex;
+    align-items: center;
+  }
+
   /* mycars */
 
   .container-my-cars {
