@@ -14,7 +14,24 @@
   --color-grey_light: #d9d9d9;
   --color-black: #000;
   --color-text: #333333;
+
+  --asm-color: #3da936;
+  --asm-color-100: rgba(61, 169, 54, .8);
+  --black: #101010;
+  --grey: #282828;
+
+  --white : #fff;
+  --bg-1 : #121212;
+  --bg-2 : #222;
+  --bg-3 : #333;
+  --bg-4 : #444;
+  --bg-5 : #555;
+  --bg-6 : #666;
+  --bg-7 : #777;
+  --bg-8 : #888;
+  --bg-9 : #999;
 }
+
 
 
 html {
@@ -12097,7 +12114,7 @@ body#index .maincontent_v1 .mls_pag_button:not(.active) {
 }
 
 .user-info-account:hover span{
-  color: var(--color-red)!important;
+  color: var(--asm-color)!important;
 }
 
 #header .user-info a.user-info-account {
