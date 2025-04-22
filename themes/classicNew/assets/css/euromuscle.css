@@ -16,6 +16,16 @@
     bottom: 0;
   }
 
+  #password #wrapper {
+    max-width: unset !important;
+    width: 100%;
+  }
+
+  .container-password {
+    max-width: 900px !important;
+    text-align: center;
+  }
+
   .page-product-notfound{
     margin: 2rem;
   }
