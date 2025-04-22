@@ -108,7 +108,7 @@ var productListingComments = (function () {
 
         $.get(data.ajaxUrl, { id_products: selectedProductIDs }, function (jsonData) {
             if (jsonData) {
-                console.log(jsonData)
+
                 $.each(jsonData.products, function(i, elem) {
                     var productData = elem;
                     var $productsReviewsContainer = $('.product-list-reviews[data-id="' + productData.id_product + '"]');

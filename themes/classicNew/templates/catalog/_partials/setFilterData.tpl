@@ -1,6 +1,6 @@
 <script defer="defer">
     function setOrder(element) {
-        console.log(element)
+
         const elementValue = element.getAttribute("value")
         let parameters = string_splitter(elementValue, ":");
         setOrderBy(parameters[0]);
@@ -10,7 +10,7 @@
     }
 
     function setManufacturer(element, idManufacturer) {
-        console.log(element);
+
         $('#temp_multiFilter_id_manufacturer').val(idManufacturer);
         $('#multiFilter_id_manufacturer').val(idManufacturer);
         setName($('#name_brand'), '{l s="By Brand" d="Shop.Theme.SortOrders"}', element.text());
@@ -51,7 +51,7 @@
     });
 
     function setProductsPerPage(value) {
-        console.log('Products per page set to:', value);
+
     // Add your logic to update the products per page here
     let nr_items = value;
 
