@@ -13263,7 +13263,7 @@ li {
   line-height: 30px;
 }
 .user-info .logout i:hover {
-  color: var(--color-red)!important;
+  color: var(--asm-color)!important;
 }
 @media (min-width: 992px) and (max-width: 1199px){
     #product-availability {
