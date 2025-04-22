@@ -326,7 +326,7 @@
                     </div>
                     {if $item['id_compat'] > 0}
                     <a style="cursor: pointer;"
-                    onclick="setCarAndSearch({$item['id_compat']})">
+                    onclick="setCarSearch({$item['id_compat']})">
                     {elseif $linkBrand != ''}
                       {if $linkBrand|is_numeric}
                         <a href="/{$currentLanguageIso}/{$linkBrand}-product.html">
@@ -363,7 +363,7 @@
 
                           {if  $child['id_compat'] > 0}
                             <a style="cursor: pointer;"
-                            onclick="setCarAndSearch({$child['id_compat']})">
+                            onclick="setCarSearch({$child['id_compat']})">
                             {elseif $linkBrandMini != ''}
                               <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                             {/if}
@@ -388,7 +388,7 @@
                           <div class="card-img ">
                             {if  $child['id_compat'] > 0}
                               <a style="cursor: pointer;"
-                              onclick="setCarAndSearch({$child['id_compat']})">
+                              onclick="setCarSearch({$child['id_compat']})">
                               {elseif $linkBrandMini != ''}
                                 <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                               {/if}
@@ -406,7 +406,7 @@
                           <div class="card-img ">
                             {if  $child['id_compat'] > 0}
                             <a style="cursor: pointer;"
-                            onclick="setCarAndSearch({$child['id_compat']})">
+                            onclick="setCarSearch({$child['id_compat']})">
                             {elseif $linkBrandMini != ''}
                               <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                             {/if}
@@ -442,7 +442,7 @@
               {/if} *}
 
                 {if $mobileItem['id_compat'] > 0}
-                  <a class="card-img" style="cursor: pointer; position: relative;" onclick="setCarAndSearch({$mobileItem['id_compat']})">
+                  <a class="card-img" style="cursor: pointer; position: relative;" onclick="setCarSearch({$mobileItem['id_compat']})">
                 {elseif $linkBrand != ''}
                   {if $linkBrand|is_numeric}
                     <a href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
