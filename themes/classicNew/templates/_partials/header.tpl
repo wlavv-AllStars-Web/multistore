@@ -435,7 +435,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content {
   display: none;
   position: absolute;
-  background: var(--euromus-color-600);
+  background: var(--euromus-color-100);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -485,7 +485,7 @@ btnBrandsMobile.addEventListener('click', () => {
 }
 
 .dropdown-content li a:hover{
-  color: var(--euromus-color-100) !important;
+  color: var(--euromus-color-300) !important;
   background: transparent !important;
   font-weight: 700;
 }
