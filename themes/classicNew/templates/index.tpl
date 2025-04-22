@@ -386,17 +386,39 @@
                           </div>
                         {elseif  $key == 1 && $child.id_parent_card == 2}
                           <div class="card-img ">
-                            <a href="/{$currentLanguageIso}/{$child['link']}-product.html">
-                              <div class="layerHover">{$child["title_{$currentLanguageIso}"]}</div>
-                              <img src="{$child["image_{$currentLanguageIso}"]}" loading="lazy" alt="banner_{$child.id_parent_card}_{$childkey}"/>
-                            </a>
+                            {if  $child['id_compat'] > 0}
+                              <a style="cursor: pointer;"
+                              onclick="setCarAndSearch({$child['id_compat']})">
+                              {elseif $linkBrandMini != ''}
+                                <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
+                              {/if}
+                                <div class="layerHover">{$child["title_{$currentLanguageIso}"]}</div>
+                                <img src="{$child["image_{$currentLanguageIso}"]}" loading="lazy" alt="banner_{$child.id_parent_card}_{$childkey}" />
+                              {if $child['id_compat'] > 0}
+                              </a>
+                              {elseif $linkBrandMini != ''}
+                                </a>
+                              {else}
+                                </a>
+                            {/if}
                           </div>
                         {elseif  $key == 2 && $child.id_parent_card == 3}
                           <div class="card-img ">
-                            <a href="/{$currentLanguageIso}/{$child['link']}-product.html">
+                            {if  $child['id_compat'] > 0}
+                            <a style="cursor: pointer;"
+                            onclick="setCarAndSearch({$child['id_compat']})">
+                            {elseif $linkBrandMini != ''}
+                              <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
+                            {/if}
                               <div class="layerHover">{$child["title_{$currentLanguageIso}"]}</div>
-                              <img src="{$child["image_{$currentLanguageIso}"]}" loading="lazy" alt="banner_{$child.id_parent_card}_{$childkey}"/>
+                              <img src="{$child["image_{$currentLanguageIso}"]}" loading="lazy" alt="banner_{$child.id_parent_card}_{$childkey}" />
+                            {if $child['id_compat'] > 0}
                             </a>
+                            {elseif $linkBrandMini != ''}
+                              </a>
+                            {else}
+                              </a>
+                            {/if}
                           </div>
                         {/if}
                       
