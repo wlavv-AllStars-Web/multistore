@@ -94,7 +94,7 @@ main > #wrapper {
 }
 
 .cms-id-51 main > #wrapper {
-  background: #f6f6f6 !important;
+  background: #eee !important;
 }
 .cms-id-52 main > #wrapper {
   background: #f6f6f6 !important;
@@ -4175,7 +4175,7 @@ header.page-header {
 }
 
 #cms-partners .p-3 {
-  padding: 0rem !important;
+  padding: 1rem !important;
   width: 400px;
   margin: 1rem;
 }
@@ -8028,7 +8028,7 @@ transform: translate(-50%,-50%);
     #cms-partners .cards {
       margin: 1rem auto;
       display: grid;
-      grid-column-gap: 1rem;
+      grid-column-gap: 0rem;
       grid-row-gap: 1rem;
       grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
     }
