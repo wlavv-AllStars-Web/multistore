@@ -29,7 +29,7 @@
 {assign var="id_manufacturer" value=$manufacturer.id}
 
  {if $page.page_name == "new-products"}
-  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123"  style="width:100%;"/></div>
+  <div class="banner"><img src="https://www.all-stars-motorsport.com/img/app_icons/news_{$language.iso_code}.webp?t=123" alt="banner new products"  style="width:100%;"/></div>
  {/if}
 
 
