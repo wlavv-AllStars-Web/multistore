@@ -1197,6 +1197,12 @@ a:focus{
 /* mobile */
 @media screen and (max-width:767px) {
 
+  #blockcart-modal .modal-content {
+    max-height: 100dvh;
+    overflow-y: scroll;
+    height: 100% !important;
+  }
+
   /* .bootstrap-touchspin .btn-touchspin {
     height: 1.5rem !important;
   } */
