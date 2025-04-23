@@ -6626,7 +6626,7 @@ transform: translate(-50%,-50%);
     background: #eee;
   }
 
-  #contact #wrapper .container-contact #content-wrapper #main #content {
+  #contact #wrapper .container-contact #content-wrapper #main #content .contact-form{
     background: #eee !important;
   }
 
