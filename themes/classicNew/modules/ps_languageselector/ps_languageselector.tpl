@@ -27,7 +27,7 @@
     <span class="language-selector-label hidden-md-up">{l s='Language:' d='Shop.Theme.Global'}</span>
     <div class="language-selector dropdown js-dropdown">
       <button data-toggle="dropdown" class="hidden-sm-down btn-unstyle" aria-haspopup="true" aria-expanded="false" aria-label="{l s='Language dropdown' d='Shop.Theme.Global'}" style="cursor: pointer;">
-        <img src="/img/flags/{$current_language.iso_code}.svg" width="40" height="auto" style="outline: 2px solid var(--euromus-color-200);border-radius: 0.15rem;outline-offset: -1px;" alt="{$current_language.iso_code}" />
+        <img src="/img/flags/{$current_language.iso_code}.svg" width="40" height="auto" style="outline: 2px solid var(--euromus-color-200);border-radius: 0.15rem;outline-offset: -1px;" alt="{$current_language.iso_code} language" />
         <span class="expand-more" style="font-weight: 600;">{$current_language.iso_code}</span>
         {* <i class="material-icons expand-more">&#xE5C5;</i> *}
       </button>
@@ -35,7 +35,7 @@
         {foreach from=$languages item=language}
           <li {if $language.id_lang == $current_language.id_lang} class="current" {/if} style="display: flex;align-items:center;">
             <a href="{url entity='language' id=$language.id_lang}" class="dropdown-item" data-iso-code="{$language.iso_code}">
-              <img src="/img/flags/{$language.iso_code}.svg" width="16" height="11" style="margin-left: 0.5rem;"/>
+              <img src="/img/flags/{$language.iso_code}.svg" width="16" height="11" style="margin-left: 0.5rem;" alt="{$language.iso_code} language"/>
               {$language.name_simple}
             </a>
           </li>
@@ -43,7 +43,7 @@
       </ul>
       <select class="link hidden-md-up" aria-labelledby="language-selector-label">
         {foreach from=$languages item=language}
-          <img src="/img/flags/{$language.iso_code}.jpg" width="16" height="11" style="margin-left: 0.5rem;"/>
+          <img src="/img/flags/{$language.iso_code}.jpg" width="16" height="11" style="margin-left: 0.5rem;" alt="{$language.iso_code} language"/>
         <option value="{url entity='language' id=$language.id_lang}"{if $language.id_lang == $current_language.id_lang} selected="selected"{/if} data-iso-code="{$language.iso_code}">
             {$language.name_simple}
           </option>
