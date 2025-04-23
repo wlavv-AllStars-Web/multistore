@@ -6636,6 +6636,12 @@ transform: translate(-50%,-50%);
     background: #fff !important;
   }
 
+  /* paymnet page */
+
+  .cms-id-47 #content-wrapper #content {
+    background: #fff !important;
+  }
+
   /*  */
 
   #current_car_settings {
