@@ -6630,6 +6630,12 @@ transform: translate(-50%,-50%);
     background: #eee !important;
   }
 
+  /* shipping page */
+
+  .cms-id-46 > main > #wrapper {
+    background: #fff;
+  }
+
   /*  */
 
   #current_car_settings {
