@@ -6617,6 +6617,11 @@ transform: translate(-50%,-50%);
 
   #cms #content-wrapper #content.page-cms-45 {
     background-color: #fff !important;
+    padding: 0;
+  }
+
+  #cms #content-wrapper #content.page-cms-45 #about-us {
+    padding: 1rem;
   }
 
   .about-content-cards {
