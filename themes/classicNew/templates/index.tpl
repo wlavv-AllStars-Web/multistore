@@ -443,7 +443,7 @@
                     <a href="/{$currentLanguageIso}/brand/{$linkBrand}" style="position: relative;">
                   {/if}
                 {else}
-                  <a style="position: relative;">
+                  <a style="position: relative;" href="#">
                 {/if}
 
                   <img src="{$mobileItem["image_{$currentLanguageIso}"]}" style="width: 100%;" loading="lazy" alt="banner{$mobilekey}"/>
