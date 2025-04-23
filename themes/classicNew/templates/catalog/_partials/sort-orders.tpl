@@ -33,7 +33,7 @@
 </a>
 <div class="dropdown-menu">
   {foreach from=$listing.sort_orders item=sort_order}
-    <a
+    <span
       rel="nofollow"
       {* href="{$sort_order.url}" *}
       onclick="setOrder(this)"
@@ -41,7 +41,7 @@
       class="select-list {['current' => $sort_order.current, 'js-search-link' => false]|classnames}"
     >
       {$sort_order.label}
-    </a>
+    </span>
   {/foreach}
 </div>
 </div>
