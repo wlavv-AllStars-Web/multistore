@@ -8547,7 +8547,7 @@ transform: translate(-50%,-50%);
   /* breadcrumb */
 
   .breadcrumb ol {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   /* order history */
