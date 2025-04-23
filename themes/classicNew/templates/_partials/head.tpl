@@ -43,14 +43,14 @@
   })(window,document,'script','dataLayer','GTM-PSF3LZPP');</script>
 
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8H56NBGZB"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8H56NBGZB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-L8H56NBGZB');
-  </script>
+  </script> -->
   {/literal}
 
   <meta name="description" content="{block name='head_seo_description'}{$page.meta.description}{/block}">
