@@ -6613,6 +6613,18 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 992px) {
+  /* partners */
+
+  .cms-id-51 #content-wrapper #content {
+    background: #fff !important;
+    padding: 0;
+  } 
+
+  .cms-id-51 #content-wrapper #content #cms-partners{
+    background: #fff !important;
+    padding: 1rem;
+  } 
+
   /* contact page */
 
   #contact #wrapper .container-contact{
