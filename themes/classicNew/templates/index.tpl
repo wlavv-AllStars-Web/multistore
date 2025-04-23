@@ -488,8 +488,8 @@
               <div class="card-text">
               
                 {foreach from=$versionsFordMustang item=item key=key name=name}
-                  <div class="card-link"><a style="cursor: pointer;"
-                      onclick="showCarVersions(this)">{$item.name}</a>
+                  <div class="card-link"><span style="cursor: pointer;"
+                      onclick="showCarVersions(this)">{$item.name}</span>
                       <div class="container-versions-car" style="display: none;">
                         {foreach from=$item.versions item=version key=versionkey}
                           <span class="car_version" style="display:flex;flex-direction: column;gap: .5rem;margin-top: .5rem;" onclick="searchCompat({$version.compat_data[0].id_compat})">{$version.compat_data[0].version}</span>
