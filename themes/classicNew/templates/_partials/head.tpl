@@ -42,7 +42,7 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PSF3LZPP');</script>
 
-  <!-- Google tag (gtag.js) -->
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8H56NBGZB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
