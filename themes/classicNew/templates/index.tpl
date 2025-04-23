@@ -322,8 +322,7 @@
                       <h5>{$item["title_{$currentLanguageIso}"]}</h5>
                     </div>
                     {if $item['id_compat'] > 0}
-                    <a style="cursor: pointer;"
-                    onclick="setCarSearch({$item['id_compat']})">
+                    <a style="cursor: pointer;" href="{$link->getPageLink('cars-products')}?id_compat={$item['id_compat']}">
                     {elseif $linkBrand != ''}
                       {if $linkBrand|is_numeric}
                         <a href="/{$currentLanguageIso}/{$linkBrand}-product.html">
@@ -359,8 +358,7 @@
 {* aquui *}
 
                           {if  $child['id_compat'] > 0}
-                            <a style="cursor: pointer;"
-                            onclick="setCarSearch({$child['id_compat']})">
+                            <a style="cursor: pointer;" href="{$link->getPageLink('cars-products')}?id_compat={$child['id_compat']}">
                             {elseif $linkBrandMini != ''}
                               <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                             {/if}
@@ -384,8 +382,7 @@
                         {elseif  $key == 1 && $child.id_parent_card == 2}
                           <div class="card-img ">
                             {if  $child['id_compat'] > 0}
-                              <a style="cursor: pointer;"
-                              onclick="setCarSearch({$child['id_compat']})">
+                              <a style="cursor: pointer;" href="{$link->getPageLink('cars-products')}?id_compat={$child['id_compat']}">
                               {elseif $linkBrandMini != ''}
                                 <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                               {/if}
@@ -402,8 +399,7 @@
                         {elseif  $key == 2 && $child.id_parent_card == 3}
                           <div class="card-img ">
                             {if  $child['id_compat'] > 0}
-                            <a style="cursor: pointer;"
-                            onclick="setCarSearch({$child['id_compat']})">
+                            <a style="cursor: pointer;" href="{$link->getPageLink('cars-products')}?id_compat={$child['id_compat']}">
                             {elseif $linkBrandMini != ''}
                               <a href="/{$currentLanguageIso}/{$linkBrandMini}-product.html">
                             {/if}
@@ -439,7 +435,7 @@
               {/if} *}
 
                 {if $mobileItem['id_compat'] > 0}
-                  <a class="card-img" style="cursor: pointer; position: relative;" onclick="setCarSearch({$mobileItem['id_compat']})">
+                  <a class="card-img" style="cursor: pointer; position: relative;" href="{$link->getPageLink('cars-products')}?id_compat={$item['id_compat']}" >
                 {elseif $linkBrand != ''}
                   {if $linkBrand|is_numeric}
                     <a href="/{$currentLanguageIso}/{$linkBrand}-product.html" style="position: relative;">
