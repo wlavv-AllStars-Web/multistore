@@ -35,10 +35,10 @@
   </head>
 
   <body id="{$page.page_name}" class="{$page.body_classes|classnames}" style="height: auto;">
-    <!-- Google Tag Manager (noscript) -->
+
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSF3LZPP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    
 
     {block name='hook_after_body_opening_tag'}
       {hook h='displayAfterBodyOpeningTag'}

@@ -34,13 +34,13 @@
   {block name='hook_after_title_tag'}
     {hook h='displayAfterTitleTag'}
   {/block}
-  <!-- Google Tag Manager -->
+  
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PSF3LZPP');</script>
-  <!-- End Google Tag Manager -->
+
   <meta name="description" content="{block name='head_seo_description'}{$page.meta.description}{/block}">
   <meta name="keywords" content="{block name='head_seo_keywords'}{$page.meta.keywords}{/block}">
   <meta name="google-site-verification" content="7Bbibv4zGOhDXWLu37ZOovxUsNRzQ7sDLL4mSd0cz2I" />
