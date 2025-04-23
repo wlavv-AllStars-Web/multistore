@@ -151,7 +151,7 @@
           </div> *}
     
           <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-            <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-controls="category-dropdown">
               <span id="name_category">
                 {l s='By Category' d='Shop.Theme.Actions'}
               </span>
@@ -235,7 +235,7 @@
     <div class=" box-sortby col-md-3">
       <div class="row sort-by-row">
         <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-          <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-controls="manufacturer-dropdown">
             <span id="name_brand">
             
               {l s='By Brand' d='Shop.Theme.Actions'}
@@ -289,7 +289,7 @@
           </div> *}
     
           <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-            <span  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-controls="items-per-page-dropdown">
             <span  id="name_items_per_page">{l s='By Page' d='Shop.Theme.Actions'}</span>
               {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>

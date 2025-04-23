@@ -24,7 +24,7 @@
  *}
 {* <span class="hidden-sm-down sort-by">{l s='Sort by:' d='Shop.Theme'}</span> *}
 <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-<span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-controls="name_sort_by">
 <span id="name_sort_by">
   {l s='Sort By' d='Shop.Theme.SortOrders'}
 </span>
