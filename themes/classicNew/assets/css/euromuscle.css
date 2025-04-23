@@ -8538,6 +8538,12 @@ transform: translate(-50%,-50%);
 /* mobile search compat */
 
 @media screen and (max-width: 564px) {
+  /* breadcrumb */
+
+  .breadcrumb ol {
+    flex-direction: column;
+  }
+
   /* order history */
 
   .container-history {
