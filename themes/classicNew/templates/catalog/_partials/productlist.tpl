@@ -98,10 +98,14 @@
           </div>
         </div>
       {else}
-        {foreach from=$listing.products item="product"}
+        {foreach from=$listing.products item="product" key="index"}
             {* <pre>{$product|print_r}</pre> *}
             {block name='product_miniature'}
+              {if $index > 2}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3" lazy=true}
+              {else}
                 {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3"}
+              {/if}
             {/block}
         {/foreach}
       {/if}

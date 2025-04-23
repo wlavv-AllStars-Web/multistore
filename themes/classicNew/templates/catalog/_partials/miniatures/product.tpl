@@ -41,7 +41,7 @@
                 <img
                 src="{if !empty($product.cover.bySize.tm_home_default.url)}{$product.cover.bySize.tm_home_default.url}{else}{$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'tm_home_default')}{/if}"
                   alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-                  loading="lazy"
+                  {if $lazy == true}loading="lazy"{/if}
                   data-full-size-image-url="{$product.cover.large.url}"
                   width="{$product.cover.bySize.tm_home_default.width}"
                   height="{$product.cover.bySize.tm_home_default.height}"
