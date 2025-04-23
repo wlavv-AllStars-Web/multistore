@@ -116,6 +116,10 @@ main > #wrapper {
   width: auto;
 }
 
+.mySwiper-thumb-images .swiper-wrapper {
+  user-select: none;
+}
+
 .mySwiper-thumb-images .swiper-button-prev {
   padding: 0 0.5rem;
   background: var(--euromus-color-700);
