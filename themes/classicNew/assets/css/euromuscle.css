@@ -6620,6 +6620,10 @@ transform: translate(-50%,-50%);
     padding: 0;
   } 
 
+  .cms-id-51 #content-wrapper #content .banner_cms{
+    margin-bottom: 0 !important;
+  } 
+
   .cms-id-51 #content-wrapper #content #cms-partners{
     background: #fff !important;
     padding: 1rem;
