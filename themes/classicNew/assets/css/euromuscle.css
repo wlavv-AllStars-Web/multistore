@@ -6613,6 +6613,25 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 992px) {
+  /* contact page */
+
+  #contact #wrapper .container-contact{
+    background: #eee;
+    background: #eee;
+    padding-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  #contact #wrapper .container-contact #content-wrapper #main #content {
+    background: #eee;
+  }
+
+  #contact #wrapper .container-contact #content-wrapper #main #content {
+    background: #eee;
+  }
+
+  /*  */
+
   #current_car_settings {
     min-height: 284px !important;
     border: 2px solid var(--euromus-color-text2);
