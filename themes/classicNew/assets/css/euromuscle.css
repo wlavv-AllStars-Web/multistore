@@ -6633,7 +6633,7 @@ transform: translate(-50%,-50%);
   /* shipping page */
 
   .cms-id-46 > main > #wrapper {
-    background: #fff;
+    background: #fff !important;
   }
 
   /*  */
