@@ -4664,6 +4664,7 @@ justify-content: center;
 
 .images-container.js-images-container .product-cover {
   width: 100%;
+  justify-content: center;
 }
 
 .images-container.js-images-container .product-cover img{
