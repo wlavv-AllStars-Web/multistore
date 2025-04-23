@@ -8042,7 +8042,7 @@ transform: translate(-50%,-50%);
     /* partner */
 
     #cms-partners .cards {
-      margin: 1rem auto;
+      margin: 0;
       display: grid;
       grid-column-gap: 0rem;
       grid-row-gap: 1rem;
