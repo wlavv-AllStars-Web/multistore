@@ -47,6 +47,12 @@
       j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PSF3LZPP');
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "consent.given",
+      consent: "true"
+    });
     </script>
   {/literal}
 
