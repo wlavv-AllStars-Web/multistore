@@ -151,7 +151,7 @@
           </div> *}
     
           <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-            <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span id="name_category">
                 {l s='By Category' d='Shop.Theme.Actions'}
               </span>
@@ -159,7 +159,7 @@
               {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523'] && !$page.body_classes['category-id-550'] && !$page.body_classes['category-id-551'] && !$page.body_classes['category-id-552'] && !$page.body_classes['category-id-553'] && !$page.body_classes['category-id-554']}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>
               {/if}
-            </a>
+            </span>
 
             {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523'] && !$page.body_classes['category-id-550'] && !$page.body_classes['category-id-551'] && !$page.body_classes['category-id-552'] && !$page.body_classes['category-id-553'] && !$page.body_classes['category-id-554']}
               <div class="dropdown-menu dropdown-category">
@@ -235,7 +235,7 @@
     <div class=" box-sortby col-md-3">
       <div class="row sort-by-row">
         <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-          <a class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span id="name_brand">
             
               {l s='By Brand' d='Shop.Theme.Actions'}
@@ -243,7 +243,7 @@
             {if $page.page_name != "manufacturer"}
             <i class="material-icons pull-xs-right">arrow_drop_down</i>
             {/if}
-          </a>
+          </span>
           {if $page.page_name != "manufacturer"}
             <div class="dropdown-menu">
             {foreach $manufacturers AS $manufacturer}
@@ -289,11 +289,11 @@
           </div> *}
     
           <div class="{*if !empty($listing.rendered_facets)}col-sm-9 col-xs-8{else}col-sm-12 col-xs-12{/if*} products-sort-order dropdown">
-            <a  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span  id="name_items_per_page">{l s='By Page' d='Shop.Theme.Actions'}</span>
               {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
               <i class="material-icons pull-xs-right">arrow_drop_down</i>
-            </a>
+            </span>
             <div class="dropdown-menu dropdown-perpage" onchange="setProductsPerPage('change')">
               <form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="wm-hiddennbr nbrItemPage" style="width:100%;">
                 {foreach from=$n_array item=nValue}
