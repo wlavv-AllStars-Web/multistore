@@ -68,7 +68,7 @@
           
         {if $page.page_name === "contact"}
           <div class="banner_contact" style="position: relative;">
-            <img class="contact_Banner" src="/img/eurmuscle/cmsBanners/Banners-contact.webp" />
+            <img class="contact_Banner" src="/img/eurmuscle/cmsBanners/Banners-contact.webp" alt="Contact Banner"/>
             <h2 class="" style="position: absolute;bottom:1rem;color: #fff;">{l s="CONTACTS" d="Shop.Theme.Cms"}</h2>
           </div>
           <script>
