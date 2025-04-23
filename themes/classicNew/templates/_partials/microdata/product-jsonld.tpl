@@ -95,6 +95,17 @@
         {if $product.condition == 'used'}"itemCondition": "https://schema.org/UsedCondition",{/if}
         {if $product.condition == 'refurbished'}"itemCondition": "https://schema.org/RefurbishedCondition",{/if}
       {/if}
+      {if $compats|count}
+        "additionalProperty": [
+          {foreach from=$compats item=compat name=compatList}
+            {
+              "@type": "PropertyValue",
+              "name": "Compatibility",
+              "value": "{$compat.brand} {$compat.model} {$compat.type} {$compat.version}"
+            }{if not $smarty.foreach.compatList.last},{/if}
+          {/foreach}
+        ],
+      {/if}
       "availability": "{$product.seo_availability}",
       "seller": {
         "@type": "Organization",
