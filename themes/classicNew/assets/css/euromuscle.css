@@ -6613,6 +6613,20 @@ transform: translate(-50%,-50%);
 }
 
 @media screen and (min-width: 992px) {
+  /* about us */
+
+  #cms #content-wrapper #content.page-cms-45 {
+    background-color: #fff !important;
+  }
+
+  .about-content-cards {
+    background-color: #fff !important;
+  }
+
+  #about-us .about-content {
+    background-color: #fff !important;
+  }
+
   /* partners */
 
   .cms-id-51 #content-wrapper #content {
