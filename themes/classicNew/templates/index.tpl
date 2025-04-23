@@ -59,17 +59,17 @@
                 </div>
                 
                 <div class="menu-select-car-content">
-                  <select class="custom-select custom-select-lg brands-select">
+                  <select class="custom-select custom-select-lg brands-select" aria-label="Select Brand">
                     <option selected>{l s="Brand" d="Shop.Theme.Homepage"}</option>
                   </select>
-                  <select class="custom-select custom-select-lg models-select disabled">
+                  <select class="custom-select custom-select-lg models-select disabled"  aria-label="Select Model">
                     <option selected>{l s="Model" d="Shop.Theme.Homepage"}</option>
 
                   </select>
-                  <select class="custom-select custom-select-lg types-select disabled">
+                  <select class="custom-select custom-select-lg types-select disabled"  aria-label="Select Type">
                     <option selected>{l s="Type" d="Shop.Theme.Homepage"}</option>
                   </select>
-                  <select class="custom-select custom-select-lg versions-select disabled">
+                  <select class="custom-select custom-select-lg versions-select disabled"  aria-label="Select Version">
                     <option selected>{l s="Version" d="Shop.Theme.Homepage"}</option>
                   </select>
 
