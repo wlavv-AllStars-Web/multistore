@@ -141,7 +141,7 @@
 
         
         <div class="js-top-menu mobile" id="_mobile_top_menu" onclick="closeMenu()">
-        <img src="/img/logo-17047994381.jpg" style="width: 26vw; margin-right:auto; margin-left:1rem;">
+        <img src="/img/logo-17047994381.jpg" style="width: 26vw; margin-right:auto; margin-left:1rem;" alt="logo Euromuscle">
         <i class="fa fa-times"></i>
           <div>Close</div>
         </div>
@@ -163,7 +163,7 @@
           <div id="_mobile_shipping_link" class="{if $currentUrl === $linkShipping}activeLink{/if}"><a href="{$linkShipping}"><i class="fa-solid fa-truck-fast"></i>{l s='Shipping' d='Shop.Theme.MenuMobile'}</a></div>
           <div id="_mobile_payment_link" class="{if $currentUrl === $linkPayment}activeLink{/if}"><a href="{$linkPayment}"><i class="fa-solid fa-credit-card"></i>{l s='Payment' d='Shop.Theme.MenuMobile'}</a></div>
           
-          <div id="button_modal_language2" onclick="showLanguagesMobile()"><img src="/img/flags/{$language.iso_code}.jpg" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
+          <div id="button_modal_language2" onclick="showLanguagesMobile()"><img src="/img/flags/{$language.iso_code}.jpg" alt="language flag {$language.iso_code}" /><p>{l s='Change Language' d='Shop.Theme.MenuMobile'}</p></div>
           <div id="container-languages-mobile">
             {foreach from=$languages item=$language }
             {if $language.id_lang == 2 ||$language.id_lang == 4 ||$language.id_lang == 5 }
@@ -181,7 +181,7 @@
             {foreach from=$manufacturers item=$manufacturer }
               <li class="col-lg-3">
               <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
-              <img src="/img/m/{$manufacturer.id_manufacturer}-large_default.webp" width="100" height="45" style="max-width: 100px;" loading="lazy" />
+              <img src="/img/m/{$manufacturer.id_manufacturer}-large_default.webp" alt="Manufacturer {$manufacturer.link_rewrite} logo" width="100" height="45" style="max-width: 100px;" loading="lazy" />
               </a>
               </li>
             {/foreach}
