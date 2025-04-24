@@ -199,11 +199,11 @@
         <li class="{if $currentUrl === $link->getPageLink('new-products', true)}activeLinkDesk{/if}" ><a href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Global'}</a></li> 
         <li class="dropdown brands-drop">
           <a class="dropdown-toggle-brands"  role="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
-          <ul class="dropdown-content hidden-md-down">
+          <ul class="dropdown-content">
           {* <pre>{print_r($manufacturers,1)}</pre> *}
           {foreach from=$manufacturers item=$manufacturer }
             
-            <li class="col-lg-3">
+            <li class="brand-li col-lg-3 col-md-4">
             <a href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
               {$manufacturer.name}
               {* <img src="/img/tmp/manufacturer_mini_{$manufacturer.id_manufacturer}.jpg?time=1708602834" width="80px" height="auto"/> *}
@@ -230,6 +230,17 @@
         <li class="{if $currentUrl === $linkClearance}activeLinkDesk{/if}" ><a href="{$linkClearance}">{l s='Clearance' d='Shop.Theme.Global'}</a></li>
       </ul>
   </div>
+  <style>
+    .brands-drop .dropdown-content {
+      display: none;
+    }
+
+  /* open state */
+    .brands-drop.open .dropdown-content {
+      display: flex !important;
+      flex-wrap: wrap;
+    }
+  </style>
 
 
   <div id="modalLanguage" class="modalLanguage">
@@ -384,10 +395,13 @@ btnBrandsMobile.addEventListener('click', () => {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 .mainmenuDesktop li{
-  width: 100%;
   /* max-width: 100px; */
   display: flex;
   align-content: center;
+}
+
+.mainmenuDesktop li:not(.brand-li) {
+  width: 100%;  
 }
 
 .mainmenuDesktop a {
@@ -468,7 +482,6 @@ btnBrandsMobile.addEventListener('click', () => {
   text-decoration: none;
   display: flex;
   max-width: none!important;
-  width: 20%;
   cursor: auto;
 }
 
