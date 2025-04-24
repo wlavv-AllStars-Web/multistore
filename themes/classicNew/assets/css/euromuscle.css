@@ -13,7 +13,7 @@
 }
 
   .container-contact .contact-form .form-control {
-    color: #fff !important;
+    background: #fff !important;
   }
 
   .custom-checkbox input[name="customer_privacy"] {
