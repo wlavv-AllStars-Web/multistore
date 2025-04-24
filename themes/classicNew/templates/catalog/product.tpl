@@ -237,7 +237,7 @@
                 {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
                 {if $product.description}
                   <div class="banner-tabs" >
-                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
+                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}" />
                   </div>
                   <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
                     {block name='product_description'}
@@ -247,7 +247,7 @@
                       <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
                         <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
                           <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy" alt="banner youtube video {$product.youtube_1}"/>
                             <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                               <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                             </div>
@@ -270,7 +270,7 @@
                       {/if} *}
                 {else}
                   <div class="banner-tabs" >
-                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" />
+                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}"/>
                   </div>
                   <div class="tab-description tab" style="display: flex;">
                     {block name='product_description'}
@@ -282,13 +282,13 @@
                       <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
                         <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                           <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                          <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy" alt="banner {$product.youtube_1}"/>
                             <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                               <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                             </div>
                           </div>
                           <div  class="iframeClass"  style="display:none;height:318px">
-                            <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                            <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;" alt="banner youtube video {$product.youtube_1}">
                             </iframe>
                           </div>
                         </div>
@@ -311,7 +311,7 @@
      <div class="collapse container-drop" id="compatMobile">
        
        <div class="banner-tabs" >
-         <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
+         <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" alt="banner compat" />
        </div>
                {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
        {if $compats|count}
@@ -379,7 +379,7 @@
      <div class="collapse container-drop" id="shippingMobile">
        
        <div class="banner-tabs" >
-         <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+         <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" alt="banner shipping"/>
        </div>
        <div class="tab">
          {hook h='extraRight' mod='totshippingpreview' mobile=1}
@@ -400,7 +400,7 @@
        {if $product.attachments}
         <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
            <div class="banner-tabs" >
-             <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+             <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" alt="banner instructions"/>
            </div>
            <section class="product-attachments tab">
              {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -415,7 +415,7 @@
 
                  <div class="difficulty-level">
                    <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
-                   <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" />
+                   <img src="https://www.all-stars-motorsport.com/img/app_icons/difficulty_3.webp" alt="img difficulty"/>
                  </div>
                </div>
              {/foreach}
@@ -427,7 +427,7 @@
          
           <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
             <div class="banner-tabs" >
-              <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+              <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" alt="banner instructions"/>
             </div>
             {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
              <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
@@ -466,7 +466,7 @@
      <div class="collapse container-drop" id="askquestionMobile">
        
        <div class="banner-tabs" >
-           <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" />
+           <img src="/img/asm/banners/faq/faq_{$language.iso_code}.webp" alt="banner faq" />
        </div>
 
        {* {if $email_sent == 1} *}
@@ -681,7 +681,7 @@
                   <div class="tab-pane fade in active" id="description" role="tabpanel">
                    {if $product.description}
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" alt="banner description brand" />
                      </div>
                      <div class="tab-description" style="display: flex;justify-content:center;">
                        {block name='product_description'}
@@ -691,7 +691,7 @@
                          <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
                            <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy" alt="banner youtube video {$product.youtube_1}"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
@@ -713,7 +713,7 @@
                          {/if} *}
                    {else}
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" alt="banner brand"/>
                      </div>
                      <div class="tab-description" style="display: flex;">
                        {block name='product_description'}
@@ -725,7 +725,7 @@
                          <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
                            <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="{$product.cover.large.url}" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy" alt="product cover img"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
@@ -766,7 +766,7 @@
          
                   <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp"  alt="banner compats"/>
                      </div>
                     <div>
                     {if $compats|count}
@@ -824,7 +824,7 @@
 
                   <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
                     <div class="banner-tabs" >
-                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" alt=" banner shipping {$language.iso_code}"/>
                     </div>
                    <div class="tab">
                      {hook h='extraRight' mod='totshippingpreview' mobile=0}
@@ -839,7 +839,7 @@
                     {if $product.attachments}
                      <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions"/>
                      </div>
                         <section class="product-attachments">
                           {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -858,7 +858,7 @@
                       
                        <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                          <div class="banner-tabs" >
-                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions" />
                          </div>
                          <p>{l s='No Instructions' d='Shop.Theme.Actions'}</p>
                        </div>
@@ -873,20 +873,20 @@
          
                   <div  class="tab-pane fade in" id="product_reviews"  role="tabpanel">
                    <div class="banner-tabs" >
-                     <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+                     <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" alt="banner reviews" />
                    </div>
                    {hook h='displayFooterProduct' product=$product category=$category}
                   </div>
                   <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
                    <div class="banner-tabs" >
-                     <img src="https://www.all-stars-motorsport.com/img/app_icons/warranty_en.webp" />
+                     <img src="https://www.all-stars-motorsport.com/img/app_icons/warranty_en.webp"  alt="banner warranty"/>
                    </div>
                    <p>Product Warranty</p>
                   </div>
                   
                   <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
                    <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" />
+                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions"/>
                    </div>
                    <h4 style="padding: 1rem;">{$product_manufacturer->name}</h4>
                    <div style="padding: 1rem;">
