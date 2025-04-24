@@ -170,7 +170,7 @@
             <div style="display: flex;gap:1rem;align-items:center;width:90%;padding:0.5rem;border-radius: 4px;{if $currentLanguage->iso_code === $language.iso_code}background:#ee302e;{/if}">
               <img src="/img/flags/{$language.iso_code}.jpg" width="16" height="11" alt="flag_{$language.iso_code}"/>
               {* <div id="_mobile_language_selector"></div> *}
-              <a href="/{$language.iso_code}" data-iso="{$language.iso_code}" style="{if $currentLanguage->iso_code === $language.iso_code}color:#fff;{/if}">{$language.name}</a>
+              <a href="{url entity='language' id=$language.id_lang}" data-iso="{$language.iso_code}" style="{if $currentLanguage->iso_code === $language.iso_code}color:#fff;{/if}">{$language.name}</a>
               </div>
               {/if}
             {/foreach}
