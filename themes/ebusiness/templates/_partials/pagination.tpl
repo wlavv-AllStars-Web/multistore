@@ -92,38 +92,40 @@
   
   // document.addEventListener("DOMContentLoaded", function() {
   // Use event delegation for dynamically added .js-search-link elements
-  document.querySelector("#cars-products .pagination").addEventListener("click", function(e) {
-      if (e.target && (e.target.matches(".js-search-link") || e.target.matches(".next.js-search-link") || e.target.matches(".previous.js-search-link"))) {
-          e.preventDefault(); // Prevent the default behavior of the link (like navigating)
-          console.log("Loading...");
+  if(document.querySelector("#cars-products .pagination")){
+    document.querySelector("#cars-products .pagination").addEventListener("click", function(e) {
+        if (e.target && (e.target.matches(".js-search-link") || e.target.matches(".next.js-search-link") || e.target.matches(".previous.js-search-link"))) {
+            e.preventDefault(); // Prevent the default behavior of the link (like navigating)
+            console.log("Loading...");
 
-          // Show the loading spinner
-          showLoadingSpinner();
+            // Show the loading spinner
+            showLoadingSpinner();
 
-          // Get the URL from the link
-          const url = e.target.getAttribute('href'); // Get the URL from the link
+            // Get the URL from the link
+            const url = e.target.getAttribute('href'); // Get the URL from the link
 
-          // Example of an AJAX request - replace with actual request if needed
-          fetch(url)
-              .then(response => {
-                  if (response.ok) {
-                      return response.text(); // Handle the response here
-                  }
-                  throw new Error("AJAX request failed");
-              })
-              .then(data => {
-                  console.log("AJAX request completed successfully.");
-                  // Hide the loading spinner after request completion
-                  hideLoadingSpinner();
-                  // You can update the DOM with the new data here if needed
-              })
-              .catch(error => {
-                  console.error("AJAX request failed:", error);
-                  // Hide the spinner if the request failed
-                  hideLoadingSpinner();
-              });
-      }
-  });
+            // Example of an AJAX request - replace with actual request if needed
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.text(); // Handle the response here
+                    }
+                    throw new Error("AJAX request failed");
+                })
+                .then(data => {
+                    console.log("AJAX request completed successfully.");
+                    // Hide the loading spinner after request completion
+                    hideLoadingSpinner();
+                    // You can update the DOM with the new data here if needed
+                })
+                .catch(error => {
+                    console.error("AJAX request failed:", error);
+                    // Hide the spinner if the request failed
+                    hideLoadingSpinner();
+                });
+        }
+    });
+  }
 
   // Function to show the loading spinner
   function showLoadingSpinner() {
