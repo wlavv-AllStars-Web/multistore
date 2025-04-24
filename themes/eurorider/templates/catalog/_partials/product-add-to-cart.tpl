@@ -22,6 +22,78 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
+ {* <pre>{$product|print_r}</pre> *}
+ {if $product.out_of_stock == 0 && $product.quantity <= 0}
+  <script src="https://www.google.com/recaptcha/api.js" ></script>
+
+  <div class="form_product_outofstock_container">
+      <p class="form-product-title-outofstock text-center">{l s='The ETA for this product is currently around 30 days, so it is temporarily unavailable for sale. To be informed as soon as the product is available, please enter your email below:' d='Shop.Theme.Catalog'}</p>
+      <div class="form-fields d-flex justify-content-center">
+        <input type="hidden" name="id_product" value="{$product.id_product}">
+        <input type="hidden" name="id_product_attribute" value="{$product.id_product_attribute}">
+        <input type="hidden" name="product_reference" value="{$product.reference}">
+        <input type="hidden" name="customerLang" value="{$language.id}">
+        <input class="form-control col-lg-6" type="email" name="email_customer" id="email_customer" placeholder="{l s='Enter your email' d="Shop.Theme.Catalog"}" required style="background: #fff;">
+        <button type="submit"
+            class="btn btn-primary col-lg-3 g-recaptcha"
+            id="submit_request"
+            style="max-width: 300px;width: 100%;"
+            data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj"
+            data-callback="onSubmitEmailSave">
+            {l s='Submit request' d='Shop.Theme.Catalog'}
+        </button>
+      </div>
+      <div class="container-form-outofstock-response mt-2">
+      
+      </div>
+  </div>
+
+  <script>
+function onSubmitEmailSave(token) {
+
+      var productId = $('input[name="id_product"]').val();
+      var productAttributeId = $('input[name="id_product_attribute"]').val();
+      var productReference = $('input[name="product_reference"]').val();
+      var customerLang = $('input[name="customerLang"]').val();
+      var emailCustomer = $('#email_customer').val();
+
+      if (!emailCustomer) {
+        alert('Please enter your email.');
+        return;
+      }
+      
+      var recaptchaResponse = grecaptcha.getResponse();
+
+      $.ajax({
+        type: 'POST',
+        url: prestashop.urls.pages.cart, // Change this if using a different controller
+        data: {
+          ajax: true,
+          action: 'outOfStockNotification', // Define this action in your controller
+          id_product: productId,
+          id_product_attribute: productAttributeId,
+          productReference: productReference,
+          customerLang: customerLang,
+          email_customer: emailCustomer,
+          recaptcha_response: recaptchaResponse,
+        },
+        dataType: 'json',
+        success: function (response) {
+          if (response.success) {
+            $('.container-form-outofstock-response').html('<div class="alert alert-success" role="alert"> {l s="Email successfully added" d="Shop.Theme.Catalog"} </div>');
+          } else {
+            $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> {l s="An unexpected error occurred. Please try again later." d="Shop.Theme.Catalog"} </div>');
+          }
+        },
+        error: function () {
+          $('.container-form-outofstock-response').html('<div class="alert alert-danger" role="alert"> {l s="An unexpected error occurred. Please try again later." d="Shop.Theme.Catalog"} </div>');
+        }
+      });
+}
+</script>
+
+{else}
+
 <div class="product-add-to-cart">
   {if !$configuration.is_catalog}
     <span class="control-label">{l s='Quantity' d='Shop.Theme.Catalog'}</span>
@@ -95,3 +167,7 @@
     {/block}
   {/if}
 </div>
+{/if}
+
+
+<!-- end -->
