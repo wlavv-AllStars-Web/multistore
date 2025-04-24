@@ -33,61 +33,75 @@ function toggleOrderStateHistory() {
 
 // menu brands
 
-document.addEventListener('DOMContentLoaded', function() {
-// dropdown brands
-const dropdownLi = document.querySelector(".mainmenuDesktop .dropdown.brands-drop")
-const dropdownBrands = document.querySelector('a.dropdown-toggle-brands');
-// const dropdownBrandsCaret = document.querySelector('li.dropdown i');
-const dropdownContent = document.querySelector('ul.dropdown-content');
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdownLi = document.querySelector(".mainmenuDesktop .dropdown.brands-drop");
+  const dropdownBrands = document.querySelector("a.dropdown-toggle-brands");
+  const dropdownContent = document.querySelector("ul.dropdown-content");
 
+  let isDropdownBrandsOpen = false; 
 
-dropdownBrands.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleDropdown();
-});
-
-if(window.screen.width > 767){
-  dropdownLi.addEventListener('mouseover', (e) => {
+  dropdownBrands.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation();
+    console.log("click brands");
     toggleDropdown();
-
-    document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
-      drop.style.display = "none"
-    })
-  });
-  dropdownLi.addEventListener('mouseout', (e) => {
-    e.stopPropagation();
-    closeDropdown();
-    document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
-      drop.style.removeProperty("display");
-    })
   });
 
-}
+  if (window.screen.width > 1200) {
+    dropdownLi.addEventListener('mouseover', (e) => {
+      e.stopPropagation();
+      openDropdown();
 
-// Add event listener to close dropdown on clicks outside
-document.addEventListener('click', (e) => {
-  const isClickInsideDropdown = dropdownBrands.contains(e.target) || dropdownContent.contains(e.target);
+      document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
+        drop.style.display = "none";
+      });
+    });
 
-  if (!isClickInsideDropdown) {
-    closeDropdown();
+    dropdownLi.addEventListener('mouseout', (e) => {
+      e.stopPropagation();
+      closeDropdown();
+
+      document.querySelectorAll(".products-sort-order .dropdown-menu").forEach((drop) => {
+        drop.style.removeProperty("display");
+      });
+    });
+  }
+
+
+  document.addEventListener('click', (e) => {
+    setTimeout(() => {
+      if (!isDropdownBrandsOpen) return; // Only check if dropdown is open
+
+      const isClickInsideDropdown = dropdownBrands.contains(e.target) || dropdownContent.contains(e.target);
+
+      if (!isClickInsideDropdown) {
+        console.log("click outside, closing");
+        closeDropdown();
+      }
+    }, 0);
+  });
+
+  function toggleDropdown() {
+    if (isDropdownBrandsOpen) {
+      console.log("close");
+      closeDropdown();
+    } else {
+      console.log("open");
+      openDropdown();
+    }
+  }
+
+  function openDropdown() {
+    dropdownLi.classList.add('open');
+    isDropdownBrandsOpen = true;
+  }
+
+  function closeDropdown() {
+    dropdownLi.classList.remove('open');
+    isDropdownBrandsOpen = false;
   }
 });
 
-function toggleDropdown() {
-  if (!dropdownContent.style.display || dropdownContent.style.display === "none") {
-    dropdownContent.style.display = "flex";
-    dropdownContent.style.flexWrap = "wrap";
-  } else {
-    closeDropdown();
-  }
-}
-
-function closeDropdown() {
-  dropdownContent.style.display = "none";
-}
-
-});
 
 
 function openNavCarSpecs() {
