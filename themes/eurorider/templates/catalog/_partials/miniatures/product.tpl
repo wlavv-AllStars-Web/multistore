@@ -22,22 +22,25 @@
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
+ {* {if $product.pack}
+  <pre>{$product|print_r}</pre>
+{/if} *}
 {* <pre>{print_r($product['category'],1)}</pre> *}
 {* <pre>{$ur|print_r}</pre> *}
 {* <pre>{$product|print_r}</pre> *}
-<article class="product-miniature {if $product.pack}product-pack-miniature{/if} js-product-miniature d-flex justify-content-center col-lg-3 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
+<article class="product-miniature {if $product.pack}product-pack-miniature{/if} js-product-miniature d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}" itemscope itemtype="http://schema.org/Product">
   <div class="thumbnail-container" style="width: 526px;height:349px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative">
     <div class="image_item_product" style="border: 0;">
     {block name='product_thumbnail'}
       {if $product.cover_image_id}
-        <a href="{$product.link}" class="thumbnail product-thumbnail">
+      <a href="{if $product.pack}{$product.pack_link}{else}{$product.link}{/if}" class="thumbnail product-thumbnail">
           <picture>
-            {* {if !empty($product.cover.bySize.home_default.sources.avif)}<source srcset="{$product.cover.bySize.home_default.sources.avif}" type="image/avif">{/if}
-            {if !empty($product.cover.bySize.home_default.sources.webp)}<source srcset="{$product.cover.bySize.home_default.sources.webp}" type="image/webp">{/if} *}
+            {* {if !empty($product.cover.bySize.tm_home_default.sources.avif)}<source srcset="{$product.cover.bySize.tm_home_default.sources.avif}" type="image/avif">{/if}
+            {if !empty($product.cover.bySize.tm_home_default.sources.webp)}<source srcset="{$product.cover.bySize.tm_home_default.sources.webp}" type="image/webp">{/if} *}
             <img
               src="{if !empty($product.cover.bySize.tm_home_default.url)}{$product.cover.bySize.tm_home_default.url}{else}{$link->getImageLink($product.link_rewrite, $product.cover_image_id, 'tm_home_default')}{/if}"
               alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-              loading="lazy"
+              {* loading="lazy" *}
               data-full-size-image-url="{$product.cover.large.url}"
               width="{$product.cover.bySize.tm_home_default.width}"
               height="{$product.cover.bySize.tm_home_default.height}"
@@ -136,7 +139,16 @@
         {/if}
       {/block}
     {/if}
-    <div class="product-description" style="color: black;">
+    <div class="product-description" style="color: black;padding: .5rem 0;">
+
+      {* {if count($product['attributes']) > 0}
+      <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
+        {l s='More variations available' d='Shop.Theme.Actions'}
+      </div>
+      {else}
+        <div class="variantionsProductList" style="min-height:33px"></div>
+      {/if}
+   *}
     
       {block name='product_name'}
         {* <h4 class="h3 product-title"  itemprop="name"><a style="color: black;" href="{$product.url}">{$product.name|truncate:30:'...'}</a></h4> *}
@@ -144,16 +156,38 @@
           <h4 class="h3 product-title"  itemprop="name" style="max-width: 382px;text-align:start;padding:0 0.5rem;margin:0;"><a style="color: #131313;font-size:14px;text-transform:uppercase;" href="{$product.url}">{$product.name}</a></h4>
           <div class="add_to_cart_button d-desktop" style="margin-right: 1rem;">
 
-          
+          {if count($product['attributes']) > 0}
+            {if !$complementary}
+            <div class="add">
+              <button
+                class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
+                {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
+                {* data-button-action="add-to-cart"
+                data-dismiss="modal"
+                type="submit" *}
+                style="margin-top: 0;"
+                {* {if !$product.add_to_cart_url}
+                  disabled
+                {/if} *}
+                onclick="location.href = '{$product.url}'"
+
+              >
+                <i class="material-icons small">add_circle</i>
+
+              </button>
+            </div>
+            {/if}
+          {else}
           <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
           {* <form action="{if $product.pack}{pm_advancedpack::getPackAddCartURL($product.id)}{else}{$urls.pages.cart}{/if}" method="post" id="{if $product.pack}add-to-cart-form{else}add-to-cart-or-refresh{/if}"> *}
             <input type="hidden" name="token" value="{$static_token}">
             <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
             <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
-    
+    {* <pre>{$product|print_r}</pre> *}
+            {if !$complementary}
             <div class="add">
               <button
-                class="btn btn-primary add-to-cart"
+                class="btn btn-primary add-to-cart {if $product.out_of_stock == 0}disabled{/if}"
                 {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
                 data-button-action="add-to-cart"
                 data-dismiss="modal"
@@ -167,7 +201,9 @@
 
               </button>
             </div>
+            {/if}
           </form>
+          {/if}
 
           
 
@@ -182,21 +218,37 @@
 	      {* {hook h='displayProductListReviews' product=$product} *}
 	  {* </div> *}
 
+
+    <div class="add_to_cart_button-mobile d-mobile justify-content-center">
+
     {if count($product['attributes']) > 0}
-    <div class="variantionsProductList" style="color: var(--asm-color);text-align:center;display: block;line-height: 17px;color: var(--asm-color);text-align: center;font-size: 14px;padding:0.5rem;">
-      {l s='More variations available' d='Shop.Theme.Actions'}
-    </div>
+      {if !$complementary}
+      <div class="add">
+        <button
+          class="btn btn-outline-primary add-to-cart {if $product.out_of_stock == 0 && $product.quantity <= 0}disabled{/if}"
+          {* data-button-action="{if $product.pack}add-pack-to-cart{else}add-to-cart{/if}" *}
+          {* data-button-action="add-to-cart"
+          data-dismiss="modal"
+          type="submit" *}
+          style="margin-top: 0;"
+          {* {if !$product.add_to_cart_url}
+            disabled
+          {/if} *}
+          onclick="location.href = '{$product.url}'"
+
+        >
+          {l s="More variations" d="Shop.Theme.ProductList"}
+
+        </button>
+      </div>
+      {/if}
     {else}
-      <div class="variantionsProductList" style="min-height:17px"></div>
-    {/if}
-
-    <div class="add_to_cart_button-mobile d-mobile">
-
       <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
               <input type="hidden" name="token" value="{$static_token}">
               <input type="hidden" name="id_product" value="{$product.id_product}" id="product_page_product_id">
               <input type="hidden" name="id_customization" value="{$product.id_customization}" id="product_customization_id" class="js-product-customization-id">
 
+              {if !$complementary}
               <div class="add">
               <button
                 class="btn btn-outline-primary add-to-cart"
@@ -204,6 +256,7 @@
                 data-dismiss="modal"
                 type="submit"
                 style="margin-top: 0;"
+                {if $product.out_of_stock == 0 && $product.quantity <= 0}disabled{/if}
                 {* {if !$product.add_to_cart_url}
                   disabled
                 {/if} *}
@@ -212,13 +265,15 @@
                 {l s="Add to cart" d="Shop.Theme.ProductList"}
               </button>
             </div>
+              {/if}
       </form>
+      {/if}
 
     </div>
     {* <pre>{$product.prices|print_r}</pre> *}
 
-    {if str_contains($product['category'] ,'clearance')}
-      <div style="position: absolute;top:1rem; left:0; width: fit-content;height:31px;background: #111;border-radius:0 50px 50px 0;display:flex;align-items:center;gap:0.5rem;min-width:200px;font-weight:600;font-size:18px;padding:0 0.5rem;border: 2px solid var(--asm-color);border-left: 0;">
+    {if str_contains($product['category'] ,'clearance') || str_contains($product['category'] ,'liquidacion') || str_contains($product['category'] ,'destockage')}
+      <div style="position: absolute;top:1rem; left:0; width: fit-content;height:31px;background: #222;border-radius:0 50px 50px 0;display:flex;align-items:center;gap:0.5rem;min-width:200px;font-weight:600;font-size:18px;padding:0 0.5rem;border: 2px solid #222;border-left: 0;">
       <span style="color: #fff;font-weight:600;">{l s="CLEARANCE" d="Shop.Theme.ProductList"}</span>  
       <span style="color: var(--asm-color);font-size: 1rem; font-weight: 700;">{$product.discount_percentage}</span>  
      
@@ -227,9 +282,9 @@
       
       
     </div>
-    {* {block name='product_flags'}
+    {block name='product_flags'}
       <ul class="product-flags">
-        {foreach from=$product.flags item=flag}
+        {* {foreach from=$product.flags item=flag}
             {if $flag.type != 'discount'}
               <li class="{$flag.type}">
                 {$flag.label}
@@ -244,64 +299,59 @@
                 </li>
               {/if}
             {/if}
-        {/if}
+        {/if} *}
+        {if count($product['attributes']) > 0}
+          <div class="variantionsProductList" 
+            style="color: var(--asm-color);
+                  text-align:center;
+                  display: block;
+                  line-height: 17px;
+                  color: var(--asm-color);
+                  text-align: center;
+                  font-size: 14px;
+                  padding:0.5rem;">
+            
+            {* {l s='More variations available' d='Shop.Theme.Actions'} *}
+            {l s='More variations' d='Shop.Theme.Actions'}
+          </div>
+          {* {else}
+            <div class="variantionsProductList" style="min-height:33px"></div> *}
+          {/if}
       </ul>
-    {/block} *}
+    {/block}
   </div>
 
 </article>
 
 <script>
 
-  // if(document.querySelector('button[data-button-action="add-pack-to-cart"]')){
-  //   document.querySelector('[data-button-action="add-pack-to-cart"]').addEventListener('click', function (event) {
-  //     event.preventDefault(); // Prevent the default form submission
+$('#add-to-cart-or-refresh').on('submit', function (e) {
+  e.preventDefault();
 
-  //     const button = event.currentTarget;
-  //     const form = button.closest('form'); // Find the nearest form element
-  //     if (!form) {
-  //       console.error('No form found for the button.');
-  //       return;
-  //     }
+  const form = $(this);
+  const idProduct = $('#product_page_product_id').val();
+  const idCustomization = $('#product_customization_id').val();
 
-  //     const formData = new FormData(form);
-
-  //     fetch(form.action, {
-  //       method: form.method,
-  //       body: formData,
-  //     })
-  //       .then((response) => response.json()) // Adjust based on your server's response type
-  //       .then((data) => {
-  //         console.log('Response:', data);
-
-  //         prestashop.emit('updateCart', {
-  //           reason: {
-  //             idProduct: data.idProduct,
-  //             idProductAttribute: data.id_product_attribute,
-  //             linkAction: 'add-to-cart',
-  //             cart: data.cart
-  //           },
-  //           resp: data.cart
-  //         });
-  //         // Use the response data as needed
-  //         const modal = document.querySelector("#blockcart-modal");
-
-  //         if (modal) {
-  //         // Set the product image
-  //           const productImage = modal.querySelector(".modal-body .product-image");
-  //           if (productImage && data.cart.products.length > 0) {
-  //             const product = data.cart.products[0]; // Use the first product in the cart
-  //             productImage.setAttribute("src", product.cover.bySize.cart_default.url);
-  //           }
-  //         }
-
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error:', error);
-  //         alert('Failed to add product to cart.');
-  //       });
-  //   });
-  // }
-
+  $.ajax({
+    type: 'POST',
+    url: '/modules/ps_shoppingcart/ajax', // This hits your custom controller
+    data: {
+      action: 'add-to-cart',
+      id_product: idProduct,
+      id_customization: idCustomization,
+      id_product_attribute: 0, // Adjust this if you use combinations
+    },
+    dataType: 'json',
+    success: function (response) {
+      if (response.modal) {
+        $('body').append(response.modal); // Show modal
+        $('#modal-id').modal('show');     // or use your theme's modal logic
+      }
+    },
+    error: function (err) {
+      console.error('Add to cart AJAX failed:', err);
+    }
+  });
+});
 
 </script>
