@@ -799,7 +799,7 @@
  
                    {/if}
                    <script>
-                       addEventListener("DOMContentLoaded", (event) => {
+                        document.addEventListener("DOMContentLoaded", (event) => {
                          const videoProduct =  document.querySelector(".column_video .video");
                          const imgPlay = document.querySelector(".image_play")
                          if(videoProduct && imgPlay){
