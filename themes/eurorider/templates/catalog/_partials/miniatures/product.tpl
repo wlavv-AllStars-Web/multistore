@@ -325,33 +325,55 @@
 
 <script>
 
-$('#add-to-cart-or-refresh').on('submit', function (e) {
-  e.preventDefault();
+  // if(document.querySelector('button[data-button-action="add-pack-to-cart"]')){
+  //   document.querySelector('[data-button-action="add-pack-to-cart"]').addEventListener('click', function (event) {
+  //     event.preventDefault(); // Prevent the default form submission
 
-  const form = $(this);
-  const idProduct = $('#product_page_product_id').val();
-  const idCustomization = $('#product_customization_id').val();
+  //     const button = event.currentTarget;
+  //     const form = button.closest('form'); // Find the nearest form element
+  //     if (!form) {
+  //       console.error('No form found for the button.');
+  //       return;
+  //     }
 
-  $.ajax({
-    type: 'POST',
-    url: '/modules/ps_shoppingcart/ajax', // This hits your custom controller
-    data: {
-      action: 'add-to-cart',
-      id_product: idProduct,
-      id_customization: idCustomization,
-      id_product_attribute: 0, // Adjust this if you use combinations
-    },
-    dataType: 'json',
-    success: function (response) {
-      if (response.modal) {
-        $('body').append(response.modal); // Show modal
-        $('#modal-id').modal('show');     // or use your theme's modal logic
-      }
-    },
-    error: function (err) {
-      console.error('Add to cart AJAX failed:', err);
-    }
-  });
-});
+  //     const formData = new FormData(form);
+
+  //     fetch(form.action, {
+  //       method: form.method,
+  //       body: formData,
+  //     })
+  //       .then((response) => response.json()) // Adjust based on your server's response type
+  //       .then((data) => {
+  //         console.log('Response:', data);
+
+  //         prestashop.emit('updateCart', {
+  //           reason: {
+  //             idProduct: data.idProduct,
+  //             idProductAttribute: data.id_product_attribute,
+  //             linkAction: 'add-to-cart',
+  //             cart: data.cart
+  //           },
+  //           resp: data.cart
+  //         });
+  //         // Use the response data as needed
+  //         const modal = document.querySelector("#blockcart-modal");
+
+  //         if (modal) {
+  //         // Set the product image
+  //           const productImage = modal.querySelector(".modal-body .product-image");
+  //           if (productImage && data.cart.products.length > 0) {
+  //             const product = data.cart.products[0]; // Use the first product in the cart
+  //             productImage.setAttribute("src", product.cover.bySize.cart_default.url);
+  //           }
+  //         }
+
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error:', error);
+  //         alert('Failed to add product to cart.');
+  //       });
+  //   });
+  // }
+
 
 </script>
