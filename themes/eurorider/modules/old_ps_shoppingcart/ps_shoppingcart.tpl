@@ -72,9 +72,9 @@
 
   {* novoooooo *}
 
-  {* <pre>{$cart.subtotals|print_r}</pre> *}
+
   <div id="_desktop_cart">
-  <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}"  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
+  <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" {if $cart.products_count > 0} onmouseover="hoverCart(this)" onmouseout="hoverCart(this)" {/if}  data-refresh-url="{$refresh_url|escape:'html':'UTF-8'}">
     <div class="header">
       <a rel="nofollow" {if $cart.products_count > 0}href="{$order_url|escape:'html':'UTF-8'}"{/if}>
 
@@ -93,32 +93,19 @@
             <li class="cart-wishlist-item">{include 'module:ps_shoppingcart/ps_shoppingcart-product-line.tpl' product=$product}</li>
           {/foreach}
         </ul>
-
         {if isset($cart.subtotals)}
           <div class="cart-subtotals">
             {foreach from=$cart.subtotals item="subtotal"}
               <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
                 <span class="label">{if isset($subtotal.label)}{$subtotal.label|escape:'html':'UTF-8'}{/if}</span>
-                <span class="value" style="font-weight: 600;">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
+                <span class="value">{if isset($subtotal.value)}{$subtotal.value|escape:'html':'UTF-8'}{/if}</span>
               </div>
             {/foreach}
-
-            {if $customer.id_default_group != 4}
-            <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
-              <span class="label">{l s="VAT" d="Shop.Theme.CartQuick"}</span>
-              <span class="value" style="font-weight: 600;">{$cart.totals.total_including_tax.amount - $cart.totals.total_excluding_tax.amount}€</span>
-            </div>
-            {else}
-            <div class="{if isset($subtotal.type)}{$subtotal.type|escape:'html':'UTF-8'}{/if}">
-              <span class="label">{l s="VAT" d="Shop.Theme.CartQuick"}</span>
-              <span class="value" style="font-weight: 600;">0.00€</span>
-            </div>
-            {/if}
           </div>
           {if isset($cart.totals.total)}
             <div class="cart-total">
-              <span class="label">{l s="Total" d="Shop.Theme.CartQuick"}</span>
-              <span class="value" style="font-weight: 600;">{$cart.totals.total_including_tax.value|escape:'html':'UTF-8'}</span>
+              <span class="label">{$cart.totals.total.label|escape:'html':'UTF-8'}</span>
+              <span class="value">{$cart.totals.total.value|escape:'html':'UTF-8'}</span>
             </div>
 
           {/if}
@@ -168,27 +155,3 @@
   font-size: 14px;
 }
 </style>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let cart = document.querySelector(".blockcart.cart-preview");
-        if (cart && cart.dataset.hasProducts === "true") {
-            if (window.innerWidth > 992) {
-                cart.setAttribute("onmouseover", "hoverCart(this)");
-                cart.setAttribute("onmouseout", "hoverCart(this)");
-            }
-        }
-    });
-
-    window.addEventListener("resize", function() {
-        let cart = document.querySelector(".blockcart.cart-preview");
-        if (cart) {
-            if (window.innerWidth > 992) {
-                cart.setAttribute("onmouseover", "hoverCart(this)");
-                cart.setAttribute("onmouseout", "hoverCart(this)");
-            } else {
-                cart.removeAttribute("onmouseover");
-                cart.removeAttribute("onmouseout");
-            }
-        }
-    });
-</script>

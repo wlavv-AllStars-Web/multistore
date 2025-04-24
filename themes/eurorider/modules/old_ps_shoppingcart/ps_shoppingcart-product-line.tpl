@@ -1,3 +1,4 @@
+
 <!-- view image of product -->
 {if $product.images}
     <div class="shoppingcart_img">
@@ -10,7 +11,7 @@
 <div class="shoppingcart_des_c">
 <div class="shoppingcart_des_c_c">
     <h4 class="cart_productname">
-    <span class="product-quantity"><span class="badge" style="background-color: #333;color:#fff;">{$product.quantity}x</span></span>
+    <span class="product-quantity">({$product.quantity})</span>
     <span class="product-name">{$product.name}</span></h4>
     <p class="product-price">{$product.price}</p>
     {if $product.customizations|count}
@@ -19,9 +20,7 @@
                 {foreach from=$product.customizations item='customization'}
                     <li>
                         <span class="product-quantity">{$customization.quantity}</span>
-                        {if $page.page_name != 'checkout'}
                         <a href="{$customization.remove_from_cart_url}" title="{l s='remove from cart' d='Shop.Theme.Actions'}" class="remove-from-cart" rel="nofollow">{l s='Remove' d='Shop.Theme.Actions'}</a>
-                        {/if}
                         <ul>
                             {foreach from=$customization.fields item='field'}
                                 <li>
@@ -42,8 +41,6 @@
 </div>
 </div>
 </div>
-{if $page.page_name != 'checkout'}
 <a class="remove-from-cart" rel="nofollow" href="{$product.remove_from_cart_url}" data-link-action="delete-from-cart" title="{l s='remove from cart' d='Shop.Theme.Actions'}" >
     <i class="material-icons">&#xE5CD;</i>
 </a>
-{/if}
