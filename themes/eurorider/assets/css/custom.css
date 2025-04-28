@@ -1460,7 +1460,10 @@ body {
     display: flex;
   }
   #footer_sub_menu_14.collapse {
-    display: none !important;
+    display: none;
+  }
+  #footer_sub_menu_14.collapse.in {
+    display: flex !important;
   }
 
   footer .footer_after {
