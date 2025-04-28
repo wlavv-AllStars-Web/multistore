@@ -2072,20 +2072,20 @@ body {
     flex-direction: column;
   }
 
-  .footer_top {
+  /* .footer_top {
     background: #5c5c5c;
     padding: 1rem 0;
-  }
+  } */
 
-  .footer-asm {
+  /* .footer-asm {
     padding: 0;
     margin-bottom: 1rem;
   }
   .footer-asm .wrapper {
     padding: 0;
-  }
+  } */
 
-  .footer-asm .links {
+  /* .footer-asm .links {
     padding: 0 !important;
   }
 
@@ -2096,12 +2096,12 @@ body {
     height: 90px;
     outline: 2px solid #111;
     outline-offset: -2px;
-  }
+  } */
 
-  .footer-asm .title span {
+  /* .footer-asm .title span {
     height: 90px;
     opacity: 0;
-  }
+  } */
 
   #scrollToTopBtn {
     z-index: 99;
@@ -2511,14 +2511,14 @@ body {
     color: var(--white) !important;
   }
 
-  #footer .footer_top {
+  /* #footer .footer_top {
     display: none;
-  }
+  } */
 
-  .footer-asm {
+  /* .footer-asm {
     border-radius: 0.25rem;
     overflow: hidden;
-  }
+  } */
 
   .bannersHomeMobile .card-itemMobile {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
