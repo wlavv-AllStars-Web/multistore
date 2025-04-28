@@ -476,8 +476,13 @@ body {
     max-width: 31dvw;
   } */
 
-  .bannersHome .swiper-container {
+  .bannersHome {
+    padding-block: .5rem;
+  }
+
+  .bannersHome .videosContainer {
     margin-top: .5rem;
+    margin-bottom: .5rem !important;
   }
 
 }
