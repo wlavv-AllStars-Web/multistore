@@ -491,7 +491,7 @@ body {
   }
 
   .bannersHome {
-    padding: 1.5rem 1.5rem 0rem 1.5rem !important;
+    padding: 1.5rem 2rem !important;
   }
 
   .bannersHome .swiper-slide > a {
@@ -500,6 +500,7 @@ body {
 
   .banners_50 {
     padding: 0 !important;
+    margin-top: .5rem;
   }
 
   .banners_33 {
@@ -507,7 +508,7 @@ body {
   }
 
   .bannersHome .videosContainer {
-    padding: 0 !important;
+    padding: 0.5rem 0 !important;
   }
 
   /*  */
