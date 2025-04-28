@@ -186,7 +186,6 @@
 
     .banners_50{
       display: flex;
-      gap: .5rem;
       padding: 0.25rem;
       flex-wrap: wrap;
     }
