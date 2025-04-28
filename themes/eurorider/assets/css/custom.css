@@ -6507,6 +6507,10 @@ input[type="checkbox"]:checked::after {
     }
     /*  */
 
+    .bannersHome .banners_50 {
+      row-gap: .5rem;
+    }
+
     .mobile-menu .navbar-nav > li{
       padding: .5rem 1rem;
       background: var(--bg-6);
