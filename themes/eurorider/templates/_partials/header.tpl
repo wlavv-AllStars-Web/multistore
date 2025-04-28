@@ -347,7 +347,7 @@
                 <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
                   <a class="dropdown-item" href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
                     {* {$manufacturer.name} *}
-                    <img alt="{$manufacturer.name}" style="width: 100%;max-width:300px;height:auto;" width="300" height="150" src="/img/asd/150px/{$manufacturer.id_manufacturer}.webp" loading="lazy">
+                    <img alt="{$manufacturer.name}" style="width: 100%;max-width:300px;height:auto;" width="300" height="150" src="/img/m/{$manufacturer.id_manufacturer}-small_default.webp" loading="lazy">
                   </a>
                 </li>
               {/foreach}
