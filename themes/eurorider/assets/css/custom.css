@@ -501,6 +501,7 @@ body {
   .banners_50 {
     padding: 0 !important;
     margin-top: .5rem;
+    row-gap: .5rem;
   }
 
   .banners_33 {
@@ -4725,7 +4726,7 @@ ul {
 }
 
 .bannersHome .banners_50 {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   padding: 0.25rem 0.5rem;
 }
 
