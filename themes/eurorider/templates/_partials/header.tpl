@@ -295,6 +295,7 @@
               {* <i class="material-icons">contacts</i> *}
               <a class=""  href="/">{l s='Home' d='Shop.Theme.Homepage'}</a> 
             </li>
+            <li class="" href="{$link->getPageLink('my-account', true)}">{l s='My account' d='Shop.Theme.Homepage'}</li>
             <li class="">
               {* <i class="material-icons">new_releases</i> *}
               <a class=""  href="{$link->getPageLink('new-products', true)}">{l s='News' d='Shop.Theme.Homepage'}</a>
