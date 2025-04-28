@@ -1342,7 +1342,7 @@ body {
   }
 
   .bannersHomeMobile {
-    display: flex !important;
+    /* display: flex !important; */
     flex-direction: column;
     gap: 0.25rem;
   }
@@ -2011,7 +2011,7 @@ body {
     display: none !important;
   }
   .bannersHomeMobile {
-    display: flex !important;
+    /* display: flex !important; */
     flex-direction: column;
     gap: 1rem;
   }
