@@ -344,7 +344,7 @@
               <div class="btn"  type="button" data-toggle="dropdown" aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</div>
               <ul class="dropdown-menu-brands dropdown-menu">
               {foreach from=$manufacturers item=$manufacturer }
-                <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+                <li class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                   <a class="dropdown-item" href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
                     {* {$manufacturer.name} *}
                     <img alt="{$manufacturer.name}" style="width: 100%;max-width:300px;height:auto;" width="300" height="150" src="/img/m/{$manufacturer.id_manufacturer}-small_default.jpg" loading="lazy">
