@@ -489,12 +489,17 @@ body {
     background-size: 29%;
     background-color: #222;
   }
-  .bannersHome .swiper-slide > a {
+
+  .bannersHome {
     padding: 1.5rem 1.5rem 0rem 1.5rem !important;
   }
 
+  .bannersHome .swiper-slide > a {
+    padding: 0 !important;
+  }
+
   .banners_50 {
-    padding: 0.5rem 1.5rem !important;
+    padding: 0 !important;
   }
 
   .banners_33 {
@@ -502,7 +507,7 @@ body {
   }
 
   .bannersHome .videosContainer {
-    padding: 0.25rem 1.5rem 1.5rem 1.5rem !important;
+    padding: 0 !important;
   }
 
   /*  */
