@@ -2956,6 +2956,10 @@ body {
 }
 
 @media (max-width: 767px) {
+  .page-my-account #content .links a span.link-item {
+    width: 100%;
+  }
+
   .footer-container #linksFooter .collapse.in {
     display: flex !important;
   }
