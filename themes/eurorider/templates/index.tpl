@@ -59,7 +59,7 @@
 
           <div class="banners_50">
             {foreach from=$desktop['icones_50'] item=item key=key name=name}
-              <div class="banner_50">
+              <div class="banner_50 col-lg-6">
                 <a href="{$item['link']}">
                   <img src="{$item['image_en']}" />
                 </a>
@@ -192,8 +192,16 @@
     }
     
     .banners_50 .banner_50{
-      flex: 1;
-      min-width: 48vw;
+      /* flex: 1;
+      min-width: 48vw; */
+    }
+
+    .banners_50 .banner_50 a {
+      width: 100%;
+      display: flex;
+      transition: all ease-in-out 250ms;
+      overflow: hidden;
+      outline: 2px solid var(--bg-3);
     }
     
     .banners_50 .banner_50 img{
