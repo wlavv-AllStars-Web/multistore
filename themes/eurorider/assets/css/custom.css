@@ -1039,7 +1039,7 @@ body {
     display: flex !important;
   }
 
-  .banner_50 {
+  .banner_50 a{
     outline: 2px solid #111;
   }
 
