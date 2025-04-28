@@ -1337,9 +1337,9 @@ body {
     background: #5c5c5c !important;
   }
 
-  .bannersHome {
+  /* .bannersHome {
     display: none;
-  }
+  } */
 
   .bannersHomeMobile {
     /* display: flex !important; */
@@ -2006,10 +2006,10 @@ body {
     padding: 0 1rem 0 0;
     color: var(--white);
   }
-
+/* 
   .bannersHome {
     display: none !important;
-  }
+  } */
   .bannersHomeMobile {
     /* display: flex !important; */
     flex-direction: column;
