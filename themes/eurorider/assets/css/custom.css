@@ -3383,6 +3383,7 @@ ul {
   max-width: 1350px;
   margin: auto;
   width: 100%;
+  padding: 1rem;
 }
 
 #authentication [data-action="show-password"] {
