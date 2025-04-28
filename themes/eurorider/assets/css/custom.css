@@ -5538,6 +5538,7 @@ body::-ms-scrollbar-thumb:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
 .tab-description {
