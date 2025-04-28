@@ -42,7 +42,7 @@
           
           <div class="bannersHome">
           {* {$HOOK_HOME nofilter} *}
-          <div class="swiper-container">
+          <div class="swiper-container px-2">
             <div class="swiper-wrapper">
               {foreach from=$desktop['banners'] item=item key=key name=name}
                 {if !empty($item['image_en'])}
@@ -67,7 +67,7 @@
             {/foreach}
           </div>
 
-          <div class="banners_33">
+          {* <div class="banners_33">
             {foreach from=$desktop['icones_33'] item=item key=key name=name}
               <div class="banner_33">
                 <a href="{$item['link']}">
@@ -76,7 +76,7 @@
               </div>
             {/foreach}
           </div>
-          
+           *}
 
           <div class="videosContainer">
               {foreach $desktop['icones_videos'] AS $key => $icon}
