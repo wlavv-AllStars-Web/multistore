@@ -281,7 +281,7 @@ function changeImgComments() {
 
 function toggleFooter(e) {
   const target = e.getAttribute("data-target")
-  document.querySelector("footer #footer_sub_menu_4").classList.toggle("collapse")
+  document.querySelector("footer #footer_sub_menu_14").classList.toggle("collapse")
 }
 
 // function setImageCover(e){
