@@ -2149,8 +2149,16 @@ body {
   #main {
     display: flex;
     justify-content: center;
-    padding: 0.5rem 0.5rem 0 0.5rem;
+    padding: 0;
     width: 100%;
+    flex-direction: column;
+  }
+
+  .bannersHome .banners_50 {
+    row-gap: .5rem;
+  }
+
+  .bannersHome .videosContainer {
     flex-direction: column;
   }
 
@@ -6585,9 +6593,9 @@ input[type="checkbox"]:checked::after {
     border-radius: .25rem;
   }
 
-  #index .mobile-menu {
+  /* #index .mobile-menu {
     display: none !important;
-  }
+  } */
 
   .sort-by-row .select-title > span > span {
     color:var(--asm-color) !important;
