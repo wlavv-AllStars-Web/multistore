@@ -423,7 +423,7 @@ main > #wrapper {
 /*  */
 .grecaptcha-badge{
   z-index: 999;
-  bottom: 5rem !important;
+  bottom: 7rem !important;
 }
 
 .shipped-eu a, .payment-plans a {
