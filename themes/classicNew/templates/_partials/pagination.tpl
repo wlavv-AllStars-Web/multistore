@@ -24,7 +24,7 @@
  *}
   {* <pre style="width: 100%;">{print_r($search,1)}</pre> *}
   {* nb_products *}
-<nav class="pagination">
+  <nav class="pagination">
   <div class="col-md-4">
     {block name='pagination_summary'}
       {if isset($search)}
