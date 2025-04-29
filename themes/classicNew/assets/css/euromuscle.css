@@ -2868,7 +2868,7 @@ a:focus{
     position: fixed;
     right: 2rem;
     bottom: 2rem;
-    background: var(--euromus-color-300);
+    background: var(--euromus-color-600);
     color: #fff;
     width: 2rem;
     height: 2rem;
