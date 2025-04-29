@@ -4754,16 +4754,20 @@ form .form-control-label {
     position: fixed;
     bottom: 2rem;
     z-index: 9999999999;
-    background: var(--euromus-color-600);
+    background: var(--euromus-color-300);
     width: 3rem;
     height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: .25rem;
-    box-shadow: var(--euromus-shadow);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     left: 2rem;
     right: unset;
+  }
+
+  .cart_icon_button .cart-products-count {
+    background: var(--euromus-color-200) !important;
   }
 
   body:not(#cms) .cart_icon_button {
