@@ -426,6 +426,10 @@ main > #wrapper {
   bottom: 7rem !important;
 }
 
+.grecaptcha-badge iframe {
+  padding: 0 !important;
+}
+
 .shipped-eu a, .payment-plans a {
   color: var(--euromus-color-100) !important;
 }
