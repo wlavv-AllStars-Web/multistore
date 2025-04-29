@@ -43,11 +43,11 @@
     <div class="password-strength-text"></div>
     <div class="password-requirements">
       <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' d='Shop.Theme.Customeraccount'}">
-        <i class="material-icons">check_circle</i>
+        <i class="material-icons" translate="no">check_circle</i>
         <span></span>
       </p>
       <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' d='Shop.Theme.Customeraccount'}">
-        <i class="material-icons">check_circle</i>
+        <i class="material-icons" translate="no">check_circle</i>
         <span></span>
       </p>
     </div>

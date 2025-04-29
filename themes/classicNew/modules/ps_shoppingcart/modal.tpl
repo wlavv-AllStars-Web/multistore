@@ -27,9 +27,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
-          <span aria-hidden="true"><i class="material-icons">close</i></span>
+          <span aria-hidden="true"><i class="material-icons" translate="no">close</i></span>
         </button>
-        <h4 class="modal-title h6 text-sm-center" id="myModalLabel"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}</h4>
+        <h4 class="modal-title h6 text-sm-center" id="myModalLabel"><i class="material-icons rtl-no-flip" translate="no">&#xE876;</i>{l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -91,7 +91,7 @@
               {hook h='displayCartModalContent' product=$product}
               <div class="cart-content-btn" style="width: 100%;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100%;font-size: .85rem;">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
-                <a href="{$order_url}" class="btn btn-primary"  style="font-size: .85rem;width: 100%;"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+                <a href="{$order_url}" class="btn btn-primary"  style="font-size: .85rem;width: 100%;"><i class="material-icons rtl-no-flip" translate="no">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
               </div>
             </div>
           </div>

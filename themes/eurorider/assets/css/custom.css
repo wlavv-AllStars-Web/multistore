@@ -1696,6 +1696,10 @@ body {
     object-position: right;
   }
 
+  .banners_50 .banner_50 a:hover {
+    outline: 2px solid var(--asm-color) !important;
+  }
+
   /* addresses update */
 
   #address .form-control-label {

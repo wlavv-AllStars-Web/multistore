@@ -33,7 +33,7 @@
           title="{l s='View my customer account' d='Shop.Theme.Customeraccount'}"
           rel="nofollow"
         >
-          <i class="material-icons hidden-md-up logged">&#xE7FF;</i>
+          <i class="material-icons hidden-md-up logged" translate="no">&#xE7FF;</i>
           <span class="hidden-sm-down">{$customerName}</span>
         </a>
         <a
@@ -41,7 +41,7 @@
           href="{$urls.actions.logout}"
           rel="nofollow"
         >
-          <i class="material-icons logout" style="font-size: 35px !important;">&#xe9ba;</i>
+          <i class="material-icons logout" style="font-size: 35px !important;" translate="no">&#xe9ba;</i>
         </a>
       </div>
     {else}

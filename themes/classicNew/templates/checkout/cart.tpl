@@ -83,7 +83,7 @@
 
       {block name='continue_shopping'}
         <a class="label" href="{$urls.pages.index}" style="margin-left: 4rem;margin-right:1rem;font-size:1.1rem;color:#ee302e;" onMouseOver="this.style.color='#103054'" onMouseOut="this.style.color='#ee302e'">
-          <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
+          <i class="material-icons" translate="no">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
         </a>
       {/block}
 

@@ -32,7 +32,7 @@
       {if $activeFilters|count}
         <div id="_desktop_search_filters_clear_all" class="hidden-sm-down clear-all-wrapper">
           <button data-search-url="{$clear_all_link}" class="btn btn-tertiary js-search-filters-clear-all">
-            <i class="material-icons">&#xE14C;</i>
+            <i class="material-icons" translate="no">&#xE14C;</i>
             {l s='Clear all' d='Shop.Theme.Actions'}
           </button>
         </div>
@@ -56,8 +56,8 @@
           <p class="h6 facet-title">{$facet.label}</p>
           <span class="float-xs-right">
             <span class="navbar-toggler collapse-icons">
-              <i class="material-icons add">&#xE313;</i>
-              <i class="material-icons remove">&#xE316;</i>
+              <i class="material-icons add" translate="no">&#xE313;</i>
+              <i class="material-icons remove" translate="no">&#xE316;</i>
             </span>
           </span>
         </div>
@@ -85,7 +85,7 @@
                         {elseif isset($filter.properties.color)}
                           <span class="color" style="background-color:{$filter.properties.color}"></span>
                         {else}
-                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked">&#xE5CA;</i></span>
+                          <span {if !$js_enabled} class="ps-shown-by-js" {/if}><i class="material-icons rtl-no-flip checkbox-checked" translate="no">&#xE5CA;</i></span>
                         {/if}
                       </span>
                     {else}
@@ -139,7 +139,7 @@
                         {l s='(no filter)' d='Shop.Theme.Global'}
                       {/if}
                     </span>
-                    <i class="material-icons float-xs-right">&#xE5C5;</i>
+                    <i class="material-icons float-xs-right" translate="no">&#xE5C5;</i>
                   </a>
                   <div class="dropdown-menu">
                     {foreach from=$facet.filters item="filter"}

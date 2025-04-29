@@ -45,7 +45,7 @@
   <div id="search_widget" class="search-widgets bigscreen smallscreen" data-search-controller-url="{$search_controller_url}">
     <form method="get" action="{$search_controller_url}">
       <input type="hidden" name="controller" value="search">
-      <i class="material-icons search" aria-hidden="true">search</i>
+      <i class="material-icons search" aria-hidden="true" translate="no">search</i>
       <input type="text" name="s" value="{$search_string}" style="{if $search_string != null}background:#fff;{/if}" class="whitebg searchbarInput"
         placeholder="{l s='Search our catalog' d='Shop.Theme.Catalog'}"
         aria-label="{l s='Search' d='Shop.Theme.Catalog'}">

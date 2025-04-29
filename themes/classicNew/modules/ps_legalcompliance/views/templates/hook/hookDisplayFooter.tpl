@@ -29,8 +29,8 @@
     <span class="h3">{l s='Information' d='Modules.Legalcompliance.Shop'}</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
-        <i class="material-icons add">&#xE313;</i>
-        <i class="material-icons remove">&#xE316;</i>
+        <i class="material-icons add" translate="no">&#xE313;</i>
+        <i class="material-icons remove" translate="no">&#xE316;</i>
       </span>
     </span>
   </div>

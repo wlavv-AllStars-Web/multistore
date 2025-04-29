@@ -29,7 +29,7 @@
   {l s='Sort By' d='Shop.Theme.SortOrders'}
 </span>
   {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
-  <i class="material-icons pull-xs-right">arrow_drop_down</i>
+  <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
 </span>
 <div class="dropdown-menu">
   {foreach from=$listing.sort_orders item=sort_order}

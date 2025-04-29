@@ -92,7 +92,7 @@
           margin-bottom: 30px;
         ">
           <div class="container-not-found-filters" style="text-align: center;">
-            <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);">error_outline</i>
+            <i class="material-icons" style="font-size: 3rem;color: var(--asm-color);" translate="no">error_outline</i>
             <h1 style="font-weight: 600;font-size: 2rem;">{l s='No Result Found' d='Shop.Theme.ProductList'}</h1>
             <span style="font-size: 1.25rem;color: #555;">{l s='We can\'t find any item matching your search' d='Shop.Theme.ProductList'}</span>
           </div>

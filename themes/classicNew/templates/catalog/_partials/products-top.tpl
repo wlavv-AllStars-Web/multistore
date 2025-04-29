@@ -157,7 +157,7 @@
               </span>
               {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
               {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523'] && !$page.body_classes['category-id-550'] && !$page.body_classes['category-id-551'] && !$page.body_classes['category-id-552'] && !$page.body_classes['category-id-553'] && !$page.body_classes['category-id-554']}
-              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+              <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
               {/if}
             </span>
 
@@ -176,7 +176,7 @@
                       </div>
                       {if $categories[{$parentCategory['infos']['id_category']}]}
                         <button class="btn-custom-category" type="button" data-toggle="collapse" data-target="#collapse{$parentCategory['infos']['id_category']}" aria-expanded="false" aria-controls="collapse{$parentCategory['infos']['id_category']}">
-                          <i class="material-icons">arrow_drop_down</i>
+                          <i class="material-icons" translate="no">arrow_drop_down</i>
                         </button>
                       {/if}
                     </div>
@@ -241,7 +241,7 @@
               {l s='By Brand' d='Shop.Theme.Actions'}
             </span>
             {if $page.page_name != "manufacturer"}
-            <i class="material-icons pull-xs-right">arrow_drop_down</i>
+            <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
             {/if}
           </span>
           {if $page.page_name != "manufacturer"}
@@ -292,7 +292,7 @@
             <span  class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button" aria-controls="items-per-page-dropdown">
             <span  id="name_items_per_page">{l s='By Page' d='Shop.Theme.Actions'}</span>
               {* {if isset($listing.sort_selected)}{$listing.sort_selected}{else}{l s='Select' d='Shop.Theme.Actions'}{/if} *}
-              <i class="material-icons pull-xs-right">arrow_drop_down</i>
+              <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
             </span>
             <div class="dropdown-menu dropdown-perpage" onchange="setProductsPerPage('change')">
               <form action="{if !is_array($requestNb)}{$requestNb|escape:'html':'UTF-8'}{else}{$requestNb.requestUrl|escape:'html':'UTF-8'}{/if}" method="get" class="wm-hiddennbr nbrItemPage" style="width:100%;">

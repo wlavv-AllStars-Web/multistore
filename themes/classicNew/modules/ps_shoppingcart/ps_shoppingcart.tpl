@@ -25,14 +25,14 @@
 <div id="_desktop_cart">
   <div class="blockcart cart-preview {if $cart.products_count > 0}active{else}inactive{/if}" data-refresh-url="{$refresh_url}">
     <div class="header cart-link">
-      <i class="material-icons search" aria-hidden="true" onclick="toggleSearchbar()">search</i>
+      <i class="material-icons search" aria-hidden="true" onclick="toggleSearchbar()" translate="no">search</i>
       {if $cart.products_count > 0}
         <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$order_url}">
       {/if}
 
         
         <div style="position: relative;">
-          <i class="material-icons shopping-cart" aria-hidden="true">shopping_cart</i>
+          <i class="material-icons shopping-cart" aria-hidden="true" translate="no">shopping_cart</i>
           {if $cart.products_count > 0}
           <span style="position: absolute;top:-3px;right:0;z-index:999;color:white;background:#ee302e;padding:0;border-radius:25rem;font-size:12px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;" class="cart-products-count">{$cart.products_count}</span>
           {/if}

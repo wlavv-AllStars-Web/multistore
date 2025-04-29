@@ -37,8 +37,8 @@
             {include file='catalog/_partials/product-cover-thumbnails.tpl'}
           {/block}
           <div class="arrows js-arrows">
-            <i class="material-icons arrow-up js-arrow-up">&#xE316;</i>
-            <i class="material-icons arrow-down js-arrow-down">&#xE313;</i>
+            <i class="material-icons arrow-up js-arrow-up" translate="no">&#xE316;</i>
+            <i class="material-icons arrow-down js-arrow-down" translate="no">&#xE313;</i>
           </div>
         </div>
         <div class="col-md-6 col-sm-6">

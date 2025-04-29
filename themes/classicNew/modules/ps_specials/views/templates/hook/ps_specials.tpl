@@ -29,6 +29,6 @@
   </h2>
   {include file="catalog/_partials/productlist.tpl" products=$products productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
   <a class="all-product-link float-xs-left float-md-right h4" href="{$allSpecialProductsLink}">
-    {l s='All sale products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
+    {l s='All sale products' d='Shop.Theme.Catalog'}<i class="material-icons" translate="no">&#xE315;</i>
   </a>
 </section>
