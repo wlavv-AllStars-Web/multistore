@@ -3495,7 +3495,7 @@ ul {
 }
 
 .banner_50 a:hover {
-  outline: 2px solid var(--asm-color);
+  outline: 2px solid var(--asm-color) !important;
 }
 
 .banner_50 img {
