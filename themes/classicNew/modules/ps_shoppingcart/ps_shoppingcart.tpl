@@ -32,10 +32,10 @@
         {/if}
 
           
-          <div >
+          <div style="position: relative;">
             <i class="material-icons shopping-cart" aria-hidden="true" translate="no">shopping_cart</i>
             {if $cart.products_count > 0}
-            <span style="position: absolute;top:-7px;right:-4px;z-index:999;color:white;background:#ee302e;padding:0;border-radius:25rem;font-size:17px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;" class="cart-products-count">{$cart.products_count}</span>
+            <span style="position: absolute;top:-3px;right:0;z-index:999;color:white;background:#ee302e;padding:0;border-radius:25rem;font-size:12px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;" class="cart-products-count">{$cart.products_count}</span>
             {/if}
           </div>
           <span class="hidden-sm-down">{l s='Your Cart' d='Shop.Theme.Checkout'}</span>
