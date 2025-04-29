@@ -358,11 +358,11 @@
 												<div class="ap5-availability-statut">
 													<span id="product-availability">
 														{if $productPack.presentation.availability == 'available'}
-															<i class="material-icons product-available">&#xE5CA;</i>
+															<i class="material-icons product-available" translate="no">&#xE5CA;</i>
 														{elseif $productPack.presentation.availability == 'last_remaining_items'}
-															<i class="material-icons product-last-items">&#xE002;</i>
+															<i class="material-icons product-last-items" translate="no">&#xE002;</i>
 														{else}
-															<i class="material-icons product-unavailable">&#xE14B;</i>
+															<i class="material-icons product-unavailable" translate="no">&#xE14B;</i>
 														{/if}
 														{$productPack.presentation.availability_message}
 													</span>

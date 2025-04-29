@@ -80,7 +80,7 @@
                     <span class="small font-secondary">
                         <a href="{$link->getAdminLink('AdminFeatures', true, [], ['viewfeature' => true, 'id_feature' => $featureId])}"
                             target="_blank" class="btn sensitive px-0"><i
-                                class="material-icons">open_in_new</i>{l s='Manage' mod='pm_advancedpack'}
+                                class="material-icons" translate="no">open_in_new</i>{l s='Manage' mod='pm_advancedpack'}
                         </a>
                     </span>
                 </fieldset>

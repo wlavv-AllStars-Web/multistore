@@ -9,7 +9,7 @@
             <div id="bundles" class="mb-2">
                 <a id="js-open-create-bundle-form" class="btn btn-outline-primary mb-3" data-toggle="collapse"
                     href="#advancedpack-bundle-form" aria-expanded="false">
-                    <i class="material-icons">add_circle</i>
+                    <i class="material-icons" translate="no">add_circle</i>
                     {l s='Add bundle' mod='pm_advancedpack'}
                 </a>
                 {include file='./_partials/bundle/form.tpl'}

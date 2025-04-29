@@ -163,10 +163,10 @@ class BundleFormHandler {
 
     /* eslint-disable max-len */
     const canDelete = bundle.can_delete
-      ? `<a href="${deleteUrl}" class="js-delete delete btn tooltip-link delete pl-0 pr-0"><i class="material-icons">delete</i></a>`
+      ? `<a href="${deleteUrl}" class="js-delete delete btn tooltip-link delete pl-0 pr-0"><i class="material-icons" translate="no">delete</i></a>`
       : '';
     const canEdit = bundle.can_edit
-      ? `<a href="#" data-bundle-id="${bundleId}" class="js-edit edit btn tooltip-link delete pl-0 pr-0"><i class="material-icons">edit</i></a>`
+      ? `<a href="#" data-bundle-id="${bundleId}" class="js-edit edit btn tooltip-link delete pl-0 pr-0"><i class="material-icons" translate="no">edit</i></a>`
       : '';
     const img = bundle.default_image.link
       ? `<img src="${bundle.default_image.link}" /`
@@ -181,7 +181,7 @@ class BundleFormHandler {
      <td>${bundle.productPriceTaxesExcluded}</td> \
      <td>${bundle.reductionToDisplay}</td> \
      <td>${bundle.bundlePriceTaxesExcluded}</td> \
-     <td><a href="${bundle.publicUrl}" target="_blank"><i class="material-icons">visibility</i></a></td> \
+     <td><a href="${bundle.publicUrl}" target="_blank"><i class="material-icons" translate="no">visibility</i></a></td> \
      <td>${canEdit}</td> \
      <td>${canDelete}</td></tr>`;
     /* eslint-enable max-len */

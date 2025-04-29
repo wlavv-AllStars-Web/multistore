@@ -102,7 +102,7 @@
 						<input type="checkbox"{if $packProduct['use_reduc']} checked="checked"{/if} value="1" id="ap5_useReduc-{$idProductPack|escape:'html':'UTF-8'}" name="ap5_useReduc-{$idProductPack|escape:'html':'UTF-8'}" class="ap5_useReduc" />
 					</td>
 					<td class="text-center">
-						<button data-id-product-pack="{$idProductPack|escape:'html':'UTF-8'}" id="ap5_removeProduct-{$idProductPack|escape:'html':'UTF-8'}" class="btn btn-invisible ap5_removeProduct" type="button"><i class="material-icons">delete</i></button>
+						<button data-id-product-pack="{$idProductPack|escape:'html':'UTF-8'}" id="ap5_removeProduct-{$idProductPack|escape:'html':'UTF-8'}" class="btn btn-invisible ap5_removeProduct" type="button"><i class="material-icons" translate="no">delete</i></button>
 					</td>
 				</tr>
 				{if is_array($packProduct['productCombinations']) && count($packProduct['productCombinations'])}

@@ -64,9 +64,9 @@
                                         <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#333;padding: 0.25rem 0.5rem;">{$product.available_now}</span></div>
                                         {/if}
                                     {elseif $product.availability == 'last_remaining_items'}
-                                        <i class="material-icons product-last-items">&#xE002;</i>
+                                        <i class="material-icons product-last-items" translate="no">&#xE002;</i>
                                     {else}
-                                        <i class="material-icons product-unavailable">block</i>
+                                        <i class="material-icons product-unavailable" translate="no">block</i>
                                     {/if}
                                     {/if}
                                     {* {if $packLabel}

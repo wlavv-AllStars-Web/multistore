@@ -243,11 +243,11 @@
                                         <div class="password-strength-text"></div>
                                         <div class="password-requirements">
                                             <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' mod='ets_onepagecheckout' js=1}">
-                                                <i class="material-icons">check_circle</i>
+                                                <i class="material-icons" translate="no">check_circle</i>
                                                 <span>{l s='Enter a password between 8 and 72 characters' mod='ets_onepagecheckout'}</span>
                                             </p>
                                             <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' mod='ets_onepagecheckout' js=1}">
-                                                <i class="material-icons">check_circle</i>
+                                                <i class="material-icons" translate="no">check_circle</i>
                                                 <span>{l s='The minimum score must be: Strong' mod='ets_onepagecheckout'}</span>
                                             </p>
                                         </div>
@@ -431,11 +431,11 @@
                             <div class="password-strength-text"></div>
                             <div class="password-requirements">
                                 <p class="password-requirements-length" data-translation="{l s='Enter a password between %s and %s characters' mod='ets_onepagecheckout' js=1}">
-                                    <i class="material-icons">check_circle</i>
+                                    <i class="material-icons"  translate="no">check_circle</i>
                                     <span>{l s='Enter a password between 8 and 72 characters' mod='ets_onepagecheckout'}</span>
                                 </p>
                                 <p class="password-requirements-score" data-translation="{l s='The minimum score must be: %s' mod='ets_onepagecheckout' js=1}">
-                                    <i class="material-icons">check_circle</i>
+                                    <i class="material-icons"  translate="no">check_circle</i>
                                     <span>{l s='The minimum score must be: Strong' mod='ets_onepagecheckout'}</span>
                                 </p>
                             </div>

@@ -17,7 +17,7 @@
 					<a href="{$productsPack.presentation.url}" title="{$productsPack.presentation.name}" itemprop="url">
 						<span class="ap5-view-pack-name">{$productsPack.presentation.name}</span><span class="ap5-view-pack-category"> ({$productsPack.presentation.category})</span>
 						{if $enableViewThisPackButton}
-							<span class="btn btn-secondary m-l-1"><i class="material-icons">&#xE8B6;</i>{l s='View this pack' mod='pm_advancedpack'}</span>
+							<span class="btn btn-secondary m-l-1"><i class="material-icons" translate="no">&#xE8B6;</i>{l s='View this pack' mod='pm_advancedpack'}</span>
 						{/if}
 						{if $enableBuyThisPackButton && AdvancedPack::isValidPack($idPack, true) && AdvancedPack::isInStock($idPack) && !sizeof(AdvancedPack::getPackCustomizationRequiredFields($idPack))}
 						<form action="{pm_advancedpack::getPackAddCartURL($idPack)}" class="m-l-1 d-inline-block" method="post" id="add-to-cart-or-refresh">
@@ -29,7 +29,7 @@
 							class="btn btn-primary add-to-cart"
 							data-button-action="add-pack-to-cart"
 							type="submit"
-							><i class="material-icons shopping-cart">&#xE547;</i>{l s='Buy this pack' mod='pm_advancedpack'}</button>
+							><i class="material-icons shopping-cart" translate="no">&#xE547;</i>{l s='Buy this pack' mod='pm_advancedpack'}</button>
 						</form>
 						{/if}
 					</a>

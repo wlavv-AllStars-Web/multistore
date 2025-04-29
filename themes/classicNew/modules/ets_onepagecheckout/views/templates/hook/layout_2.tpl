@@ -139,7 +139,7 @@
                 </div>
                 {if $customer_group_professional}
                     <div class="btn_update_address_container" style="padding: 1rem;">
-                        <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: var(--euromus-color-700);color: var(--euromus-color-100) !important;border: 1px solid var(--euromus-color-500);border-radius: .25rem;">{l s="Update my address" d="Shop.Theme.Checkout"} <i class="material-icons">autorenew</i></a>
+                        <a class="btn_update_address" href="{$urls.pages.contact}" style="padding: .5rem 1rem;background: var(--euromus-color-700);color: var(--euromus-color-100) !important;border: 1px solid var(--euromus-color-500);border-radius: .25rem;">{l s="Update my address" d="Shop.Theme.Checkout"} <i class="material-icons"  translate="no">autorenew</i></a>
                     </div>
                 {/if}
             </div>

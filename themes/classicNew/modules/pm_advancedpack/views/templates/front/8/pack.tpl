@@ -71,8 +71,8 @@
                   {include file='catalog/_partials/product-cover-thumbnails.tpl'}
                 {/block}
                 <div class="scroll-box-arrows">
-                  <i class="material-icons left" >&#xE314;</i>
-                  <i class="material-icons right" >&#xE315;</i>
+                  <i class="material-icons left" translate="no">&#xE314;</i>
+                  <i class="material-icons right" translate="no">&#xE315;</i>
                 </div>
                 
 
@@ -318,7 +318,7 @@
                     {* <h4><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name}</a></h4> *}
                     {* <p>{$attachment.description}</p> *}
                     <a class="btn_downloadInstructions" href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">
-                      <i class="material-icons">file_download</i>
+                      <i class="material-icons" translate="no">file_download</i>
                       {l s='Download Instructions' d='Shop.Theme.Actions'}
                     </a>
   
@@ -382,9 +382,9 @@
             <div class="container_ask_successfull" style="display: none;padding:1rem;">
               <div class="question_buble">
   
-                <i class="material-icons question-success-icon">check_circle</i>
+                <i class="material-icons question-success-icon" translate="no">check_circle</i>
                 <h1 class="question-success-title">{l s='Great!' d='Shop.Theme.Catalog'}</h1>
-                <i class="material-icons close-question" onclick="closeQuestionBuble()">close</i>
+                <i class="material-icons close-question" onclick="closeQuestionBuble()" translate="no">close</i>
               </div>
               <div class="question-success-msg" >{l s='Please, check your mailbox from time to time. We will respond you as soon as possible.' d='Shop.Theme.Catalog'}</div>
               <div class="btn_close_message_ask" onclick="closeQuestionBuble()">
@@ -399,13 +399,13 @@
   
             <div class="form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="material-icons">person</i></span>
+                <span class="input-group-text" id="basic-addon1"><i class="material-icons" translate="no">person</i></span>
               </div>
               <input type="text" class="form-control" id="inputname" aria-describedby="nameHelp" placeholder="{l s='Name' d='Shop.Theme.Catalog'}" name="name_customer" value="{if $customer.is_logged}{$customer.firstname} {$customer.lastname}{/if}">
             </div>
             <div class="form-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="material-icons">email</i></span>
+                <span class="input-group-text" id="basic-addon1"><i class="material-icons" translate="no">email</i></span>
               </div>
               <input type="email" class="form-control" id="inputEmail" placeholder="{l s='Email' d='Shop.Theme.Catalog'}" name="email_customer" value="{if $customer.is_logged}{$customer.email}{/if}">
             </div>

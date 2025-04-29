@@ -7,7 +7,7 @@
 				<div id="ap5-pack-list" class="row">
 					<div class="col-lg-3 col-sm-4 col-xs-6 col-6">
 						<div id="ap5-pack-row-new" class="ap5-pack-row text-center">
-							<a class="btn btn-primary text-center" href="{$createNewPackUrl nofilter}&source_id_product={$currentProduct->id|intval}"><i class="material-icons">add_circle</i><br /><br />{l s='Create a new pack from this product' mod='pm_advancedpack'}</a>
+							<a class="btn btn-primary text-center" href="{$createNewPackUrl nofilter}&source_id_product={$currentProduct->id|intval}"><i class="material-icons" translate="no">add_circle</i><br /><br />{l s='Create a new pack from this product' mod='pm_advancedpack'}</a>
 						</div>
 					</div>
 			{if count($packList)}
@@ -19,7 +19,7 @@
 							<div class="ap5-pack-name card-header">
 								<a target="_blank" href="{$packObjects[$idPack]->urlAdminProduct nofilter}">
 									{$packObjects[$idPack]->name|escape:'html':'UTF-8'}
-									&nbsp;<i class="material-icons">mode_edit</i>
+									&nbsp;<i class="material-icons" translate="no">mode_edit</i>
 								</a>
 								</span>
 							</div>
