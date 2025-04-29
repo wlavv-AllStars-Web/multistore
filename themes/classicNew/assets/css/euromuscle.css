@@ -486,6 +486,9 @@ main > #wrapper {
   color: var(--euromus-color-text);
 }
 
+.checkbox-container-custom {
+  display: flex;
+}
 
 .checkbox-container-custom em{
   color: var(--euromus-color-500) !important;
