@@ -80,7 +80,7 @@
 
       {elseif $field.type === 'checkbox'}
 
-      <div class="flex">
+      <div class="flex checkbox-container-custom">
         <span class="custom-checkbox" style="height: fit-content;">
           <input id="{$field.name}" name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
           <span><i class="material-icons checkbox-checked" translate="no">&#xE5CA;</i></span>
