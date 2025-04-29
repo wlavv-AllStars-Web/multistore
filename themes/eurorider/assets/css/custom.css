@@ -3491,9 +3491,13 @@ ul {
   outline: 2px solid var(--bg-3);
 } */
 .banner_50:hover {
-  outline: 2px solid var(--asm-color);
   cursor: pointer;
 }
+
+.banner_50 a:hover {
+  outline: 2px solid var(--asm-color);
+}
+
 .banner_50 img {
   transition: all ease-in-out 250ms;
 }
