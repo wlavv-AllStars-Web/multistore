@@ -4762,7 +4762,12 @@ form .form-control-label {
     align-items: center;
     border-radius: 1rem;
     box-shadow: var(--euromus-shadow);
-    right: 1rem;
+    left: 1rem;
+  }
+
+  .cart_icon_button i {
+    display: flex;
+    align-items: center;
   }
 
   /* proiduct list */
