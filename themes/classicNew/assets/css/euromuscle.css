@@ -4765,6 +4765,10 @@ form .form-control-label {
     right: 1rem;
   }
 
+  body:not(#cms) #scrollToTopBtn {
+    display: none !important;
+  }
+
   .cart_icon_button i {
     display: flex;
     align-items: center;
