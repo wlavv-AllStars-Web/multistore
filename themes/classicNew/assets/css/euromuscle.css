@@ -4760,9 +4760,9 @@ form .form-control-label {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: .25rem;
     box-shadow: var(--euromus-shadow);
-    left: 1rem;
+    right: 1rem;
   }
 
   .cart_icon_button i {
