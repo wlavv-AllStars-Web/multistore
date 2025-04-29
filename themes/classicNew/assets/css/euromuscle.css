@@ -4750,6 +4750,10 @@ form .form-control-label {
 
 @media screen and (max-width: 768px) {
   /* shopping cart */
+  #checkout .cart_icon_button{
+    display: none !important;
+  }
+
   .cart_icon_button {
     position: fixed;
     bottom: 2rem;
