@@ -487,6 +487,10 @@ main > #wrapper {
 }
 
 
+.checkbox-container-custom em{
+  color: var(--euromus-color-500) !important;
+}
+
 .dropdown-toggle-brands{
   user-select: none;
 }
