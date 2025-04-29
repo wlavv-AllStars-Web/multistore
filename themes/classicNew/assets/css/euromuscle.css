@@ -4762,7 +4762,13 @@ form .form-control-label {
     align-items: center;
     border-radius: .25rem;
     box-shadow: var(--euromus-shadow);
-    right: 1rem;
+    left: 2rem;
+    right: unset;
+  }
+
+  body:not(#cms) .cart_icon_button {
+    right: 2rem !important;
+    left: unset !important;
   }
 
   body:not(#cms) #scrollToTopBtn {
