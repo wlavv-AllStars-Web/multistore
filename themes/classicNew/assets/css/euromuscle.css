@@ -4753,17 +4753,21 @@ form .form-control-label {
   .cart_icon_button {
     position: fixed;
     bottom: 2rem;
-    z-index: 9999999999;
+    z-index: 9998;
     background: var(--euromus-color-300);
     width: 3.5rem;
     height: 3.5rem;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     left: 2rem;
     right: unset;
+  }
+
+  .cart_icon_button.with-products{
+    display: flex !important;
   }
 
   .cart_icon_button i {
