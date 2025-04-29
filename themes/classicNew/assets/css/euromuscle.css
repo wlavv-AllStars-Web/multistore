@@ -4749,6 +4749,22 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  /* shopping cart */
+  .cart_icon_button {
+    position: fixed;
+    bottom: 2rem;
+    z-index: 9999999999;
+    background: var(--euromus-color-600);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    box-shadow: var(--euromus-shadow);
+    right: 1rem;
+  }
+
   /* proiduct list */
   .container-new-products {
     padding: 0;
