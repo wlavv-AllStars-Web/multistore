@@ -4749,6 +4749,11 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  /* checkout */
+  .container-checkout {
+    padding: 0 !important;
+  }
+
   /* shopping cart */
   #checkout .cart_icon_button{
     display: none !important;
