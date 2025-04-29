@@ -1688,6 +1688,14 @@ body {
 }
 
 @media (max-width: 563px) {
+
+  /* homepage */
+  .bannersHome .swiper-container .swiper-slide img {
+    object-fit: cover;
+    height: 139px;
+    object-position: right;
+  }
+
   /* addresses update */
 
   #address .form-control-label {
