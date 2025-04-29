@@ -87,9 +87,9 @@
         </div>
         <div class="hidden-md-up text-sm-center mobile">
           <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
+            <i class="material-icons d-inline" translate="no">&#xE5D2;</i>
           </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
+          <div class="float-xs-right" id="_mobile_cart" translate="no"></div>
           <div class="top-logo" id="_mobile_logo"></div>
           <div class="clearfix"></div>
         </div>
