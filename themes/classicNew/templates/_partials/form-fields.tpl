@@ -80,11 +80,13 @@
 
       {elseif $field.type === 'checkbox'}
 
-        <span class="custom-checkbox">
-          <input name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
+      <div class="flex">
+        <span class="custom-checkbox" style="height: fit-content;">
+          <input id="{$field.name}" name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
           <span><i class="material-icons checkbox-checked" translate="no">&#xE5CA;</i></span>
-          <label>{$field.label nofilter}</label >
-        </span>
+          </span>
+        <label for="{$field.name}">{$field.label nofilter}</label >
+      </div>
 
       {elseif $field.type === 'date'}
 
