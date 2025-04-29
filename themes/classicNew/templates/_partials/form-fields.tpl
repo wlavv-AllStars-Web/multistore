@@ -85,7 +85,7 @@
           <input id="{$field.name}" name="{$field.name}" type="checkbox" value="1" {if $field.value}checked="checked"{/if} {if $field.required}required{/if}>
           <span><i class="material-icons checkbox-checked" translate="no">&#xE5CA;</i></span>
           </span>
-        <label for="{$field.name}" style="color: var(--euromus-color-200);">{$field.label nofilter}</label >
+        <label for="{$field.name}" style="color: var(--euromus-color-200) !important;text-align:left;">{$field.label nofilter}</label >
       </div>
 
       {elseif $field.type === 'date'}
