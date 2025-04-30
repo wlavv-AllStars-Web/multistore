@@ -62,39 +62,76 @@
             
 </div>
 
-{* <div id="cookie-banner">
-  <p>Este site usa cookies para melhorar a sua experiência. Ao continuar a navegação, você concorda com o uso de cookies.</p>
-  <button id="accept-cookies">Aceitar</button>
-  <button id="reject-cookies">Recusar</button>
+<div id="cookie-consent-banner" style="background-color: #333; color: white; padding: 20px; text-align: center; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;">
+  <p style="margin: 0;">Este site usa cookies para melhorar sua experiência. Ao clicar em "Aceitar", você concorda com o uso de cookies.</p>
+  <button id="accept-cookies" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;">Aceitar</button>
+  <button id="decline-cookies" style="background-color: #f44336; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;">Recusar</button>
 </div>
 
 <script>
-// Quando o usuário aceita os cookies
-document.getElementById('accept-cookies').addEventListener('click', function() {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'event': 'consent_update',
-    'ad_storage': 'granted',
-    'analytics_storage': 'granted'
+  // Função para verificar se o consentimento já foi dado
+  function checkCookieConsent() {
+    return localStorage.getItem('cookieConsent');
+  }
+
+  // Função para mostrar o banner de consentimento
+  function showConsentBanner() {
+    const banner = document.getElementById('cookie-consent-banner');
+    banner.style.display = 'block';
+  }
+
+  // Função para esconder o banner de consentimento
+  function hideConsentBanner() {
+    const banner = document.getElementById('cookie-consent-banner');
+    banner.style.display = 'none';
+  }
+
+  // Função para definir o consentimento no localStorage e no dataLayer
+  function setConsent(consent) {
+    // Salvar o consentimento no localStorage para não aparecer novamente
+    localStorage.setItem('cookieConsent', consent);
+    
+    // Enviar o consentimento para o dataLayer do Google Tag Manager
+    window.dataLayer = window.dataLayer || [];
+    if (consent === 'granted') {
+      window.dataLayer.push({
+        event: 'consent',
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
+    } else {
+      window.dataLayer.push({
+        event: 'consent',
+        ad_storage: 'denied',
+        analytics_storage: 'denied'
+      });
+    }
+
+    // Esconde o banner após a escolha do usuário
+    hideConsentBanner();
+  }
+
+  // Verificar se o consentimento já foi dado
+  if (!checkCookieConsent()) {
+    // Se não, mostrar o banner
+    showConsentBanner();
+  } else {
+    // Se sim, esconder o banner
+    hideConsentBanner();
+  }
+
+  // Definir comportamento do botão "Aceitar"
+  document.getElementById('accept-cookies').addEventListener('click', function() {
+    setConsent('granted');
   });
 
-  // Ocultar o banner
-  document.getElementById('cookie-banner').style.display = 'none';
-});
-
-// Quando o usuário recusa os cookies
-document.getElementById('reject-cookies').addEventListener('click', function() {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'event': 'consent_update',
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
+  // Definir comportamento do botão "Recusar"
+  document.getElementById('decline-cookies').addEventListener('click', function() {
+    setConsent('denied');
   });
+</script>
 
-  // Ocultar o banner
-  document.getElementById('cookie-banner').style.display = 'none';
-});
-</script> *}
+
 
 {block name='header_banner'}
   <div class="header-banner">
