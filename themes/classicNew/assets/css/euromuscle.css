@@ -11,6 +11,20 @@
   --euromus-color-text2 : #7a7a7a;
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+
+#cookie-consent-banner{
+  background-color: #fff; color: white; padding: 20px; text-align: center; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+}
+
+#cookie-consent-banner #accept-cookies{
+  background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;
+}
+
+#cookie-consent-banner #decline-cookies{
+  background-color: #f44336; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;
+}
+
 #cookie-banner {
   position: fixed;
   bottom: 0;
