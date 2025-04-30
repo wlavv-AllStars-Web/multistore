@@ -3452,6 +3452,7 @@ a:focus{
 .cars-container #accordion .show{
   background-color: var(--euromus-color-200);
   border-radius: 13px;
+  margin: 0 1rem;
 }
 
 
