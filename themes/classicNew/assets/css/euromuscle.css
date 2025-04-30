@@ -4752,6 +4752,10 @@ form .form-control-label {
   font-weight: 600;
 }
 
+.menu-select-car-container {
+  padding-inline: 1rem;
+}
+
 @media screen and (max-width: 768px) {
   /* checkout */
   .container-checkout {
