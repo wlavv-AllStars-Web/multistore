@@ -175,6 +175,10 @@ var swiper = new Swiper(".swiperCars", {
       spaceBetween: 40,
     },
     1024: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+    1200: {
       slidesPerView: 4,
       spaceBetween: 50,
     },
