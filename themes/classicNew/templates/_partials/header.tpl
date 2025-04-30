@@ -62,6 +62,7 @@
             
 </div>
 
+<div id="cookie-consent-banner-background"></div>
 <div id="cookie-consent-banner">
   <p style="margin: 0;">Este site usa cookies para melhorar sua experiência. Ao clicar em "Aceitar", você concorda com o uso de cookies.</p>
   <button id="accept-cookies">Aceitar</button>
@@ -77,13 +78,17 @@
   // Função para mostrar o banner de consentimento
   function showConsentBanner() {
     const banner = document.getElementById('cookie-consent-banner');
+    const banner_bg = document.getElementById('cookie-consent-banner-background');
     banner.style.display = 'block';
+    banner_bg.style.display = 'block';
   }
 
   // Função para esconder o banner de consentimento
   function hideConsentBanner() {
     const banner = document.getElementById('cookie-consent-banner');
+    const banner_bg = document.getElementById('cookie-consent-banner-background');
     banner.style.display = 'none';
+    banner_bg.style.display = 'none';
   }
 
   // Função para definir o consentimento no localStorage e no dataLayer
