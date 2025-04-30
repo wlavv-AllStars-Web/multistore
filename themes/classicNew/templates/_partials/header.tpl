@@ -64,7 +64,7 @@
 
 <div id="cookie-consent-banner-background"></div>
 <div id="cookie-consent-banner">
-  <p style="margin: 0;">{l s='This website uses cookies to improve your experience. By clicking "Accept", you agree to the use of cookies.' d="Shop.Theme.Cookies"}</p>
+  <p style="margin: 0;">{l s='To provide the best experiences, we use technologies like cookies to store and/or access device information. By clicking “Accept” you consent to these technologies that may allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.' d="Shop.Theme.Cookies"}</p>
   <button id="accept-cookies">{l s='Accept' d="Shop.Theme.Cookies"}</button>
   <button id="decline-cookies">{l s='Decline' d="Shop.Theme.Cookies"}</button>
 </div>
