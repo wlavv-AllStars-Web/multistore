@@ -62,6 +62,40 @@
             
 </div>
 
+<div id="cookie-banner">
+  <p>Este site usa cookies para melhorar a sua experiência. Ao continuar a navegação, você concorda com o uso de cookies.</p>
+  <button id="accept-cookies">Aceitar</button>
+  <button id="reject-cookies">Recusar</button>
+</div>
+
+<script>
+// Quando o usuário aceita os cookies
+document.getElementById('accept-cookies').addEventListener('click', function() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'consent_update',
+    'ad_storage': 'granted',
+    'analytics_storage': 'granted'
+  });
+
+  // Ocultar o banner
+  document.getElementById('cookie-banner').style.display = 'none';
+});
+
+// Quando o usuário recusa os cookies
+document.getElementById('reject-cookies').addEventListener('click', function() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'consent_update',
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  // Ocultar o banner
+  document.getElementById('cookie-banner').style.display = 'none';
+});
+</script>
+
 {block name='header_banner'}
   <div class="header-banner">
     {hook h='displayBanner'}
