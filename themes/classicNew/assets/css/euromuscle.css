@@ -585,7 +585,7 @@ main > #wrapper {
 
 .cars-container .cars-cards{
     width: 100%;
-    display: grid !important;
+    /* display: grid !important; */
     gap: 2rem;
     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
     padding: 1rem;
