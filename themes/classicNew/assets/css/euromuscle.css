@@ -18,11 +18,25 @@
 }
 
 #cookie-consent-banner #accept-cookies{
-  background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;
+  background-color: var(--euromus-color-500);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: 2px solid var(--euromus-color-600);
+  border-radius: .25rem;
 }
 
 #cookie-consent-banner #decline-cookies{
-  background-color: #f44336; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;
+  background-color: #e9e9ed;
+  color: var(--euromus-color-600) !important;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: 2px solid var(--euromus-color-700);
+  border-radius: .25rem;
 }
 
 #cookie-banner {
