@@ -169,6 +169,10 @@ var swiper = new Swiper(".swiperCars", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+  lazy: {
+    loadPrevNext: true,
+    loadOnTransitionStart: true,
+  },
   breakpoints: {
     640: {
       slidesPerView: 1,
