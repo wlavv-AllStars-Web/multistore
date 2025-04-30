@@ -62,10 +62,10 @@
             
 </div>
 
-<div id="cookie-consent-banner" style="background-color: #333; color: white; padding: 20px; text-align: center; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;">
+<div id="cookie-consent-banner">
   <p style="margin: 0;">Este site usa cookies para melhorar sua experiência. Ao clicar em "Aceitar", você concorda com o uso de cookies.</p>
-  <button id="accept-cookies" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;">Aceitar</button>
-  <button id="decline-cookies" style="background-color: #f44336; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px;">Recusar</button>
+  <button id="accept-cookies">Aceitar</button>
+  <button id="decline-cookies">Recusar</button>
 </div>
 
 <script>
