@@ -3574,6 +3574,7 @@ a:focus{
   max-width: 334px;
   width: 100%;
   filter: drop-shadow(10px 6px 18px rgba(0,0,0,.4));
+  user-select: none;
 }
 
 .cars-container .card .card-body .card-text{
