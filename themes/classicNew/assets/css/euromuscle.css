@@ -12,6 +12,10 @@
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+  .cars-container .card {
+    padding: 0;
+  }
+
   .container-contact .contact-form .form-control {
     background: #fff !important;
   }
@@ -586,10 +590,10 @@ main > #wrapper {
 .cars-container .cars-cards{
     width: 100%;
     /* display: grid !important; */
-    gap: 2rem;
+    /* gap: 2rem;
     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-    padding: 1rem;
-    max-width: 1920px;
+    padding: 1rem; */
+    /* max-width: 1920px; */
 }
 
 .cars-container .card{
@@ -2539,9 +2543,9 @@ a:focus{
     justify-content: center;
   } */
 
-  .cars-container .card {
+  /* .cars-container .card {
     width: 35%;
-  }
+  } */
 
   .cars-container .card .card-img-top {
     width: 80%;
