@@ -116,10 +116,22 @@
     hideConsentBanner();
   }
 
+  function isLoggedIn() {
+    return typeof prestashop !== 'undefined' && prestashop.customer.isLogged;
+  }
+
   // Verificar se o consentimento já foi dado
   if (!checkCookieConsent()) {
+    if (isLoggedIn()) {
+      console.log("user logged")
+      // Se o usuário está logado
+      // , dar consentimento automaticamente
+      setConsent('granted');
+    } else {
     // Se não, mostrar o banner
+    console.log("user not logged")
     showConsentBanner();
+    }
   } else {
     // Se sim, esconder o banner
     hideConsentBanner();

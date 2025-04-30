@@ -12,6 +12,14 @@
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+#cookie-consent-banner-background {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,.6);
+  z-index: 99999;
+}
 
 #cookie-consent-banner{
   background-color: #fff; color: white; padding: 20px; text-align: center; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
