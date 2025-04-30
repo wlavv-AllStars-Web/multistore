@@ -1263,6 +1263,7 @@ class FrontControllerCore extends Controller
      */
     public function setMedia()
     {
+        $this->removeJs(_PS_JS_DIR_.'jquery/jquery-3.5.1.min.js'); 
         $this->registerStylesheet('theme-main', '/assets/css/theme.css', ['media' => 'all', 'priority' => 50]);
         $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 51]);
 
