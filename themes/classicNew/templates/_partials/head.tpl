@@ -39,6 +39,12 @@
   
   {literal}
     <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "consent.given",
+      consent: "true"
+    });
+
     (function(w,d,s,l,i){
       w[l]=w[l]||[];
       w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
@@ -49,12 +55,6 @@
       j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
       f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PSF3LZPP');
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "consent.given",
-      consent: "true"
-    });
     </script>
   {/literal}
 
