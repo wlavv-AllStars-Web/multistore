@@ -1289,20 +1289,20 @@ class FrontControllerCore extends Controller
         }
         $this->registerJavascript('theme-main', '/assets/js/theme.js', ['position' => 'bottom', 'priority' => 50]);
 
-        if($this->context->shop->id == 1){
-            $this->registerJavascript(
-                'jquery-cdn',
-                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
-                [
-                    'server' => 'remote',
-                    'position' => 'bottom',
-                    'priority' => 1,
-                    'integrity' => 'sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==',
-                    'crossorigin' => 'anonymous',
-                    'referrerpolicy' => 'no-referrer',
-                ]
-            );
-        }
+        // if($this->context->shop->id == 1){
+        //     $this->registerJavascript(
+        //         'jquery-cdn',
+        //         'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js',
+        //         [
+        //             'server' => 'remote',
+        //             'position' => 'bottom',
+        //             'priority' => 1,
+        //             'integrity' => 'sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==',
+        //             'crossorigin' => 'anonymous',
+        //             'referrerpolicy' => 'no-referrer',
+        //         ]
+        //     );
+        // }
 
         $this->registerJavascript('theme-custom', '/assets/js/custom.js', ['position' => 'bottom', 'priority' => 1000]);
 
