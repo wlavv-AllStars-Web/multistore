@@ -28,7 +28,7 @@
       <i class="material-icons search" aria-hidden="true" onclick="toggleSearchbar()" translate="no">search</i>
         <div  class="cart_icon_button {if $cart.products_count > 0}with-products{/if}">
         {if $cart.products_count > 0}
-          <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$order_url}">
+          <a rel="nofollow" aria-label="{l s='Shopping cart link containing %nbProducts% product(s)' sprintf=['%nbProducts%' => $cart.products_count] d='Shop.Theme.Checkout'}" href="{$urls.base_url}{$language.iso_code}/checkout">
         {/if}
 
           
