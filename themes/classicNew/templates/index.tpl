@@ -830,7 +830,7 @@
   <div class="swiper-pagination"></div>
 </div>
 
-  <script>
+  <script defer="defer">
   var swiper = new Swiper(".swiperCars", {
     pagination: {
       el: ".swiper-pagination",
