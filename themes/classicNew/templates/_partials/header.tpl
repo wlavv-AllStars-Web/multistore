@@ -77,6 +77,7 @@
 
   // Função para mostrar o banner de consentimento
   function showConsentBanner() {
+    localStorage.removeItem('cookieConsent')
     const banner = document.getElementById('cookie-consent-banner');
     const banner_bg = document.getElementById('cookie-consent-banner-background');
     banner.style.display = 'block';
@@ -117,24 +118,26 @@
   }
 
   function isLoggedIn() {
-    return typeof prestashop !== 'undefined' && prestashop.customer.isLogged;
+    return {$customer['is_logged'] == 1};
   }
 
   // Verificar se o consentimento já foi dado
   if (!checkCookieConsent()) {
     if (isLoggedIn()) {
-      console.log("user logged")
       // Se o usuário está logado
       // , dar consentimento automaticamente
       setConsent('granted');
     } else {
     // Se não, mostrar o banner
-    console.log("user not logged")
     showConsentBanner();
     }
   } else {
     // Se sim, esconder o banner
     hideConsentBanner();
+
+    if (checkCookieConsent() === 'denied') {
+      showConsentBanner();
+    }
   }
 
   // Definir comportamento do botão "Aceitar"
