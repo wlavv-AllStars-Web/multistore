@@ -64,9 +64,9 @@
 
 <div id="cookie-consent-banner-background"></div>
 <div id="cookie-consent-banner">
-  <p style="margin: 0;">Este site usa cookies para melhorar sua experiência. Ao clicar em "Aceitar", você concorda com o uso de cookies.</p>
-  <button id="accept-cookies">Aceitar</button>
-  <button id="decline-cookies">Recusar</button>
+  <p style="margin: 0;">{l s='This website uses cookies to improve your experience. By clicking "Accept", you agree to the use of cookies.' d="Shop.Theme.Cookies"}</p>
+  <button id="accept-cookies">{l s='Accept' d="Shop.Theme.Cookies"}</button>
+  <button id="decline-cookies">{l s='Decline' d="Shop.Theme.Cookies"}</button>
 </div>
 
 <script>
