@@ -3455,6 +3455,10 @@ a:focus{
   margin: 0 1rem;
 }
 
+.swiperCars .swiper-pagination-bullet-active {
+  background: var(--euromus-color-400) !important;
+}
+
 
 .cars-container .card{
   background: var(--euromus-color-500);
