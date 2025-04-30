@@ -830,13 +830,6 @@
   <div class="swiper-pagination"></div>
 </div>
 
-  <script defer="defer">
-  var swiper = new Swiper(".swiperCars", {
-    pagination: {
-      el: ".swiper-pagination",
-    },
-  });
-  </script>
 
             {* categories *}
 

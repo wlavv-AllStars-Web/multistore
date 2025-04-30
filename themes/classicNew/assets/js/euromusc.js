@@ -157,3 +157,9 @@ var Swipes2 = new Swiper('.products-mobile', {
     clickable: true,
   },
 });
+
+var swiper = new Swiper(".swiperCars", {
+  pagination: {
+    el: ".swiper-pagination",
+  },
+});
