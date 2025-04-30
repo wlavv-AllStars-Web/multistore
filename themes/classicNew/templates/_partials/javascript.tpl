@@ -45,4 +45,4 @@
     {/foreach}
   </script>
 {/if}
-<script type="text/javascript" src="/themes/classicNew/assets/js/euromusc.js"></script>
+{* <script type="text/javascript" src="/themes/classicNew/assets/js/euromusc.js"></script> *}
