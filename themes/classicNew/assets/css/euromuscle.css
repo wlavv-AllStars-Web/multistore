@@ -2935,6 +2935,7 @@ a:focus{
 
     .cart_icon_button {
       display: flex;
+      align-items: center;
     }
 
     /*  */
