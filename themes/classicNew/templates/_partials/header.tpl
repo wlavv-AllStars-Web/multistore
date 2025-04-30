@@ -62,7 +62,7 @@
             
 </div>
 
-<div id="cookie-banner">
+{* <div id="cookie-banner">
   <p>Este site usa cookies para melhorar a sua experiência. Ao continuar a navegação, você concorda com o uso de cookies.</p>
   <button id="accept-cookies">Aceitar</button>
   <button id="reject-cookies">Recusar</button>
@@ -94,7 +94,7 @@ document.getElementById('reject-cookies').addEventListener('click', function() {
   // Ocultar o banner
   document.getElementById('cookie-banner').style.display = 'none';
 });
-</script>
+</script> *}
 
 {block name='header_banner'}
   <div class="header-banner">
