@@ -3898,6 +3898,10 @@ select {
   color: #0d2540 !important;
 }
 
+.cars-cards .card {
+  user-select: none;
+}
+
 .cars-cards .card .card-title {
   min-height: 52px;
 }
