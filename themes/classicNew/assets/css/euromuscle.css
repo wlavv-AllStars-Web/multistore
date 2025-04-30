@@ -1990,13 +1990,13 @@ a:focus{
       /* padding: 3rem 0 0 0 !important; */
     }
 
-    .cars-container .cars-cards {
+    /* .cars-container .cars-cards {
       display: flex !important;
       overflow: scroll;
       scroll-snap-type: mandatory;
       scroll-snap-type: x mandatory !important;
       gap: 0.5rem;
-    }
+    } */
 
     .cars-container .cars-cards .card {
       min-width: 100vw;
@@ -3191,7 +3191,7 @@ a:focus{
       /* max-width:1440px; */
       width:100%;
       /* display:flex !important; */
-      gap: 2rem;
+      /* gap: 2rem; */
     }
 
     .cars-container .cars-cards .card-img-top{
