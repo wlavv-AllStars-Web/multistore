@@ -591,7 +591,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content li a:hover{
   color: var(--euromus-color-300) !important;
   background: transparent !important;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Show the dropdown menu on hover */
