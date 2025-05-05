@@ -4532,7 +4532,7 @@ ul {
 }
 
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.7);
+  box-shadow: 0 0 0 0.2rem rgba(61, 169, 54, .7);
 }
 
 .btn_downloadInstructions {
