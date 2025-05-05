@@ -32,7 +32,7 @@
       <div class="swiper-wrapper">
       {foreach from=$product.images item=item key=key name=name}
         <div class="swiper-slide">
-          <img src="{$item.bySize.tablet_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
+          <img src="{$item.bySize.tm_thickbox_default.url}" class="product_image" title="{$item.legend}" alt="{$item.legend}"/>
         </div>
       {/foreach}
       </div>
