@@ -1719,6 +1719,10 @@ body {
     flex-direction: column;
   }
 
+  .description_box .description_short {
+    display: none !important;
+  }
+
   /* homepage */
   .bannersHome .swiper-container .swiper-slide img {
     object-fit: cover;
