@@ -387,9 +387,9 @@
 
   /* shipping */
   @media screen and (max-width: 768px) {
-    #cms_shipping {
+    /* #cms_shipping {
       padding: 1rem !important;
-    }
+    } */
     .shipping-content{
       flex-direction: column;
     }
