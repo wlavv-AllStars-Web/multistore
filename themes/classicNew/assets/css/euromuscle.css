@@ -3152,7 +3152,7 @@ a:focus{
 
     #_desktop_logo img {
       max-width: 234px !important;
-      width: 110%;
+      width: 100%;
       /* margin-left: 2rem; */
     }
 
