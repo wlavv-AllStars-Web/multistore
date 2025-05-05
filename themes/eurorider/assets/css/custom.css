@@ -2410,7 +2410,7 @@ body {
   }
 
   #manufacturer .products-sort-order {
-    width: unset !important;
+    width: 100% !important;
   }
 
   .bannersContainer {
