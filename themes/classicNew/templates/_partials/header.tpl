@@ -163,7 +163,7 @@
   
   <nav class="header-nav" style="border-bottom: none;">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="hidden-sm-down" style="width: 100%;">
           <div class="col-md-12 col-xs-12" style="display: flex;align-items:center;height:57px;gap:2rem;justify-content:end;width:100%;">
