@@ -758,7 +758,7 @@
     #cms-payment {
       width: 100% !important;
       max-width: 1440px;
-      margin: 1rem;
+      margin: 1rem auto;
     }
 
     #cms-payment .payment-header img {
