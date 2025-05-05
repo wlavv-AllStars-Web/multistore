@@ -1715,6 +1715,10 @@ body {
     justify-content: center;
   }
 
+  #about-us .about-content > div {
+    flex-direction: column;
+  }
+
   /* homepage */
   .bannersHome .swiper-container .swiper-slide img {
     object-fit: cover;
