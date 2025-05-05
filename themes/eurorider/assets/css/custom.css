@@ -1709,6 +1709,12 @@ body {
 
 @media (max-width: 563px) {
 
+  #customer-form .form-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   /* homepage */
   .bannersHome .swiper-container .swiper-slide img {
     object-fit: cover;
