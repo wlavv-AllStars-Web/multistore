@@ -500,6 +500,16 @@ body {
     z-index: 0;
   }
 
+  #password main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #password main > #wrapper{
+    flex: 1;
+  }
+
   #password #main #content {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 2rem;
