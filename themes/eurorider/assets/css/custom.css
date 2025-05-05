@@ -17,13 +17,6 @@
   --bg-9 : #999;
 }
 
-.btn-logout {
-  padding: .5rem 1rem;
-  background: var(--euromus-color-100);
-  border-radius: .25rem;
-  color: #fff;
-}
-
 body {
   overflow-x: hidden;
   max-width: 1920px;
