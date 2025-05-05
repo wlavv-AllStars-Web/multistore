@@ -1,6 +1,7 @@
 :root {
   --asm-color: #3da936;
   --asm-color-100: rgba(61, 169, 54, .8);
+  --border-color: rgba(61, 169, 54, .7);
   --black: #101010;
   --grey: #282828;
 
@@ -4531,8 +4532,9 @@ ul {
   color: var(--white);
 }
 
+/*  */
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(61, 169, 54, .7);
+  box-shadow: 0 0 0 0.2rem var(--border-color);
 }
 
 .btn_downloadInstructions {
