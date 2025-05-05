@@ -1811,6 +1811,7 @@ a:focus{
       background: #103054;
       border-top: 4px solid var(--euromus-color-300);
       /* gap: 0.25rem; */
+      margin-bottom: 0;
     }
     
     .content_brands {
