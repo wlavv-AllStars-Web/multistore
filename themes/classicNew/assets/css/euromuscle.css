@@ -4336,7 +4336,7 @@ header.page-header {
 }
 
 .card_partners {
-  box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   height: auto;
   background-color: var(--euromus-color-500)a1;
   color: white;
