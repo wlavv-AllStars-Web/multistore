@@ -1709,6 +1709,16 @@ body {
 
 @media (max-width: 563px) {
 
+  #password main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #password main > #wrapper {
+    flex: 1;
+  }
+
   #password #content-wrapper {
     padding: 1rem !important;
   }
