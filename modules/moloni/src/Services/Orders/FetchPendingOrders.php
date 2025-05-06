@@ -162,7 +162,8 @@ class FetchPendingOrders
 
         // Lets limit results
         $offset = $this->request['start'] ?: 0;
-        $length = $this->request['length'] ?: 200;
+        // $length = $this->request['length'] ?: 200;
+        $length = 200;
 
         $condition .= ' LIMIT ' . pSQL($length) . ' OFFSET ' . pSQL($offset);
         // $condition .= ' LIMIT 200';
