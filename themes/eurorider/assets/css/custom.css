@@ -1749,6 +1749,10 @@ body {
 
 @media (max-width: 563px) {
 
+  #language_selector {
+    width: 100%;
+  }
+
   .bg-mysidenav {
     display: none;
     width: 100dvw;
