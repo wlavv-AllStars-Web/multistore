@@ -1709,6 +1709,13 @@ body {
 
 @media (max-width: 563px) {
 
+  #password #content-wrapper {
+    padding: 1rem;
+  }
+  #password #content {
+    padding: 1rem;
+  }
+
   #customer-form .form-footer {
     width: 100%;
     display: flex;
