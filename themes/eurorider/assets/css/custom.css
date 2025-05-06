@@ -1715,7 +1715,7 @@ body {
     height: 100%;
   }
 
-  #password main > #wrapper {
+  body main > #wrapper {
     flex: 1;
   }
 
