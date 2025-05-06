@@ -49,7 +49,7 @@
      
         <h1 class="page-heading">{l s='My Cars' d='Shop.Theme.MyCars'}</h1>
         
-        {if count($myCars) < 1 }
+        {if $myCars|count}
             <div style="text-align: center;">
                 <p class="alert alert-warning"> 
                     {l s='You dont have any car set at the moment.' d='Shop.Theme.MyCars'} 
