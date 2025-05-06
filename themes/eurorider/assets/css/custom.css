@@ -2958,9 +2958,9 @@ body {
   justify-content: center;
   margin-top: 3rem;
 }
-#my-account #wrapper {
+/* #my-account #wrapper {
   min-height: 57vh;
-}
+} */
 
 #my-account .links .link-item {
   border-radius: 0.25rem;
