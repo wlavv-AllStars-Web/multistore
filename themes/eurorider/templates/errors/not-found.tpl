@@ -35,12 +35,12 @@
   {hook h='displayNotFound'} *}
 </section>
 <style>
-  #manufacturer main {
+  /* #manufacturer main {
       min-height: 100vh;
     }
   #manufacturer main #wrapper{
       min-height: 57vh;
-    }
+    } */
   #manufacturer main #wrapper #content{
     text-align: center;
   }
