@@ -5664,7 +5664,6 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 .page-product-notfound {
-  min-height: 49dvh;
   display: flex;
   justify-content: center;
   align-items: center;
