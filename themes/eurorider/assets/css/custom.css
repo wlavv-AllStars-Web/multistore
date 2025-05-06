@@ -1710,10 +1710,14 @@ body {
 @media (max-width: 563px) {
 
   #password #content-wrapper {
-    padding: 1rem;
+    padding: 1rem !important;
   }
   #password #content {
     padding: 1rem;
+  }
+
+  .form-password-reset button{
+    margin: auto;
   }
 
   #customer-form .form-footer {
