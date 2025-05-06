@@ -500,6 +500,16 @@ body {
 }
 
 @media (min-width: 992px) {
+  body main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  body main > #wrapper {
+    flex: 1;
+  }
+
   .input-group {
     z-index: 0;
   }
