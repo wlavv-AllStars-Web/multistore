@@ -21,7 +21,7 @@
   </div>
 
   <!-- Mobile Layout -->
-  <div id="_mobile_language_selector" style="display: none;">
+  <div id="_mobile_language_selector" class="d-mobile-language">
     <div class="language-selector-wrapper">
       <ul aria-labelledby="language-selector-label">
         {foreach from=$languages item=language}
@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<script>
+{* <script>
   document.addEventListener('DOMContentLoaded', () => {
     const desktopSelector = document.getElementById('_desktop_language_selector');
     const mobileSelector = document.getElementById('_mobile_language_selector');
@@ -59,4 +59,4 @@
     // Update on resize
     window.addEventListener('resize', updateSelectorDisplay);
   });
-</script>
+</script> *}
