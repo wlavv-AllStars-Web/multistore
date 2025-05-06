@@ -29,7 +29,7 @@
 {block name='right_column'}{/block}
 
 {block name='content_wrapper'}
-  <div id="content-wrapper p-0" >
+  <div id="content-wrapper" >
     <div class="container" style="margin: 0;">
         <div class="row">
             {block name='content'}
