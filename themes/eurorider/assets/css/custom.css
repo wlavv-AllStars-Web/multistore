@@ -913,6 +913,20 @@ body {
     display: flex !important;
   }
 
+  .bg-mysidenav {
+    display: none;
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+  }
+
+
+
   /* tot shipping */
   #totselectzone #shipping_zone {
     width: 75% !important; 
@@ -1253,6 +1267,18 @@ body {
   }
   .d-desktop{
     display: none !important;
+  }
+
+  .bg-mysidenav {
+    display: none;
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
   }
 
   .count-products {
@@ -1709,6 +1735,18 @@ body {
 
 @media (max-width: 563px) {
 
+  .bg-mysidenav {
+    display: none;
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+  }
+  
   body main {
     display: flex;
     flex-direction: column;
@@ -5500,6 +5538,10 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+  .bg-mysidenav {
+    display: none;
+  }
+
   .user-info {
     display: flex;
     align-items: center;

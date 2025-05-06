@@ -278,7 +278,7 @@
 
         </div>
         
-
+        <div class="bg-mysidenav" onclick="closeNav()"></div>
         <div id="mySidenav" class="sidenav">
           <ul class="navbar-nav mr-auto">
 
