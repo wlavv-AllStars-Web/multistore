@@ -154,18 +154,18 @@ class FetchPendingOrders
                 break;
         }
 
-        // $condition .= ' ORDER BY ' . pSQL($field) . ' ' . pSQL($direction);
-        $condition .= ' ORDER BY O.date_add DESC';
+        $condition .= ' ORDER BY ' . pSQL($field) . ' ' . pSQL($direction);
+        // $condition .= ' ORDER BY O.date_add DESC';
 
         // Save query segmentation for totals here, because it cannot have "LIMIT"
         $this->queryTotalResultsCondition = $condition;
 
         // Lets limit results
-        // $offset = $this->request['start'] ?: 0;
-        // $length = $this->request['length'] ?: 10;
+        $offset = $this->request['start'] ?: 0;
+        $length = $this->request['length'] ?: 200;
 
-        // $condition .= ' LIMIT ' . pSQL($length) . ' OFFSET ' . pSQL($offset);
-        $condition .= ' LIMIT 200';
+        $condition .= ' LIMIT ' . pSQL($length) . ' OFFSET ' . pSQL($offset);
+        // $condition .= ' LIMIT 200';
 
         $this->queryCondition = $condition;
     }

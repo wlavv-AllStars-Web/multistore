@@ -73,11 +73,11 @@
               </a>  *}
               <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/all-stars-motorsport" target="_NEW"> 
                 <img class="desktop"  alt="Youtube" src="/img/eurorider/socials/youtube.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/youtube_hover.png'" onmouseout="this.src='/img/eurorider/socials/youtube.png' "> 
-                <img class="mobile" alt="Youtube" src="/img/eurorider/socials/youtube.png" style="width: 50px;height:50px;" />
+                <img class="mobile" alt="Youtube" src="/img/eurorider/socials/youtube_hover.png" style="width: 50px;height:50px;" />
               </a> 
               <a title="Whatsapp" class="social-icon" style="margin-right: 8px;" href="https://wa.me/+351912201753" target="_blank"> 
                 <img class="desktop"  alt="Whatsapp" src="/img/eurorider/socials/whatsapp.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/whatsapp_hover.png'" onmouseout="this.src='/img/eurorider/socials/whatsapp.png' "> 
-                <img class="mobile" alt="Whatsapp" src="/img/eurorider/socials/whatsapp.png" style="width: 50px;height:50px;"/>
+                <img class="mobile" alt="Whatsapp" src="/img/eurorider/socials/whatsapp_hover.png" style="width: 50px;height:50px;"/>
               </a>
             </div>
           </li>
