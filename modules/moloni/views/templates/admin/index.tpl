@@ -60,6 +60,7 @@
                 <th style='width: 200px'>{l s='Order date' mod='moloni'}</th>
                 <th style='width: 120px'>{l s='Status' mod='moloni'}</th>
                 <th style='width: 120px'>{l s='Total' mod='moloni'}</th>
+                <th style='width: 120px'>{l s='Total Ex Vat' mod='moloni'}</th>
                 <th style='width: 150px'>{l s='Actions' mod='moloni'}</th>
             </tr>
             </thead>
