@@ -219,7 +219,9 @@ class ContactControllerCore extends FrontController
                                             $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
                                     $this->errors[] = Tools::displayError('An error occurred while sending the message.');
                                 }else{
-                                    $this->context->smarty->assign('confirmation', 1);
+                                    $this->context->cookie->__set('contact_alert', $this->trans('Message successfully sent.', [], 'Shop.Theme.ContactForm'));
+                                    
+                                    Tools::redirect($this->context->link->getPageLink('contact'));
                                 }
                                 
                                 // Mail::Send($this->context->language->id, 'contact_form', Mail::l('Message from contact form').' [no_sync]',
@@ -258,6 +260,14 @@ class ContactControllerCore extends FrontController
         parent::initContent();
 
         $this->assignOrderList();
+
+        $contact_alert = $this->context->cookie->contact_alert;
+
+        if (!empty($contact_alert)) {
+            $this->context->controller->success[] = $contact_alert;
+
+            $this->context->cookie->__unset('contact_alert');
+        } 
 
         $email = Tools::safeOutput(Tools::getValue('from',
         ((isset($this->context->cookie) && isset($this->context->cookie->email) && Validate::isEmail($this->context->cookie->email)) ? $this->context->cookie->email : '')));
