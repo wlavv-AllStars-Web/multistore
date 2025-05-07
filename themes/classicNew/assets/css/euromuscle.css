@@ -1199,9 +1199,21 @@ a:focus{
   }
 
   #cms-payment .payment-content-bottom .col-2 {
-    width: 50% !important;
-    
+    width: 100% !important;
+    text-align: center;
   }
+
+  #cms-payment .payment-content-bottom .col-2:nth-child(1) > div > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 220px;
+    margin: auto;
+  }
+
+
+
+
   #cms-payment .payment-content-bottom .col-3 {
     width: 100% !important; 
   }
