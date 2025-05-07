@@ -540,7 +540,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content {
   display: none;
   position: absolute;
-  background: var(--euromus-color-100);
+  background: var(--euromus-color-400);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -579,8 +579,7 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content li a{
   background: transparent;
   width: fit-content;
-  /* color: #103054 !important; */
-  color: #fff !important;
+  color: var(--euromus-color-200) !important;
   max-width: none !important;
   text-transform: uppercase;
   padding: 5px;
@@ -591,7 +590,6 @@ btnBrandsMobile.addEventListener('click', () => {
 .dropdown-content li a:hover{
   color: var(--euromus-color-300) !important;
   background: transparent !important;
-  font-weight: 600;
 }
 
 /* Show the dropdown menu on hover */
