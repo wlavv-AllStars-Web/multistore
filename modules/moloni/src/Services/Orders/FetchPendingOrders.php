@@ -179,7 +179,7 @@ class FetchPendingOrders
             $order = new Order($orderId, $this->languageId);
             $address = new Address($order->id_address_invoice, $this->languageId);
             $address_invoice_country = (new Country($address->id_country, $this->languageId))->name;
-            $address_shipping = new Address($order->id_address_shipping, $this->languageId);
+            $address_shipping = new Address($order->id_address_delivery, $this->languageId);
             $address_shipping_country = (new Country($address_shipping->id_country, $this->languageId))->name;
             $customer = new Customer($order->id_customer);
             $currency = new Currency($order->id_currency, $this->languageId);
