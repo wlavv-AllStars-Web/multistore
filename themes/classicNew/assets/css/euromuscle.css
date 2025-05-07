@@ -1203,6 +1203,10 @@ a:focus{
     text-align: center;
   }
 
+  #cms-payment .payment-content-bottom .col-2:nth-child(1) > div {
+    margin-top: 1rem;
+  }
+
   #cms-payment .payment-content-bottom .col-2:nth-child(1) > div > div{
     display: flex;
     align-items: center;
