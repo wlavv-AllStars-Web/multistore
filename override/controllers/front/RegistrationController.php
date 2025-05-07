@@ -79,6 +79,15 @@ class RegistrationControllerCore extends FrontController
             if ($hookResult && $register_form->submit() && !$this->ajax) {
                 // First option - redirect the customer to desired URL specified in 'back' parameter
                 // Before that, we need to check if 'back' is legit URL that is on OUR domain, with the right protocol
+
+                if($this->context->shop->id == 1) {
+                    $this->context->controller->success[] = $this->trans(
+                        'Your account has been successfully created.',
+                        [],
+                        'Shop.Notifications.Success'
+                    );
+                }
+
                 $back = rawurldecode(Tools::getValue('back'));
                 if (Tools::urlBelongsToShop($back)) {
                     return $this->redirectWithNotifications($back);
