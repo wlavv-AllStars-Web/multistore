@@ -918,6 +918,15 @@ body {
   }
 }
 
+@media screen and (max-width: 991px) {
+  .d-mobile-language{
+    display: flex;
+  }
+  .d-desktop-language{
+    display: none;
+  }
+}
+
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .d-mobile{
@@ -5557,6 +5566,14 @@ body::-ms-scrollbar-thumb:hover {
   .bg-mysidenav {
     display: none;
   }
+
+  .d-mobile-language{
+    display: none;
+  }
+  .d-desktop-language{
+    display: flex;
+  }
+
 
   .user-info {
     display: flex;
