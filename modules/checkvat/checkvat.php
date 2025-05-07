@@ -354,7 +354,8 @@ class CheckVat extends Module
             // If no errors, proceed with success
             if (empty($this->context->controller->errors)) {
                 // No errors, add success message
-                // $this->context->controller->success[] = $this->trans('Account created successfully!', [], 'Shop.Theme.Registration');
+				$message = $this->trans('Your account has been successfully created.', [], 'Shop.Theme.Registration');
+                $this->context->cookie->__set('account_success_message', $message);
                 return 1;  // Success
             }
 		}
@@ -435,6 +436,19 @@ class CheckVat extends Module
 	public function hookcustomerAccount()
 	{
 		PrestaShopLogger::addLog('hookcustomerAccount called', 1);
+
+		$message = $this->context->cookie->account_success_message;
+
+        if (!empty($message)) {
+            PrestaShopLogger::addLog('Message found in cookie: ' . $message, 1);
+            $this->context->controller->success[] = $message;
+    
+            // ✅ Clear the message after displaying it
+            $this->context->cookie->__unset('account_success_message');
+        } else {
+            PrestaShopLogger::addLog('No message found in cookie', 3);
+        }
+
 		if ($this->getvatCustomer()){
 			return;
 		}
