@@ -22,9 +22,17 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
+ <script src="https://www.google.com/recaptcha/api.js" ></script>
 {* {assign var="language_id" value=Context::getContext->language}
 <pre>{$language_id|print_r}</pre> *}
 <section class="contact-form" style="width:100%;max-width:1440px;">
+{if $confirmation}
+  <div class="alert-success">
+    <ul style="display: flex;justify-content: center;align-items: center;margin:0;padding:1rem;">
+      <li>{l s="Thank you for your message. It has been sent." d="Shop.Theme.ContactForm"}</li>
+    </ul>
+  </div>
+{/if}
   <div align="center" style="background-color: #d3d3d3;">
     <img alt="contact" src="/img/cms/contact_{$language.iso_code}.jpg" class="img-responsive" style="margin:0 auto;width:100%">
     {* <div style="max-width: 1200px;padding-top: 23px;font-height: 600; color:#000; font-size:16px;margin: 20px auto 40px auto;padding-inline:1rem">
@@ -86,7 +94,7 @@
             <div class="form-group col-12 col-lg-4">
                 <label class="col-md-12 form-control-label" for="reference">{l s='Order Reference' d='Shop.Forms.Labels'}<sup>*</sup></label>
                 <div class="col-md-12">
-                  <input id="reference" class="form-control" name="from" type="text" value="{!!$contact.orders}"
+                  <input id="reference" class="form-control" name="reference" type="text" value="{!!$contact.orders}"
                     placeholder="(ex: WNDGVVZLX)">
                 </div>
                 <div class="col-12" style="display: flex;align-items: center;gap: 5px;justify-content:flex-start;padding-top:0.5rem;">
@@ -101,8 +109,8 @@
           <div class="form-group  col-12 col-lg-4">
             <label class="col-md-12 form-control-label" for="name">{l s='Name' d='Shop.Forms.Labels'}<sup>*</sup></label>
             <div class="col-md-12">
-              <input id="name" class="form-control" name="from" type="text" value=""
-                placeholder="Name">
+              <input id="name" class="form-control" name="name" type="text" value=""
+                placeholder="{l s='Name' d='Shop.Forms.Labels'}">
             </div>
           </div>
 
@@ -169,9 +177,22 @@
           </style>
           <input type="text" name="url" value="" />
           <input type="hidden" name="token" value="{$token}" />
-          <div style="width: fit-content; height: fit-content; position: relative; padding-bottom: 1rem;">
-              <input class="btn btn-primary" type="submit" name="submitMessage" value="{l s='SEND' d='Shop.Theme.Actions'}" style="margin-bottom: 1rem;">
+
+
+          <div style="width: fit-content; height: fit-content; position: relative; padding: .5rem !important;">
+            <button class="g-recaptcha btn btn-primary" 
+            name="submitMessage"
+            data-sitekey="6LePv_oqAAAAAJz5p1N-VGJBZNuC6ok9jw0z7CRj" 
+            data-callback='onSubmit' 
+            data-action='submit'>{l s='SEND' d='Shop.Theme.Actions'}</button>
+            
           </div>
+
+          <script>
+            function onSubmit(token) {
+                document.querySelector(".contact-form form").submit();
+              }
+          </script>
 
           <div class="whatsapp-contancts">
             <div style="display:flex;align-items:center;justify-content:end;">
