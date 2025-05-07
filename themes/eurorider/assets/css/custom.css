@@ -46,11 +46,11 @@ body {
 
 /* contact page */
 
-#contact form {
+#contact .contact-form form {
   display: flex;
   flex-direction: column;
 }
-#contact form .alert ul{
+#contact .contact-form form .alert ul{
   margin-bottom: 0;
 }
 
