@@ -4212,6 +4212,10 @@ header.page-header {
 }
 
 @media screen and (max-width:769px) {
+  #cms-payment .banner_cms img {
+    width: 100%;
+  }
+
   #cms-partners .cards {
     display: flex;
     flex-wrap: wrap;
