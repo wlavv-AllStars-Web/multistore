@@ -1205,7 +1205,6 @@ a:focus{
 
   #cms-payment .payment-content-bottom .col-2:nth-child(1) > div > div{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     max-width: 220px;
     margin: auto;
