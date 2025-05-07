@@ -18,7 +18,11 @@
 
 #notifications .notifications-container article.alert{
   margin-bottom: 0;
-  
+}
+
+#my-account #notifications {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
 }
 
 
