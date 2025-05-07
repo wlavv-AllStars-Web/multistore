@@ -57,6 +57,7 @@
                 <th style='width: 50px'>{l s='Number' mod='moloni'}</th>
                 <th>{l s='Client' mod='moloni'}</th>
                 <th>{l s='Add. Invoice' mod='moloni'}</th>
+                <th>{l s='Add. Shipping' mod='moloni'}</th>
                 <th style='width: 200px'>{l s='Email' mod='moloni'}</th>
                 <th style='width: 200px'>{l s='Order date' mod='moloni'}</th>
                 <th style='width: 120px'>{l s='Status' mod='moloni'}</th>
