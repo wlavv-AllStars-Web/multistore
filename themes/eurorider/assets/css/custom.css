@@ -44,6 +44,16 @@ body {
   height: 38px;
 }
 
+/* contact page */
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+}
+#contact form .alert ul{
+  margin-bottom: 0;
+}
+
 /* cartwishlist */
 .cart-hover-content{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
