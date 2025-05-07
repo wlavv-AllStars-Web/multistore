@@ -81,9 +81,6 @@ class Start
             case 'invoice':
                 $this->template = 'invoice';
                 break;
-            case 'preview':
-                $this->template = 'preview';
-                break;
         }
     }
 
