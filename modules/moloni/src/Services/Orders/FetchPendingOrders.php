@@ -23,6 +23,7 @@
 namespace Moloni\Services\Orders;
 
 use Address;
+use Country;
 use Configuration;
 use Currency;
 use Customer;
