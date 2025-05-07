@@ -12,6 +12,16 @@
   --euromus-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+#notifications .notifications-container {
+  padding: 0;
+}
+
+#notifications .notifications-container article.alert{
+  margin-bottom: 0;
+}
+
+
+
 .btn-logout {
   padding: .5rem 1rem;
   background: var(--euromus-color-100);
