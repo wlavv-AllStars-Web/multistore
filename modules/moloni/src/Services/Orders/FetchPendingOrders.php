@@ -226,7 +226,8 @@ class FetchPendingOrders
             'url' => [
                 'order' => $this->genURL('AdminOrders', '&id_order=' . $orderId . '&vieworder'),
                 'create' => $this->genURL('MoloniStart', '&action=create&id_order=' . $orderId),
-                'clean' => $this->genURL('MoloniStart', '&action=clean&id_order=' . $orderId)
+                'clean' => $this->genURL('MoloniStart', '&action=clean&id_order=' . $orderId),
+                'preview' => $this->genURL('Start', '&action=preview&id_order=' . $orderId),
             ]
         ];
     }
