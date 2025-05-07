@@ -178,7 +178,9 @@ class FetchPendingOrders
         try {
             $order = new Order($orderId, $this->languageId);
             $address = new Address($order->id_address_invoice, $this->languageId);
+            $address_invoice_country = (new Country($address->id_country, $this->languageId))->name;
             $address_shipping = new Address($order->id_address_shipping, $this->languageId);
+            $address_shipping_country = (new Country($address_shipping->id_country, $this->languageId))->name;
             $customer = new Customer($order->id_customer);
             $currency = new Currency($order->id_currency, $this->languageId);
             $state = new OrderState($order->current_state, $this->languageId);
@@ -202,12 +204,11 @@ class FetchPendingOrders
                 'address1' => $address->address1,
                 'vat_number' => $address->vat_number
             ],
+            'address_invoice' => [
+                'name' => $address_invoice_country,
+            ],
             'address_shipping' => [
-                'id' => $address_shipping->id,
-                'firstname' => $address_shipping->firstname,
-                'lastname' => $address_shipping->lastname,
-                'address1' => $address_shipping->address1,
-                'vat_number' => $address_shipping->vat_number
+                'name' => $address_shipping_country,
             ],
             'customer' => [
                 'id' => $customer->id,
