@@ -311,6 +311,10 @@ class General
         $this->products = new Products();
         $this->me = $this->companyMe();
 
+        $document = $this->getConfigsOptions('document_set');
+
+        pre($document);
+
         $countries = Curl::simple('countries/getAll');
 
         $order = [];
