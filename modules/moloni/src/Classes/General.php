@@ -114,6 +114,7 @@ class General
         $populated['formSave'] = $this->genURL('MoloniConfiguracao', '&goDo=save');
         $populated['formToolsSubmit'] = $this->genURL('MoloniConfiguracao', '&goDo=synchronize');
         $populated['logout'] = $this->genURL('MoloniStart', '&MoloniLogout=true');
+        $populated['submitPreview'] = $this->genURL('MoloniStart', '&action=submitPreview');
 
         return ($populated);
     }
@@ -595,6 +596,11 @@ class General
             'exchangeId' => $this->moloniExchangeId ?? null,
             'exchangeRate' => $this->moloniExchangeRate ?? null,
         ];
+    }
+
+    public function submitPreview() {
+        echo 'paulo';
+        pre(Tools::getAllValues());
     }
 
     public function makeInvoice($order_id, $isAutomatic = false)
