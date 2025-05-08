@@ -324,6 +324,17 @@ class General
 
         $orderPS = new Order($order['base']['id_order']);
 
+        $customer = new Customer($orderPS->id_customer);
+        $order['clientData'] = [
+            'id' => $customer->id,
+            'firstname' => $customer->firstname,
+            'lastname' => $customer->lastname,
+            'email' => $customer->email,
+            'company' => $customer->company,
+            'siret' => $customer->siret,
+            'ape' => $customer->ape,
+        ];
+
         $order['products'] = $orderPS->getOrderDetailList();
         $order['productsTaxes'] = $orderPS->getProductTaxesDetails($order['products']);
         $order['shipping'] = $orderPS->getShipping();
