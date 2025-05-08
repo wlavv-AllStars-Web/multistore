@@ -1,6 +1,6 @@
 
 <div class="page_preview">
-    <p>Moloni - <span>Encomenda {$order.base.id_order}</span></p>
+    <p>Moloni - <span>Encomenda {$result.order.base.id_order}</span></p>
 
     <div class="preview_container">
         <div class="preview_serie col-sm-12">
