@@ -46,8 +46,8 @@
                         </label>
                         <select name='options[client_country]'>
                             <option value='' disabled selected>{l s='Select your country' mod='moloni'}</option>
-                            {foreach from=$moloni.configurations.client.country.options item=opt}
-                                <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $moloni.configurations.client.country.value == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
+                            {foreach from=$resultPrev.countries item=opt}
+                                <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $resultPrev.order.fiscal_zone.country_id == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
                             {/foreach}
                         </select>
                     </div>
