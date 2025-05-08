@@ -57,6 +57,10 @@ class MoloniToolsController extends ModuleAdminController
                 case 'index':
                     $this->moloniTpl = "tools";
                     break;
+                case 'preview':
+                    $configurations = $functions->getConfigsAll();
+                    $this->moloniTpl = "preview";
+                    break;
             }
 
             $this->context->smarty->assign([
