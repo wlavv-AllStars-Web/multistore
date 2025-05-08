@@ -31,7 +31,7 @@
                         <label>
                             {l s='Nif' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_nif]" value="{$moloni.configurations.client.nif|escape:'html':'UTF-8'}" placeholder="{l s='Client nif' mod='moloni'}" />
+                        <input type="text" name="options[client_nif]" value="{$resultPrev.moloniClient.moloniCustomer.vat|escape:'html':'UTF-8'}" placeholder="{l s='Client nif' mod='moloni'}" />
                     </div>
                     <div class="postal_code_client">
                         <label>
@@ -69,19 +69,19 @@
                         <label>
                             {l s='Reference' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_reference]" value="{$moloni.configurations.client.reference|escape:'html':'UTF-8'}" placeholder="{l s='Client reference' mod='moloni'}" />
+                        <input type="text" name="options[client_reference]" value="{$resultPrev.order.base.id_customer|escape:'html':'UTF-8'}" placeholder="{l s='Client reference' mod='moloni'}" />
                     </div>
                     <div class="email_client">
                         <label>
                             {l s='Email' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_email]" value="{$moloni.configurations.client.email|escape:'html':'UTF-8'}" placeholder="{l s='Client email' mod='moloni'}" />
+                        <input type="text" name="options[client_email]" value="{$resultPrev.moloniClient.moloniCustomer.email|escape:'html':'UTF-8'}" placeholder="{l s='Client email' mod='moloni'}" />
                     </div>
                     <div class="phone_client">
                         <label>
                             {l s='Phone' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_phone]" value="{$moloni.configurations.client.phone|escape:'html':'UTF-8'}" placeholder="{l s='Client phone' mod='moloni'}" />
+                        <input type="text" name="options[client_phone]" value="{$resultPrev.moloniClient.moloniCustomer.phone|escape:'html':'UTF-8'}" placeholder="{l s='Client phone' mod='moloni'}" />
                     </div>
                     <div class="website_client">
                         <label>
@@ -99,10 +99,10 @@
                         <label>
                             {l s='Maturity Date' mod='moloni'}
                         </label>
-                        <select name='options[client_maturity_date]'>
-                            <option value='' disabled selected>{l s='Maturity Date' mod='moloni'}</option>
-                            {foreach from=$moloni.configurations.client.country.options item=opt}
-                                <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $moloni.configurations.client.country.value == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
+                        <select name='options[maturity_date]'>
+                            <option value='' disabled selected>{l s='Maturity date' mod='moloni'}</option>
+                            {foreach from=$moloni.configurations.maturity_date.options item=opt}
+                                <option value='{$opt.maturity_date_id|escape:'html':'UTF-8'}' {if $moloni.configurations.maturity_date.value == $opt.maturity_date_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
                             {/foreach}
                         </select>
                     </div>
