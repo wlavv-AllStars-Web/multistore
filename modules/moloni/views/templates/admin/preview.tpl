@@ -246,7 +246,7 @@
             </div>
 
             <div class="btn_submit col-sm-12" style="margin-top: 2rem;">
-                <a class="btn btn-info" href="{$resultPrev.order.submitPreview}">
+                <a class="btn btn-info" href="{$resultPrev.submitPreview}">
                     {l s='Generate invoice' mod='moloni'}
                 </a>
             </div>
