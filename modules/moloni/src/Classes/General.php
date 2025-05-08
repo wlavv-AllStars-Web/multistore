@@ -325,15 +325,18 @@ class General
 
         $orderPS = new Order($order['base']['id_order']);
 
-        $customer = new Customer($orderPS->id_customer);
+        $customers = new \Moloni\Classes\Entities\Customers();
+        $moloniClient = $customers->getByEmail($orderPS->getCustomer()->email);
         $order['clientData'] = [
-            'id' => $customer->id,
-            'firstname' => $customer->firstname,
-            'lastname' => $customer->lastname,
-            'email' => $customer->email,
-            'company' => $customer->company,
-            'siret' => $customer->siret,
-            'ape' => $customer->ape,
+            'id' => $moloniClient['customer_id'],
+            'name' => $moloniClient['name'],
+            'email' => $moloniClient['email'],
+            'vat' => $moloniClient['vat'],
+            'address' => $moloniClient['address'],
+            'city' => $moloniClient['city'],
+            'zip_code' => $moloniClient['zip_code'],
+            'country' => $moloniClient['country'],
+            'phone' => $moloniClient['phone']
         ];
 
         $order['products'] = $orderPS->getOrderDetailList();
