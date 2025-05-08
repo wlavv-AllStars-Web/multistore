@@ -165,6 +165,42 @@
                                 placeholder="{l s='Product notes' mod='moloni'}"></textarea>
                             </div>
                         </div>
+
+                        <div class="col-sm-6">
+                            <div class="price_product">
+                                <label>
+                                    {l s='Price' mod='moloni'}
+                                </label>
+                                <input type="text" name="options[product_reference]"
+                                    value="{$product.price|escape:'html':'UTF-8'}" />
+                            </div>
+                            <div class="quantity_product">
+                                <label>
+                                    {l s='Quantity' mod='moloni'}
+                                </label>
+                                <input type="text" name="options[product_reference]"
+                                    value="{$product.quantity|escape:'html':'UTF-8'}" />
+                            </div>
+                            <div class="vat_product">
+                                <label>
+                                    {l s='VAT' mod='moloni'}
+                                </label>
+                                <input type="text" name="options[product_reference]"
+                                    value="{$product.quantity|escape:'html':'UTF-8'}" />
+                            </div>
+                            <div class="exemption_product">
+                                <label>
+                                    {l s='Exemption' mod='moloni'}
+                                </label>
+                                <select name='options[exemption_reason]'>
+                                    {foreach from=$moloni.configurations.exemption_reason.options item=opt}
+                                        <option value='{$opt.code|escape:'html':'UTF-8'}' {if $moloni.configurations.exemption_reason.value == $opt.code} selected {/if}>
+                                            {$opt.name|escape:'html':'UTF-8'} ({$opt.code|escape:'html':'UTF-8'})
+                                        </option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
                             
                     </fieldset>
                 {/foreach}
