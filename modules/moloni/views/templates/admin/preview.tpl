@@ -1,6 +1,6 @@
-<pre>{$resultPrev|print_r}</pre>
+<pre>{$moloni|print_r}</pre>
 <div class="page_preview">
-    <p>Moloni - <span>Encomenda {$resultPrev.order.base.id_order}</span></p>
+    <p>Moloni - <span>Encomenda #{$resultPrev.order.base.id_order}</span></p>
 
     <div class="preview_container">
         <div class="preview_serie col-sm-12">
