@@ -330,7 +330,254 @@ class General
 
         $order['shipping'][0]['carrier_tax_rate'] = $orderPS->carrier_tax_rate;
 
-        return $order;
+        // Handle currency exchanges
+        $orderCurrency = new Currency($orderPS->id_currency);
+
+        if ($orderCurrency->iso_code !== 'EUR') {
+            $eurCurrency = new Currency(Currency::getIdByIsoCode('EUR'));
+            $this->moloniExchangeId = $this->getExchangeRateId($orderCurrency->iso_code);
+            $this->moloniExchangeRate = $orderCurrency->conversion_rate;
+        }
+
+        $discount = $this->getDiscountPercentage($orderPS);
+
+        $invoice = [];
+
+        $invoice['company_id'] = COMPANY;
+        $invoice['date'] = date('d-m-Y');
+        $invoice['expiration_date'] = date('d-m-Y');
+        
+        $invoice['document_set_id'] = DOCUMENT_SET;
+
+        // Order customer
+        $moloniClient = $this->client($order);
+
+        // Set order fiscal zone to be used
+        $order['fiscal_zone'] = $this->getFiscalZone($moloniClient);
+
+        $invoice['customer_id'] = $moloniClient['customer_id'];
+        $invoice['alternate_address_id'] = (isset($moloniClient['address_id']) ? $moloniClient['address_id'] : '');
+
+        $invoice['our_reference'] = $order['base']['reference'];
+        $invoice['your_reference'] = '';
+
+        $invoice['financial_discount'] = ''; #$discount;
+        $invoice['special_discount'] = '';
+
+        $invoice['products'] = [];
+        $x = 0;
+
+        // Products
+        foreach ($order['products'] as $product) {
+            if ($this->priceHasTaxIncluded) {
+                $product['tax_rate'] = 23;
+                $product['unit_price_tax_excl'] /= 1.23;
+            }
+
+            $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
+
+            $product['moloni_reference'] = Tools::substr($product['product_reference'], 0, 25);
+
+            if (empty($product['moloni_reference'])) {
+                $product['moloni_reference'] = 'PS' . mt_rand(10000, 100000);
+            }
+
+            $moloniProductId = $this->product($product, $taxRate);
+            $moloni_product = $this->products->getOne(['product_id' => $moloniProductId]);
+
+            $invoice['products'][$x]['product_id'] = isset($moloni_product['product_id']) ? $moloni_product['product_id'] : 0;
+            $invoice['products'][$x]['name'] = $product['product_name'];
+            $invoice['products'][$x]['summary'] = '';
+            $invoice['products'][$x]['discount'] = $discount ?: 0;
+            $invoice['products'][$x]['qty'] = $product['product_quantity'];
+
+            if ($orderCurrency->iso_code !== 'EUR') {
+                $price = $this->convertPriceFull($product['unit_price_tax_excl'], $orderCurrency, $eurCurrency);
+            } else {
+                $price = $product['unit_price_tax_excl'];
+            }
+
+            $invoice['products'][$x]['price'] = $price;
+            $invoice['products'][$x]['order'] = $x;
+
+            if ($product['unit_price_tax_incl'] != $product['unit_price_tax_excl']) {
+                $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($taxRate, $order['fiscal_zone']['country_code']);
+                $invoice['products'][$x]['taxes'][0]['value'] = $product['unit_price_tax_incl'] - $product['unit_price_tax_excl'];
+
+                if (isset($product['ecotax']) && (float)$product['ecotax'] > 0) {
+                    $invoice['products'][$x]['taxes'][1]['tax_id'] = $this->settings->taxes->checkEcotax($product['ecotax'], $order['fiscal_zone']['country_code']);
+                    $invoice['products'][$x]['taxes'][1]['value'] = $product['ecotax'];
+                    $invoice['products'][$x]['taxes'][1]['order'] = '0';
+                    $invoice['products'][$x]['taxes'][1]['cumulative'] = '0';
+
+                    //tax rate must be after ecotax and cumulative
+                    $invoice['products'][$x]['taxes'][0]['order'] = '1';
+                    $invoice['products'][$x]['taxes'][0]['cumulative'] = '1';
+
+                    //withdraw ecotax from the base value of the product (excluding VAT)
+                    $invoice['products'][$x]['price'] -= $product['ecotax'];
+
+                    //the eco rate has to go first
+                    $invoice['products'][$x]['taxes'] = array_reverse($invoice['products'][$x]['taxes']);
+                }
+            } else {
+                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON;
+            }
+
+            if (!empty($moloni_product) && (int)$moloni_product['composition_type'] === 1 && !empty($moloni_product['child_products'])) {
+                // Set the price difference and apply it to the child products
+                if ($orderCurrency->iso_code !== 'EUR') {
+                    $product['unit_price_tax_excl'] = $this->convertPriceFull($product['unit_price_tax_excl'], $orderCurrency, $eurCurrency);
+                }
+
+                $priceScale = ($product['unit_price_tax_excl'] / $moloni_product['price']);
+
+                foreach ($moloni_product['child_products'] as $key => $child) {
+                    $moloni_child = Curl::simple('products/getOne', ['product_id' => $child['product_child_id']]);
+
+                    $invoice['products'][$x]['child_products'][$key]['product_id'] = $moloni_child['product_id'];
+                    $invoice['products'][$x]['child_products'][$key]['name'] = $moloni_child['name'];
+                    $invoice['products'][$x]['child_products'][$key]['summary'] = $moloni_child['summary'];
+                    $invoice['products'][$x]['child_products'][$key]['discount'] = $discount ?: 0;
+                    $invoice['products'][$x]['child_products'][$key]['qty'] = $child['qty'] * $product['product_quantity'];
+                    $invoice['products'][$x]['child_products'][$key]['price'] = $child['price'] * $priceScale;
+                    $invoice['products'][$x]['child_products'][$key]['order'] = $key;
+
+                    //If billing country is not PT, change child products taxes to match order taxes
+                    if (isset($order['fiscal_zone']['country_id']) && (int)$order['fiscal_zone']['country_id'] > 1) {
+                        if (isset($invoice['products'][$x]['exemption_reason'])) {
+                            //Delete moloni taxes data
+                            unset($invoice['products'][$x]['child_products'][$key]['taxes']);
+
+                            //Keep this order defined exemption reason
+                            $invoice['products'][$x]['child_products'][$key]['exemption_reason'] = $invoice['products'][$x]['exemption_reason'];
+                        } else {
+                            //Delete moloni exemption reason data
+                            unset($invoice['products'][$x]['child_products'][$key]['exemption_reason']);
+
+                            //Keep this order defined taxes
+                            $invoice['products'][$x]['child_products'][$key]['taxes'] = $invoice['products'][$x]['taxes'];
+                        }
+                    } else {
+                        //If billing country is PT, use Moloni defined taxes and/or exemption reason
+                        if (!empty($moloni_child['taxes'])) {
+                            $invoice['products'][$x]['child_products'][$key]['taxes'] = $moloni_child['taxes'];
+                        } else {
+                            $invoice['products'][$x]['child_products'][$key]['exemption_reason'] = $moloni_child['exemption_reason'];
+                        }
+                    }
+                }
+            }
+
+            $x++;
+        }
+
+        // Shipping
+        if ($order['base']['total_shipping'] > 0) {
+            if ($this->priceHasTaxIncluded) {
+                $order['shipping'][0]['carrier_tax_rate'] = 23;
+                $order['shipping'][0]['shipping_cost_tax_incl'] /= 1.23;
+            }
+
+            $shippingPrice = ($this->freeShipping ? 0 : $order['shipping'][0]['shipping_cost_tax_incl']);
+            $shippingPrice = ($order['shipping'][0]['carrier_tax_rate'] > 0 ? ($shippingPrice * 100) / (100 + $order['shipping'][0]['carrier_tax_rate']) : $shippingPrice);
+
+            $invoice['products'][$x]['product_id'] = $this->shipping($order['shipping'][0]);
+            $invoice['products'][$x]['name'] = $order['shipping'][0]['carrier_name'];
+            $invoice['products'][$x]['summary'] = ($this->freeShipping ? 'Oferta de portes' : '');
+            $invoice['products'][$x]['discount'] = ($this->freeShipping ? 100 : 0);
+            $invoice['products'][$x]['qty'] = '1';
+            $invoice['products'][$x]['order'] = $x;
+
+            if ($orderCurrency->iso_code !== 'EUR') {
+                $invoice['products'][$x]['price'] = $this->convertPriceFull($shippingPrice, $orderCurrency, $eurCurrency);
+            } else {
+                $invoice['products'][$x]['price'] = $shippingPrice;
+            }
+
+            if ($order['base']['carrier_tax_rate'] > 0) {
+                $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($order['base']['carrier_tax_rate'], $order['fiscal_zone']['country_code']);
+                $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
+            } elseif (defined('EXEMPTION_REASON_SHIPPING')) {
+                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON_SHIPPING;
+            }
+
+            $x++;
+        }
+
+        // Wrapping
+        if (isset($order['base']['total_wrapping']) && (float)$order['base']['total_wrapping'] > 0) {
+            if ($this->priceHasTaxIncluded) {
+                $order['base']['total_wrapping_tax_excl'] = $order['base']['total_wrapping_tax_incl'] / 1.23;
+            }
+
+            $invoice['products'][$x]['name'] = 'Embrulho';
+            $invoice['products'][$x]['summary'] = '';
+            $invoice['products'][$x]['discount'] = 0;
+            $invoice['products'][$x]['qty'] = 1;
+
+            if ($orderCurrency->iso_code !== 'EUR') {
+                $invoice['products'][$x]['price'] = $this->convertPriceFull($order['base']['total_wrapping_tax_excl'], $orderCurrency, $eurCurrency);
+            } else {
+                $invoice['products'][$x]['price'] = $order['base']['total_wrapping_tax_excl'];
+            }
+
+            if ((float)$order['base']['total_wrapping_tax_incl'] !== (float)$order['base']['total_wrapping_tax_excl']) {
+                $wrappingTaxValue = $order['base']['total_wrapping_tax_incl'] - $order['base']['total_wrapping_tax_excl'];
+                $wrappingTax = round((100 * ($wrappingTaxValue)) / $order['base']['total_wrapping_tax_excl'], 2);
+
+                $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($wrappingTax, $order['fiscal_zone']['country_code']);
+                $invoice['products'][$x]['taxes'][0]['value'] = $wrappingTaxValue;
+                $invoice['products'][$x]['taxes'][0]['order'] = '0';
+                $invoice['products'][$x]['taxes'][0]['cumulative'] = '0';
+            } else {
+                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON;
+            }
+
+            $this->wrapping($invoice['products'][$x]);
+        }
+
+        // Shipping info
+        if ($this->shouldShowShippingInfo()) {
+            $deliveryMethodId = $this->parseDeliveryMethodId($order['shipping'][0]['carrier_name']);
+
+            if ($deliveryMethodId > 0) {
+                $invoice['delivery_method_id'] = $deliveryMethodId;
+                $invoice['delivery_datetime'] = date('Y-m-d h:m:s');
+
+                $invoice['delivery_departure_address'] = $this->me['address'];
+                $invoice['delivery_departure_city'] = $this->me['city'];
+                $invoice['delivery_departure_zip_code'] = $this->me['zip_code'];
+
+                if (isset($this->me['fiscal_country_id']) && (int)$this->me['fiscal_country_id'] > 0) {
+                    $invoice['delivery_departure_country'] = $this->me['fiscal_country_id'];
+                } else {
+                    $invoice['delivery_departure_country'] = $this->me['country_id'];
+                }
+
+                $invoice['delivery_destination_address'] = $moloniClient['shipping']['address'];
+                $invoice['delivery_destination_city'] = $moloniClient['shipping']['delivery_destination_city'];
+                $invoice['delivery_destination_zip_code'] = $moloniClient['shipping']['delivery_destination_zip_code'];
+                $invoice['delivery_destination_country'] = $moloniClient['shipping']['delivery_destination_country'];
+            }
+        }
+
+        $orderPayments = $orderPS->getOrderPayments();
+        if ($orderPayments && !empty($orderPayments)) {
+            $documentPayments = $this->parsePayments($orderPayments);
+            if (!empty($documentPayments)) {
+                $invoice['payments'] = $documentPayments;
+            }
+        }
+
+        if ($this->moloniExchangeId > 0) {
+            $invoice['exchange_currency_id'] = $this->moloniExchangeId;
+            $invoice['exchange_rate'] = $this->moloniExchangeRate;
+        }
+
+        if ($this->eac_id) {
+            $invoice['eac_id'] = $this->eac_id;
+        }
     }
 
     public function makeInvoice($order_id, $isAutomatic = false)
