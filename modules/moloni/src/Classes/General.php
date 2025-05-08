@@ -578,6 +578,15 @@ class General
         if ($this->eac_id) {
             $invoice['eac_id'] = $this->eac_id;
         }
+
+        return [
+            'order' => $order,
+            'invoice' => $invoice,
+            'orderCurrency' => $orderCurrency,
+            'moloniClient' => $moloniClient,
+            'exchangeId' => $this->moloniExchangeId ?? null,
+            'exchangeRate' => $this->moloniExchangeRate ?? null,
+        ];
     }
 
     public function makeInvoice($order_id, $isAutomatic = false)
