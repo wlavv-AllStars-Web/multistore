@@ -140,7 +140,7 @@
             <div class="preview_products col-sm-12" style="margin-top: 2rem;">
                 {foreach from=$resultPrev.order.products item=product}
                     <fieldset>
-                        <legend>{l s='Products' mod='moloni'}</legend>
+                        <legend>{$product.product_name|escape:'html':'UTF-8'}</legend>
                         <div class="col-sm-6">
                             <div class="name_product">
                                 <label>
@@ -183,10 +183,10 @@
                             </div>
                             <div class="vat_product">
                                 <label>
-                                    {l s='VAT' mod='moloni'}
+                                    {l s='VAT' mod='moloni'}%
                                 </label>
                                 <input type="text" name="options[product_reference]"
-                                    value="{$product.quantity|escape:'html':'UTF-8'}" />
+                                    value="{$product.tax_rate|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="exemption_product">
                                 <label>
