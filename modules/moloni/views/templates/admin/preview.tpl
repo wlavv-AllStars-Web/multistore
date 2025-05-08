@@ -137,24 +137,32 @@
                 </fieldset>
             </div>
 
-            <div class="preview_products">
+            <div class="preview_products col-sm-12" style="margin-top: 2rem;">
                 {foreach from=$resultPrev.order.products item=product}
                     <fieldset>
                         <legend>{l s='Products' mod='moloni'}</legend>
                         <div class="col-sm-6">
                             <div class="name_product">
                                 <label>
-                                    {$product.product_name}
+                                    {l s='Name' mod='moloni'}
                                 </label>
                                 <input type="text" name="options[product_name]"
                                     value="{$product.product_name|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="reference_product">
                                 <label>
-                                    {$product.product_name}
+                                    {l s='Reference' mod='moloni'}
                                 </label>
                                 <input type="text" name="options[product_reference]"
                                     value="{$product.product_reference|escape:'html':'UTF-8'}" />
+                            </div>
+                            <div class="notes_product">
+                                <label>
+                                    {l s='Notes' mod='moloni'}
+                                </label>
+                                <textarea name="options[product_notes]" rows="4"
+                                value="{$product.product_note|escape:'html':'UTF-8'}"
+                                placeholder="{l s='Product notes' mod='moloni'}"></textarea>
                             </div>
                         </div>
                             
