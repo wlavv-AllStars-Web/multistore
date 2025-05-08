@@ -603,7 +603,7 @@ class General
     public function submitPreview()
     {
         echo 'paulo';
-        pre(Tools::getValue('options')['exemption_reason']);
+        pre(Tools::getAllValues());
 
         $this->settings = new Settings();
         $this->products = new Products();
@@ -646,7 +646,7 @@ class General
         $invoice['date'] = date('d-m-Y');
         $invoice['expiration_date'] = date('d-m-Y');
 
-        $invoice['document_set_id'] = Tools::getValue('document_set');
+        $invoice['document_set_id'] = Tools::getValue('options')['document_set'];
 
         // Order customer
         $moloniClient = $this->client($order);
@@ -720,7 +720,7 @@ class General
                     $invoice['products'][$x]['taxes'] = array_reverse($invoice['products'][$x]['taxes']);
                 }
             } else {
-                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON;
+                $invoice['products'][$x]['exemption_reason'] = Tools::getValue('options')['exemption_reason'];
             }
 
             if (!empty($moloni_product) && (int)$moloni_product['composition_type'] === 1 && !empty($moloni_product['child_products'])) {
