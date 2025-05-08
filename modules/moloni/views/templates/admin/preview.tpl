@@ -37,7 +37,7 @@
                         <label>
                             {l s='Postal Code' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_postal_code]" value="{$moloni.configurations.client.postal_code|escape:'html':'UTF-8'}" placeholder="{l s='Client postal code' mod='moloni'}" />
+                        <input type="text" name="options[client_postal_code]" value="{$resultPrev.moloniClient.moloniCustomer.zip_code|escape:'html':'UTF-8'}" placeholder="{l s='Client postal code' mod='moloni'}" />
                     </div>
                     <div class="country_client">
                         <label>
@@ -54,13 +54,13 @@
                         <label>
                             {l s='Address' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_address]" value="{$moloni.configurations.client.address|escape:'html':'UTF-8'}" placeholder="{l s='Client address' mod='moloni'}" />
+                        <input type="text" name="options[client_address]" value="{$resultPrev.moloniClient.moloniCustomer.address|escape:'html':'UTF-8'}" placeholder="{l s='Client address' mod='moloni'}" />
                     </div>
                     <div class="location_client">
                         <label>
                             {l s='Location' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_location]" value="{$moloni.configurations.client.location|escape:'html':'UTF-8'}" placeholder="{l s='Client location' mod='moloni'}" />
+                        <input type="text" name="options[client_location]" value="{$resultPrev.moloniClient.moloniCustomer.city|escape:'html':'UTF-8'}" placeholder="{l s='Client location' mod='moloni'}" />
                     </div>
                 </div>
 
