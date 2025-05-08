@@ -43,7 +43,7 @@
                         <label>
                             {l s='Country' mod='moloni'}
                         </label>
-                        <select name='options[client_country]'>
+                        <select name='options[client_country]' disabled>
                             <option value='' disabled selected>{l s='Select your country' mod='moloni'}</option>
                             {foreach from=$resultPrev.countries item=opt}
                                 <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $resultPrev.order.fiscal_zone.country_id == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
