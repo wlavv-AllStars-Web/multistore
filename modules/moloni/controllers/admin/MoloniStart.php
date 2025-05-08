@@ -90,7 +90,7 @@ class MoloniStartController extends ModuleAdminController
                     ],
                     'companies' => $companies,
                     'message' => $message,
-                    'resultPrev' => $resultPrev
+                    'resultPrev' => $resultPrev,
                     'version' => $this->module->version,
                 ],
                 'html' => $moloni->template
