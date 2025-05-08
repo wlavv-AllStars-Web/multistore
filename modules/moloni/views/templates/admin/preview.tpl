@@ -25,7 +25,7 @@
                         <label>
                             {l s='Name' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_name]" value="{$moloni.configurations.client.name|escape:'html':'UTF-8'}" placeholder="{l s='Client name' mod='moloni'}" />
+                        <input type="text" name="options[client_name]" value="{$resultPrev.moloniClient.moloniCustomer.name|escape:'html':'UTF-8'}" placeholder="{l s='Client name' mod='moloni'}" />
                     </div>
                     <div class="nif_client">
                         <label>
