@@ -246,7 +246,7 @@ class General
 
         foreach ($this->countries as $country) {
             if (Tools::strtolower($country['iso_3166_1']) == Tools::strtolower($iso2)) {
-                return [$country['country_id'], Tools::strtoupper($country['iso_3166_1'])];
+                return [$country['country_id'], $country['name'],Tools::strtoupper($country['iso_3166_1'])];
             }
         }
 
@@ -310,6 +310,8 @@ class General
         $this->settings = new Settings();
         $this->products = new Products();
         $this->me = $this->companyMe();
+
+        $countries = Curl::simple('countries/getAll');
 
         $order = [];
         $order['base'] = Db::getInstance()->getRow('SELECT * FROM ' . _DB_PREFIX_ . "orders WHERE id_order = '" . (int)$order_id . "'");
@@ -582,6 +584,7 @@ class General
 
         return [
             'order' => $order,
+            'countries' => $countries,
             'invoice' => $invoice,
             'orderCurrency' => $orderCurrency,
             'moloniClient' => $moloniClient,
