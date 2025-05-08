@@ -39,6 +39,7 @@ use Moloni\Traits\ClassTrait;
 use Order;
 use OrderPayment;
 use Product;
+use Customer;
 use Tools;
 
 class General
