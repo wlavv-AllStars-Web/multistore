@@ -60,6 +60,12 @@ class MoloniConfiguracaoController extends ModuleAdminController
 
                     $this->moloniTpl = "config";
                     break;
+                case 'preview':
+                    $configurations = $functions->getConfigsAll();
+
+                    $this->moloniTpl = "preview";
+                    break;
+
             }
 
             $this->context->smarty->assign([
