@@ -393,6 +393,7 @@ class General
             $invoice['products'][$x]['product_id'] = isset($moloni_product['product_id']) ? $moloni_product['product_id'] : 0;
             $invoice['products'][$x]['name'] = $product['product_name'];
             $invoice['products'][$x]['summary'] = '';
+            $invoice['products'][$x]['reference'] = $product['product_reference'];
             $invoice['products'][$x]['discount'] = $discount ?: 0;
             $invoice['products'][$x]['qty'] = $product['product_quantity'];
 
@@ -408,6 +409,7 @@ class General
             if ($product['unit_price_tax_incl'] != $product['unit_price_tax_excl']) {
                 $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($taxRate, $order['fiscal_zone']['country_code']);
                 $invoice['products'][$x]['taxes'][0]['value'] = $product['unit_price_tax_incl'] - $product['unit_price_tax_excl'];
+                $invoice['products'][$x]['taxes'][0]['tax_rate'] = $product['tax_rate'];
 
                 if (isset($product['ecotax']) && (float)$product['ecotax'] > 0) {
                     $invoice['products'][$x]['taxes'][1]['tax_id'] = $this->settings->taxes->checkEcotax($product['ecotax'], $order['fiscal_zone']['country_code']);

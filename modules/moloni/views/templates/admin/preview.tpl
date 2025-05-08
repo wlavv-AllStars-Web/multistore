@@ -138,30 +138,30 @@
             </div>
 
             <div class="preview_products col-sm-12" style="margin-top: 2rem;">
-                {foreach from=$resultPrev.order.products item=product}
+                {foreach from=$resultPrev.invoice.products item=product}
                     <fieldset>
-                        <legend>{$product.product_name|escape:'html':'UTF-8'}</legend>
+                        <legend>{$product.name|escape:'html':'UTF-8'}</legend>
                         <div class="col-sm-6">
                             <div class="name_product">
                                 <label>
                                     {l s='Name' mod='moloni'}
                                 </label>
                                 <input type="text" name="options[product_name]"
-                                    value="{$product.product_name|escape:'html':'UTF-8'}" />
+                                    value="{$product.name|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="reference_product">
                                 <label>
                                     {l s='Reference' mod='moloni'}
                                 </label>
                                 <input type="text" name="options[product_reference]"
-                                    value="{$product.product_reference|escape:'html':'UTF-8'}" />
+                                    value="{$product.reference|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="notes_product">
                                 <label>
                                     {l s='Notes' mod='moloni'}
                                 </label>
                                 <textarea name="options[product_notes]" rows="4"
-                                value="{$product.product_note|escape:'html':'UTF-8'}"
+                                value="{$product.summary|escape:'html':'UTF-8'}"
                                 placeholder="{l s='Product notes' mod='moloni'}"></textarea>
                             </div>
                         </div>
@@ -179,14 +179,14 @@
                                     {l s='Quantity' mod='moloni'}
                                 </label>
                                 <input type="text" name="options[product_reference]"
-                                    value="{$product.quantity|escape:'html':'UTF-8'}" />
+                                    value="{$product.qty|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="vat_product">
                                 <label>
                                     {l s='VAT' mod='moloni'}%
                                 </label>
                                 <input type="text" name="options[product_reference]"
-                                    value="{$product.tax_rate|escape:'html':'UTF-8'}" />
+                                    value="{$product.taxes.[0].tax_rate|number_format:0|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="exemption_product">
                                 <label>
