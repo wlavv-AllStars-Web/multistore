@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="preview_data_cliente col-sm-12">
+        <div class="preview_data_cliente col-sm-12 mt-3">
             <fieldset class="client_data_container">
                 <legend>{l s='Client data' mod='moloni'}</legend>
                 <div class="col-sm-6">
@@ -42,7 +42,12 @@
                         <label>
                             {l s='Country' mod='moloni'}
                         </label>
-                        <input type="text" name="options[country_code]" value="{$moloni.configurations.client.country|escape:'html':'UTF-8'}" placeholder="{l s='Client country' mod='moloni'}" />
+                        <select name='options[client_country]'>
+                            <option value='' disabled selected>{l s='Select your country' mod='moloni'}</option>
+                            {foreach from=$moloni.configurations.client.country.options item=opt}
+                                <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $moloni.configurations.client.country.value == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
+                            {/foreach}
+                        </select>
                     </div>
                 </div>
 
