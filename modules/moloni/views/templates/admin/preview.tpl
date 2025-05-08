@@ -17,8 +17,8 @@
         </div>
 
         <div class="preview_data_cliente col-sm-12">
-            <p>{l s='Client data' mod='moloni'}</p>
-            <div class="client_data_container">
+            <fieldset class="client_data_container">
+                <legend>{l s='Client data' mod='moloni'}</legend>
                 <div class="col-sm-6">
                     <div class="name_client">
                         <label>
@@ -78,7 +78,7 @@
                         <textarea name="options[client_notes]" rows="4" value="{$moloni.configurations.client.notes|escape:'html':'UTF-8'}" placeholder="{l s='Client notes' mod='moloni'}"></textarea>
                     </div>
                 </div>
-            </div>
+            </fieldset>
         </div>
 
     </div>
