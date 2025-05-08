@@ -1,4 +1,3 @@
-<pre>{$moloni|print_r}</pre>
 <pre>{$resultPrev|print_r}</pre>
 <div class="page_preview">
     <p>Moloni - <span>Encomenda {$resultPrev.order.base.id_order}</span></p>
