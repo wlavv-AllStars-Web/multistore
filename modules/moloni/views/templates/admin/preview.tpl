@@ -2,7 +2,7 @@
 <div class="page_preview">
     <p>Moloni - <span>Encomenda #{$resultPrev.order.base.id_order}</span></p>
 
-    <form method='POST' id='moloniOptionsPreview' action='{$moloni.configurations.formSave|escape:'html':'UTF-8'}'>
+    <form method='POST' id='moloniOptionsPreview' action='{$moloni.configurations.submitPreview|escape:'html':'UTF-8'}'>
         <div class="preview_container">
             <div class="preview_serie col-sm-12">
                 <div class="col-sm-6">
@@ -246,7 +246,7 @@
             </div>
 
             <div class="btn_submit col-sm-12" style="margin-top: 2rem;">
-                <a class="btn btn-info" href="{$moloni.configurations.submitPreview}">
+                <a class="btn btn-info" type="submit" name="submitPreview">
                     {l s='Generate invoice' mod='moloni'}
                 </a>
             </div>
