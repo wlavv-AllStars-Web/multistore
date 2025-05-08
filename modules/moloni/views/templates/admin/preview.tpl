@@ -170,10 +170,10 @@
                 {/foreach}
             </div>
 
-            <div class="preview_costs_shipping">
+            <div class="preview_costs_shipping col-sm-12">
             </div>
 
-            <div class="btn_submit" style="margin-top: 2rem;">
+            <div class="btn_submit col-sm-12" style="margin-top: 2rem;">
                 <button type="submit" class="btn btn-info" name="submitPreview" value="1">
                     {l s='Generate invoice' mod='moloni'}
                 </button>
