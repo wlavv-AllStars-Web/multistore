@@ -186,7 +186,7 @@
                                     {l s='VAT' mod='moloni'}%
                                 </label>
                                 <input type="text" name="options[product_reference]"
-                                    value="{$product.taxes.0.tax_rate|number_format:0|escape:'html':'UTF-8'}" />
+                                    value="{$product.taxes[0].tax_rate|number_format:0|escape:'html':'UTF-8'}" />
                             </div>
                             <div class="exemption_product">
                                 <label>
