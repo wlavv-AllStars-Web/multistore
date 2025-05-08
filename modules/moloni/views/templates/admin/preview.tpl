@@ -187,7 +187,7 @@
                                         {l s='VAT' mod='moloni'}%
                                     </label>
                                     <input type="text" name="options[product_reference]"
-                                        value="{$product.taxes[0].tax_rate|escape:'html':'UTF-8'}" />
+                                        value="{$product.taxes[0].tax_rate|number_format:0|escape:'html':'UTF-8'}" />
                                 </div>
                                 <div class="exemption_product">
                                     <label>
@@ -236,10 +236,10 @@
                         </div>
                         <div class="shipping_vat">
                             <label>
-                                {l s='VAT' mod='moloni'}
+                                {l s='VAT' mod='moloni'}%
                             </label>
                             <input type="text" name="options[shipping_vat]"
-                                value="{$resultPrev.order.productsTaxes[0].tax_rate}" />
+                                value="{$resultPrev.order.productsTaxes[0].tax_rate}|number_format:0" />
                         </div>
                     </div>
                 </fieldset>
