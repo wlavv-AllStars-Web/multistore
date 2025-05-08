@@ -55,6 +55,7 @@ class MoloniStartController extends ModuleAdminController
 
             if (Tools::getValue('action') && Tools::getValue('action') === 'preview'&& Tools::getValue('id_order')) {
                 $resultPrev = $functions->getPreview(Tools::getValue('id_order'));
+                $configurations = $functions->getConfigsAll();
                 $this->moloniTpl = 'preview';
             }
 
@@ -91,6 +92,7 @@ class MoloniStartController extends ModuleAdminController
                     'companies' => $companies,
                     'message' => $message,
                     'resultPrev' => $resultPrev,
+                    'configurations' => $configurations,
                     'version' => $this->module->version,
                 ],
                 'html' => $moloni->template
