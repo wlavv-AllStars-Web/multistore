@@ -1,3 +1,4 @@
+<pre>{$order|print_r}</pre>
 <div class="page_preview">
     <p>Moloni - <span>Encomenda #1</span></p>
 
