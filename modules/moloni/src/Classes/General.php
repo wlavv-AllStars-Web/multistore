@@ -313,8 +313,6 @@ class General
 
         $document = $this->getConfigsOptions('document_set');
 
-        pre($document);
-
         $countries = Curl::simple('countries/getAll');
 
         $order = [];
