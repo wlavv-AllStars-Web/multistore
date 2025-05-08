@@ -246,9 +246,9 @@
             </div>
 
             <div class="btn_submit col-sm-12" style="margin-top: 2rem;">
-                <a class="btn btn-info" type="submit" name="submitPreview">
+                <button class="btn btn-info" type="submit" name="action" value="submitPreview">
                     {l s='Generate invoice' mod='moloni'}
-                </a>
+                </button>
             </div>
         </div>
 
