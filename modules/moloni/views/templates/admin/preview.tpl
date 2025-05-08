@@ -239,7 +239,7 @@
                                 {l s='VAT' mod='moloni'}
                             </label>
                             <input type="text" name="options[shipping_vat]"
-                                value="{$resultPrev.productsTaxes[0].tax_rate}" />
+                                value="{$resultPrev.order.productsTaxes[0].tax_rate}" />
                         </div>
                     </div>
                 </fieldset>
