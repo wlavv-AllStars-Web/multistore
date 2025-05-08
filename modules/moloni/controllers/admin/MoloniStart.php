@@ -54,7 +54,7 @@ class MoloniStartController extends ModuleAdminController
             #Gerar o documento
 
             if (Tools::getValue('action') && Tools::getValue('action') === 'submitPreview') {
-                $result = $functions->submitPreview();
+                $result = $functions->submitPreview(Tools::getValue('id_order'));
             }
 
             if (Tools::getValue('action') && Tools::getValue('action') === 'preview'&& Tools::getValue('id_order')) {
