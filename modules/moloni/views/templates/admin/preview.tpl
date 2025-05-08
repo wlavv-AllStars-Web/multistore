@@ -209,7 +209,7 @@
                 {/foreach}
             </div>
 
-            <div class="preview_costs_shipping col-sm-12">
+            <div class="preview_costs_shipping col-sm-12" style="margin-top: 2rem;">
                 <fieldset>    
                     <legend>{l s='Shipping costs' mod='moloni'}</legend>
                     <div class="col-sm-6">
