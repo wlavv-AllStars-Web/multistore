@@ -1,6 +1,6 @@
-<pre>{$order|print_r}</pre>
+
 <div class="page_preview">
-    <p>Moloni - <span>Encomenda #1</span></p>
+    <p>Moloni - <span>Encomenda {$order.base.id_order}</span></p>
 
     <div class="preview_container">
         <div class="preview_serie col-sm-12">
