@@ -305,6 +305,34 @@ class General
         ];
     }
 
+    public function getPreview($order_id) {
+        $this->settings = new Settings();
+        $this->products = new Products();
+        $this->me = $this->companyMe();
+
+        $order = [];
+        $order['base'] = Db::getInstance()->getRow('SELECT * FROM ' . _DB_PREFIX_ . "orders WHERE id_order = '" . (int)$order_id . "'");
+
+        if (!$order['base']) {
+            MoloniError::create(
+                ModuleFacade::getModule()->l('Order', $this->className()) . ' ' . $order_id,
+                ModuleFacade::getModule()->l('Order was not found', $this->className())
+            );
+
+            return false;
+        }
+
+        $orderPS = new Order($order['base']['id_order']);
+
+        $order['products'] = $orderPS->getOrderDetailList();
+        $order['productsTaxes'] = $orderPS->getProductTaxesDetails($order['products']);
+        $order['shipping'] = $orderPS->getShipping();
+
+        $order['shipping'][0]['carrier_tax_rate'] = $orderPS->carrier_tax_rate;
+
+        return $order;
+    }
+
     public function makeInvoice($order_id, $isAutomatic = false)
     {
         $this->settings = new Settings();
@@ -347,6 +375,7 @@ class General
         $invoice['company_id'] = COMPANY;
         $invoice['date'] = date('d-m-Y');
         $invoice['expiration_date'] = date('d-m-Y');
+        
         $invoice['document_set_id'] = DOCUMENT_SET;
 
         // Order customer

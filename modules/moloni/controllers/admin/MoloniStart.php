@@ -53,6 +53,7 @@ class MoloniStartController extends ModuleAdminController
             #Gerar o documento
 
             if (Tools::getValue('action') && Tools::getValue('action') === 'preview'&& Tools::getValue('id_order')) {
+                $result = $functions->getPreview(Tools::getValue('id_order'));
                 $this->moloniTpl = 'preview';
             }
 
