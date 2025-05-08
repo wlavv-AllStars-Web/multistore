@@ -94,6 +94,17 @@
                         </label>
                         <textarea name="options[client_notes]" rows="4" value="{$moloni.configurations.client.notes|escape:'html':'UTF-8'}" placeholder="{l s='Client notes' mod='moloni'}"></textarea>
                     </div>
+                    <div class="maturity_date_client">
+                        <label>
+                            {l s='Maturity Date' mod='moloni'}
+                        </label>
+                        <select name='options[client_maturity_date]'>
+                            <option value='' disabled selected>{l s='Maturity Date' mod='moloni'}</option>
+                            {foreach from=$moloni.configurations.client.country.options item=opt}
+                                <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $moloni.configurations.client.country.value == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
+                            {/foreach}
+                        </select>
+                    </div>
                 </div>
             </fieldset>
         </div>
