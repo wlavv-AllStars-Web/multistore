@@ -254,4 +254,3 @@
 
     </form>
 </div>
-<pre>{$moloni|print_r}</pre>
