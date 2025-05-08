@@ -137,12 +137,40 @@
                 </fieldset>
             </div>
 
+            <div class="preview_products">
+                {foreach from=$resultPrev.order.products item=product}
+                    <fieldset>
+                        <legend>{l s='Products' mod='moloni'}</legend>
+                        <div class="col-sm-6">
+                            <div class="name_product">
+                                <label>
+                                    {$product.product_name}
+                                </label>
+                                <input type="text" name="options[product_name]"
+                                    value="{$product.product_name|escape:'html':'UTF-8'}" />
+                            </div>
+                            <div class="reference_product">
+                                <label>
+                                    {$product.product_name}
+                                </label>
+                                <input type="text" name="options[product_reference]"
+                                    value="{$product.product_reference|escape:'html':'UTF-8'}" />
+                            </div>
+                        </div>
+                            
+                    </fieldset>
+                {/foreach}
+            </div>
+
+            <div class="preview_costs_shipping">
+            </div>
+
+            <div class="btn_submit" style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-info" name="submitPreview" value="1">
+                    {l s='Generate invoice' mod='moloni'}
+                </button>
+            </div>
         </div>
 
-        <div class="btn_submit">
-            <button type="submit" class="btn btn-default" name="submitPreview" value="1">
-                {l s='Generate invoice' mod='moloni'}
-            </button>
-        </div>
     </form>
 </div>
