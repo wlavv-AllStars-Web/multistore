@@ -31,7 +31,7 @@
                         <label>
                             {l s='Nif' mod='moloni'}
                         </label>
-                        <input type="text" name="options[client_nif]" value="{$resultPrev.moloniClient.moloniCustomer.vat|escape:'html':'UTF-8'}" placeholder="{l s='Client nif' mod='moloni'}" />
+                        <input type="text" name="options[client_nif]" value="{$resultPrev.moloniClient.moloniCustomer.vat|default:'999999999'|escape:'html':'UTF-8'}" placeholder="{l s='Client nif' mod='moloni'}" />
                     </div>
                     <div class="postal_code_client">
                         <label>
