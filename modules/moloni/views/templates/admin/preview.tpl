@@ -37,7 +37,7 @@
                     <input type="text" name="options[client_website]" value="{$moloni.configurations.client.website|escape:'html':'UTF-8'}" placeholder="{l s='Client website' mod='moloni'}" />
                 </div>
                 <div class="notes_client">
-                    <textarea type="text" name="options[client_notes]" value="{$moloni.configurations.client.notes|escape:'html':'UTF-8'}" placeholder="{l s='Client notes' mod='moloni'}" />
+                    <textarea name="options[client_notes]" rows="4" value="{$moloni.configurations.client.notes|escape:'html':'UTF-8'}" placeholder="{l s='Client notes' mod='moloni'}"></textarea>
                 </div>
             </div>
 
