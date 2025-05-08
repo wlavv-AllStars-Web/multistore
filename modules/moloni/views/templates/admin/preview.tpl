@@ -138,71 +138,74 @@
             </div>
 
             <div class="preview_products col-sm-12" style="margin-top: 2rem;">
-                {foreach from=$resultPrev.invoice.products item=product}
-                    <fieldset>
-                        <legend>{$product.name|escape:'html':'UTF-8'}</legend>
-                        <div class="col-sm-6">
-                            <div class="name_product">
-                                <label>
-                                    {l s='Name' mod='moloni'}
-                                </label>
-                                <input type="text" name="options[product_name]"
-                                    value="{$product.name|escape:'html':'UTF-8'}" />
+                {foreach from=$resultPrev.invoice.products item=product name=productLoop}
+                    {if !$smarty.foreach.productLoop.last}
+                        <fieldset>
+                            <legend>{$product.name|escape:'html':'UTF-8'}</legend>
+                            <div class="col-sm-6">
+                                <div class="name_product">
+                                    <label>
+                                        {l s='Name' mod='moloni'}
+                                    </label>
+                                    <input type="text" name="options[product_name]"
+                                        value="{$product.name|escape:'html':'UTF-8'}" />
+                                </div>
+                                <div class="reference_product">
+                                    <label>
+                                        {l s='Reference' mod='moloni'}
+                                    </label>
+                                    <input type="text" name="options[product_reference]"
+                                        value="{$product.reference|escape:'html':'UTF-8'}" />
+                                </div>
+                                <div class="notes_product">
+                                    <label>
+                                        {l s='Notes' mod='moloni'}
+                                    </label>
+                                    <textarea name="options[product_notes]" rows="4"
+                                        value="{$product.summary|escape:'html':'UTF-8'}"
+                                        placeholder="{l s='Product notes' mod='moloni'}"></textarea>
+                                </div>
                             </div>
-                            <div class="reference_product">
-                                <label>
-                                    {l s='Reference' mod='moloni'}
-                                </label>
-                                <input type="text" name="options[product_reference]"
-                                    value="{$product.reference|escape:'html':'UTF-8'}" />
-                            </div>
-                            <div class="notes_product">
-                                <label>
-                                    {l s='Notes' mod='moloni'}
-                                </label>
-                                <textarea name="options[product_notes]" rows="4"
-                                value="{$product.summary|escape:'html':'UTF-8'}"
-                                placeholder="{l s='Product notes' mod='moloni'}"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="col-sm-6">
-                            <div class="price_product">
-                                <label>
-                                    {l s='Price' mod='moloni'}
-                                </label>
-                                <input type="text" name="options[product_reference]"
-                                    value="{$product.price|escape:'html':'UTF-8'}" />
+                            <div class="col-sm-6">
+                                <div class="price_product">
+                                    <label>
+                                        {l s='Price' mod='moloni'}
+                                    </label>
+                                    <input type="text" name="options[product_reference]"
+                                        value="{$product.price|escape:'html':'UTF-8'}" />
+                                </div>
+                                <div class="quantity_product">
+                                    <label>
+                                        {l s='Quantity' mod='moloni'}
+                                    </label>
+                                    <input type="text" name="options[product_reference]"
+                                        value="{$product.qty|escape:'html':'UTF-8'}" />
+                                </div>
+                                <div class="vat_product">
+                                    <label>
+                                        {l s='VAT' mod='moloni'}%
+                                    </label>
+                                    <input type="text" name="options[product_reference]"
+                                        value="{$product.taxes[0].tax_rate|escape:'html':'UTF-8'}" />
+                                </div>
+                                <div class="exemption_product">
+                                    <label>
+                                        {l s='Exemption' mod='moloni'}
+                                    </label>
+                                    <select name='options[exemption_reason]'>
+                                        {foreach from=$moloni.configurations.exemption_reason.options item=opt}
+                                            <option value='{$opt.code|escape:'html':'UTF-8'}'
+                                                {if $moloni.configurations.exemption_reason.value == $opt.code} selected {/if}>
+                                                {$opt.name|escape:'html':'UTF-8'} ({$opt.code|escape:'html':'UTF-8'})
+                                            </option>
+                                        {/foreach}
+                                    </select>
+                                </div>
                             </div>
-                            <div class="quantity_product">
-                                <label>
-                                    {l s='Quantity' mod='moloni'}
-                                </label>
-                                <input type="text" name="options[product_reference]"
-                                    value="{$product.qty|escape:'html':'UTF-8'}" />
-                            </div>
-                            <div class="vat_product">
-                                <label>
-                                    {l s='VAT' mod='moloni'}%
-                                </label>
-                                <input type="text" name="options[product_reference]"
-                                    value="{$product.taxes[0].tax_rate|escape:'html':'UTF-8'}" />
-                            </div>
-                            <div class="exemption_product">
-                                <label>
-                                    {l s='Exemption' mod='moloni'}
-                                </label>
-                                <select name='options[exemption_reason]'>
-                                    {foreach from=$moloni.configurations.exemption_reason.options item=opt}
-                                        <option value='{$opt.code|escape:'html':'UTF-8'}' {if $moloni.configurations.exemption_reason.value == $opt.code} selected {/if}>
-                                            {$opt.name|escape:'html':'UTF-8'} ({$opt.code|escape:'html':'UTF-8'})
-                                        </option>
-                                    {/foreach}
-                                </select>
-                            </div>
-                        </div>
-                            
-                    </fieldset>
+
+                        </fieldset>
+                    {/if}
                 {/foreach}
             </div>
 
