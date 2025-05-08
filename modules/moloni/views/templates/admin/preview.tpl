@@ -210,6 +210,39 @@
             </div>
 
             <div class="preview_costs_shipping col-sm-12">
+                <fieldset>    
+                    <legend>{l s='Shipping costs' mod='moloni'}</legend>
+                    <div class="col-sm-6">
+                        <div class="shipping_name">
+                            <label>
+                                {l s='Name' mod='moloni'}
+                            </label>
+                            <input type="text" name="options[shipping_name]"
+                                value="Custo de Portes" />
+                        </div>
+                        <div class="shipping_reference">
+                            <label>
+                                {l s='Reference' mod='moloni'}
+                            </label>
+                            <input type="text" name="options[shipping_reference]"
+                                value="Portes" />
+                        </div>
+                        <div class="shipping_qty">
+                            <label>
+                                {l s='Quantity' mod='moloni'}
+                            </label>
+                            <input type="text" name="options[shipping_qty]"
+                                value="1" />
+                        </div>
+                        <div class="shipping_vat">
+                            <label>
+                                {l s='VAT' mod='moloni'}
+                            </label>
+                            <input type="text" name="options[shipping_vat]"
+                                value="{$resultPrev.productsTaxes[0].tax_rate}" />
+                        </div>
+                    </div>
+                </fieldset>
             </div>
 
             <div class="btn_submit col-sm-12" style="margin-top: 2rem;">
