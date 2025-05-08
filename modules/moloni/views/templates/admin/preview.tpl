@@ -24,17 +24,32 @@
                     </label>
                     <input type="text" name="options[client_name]" value="{$moloni.configurations.client.name|escape:'html':'UTF-8'}" placeholder="{l s='Client name' mod='moloni'}" />
                 </div>
-                <div class="reference_client">
-                    <label>
-                        {l s='Reference' mod='moloni'}
-                    </label>
-                    <input type="text" name="options[client_reference]" value="{$moloni.configurations.client.reference|escape:'html':'UTF-8'}" placeholder="{l s='Client reference' mod='moloni'}" />
-                </div>
                 <div class="nif_client">
                     <label>
                         {l s='Nif' mod='moloni'}
                     </label>
                     <input type="text" name="options[client_nif]" value="{$moloni.configurations.client.nif|escape:'html':'UTF-8'}" placeholder="{l s='Client nif' mod='moloni'}" />
+                </div>
+                <div class="postal_code_client">
+                    <label>
+                        {l s='Postal Code' mod='moloni'}
+                    </label>
+                    <input type="text" name="options[client_postal_code]" value="{$moloni.configurations.client.postal_code|escape:'html':'UTF-8'}" placeholder="{l s='Client postal code' mod='moloni'}" />
+                </div>
+                <div class="country_client">
+                    <label>
+                        {l s='Country' mod='moloni'}
+                    </label>
+                    <input type="text" name="options[country_code]" value="{$moloni.configurations.client.country|escape:'html':'UTF-8'}" placeholder="{l s='Client country' mod='moloni'}" />
+                </div>
+            </div>
+
+            <div class="col-sm-6 data_client_hidden">
+                <div class="reference_client">
+                    <label>
+                        {l s='Reference' mod='moloni'}
+                    </label>
+                    <input type="text" name="options[client_reference]" value="{$moloni.configurations.client.reference|escape:'html':'UTF-8'}" placeholder="{l s='Client reference' mod='moloni'}" />
                 </div>
                 <div class="email_client">
                     <label>
@@ -60,9 +75,6 @@
                     </label>
                     <textarea name="options[client_notes]" rows="4" value="{$moloni.configurations.client.notes|escape:'html':'UTF-8'}" placeholder="{l s='Client notes' mod='moloni'}"></textarea>
                 </div>
-            </div>
-
-            <div class="col-sm-6">
             </div>
         </div>
 
