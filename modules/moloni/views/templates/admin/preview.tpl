@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="preview_data_cliente col-sm-12 mt-3">
+        <div class="preview_data_cliente col-sm-12" style="margin-top: 2rem;">
             <fieldset class="client_data_container">
                 <legend>{l s='Client data' mod='moloni'}</legend>
                 <div class="col-sm-6">
@@ -48,6 +48,18 @@
                                 <option value='{$opt.country_id|escape:'html':'UTF-8'}' {if $moloni.configurations.client.country.value == $opt.country_id} selected {/if}> {$opt.name|escape:'html':'UTF-8'} </option>
                             {/foreach}
                         </select>
+                    </div>
+                    <div class="address_client">
+                        <label>
+                            {l s='Address' mod='moloni'}
+                        </label>
+                        <input type="text" name="options[client_address]" value="{$moloni.configurations.client.address|escape:'html':'UTF-8'}" placeholder="{l s='Client address' mod='moloni'}" />
+                    </div>
+                    <div class="location_client">
+                        <label>
+                            {l s='Location' mod='moloni'}
+                        </label>
+                        <input type="text" name="options[client_location]" value="{$moloni.configurations.client.location|escape:'html':'UTF-8'}" placeholder="{l s='Client location' mod='moloni'}" />
                     </div>
                 </div>
 
