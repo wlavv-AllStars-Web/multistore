@@ -1,4 +1,3 @@
-
 <div class="page_preview">
     <p>Moloni - <span>Encomenda #{$resultPrev.order.base.id_order}</span></p>
 
@@ -210,29 +209,26 @@
             </div>
 
             <div class="preview_costs_shipping col-sm-12" style="margin-top: 2rem;">
-                <fieldset>    
+                <fieldset>
                     <legend>{l s='Shipping costs' mod='moloni'}</legend>
                     <div class="col-sm-6">
                         <div class="shipping_name">
                             <label>
                                 {l s='Name' mod='moloni'}
                             </label>
-                            <input type="text" name="options[shipping_name]"
-                                value="Custo de Portes" />
+                            <input type="text" name="options[shipping_name]" value="Custo de Portes" />
                         </div>
                         <div class="shipping_reference">
                             <label>
                                 {l s='Reference' mod='moloni'}
                             </label>
-                            <input type="text" name="options[shipping_reference]"
-                                value="Portes" />
+                            <input type="text" name="options[shipping_reference]" value="Portes" />
                         </div>
                         <div class="shipping_qty">
                             <label>
                                 {l s='Quantity' mod='moloni'}
                             </label>
-                            <input type="text" name="options[shipping_qty]"
-                                value="1" />
+                            <input type="text" name="options[shipping_qty]" value="1" />
                         </div>
                         <div class="shipping_vat">
                             <label>
@@ -240,6 +236,23 @@
                             </label>
                             <input type="text" name="options[shipping_vat]"
                                 value="{$resultPrev.order.productsTaxes[0].tax_rate|number_format:0}" />
+                        </div>
+                        <div class="shipping_exemption">
+                            <label>
+                                {l s='Shipping exemption reason' mod='moloni'}
+                            </label>
+                            <select name='options[exemption_reason_shipping]'>
+                                <option value='' selected>
+                                    {l s='Exemption' mod='moloni'}
+                                </option>
+                                {foreach from=$moloni.configurations.exemption_reason.options item=opt}
+                                    <option value='{$opt.code|escape:'html':'UTF-8'}'
+                                        {if $moloni.configurations.exemption_reason_shipping.value == $opt.code} selected
+                                        {/if}>
+                                        {$opt.name|escape:'html':'UTF-8'} ({$opt.code|escape:'html':'UTF-8'})
+                                    </option>
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
                 </fieldset>
