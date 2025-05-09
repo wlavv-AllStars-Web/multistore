@@ -602,8 +602,6 @@ class General
 
     public function submitPreview($isAutomatic = false)
     {
-        echo 'paulo';
-        pre(Tools::getAllValues());
         $order_id = Tools::getValue('order_id');
 
         $this->settings = new Settings();
