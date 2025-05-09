@@ -887,9 +887,6 @@ class General
             return false;
         }
 
-        echo '<pre>'.print_r($_GET,1).'</pre>';
-        pre($invoice);
-
         if (!$invoiceExists || !empty($_GET['force'])) {
             $documents = new Documents();
             $documentID = $documents->insertInvoice($invoice);
