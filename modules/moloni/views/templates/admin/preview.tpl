@@ -1,7 +1,9 @@
 <div class="page_preview">
     <p>Moloni - <span>Encomenda #{$resultPrev.order.base.id_order}</span></p>
 
-    <form method='POST' id='moloniOptionsPreview' action='{$moloni.configurations.submitPreview|escape:'html':'UTF-8'}'>
+    <form method='POST' id='formInvoice' name="invoice" action='{$moloni.configurations.submitPreview|escape:'html':'UTF-8'}'>
+        <input type="hidden" name="options[order_id]"
+            value="{$resultPrev.order.base.id_order|escape:'html':'UTF-8'}" />
         <div class="preview_container">
             <div class="preview_serie col-sm-12">
                 <div class="col-sm-6">
