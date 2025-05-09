@@ -787,15 +787,20 @@ class General
             $invoice['products'][$x]['qty'] = '1';
             $invoice['products'][$x]['order'] = $x;
 
+            if(Tools::getValue('options')['shipping_vat']){
+                $order['base']['carrier_tax_rate'] = Tools::getValue('options')['shipping_vat'];
+            }
+
             if ($orderCurrency->iso_code !== 'EUR') {
                 $invoice['products'][$x]['price'] = $this->convertPriceFull($shippingPrice, $orderCurrency, $eurCurrency);
             } else {
-                $invoice['products'][$x]['price'] = $shippingPrice;
+                $invoice['products'][$x]['price'] = number_format($order['base']['total_shipping_tax_incl'] - ($order['base']['total_shipping_tax_incl'] * ($order['base']['carrier_tax_rate'] / 100)),6);;
             }
 
             if ($order['base']['carrier_tax_rate'] > 0) {
                 $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($order['base']['carrier_tax_rate'], $order['fiscal_zone']['country_code']);
-                $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
+                $invoice['products'][$x]['taxes'][0]['value'] = number_format($shippingPrice -  $invoice['products'][$x]['price'],6);
+                // $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
             } elseif (defined('EXEMPTION_REASON_SHIPPING')) {
                 $invoice['products'][$x]['exemption_reason'] = Tools::getValue('options')['exemption_reason_shipping'];
             }
