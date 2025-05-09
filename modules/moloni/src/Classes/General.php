@@ -248,7 +248,7 @@ class General
 
         foreach ($this->countries as $country) {
             if (Tools::strtolower($country['iso_3166_1']) == Tools::strtolower($iso2)) {
-                return [$country['country_id'], $country['name'], Tools::strtoupper($country['iso_3166_1'])];
+                return [$country['country_id'], Tools::strtoupper($country['iso_3166_1'])];
             }
         }
 
@@ -1555,16 +1555,16 @@ class General
         $vat = $this->vatCheck($vat);
 
         $updateCustomer = true;
-        if ((string)$vat === '999999990') {
+        // if ((string)$vat === '999999990') {
             if (!empty($customer['base']['email'])) {
                 $clientExists = $this->entities->customers->getByEmail($customer['base']['email']);
             } else {
                 $clientExists = $this->entities->customers->getByReference('9999');
                 $updateCustomer = false;
             }
-        } else {
-            $clientExists = $this->entities->customers->getByVat($vat);
-        }
+        // } else {
+        //     $clientExists = $this->entities->customers->getByVat($vat);
+        // }
 
         $companyName = $this->clean(trim($customer['address']['invoice']['company']));
 
