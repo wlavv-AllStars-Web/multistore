@@ -794,7 +794,7 @@ class General
             if ($orderCurrency->iso_code !== 'EUR') {
                 $invoice['products'][$x]['price'] = $this->convertPriceFull($shippingPrice, $orderCurrency, $eurCurrency);
             } else {
-                $invoice['products'][$x]['price'] = number_format($order['base']['total_shipping_tax_incl'] - ($order['base']['total_shipping_tax_incl'] * ($order['base']['carrier_tax_rate'] / 100)),6);;
+                $invoice['products'][$x]['price'] = $shippingPrice / (Tools::getValue('options')['shipping_vat'] / 100 + 1);
             }
 
             if ($order['base']['carrier_tax_rate'] > 0) {
