@@ -600,10 +600,11 @@ class General
         ];
     }
 
-    public function submitPreview()
+    public function submitPreview($isAutomatic = false)
     {
         echo 'paulo';
         pre(Tools::getAllValues());
+        $order_id = Tools::getValue('order_id');
 
         $this->settings = new Settings();
         $this->products = new Products();
@@ -798,7 +799,7 @@ class General
                 $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($order['base']['carrier_tax_rate'], $order['fiscal_zone']['country_code']);
                 $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
             } elseif (defined('EXEMPTION_REASON_SHIPPING')) {
-                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON_SHIPPING;
+                $invoice['products'][$x]['exemption_reason'] = Tools::getValue('options')['exemption_reason_shipping'];
             }
 
             $x++;
@@ -830,7 +831,7 @@ class General
                 $invoice['products'][$x]['taxes'][0]['order'] = '0';
                 $invoice['products'][$x]['taxes'][0]['cumulative'] = '0';
             } else {
-                $invoice['products'][$x]['exemption_reason'] = EXEMPTION_REASON;
+                $invoice['products'][$x]['exemption_reason'] = Tools::getValue('options')['exemption_reason'];
             }
 
             $this->wrapping($invoice['products'][$x]);
@@ -877,6 +878,116 @@ class General
         if ($this->eac_id) {
             $invoice['eac_id'] = $this->eac_id;
         }
+
+        $invoice['status'] = DocumentStatus::DRAFT;
+
+        $invoiceExists = Db::getInstance()->getRow('SELECT * FROM ' . _DB_PREFIX_ . "moloni_invoices WHERE order_id = '" . (int)$order_id . "'");
+
+        if (MoloniError::$exists) {
+            $this->dealWithDocumentError($orderPS, $invoice, $isAutomatic);
+
+            return false;
+        }
+
+        if (!$invoiceExists || !empty($_GET['force'])) {
+            $documents = new Documents();
+            $documentID = $documents->insertInvoice($invoice);
+
+            if (MoloniError::$exists) {
+                $this->dealWithDocumentError($orderPS, $invoice, $isAutomatic);
+
+                return false;
+            }
+
+            $documentInfo = $documents->getOneInfo($documentID);
+
+            if ($documentInfo['net_value'] == $order['base']['total_paid'] || ($orderCurrency->iso_code !== 'EUR' && $documentInfo['exchange_total_value'] == $order['base']['total_paid'])) {
+                if (defined('DOCUMENT_STATUS') && (int)DOCUMENT_STATUS === 1) {
+                    $documentSentToCustomer = false;
+
+                    $update = [
+                        'document_id' => $documentID,
+                        'status' => DocumentStatus::CLOSED,
+                        'send_email' => []
+                    ];
+
+                    if (defined('EMAIL_SEND') && EMAIL_SEND) {
+                        $customerInfo = Db::getInstance()->getRow('SELECT email, firstname, lastname FROM ' . _DB_PREFIX_ . "customer WHERE id_customer = '" . (int)$order['base']['id_customer'] . "'");
+
+                        $update['send_email'][] = [
+                            'email' => $customerInfo['email'],
+                            'name' => $customerInfo['firstname'] . ' ' . $customerInfo['lastname'],
+                            'msg' => ''
+                        ];
+
+                        $documentSentToCustomer = true;
+                    }
+
+                    $documents->update($update);
+
+                    Db::getInstance()->insert('moloni_invoices', [
+                        'order_id' => (int)$order_id,
+                        'order_total' => pSQL($order['base']['total_paid']),
+                        'invoice_id' => (int)$documentID,
+                        'invoice_total' => pSQL($documentInfo['net_value']),
+                        'invoice_date' => pSQL(date('Y-m-d H:i:s')),
+                        'invoice_status' => $documentSentToCustomer ? CreatedDocumentStatus::CLOSED_AND_SENT : CreatedDocumentStatus::CLOSED,
+                    ]);
+
+                    $this->dealWithDocumentSuccess($orderPS, $invoice, (int)$documentID);
+
+                    return [
+                        'success' => true,
+                        'message' => ModuleFacade::getModule()->l('Document successfully inserted and closed!', $this->className()),
+                        'button' => 'Ver',
+                        'tab' => '_BLANK',
+                        'url' => 'https://www.moloni.pt/' . $this->me['slug'] . '/' . $documents->currentType() . '/showDetail/' . $documentID . '/'
+                    ];
+                }
+
+                Db::getInstance()->insert('moloni_invoices', [
+                    'order_id' => (int)$order_id,
+                    'order_total' => pSQL($order['base']['total_paid']),
+                    'invoice_id' => (int)$documentID,
+                    'invoice_total' => pSQL($documentInfo['net_value']),
+                    'invoice_date' => pSQL(date('Y-m-d H:i:s')),
+                    'invoice_status' => CreatedDocumentStatus::DRAFT,
+                ]);
+
+                $this->dealWithDocumentSuccess($orderPS, $invoice, (int)$documentID);
+
+                return [
+                    'success' => true,
+                    'message' => ModuleFacade::getModule()->l('Document inserted as draft!', $this->className()),
+                    'button' => 'Ver',
+                    'tab' => '_BLANK',
+                    'url' => 'https://www.moloni.pt/' . $this->me['slug'] . '/' . $documents->currentType() . '/showDetail/' . $documentID . '/'
+                ];
+            }
+
+            Db::getInstance()->insert('moloni_invoices', [
+                'order_id' => (int)$order_id,
+                'order_total' => pSQL($order['base']['total_paid']),
+                'invoice_id' => (int)$documentID,
+                'invoice_total' => pSQL($documentInfo['net_value']),
+                'invoice_date' => pSQL(date('Y-m-d H:i:s')),
+                'invoice_status' => CreatedDocumentStatus::DRAFT_WITH_ERROR,
+            ]);
+
+            MoloniError::create(
+                'document/update',
+                ModuleFacade::getModule()->l('Document inserted, but totals do not match', $this->className()),
+                $documentInfo,
+                $order
+            );
+
+            $this->dealWithDocumentWarning($orderPS, $invoice, (int)$documentID, $isAutomatic);
+
+            return false;
+        }
+
+        return false;
+
     }
 
     public function makeInvoice($order_id, $isAutomatic = false)
