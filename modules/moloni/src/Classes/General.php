@@ -600,9 +600,8 @@ class General
         ];
     }
 
-    public function submitPreview($order_id)
+    public function submitPreview()
     {
-        echo $order_id;
         echo 'paulo';
         pre(Tools::getAllValues());
 
