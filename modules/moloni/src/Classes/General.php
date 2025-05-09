@@ -602,7 +602,7 @@ class General
 
     public function submitPreview($isAutomatic = false)
     {
-        $order_id = Tools::getValue('order_id');
+        $order_id = Tools::getValue('options')['order_id'];
 
         $this->settings = new Settings();
         $this->products = new Products();
