@@ -170,3 +170,8 @@
  {/block}
 {hook h='displayAfterProductThumbs' product=$product}
 </div>
+<script>
+$(document).ready(function() {
+  initSwiper();
+});
+</script>

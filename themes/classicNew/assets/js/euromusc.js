@@ -197,20 +197,22 @@ var swiper = new Swiper(".swiperCars", {
   },
 });
 
-var swiper2 = new Swiper(".mySwiper-thumb-images", {
-  direction: "vertical",
-  slidesPerView: 5,
-  spaceBetween: 10,
-  mousewheel: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+function initSwiper() {
+  var swiper2 = new Swiper(".mySwiper-thumb-images", {
+    direction: "vertical",
+    slidesPerView: 5,
+    spaceBetween: 10,
+    mousewheel: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+}
 
 var swiper3 = new Swiper(".mySwiper", {
   slidesPerView: 1,
