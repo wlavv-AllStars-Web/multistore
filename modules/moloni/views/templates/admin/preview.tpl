@@ -279,12 +279,14 @@
             const selectedSet = this.value;
 
             if (selectedSet) {
+                const formData = new FormData();
+                formData.append('ajax', true);
+                formData.append('action', 'getdataPreview');
+                formData.append('document_set_id', selectedSet);
+
                 fetch('{Context::getContext()->link->getAdminLink('MoloniStart', true)}', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ ajax: true, action: 'getdataPreview' ,document_set_id: selectedSet })
+                    body: formData
                 })
                 .then(response => response.json())
                 .then(data => {
