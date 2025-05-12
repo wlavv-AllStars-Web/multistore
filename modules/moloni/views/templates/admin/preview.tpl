@@ -284,7 +284,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ action: 'getdataPreview' ,document_set_id: selectedSet })
+                    body: JSON.stringify({ ajax: true, action: 'getdataPreview' ,document_set_id: selectedSet })
                 })
                 .then(response => response.json())
                 .then(data => {
