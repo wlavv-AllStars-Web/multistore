@@ -1091,7 +1091,7 @@ body {
   }
 
   footer #footer_sub_menu_14 li {
-    flex: 1;
+    /* flex: 1; */
     min-width: 20%;
     /* max-width: 25%; */
     margin-top: 0;
