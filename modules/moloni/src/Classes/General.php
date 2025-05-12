@@ -41,6 +41,7 @@ use Order;
 use OrderPayment;
 use Product;
 use Customer;
+use Moloni\Classes\Settings\Taxes;
 use Tools;
 
 class General
