@@ -52,7 +52,6 @@ class MoloniStartController extends ModuleAdminController
             $resultPrev = array();
 
             #Gerar o documento
-
             if (Tools::getValue('action') && Tools::getValue('action') === 'submitPreview') {
                 $result = $functions->submitPreview();
             }
@@ -115,6 +114,23 @@ class MoloniStartController extends ModuleAdminController
                 ]);
             }
         }
+    }
+
+    public function postProcess()
+    {
+                    
+            if (Tools::getValue('ajax') && Tools::isSubmit('action') && Tools::getValue('action') === 'getdataPreview') {
+                $documentSetId = Tools::getValue('document_set_id');
+                
+                // Call the General class to get the data
+                $data = General::getDocumentSetData($documentSetId);
+    
+                // Return JSON response
+                header('Content-Type: application/json');
+                echo json_encode($data);
+                exit;
+            }
+
     }
 
     public function displayAjax()
