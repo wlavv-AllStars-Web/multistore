@@ -1768,6 +1768,10 @@ body {
 
 @media (max-width: 563px) {
 
+  .bannersHome .videosContainer {
+    flex-direction: column;
+  }
+
   #language_selector {
     width: 100%;
   }
