@@ -712,8 +712,6 @@ class General
                 $product['unit_price_tax_excl'] /= 1.23;
             }
 
-            pre(Products::);
-
             $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
 
             $product['moloni_reference'] = Tools::substr($product['product_reference'], 0, 25);
