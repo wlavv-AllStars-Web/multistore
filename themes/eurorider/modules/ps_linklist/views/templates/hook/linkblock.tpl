@@ -48,7 +48,7 @@
                   title="{$link.description}"
                   {if !empty($link.target)} target="{$link.target}" {/if}
               >
-              <i class="fa-solid fa-circle-arrow-right hidden-md-down"></i>
+              <i class="fa-solid fa-circle-arrow-right"></i>
                 {$link.title}
               </a>
             </li>
