@@ -1302,6 +1302,10 @@ body {
     display: none !important;
   }
 
+  .bannersHome .videosContainer {
+    flex-direction: column;
+  }
+
   .bg-mysidenav {
     display: none;
     width: 100dvw;
