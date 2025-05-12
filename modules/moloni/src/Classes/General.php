@@ -371,7 +371,7 @@ class General
         
         foreach ($taxes->getAll() as $tax) {
             if ($order['fiscal_zone']['country_code'] === $tax['fiscal_zone']) {
-                $firstMatchedTaxId = $tax['tax_id'];
+                $firstMatchedTaxId = $tax;
                 break; // Stop the loop after finding the first match
             }
         }
@@ -395,7 +395,8 @@ class General
                 $product['unit_price_tax_excl'] /= 1.23;
             }
 
-            $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
+            // $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
+            $taxRate = $firstMatchedTaxId['value'];
 
             $product['moloni_reference'] = Tools::substr($product['product_reference'], 0, 25);
 
@@ -617,28 +618,28 @@ class General
         ];
     }
 
-    public static function getDocumentSetData($documentSetId)
-    {
-        // Here you would perform your logic to fetch the data.
-        // This is just a dummy example:
+    // public static function getDocumentSetData($documentSetId)
+    // {
+    //     // Here you would perform your logic to fetch the data.
+    //     // This is just a dummy example:
         
-        // Sample Data
-        $data = [
-            'success' => true,
-            'client_name' => 'John Doe',
-            'client_nif' => '123456789',
-            'client_postal_code' => '1000-001',
-            'client_address' => 'Main Street 1',
-            'client_location' => 'Lisbon',
-            'client_reference' => 'REF123',
-            'client_email' => 'john.doe@example.com',
-            'client_phone' => '912345678',
-            'client_website' => 'https://example.com',
-            'client_notes' => 'Preferred contact via email.'
-        ];
+    //     // Sample Data
+    //     $data = [
+    //         'success' => true,
+    //         'client_name' => 'John Doe',
+    //         'client_nif' => '123456789',
+    //         'client_postal_code' => '1000-001',
+    //         'client_address' => 'Main Street 1',
+    //         'client_location' => 'Lisbon',
+    //         'client_reference' => 'REF123',
+    //         'client_email' => 'john.doe@example.com',
+    //         'client_phone' => '912345678',
+    //         'client_website' => 'https://example.com',
+    //         'client_notes' => 'Preferred contact via email.'
+    //     ];
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     public function submitPreview($isAutomatic = false)
     {
@@ -693,6 +694,18 @@ class General
         // Set order fiscal zone to be used
         $order['fiscal_zone'] = $this->getFiscalZone($moloniClient);
 
+        // get correct taxes
+
+        $taxes = new Taxes();
+        $firstMatchedTaxId = null;
+        
+        foreach ($taxes->getAll() as $tax) {
+            if ($order['fiscal_zone']['country_code'] === $tax['fiscal_zone']) {
+                $firstMatchedTaxId = $tax;
+                break; // Stop the loop after finding the first match
+            }
+        }
+
         $invoice['customer_id'] = $moloniClient['customer_id'];
         $invoice['alternate_address_id'] = (isset($moloniClient['address_id']) ? $moloniClient['address_id'] : '');
 
@@ -712,7 +725,8 @@ class General
                 $product['unit_price_tax_excl'] /= 1.23;
             }
 
-            $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
+            // $taxRate = $this->getOrderProductTax($product, $order['productsTaxes']);
+            $taxRate = $firstMatchedTaxId['value'];
 
             $product['moloni_reference'] = Tools::substr($product['product_reference'], 0, 25);
 
@@ -741,6 +755,8 @@ class General
             if ($product['unit_price_tax_incl'] != $product['unit_price_tax_excl']) {
                 $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($taxRate, $order['fiscal_zone']['country_code']);
                 $invoice['products'][$x]['taxes'][0]['value'] = $product['unit_price_tax_incl'] - $product['unit_price_tax_excl'];
+
+                $invoice['products'][$x]['taxes'][0]['tax_rate'] = $firstMatchedTaxId['value'];
 
                 if (isset($product['ecotax']) && (float)$product['ecotax'] > 0) {
                     $invoice['products'][$x]['taxes'][1]['tax_id'] = $this->settings->taxes->checkEcotax($product['ecotax'], $order['fiscal_zone']['country_code']);
@@ -838,8 +854,10 @@ class General
             }
 
             if ($order['base']['carrier_tax_rate'] > 0) {
-                $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($order['base']['carrier_tax_rate'], $order['fiscal_zone']['country_code']);
-                $invoice['products'][$x]['taxes'][0]['value'] = number_format($shippingPrice -  $invoice['products'][$x]['price'],6);
+                // $invoice['products'][$x]['taxes'][0]['tax_id'] = $this->settings->taxes->check($order['base']['carrier_tax_rate'], $order['fiscal_zone']['country_code']);
+                // $invoice['products'][$x]['taxes'][0]['value'] = number_format($shippingPrice -  $invoice['products'][$x]['price'],6);
+                $invoice['products'][$x]['taxes'][0]['tax_id'] = $firstMatchedTaxId['tax_id'];
+                $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
                 // $invoice['products'][$x]['taxes'][0]['value'] = $order['base']['total_shipping_tax_incl'] - $order['base']['total_shipping_tax_excl'];
             } elseif (defined('EXEMPTION_REASON_SHIPPING')) {
                 $invoice['products'][$x]['exemption_reason'] = Tools::getValue('options')['exemption_reason_shipping'];
