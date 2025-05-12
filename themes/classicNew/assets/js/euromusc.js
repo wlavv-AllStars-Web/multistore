@@ -197,7 +197,7 @@ var swiper = new Swiper(".swiperCars", {
   },
 });
 
-var swiper = new Swiper(".mySwiper-thumb-images", {
+var swiper2 = new Swiper(".mySwiper-thumb-images", {
   direction: "vertical",
   slidesPerView: 5,
   spaceBetween: 10,
@@ -212,7 +212,7 @@ var swiper = new Swiper(".mySwiper-thumb-images", {
   },
 });
 
-var swiper = new Swiper(".mySwiper", {
+var swiper3 = new Swiper(".mySwiper", {
   slidesPerView: 1,
   spaceBetween: 30,
   direction: "horizontal",
