@@ -4726,9 +4726,6 @@ ul {
 }
 
 @media screen and (min-width: 768px) {
-  #footer_sub_menu_14 li {
-    width: 25%;
-  }
   #footer_sub_menu_14 li a {
     color: var(--white);
     font-size: 1.1rem;
@@ -5575,6 +5572,10 @@ body::-ms-scrollbar-thumb:hover {
 @media screen and (min-width: 992px) {
   .bg-mysidenav {
     display: none;
+  }
+
+  #footer_sub_menu_14 li {
+    width: 25%;
   }
 
   .d-mobile-language{
