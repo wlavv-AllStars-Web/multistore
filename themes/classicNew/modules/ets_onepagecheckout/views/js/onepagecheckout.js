@@ -454,6 +454,22 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
             return false;
         }
     }
+
+    // Create the container for the spinner
+    const loadingContainer = document.createElement("div");
+    loadingContainer.classList.add("loading-container");
+
+    // Create the spinner icon
+    const loadingIcon = document.createElement("div");
+    loadingIcon.classList.add("loading-icon");
+
+    // Append the spinner to the container
+    loadingContainer.appendChild(loadingIcon);
+
+    // Add the loading container to the body (or any parent element)
+    document.body.appendChild(loadingContainer);
+
+
     $('button[name="submitCompleteMyOrder"]').addClass('loading');
     $('.ets_opc_error').remove();
     $('#onepagecheckout-information-errros').html('');
@@ -468,6 +484,8 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         contentType: false,              
         success: function(json){ 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
+            loadingContainer.remove();
+
             if(json.java_script)
                 $('body').append(json.java_script);
             if(json.hasError)
@@ -599,6 +617,7 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         error: function(error)
         { 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
+            loadingContainer.remove();
         }
     });
 });
