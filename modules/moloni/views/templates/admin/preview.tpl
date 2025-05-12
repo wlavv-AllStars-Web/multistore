@@ -269,3 +269,44 @@
 
     </form>
 </div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const documentSetSelect = document.querySelector("select[name='options[document_set]']");
+        
+        documentSetSelect.addEventListener("change", function () {
+            const selectedSet = this.value;
+
+            if (selectedSet) {
+                fetch('{Context::getContext()->link->getAdminLink('MoloniStart', true)}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ action: 'getdataPreview' ,document_set_id: selectedSet })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update form inputs with the received data
+                        // document.querySelector("input[name='options[client_name]']").value = data.client_name;
+                        // document.querySelector("input[name='options[client_nif]']").value = data.client_nif;
+                        // document.querySelector("input[name='options[client_postal_code]']").value = data.client_postal_code;
+                        // document.querySelector("input[name='options[client_address]']").value = data.client_address;
+                        // document.querySelector("input[name='options[client_location]']").value = data.client_location;
+                        // document.querySelector("input[name='options[client_reference]']").value = data.client_reference;
+                        // document.querySelector("input[name='options[client_email]']").value = data.client_email;
+                        // document.querySelector("input[name='options[client_phone]']").value = data.client_phone;
+                        // document.querySelector("input[name='options[client_website]']").value = data.client_website;
+                        // document.querySelector("textarea[name='options[client_notes]']").value = data.client_notes;
+                        console.log(data);
+                    } else {
+                        alert("Failed to load document set data.");
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    });
+</script>
