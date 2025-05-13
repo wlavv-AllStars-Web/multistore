@@ -6592,6 +6592,10 @@ input[type="checkbox"]:checked::after {
 /* product list */
 
 @media screen and (min-width: 544px) and (max-width: 768px){
+
+  #check_vat {
+    padding: 2rem 1rem !important;
+  }
     
   /* forbidden page */
 
