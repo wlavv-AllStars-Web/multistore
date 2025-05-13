@@ -43,7 +43,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $exists = 0;
             if($this->context->customer->id){
                 $id_customer = $this->context->customer->id;
-                $urlCarsGarage = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
+                $urlCarsGarage = 'https://webtools.euromuscleparts.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
 
                 $ch2 = curl_init();
                 curl_setopt($ch2,CURLOPT_URL,$urlCarsGarage);
@@ -66,26 +66,18 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 
             }
 
-            $url = 'https://webtools.'.$_SERVER['SERVER_NAME'].'/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+            $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
 
-            $cacheKey = 'compat_products_' . $id_compat;
 
-            // Check if data is cached
-            if (!Cache::isStored($cacheKey)) {
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-                $json = curl_exec($ch);
-                curl_close($ch);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+            $json = curl_exec($ch);
+            curl_close($ch);
 
-                $data = json_decode($json, true);
-                
-                // Store data in cache
-                Cache::store($cacheKey, $data, 3600); // Cache for 1 hour
-            } else {
-                $data = Cache::retrieve($cacheKey);
-            }
+            $data = json_decode($json, true);
+
 
 
             // pre($data);
