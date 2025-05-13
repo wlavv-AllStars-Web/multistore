@@ -6607,6 +6607,10 @@ input[type="checkbox"]:checked::after {
 
 @media screen and (min-width: 544px) and (max-width: 768px){
 
+  .form-control-label{
+    text-align: start;
+  }
+
   #check_vat {
     padding: 2rem 1rem !important;
     border-radius: .25rem;
