@@ -44,6 +44,20 @@ body {
   height: 38px;
 }
 
+/* order history */
+
+#history main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#history main > #wrapper {
+  flex: 1;
+}
+
+
+
 /* contact page */
 
 #contact .contact-form form {
