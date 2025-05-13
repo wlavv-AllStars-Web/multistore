@@ -6593,7 +6593,7 @@ body#checkout
   left: 10%;
   width: 80%;
   content: "";
-  border-top: #7a7a7a 1px solid;
+  /* border-top: #7a7a7a 1px solid; */
   opacity: 0.25;
 }
 .product-miniature .thumbnail-container .product-thumbnail {
