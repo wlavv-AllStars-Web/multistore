@@ -6595,6 +6595,7 @@ input[type="checkbox"]:checked::after {
 
   #check_vat {
     padding: 2rem 1rem !important;
+    border-radius: .25rem;
   }
     
   /* forbidden page */
