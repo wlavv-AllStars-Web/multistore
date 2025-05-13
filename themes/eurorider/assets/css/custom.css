@@ -56,6 +56,20 @@ body {
   flex: 1;
 }
 
+/* page cars */
+
+#my-cars main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#my-cars main > #wrapper {
+  flex: 1;
+}
+
+
+
 
 
 /* contact page */
