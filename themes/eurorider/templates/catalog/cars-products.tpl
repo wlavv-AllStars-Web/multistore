@@ -25,7 +25,7 @@
  {extends file=$layout}
 
  {block name='head_microdata_special'}
-   {include file='_partials/microdata/product-list-jsonld.tpl' listing=$listing}
+   {include file='_partials/microdata/product-list-jsonld.tpl' listing=$listingCompat}
  {/block}
  
  {block name='content'}
@@ -33,7 +33,7 @@
  
      {block name='product_list_header'}
      {* <h1 id="js-product-list-header" style="margin-left:3rem;" class="h2">
-         {$listing.label}
+         {$listingCompat.label}
      </h1> *}
      {/block}
  
@@ -46,32 +46,52 @@
      {hook h="displayHeaderCategory"}
      {* <pre>{$compat|print_r}</pre> *}
      <section id="products">
-       {* {$listing.products|count} *}
+       {* {$listingCompat.products|count} *}
 
-          {if $listing.products|count > 0 }
-          {block name='product_list_top'}
-            {include file='catalog/_partials/products-top.tpl' listing=$listing}
-          {/block}
+          {if $listingCompat.products|count > 0 }
+            <div class="filters-mobile">
+              <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons" translate="no">filter_list</i> {l s='Filters' d='Shop.Theme.ProductList'}</div>
+              
+              <div class="bg-sidenavCarSpecs" onclick="closeNavCarSpecs()"></div>
+              <div id="sidenavCarSpecs" class="sidenav">
+                <div style="width:100%;display:flex;justify-content:end;padding: .5rem 0;">
+                  <button type="button" class="btn-primary" onclick="closeNavCarSpecs()" aria-label="Close" style="border-radius: .25rem;">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                  </button>
+                </div>
+                <div>
+                  {block name='product_list_top'}
+                    {include file='catalog/_partials/products-top.tpl' listing=$listing}
+                  {/block}
+                </div>
+              </div>
+            </div>
+          
+            <div class="filters-desktop">
+            {block name='product_list_top'}
+              {include file='catalog/_partials/products-top.tpl' listing=$listing}
+            {/block}
+            </div>
          {/if}
  
          {block name='product_list_active_filters'}
            <div class="hidden-sm-down">
-             {$listing.rendered_active_filters nofilter}
+             {$listingCompat.rendered_active_filters nofilter}
            </div>
          {/block}
          
          {block name='product_list'}
             
-            {include file='catalog/_partials/products.tpl' listing=$listing compat=$compat productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/products.tpl' listing=$listingCompat compat=$compat productClass="col-xs-12 col-sm-6 col-xl-2"}
 
             {if $universals}
-            {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-4"}
+            {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-2"}
             {/if}
          {/block}
  
-         {if $listing.products|count > 0}
+         {if $listingCompat.products|count > 0}
           {block name='product_list_bottom'}
-            {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
+            {include file='catalog/_partials/products-bottom.tpl' listing=$listingCompat}
           {/block}
          {/if}
   
