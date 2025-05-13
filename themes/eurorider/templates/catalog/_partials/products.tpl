@@ -126,15 +126,15 @@
   {if $cars_products_page}
     {if $compat}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" style="background: #fff !important;display:flex;flex-direction: column;border-radius:0.25rem;" id_compat="{$compat['id_compat']}">
-      <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;border: 2px solid var(--bg-1);">
         <div style="width: 100%;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
-            <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;">
+            <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;max-height: 157px;">
           </div>
           <div class="current-car-content">
             {if !$compat['subscribed']}
             <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: var(--asm-color);font-weight:600;"
             onclick="addToMyCars({$compat['id_compat']})">
-              {l s='Click to receive updates about new products for this car' d='Shop.Theme.ProductList'}
+              {l s='Click to receive updates about new products for this bike' d='Shop.Theme.ProductList'}
             </div>
             {/if}
 
