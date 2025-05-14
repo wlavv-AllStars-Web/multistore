@@ -881,8 +881,8 @@ class FrontControllerCore extends Controller
                     }
 
                     $html_brands .='</div>
-                                    <div class="swiper-button-next" style="color: #ff0000;"></div>
-                                    <div class="swiper-button-prev" style="color: #ff0000;"></div>
+                                    <div class="swiper-button-next" style="color: #3da936;"></div>
+                                    <div class="swiper-button-prev" style="color: #3da936;"></div>
                                 ';
                     
 
