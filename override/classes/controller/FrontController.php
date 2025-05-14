@@ -542,7 +542,268 @@ class FrontControllerCore extends Controller
             }
         }
 
-        if($this->context->shop->id == 2 || $this->context->shop->id == 6){
+        if($this->context->shop->id == 2){
+
+        
+
+            if(Tools::getValue('saveCarGarage')){
+                $this->saveCarGarage();
+            }
+
+        
+            if(Tools::getValue('getdataBrands')){
+                $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+                $values = Tools::getAllValues();
+
+                $id_customer = Context::getContext()->customer->id;
+
+                $urlCarsGarage = 'https://webtools.euromuscleparts.com/api/get/cars/'.$id_customer.'/'.$values['storeId'].'/'.$key;
+
+                if(Tools::getValue('type') == 'brand'){
+                    $url = 'https://webtools.euromuscleparts.com/api/get/brands/'.$values['storeId'].'/'.$key;
+                }elseif(Tools::getValue('type') == 'model') {
+                    $url = 'https://webtools.euromuscleparts.com/api/get/brand/'.$values['id_brand'].'/'.$values['storeId'].'/'.$key;
+                }
+
+
+                $ch = curl_init();
+                curl_setopt($ch,CURLOPT_URL,$url);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+                $json = curl_exec($ch);
+                curl_close($ch);
+
+                // Decode JSON string into an associative array
+                $decodedJson = json_decode($json, true);
+
+                $ch2 = curl_init();
+                curl_setopt($ch2,CURLOPT_URL,$urlCarsGarage);
+                curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
+                $jsonGarage = curl_exec($ch2);
+                curl_close($ch2);
+
+                // Decode JSON string into an associative array
+                $myCarsGarage = json_decode($jsonGarage, true);
+
+                // pre($myCarsGarage['data']);
+
+                if(isset($myCarsGarage['data'])){
+                    $html_garage = '<div class="my-cars-garage">';
+                    $html_garage .= '<div class="my-garage-cars" style="display:flex;flex-wrap:wrap;">';
+
+                    foreach ($myCarsGarage['data'] as $key => $carGarage) {
+                        $html_garage .=   '<div class="my-garage-car col-lg-2 col-md-3" onclick="setCarSearch('.$carGarage['id_compat'].')">';
+                        $html_garage .=     '<img src="'.$carGarage['cartoon'].'" style="width:80%;display:flex;margin:auto;" />';
+                        $html_garage .=     '<div class="my-garage-car-details" style="text-align:center;color:#fff;">
+                                                <span>'.$carGarage['brand'].' '.$carGarage['model'].'</span>
+                                            </div>';
+                        $html_garage .=     '</div>';
+                    }
+
+
+                    $html_garage .= '</div></div>';
+                    $decodedJson['html_garage'] = $html_garage;
+                }
+
+                if(Tools::getValue('type') == 'brand') {
+
+                
+                    $html_brands = '<div class="swiper-wrapper">';
+                                        
+                    foreach ($decodedJson['data'] as $key => $brand) {
+                        $html_brands .= '<li class="swiper-slide brand_'.$brand['id_brand'].'" style="background:transparent;flex:unset;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;" onclick="openModels(this,'.$brand['id_brand'].')">
+                                            <img class="original_img" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_logo'].'"/>
+                                            <img class="hover_img dont_show" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_hover_logo'].'"/>
+                                            <span class="name_brand" style="color:#fff;font-weight:600;font-size: .75rem;">'.$brand['name'].'</span>
+                                        </li>';
+                    }
+
+                    $html_brands .='</div>
+                                    <div class="swiper-button-next" style="color: #ff0000;"></div>
+                                    <div class="swiper-button-prev" style="color: #ff0000;"></div>
+                                ';
+                    
+
+                    
+                    $decodedJson['html_brands'] = $html_brands;
+
+                    $html_brands_mobile = '<div>';
+                                        
+                    foreach ($decodedJson['data'] as $key => $brand) {
+                        $html_brands_mobile .= '<li class=" brand_'.$brand['id_brand'].'" style="background:transparent;flex:unset;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;" onclick="openModelsMobile(this,'.$brand['id_brand'].')">
+                                            <img class="original_img" style="max-width:100px;" src="'.$brand['brand_logo'].'"/>
+                                        </li>';
+                    }
+
+                    $html_brands_mobile .='</div>';
+                    
+
+                    
+                    $decodedJson['html_brands_mobile'] = $html_brands_mobile;
+                
+                }
+
+                if(Tools::getValue('type') == 'model'){
+                    $html_model = '';
+                    $groupedModels = [];
+
+                    
+
+                    // Group models by 'model' first
+                    foreach ($decodedJson['data'] as $model) {
+                        $modelName = $model['model'];
+                        $groupedModels[$modelName][] = $model;
+                    }
+
+                    // Generate HTML
+                    foreach ($groupedModels as $modelName => $modelsByModel) {
+                        $html_model .= '<div class="model_group_cars">'; // Group all same models
+
+                        // Now, group by 'type' inside the same model
+                        $groupedByType = [];
+                        foreach ($modelsByModel as $model) {
+                            $type = $model['type'];
+                            $groupedByType[$type][] = $model;
+                        }
+
+                        foreach ($groupedByType as $type => $models) {
+                            $firstModel = $models[0]; // Take first model for image display
+
+                            $html_model .= '<div class="car_item_holder">
+                                                <div class="myCarsBrand">
+                                                    <div style="display:flex;flex-direction:column;" onclick="toogleClasslistCar(this)">
+                                                        <img class="img-responsive" src="' . $firstModel['cartoon'] . '" style="margin: 0 auto;width: 200px; cursor: pointer;" />
+                                                    </div>
+                                                    <div id="container_version_parent" style="display:flex;justify-content:center;">
+                                                        <div class="version_model_container" style="padding:1rem;text-align:center;">
+                                                            <div class="model_name" onclick="toogleClasslist(this)">
+                                                                <span class="modelspan">' . $modelName . '</span>
+                                                                <span>|</span>
+                                                                <span>' . $type . '</span>
+                                                            </div>
+                                                            <div class="versions_model_content dont_show">';
+                            
+                            // Add all versions under the same type
+                            foreach ($models as $model) {
+                                $html_model .= '<div class="type_selector" onclick="setCarSearch(' . $model['id_compat'] . ')">
+                                                    <span>' . $model['version'] . '</span>
+                                                </div>';
+                            }
+
+                            $html_model .= '            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>';
+                        }
+
+                        $html_model .= '</div>'; // Close model group
+                    }
+
+                    $decodedJson['html_model'] = $html_model;
+
+                }
+
+                if(Tools::getValue('type') == 'model'){
+                    // pre($decodedJson['data']);
+                    $html_models_mobile = '<div>';
+                    $html_models_mobile .= '<button class="btn-back" type="button" onclick="backButtonBrand()">
+                                                <span class="fa fa-caret-left" style="font-size:25px;margin: 0 5px;"></span>BACK
+                                            </button>
+                                            <div class="informationBrandModel" style="display:flex !important;">
+                                                <img src="'.$decodedJson['data'][0]['brand_logo'].'" width="70px">
+                                                <div id="breadcrumbModel">
+                                                    <span style="text-transform:uppercase;font-weight:bold;color:red;">'.$decodedJson['data'][0]['brand'].'</span> 
+                                                    <span class="fa fa-caret-right" style="font-size:25px;margin: 0 5px;"></span> MODEL 
+                                                    <span class="fa fa-caret-right" style="font-size:25px;margin: 0 5px;"></span> TYPE 
+                                                    <span class="fa fa-caret-right" style="font-size:25px;margin: 0 5px;"></span> VERSION 
+                                                </div>
+                                            </div>';
+                    $groupedModelsMobile = [];
+                
+                    // Group models by 'model'
+                    foreach ($decodedJson['data'] as $model) {
+                        $modelName = $model['model'];
+                        $groupedModelsMobile[$modelName][] = $model;
+                    }
+                
+                    $html_models_mobile .= '<div>';
+                    $index = 0;
+                
+                    foreach ($groupedModelsMobile as $modelName => $modelsByModel) {
+                        $html_models_mobile .= '<div class="model_group_cars_mobile model_car_' . $index . '" 
+                                                    style="overflow-x:scroll;justify-content: start;" 
+                                                    data-id-group="' . $index . '">';
+                
+                        // Group models by 'type'
+                        $groupedByType = [];
+                        foreach ($modelsByModel as $model) {
+                            $type = $model['type'];
+                            $groupedByType[$type][] = $model;
+                        }
+                
+                        // pre($groupedByType);
+                        $indexModel = 0;
+                        foreach ($groupedByType as $type => $models) {
+                            $firstModel = $models[0]; // Take first model for image display
+                
+                            $html_models_mobile .= '<div class="car_item_holder">
+                                                        <div class="myCarsBrand">
+                                                            <div style="display:flex;flex-direction:column;">
+                                                                <img class="img-responsive" src="' . $firstModel['cartoon'] . '" 
+                                                                    style="margin: 0 auto;width: 200px; cursor: pointer;" />
+                                                            </div>
+                                                            <div id="container_version_parent" style="cursor: pointer;text-align:center;color:#fff;" 
+                                                                onclick="$(\'#container_version_'.$index.'_' . $indexModel.'\').toggle();">
+                                                                <span class="modelspan">' . $firstModel['model']   . '</span> | <span>' . $firstModel['type']    . '</span>
+                                                                <div class="container_x_x" id="container_version_'.$index.'_' . $indexModel.'" 
+                                                                    style="display: none;">';
+                
+                            // Loop through all models under this type
+                            foreach ($models as $version) {
+                                $html_models_mobile .= '<div class="type_selector" onclick="setCarSearch(' . $version['id_compat'] . ')">
+                                                            ' . $version['version'] . '
+                                                        </div>';
+                            }
+                
+                            $html_models_mobile .= '</div> <!-- .container_x_x -->
+                                                    </div> <!-- #container_version_parent -->
+                                                </div> <!-- .myCarsBrand -->
+                                            </div> <!-- .car_item_holder -->';
+                            $indexModel++;
+                        }
+                
+                        $html_models_mobile .= '</div>'; // Close .model_group_cars
+                        $index++;
+                    }
+
+                    $html_models_mobile .= '</div></div>';
+
+                    $html_models_mobile .='';
+                    
+
+                    $decodedJson['html_models_mobile'] = $html_models_mobile;
+
+                
+                    // pre($decodedJson);
+                }
+
+
+            // pre($decodedJson);
+
+
+
+            // Send response as JSON
+            header('Content-Type: application/json');
+            echo json_encode($decodedJson);
+            exit;
+
+            }
+
+        }
+    
+        if($this->context->shop->id == 6){
 
         
 
