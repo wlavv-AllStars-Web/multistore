@@ -492,7 +492,7 @@ dropdownMenu.addEventListener("click", (event) => {
                 brand.addEventListener("mouseenter", function () {
                   brand.querySelector(".original_img").classList.add("dont_show")
                   brand.querySelector(".hover_img").classList.remove("dont_show")
-                  brand.querySelector(".name_brand").style.color = "#ff0000"
+                  brand.querySelector(".name_brand").style.color = "#3da936"
                 });
                 brand.addEventListener("mouseleave", function () {
                   brand.querySelector(".original_img").classList.remove("dont_show")
