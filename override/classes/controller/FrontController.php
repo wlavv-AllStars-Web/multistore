@@ -874,8 +874,8 @@ class FrontControllerCore extends Controller
                                         
                     foreach ($decodedJson['data'] as $key => $brand) {
                         $html_brands .= '<li class="swiper-slide brand_'.$brand['id_brand'].'" style="background:transparent;flex:unset;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:1rem;" onclick="openModels(this,'.$brand['id_brand'].')">
-                                            <img class="original_img" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_logo'].'"/>
-                                            <img class="hover_img dont_show" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_hover_logo'].'"/>
+                                            <img class="original_img" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_logo'].'?t='.random_int(1000, 9999).'"/>
+                                            <img class="hover_img dont_show" style="max-width:100px;height:100px;object-fit:contain;" src="'.$brand['brand_hover_logo'].'?t='.random_int(1000, 9999).'"/>
                                             <span class="name_brand" style="color:#fff;font-weight:600;font-size: .75rem;">'.$brand['name'].'</span>
                                         </li>';
                     }
