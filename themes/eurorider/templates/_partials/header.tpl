@@ -785,7 +785,7 @@ window.addEventListener('resize', initializeModelGroupSwipers);
     font-weight: 600;
   }
   .version_model_container .model_name:hover > span {
-    color: #ff0000 !important;
+    color: #3da936 !important;
   }
 
   .versions_model_content.dont_show{
@@ -803,7 +803,7 @@ window.addEventListener('resize', initializeModelGroupSwipers);
   }
   .type_selector:hover span {
     user-select: none;
-    color: #ff0000;
+    color: #3da936;
   }
 
   .swiper-menu-brands {
@@ -847,7 +847,7 @@ window.addEventListener('resize', initializeModelGroupSwipers);
   }
 
   .my-garage-car:hover .my-garage-car-details span{
-    color: rgb(255, 0, 0);
+    color: #3da936;
     font-weight: 600;
   }
 
