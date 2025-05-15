@@ -1,197 +1,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
 <html>
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Message from {shop_name}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Message from {shop_name}</title>
 </head>
-
 <body>
-	<table class="table table-mail" style="padding:0 20px; width: 100%; margin-top: 10px; -moz-box-shadow: 0 0 5px #afafaf; -webkit-box-shadow: 0 0 5px #afafaf; -o-box-shadow: 0 0 5px #afafaf; box-shadow: 0 0 5px #afafaf; filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);" align="center">
-		<tbody style="font-family: Open-sans, sans-serif;">
-		    <tr><td colspan="12" style="text-align: center;border-bottom: 3px solid #0273eb;"><img src="https://www.all-stars-distribution.com/img/email_logo_asd.png?t=2213123123" /></td></tr>
-			<tr>
-				<td style="padding: 20px 0;" align="center">
-					<table class="table" style="width: 100%;" >
-						<tbody>
-							<tr>
-								<td class="titleblock" style="padding: 20px 0;" align="center"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: small;" face="Open-sans, sans-serif" color="#292929"> <span class="title" style="font-weight: 500; font-size: 32px; text-transform: uppercase; line-height: 33px;">COMMANDE ANNULÉE</span>
-									
-								</td>
-							</tr>
-							
-							<tr class="order-details" style="width: 100%;padding: 1rem;outline: 2px solid #888;">
-								
-								<td style="padding: 10px 2rem;">
-									<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">
-										COMMANDE {order_name} - ANNULÉE
-									</p> 
-									<p style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif">
-										<span>Votre commande <span data-html-only="1" style="color: #0273eb;">{order_name}</span> vient d'etre annulée et son statut a été mis à jour. Le statut d'une commande passe en "Annulé" pour 3 motifs fréquents :</span>
-                                        <br>
-                                        <div style="color: #292929;list-style: none;font-size: 16px;text-align: center;">
-                                          <div>1. Le paiement de la commande n'a pas été enregistré dans un délai de 5 jours après confirmation.</div>
-                                          <div>2. L'intégralité des produits commandés n'étaient pas disponibles et / ou sans ETA acceptable.</div>
-                                          <div>3. Une erreur ou anomalie a été détectée.</div>
-                                        </div>
-                                        <!-- <br> -->
-                                        <p style="color: #292929;text-align: center;font-size: 16px;">
-                                          Si le règlement de cette commande a tout de même été effectué, nous vous invitons à contacter notre service client dans les plus brefs délais. Dans le cas contraire, aucune action de votre part n'est nécessaire.<br>
-										    Vous pouvez consulter votre historique de commandes et les documents relatifs en cliquant
-                                          <a href="https://asd.euromuscleparts.com/en/my-account" data-html-only="1" style="color: #0273eb;">ici</span>.
-                                        </p>
-									</p>
-								</td>
-								
-							</tr>
+              <table class="table table-mail" style="width: 80%; margin-top: 10px; -moz-box-shadow: 0 0 5px #afafaf; -webkit-box-shadow: 0 0 5px #afafaf; -o-box-shadow: 0 0 5px #afafaf; box-shadow: 0 0 5px #afafaf; filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);" align="center">
+         <tbody>
+            <tr>
+               <td class="space" style="width: 20px; padding: 7px 0;">&nbsp;</td>
+               <td style="padding: 7px 0;" align="center">
+                  <table class="table" style="width: 100%;" bgcolor="#ffffff">
+                     <tbody>
+                        <tr></tr>
+                        <tr>
+                           <td class="logo" style="border-bottom: 4px solid #dd170e; padding: 7px 0;" align="center"><a title="{shop_name}" href="{shop_url}" style="color: #337ff1;"> <img src="{shop_logo}" alt="{shop_name}" /> </a></td>
+                        </tr>
+                        <tr>
+                           <td class="titleblock" style="padding: 7px 0;" align="center"><br><span style="color: #555454; font-family: Open-sans, sans-serif; font-size: small;" size="2" face="Open-sans, sans-serif"> <span class="title" style="font-weight: 500; font-size: 28px; text-transform: uppercase; line-height: 33px;">Bonjour {firstname} {lastname},</span> </span></td>
+                        </tr>
+                        <tr>
+                           <td class="space_footer" style="padding: 0;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                           <td class="box" style="border: 1px solid #D6D4D4; background-color: #f8f8f8; padding: 7px 0;">
+                              <table class="table" style="width: 100%;">
+                                 <tbody>
+                                    <tr>
+                                       <td style="padding: 7px 0;" width="10">&nbsp;</td>
+                                       <td style="padding: 7px 0; text-align: center;">
+									   		<p data-html-only="1" style="border-bottom: 1px solid #D6D4D4; margin: 0; text-transform: uppercase; font-weight: 500; font-size: 18px; padding-bottom: 10px;">Commande {order_name}&nbsp;-&nbsp; annul&eacute;e</p>
+												<span style="color: #555454; font-family: Open-sans, sans-serif; font-size: 18px;" size="2" face="Open-sans, sans-serif">
+													<span style="color: #777;"> 
+														<br>
+														Nous vous informons par ce mail de l&#039;annulation de votre commande r&eacute;f&eacute;renc&eacute;e <span style="color: #333;"><strong>{order_name}</strong></span> 
+														<br>Si le r&egrave;glement de cette commande avait d&eacute;j&agrave; &eacute;t&eacute; effectu&eacute;, notre d&eacute;partement financier proc&eacute;dera au remboursement du montant r&eacute;gl&eacute; dans les prochaines heures.
+														<br><br>
+														Si vous avez des questions au sujet de cette commande, n&#039;h&eacute;sitez pas &agrave; nous contacter via : <strong><a style="color: #dd170e;" href="https://www.all-stars-motorsport.com/fr/contactez-nous"> Contact</a></strong>
+													</span>
+												</span>
+											</p>
+											<br>
+											<p style="color: #777;font-size:18px">Encore merci pour votre confiance et &agrave; bient&ocirc;t<br>All Stars Motorsport </p>
+                                       </td>
+                                       <td style="padding: 7px 0;" width="10">&nbsp;</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>						
+                        <tr>
+                           <td class="space_footer" style="padding: 0;">&nbsp;</td>
+                        </tr>
+            			<tr>
+            				<td colspan="3" style="border-top: 4px solid #dd170e; padding: 15px 0;text-align: center;">
+            					<section class="footer-block">
+            						<a href="https://www.facebook.com/allstarsmotorsport" style="padding: 0 10px;text-decoration: none; color: #888;text-transform: uppercase;"> <img alt="Facebook" src="{shop_facebook}" border="0" /> </a>
+            						<a href="https://www.flickr.com/photos/allstarsmotorsport/" style="padding: 0 10px;text-decoration: none; color: #888;text-transform: uppercase;"> <img alt="Flickr" src="{shop_flickr}" border="0" /> </a>
+            						<a href="https://instagram.com/allstarsmotorsport" style="padding: 0 10px;text-decoration: none; color: #888;text-transform: uppercase;"> <img alt="Instagram" src="{shop_instagram}" border="0"/> </a>
+            						<a href="https://www.youtube.com/user/allstarsmotorsport" style="padding: 0 10px;text-decoration: none; color: #888;text-transform: uppercase;"> <img alt="Youtube" src="{shop_youtube}" border="0" /> </a>
+            						<table class="table" style="width: 100%;"></table>
+            					</section>
+            				</td>
+            			</tr>
+                     </tbody>
+                  </table>
+               </td>
+			   <td class="space" style="width: 20px; padding: 7px 0;">&nbsp;</td>
+            </tr>
+         </tbody>
+      </table>
+   
 
-						
-						</tbody>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td style="padding: 20px 0;">
-					<table class="table" style="width: 100%;">
-						<tbody>
-							<tr>
-								<td class="box address" style="padding: 1rem;outline: 2px solid #888; padding: 7px 0;" width="310">
-									<table class="table" style="width: 100%;text-align:center;">
-										<tbody>
-											<tr>
-												<td style="padding: 7px 0;" width="10"></td>
-												<td style="padding: 7px 0;">
-													<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 10px;color: #292929;">ADRESSE DE LIVRAISON</p> <span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"><span data-html-only="1" style="color: #292929;"> {delivery_block_html} </span> </span>
-												</td>
-												<td style="padding: 7px 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-			<tr>
-			    <td style="padding:20px 0">
-				    <table class="table" style="width: 100%;">
-				        <tbody>
-				            <tr>
-								<td class="box address" style="padding: 1rem;outline: 2px solid #888; padding: 7px 0;text-align: end;" width="310">
-									<table class="table" style="width: 100%;text-align:center;">
-										<tbody>
-											<tr>
-												<td style="padding: 7px 0;" width="10"></td>
-												<td style="padding: 7px 0;">
-													<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 10px;color: #292929;">ADRESSE DE FACTURATION</p> <span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"><span data-html-only="1" style="color: #292929;"> {invoice_block_html} </span> </span>
-												</td>
-												<td style="padding: 7px 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-				        </tbody>
-				    </table>
-				</td>
-			</tr>
-			
-			{products}
-			
-			<tr>
-				<td style="padding: 20px 0;">
-					<table class="table table-recap" style="width: 100%; border-collapse: collapse;outline: 2px solid #888;">
-						<tbody>
-							
-							<tr class="conf_body">
-								<td colspan="4" style="border-bottom: 1px solid #888;border-right: 1px solid #888; color: #292929; padding: 7px 0;" >
-									<table class="table" style="width: 100%; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"> <strong>TVA</strong> </span></td>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-								<td colspan="4" style="border-bottom: 1px solid #888;border-right: 1px solid #888; color: #292929; padding: 7px 0;" >
-									<table class="table" style="width: 100%; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"> {total_tax_paid} </span></td>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-							<tr class="conf_body">
-								<td colspan="4" style=" color: #292929; padding: 7px 0;" >
-									<table class="table" style="width: 100%; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"> <strong>Total à payer</strong> </span></td>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-								<td colspan="4" style=" color: #292929; padding: 7px 0;" >
-									<table class="table" style="width: 100%; border-collapse: collapse;">
-										<tbody>
-											<tr>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-												<td style="color: #292929; padding: 0;" align="right"><span style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;" face="Open-sans, sans-serif" color="#292929"> {total_paid} </span></td>
-												<td style="color: #292929; padding: 0;" width="10"></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-
-			<tr class="order-comments" style="width: 100%;padding: 1rem;outline: 2px solid #888;padding: 10px 0;display: table;margin: 20px 0;">
-								
-				<td style="padding: 10px 2rem;">
-					<p data-html-only="1" style="border-bottom: 2px solid #0273eb; margin: 3px 0 7px; text-transform: uppercase; font-weight: 500; font-size: 22px; padding-bottom: 5px;color: #292929;text-align: center;">
-						COMMENTAIRES
-					</p> 
-					<div style="color: #292929; font-family: Open-sans, sans-serif; font-size: 16px;text-align: center;" face="Open-sans, sans-serif"> {note} </div>
-				</td>
-				
-			</tr>
-			
-		
-
-			<tr><td colspan="3">
-				<tr>
-					<td colspan="3">
-						<table style="width: 100%; border-top: 2px solid #0273EB; border-bottom: 2px solid #0273EB; padding: 5px 0;margin: 20px 0;">
-							<tbody>
-							<tr>
-								<td style="font-size: 20px;color: #292929;width: 100%;text-align: center;text-transform: uppercase;"> Service commercial </td>
-							</tr>
-							<tr>
-								<td  style="text-align: center;">
-									<a href="https://www.facebook.com/allstarsdistribution/" title="All Stars Distribution - Facebook" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-facebook-100.png?t=2213124123" style="width: 60px;"> </a>
-									<a href="https://www.instagram.com/allstarsdistribution/" title="All Stars Distribution - Instagram" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-instagram-100.png?t=2213124123" style="width: 60px;"> </a>
-									<a href="https://www.flickr.com/photos/allstarsdistribution/" title="All Stars Distribution - Flickr" style="text-decoration: none;"> <img src="https://asd.euromuscleparts.com/img/asd/dealers/emails/icons8-flickr-100.png?t=2213124123" style="width: 60px;"> </a>
-								</td>
-								
-							</tr>
-						</tbody>
-						</table>
-					</td>
-				</tr>
-			</td></tr>
-		</tbody>
-	</table>
 </body>
 </html>

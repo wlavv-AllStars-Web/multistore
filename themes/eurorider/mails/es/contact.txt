@@ -1,19 +1,20 @@
- 
+[{shop_url}] 
 
-{shop_url}
+Mensaje de un cliente de {shop_name} 
 
-Mensaje de un cliente de {shop_name}
+DIRECCIÓN DE E-MAIL: {email}
 
-Dirección de correo electrónico del cliente: {email}
+MENSAJE: {message}
 
-ID del Pedido #:  {order_name}
+ORDER ID: {order_name}
 
-Archivo adjunto: {attached_file}
+ATTACHED FILE: {attached_file} 		 
 
-Mensaje del cliente:
+{shop_facebook}
+{shop_flickr}
+{shop_instagram}
+{shop_youtube}
 
-{message}
+{shop_name} [{shop_url}] propulsé par
+PrestaShop(tm) [http://www.prestashop.com/] 
 
-[{shop_name}]({shop_url})
-
-Powered by [PrestaShop](https://www.prestashop-project.org/)

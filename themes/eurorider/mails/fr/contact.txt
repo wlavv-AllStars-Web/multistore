@@ -1,19 +1,19 @@
- 
+[{shop_url}] 
 
-{shop_url}
+Message de la part d'un client de {shop_name} 
 
-Message de la part d'un client de {shop_name}
+ADRESSE E-MAIL DU CLIENT : {email}
 
-Adresse e-mail du client : {email}
+MESSAGE DU CLIENT : {message}
 
-ID commande # :  {order_name}
+COMMANDE N° : {order_name}
 
-Pièce jointe : {attached_file}
+FICHIER JOINT : {attached_file} 		 
 
-Message du client :
+{shop_facebook}
+{shop_flickr}
+{shop_instagram}
+{shop_youtube}
 
-{message}
-
-[{shop_name}]({shop_url})
-
-Powered by [PrestaShop](https://www.prestashop-project.org/)
+{shop_name} [{shop_url}] propulsé par
+PrestaShop(tm) [http://www.prestashop.com/] 

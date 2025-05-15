@@ -1,17 +1,19 @@
- 
 
-{shop_url}
+[{shop_url}] 
 
-Bonjour {firstname} {lastname},
+Bonjour {firstname} {lastname}, 
 
-Identifiant de commande {order_name} - Commande annulée
+Your order with the reference {order_name} from {shop_name} has
+been canceled. 
 
-Votre commande ayant pour référence {order_name} sur {shop_name} a été annulée par le marchand.
+Vous pouvez consulter le détail de votre commande via le lien
+"Historique de mes commandes" [{history_url}] dans la
+rubrique "Mon Compte" [{my_account_url}] sur notre
+site. 
 
-Pour en savoir plus, rendez-vous sur votre compte client.
+Si vous avez un compte invité vous pouvez suivre votre commande
+via ce lien [{guest_tracking_url}]. 
 
-Si vous avez un compte invité, vous pouvez suivre votre commande via la section [Suivi de commande]({guest_tracking_url}) sur notre boutique.
+{shop_name} [{shop_url}] propulsé par
+PrestaShop(tm) [http://www.prestashop.com/] 
 
-[{shop_name}]({shop_url})
-
-Powered by [PrestaShop](https://www.prestashop-project.org/)
