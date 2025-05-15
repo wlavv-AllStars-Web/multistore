@@ -965,6 +965,27 @@ body {
   }
 }
 
+@media screen and (min-width: 993px) {
+  .filters-mobile{
+    display: none;
+  }
+
+  .filters-desktop{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .filters-mobile{
+    display: flex;
+  }
+
+  .filters-desktop{
+    display: none;
+  }
+
+}
+
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .d-mobile{
