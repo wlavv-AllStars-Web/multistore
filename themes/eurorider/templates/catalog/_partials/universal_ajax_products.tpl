@@ -15,7 +15,7 @@
     </div>
 
     <div class="noMoreProducts col-lg-12" list_complete="false" 
-         style="display: flex;justify-content:center;padding: 1rem;font-weight:600;color: var(--euromus-color-300);background: var(--asm-color);font-size: 1.25rem;">
+         style="display: flex;justify-content:center;padding: 1rem;font-weight:600;color: var(--bg-2);background: var(--asm-color);font-size: 1.25rem;">
     </div>
 
     {if !$noMoreProducts}
