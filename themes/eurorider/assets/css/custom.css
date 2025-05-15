@@ -1369,6 +1369,10 @@ body {
     display: block;
   }
 
+  .details-info-car-mobile span {
+    color: var(--bg-3);
+  }
+
 }
 
 @media screen and (max-width: 768px) {
