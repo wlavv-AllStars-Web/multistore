@@ -2763,7 +2763,7 @@ body {
   }
 
   .current-car-content span {
-    color: var(--white) !important;
+    color: var(--bg-2) !important;
   }
 
   /* #footer .footer_top {
