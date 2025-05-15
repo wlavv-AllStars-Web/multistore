@@ -5049,9 +5049,9 @@ form .form-control-label {
   }
 
   /*  */
-  #js-product-list .js-product.product:hover .product-miniature .thumbnail-container {
+  /* #js-product-list .js-product.product:hover .product-miniature .thumbnail-container {
     border: 0 !important;
-  }
+  } */
 
   /* order confirmation */
   #order-confirmation #section-payment-bank .container-img {
