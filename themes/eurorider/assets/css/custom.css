@@ -6664,7 +6664,7 @@ input[type="checkbox"]:checked::after {
   }
 
   #productList article{
-    padding: .5rem !important;
+    padding: 0 .5rem !important;
   }
 
   #productList article .thumbnail-container{
@@ -6673,7 +6673,7 @@ input[type="checkbox"]:checked::after {
 
   .product-miniature {
     width: 50%;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
 
 
