@@ -138,7 +138,7 @@
 
   <script>
     function swapFiltersByScreenSize() {
-  const isMobile = window.innerWidth <= 768; // Check if it's a mobile screen
+  const isMobile = window.innerWidth <= 992; // Check if it's a mobile screen
   const mobileContainer = document.querySelector('.filters-mobile');
   const desktopContainer = document.querySelector('.filters-desktop');
 
