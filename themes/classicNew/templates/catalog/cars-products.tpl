@@ -25,7 +25,7 @@
  {extends file=$layout}
 
  {block name='head_microdata_special'}
-   {include file='_partials/microdata/product-list-jsonld.tpl' listing=$listingCompat}
+   {include file='_partials/microdata/product-list-jsonld.tpl' listing=$listing}
  {/block}
  
  {block name='content'}
@@ -33,7 +33,7 @@
  
      {block name='product_list_header'}
      {* <h1 id="js-product-list-header" style="margin-left:3rem;" class="h2">
-         {$listingCompat.label}
+         {$listing.label}
      </h1> *}
      {/block}
  
@@ -46,9 +46,9 @@
      {hook h="displayHeaderCategory"}
      {* <pre>{$compat|print_r}</pre> *}
      <section id="products">
-       {* {$listingCompat.products|count} *}
+       {* {$listing.products|count} *}
 
-          {if $listingCompat.products|count > 0 }
+          {if $listing.products|count > 0 }
             <div class="filters-mobile">
               <div class="filters-sort-btn" onclick="openNavCarSpecs()"><i class="material-icons" translate="no">filter_list</i> {l s='Filters' d='Shop.Theme.ProductList'}</div>
               
@@ -76,22 +76,22 @@
  
          {block name='product_list_active_filters'}
            <div class="hidden-sm-down">
-             {$listingCompat.rendered_active_filters nofilter}
+             {$listing.rendered_active_filters nofilter}
            </div>
          {/block}
          
          {block name='product_list'}
             
-            {include file='catalog/_partials/products.tpl' listing=$listingCompat compat=$compat productClass="col-xs-12 col-sm-6 col-xl-2"}
+            {include file='catalog/_partials/products.tpl' listing=$listing compat=$compat productClass="col-xs-12 col-sm-6 col-xl-2"}
 
             {if $universals}
             {include file='catalog/_partials/universal_ajax_products.tpl' universals=$universals productClass="col-xs-12 col-sm-6 col-xl-2"}
             {/if}
          {/block}
  
-         {if $listingCompat.products|count > 0}
+         {if $listing.products|count > 0}
           {block name='product_list_bottom'}
-            {include file='catalog/_partials/products-bottom.tpl' listing=$listingCompat}
+            {include file='catalog/_partials/products-bottom.tpl' listing=$listing}
           {/block}
          {/if}
   
