@@ -1384,6 +1384,8 @@ body {
     align-items: center;
     border-radius: .25rem;
     overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .details-info-car-dektop{
