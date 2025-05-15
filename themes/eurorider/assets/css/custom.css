@@ -2464,6 +2464,7 @@ body {
   } */
   .product-miniature .thumbnail-container {
     height: unset !important;
+    border: 2px solid #d0d0d0;
   }
 
   .product-miniature .thumbnail-container .add_to_cart_button-mobile {
@@ -6733,6 +6734,7 @@ input[type="checkbox"]:checked::after {
 
   #productList article .thumbnail-container{
     border-radius: .25rem;
+    border: 2px solid #d0d0d0;
   }
 
   .product-miniature {
