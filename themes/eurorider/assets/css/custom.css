@@ -1226,7 +1226,7 @@ body {
 
   .product-miniature{
     padding: 0.5rem;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
 
   .product-miniature .product-description{
