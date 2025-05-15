@@ -331,7 +331,6 @@
               </li>
 
               <li class="dropdown">
-                {* <i class="material-icons">directions_car</i> *}
                 <div class="btn" type="button" data-toggle="dropdown" aria-expanded="false">{l s='Your Ride' d='Shop.Theme.Homepage'}</div>
                 <div class="dropdown-menu menu-logos">
                   <div class="section menu-select-car">
