@@ -312,7 +312,11 @@ function toggleOrderStateHistory() {
 
 
 function openNav() {
-  document.getElementById("mySidenav").style.width = "80dvw";
+  if(window.screen.width >= 554){
+    document.getElementById("mySidenav").style.width = "80dvw";
+  }else{
+    document.getElementById("mySidenav").style.width = "90dvw";
+  }
   document.querySelector(".bg-mysidenav").style.display = "block";
 }
 
