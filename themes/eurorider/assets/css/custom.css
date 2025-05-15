@@ -1387,7 +1387,7 @@ body {
   }
 
   .details-info-car-dektop{
-    display: none;
+    display: none !important;
   }
 }
 
