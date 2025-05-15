@@ -1,5 +1,5 @@
 {if $universals}
-    <div style="width: 100%;background: var(--euromus-color-200);border-bottom: 3px solid var(--euromus-color-300);border-top: 3px solid var(--euromus-color-300);">
+    <div style="width: 100%;background: var(--bg-2);border-bottom: 3px solid var(--asm-color);border-top: 3px solid var(--asm-color);">
         <h1 style="margin: auto;text-align:center;color:#fff;padding:.75rem 1rem;">( {$total} ) {l s="Universal Products" d="Shop.Theme.Universals"}</h1>
     </div>
 
