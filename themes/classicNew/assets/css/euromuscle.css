@@ -6993,8 +6993,19 @@ transform: translate(-50%,-50%);
 
   #current_car_settings {
     min-height: 284px !important;
+    padding: 0 1rem;
+    /* border: 2px solid var(--euromus-color-text2);
+    background: var(--euromus-color-700); */
+  }
+
+  #current_car_settings .miniature-car {
     border: 2px solid var(--euromus-color-text2);
     background: var(--euromus-color-700);
+    box-shadow: var(--euromus-shadow);
+  }
+
+  .universals-product-list .js-product.product .product-miniature{
+    width: 100%;
   }
 
   .current-car-content {
@@ -9224,11 +9235,16 @@ transform: translate(-50%,-50%);
 }
 
 .universals-product-list .js-product.product {
-  padding: 0;
-  outline: 2px solid var(--euromus-color-700);
-  box-shadow: var(--euromus-shadow);
+  /* padding: 0; */
+  /* outline: 2px solid var(--euromus-color-700);
+  box-shadow: var(--euromus-shadow); */
   border-radius: 0.25rem;
   overflow: hidden;
+}
+
+.universals-product-list .js-product.product article {
+  border: 2px solid var(--euromus-color-700);
+  border-radius: .25rem;
 }
 
 .universals-product-list .js-product.product:hover{
