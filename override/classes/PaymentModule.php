@@ -735,7 +735,7 @@ abstract class PaymentModuleCore extends Module
                         $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
                     }
 
-                    if($this->context->shop->id != 3 && $this->context->shop->id != 2 && $this->context->shop->id != 1) {
+                    if($this->context->shop->id != 3 && $this->context->shop->id != 2 && $this->context->shop->id != 1 && $this->context->shop->id != 6) {
                         
                         Mail::Send(
                         (int) $order->id_lang,
@@ -758,7 +758,7 @@ abstract class PaymentModuleCore extends Module
                         (int) $order->id_shop
                         );
                     
-                    }elseif( $this->context->shop->id == 2 || $this->context->shop->id == 1){
+                    }elseif( $this->context->shop->id == 2 || $this->context->shop->id == 1 || $this->context->shop->id == 6){
                         Mail::Send(
                         (int) $order->id_lang,
                         'order_created',
