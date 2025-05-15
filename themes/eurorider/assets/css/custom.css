@@ -3877,6 +3877,13 @@ ul {
   /* width: 100%; */
   /* padding: 0 !important; */
 /* } */
+.product-description .product-title a{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .product-description .product-title a:hover {
   color: var(--asm-color);
