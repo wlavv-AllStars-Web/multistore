@@ -7,7 +7,7 @@
 {* StarterTheme: Add confirmation/error messages *}
 
 {block name='page_content'}
-    <div>
+    <div style="min-height: 38dvh;">
     {if isset($unsubscribeMessage)}
         <div style="text-align:center;margin: 10px auto;">
             <div class="alert alert-success">{l s="You have successfully removed the email from the newsletter list!" d='Shop.Theme.MyCars'}</div>
@@ -49,9 +49,10 @@
      
         <h1 class="page-heading">{l s='My Cars' d='Shop.Theme.MyCars'}</h1>
         
-        {if $myCars|count}
-            <div style="text-align: center;">
-                <p class="alert alert-warning"> 
+        {if !isset($myCars.data)}
+            <div style="display: flex;justify-content:center;align-items:center;">
+            <div style="text-align: center;max-width:1400px;width:100%;margin:auto;">
+                <p class="alert alert-warning" style="font-size: .85rem;"> 
                     {l s='You dont have any car set at the moment.' d='Shop.Theme.MyCars'} 
                     <br><br> 
                     {l s='To add your car, please use the vehicle selector in "Your car" and click in "Click to add to My cars"' d='Shop.Theme.MyCars'} 
@@ -59,32 +60,34 @@
                     {l s='By doing so, you are allowing us to use your email to send newsletters of our produts' d='Shop.Theme.MyCars'}
                 </p>
             </div>
+            </div>
         {else}
-            <div>
-                {foreach $myCars AS $car}
-                <div class="car_container ">
-                    <div onclick="setCarAndSearch({$car['id_brand']}, {$car['id_model']}, {$car['id_type']}, {$car['id_version']})">
-                        {assign var=check_path value="{$_SERVER['DOCUMENT_ROOT']}/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png"}
+            <div class="cars-content">
+                {foreach $myCars.data AS $car}
+                <div class="car_container col-lg-2">
+                    <div onclick="setCarSearch({$car['id_compat']})">
+                        {* {assign var=check_path value="{$_SERVER['DOCUMENT_ROOT']}/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png"}
 
                         {if !file_exists($check_path)}
                             <img class="img-responsive" src="/img/homepage/models/{$car['id_brand']}_{$car['id_type']}.png" style="margin: 10px auto 0 auto;width: 300px; cursor: pointer;">
-                        {else}
-                            <img class="img-responsive" src="/img/homepage/models/unknown.png" style="margin: 0 auto; cursor: pointer;">
-                        {/if}
+                        {else} *}
+                            <img class="img-responsive" src="{$car['cartoon']}" style="margin: 0 auto; cursor: pointer;width:100%;max-width:300px;display:flex;">
+                            {* <img class="img-responsive" src="/img/homepage/models/unknown.png" style="margin: 0 auto; cursor: pointer;"> *}
+                        {* {/if} *}
                     </div>
                     <div>
                         <div class="spacer-10"></div>
-                        <div onclick="setCarAndSearch({$car['id_brand']}, {$car['id_model']}, {$car['id_type']}, {$car['id_version']})" style="cursor: pointer;">
-                            <div><b>{l s='Brand:' d='Shop.Theme.MyCars'}</b>   <span>{$car['brand']}</span>   </div>
-                            <div><b>{l s='Model:' d='Shop.Theme.MyCars'}</b>   <span>{$car['model']}</span>   </div>
-                            <div><b>{l s='Type:' d='Shop.Theme.MyCars'}</b>    <span>{$car['type']}</span>    </div>
-                            <div style="height: 36px;overflow: hidden;"><b>{l s='Version:' d='Shop.Theme.MyCars'}</b> <span>{$car['version']}</span> </div>	                
+                        <div onclick="setCarSearch({$car['id_compat']})" style="cursor: pointer;">
+                            <div class="car-container-details"><b>{l s='Brand:' d='Shop.Theme.MyCars'}</b>   <span>{$car['brand']}</span>   </div>
+                            <div class="car-container-details"><b>{l s='Model:' d='Shop.Theme.MyCars'}</b>   <span>{$car['model']}</span>   </div>
+                            <div class="car-container-details"><b>{l s='Type:' d='Shop.Theme.MyCars'}</b>    <span>{$car['type']}</span>    </div>
+                            <div class="car-container-details"><b>{l s='Version:' d='Shop.Theme.MyCars'}</b> <span>{$car['version']}</span> </div>	                
                         </div>
                         <div class="spacer-20"></div>
-                        <div>
-                            <a onclick="deleteCar({$car['id']})" class="btn" rel="nofollow" title="Delete car" href="#" style="background: var(--asm-color);">
+                        <div class="car-button-delete">
+                            <div onclick="deleteCar({$car['id_compat']},this)" class="btn" rel="nofollow" title="Delete car">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
+                            </div>
                         </div>   
                         <div class="spacer-20"></div>
                     </div>
@@ -132,12 +135,54 @@
     
     <style>
         #table_my_cars > thead > td { width: 500px; }
-        .car_container{ width: 300px; float: left;margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #dedede;text-align: center;background-color: #ededed; }
+        /* .car_container{ width: 300px; float: left;margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #dedede;text-align: center;background-color: #ededed; } */
+
+        .cars-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .car_container {
+            padding: 1rem;
+            max-width: 359.2px;
+            flex: 1;
+            margin: .5rem;
+            min-width: 347px;
+        }
+        .car-container-details {
+            text-align: center;
+        }
+
+        .car_container-details b{
+            font-size: .85rem;
+            color: #333;
+        }
+        .car_container-details span{
+            font-size: .85rem;
+            color: #333;
+        }
+
+        .car-button-delete{
+            display: flex;
+            justify-content: center;
+            padding: .5rem 1rem;
+        }
+
+        .car-button-delete .btn{
+            border-radius: .25rem;
+            background: var(--asm-color);
+            cursor: pointer;
+        }
+        .car-button-delete .btn i{
+            color: #fff;
+        }
+        .car-button-delete .btn:hover{
+            background: #333;
+        }
     
         @media only screen and (max-width: 768px) {
             
             h1.page-heading{ text-align: center; }
-            .car_container{ width: calc( 100% - 40px ); margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #888;text-align: center; background-color: #FFF; }
+            .car_container{ width: calc( 100% - 40px ); margin: 20px;font-size: 18px; line-height: 2; border: 1px solid #e0e0e0;text-align: center; background-color: #FFF; }
             ul.footer_links{ margin:0 20px 20px 20px; padding: 0; }
             ul.footer_links li{ list-style-type: none; }
             ul.footer_links li a{ border: 1px solid red; color: red; background-color: #FFF; border-radius: 5px; width: 100%; }
@@ -147,22 +192,48 @@
     
     <script>
         
-        function setCarAndSearch(brand, model, type, version){
+        // function setCarSearch(brand, model, type, version){
             
-            $("#custom_filter_1").prop('value', brand);
-            $("#custom_filter_2").prop('value', model);
-            $("#custom_filter_3").prop('value', type);
-            $("#custom_filter_4").prop('value', version);
-            $('#ukoocompat_my_cars_custom_form').submit();
+        //     $("#custom_filter_1").prop('value', brand);
+        //     $("#custom_filter_2").prop('value', model);
+        //     $("#custom_filter_3").prop('value', type);
+        //     $("#custom_filter_4").prop('value', version);
+        //     $('#ukoocompat_my_cars_custom_form').submit();
             
-        }
-        
-        function deleteCar(id){
+        // }
+
+        function deleteCar(id_compat, e){
             
             var del=confirm("{l s='Are you sure you want to delete this car?' d='Shop.Theme.MyCars'}");
-            if (del==true) window.location.replace('{$link->getPageLink('mycars', true)}?delete=true&id=' + id)
-        
+
+            if (del==true) {
+                $.ajax({
+                    url: '{$link->getPageLink('my-cars', true)}', // Replace with your endpoint
+                    type: 'GET',
+                    data: {
+                        deleteCarGarage: 1,
+                        id_compat: id_compat,
+                        storeId: {Context::getContext()->shop->id},
+                        id_customer: {Context::getContext()->customer->id}
+                    },
+                    success: function(brands) {
+                    e.parentElement.parentElement.parentElement.remove();
+                    document.querySelector(".loading-overlay-cars").classList.add("dont_show")
+                    let brandsContainer = document.querySelector(".dropdown-menu .versions_cars")
+                    brandsContainer.innerHTML = brands.html_model
+
+    
+    
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error:", status, error);
+                    }
+                })
+            }
         }
+
+
+
         
         $(document).bind('contextmenu', function(e) {
             return false;
