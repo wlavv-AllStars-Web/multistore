@@ -6278,7 +6278,7 @@ transform: translate(-50%,-50%);
 
 @media screen and (min-width: 769px) {
   #current_car_settings {
-    box-shadow: var(--euromus-shadow);
+    /* box-shadow: var(--euromus-shadow); */
     padding: 0;
   }
 
