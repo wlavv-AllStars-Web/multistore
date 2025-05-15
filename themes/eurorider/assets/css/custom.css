@@ -993,10 +993,11 @@ body {
   .filters-sort-btn {
     color: var(--asm-color);
     padding: .5rem 1rem;
-    /* background: var(--euromus-color-700); */
+    background: #efefef;
     border-radius: .25rem;
     margin-left: 1rem;
     margin-top: 1rem;
+    outline: 2px solid var(--asm-color);
   }
 
 
@@ -1356,6 +1357,37 @@ body {
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .details-info-car-mobile{
+    display: none;
+  }
+
+  .details-info-car-dektop{
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  #current_car_settings .current-car-content .details-info-car-mobile{
+    outline: 2px solid var(--euromus-color-700);
+    border-radius: .25rem;
+  }
+  
+  .details-info-car-mobile{
+    display: flex;
+    gap: .5rem;
+    background: var(--euromus-color-700);
+    align-items: center;
+    border-radius: .25rem;
+    overflow: hidden;
+  }
+
+  .details-info-car-dektop{
+    display: none;
   }
 }
 
