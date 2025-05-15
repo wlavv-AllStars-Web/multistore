@@ -286,6 +286,7 @@ class CmsControllerCore extends FrontController
 
     public function postProcess()
     {
+        $serverName = $_SERVER['SERVER_NAME'];
         // echo '<pre>'.print_r($_POST,1).'</pre>';
         // exit;
         $error = 0;
@@ -341,7 +342,7 @@ class CmsControllerCore extends FrontController
         
                     $var_list['{aditional_info}'] = Tools::getValue('aditional_info');
         
-                    Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, 'info@euromuscleparts.com', 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                    Mail::Send($this->context->language->id, 'specific_request', 'Specific Request', $var_list, 'info@'.$serverName , 'Specific Request', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
                     $this->context->smarty->assign(array( 'email_sent' => 1 ));
                     Tools::redirect($this->context->link->getCMSLink(53));
                 }
@@ -394,9 +395,9 @@ class CmsControllerCore extends FrontController
                     }
                     
                     if($attachments){
-                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@euromuscleparts.com', 'Job Application', null, null, $attachments, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@'.$serverName, 'Job Application', null, null, $attachments, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
                     }else{
-                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@euromuscleparts.com', 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
+                        Mail::Send($this->context->language->id, 'job_candidate', 'JOB APPLICATION', $var_list,  'info@'.$serverName, 'Job Application', null, null, null, null, _PS_MAIL_DIR_, false, null, null, $var_list['{email}']);
                     }
                     
                     $this->context->smarty->assign(array( 'email_sent' => 2 ));
@@ -441,7 +442,7 @@ class CmsControllerCore extends FrontController
                     $template = 'become_dealer'; // Name of the email template
                     $subject = 'BECOME A DEALER'; // Subject of the email
                     
-                    $to = 'info@euromuscleparts.com';
+                    $to = 'info@'.$serverName;
 
                     if ( (Tools::getValue('site') == '') && (Tools::getValue('social') == '') ) {
                         $this->context->controller->errors[] = $this->trans('The Website or Social Media Link cannot be empty.', [], 'Shop.Notifications.Error');
@@ -494,7 +495,7 @@ class CmsControllerCore extends FrontController
                     $template = 'become_supplier'; // Name of the  email template
                     $subject = 'BECOME A SUPPLIER'; // Subject of the email
                     
-                    $to = 'info@euromuscleparts.com';
+                    $to = 'info@'.$serverName;
                     
                     if ( (Tools::getValue('site') == '')) {
                         $this->context->controller->errors[] = $this->trans('The Site field is required.', [], 'Shop.Notifications.Error');

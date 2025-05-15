@@ -9,7 +9,7 @@ class ContactControllerCore extends FrontController
 
     public function postProcess()
     {
-
+        $serverName = $_SERVER['SERVER_NAME'];
         
         if($_POST['g-recaptcha-response']){
             $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
@@ -215,7 +215,7 @@ class ContactControllerCore extends FrontController
         
                             if (!empty($contact->email) || !empty(Tools::getValue('from'))) {
                                 if (!Mail::Send((int)$this->context->language->id, 'contact', Mail::l('Message from contact form').' [no_sync]',
-                                    $var_list, 'info@euromuscleparts.com', $contact->name, null, null,
+                                    $var_list, 'info@'.$serverName, $contact->name, null, null,
                                             $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
                                     $this->errors[] = Tools::displayError('An error occurred while sending the message.');
                                 }else{

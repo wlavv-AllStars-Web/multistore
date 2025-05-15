@@ -509,6 +509,8 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
      */
     public function postProcess()
     {
+        $serverName = $_SERVER['SERVER_NAME'];
+
         if($_POST['g-recaptcha-response']){
             $api_url = 'https://www.google.com/recaptcha/api/siteverify'; 
             
@@ -579,7 +581,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
                 'product_question', 
                 'Product Question', 
                 $var_list, 
-                'info@euromuscleparts.com', 
+                'info@'.$serverName, 
                 // 'pauloallstarsweb@gmail.com', 
                 'Product Question', 
                 null, 
