@@ -2082,8 +2082,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             //fim euromuscle
 
             // euro-rider
-        }elseif($this->context->shop->id == 6 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 6 && $query->getQueryType() == 'category' || $this->context->shop->id == 6 && $query->getQueryType() == 'search' || $this->context->shop->id == 6 && $query->getQueryType() == 'manufacturer'|| $this->context->shop->id == 6 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
-             
+        }elseif (
+            $this->context->shop->id == 6 && (
+                in_array($query->getQueryType(), ['new-products', 'category', 'search', 'manufacturer']) ||
+                (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)
+            )
+        ){
+         
             
             if($query->getQueryType()){
                 $type = $query->getQueryType();
