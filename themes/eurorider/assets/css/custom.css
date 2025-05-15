@@ -1373,14 +1373,14 @@ body {
 
 @media screen and (max-width: 768px) {
   #current_car_settings .current-car-content .details-info-car-mobile{
-    outline: 2px solid var(--euromus-color-700);
+    outline: 2px solid #efefef;
     border-radius: .25rem;
   }
-  
+
   .details-info-car-mobile{
     display: flex;
     gap: .5rem;
-    background: var(--euromus-color-700);
+    background: #efefef;
     align-items: center;
     border-radius: .25rem;
     overflow: hidden;
