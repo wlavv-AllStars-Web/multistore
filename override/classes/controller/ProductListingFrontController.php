@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -308,13 +309,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         // the search provider will need a context (language, shop...) to do its job
         $context = $this->getProductSearchContext();
 
-   
+
 
         // the controller generates the query...
         $query = $this->getProductSearchQuery();
 
 
-        
+
 
 
         // ...modules decide if they can handle it (first one that can is used)
@@ -331,19 +332,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $resultsPerPage = Configuration::get('PS_PRODUCTS_PER_PAGE');
         }
 
-        
-        if(Tools::getValue('n')){
+
+        if (Tools::getValue('n')) {
             $resultsPerPage = Tools::getValue('n');
         }
 
-        if(Tools::getValue('id_category_layered')){
+        if (Tools::getValue('id_category_layered')) {
             $query
-            ->setIdCategory(Tools::getValue('id_category_layered'));
+                ->setIdCategory(Tools::getValue('id_category_layered'));
         }
 
-        if(Tools::getValue('id_manufacturer_layered')){
+        if (Tools::getValue('id_manufacturer_layered')) {
             $query
-            ->setIdManufacturer(Tools::getValue('id_manufacturer_layered'));
+                ->setIdManufacturer(Tools::getValue('id_manufacturer_layered'));
         }
 
 
@@ -355,8 +356,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         ;
 
 
-        if(Tools::getValue('orderby')){
-            $encodedSortOrder = 'product.'.Tools::getValue('orderby').'.'.strtolower(Tools::getValue('orderway'));
+        if (Tools::getValue('orderby')) {
+            $encodedSortOrder = 'product.' . Tools::getValue('orderby') . '.' . strtolower(Tools::getValue('orderway'));
             // pre($encodedSortOrder);
             $query->setSortOrder(SortOrder::newFromString(
                 $encodedSortOrder
@@ -365,20 +366,20 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         // set the sort order if provided in the URL
         if (($encodedSortOrder = Tools::getValue('order'))) {
-            
+
             $query->setSortOrder(SortOrder::newFromString(
                 $encodedSortOrder
             ));
         }
 
-    
+
 
 
         // get the parameters containing the encoded facets from the URL
         $encodedFacets = Tools::getValue('q');
 
         // pre($encodedFacets);
-     
+
         /*
          * The controller is agnostic of facets.
          * It's up to the search module to use /define them.
@@ -394,10 +395,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         Hook::exec('actionProductSearchProviderRunQueryBefore', [
             'query' => $query,
         ]);
-       
+
         // $query
         // ->setQueryType('compat');
-        
+
 
         // We're ready to run the actual query!
         // pre($provider);
@@ -452,21 +453,21 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         if (Tools::getValue('quickshop') == 1) {
             // Get the products array
             $products = $result->getProducts();
-        
+
             // Ensure $products is an array
             if (!is_array($products)) {
                 error_log('Error: $result->getProducts() is not an array');
                 return;
             }
-        
+
             // Filter products: Keep only those where out_of_stock is 1 or 2
             $filteredProducts = array_filter($products, function ($product) {
                 return isset($product['out_of_stock']) && ($product['out_of_stock'] == 1 || $product['out_of_stock'] == 2);
             });
-        
+
             // Reindex the array
             $filteredProducts = array_values($filteredProducts);
-        
+
             // Check if $result has a setter method
             if (method_exists($result, 'setProducts')) {
                 $result->setProducts($filteredProducts);
@@ -536,45 +537,45 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         // removi do proximo if porque tinha bug na barra de pesquisa || $this->context->shop->id == 2 && $query->getQueryType() == 'search'
-       
+
         // asm wheels
-        if($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer'|| $this->context->shop->id == 2 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
+        if ($this->context->shop->id == 2 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 2 && $query->getQueryType() == 'category' || $this->context->shop->id == 2 && $query->getQueryType() == 'manufacturer' || $this->context->shop->id == 2 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)) {
 
-            
 
-            if($query->getQueryType()){
+
+            if ($query->getQueryType()) {
                 $type = $query->getQueryType();
             }
 
-            if($query->getIdCategory()){
+            if ($query->getIdCategory()) {
                 $category = $query->getIdCategory();
             }
 
-            if($query->getIdManufacturer()){
+            if ($query->getIdManufacturer()) {
                 $manufacturer = $query->getIdManufacturer();
             }
-            
-            if($query->getIdSupplier()){
+
+            if ($query->getIdSupplier()) {
                 $supplier = $query->getIdSupplier();
             }
 
-            if($query->getResultsPerPage()){
+            if ($query->getResultsPerPage()) {
                 $resultsPerPage = $query->getResultsPerPage();
             }
 
-            if($query->getSortOrder()){
+            if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
             }
 
-            if($query->getSearchString()){
+            if ($query->getSearchString()) {
                 $searchString = $query->getSearchString();
             }
 
             // pre($query);
 
             // Fetch category and manufacturer IDs from the query object
-            $category = (int) $query->getIdCategory(); 
-            $manufacturer = (int) $query->getIdManufacturer(); 
+            $category = (int) $query->getIdCategory();
+            $manufacturer = (int) $query->getIdManufacturer();
 
             // pre($query);
 
@@ -589,19 +590,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                    ) AS final_price 
             FROM ps_product p
             LEFT JOIN ps_product_shop ps ON p.id_product = ps.id_product
-            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 2
+            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 2
             LEFT JOIN ps_product_sale psale ON p.id_product = psale.id_product 
-            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 2
+            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 2
             WHERE p.active = 1 AND p.visibility != "none" AND ps.id_shop = 2';
-    
+
             if ($category > 0) {
                 $sql .= ' AND pc.id_category = ' . (int) $category;
             }
-            
+
             if ($manufacturer > 0) {
                 $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
             }
-    
+
             if (!empty($searchString)) {
                 $sql .= ' AND (pl.name LIKE "%' . pSQL($searchString) . '%" 
                         OR p.reference LIKE "%' . pSQL($searchString) . '%"
@@ -611,22 +612,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                               AND pa.reference LIKE "%' . pSQL($searchString) . '%"
                         ))';
             }
-    
+
             if (!empty($type) && $type == 'new-products') {
                 $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT', null, null, 2);
                 $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
                 $sql .= ' AND p.date_add >= "' . pSQL($newProductDate) . '"';
             }
-            
+
             $sql .= ' GROUP BY p.id_product';
-            
+
             if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
-                
+
                 if ($sortOrder->getField() === 'price') {
                     // Sort by final price correctly
-                    $sql .= ' ORDER BY final_price ' 
-                          . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY final_price '
+                        . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'name') {
                     $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'reference') {
@@ -637,16 +638,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-            
+
             if ($query->getResultsPerPage()) {
                 if ($query->getQueryType() == 'new-products') {
                     $query->setResultsPerPage(19);
                 }
-            
+
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage();
                 $offset = ($currentPage - 1) * $resultsPerPage;
-            
+
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
 
@@ -670,59 +671,59 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $productsQuery
             );
 
-            
+
             $product_options = [];
 
 
 
-            if($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
+            if ($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')) {
 
                 $filters = Tools::getValue('filters');
 
-                if($filters){
+                if ($filters) {
                     $product_options = self::getProductIdsFromFilters($filters);
                 }
                 // pre($product_options);
-                
+
                 $brand_api = CategoryControllerCore::apiCall('brand');
 
-                foreach($brand_api->data AS $brand){       
+                foreach ($brand_api->data as $brand) {
                     $car_brands[$brand->slug] = $brand->name_en;
                 }
 
                 // pre($car_brands);
 
                 $this->context->smarty->assign('car_brands', $car_brands);
-                
 
 
-                if(strlen($filters) > 0 ){
+
+                if (strlen($filters) > 0) {
                     $features = explode('|', $filters);
                     $arr = array();
-                    
-                    foreach( $features AS $feature){
+
+                    foreach ($features as $feature) {
                         $current_features = explode(':', $feature);
                         $arr[$current_features[0]][] = $current_features[1];
                     }
-                    
+
                     $flatted = self::combinarArrays($arr);
-                    
-                    foreach($flatted AS $flatted_options){
-                        
+
+                    foreach ($flatted as $flatted_options) {
+
                         $product_options_temp = array();
-                        foreach($flatted_options AS $key => $option){
-                            
-                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
-                        
-                            foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
+                        foreach ($flatted_options as $key => $option) {
+
+                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option);
+
+                            foreach ($ids as $id) $product_options_temp[$id['id_product']] += 1;
                         }
-                        
+
                         $total_option = count($flatted_options);
-                        foreach($product_options_temp AS $key_product =>$found_option){
-                            if($found_option == $total_option) $product_options[]=$key_product;
+                        foreach ($product_options_temp as $key_product => $found_option) {
+                            if ($found_option == $total_option) $product_options[] = $key_product;
                         }
                     }
-                }  
+                }
 
                 // pre($product_options);
 
@@ -730,47 +731,46 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $selected_features = null;
                 $selected_id_values = null;
 
-                if(strlen($filters) > 0){
-                    $selected_filter = explode('|',$filters);
-                
-                    foreach($selected_filter AS $selected_option){
-                        $selected_feature = explode(':',$selected_option);
-                        
+                if (strlen($filters) > 0) {
+                    $selected_filter = explode('|', $filters);
+
+                    foreach ($selected_filter as $selected_option) {
+                        $selected_feature = explode(':', $selected_option);
+
                         $selected_id_values[] = $selected_feature[1];
-                        
-                        if(count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
-                        
+
+                        if (count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
+
                         $sqlFeature =  'SELECT name 
                                         FROM ps_feature_lang 
                                         LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
                                         WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
                                         ' . $sql_product_options . '
                                         AND ps_feature_lang.id_feature=' . $selected_feature[0] .
-                                        ' ORDER BY name DESC';
+                            ' ORDER BY name DESC';
 
                         // pre($sqlFeature);
-                        
+
                         $feature_group = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeature);
 
-                        
-                        
-                        if($selected_feature[1] == 0){
+
+
+                        if ($selected_feature[1] == 0) {
                             $feature_value = 'ALL';
-                        }else{
+                        } else {
                             $sqlFeatureValue = 'SELECT value 
                                                 FROM ps_feature_value_lang 
                                                 LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
                                                 WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
                                                 ' . $sql_product_options . '
                                                 AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1] .
-                                                ' ORDER BY value DESC';
-                            
+                                ' ORDER BY value DESC';
+
                             $feature_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeatureValue);
-        
+
                             $selected_filter_feature[] = $selected_feature[0];
-                        
                         }
-                        
+
                         /**
                         if( strlen($feature_group) > 0){
                             $selected_features[] = [
@@ -779,17 +779,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                 'value' => $feature_value
                             ];
                         }
-                        **/
-                        
-                        if( strlen($feature_group) > 0){
+                         **/
+
+                        if (strlen($feature_group) > 0) {
                             $selected_features[$feature_group][] = [
                                 'combination' => $selected_option,
                                 'feature' => $feature_group,
                                 'value' => $feature_value
                             ];
                         }
-                    }                
-                    
+                    }
                 }
 
                 // pre($product_options);
@@ -800,14 +799,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $offset = ($currentPage - 1) * $default_products_per_page;
 
 
-            
+
                 $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528) AND pp.visibility != "none"';
                 // pre($sql_products_of_category);
-            
+
 
                 if (!empty($product_options)) {
                     $sql_products_of_category .= ' AND pc.id_product IN (' . implode(',', $product_options) . ')';
-                }else if(!empty($selected_filter_feature) && empty($product_options)){
+                } else if (!empty($selected_filter_feature) && empty($product_options)) {
                     $sql_products_of_category .= 'AND 1=0';
                 }
                 // elseif(count($ids_products) > 0 ){
@@ -818,8 +817,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 // pre($sql_products_of_category);
 
-                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS( $sql_products_of_category );
-                
+                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql_products_of_category);
+
                 // pre($products_227);
 
                 $formatted_products_227 = [];
@@ -842,7 +841,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $ids_prods = array();
                 $features  = array();
 
-                foreach($products_227 AS $product_227) $ids_prods[] = $product_227['id_product'];
+                foreach ($products_227 as $product_227) $ids_prods[] = $product_227['id_product'];
 
                 // pre($ids_prods);
 
@@ -877,13 +876,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         FROM ps_feature_product 
                         LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
                         LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
-                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop='. $this->context->shop->id .'
-                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop=' . $this->context->shop->id . '
+                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC'
+                    );
                 }
-                
 
 
-                foreach($features_category AS $f_category){
+
+                foreach ($features_category as $f_category) {
 
                     // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
                     // WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
@@ -896,7 +896,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'name' => $f_category['name'],
                         'quantity' => $f_category['nr_repeat'],
                         'values' => $features_value
-                        ];
+                    ];
                 }
 
 
@@ -906,48 +906,48 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     foreach ($features as &$feature) {
                         // Initialize combined_combinations for this feature
                         $feature['combined_combinations'] = '';
-                
+
                         foreach ($feature['values'] as &$value) {
                             $value['checked'] = 0; // Default checked value
-                            
+
                             // Check if the feature exists in selected features
                             if (isset($selected_features[$feature['name']])) {
                                 $combinations = [];
                                 foreach ($selected_features[$feature['name']] as $selected) {
                                     $combination = "{$value['id_feature']}:{$value['id_feature_value']}";
-                
+
                                     // Set checked if combination matches
                                     if ($combination === $selected['combination']) {
                                         $value['checked'] = 1;
                                     }
-                
+
                                     // Collect combination for this feature
                                     $combinations[] = $selected['combination'];
                                 }
-                
+
                                 // Assign all combinations to the feature
                                 $feature['combined_combinations'] = implode(',', $combinations);
                             }
-                
+
                             // Additional processing for "Brand" feature
                             if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
                                 // pre($product_227);
-                                if(!empty($product_227)) {
+                                if (!empty($product_227)) {
                                     $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
                                     $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
-                
+
                                     // Add img field to $value
-                                    $value['img'] = $brandImg 
-                                        ? "/img/wheels/" . $brandImg . ".webp?t=3" 
+                                    $value['img'] = $brandImg
+                                        ? "/img/wheels/" . $brandImg . ".webp?t=3"
                                         : null; // Add null or fallback URL if brandImg is not found
 
-                                }elseif($feature['id_feature'] == 19) {
+                                } elseif ($feature['id_feature'] == 19) {
                                     // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
                                     // pre($feature['values']);
                                     foreach ($feature['values'] as &$value) {
-                                        if($value['checked'] != '0'){
+                                        if ($value['checked'] != '0') {
                                             $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name = "' . pSQL($value['value']) . '"';
-                                            
+
                                             // Execute the query to check if the manufacturer exists
                                             $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
 
@@ -956,11 +956,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                                 $value['img'] = "/img/wheels/" . $brandImg . ".webp?t=3";
                                                 // pre($value);
                                             } else {
-                                                if($value['value'] == 'Gram Lights'){
+                                                if ($value['value'] == 'Gram Lights') {
                                                     $value['img'] = "/img/wheels/170.webp?t=3";
-                                                }elseif($value['value'] == 'Carroll Shelby'){
+                                                } elseif ($value['value'] == 'Carroll Shelby') {
                                                     $value['img'] = "/img/wheels/188.webp?t=3";
-                                                }elseif($value['value'] == 'Volk Racing'){
+                                                } elseif ($value['value'] == 'Volk Racing') {
                                                     $value['img'] = "/img/wheels/173.webp?t=3";
                                                 }
                                                 // pre($value);
@@ -969,18 +969,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     }
                                 }
 
-                                
+
                                 // pre($value);
                             }
                         }
                     }
                     unset($feature, $value); // Break reference
                 }
-                
-                
-                
+
+
+
                 // pre($features);
-                
+
                 $this->context->smarty->assign('asw_features', $features);
                 $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
                 $this->context->smarty->assign('selected_features', $selected_features);
@@ -991,18 +991,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 //     $this->context->smarty->assign('no_products', true);
                 // }
 
-            
-                
+
+
                 $products = $this->prepareMultipleProductsForTemplate(
                     $products_227
                 );
-                
 
-                if(empty($products)){
+
+                if (empty($products)) {
                     $this->context->smarty->assign('no_products', true);
                 }
 
-                
+
                 // $noProducts = count($products) < 1 ? 1 : 0;
                 // $this->context->smarty->assign('noProducts', $noProducts);
 
@@ -1012,7 +1012,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
             }
 
-            if(Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0){
+            if (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0) {
                 // pre(Tools::getAllValues());
                 // pre(Tools::getValue('id_compat'));
                 // echo 'paulo';
@@ -1021,21 +1021,21 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 $id_compat = Tools::getValue('id_compat');
                 $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-                $shop_id = $this->context->shop->id; 
+                $shop_id = $this->context->shop->id;
 
-                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/' . $shop_id . '/' . $key;
                 // pre($url);
-        
+
                 // Initialize cURL
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-        
+
                 // Execute cURL request
                 $json = curl_exec($ch);
                 curl_close($ch);
-        
+
                 // Decode the response into an associative array
                 $data = json_decode($json, true);
 
@@ -1046,12 +1046,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $manufacturer = Tools::getValue('id_manufacturer_layered');
 
                 // $search = $this->getProductSearchVariables();
-            
+
                 // Fetch products related to the selected car product
                 if (empty($productsC)) {
                     return [];
                 }
-        
+
                 $ids = array_map('intval', (array) $productsC);
                 $idList = implode(',', $ids);
 
@@ -1062,22 +1062,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
                 LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
                 LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
-                    AND ps_product_lang.id_lang = '.$this->context->language->id.' 
-                    AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+                    AND ps_product_lang.id_lang = ' . $this->context->language->id . ' 
+                    AND ps_product_lang.id_shop = ' . $this->context->shop->id . '
                 WHERE ps_category_product.id_product IN (' . $idList . ')  
                 AND ps_product.active = 1 AND ps_product.visibility != "none"
-                AND ps_product_shop.id_shop = '.$this->context->shop->id;
+                AND ps_product_shop.id_shop = ' . $this->context->shop->id;
 
                 if ($category > 0) {
-                $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
+                    $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
                 }
 
                 if ($manufacturer > 0) {
-                $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                    $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
                 }
 
                 $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
-        
+
                 $sql = 'SELECT cp.id_category, 
                 cp.id_product, 
                 cp.position, 
@@ -1085,19 +1085,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     (SELECT MAX(p.price + pa.price) 
                         FROM ps_product_attribute_shop pa 
                         WHERE pa.id_product = p.id_product 
-                        AND pa.id_shop = '.$this->context->shop->id.'
+                        AND pa.id_shop = ' . $this->context->shop->id . '
                     ), p.price
                 ) AS final_price
                     FROM ps_category_product cp
                     LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
                     LEFT JOIN ps_product p ON cp.id_product = p.id_product
                     LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
-                        AND pl.id_lang = '.$this->context->language->id.' 
-                        AND pl.id_shop = '.$this->context->shop->id.'
+                        AND pl.id_lang = ' . $this->context->language->id . ' 
+                        AND pl.id_shop = ' . $this->context->shop->id . '
                     WHERE cp.id_product IN (' . $idList . ')  
                         AND p.active = 1 
                         AND p.visibility != "none" 
-                        AND ps.id_shop = '.$this->context->shop->id;
+                        AND ps.id_shop = ' . $this->context->shop->id;
 
                 if ($category > 0) {
                     $sql .= ' AND cp.id_category = ' . (int) $category;
@@ -1129,7 +1129,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 // Pagination
                 if ($query->getResultsPerPage()) {
                     $query->setResultsPerPage(19);
-                    
+
                     $resultsPerPage = (int) $query->getResultsPerPage();
                     $currentPage = (int) $query->getPage();
                     $offset = ($currentPage - 1) * $resultsPerPage;
@@ -1150,7 +1150,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 // pre($pagination);
 
 
-                
+
                 // pre($pagination);
                 // $productsCarTotal =  Db::getInstance()->executeS($sql);
 
@@ -1160,7 +1160,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
 
-        
+
                 $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 
                 $products = $this->prepareMultipleProductsForTemplate(
@@ -1180,7 +1180,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $result
                 );
 
-                        // universal products
+                // universal products
                 $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
                                 FROM ps_category_product AS pcp
                                 LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
@@ -1188,8 +1188,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                 WHERE pp.universal = 1 AND pp.active = 1 AND pps.id_shop = 2 GROUP BY pcp.id_product';
 
 
-                                
-                                
+
+
                 $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
                 // pre($universalProducts);
 
@@ -1205,24 +1205,24 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 }
 
                 // pre($noProducts);
-                
+
 
                 if ($totalProducts > 0) {
                     // Calculate total pages
                     // $pagesCount = ceil($totalProducts / $resultsPerPage);
                     // $currentPage = max((int) $query->getPage(), 1);
-                    
+
                     // // Ensure current page is within valid range
                     // if ($currentPage > $pagesCount) {
                     //     $currentPage = $pagesCount;
                     // }
-                
+
                     // // Now, calculate the offset for pagination
                     // $offset = ($currentPage - 1) * $resultsPerPage;
-                
+
                     // // Add the LIMIT and OFFSET to the main SQL query
                     // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
-                
+
                     // // Assign pagination info to Smarty
                     // $pagination = [
                     //     'total_items' => $totalProducts,
@@ -1232,7 +1232,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //     'pages_count' => $pagesCount,
                     //     'pages' => [],
                     // ];
-                
+
                     // // Build the page links
                     // for ($i = 1; $i <= $pagesCount; $i++) {
                     //     // Generate URL without `page` parameter for page 1
@@ -1244,7 +1244,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //             'page' => $i,
                     //             'id_compat' => Tools::getValue('id_compat'),
                     //           ]);
-                
+
                     //     $pagination['pages'][$i] = [
                     //         'type' => 'page',
                     //         'page' => $i,
@@ -1255,7 +1255,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     // }
 
                     // pre($query);
-                    
+
                     // $compat = $query->getCompat();
                     // pre($compat);
                     // Assign the pagination to Smarty
@@ -1268,7 +1268,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'universals' => $universals,
                     ]);
                 }
-                
+
                 // $this->context->smarty->assign([
                 //     'noProducts' => $noProducts,
                 //     'universals' => $universals
@@ -1278,10 +1278,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 // pre($query);
 
-            }   
+            }
 
-        // pre(count($products));
-        // pre($pagination);
+            // pre(count($products));
+            // pre($pagination);
 
             $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
             $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
@@ -1296,10 +1296,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             foreach ($sort_orders as &$order) {
                 // Generate the order URL using the setOrder() function
                 $order['url'] = '';
-                $order['value'] = $order['field'].':'.$order['direction'];
+                $order['value'] = $order['field'] . ':' . $order['direction'];
             }
-            
-            
+
+
 
             $searchVariables = [
                 'result' => $result,
@@ -1315,43 +1315,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     'q' => $result->getEncodedFacets(),
                 ]),
             ];
-            
-        }elseif($this->context->shop->id == 1 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 1 && $query->getQueryType() == 'category' || $this->context->shop->id == 1 && $query->getQueryType() == 'manufacturer'|| $this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
-            
-            
-            if($query->getQueryType()){
+        } elseif ($this->context->shop->id == 1 && $query->getQueryType() == 'new-products' || $this->context->shop->id == 1 && $query->getQueryType() == 'category' || $this->context->shop->id == 1 && $query->getQueryType() == 'manufacturer' || $this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)) {
+
+
+            if ($query->getQueryType()) {
                 $type = $query->getQueryType();
             }
 
-            if($query->getIdCategory()){
+            if ($query->getIdCategory()) {
                 $category = $query->getIdCategory();
             }
 
-            if($query->getIdManufacturer()){
+            if ($query->getIdManufacturer()) {
                 $manufacturer = $query->getIdManufacturer();
             }
-            
-            if($query->getIdSupplier()){
+
+            if ($query->getIdSupplier()) {
                 $supplier = $query->getIdSupplier();
             }
 
-            if($query->getResultsPerPage()){
+            if ($query->getResultsPerPage()) {
                 $resultsPerPage = $query->getResultsPerPage();
             }
 
-            if($query->getSortOrder()){
+            if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
             }
 
-            if($query->getSearchString()){
+            if ($query->getSearchString()) {
                 $searchString = $query->getSearchString();
             }
 
             // pre($query);
 
             // Fetch category and manufacturer IDs from the query object
-            $category = (int) $query->getIdCategory(); 
-            $manufacturer = (int) $query->getIdManufacturer(); 
+            $category = (int) $query->getIdCategory();
+            $manufacturer = (int) $query->getIdManufacturer();
 
             // pre($query);
 
@@ -1366,19 +1365,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                    ) AS final_price 
             FROM ps_product p
             LEFT JOIN ps_product_shop ps ON p.id_product = ps.id_product
-            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 1
+            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 1
             LEFT JOIN ps_product_sale psale ON p.id_product = psale.id_product 
-            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 1
+            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 1
             WHERE p.active = 1 AND p.visibility != "none" AND ps.id_shop = 1';
-    
+
             if ($category > 0) {
                 $sql .= ' AND pc.id_category = ' . (int) $category;
             }
-            
+
             if ($manufacturer > 0) {
                 $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
             }
-    
+
             if (!empty($searchString)) {
                 $sql .= ' AND (pl.name LIKE "%' . pSQL($searchString) . '%" 
                         OR p.reference LIKE "%' . pSQL($searchString) . '%"
@@ -1388,22 +1387,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                               AND pa.reference LIKE "%' . pSQL($searchString) . '%"
                         ))';
             }
-    
+
             if (!empty($type) && $type == 'new-products') {
                 $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT', null, null, 2);
                 $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
                 $sql .= ' AND p.date_add >= "' . pSQL($newProductDate) . '"';
             }
-            
+
             $sql .= ' GROUP BY p.id_product';
-            
+
             if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
-                
+
                 if ($sortOrder->getField() === 'price') {
                     // Sort by final price correctly
-                    $sql .= ' ORDER BY final_price ' 
-                          . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY final_price '
+                        . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'name') {
                     $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'reference') {
@@ -1414,16 +1413,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-            
+
             if ($query->getResultsPerPage()) {
                 if ($query->getQueryType() == 'new-products') {
                     $query->setResultsPerPage(19);
                 }
-            
+
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage();
                 $offset = ($currentPage - 1) * $resultsPerPage;
-            
+
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
 
@@ -1455,7 +1454,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
             $result->setProducts($formatted_products);
-            
+
             $result->setTotalProductsCount(count($products));
 
             $pagination = $this->getTemplateVarPagination(
@@ -1463,59 +1462,59 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $result
             );
 
-            
+
             $product_options = [];
 
 
 
-            if($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
+            if ($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')) {
 
                 $filters = Tools::getValue('filters');
 
-                if($filters){
+                if ($filters) {
                     $product_options = self::getProductIdsFromFilters($filters);
                 }
                 // pre($product_options);
-                
+
                 $brand_api = CategoryControllerCore::apiCall('brand');
 
-                foreach($brand_api->data AS $brand){       
+                foreach ($brand_api->data as $brand) {
                     $car_brands[$brand->slug] = $brand->name_en;
                 }
 
                 // pre($car_brands);
 
                 $this->context->smarty->assign('car_brands', $car_brands);
-                
 
 
-                if(strlen($filters) > 0 ){
+
+                if (strlen($filters) > 0) {
                     $features = explode('|', $filters);
                     $arr = array();
-                    
-                    foreach( $features AS $feature){
+
+                    foreach ($features as $feature) {
                         $current_features = explode(':', $feature);
                         $arr[$current_features[0]][] = $current_features[1];
                     }
-                    
+
                     $flatted = self::combinarArrays($arr);
-                    
-                    foreach($flatted AS $flatted_options){
-                        
+
+                    foreach ($flatted as $flatted_options) {
+
                         $product_options_temp = array();
-                        foreach($flatted_options AS $key => $option){
-                            
-                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
-                        
-                            foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
+                        foreach ($flatted_options as $key => $option) {
+
+                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option);
+
+                            foreach ($ids as $id) $product_options_temp[$id['id_product']] += 1;
                         }
-                        
+
                         $total_option = count($flatted_options);
-                        foreach($product_options_temp AS $key_product =>$found_option){
-                            if($found_option == $total_option) $product_options[]=$key_product;
+                        foreach ($product_options_temp as $key_product => $found_option) {
+                            if ($found_option == $total_option) $product_options[] = $key_product;
                         }
                     }
-                }  
+                }
 
                 // pre($product_options);
 
@@ -1523,47 +1522,46 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $selected_features = null;
                 $selected_id_values = null;
 
-                if(strlen($filters) > 0){
-                    $selected_filter = explode('|',$filters);
-                
-                    foreach($selected_filter AS $selected_option){
-                        $selected_feature = explode(':',$selected_option);
-                        
+                if (strlen($filters) > 0) {
+                    $selected_filter = explode('|', $filters);
+
+                    foreach ($selected_filter as $selected_option) {
+                        $selected_feature = explode(':', $selected_option);
+
                         $selected_id_values[] = $selected_feature[1];
-                        
-                        if(count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
-                        
+
+                        if (count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
+
                         $sqlFeature =  'SELECT name 
                                         FROM ps_feature_lang 
                                         LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
                                         WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
                                         ' . $sql_product_options . '
                                         AND ps_feature_lang.id_feature=' . $selected_feature[0] .
-                                        ' ORDER BY name DESC';
+                            ' ORDER BY name DESC';
 
                         // pre($sqlFeature);
-                        
+
                         $feature_group = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeature);
 
-                        
-                        
-                        if($selected_feature[1] == 0){
+
+
+                        if ($selected_feature[1] == 0) {
                             $feature_value = 'ALL';
-                        }else{
+                        } else {
                             $sqlFeatureValue = 'SELECT value 
                                                 FROM ps_feature_value_lang 
                                                 LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
                                                 WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
                                                 ' . $sql_product_options . '
                                                 AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1] .
-                                                ' ORDER BY value DESC';
-                            
+                                ' ORDER BY value DESC';
+
                             $feature_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeatureValue);
-        
+
                             $selected_filter_feature[] = $selected_feature[0];
-                        
                         }
-                        
+
                         /**
                         if( strlen($feature_group) > 0){
                             $selected_features[] = [
@@ -1572,17 +1570,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                 'value' => $feature_value
                             ];
                         }
-                        **/
-                        
-                        if( strlen($feature_group) > 0){
+                         **/
+
+                        if (strlen($feature_group) > 0) {
                             $selected_features[$feature_group][] = [
                                 'combination' => $selected_option,
                                 'feature' => $feature_group,
                                 'value' => $feature_value
                             ];
                         }
-                    }                
-                    
+                    }
                 }
 
                 // pre($product_options);
@@ -1593,14 +1590,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $offset = ($currentPage - 1) * $default_products_per_page;
 
 
-            
+
                 $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528) AND pp.visibility != "none"';
                 // pre($sql_products_of_category);
-            
+
 
                 if (!empty($product_options)) {
                     $sql_products_of_category .= ' AND pc.id_product IN (' . implode(',', $product_options) . ')';
-                }else if(!empty($selected_filter_feature) && empty($product_options)){
+                } else if (!empty($selected_filter_feature) && empty($product_options)) {
                     $sql_products_of_category .= 'AND 1=0';
                 }
                 // elseif(count($ids_products) > 0 ){
@@ -1611,8 +1608,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 // pre($sql_products_of_category);
 
-                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS( $sql_products_of_category );
-                
+                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql_products_of_category);
+
                 // pre($products_227);
 
                 $formatted_products_227 = [];
@@ -1635,7 +1632,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $ids_prods = array();
                 $features  = array();
 
-                foreach($products_227 AS $product_227) $ids_prods[] = $product_227['id_product'];
+                foreach ($products_227 as $product_227) $ids_prods[] = $product_227['id_product'];
 
                 // pre($ids_prods);
 
@@ -1670,13 +1667,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         FROM ps_feature_product 
                         LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
                         LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
-                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop='. $this->context->shop->id .'
-                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop=' . $this->context->shop->id . '
+                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC'
+                    );
                 }
-                
 
 
-                foreach($features_category AS $f_category){
+
+                foreach ($features_category as $f_category) {
 
                     // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
                     // WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
@@ -1689,7 +1687,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'name' => $f_category['name'],
                         'quantity' => $f_category['nr_repeat'],
                         'values' => $features_value
-                        ];
+                    ];
                 }
 
 
@@ -1699,48 +1697,48 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     foreach ($features as &$feature) {
                         // Initialize combined_combinations for this feature
                         $feature['combined_combinations'] = '';
-                
+
                         foreach ($feature['values'] as &$value) {
                             $value['checked'] = 0; // Default checked value
-                            
+
                             // Check if the feature exists in selected features
                             if (isset($selected_features[$feature['name']])) {
                                 $combinations = [];
                                 foreach ($selected_features[$feature['name']] as $selected) {
                                     $combination = "{$value['id_feature']}:{$value['id_feature_value']}";
-                
+
                                     // Set checked if combination matches
                                     if ($combination === $selected['combination']) {
                                         $value['checked'] = 1;
                                     }
-                
+
                                     // Collect combination for this feature
                                     $combinations[] = $selected['combination'];
                                 }
-                
+
                                 // Assign all combinations to the feature
                                 $feature['combined_combinations'] = implode(',', $combinations);
                             }
-                
+
                             // Additional processing for "Brand" feature
                             if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
                                 // pre($product_227);
-                                if(!empty($product_227)) {
+                                if (!empty($product_227)) {
                                     $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
                                     $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
-                
+
                                     // Add img field to $value
-                                    $value['img'] = $brandImg 
-                                        ? "/img/wheels/" . $brandImg . ".webp?t=3" 
+                                    $value['img'] = $brandImg
+                                        ? "/img/wheels/" . $brandImg . ".webp?t=3"
                                         : null; // Add null or fallback URL if brandImg is not found
 
-                                }elseif($feature['id_feature'] == 19) {
+                                } elseif ($feature['id_feature'] == 19) {
                                     // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
                                     // pre($feature['values']);
                                     foreach ($feature['values'] as &$value) {
-                                        if($value['checked'] != '0'){
+                                        if ($value['checked'] != '0') {
                                             $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name = "' . pSQL($value['value']) . '"';
-                                            
+
                                             // Execute the query to check if the manufacturer exists
                                             $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
 
@@ -1749,11 +1747,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                                 $value['img'] = "/img/wheels/" . $brandImg . ".webp?t=3";
                                                 // pre($value);
                                             } else {
-                                                if($value['value'] == 'Gram Lights'){
+                                                if ($value['value'] == 'Gram Lights') {
                                                     $value['img'] = "/img/wheels/170.webp?t=3";
-                                                }elseif($value['value'] == 'Carroll Shelby'){
+                                                } elseif ($value['value'] == 'Carroll Shelby') {
                                                     $value['img'] = "/img/wheels/188.webp?t=3";
-                                                }elseif($value['value'] == 'Volk Racing'){
+                                                } elseif ($value['value'] == 'Volk Racing') {
                                                     $value['img'] = "/img/wheels/173.webp?t=3";
                                                 }
                                                 // pre($value);
@@ -1762,18 +1760,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     }
                                 }
 
-                                
+
                                 // pre($value);
                             }
                         }
                     }
                     unset($feature, $value); // Break reference
                 }
-                
-                
-                
+
+
+
                 // pre($features);
-                
+
                 $this->context->smarty->assign('asw_features', $features);
                 $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
                 $this->context->smarty->assign('selected_features', $selected_features);
@@ -1784,18 +1782,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 //     $this->context->smarty->assign('no_products', true);
                 // }
 
-            
-                
+
+
                 $products = $this->prepareMultipleProductsForTemplate(
                     $products_227
                 );
-                
 
-                if(empty($products)){
+
+                if (empty($products)) {
                     $this->context->smarty->assign('no_products', true);
                 }
 
-                
+
                 // $noProducts = count($products) < 1 ? 1 : 0;
                 // $this->context->smarty->assign('noProducts', $noProducts);
 
@@ -1804,45 +1802,45 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 // pre($products);
 
             }
-        
-            if($this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
-                
+
+            if ($this->context->shop->id == 1 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)) {
+
                 $id_compat = Tools::getValue('id_compat');
                 $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-                $shop_id = $this->context->shop->id; 
-    
-                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+                $shop_id = $this->context->shop->id;
+
+                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/' . $shop_id . '/' . $key;
                 // pre($url);
-        
+
                 // Initialize cURL
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-        
+
                 // Execute cURL request
                 $json = curl_exec($ch);
                 curl_close($ch);
-        
+
                 // Decode the response into an associative array
                 $data = json_decode($json, true);
-    
+
                 $productsC = $data['data'];
-    
+
                 // pre($query);
                 $category = Tools::getValue('id_category_layered');
                 $manufacturer = Tools::getValue('id_manufacturer_layered');
-    
+
                 // $search = $this->getProductSearchVariables();
-            
+
                 // Fetch products related to the selected car product
                 if (empty($productsC)) {
                     return [];
                 }
-        
+
                 $ids = array_map('intval', (array) $productsC);
                 $idList = implode(',', $ids);
-    
+
                 // count products
                 // Query to count total products matching the filters
                 $sqlCount = 'SELECT COUNT(DISTINCT ps_category_product.id_product) 
@@ -1850,22 +1848,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
                 LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
                 LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
-                    AND ps_product_lang.id_lang = '.$this->context->language->id.' 
-                    AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+                    AND ps_product_lang.id_lang = ' . $this->context->language->id . ' 
+                    AND ps_product_lang.id_shop = ' . $this->context->shop->id . '
                 WHERE ps_category_product.id_product IN (' . $idList . ')  
                 AND ps_product.active = 1 AND ps_product.visibility != "none"
-                AND ps_product_shop.id_shop = '.$this->context->shop->id;
-    
+                AND ps_product_shop.id_shop = ' . $this->context->shop->id;
+
                 if ($category > 0) {
-                $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
+                    $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
                 }
-    
+
                 if ($manufacturer > 0) {
-                $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                    $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
                 }
-    
+
                 $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
-        
+
                 $sql = 'SELECT cp.id_category, 
                    cp.id_product, 
                    cp.position, 
@@ -1873,34 +1871,34 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                        (SELECT MAX(p.price + pa.price) 
                         FROM ps_product_attribute_shop pa 
                         WHERE pa.id_product = p.id_product 
-                          AND pa.id_shop = '.$this->context->shop->id.'
+                          AND pa.id_shop = ' . $this->context->shop->id . '
                        ), p.price
                    ) AS final_price
                     FROM ps_category_product cp
                     LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
                     LEFT JOIN ps_product p ON cp.id_product = p.id_product
                     LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
-                        AND pl.id_lang = '.$this->context->language->id.' 
-                        AND pl.id_shop = '.$this->context->shop->id.'
+                        AND pl.id_lang = ' . $this->context->language->id . ' 
+                        AND pl.id_shop = ' . $this->context->shop->id . '
                     WHERE cp.id_product IN (' . $idList . ')  
                         AND p.active = 1 
                         AND p.visibility != "none" 
-                        AND ps.id_shop = '.$this->context->shop->id;
-    
+                        AND ps.id_shop = ' . $this->context->shop->id;
+
                 if ($category > 0) {
                     $sql .= ' AND cp.id_category = ' . (int) $category;
                 }
-    
+
                 if ($manufacturer > 0) {
                     $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
                 }
-    
+
                 $sql .= ' GROUP BY p.id_product';
-    
+
                 // Sorting Fix
                 if ($query->getSortOrder()) {
                     $sortOrder = $query->getSortOrder();
-    
+
                     if ($sortOrder->getField() === 'price') {
                         $sql .= ' ORDER BY final_price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                     } elseif ($sortOrder->getField() === 'name') {
@@ -1913,42 +1911,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                     }
                 }
-    
+
                 // Pagination
                 if ($query->getResultsPerPage()) {
                     $query->setResultsPerPage(19);
-                    
+
                     $resultsPerPage = (int) $query->getResultsPerPage();
                     $currentPage = (int) $query->getPage();
                     $offset = ($currentPage - 1) * $resultsPerPage;
-    
+
                     $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
                 }
-    
-    
-        
+
+
+
                 $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
-    
+
                 $products = $this->prepareMultipleProductsForTemplate(
                     $productsCar
                 );
-    
+
                 $formatted_productsCar = [];
                 foreach ($productsCar as $product) {
                     $formatted_productsCar[] = ['id_product' => $product['id_product']];
                 }
-    
+
                 $result->setProducts($formatted_productsCar);
                 $result->setTotalProductsCount($totalProducts);
-    
+
                 $pagination = $this->getTemplateVarPagination(
                     $query,
                     $result
                 );
 
-                
-    
-                        // universal products
+
+
+                // universal products
                 $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
                         FROM ps_category_product AS pcp
                         LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
@@ -1956,16 +1954,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         WHERE pp.universal = 1 
                         AND pp.active = 1 
                         AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
-                        AND pps.id_shop = '.$this->context->shop->id.' 
+                        AND pps.id_shop = ' . $this->context->shop->id . ' 
                         AND pps.visibility != "none"
                         GROUP BY pcp.id_product';
-    
-    
-                                
-                                
+
+
+
+
                 $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
                 // pre($universalProducts);
-    
+
                 $universals = $this->prepareMultipleProductsForTemplate(
                     $universalProducts
                 );
@@ -1976,26 +1974,26 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 } else {
                     $noProducts = count($products) < 1 ? 1 : 0;
                 }
-    
+
                 // pre($noProducts);
-                
-    
+
+
                 if ($totalProducts > 0) {
                     // Calculate total pages
                     // $pagesCount = ceil($totalProducts / $resultsPerPage);
                     // $currentPage = max((int) $query->getPage(), 1);
-                    
+
                     // // Ensure current page is within valid range
                     // if ($currentPage > $pagesCount) {
                     //     $currentPage = $pagesCount;
                     // }
-                
+
                     // // Now, calculate the offset for pagination
                     // $offset = ($currentPage - 1) * $resultsPerPage;
-                
+
                     // // Add the LIMIT and OFFSET to the main SQL query
                     // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
-                
+
                     // // Assign pagination info to Smarty
                     // $pagination = [
                     //     'total_items' => $totalProducts,
@@ -2005,7 +2003,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //     'pages_count' => $pagesCount,
                     //     'pages' => [],
                     // ];
-                
+
                     // // Build the page links
                     // for ($i = 1; $i <= $pagesCount; $i++) {
                     //     // Generate URL without `page` parameter for page 1
@@ -2017,7 +2015,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //             'page' => $i,
                     //             'id_compat' => Tools::getValue('id_compat'),
                     //           ]);
-                
+
                     //     $pagination['pages'][$i] = [
                     //         'type' => 'page',
                     //         'page' => $i,
@@ -2026,9 +2024,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //         'url' => $url,
                     //     ];
                     // }
-    
+
                     // pre($query);
-                    
+
                     // $compat = $query->getCompat();
                     // pre($compat);
                     // Assign the pagination to Smarty
@@ -2040,89 +2038,86 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'noProducts' => $noProducts,
                         'universals' => $universals,
                     ]);
-                    
-                    
                 }
-    
             }
-                
-                $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
-                $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
-    
-    
-                $this->context->smarty->assign([
-                    'nb_products'       => $pagination['total_items'],
-                    'n_array' => $n_array,
-                ]);
-    
-                // Loop through each sorting option
-                foreach ($sort_orders as &$order) {
-                    // Generate the order URL using the setOrder() function
-                    $order['url'] = '';
-                    $order['value'] = $order['field'].':'.$order['direction'];
-                }
-                
-                
-    
-                $searchVariables = [
-                    'result' => $result,
-                    'label' => $this->getListingLabel(),
-                    'products' => $products,
-                    'sort_orders' => $sort_orders,
-                    'sort_selected' => $sort_selected,
-                    'pagination' => $pagination,
-                    'rendered_facets' => $rendered_facets,
-                    'rendered_active_filters' => $rendered_active_filters,
-                    'js_enabled' => $this->ajax,
-                    'current_url' => $this->updateQueryString([
-                        'q' => $result->getEncodedFacets(),
-                    ]),
-                ];
-            
+
+            $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
+
+
+            $this->context->smarty->assign([
+                'nb_products'       => $pagination['total_items'],
+                'n_array' => $n_array,
+            ]);
+
+            // Loop through each sorting option
+            foreach ($sort_orders as &$order) {
+                // Generate the order URL using the setOrder() function
+                $order['url'] = '';
+                $order['value'] = $order['field'] . ':' . $order['direction'];
+            }
+
+
+
+            $searchVariables = [
+                'result' => $result,
+                'label' => $this->getListingLabel(),
+                'products' => $products,
+                'sort_orders' => $sort_orders,
+                'sort_selected' => $sort_selected,
+                'pagination' => $pagination,
+                'rendered_facets' => $rendered_facets,
+                'rendered_active_filters' => $rendered_active_filters,
+                'js_enabled' => $this->ajax,
+                'current_url' => $this->updateQueryString([
+                    'q' => $result->getEncodedFacets(),
+                ]),
+            ];
+
             //fim euromuscle
 
             // euro-rider
-        }elseif (
+        } elseif (
             $this->context->shop->id == 6 && (
                 in_array($query->getQueryType(), ['new-products', 'category', 'search', 'manufacturer']) ||
                 (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)
             )
-        ){
-         
-            
-            if($query->getQueryType()){
+        ) {
+
+
+            if ($query->getQueryType()) {
                 $type = $query->getQueryType();
             }
 
-            if($query->getIdCategory()){
+            if ($query->getIdCategory()) {
                 $category = $query->getIdCategory();
             }
 
-            if($query->getIdManufacturer()){
+            if ($query->getIdManufacturer()) {
                 $manufacturer = $query->getIdManufacturer();
             }
-            
-            if($query->getIdSupplier()){
+
+            if ($query->getIdSupplier()) {
                 $supplier = $query->getIdSupplier();
             }
 
-            if($query->getResultsPerPage()){
+            if ($query->getResultsPerPage()) {
                 $resultsPerPage = $query->getResultsPerPage();
             }
 
-            if($query->getSortOrder()){
+            if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
             }
 
-            if($query->getSearchString()){
+            if ($query->getSearchString()) {
                 $searchString = $query->getSearchString();
             }
 
             // pre($query);
 
             // Fetch category and manufacturer IDs from the query object
-            $category = (int) $query->getIdCategory(); 
-            $manufacturer = (int) $query->getIdManufacturer(); 
+            $category = (int) $query->getIdCategory();
+            $manufacturer = (int) $query->getIdManufacturer();
 
             // pre($query);
 
@@ -2137,19 +2132,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                    ) AS final_price 
             FROM ps_product p
             LEFT JOIN ps_product_shop ps ON p.id_product = ps.id_product
-            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 6
+            LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 6
             LEFT JOIN ps_product_sale psale ON p.id_product = psale.id_product 
-            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = '.$this->context->language->id.' AND pl.id_shop = 6
+            LEFT JOIN ps_category_product pc ON p.id_product = pc.id_product AND pl.id_lang = ' . $this->context->language->id . ' AND pl.id_shop = 6
             WHERE p.active = 1 AND p.visibility != "none" AND ps.id_shop = 6';
-    
+
             if ($category > 0) {
                 $sql .= ' AND pc.id_category = ' . (int) $category;
             }
-            
+
             if ($manufacturer > 0) {
                 $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
             }
-    
+
             if (!empty($searchString)) {
                 $sql .= ' AND (pl.name LIKE "%' . pSQL($searchString) . '%" 
                         OR p.reference LIKE "%' . pSQL($searchString) . '%"
@@ -2159,22 +2154,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                               AND pa.reference LIKE "%' . pSQL($searchString) . '%"
                         ))';
             }
-    
+
             if (!empty($type) && $type == 'new-products') {
                 $daysNewProduct = (int) Configuration::get('PS_NB_DAYS_NEW_PRODUCT', null, null, 2);
                 $newProductDate = date('Y-m-d H:i:s', strtotime("-{$daysNewProduct} days"));
                 $sql .= ' AND p.date_add >= "' . pSQL($newProductDate) . '"';
             }
-            
+
             $sql .= ' GROUP BY p.id_product';
-            
+
             if ($query->getSortOrder()) {
                 $sortOrder = $query->getSortOrder();
-                
+
                 if ($sortOrder->getField() === 'price') {
                     // Sort by final price correctly
-                    $sql .= ' ORDER BY final_price ' 
-                          . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
+                    $sql .= ' ORDER BY final_price '
+                        . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'name') {
                     $sql .= ' ORDER BY pl.name ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 } elseif ($sortOrder->getField() === 'reference') {
@@ -2185,16 +2180,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                 }
             }
-            
+
             if ($query->getResultsPerPage()) {
                 if ($query->getQueryType() == 'new-products') {
                     $query->setResultsPerPage(19);
                 }
-            
+
                 $resultsPerPage = (int) $query->getResultsPerPage();
                 $currentPage = (int) $query->getPage();
                 $offset = ($currentPage - 1) * $resultsPerPage;
-            
+
                 $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
             }
 
@@ -2226,7 +2221,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
 
             $result->setProducts($formatted_products);
-            
+
             $result->setTotalProductsCount(count($products));
 
             $pagination = $this->getTemplateVarPagination(
@@ -2234,59 +2229,59 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $result
             );
 
-            
+
             $product_options = [];
 
 
 
-            if($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')){
+            if ($category == 528 && !($query->getQueryType() == 'new-products') && !($query->getQueryType() == 'manufacturer')) {
 
                 $filters = Tools::getValue('filters');
 
-                if($filters){
+                if ($filters) {
                     $product_options = self::getProductIdsFromFilters($filters);
                 }
                 // pre($product_options);
-                
+
                 $brand_api = CategoryControllerCore::apiCall('brand');
 
-                foreach($brand_api->data AS $brand){       
+                foreach ($brand_api->data as $brand) {
                     $car_brands[$brand->slug] = $brand->name_en;
                 }
 
                 // pre($car_brands);
 
                 $this->context->smarty->assign('car_brands', $car_brands);
-                
 
 
-                if(strlen($filters) > 0 ){
+
+                if (strlen($filters) > 0) {
                     $features = explode('|', $filters);
                     $arr = array();
-                    
-                    foreach( $features AS $feature){
+
+                    foreach ($features as $feature) {
                         $current_features = explode(':', $feature);
                         $arr[$current_features[0]][] = $current_features[1];
                     }
-                    
+
                     $flatted = self::combinarArrays($arr);
-                    
-                    foreach($flatted AS $flatted_options){
-                        
+
+                    foreach ($flatted as $flatted_options) {
+
                         $product_options_temp = array();
-                        foreach($flatted_options AS $key => $option){
-                            
-                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( 'SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option );
-                        
-                            foreach($ids AS $id) $product_options_temp[$id['id_product']] +=1 ;
+                        foreach ($flatted_options as $key => $option) {
+
+                            $ids = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('SELECT id_product FROM ps_feature_product WHERE id_feature_value = ' . $option);
+
+                            foreach ($ids as $id) $product_options_temp[$id['id_product']] += 1;
                         }
-                        
+
                         $total_option = count($flatted_options);
-                        foreach($product_options_temp AS $key_product =>$found_option){
-                            if($found_option == $total_option) $product_options[]=$key_product;
+                        foreach ($product_options_temp as $key_product => $found_option) {
+                            if ($found_option == $total_option) $product_options[] = $key_product;
                         }
                     }
-                }  
+                }
 
                 // pre($product_options);
 
@@ -2294,47 +2289,46 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $selected_features = null;
                 $selected_id_values = null;
 
-                if(strlen($filters) > 0){
-                    $selected_filter = explode('|',$filters);
-                
-                    foreach($selected_filter AS $selected_option){
-                        $selected_feature = explode(':',$selected_option);
-                        
+                if (strlen($filters) > 0) {
+                    $selected_filter = explode('|', $filters);
+
+                    foreach ($selected_filter as $selected_option) {
+                        $selected_feature = explode(':', $selected_option);
+
                         $selected_id_values[] = $selected_feature[1];
-                        
-                        if(count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
-                        
+
+                        if (count($product_options) > 0) $sql_product_options = 'AND ps_feature_product.id_product IN ( ' . implode(',', $product_options) . ' )';
+
                         $sqlFeature =  'SELECT name 
                                         FROM ps_feature_lang 
                                         LEFT JOIN ps_feature_product ON ps_feature_product.id_feature = ps_feature_lang.id_feature 
                                         WHERE ps_feature_lang.id_lang=' . $this->context->language->id . ' 
                                         ' . $sql_product_options . '
                                         AND ps_feature_lang.id_feature=' . $selected_feature[0] .
-                                        ' ORDER BY name DESC';
+                            ' ORDER BY name DESC';
 
                         // pre($sqlFeature);
-                        
+
                         $feature_group = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeature);
 
-                        
-                        
-                        if($selected_feature[1] == 0){
+
+
+                        if ($selected_feature[1] == 0) {
                             $feature_value = 'ALL';
-                        }else{
+                        } else {
                             $sqlFeatureValue = 'SELECT value 
                                                 FROM ps_feature_value_lang 
                                                 LEFT JOIN ps_feature_product ON ps_feature_product.id_feature_value = ps_feature_value_lang.id_feature_value 
                                                 WHERE ps_feature_value_lang.id_lang=' . $this->context->language->id . ' 
                                                 ' . $sql_product_options . '
                                                 AND ps_feature_value_lang.id_feature_value=' . $selected_feature[1] .
-                                                ' ORDER BY value DESC';
-                            
+                                ' ORDER BY value DESC';
+
                             $feature_value = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlFeatureValue);
-        
+
                             $selected_filter_feature[] = $selected_feature[0];
-                        
                         }
-                        
+
                         /**
                         if( strlen($feature_group) > 0){
                             $selected_features[] = [
@@ -2343,17 +2337,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                 'value' => $feature_value
                             ];
                         }
-                        **/
-                        
-                        if( strlen($feature_group) > 0){
+                         **/
+
+                        if (strlen($feature_group) > 0) {
                             $selected_features[$feature_group][] = [
                                 'combination' => $selected_option,
                                 'feature' => $feature_group,
                                 'value' => $feature_value
                             ];
                         }
-                    }                
-                    
+                    }
                 }
 
                 // pre($product_options);
@@ -2364,14 +2357,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $offset = ($currentPage - 1) * $default_products_per_page;
 
 
-            
+
                 $sql_products_of_category = 'SELECT pc.*, pp.id_manufacturer FROM ps_category_product pc LEFT JOIN ps_product pp ON pc.id_product = pp.id_product  WHERE id_category IN (528) AND pp.visibility != "none"';
                 // pre($sql_products_of_category);
-            
+
 
                 if (!empty($product_options)) {
                     $sql_products_of_category .= ' AND pc.id_product IN (' . implode(',', $product_options) . ')';
-                }else if(!empty($selected_filter_feature) && empty($product_options)){
+                } else if (!empty($selected_filter_feature) && empty($product_options)) {
                     $sql_products_of_category .= 'AND 1=0';
                 }
                 // elseif(count($ids_products) > 0 ){
@@ -2382,8 +2375,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
                 // pre($sql_products_of_category);
 
-                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS( $sql_products_of_category );
-                
+                $products_227 = Db::getInstance(_PS_USE_SQL_SLAVE_)->ExecuteS($sql_products_of_category);
+
                 // pre($products_227);
 
                 $formatted_products_227 = [];
@@ -2406,7 +2399,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 $ids_prods = array();
                 $features  = array();
 
-                foreach($products_227 AS $product_227) $ids_prods[] = $product_227['id_product'];
+                foreach ($products_227 as $product_227) $ids_prods[] = $product_227['id_product'];
 
                 // pre($ids_prods);
 
@@ -2441,13 +2434,14 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         FROM ps_feature_product 
                         LEFT JOIN ps_feature ON ps_feature.id_feature = ps_feature_product.id_feature 
                         LEFT JOIN ps_feature_lang ON ps_feature_lang.id_feature = ps_feature_product.id_feature 
-                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop='. $this->context->shop->id .'
-                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC');
+                        LEFT JOIN ps_feature_shop ON ps_feature_product.id_feature = ps_feature_shop.id_feature WHERE id_lang=2  AND id_shop=' . $this->context->shop->id . '
+                        GROUP BY ps_feature_product.id_feature ORDER BY ps_feature.position ASC'
+                    );
                 }
-                
 
 
-                foreach($features_category AS $f_category){
+
+                foreach ($features_category as $f_category) {
 
                     // $features_value = Db::getInstance()->ExecuteS('SELECT ps_feature_value.id_feature,ps_feature_value_lang.id_feature_value, ps_feature_value_lang.value, value, count(value) AS nr_values FROM ps_feature_value LEFT JOIN ps_feature_value_lang ON ps_feature_value_lang.id_feature_value = ps_feature_value.id_feature_value AND ps_feature_value_lang.id_lang=' . $this->context->language->id . ' AND ps_feature_value.id_feature = ' . $f_category['id_feature'] . ' 
                     // WHERE ps_feature_value_lang.id_feature_value IS NOT NULL
@@ -2460,7 +2454,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'name' => $f_category['name'],
                         'quantity' => $f_category['nr_repeat'],
                         'values' => $features_value
-                        ];
+                    ];
                 }
 
 
@@ -2470,48 +2464,48 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     foreach ($features as &$feature) {
                         // Initialize combined_combinations for this feature
                         $feature['combined_combinations'] = '';
-                
+
                         foreach ($feature['values'] as &$value) {
                             $value['checked'] = 0; // Default checked value
-                            
+
                             // Check if the feature exists in selected features
                             if (isset($selected_features[$feature['name']])) {
                                 $combinations = [];
                                 foreach ($selected_features[$feature['name']] as $selected) {
                                     $combination = "{$value['id_feature']}:{$value['id_feature_value']}";
-                
+
                                     // Set checked if combination matches
                                     if ($combination === $selected['combination']) {
                                         $value['checked'] = 1;
                                     }
-                
+
                                     // Collect combination for this feature
                                     $combinations[] = $selected['combination'];
                                 }
-                
+
                                 // Assign all combinations to the feature
                                 $feature['combined_combinations'] = implode(',', $combinations);
                             }
-                
+
                             // Additional processing for "Brand" feature
                             if ($feature['name'] === 'Brand' || $feature['name'] === 'Marca' || $feature['name'] === 'Marque') {
                                 // pre($product_227);
-                                if(!empty($product_227)) {
+                                if (!empty($product_227)) {
                                     $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE id_manufacturer="' . $product_227["id_manufacturer"] . '"';
                                     $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
-                
+
                                     // Add img field to $value
-                                    $value['img'] = $brandImg 
-                                        ? "/img/wheels/" . $brandImg . ".webp?t=3" 
+                                    $value['img'] = $brandImg
+                                        ? "/img/wheels/" . $brandImg . ".webp?t=3"
                                         : null; // Add null or fallback URL if brandImg is not found
 
-                                }elseif($feature['id_feature'] == 19) {
+                                } elseif ($feature['id_feature'] == 19) {
                                     // if theres a name in the ps_manufacture = $feature['values']['value'] needs a foreach
                                     // pre($feature['values']);
                                     foreach ($feature['values'] as &$value) {
-                                        if($value['checked'] != '0'){
+                                        if ($value['checked'] != '0') {
                                             $sqlBrandImg = 'SELECT id_manufacturer FROM ps_manufacturer WHERE name = "' . pSQL($value['value']) . '"';
-                                            
+
                                             // Execute the query to check if the manufacturer exists
                                             $brandImg = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlBrandImg);
 
@@ -2520,11 +2514,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                                 $value['img'] = "/img/wheels/" . $brandImg . ".webp?t=3";
                                                 // pre($value);
                                             } else {
-                                                if($value['value'] == 'Gram Lights'){
+                                                if ($value['value'] == 'Gram Lights') {
                                                     $value['img'] = "/img/wheels/170.webp?t=3";
-                                                }elseif($value['value'] == 'Carroll Shelby'){
+                                                } elseif ($value['value'] == 'Carroll Shelby') {
                                                     $value['img'] = "/img/wheels/188.webp?t=3";
-                                                }elseif($value['value'] == 'Volk Racing'){
+                                                } elseif ($value['value'] == 'Volk Racing') {
                                                     $value['img'] = "/img/wheels/173.webp?t=3";
                                                 }
                                                 // pre($value);
@@ -2533,18 +2527,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                                     }
                                 }
 
-                                
+
                                 // pre($value);
                             }
                         }
                     }
                     unset($feature, $value); // Break reference
                 }
-                
-                
-                
+
+
+
                 // pre($features);
-                
+
                 $this->context->smarty->assign('asw_features', $features);
                 $this->context->smarty->assign('have_selected_features', $selected_features ? count($selected_features) : null);
                 $this->context->smarty->assign('selected_features', $selected_features);
@@ -2555,18 +2549,18 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 //     $this->context->smarty->assign('no_products', true);
                 // }
 
-            
-                
+
+
                 $products = $this->prepareMultipleProductsForTemplate(
                     $products_227
                 );
-                
 
-                if(empty($products)){
+
+                if (empty($products)) {
                     $this->context->smarty->assign('no_products', true);
                 }
 
-                
+
                 // $noProducts = count($products) < 1 ? 1 : 0;
                 // $this->context->smarty->assign('noProducts', $noProducts);
 
@@ -2575,45 +2569,45 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 // pre($products);
 
             }
-        
-            if($this->context->shop->id == 6 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)){
-                
+
+            if ($this->context->shop->id == 6 && (Tools::getValue('id_compat') !== 'undefined' && Tools::getValue('id_compat') > 0)) {
+
                 $id_compat = Tools::getValue('id_compat');
                 $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-                $shop_id = $this->context->shop->id; 
-    
-                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+                $shop_id = $this->context->shop->id;
+
+                $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/' . $shop_id . '/' . $key;
                 // pre($url);
-        
+
                 // Initialize cURL
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-        
+
                 // Execute cURL request
                 $json = curl_exec($ch);
                 curl_close($ch);
-        
+
                 // Decode the response into an associative array
                 $data = json_decode($json, true);
-    
+
                 $productsC = $data['data'];
-    
+
                 // pre($query);
                 $category = Tools::getValue('id_category_layered');
                 $manufacturer = Tools::getValue('id_manufacturer_layered');
-    
+
                 // $search = $this->getProductSearchVariables();
-            
+
                 // Fetch products related to the selected car product
                 if (empty($productsC)) {
                     return [];
                 }
-        
+
                 $ids = array_map('intval', (array) $productsC);
                 $idList = implode(',', $ids);
-    
+
                 // count products
                 // Query to count total products matching the filters
                 $sqlCount = 'SELECT COUNT(DISTINCT ps_category_product.id_product) 
@@ -2621,22 +2615,22 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 LEFT JOIN ps_product_shop ON ps_category_product.id_product = ps_product_shop.id_product
                 LEFT JOIN ps_product ON ps_category_product.id_product = ps_product.id_product
                 LEFT JOIN ps_product_lang ON ps_product.id_product = ps_product_lang.id_product 
-                    AND ps_product_lang.id_lang = '.$this->context->language->id.' 
-                    AND ps_product_lang.id_shop = '.$this->context->shop->id.'
+                    AND ps_product_lang.id_lang = ' . $this->context->language->id . ' 
+                    AND ps_product_lang.id_shop = ' . $this->context->shop->id . '
                 WHERE ps_category_product.id_product IN (' . $idList . ')  
                 AND ps_product.active = 1 AND ps_product.visibility != "none"
-                AND ps_product_shop.id_shop = '.$this->context->shop->id;
-    
+                AND ps_product_shop.id_shop = ' . $this->context->shop->id;
+
                 if ($category > 0) {
-                $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
+                    $sqlCount .= ' AND ps_category_product.id_category = ' . $category;
                 }
-    
+
                 if ($manufacturer > 0) {
-                $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
+                    $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
                 }
-    
+
                 $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
-        
+
                 $sql = 'SELECT cp.id_category, 
                    cp.id_product, 
                    cp.position, 
@@ -2644,34 +2638,34 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                        (SELECT MAX(p.price + pa.price) 
                         FROM ps_product_attribute_shop pa 
                         WHERE pa.id_product = p.id_product 
-                          AND pa.id_shop = '.$this->context->shop->id.'
+                          AND pa.id_shop = ' . $this->context->shop->id . '
                        ), p.price
                    ) AS final_price
                     FROM ps_category_product cp
                     LEFT JOIN ps_product_shop ps ON cp.id_product = ps.id_product
                     LEFT JOIN ps_product p ON cp.id_product = p.id_product
                     LEFT JOIN ps_product_lang pl ON p.id_product = pl.id_product 
-                        AND pl.id_lang = '.$this->context->language->id.' 
-                        AND pl.id_shop = '.$this->context->shop->id.'
+                        AND pl.id_lang = ' . $this->context->language->id . ' 
+                        AND pl.id_shop = ' . $this->context->shop->id . '
                     WHERE cp.id_product IN (' . $idList . ')  
                         AND p.active = 1 
                         AND p.visibility != "none" 
-                        AND ps.id_shop = '.$this->context->shop->id;
-    
+                        AND ps.id_shop = ' . $this->context->shop->id;
+
                 if ($category > 0) {
                     $sql .= ' AND cp.id_category = ' . (int) $category;
                 }
-    
+
                 if ($manufacturer > 0) {
                     $sql .= ' AND p.id_manufacturer = ' . (int) $manufacturer;
                 }
-    
+
                 $sql .= ' GROUP BY p.id_product';
-    
+
                 // Sorting Fix
                 if ($query->getSortOrder()) {
                     $sortOrder = $query->getSortOrder();
-    
+
                     if ($sortOrder->getField() === 'price') {
                         $sql .= ' ORDER BY final_price ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                     } elseif ($sortOrder->getField() === 'name') {
@@ -2684,42 +2678,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         $sql .= ' ORDER BY p.date_add ' . ($sortOrder->getDirection() === 'desc' ? 'DESC' : 'ASC');
                     }
                 }
-    
+
                 // Pagination
                 if ($query->getResultsPerPage()) {
                     $query->setResultsPerPage(19);
-                    
+
                     $resultsPerPage = (int) $query->getResultsPerPage();
                     $currentPage = (int) $query->getPage();
                     $offset = ($currentPage - 1) * $resultsPerPage;
-    
+
                     $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
                 }
-    
-    
-        
+
+
+
                 $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
-    
+
                 $products = $this->prepareMultipleProductsForTemplate(
                     $productsCar
                 );
-    
+
                 $formatted_productsCar = [];
                 foreach ($productsCar as $product) {
                     $formatted_productsCar[] = ['id_product' => $product['id_product']];
                 }
-    
+
                 $result->setProducts($formatted_productsCar);
                 $result->setTotalProductsCount($totalProducts);
-    
+
                 $pagination = $this->getTemplateVarPagination(
                     $query,
                     $result
                 );
 
-                
-    
-                        // universal products
+
+
+                // universal products
                 $sqlUniversals = 'SELECT pcp.id_category, pcp.id_product, pcp.POSITION 
                         FROM ps_category_product AS pcp
                         LEFT JOIN ps_product AS pp ON pcp.id_product = pp.id_product
@@ -2727,16 +2721,16 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         WHERE pp.universal = 1 
                         AND pp.active = 1 
                         AND (pp.wmdeprecated != 1 OR (pp.wmdeprecated = 1 AND pp.quantity > 0))
-                        AND pps.id_shop = '.$this->context->shop->id.' 
+                        AND pps.id_shop = ' . $this->context->shop->id . ' 
                         AND pps.visibility != "none"
                         GROUP BY pcp.id_product';
-    
-    
-                                
-                                
+
+
+
+
                 $universalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sqlUniversals);
                 // pre($universalProducts);
-    
+
                 $universals = $this->prepareMultipleProductsForTemplate(
                     $universalProducts
                 );
@@ -2747,26 +2741,26 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 } else {
                     $noProducts = count($products) < 1 ? 1 : 0;
                 }
-    
+
                 // pre($noProducts);
-                
-    
+
+
                 if ($totalProducts > 0) {
                     // Calculate total pages
                     // $pagesCount = ceil($totalProducts / $resultsPerPage);
                     // $currentPage = max((int) $query->getPage(), 1);
-                    
+
                     // // Ensure current page is within valid range
                     // if ($currentPage > $pagesCount) {
                     //     $currentPage = $pagesCount;
                     // }
-                
+
                     // // Now, calculate the offset for pagination
                     // $offset = ($currentPage - 1) * $resultsPerPage;
-                
+
                     // // Add the LIMIT and OFFSET to the main SQL query
                     // $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
-                
+
                     // // Assign pagination info to Smarty
                     // $pagination = [
                     //     'total_items' => $totalProducts,
@@ -2776,7 +2770,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //     'pages_count' => $pagesCount,
                     //     'pages' => [],
                     // ];
-                
+
                     // // Build the page links
                     // for ($i = 1; $i <= $pagesCount; $i++) {
                     //     // Generate URL without `page` parameter for page 1
@@ -2788,7 +2782,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //             'page' => $i,
                     //             'id_compat' => Tools::getValue('id_compat'),
                     //           ]);
-                
+
                     //     $pagination['pages'][$i] = [
                     //         'type' => 'page',
                     //         'page' => $i,
@@ -2797,9 +2791,9 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     //         'url' => $url,
                     //     ];
                     // }
-    
+
                     // pre($query);
-                    
+
                     // $compat = $query->getCompat();
                     // pre($compat);
                     // Assign the pagination to Smarty
@@ -2811,47 +2805,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         'noProducts' => $noProducts,
                         'universals' => $universals,
                     ]);
-                    
-                    
                 }
-    
             }
-                
-                $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
-                $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
-    
-    
-                $this->context->smarty->assign([
-                    'nb_products'       => $pagination['total_items'],
-                    'n_array' => $n_array,
-                ]);
-    
-                // Loop through each sorting option
-                foreach ($sort_orders as &$order) {
-                    // Generate the order URL using the setOrder() function
-                    $order['url'] = '';
-                    $order['value'] = $order['field'].':'.$order['direction'];
-                }
-                
-                
-    
-                $searchVariables = [
-                    'result' => $result,
-                    'label' => $this->getListingLabel(),
-                    'products' => $products,
-                    'sort_orders' => $sort_orders,
-                    'sort_selected' => $sort_selected,
-                    'pagination' => $pagination,
-                    'rendered_facets' => $rendered_facets,
-                    'rendered_active_filters' => $rendered_active_filters,
-                    'js_enabled' => $this->ajax,
-                    'current_url' => $this->updateQueryString([
-                        'q' => $result->getEncodedFacets(),
-                    ]),
-                ];
-            
-        
-        }else{
+
+            $default_products_per_page = max(1, (int)Configuration::get('PS_PRODUCTS_PER_PAGE'));
+            $n_array = array($default_products_per_page, $default_products_per_page * 2, $default_products_per_page * 5);
+
+
+            $this->context->smarty->assign([
+                'nb_products'       => $pagination['total_items'],
+                'n_array' => $n_array,
+            ]);
+
+            // Loop through each sorting option
+            foreach ($sort_orders as &$order) {
+                // Generate the order URL using the setOrder() function
+                $order['url'] = '';
+                $order['value'] = $order['field'] . ':' . $order['direction'];
+            }
+
+
+
+            $searchVariables = [
+                'result' => $result,
+                'label' => $this->getListingLabel(),
+                'products' => $products,
+                'sort_orders' => $sort_orders,
+                'sort_selected' => $sort_selected,
+                'pagination' => $pagination,
+                'rendered_facets' => $rendered_facets,
+                'rendered_active_filters' => $rendered_active_filters,
+                'js_enabled' => $this->ajax,
+                'current_url' => $this->updateQueryString([
+                    'q' => $result->getEncodedFacets(),
+                ]),
+            ];
+        } else {
 
             $searchVariables = [
                 'result' => $result,
@@ -2880,12 +2869,13 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         return $searchVariables;
     }
 
-    function getProductIdsFromFilters($filters) {
+    function getProductIdsFromFilters($filters)
+    {
         // Explode os filtros em pares de feature:value
         $filterPairs = explode('|', $filters);
 
         // pre($filterPairs);
-    
+
         // Organiza os valores por id_feature
         $featureValues = [];
         foreach ($filterPairs as $pair) {
@@ -2895,7 +2885,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             }
             $featureValues[$feature][] = $value;
         }
-    
+
         // Cria as subconsultas para cada id_feature
         $subqueries = [];
         foreach ($featureValues as $feature => $values) {
@@ -2908,41 +2898,42 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         }
 
         // pre($subqueries);
-    
+
         // Combina as subconsultas usando INTERSECT
         $query = implode(" INTERSECT ", $subqueries);
 
         // pre($query);
 
-        $productIds = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS( $query );
+        $productIds = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
 
-        $productIdsArray = array_map(function($product) {
+        $productIdsArray = array_map(function ($product) {
             return $product['id_product'];
         }, $productIds);
 
 
-        return $productIdsArray; 
+        return $productIdsArray;
     }
 
-    private static function combinarArrays($arrays) {
+    private static function combinarArrays($arrays)
+    {
         // Inicia o resultado com um array vazio para gerar combinações
         $result = [[]];
-    
+
         // Percorre cada array na lista de arrays
         foreach ($arrays as $array) {
             $novoResultado = [];
-    
+
             // Adiciona cada item do array atual a cada combinação já existente no resultado
             foreach ($result as $combination) {
                 foreach ($array as $item) {
                     $novoResultado[] = array_merge($combination, [$item]);
                 }
             }
-    
+
             // Atualiza o resultado com as novas combinações geradas
             $result = $novoResultado;
         }
-    
+
         return $result;
     }
 
@@ -3080,12 +3071,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
         $search = $this->getProductSearchVariables();
 
         // pre(Tools::getAllValues());
-        
+
         $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
         $rendered_products = $this->render('catalog/_partials/products', ['listing' => $search]);
         $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
-        
-        
+
+
 
 
         $data = array_merge(
@@ -3103,19 +3094,19 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
         return $data;
     }
-    
+
     protected function getAjaxProductSearchVariablesQS()
     {
         $search = $this->getProductSearchVariables();
 
         // $product = new Product($search['id_product']);
         // $haveCombinations = $product->hasAttributes();
-        
+
 
         // $search['hasCombinations'] = $haveCombinations;
-        
 
-        if($this->context->shop->id == 3){
+
+        if ($this->context->shop->id == 3) {
             // echo '<pre>'.print_r($search,1).'</pre>';
             // exit;
 
@@ -3131,8 +3122,8 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $searchRef = pSQL(Tools::getValue('s'));
             // echo 'SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"';
             // exit;
-            foreach($search['products'] as $product){
-                $product['product_attribute_atr'] = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference LIKE "'.pSQL($searchRef).'%"');
+            foreach ($search['products'] as $product) {
+                $product['product_attribute_atr'] = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue('SELECT id_product_attribute FROM ' . _DB_PREFIX_ . 'product_attribute  WHERE reference LIKE "' . pSQL($searchRef) . '%"');
             }
 
             // $product_attribute = Db::getInstance()->getValue('SELECT id_product_attribute FROM '._DB_PREFIX_.'product_attribute  WHERE reference="'.pSQL(Tools::getValue('s')).'"');
@@ -3144,7 +3135,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
 
             // echo '<pre>'.print_r($haveCombinations,1).'</pre>';
-            
+
 
 
 
@@ -3152,12 +3143,12 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
             $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search]);
             // $rendered_products = $this->render('catalog/qs-search-product', ['listing' => $search, 'child_attribute' => $product_attribute+0, 'isFather' => $haveCombinations, 'child_reference' => pSQL(Tools::getValue('s'))]);
             // $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
-        }else{
+        } else {
             $rendered_products_top = $this->render('catalog/_partials/products-top', ['listing' => $search]);
             $rendered_products = $this->render('catalog/_partials/products', ['listing' => $search]);
             $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
         }
-        
+
 
 
         $data = array_merge(
@@ -3186,10 +3177,10 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
 
     //     // $product = new Product($search['id_product']);
     //     // $haveCombinations = $product->hasAttributes();
-        
+
 
     //     // $search['hasCombinations'] = $haveCombinations;
-        
+
 
     //     if($this->context->shop->id == 3){
 
@@ -3211,7 +3202,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
     //         $rendered_products = $this->render('catalog/_partials/products', ['listing' => $search]);
     //         $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', ['listing' => $search]);
     //     }
-        
+
 
 
     //     $data = array_merge(
@@ -3255,15 +3246,15 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
      * @param string $template the template for this page
      */
     protected function doProductSearch($template, $params = [], $locale = null)
-    {   
+    {
         if ($this->ajax) {
             ob_end_clean();
             header('Content-Type: application/json');
-            if($template == 'catalog/quick-shop'){
+            if ($template == 'catalog/quick-shop') {
                 $this->ajaxRender(json_encode($this->getAjaxProductSearchVariablesQS()));
-            // }elseif($template == 'catalog/cars-products'){
-            //     $this->ajaxRender(json_encode($this->getAjaxProductSearchVariablesCompats()));
-            }else{
+                // }elseif($template == 'catalog/cars-products'){
+                //     $this->ajaxRender(json_encode($this->getAjaxProductSearchVariablesCompats()));
+            } else {
                 $this->ajaxRender(json_encode($this->getAjaxProductSearchVariables()));
             }
 
