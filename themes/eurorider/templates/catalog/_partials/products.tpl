@@ -139,11 +139,13 @@
             {/if}
 
             <div class="mobile details-info-car-mobile">
-              <span><img src="{$compat['brand_logo']}" style="width: 40px;"/></span>
+              <span><img src="{$compat['brand_hover_logo']}" style="width: 40px;"/></span>
               <span>|</span>
               <span style="color: var(--asm-color) !important;">{$compat['model']}</span>
               <span>|</span>
               <span>{$compat['type']}</span>
+              <br>
+              <span>{$compat['version']}</span>
             </div>
             <div class="desktop details-info-car-dektop">
               <div>{$compat['brand']} | {$compat['model']}</div>
