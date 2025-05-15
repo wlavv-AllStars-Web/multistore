@@ -9258,6 +9258,32 @@ transform: translate(-50%,-50%);
   border: 0;
 }
 
+#products .pagination {
+  background: none repeat scroll 0 0 #FAFAFA;
+  border: 1px solid #D0D0D0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(208, 208, 208);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(208, 208, 208);
+  border-radius: 0 0 0 0;
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+#products .pagination .page-list {
+  background: unset !important;
+  padding: 0 !important;
+}
+
+#products .pagination .current a{
+  border: 1px solid #d0d0d0;
+  color: var(--euromus-color-100) !important;
+  
+}
+
 /* product page */
 @media screen and (min-width: 769px) and (max-width: 992px) {
   .container-product {
