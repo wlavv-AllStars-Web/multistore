@@ -9247,7 +9247,7 @@ transform: translate(-50%,-50%);
   border-radius: .25rem;
 }
 
-.universals-product-list .js-product.product:hover{
+.universals-product-list .js-product.product:hover .product-miniature{
   outline: 3px solid var(--euromus-color-300);
   border-radius: 0.25rem;
 }
