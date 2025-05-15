@@ -61,7 +61,7 @@
                 </div>
                 <div>
                   {block name='product_list_top'}
-                    {include file='catalog/_partials/products-top.tpl' listing=$listing}
+                    {include file='catalog/_partials/products-top.tpl' listing=$listingCompat}
                   {/block}
                 </div>
               </div>
@@ -69,7 +69,7 @@
           
             <div class="filters-desktop">
             {block name='product_list_top'}
-              {include file='catalog/_partials/products-top.tpl' listing=$listing}
+              {include file='catalog/_partials/products-top.tpl' listing=$listingCompat}
             {/block}
             </div>
          {/if}
