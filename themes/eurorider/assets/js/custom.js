@@ -42,6 +42,13 @@ var Swipes2 = new Swiper('.products-mobile', {
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
+  document.querySelectorAll(".menu-select-car select").forEach(select => {
+      select.addEventListener("click", function(event) {
+          event.stopPropagation();
+      });
+  });
+
+
   if(document.querySelector('.videosContainer')){
   const videosContainer = Array.from(document.querySelector('.videosContainer').children);
 
