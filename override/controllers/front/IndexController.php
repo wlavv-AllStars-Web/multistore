@@ -812,6 +812,7 @@ class IndexController extends IndexControllerCore
                  }
                 </script>';
                  
+                
 
         return $html;
     }
