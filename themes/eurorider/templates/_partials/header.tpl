@@ -531,40 +531,39 @@
                     }
 
                     .menu-select-car {
-                      background-color: var(--euromus-color-200);
-                      background-image: url(/img/eurmuscle/tire.webp);
-                      background-repeat: no-repeat;
-                      background-position: right top;
-                      background-size: auto;
+                      background-color: var(--bg-5);
+                      margin-top: 1rem;
                     }
 
                     .menu-select-car-container {
                       width: 100%;
                       max-width: 1440px;
                       margin: auto;
-                      padding-bottom: 4rem;
+                      padding-bottom: 1rem;
                     }
 
                     .menu-select-car-header {
                       display: flex;
                       justify-content: center;
                       align-items: center;
-                      padding: 3rem 0;
+                      padding: 1rem;
                     }
 
                     .menu-select-car-header h1 {
-                      color: #fff;
+                      color: var(--asm-color);
                       font-family: system-ui, -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Oxygen-Sans, Ubuntu, Cantarell, “Helvetica Neue”, Arial, sans-serif;
-                      font-size: 40px;
+                      font-size: 1.5rem;
                       line-height: 44px;
                       font-weight: 400;
                     }
 
                     .menu-select-car-content {
                       display: flex;
+                      flex-direction: column;
                       justify-content: center;
                       align-items: center;
                       gap: 1rem;
+                      padding: 1rem;
                     }
 
                     .menu-select-car .custom-select {
@@ -586,12 +585,14 @@
                     }
 
                     .menu-select-car button {
-                      background: var(--euromus-color-300) !important;
+                      background: var(--asm-color) !important;
                       border-radius: 0.25rem;
                       height: 48px;
                       font-size: 1rem;
                       text-transform: uppercase;
                       flex: 1;
+                      padding: .5rem 1rem !important;
+                      width: 100%;
                     }
                   </style>
                 </div>
