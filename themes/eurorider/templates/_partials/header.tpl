@@ -331,7 +331,7 @@
               </li>
 
               <li class="dropdown">
-                <div class="btn" type="button" data-toggle="dropdown" aria-expanded="false">{l s='Your Ride' d='Shop.Theme.Homepage'}</div>
+                <div class="btn" type="button" data-toggle="dropdown" aria-expanded="false" style="padding: .5rem;">{l s='Your Ride' d='Shop.Theme.Homepage'}</div>
                 <div class="dropdown-menu menu-logos">
                   <div class="section menu-select-car">
                     <div class="menu-select-car-container">
