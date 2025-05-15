@@ -2423,10 +2423,10 @@ a:focus{
       #js-product-list .product.car:hover {
         outline: 3px solid var(--euromus-color-200)!important;
       }
-      #js-product-list .js-product.product:not(.car):hover {
+      /* #js-product-list .js-product.product:not(.car):hover {
         outline: 3px solid #dedede !important;
         border-radius: 0.5rem;
-      }
+      } */
       #js-product-list .product .product-description{
         /* border-bottom: 1px solid #103054; */
       }
