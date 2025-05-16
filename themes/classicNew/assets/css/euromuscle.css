@@ -9553,6 +9553,7 @@ transform: translate(-50%,-50%);
   flex: 1;
   display: flex;
   max-width: unset !important;
+  padding: 0;
 }
 .container-search > div {
   display: flex;
@@ -9562,6 +9563,7 @@ transform: translate(-50%,-50%);
 .container-search > div #content-wrapper{
   display: flex;
   flex: 1;
+  padding: 0;
 }
 .container-search > div #content-wrapper #main{
   flex: 1;
