@@ -613,6 +613,7 @@ body {
 
   .bannersHome .swiper-slide > a {
     padding: 0 !important;
+    width: 100%;
   }
 
   .banners_50 {
