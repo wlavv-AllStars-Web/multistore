@@ -9288,6 +9288,16 @@ transform: translate(-50%,-50%);
   line-height: 2.5rem !important;
 }
 
+#manufacturer .container-manufacturer {
+  padding: 0 !important;
+}
+
+#manufacturer .container-manufacturer > div > #content-wrapper{
+  padding: 0 !important;
+}
+
+
+
 /* product page */
 @media screen and (min-width: 769px) and (max-width: 992px) {
   .container-product {
