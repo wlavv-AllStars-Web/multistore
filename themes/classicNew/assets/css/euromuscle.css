@@ -9330,8 +9330,9 @@ transform: translate(-50%,-50%);
   margin: 0;
 }
 
-.container-product .thumb.js-thumb {
+.container-product .mySwiper-thumb-images .js-thumb-container:hover {
   cursor: pointer;
+  border: 1px solid var(--euromus-color-100);
 }
 
 
