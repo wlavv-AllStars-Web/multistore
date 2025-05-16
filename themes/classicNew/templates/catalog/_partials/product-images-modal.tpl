@@ -106,16 +106,7 @@
       </div>
 
       <script defer="defer">
-        var swiper = new Swiper(".mySwiper-modal-product-images", {
-          pagination: {
-            el: ".swiper-pagination",
-            type: "fraction",
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
+
 
         function closeModalProductImages() {
           document.querySelector("#product-modal").style.display="none"
