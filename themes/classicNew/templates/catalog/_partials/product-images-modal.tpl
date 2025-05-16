@@ -104,17 +104,12 @@
         </div>
 
       </div>
-
-      <script defer="defer">
-
-
-        function closeModalProductImages() {
-          document.querySelector("#product-modal").style.display="none"
-          document.querySelector(".modal-backdrop").remove()
-          document.querySelector("#product").classList.remove("modal-open")
-          document.querySelector("#product").style.padding = "0";
-        }
-       </script>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function() {
+  initSwiper();
+});
+</script>

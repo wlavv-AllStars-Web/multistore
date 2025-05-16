@@ -212,6 +212,18 @@ function initSwiper() {
       prevEl: ".swiper-button-prev",
     },
   });
+
+  var swiperMagnify = new Swiper(".mySwiper-modal-product-images", {
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  
 }
 
 var swiper3 = new Swiper(".mySwiper", {
@@ -229,13 +241,10 @@ var swiper3 = new Swiper(".mySwiper", {
   },
 });
 
-var swiperMagnify = new Swiper(".mySwiper-modal-product-images", {
-  pagination: {
-    el: ".swiper-pagination",
-    type: "fraction",
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+
+function closeModalProductImages() {
+  document.querySelector("#product-modal").style.display="none"
+  document.querySelector(".modal-backdrop").remove()
+  document.querySelector("#product").classList.remove("modal-open")
+  document.querySelector("#product").style.padding = "0";
+}
