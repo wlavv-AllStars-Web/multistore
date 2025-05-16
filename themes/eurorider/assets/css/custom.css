@@ -4815,7 +4815,10 @@ ul {
   padding: 0.5rem 1rem;
   color: var(--asm-color);
   border: 1px solid #d6d6d6;
+  display: flex;
+  align-items: center;
 }
+
 .btn_downloadInstructions:hover {
   padding: 0.5rem 1rem;
   background: var(--asm-color);
