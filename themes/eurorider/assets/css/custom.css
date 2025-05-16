@@ -4871,6 +4871,10 @@ ul {
   margin-bottom: 1rem;
 }
 
+.universals-product-list {
+  row-gap: 1rem;
+}
+
 @media screen and (min-width: 768px) {
   #footer_sub_menu_14 li a {
     color: var(--white);
