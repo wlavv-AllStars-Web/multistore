@@ -9322,6 +9322,13 @@ transform: translate(-50%,-50%);
   border: 1px solid var(--euromus-color-500);
 }
 
+.container-product {
+  padding: 0;
+}
+
+.container-product #main > .product-container {
+  margin: 0;
+}
 
 
 /* product page */
