@@ -30,7 +30,7 @@
   {block name="left_column"}
     <div id="left-column" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
       {hook h='displayContactLeftColumn'}
-      <div><b>{l s='Working Hours' d='Shop.Theme.Contact'}:</b> 9:00h - 18:00h </div>
+      <div><b>{l s='Working Hours' d='Shop.Theme.Contact'}:</b> 9:00h - 18:00h (GMT +1)</div>
     </div>
   {/block}
 {else if $layout === 'layouts/layout-right-column.tpl'}
