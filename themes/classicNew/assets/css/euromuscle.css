@@ -9328,6 +9328,7 @@ transform: translate(-50%,-50%);
 @media screen and (min-width: 768px){
   #js-product-list {
     margin-bottom: 0 !important;
+    padding: 0 !important;
   }
 }
 
