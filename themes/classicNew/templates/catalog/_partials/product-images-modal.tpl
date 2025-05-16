@@ -105,7 +105,7 @@
 
       </div>
 
-      <script>
+      <script defer="defer">
         var swiper = new Swiper(".mySwiper-modal-product-images", {
           pagination: {
             el: ".swiper-pagination",
