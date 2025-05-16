@@ -9546,3 +9546,15 @@ transform: translate(-50%,-50%);
 .container-category > div #content-wrapper #main #products #js-product-list .products .product{
   max-height: 300px;
 }
+
+@media screen and (min-width: 1992px) { 
+  #product .product-container > .left-side {
+    height: fit-content;
+  }
+  #product .product-container > .left-side .product-cover{
+    max-height: 800px;
+  }
+  #product .product-container > .left-side .mySwiper-thumb-images{
+    max-height: 670px;
+  }
+}
