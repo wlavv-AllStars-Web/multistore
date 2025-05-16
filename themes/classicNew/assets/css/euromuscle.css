@@ -9348,6 +9348,14 @@ transform: translate(-50%,-50%);
   margin-bottom: 2rem;
 }
 
+.container-category{
+  padding: 0 !important;
+}
+
+.container-category #content-wrapper{
+  padding: 0 !important;
+}
+
 /* product page */
 @media screen and (min-width: 768px){
   #cars-products #products #js-product-list {
