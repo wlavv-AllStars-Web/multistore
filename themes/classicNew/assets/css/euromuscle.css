@@ -9456,3 +9456,45 @@ transform: translate(-50%,-50%);
     max-height: 300px;
   }
 /* } */
+
+.container-new-products {
+  flex: 1;
+  display: flex;
+  max-width: unset !important;
+}
+.container-new-products > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.container-new-products > div #content-wrapper{
+  display: flex;
+  flex: 1;
+}
+.container-new-products > div #content-wrapper #main{
+  flex: 1;
+  height: 100%;
+  display: flex;
+}
+.container-new-products > div #content-wrapper #main #products{
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+.container-new-products > div #content-wrapper #main #products #js-product-list{
+  display: flex;
+  flex: 1;
+}
+.container-new-products > div #content-wrapper #main #products #js-product-list .products {
+  display: flex;
+  flex: 1;
+  max-width: 1920px;
+  margin: auto;
+}
+.container-new-products > div #content-wrapper #main #products .filters-desktop #js-product-list-top{
+  max-width: 1920px;
+  width: 80%;
+}
+.container-new-products > div #content-wrapper #main #products #js-product-list .products .product{
+  max-height: 300px;
+}
