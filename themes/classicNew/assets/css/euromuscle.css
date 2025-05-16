@@ -9330,6 +9330,10 @@ transform: translate(-50%,-50%);
   margin: 0;
 }
 
+.container-product .thumb.js-thumb {
+  cursor: pointer;
+}
+
 
 /* product page */
 @media screen and (min-width: 768px){
