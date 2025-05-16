@@ -9417,6 +9417,7 @@ transform: translate(-50%,-50%);
   .container-manufacturer {
     flex: 1;
     display: flex;
+    max-width: unset !important;
   }
   .container-manufacturer > div {
     display: flex;
