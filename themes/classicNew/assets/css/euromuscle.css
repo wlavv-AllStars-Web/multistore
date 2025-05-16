@@ -9296,6 +9296,27 @@ transform: translate(-50%,-50%);
   padding: 0 !important;
 }
 
+#products .pagination a{
+  border: 1px solid #d0d0d0;
+  color: var(--euromus-color-100);
+  float: left;
+  font-size: 14px;
+  height: 30px;
+  line-height: 28px;
+  margin: 0 5px;
+  width: 30px;
+  background-color: #fff;
+}
+
+#products .pagination .current a{
+  background-color: #fff !important;
+  color: var(--euromus-color-100) !important;
+  margin: 2px !important;
+  font-size: 14px !important;
+  font-weight: bold;
+  border: 1px solid var(--euromus-color-500);
+}
+
 
 
 /* product page */
