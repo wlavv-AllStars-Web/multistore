@@ -9284,6 +9284,10 @@ transform: translate(-50%,-50%);
   
 }
 
+.pagination > div:first-child {
+  line-height: 2.5rem !important;
+}
+
 /* product page */
 @media screen and (min-width: 769px) and (max-width: 992px) {
   .container-product {
