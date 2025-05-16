@@ -9095,6 +9095,10 @@ transform: translate(-50%,-50%);
   width: 100%;
 }
 
+.products-sort-order #name_brand span {
+  color: var(--euromus-color-300);
+}
+
 .products-sort-order {
   width: 100%;
   color: var(--asm-color);
