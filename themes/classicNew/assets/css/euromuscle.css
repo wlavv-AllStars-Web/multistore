@@ -9297,7 +9297,7 @@ transform: translate(-50%,-50%);
 }
 
 .pagination{
-  margin-top: 2rem;
+  margin-top: 2rem !important;
 }
 
 #products .pagination a{
