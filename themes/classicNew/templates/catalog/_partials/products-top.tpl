@@ -164,7 +164,7 @@
             {if !$page.body_classes['category-id-549'] && !$page.body_classes['category-id-523'] && !$page.body_classes['category-id-550'] && !$page.body_classes['category-id-551'] && !$page.body_classes['category-id-552'] && !$page.body_classes['category-id-553'] && !$page.body_classes['category-id-554']}
               <div class="dropdown-menu dropdown-category">
               {foreach from=$categories[2] item=parentCategory}
-                {if $parentCategory['infos']['id_category'] != 523 && $parentCategory['infos']['id_category'] != 528 && $parentCategory['infos']['id_category'] != 549}
+                {if $parentCategory['infos']['id_category'] != 523 && $parentCategory['infos']['id_category'] != 528 && $parentCategory['infos']['id_category'] != 549 && $parentCategory['infos']['id_category'] != 555}
                   <div 
                       id="category_element_{$parentCategory['infos']['id_category']}" 
                       
