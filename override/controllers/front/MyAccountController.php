@@ -232,13 +232,13 @@ class MyAccountController extends MyAccountControllerCore
 
                     if (!empty($contact->email) || !empty(Tools::getValue('from'))) {
                         if (!Mail::Send(2, 'contact', Mail::l('Message from contact form').' [no_sync]',
-                            $var_list, 'info@'.$serverName, $contact->name, null, null,
+                            $var_list, 'sales@'.$serverName, $contact->name, null, null,
                                     $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from)) {
                             $this->errors[] = Tools::displayError('An error occurred while sending the message.');
                         }
                         
                         Mail::Send($this->context->language->id, 'contact_form', Mail::l('Message from contact form').' [no_sync]',
-                            $var_list, 'info@'.$serverName, $var_list['{firstname}'] . ' ' . $var_list['{lastname}'], null, null,
+                            $var_list, 'sales@'.$serverName, $var_list['{firstname}'] . ' ' . $var_list['{lastname}'], null, null,
                                     $file_attachment, null,    _PS_MAIL_DIR_, false, null, null, $from);
                     }
                 }

@@ -581,7 +581,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
                 'product_question', 
                 'Product Question', 
                 $var_list, 
-                'info@'.$serverName, 
+                'sales@'.$serverName, 
                 // 'pauloallstarsweb@gmail.com', 
                 'Product Question', 
                 null, 
