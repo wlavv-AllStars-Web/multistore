@@ -9306,6 +9306,7 @@ transform: translate(-50%,-50%);
   margin: 0 5px;
   width: 30px;
   background-color: #fff;
+  text-align: center;
 }
 
 #products .pagination .current a{
