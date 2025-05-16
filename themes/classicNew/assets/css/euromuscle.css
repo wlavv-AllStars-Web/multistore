@@ -9552,7 +9552,7 @@ transform: translate(-50%,-50%);
     height: fit-content;
   }
   #product .product-container > .left-side .product-cover{
-    max-height: 800px;
+    max-height: 670px;
   }
   #product .product-container > .left-side .mySwiper-thumb-images{
     max-height: 670px;
