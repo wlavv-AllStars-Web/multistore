@@ -446,7 +446,7 @@
                       <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                       <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
                           <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
-                          <img src="/img/asm/difficulty/difficulty_eurorider_{$product.difficulty}.png" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                          <img src="/img/eurorider/difficulty/difficulty_eurorider_{$product.difficulty}.png" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                       </div>
                     {/if}
                     </div>
@@ -798,7 +798,7 @@
 
                               <div class="difficulty-level">
                                 <span>{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</span>
-                                <img src="/img/asm/difficulty/difficulty_eurorider_{$product.difficulty}.png"  alt="Difficulty{$product.difficulty}"/>
+                                <img src="/img/eurorider/difficulty/difficulty_eurorider_{$product.difficulty}.png"  alt="Difficulty{$product.difficulty}"/>
                               </div>
                             </div>
                           {/foreach}
@@ -824,7 +824,7 @@
                               <div class="verticalLign" style="height:50px;width:3px; background:#b3b3b3;"></div>
                               <div class="difficulty_content" style="display:flex;align-items:center;gap:2rem;">
                                   <h4 style="margin:0;text-transform:uppercase;font-weight:500;">{l s='Difficulty Level:' d='Shop.Theme.Catalog'}</h4>
-                                  <img src="/img/asm/difficulty/difficulty_eurorider_{$product.difficulty}.png" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
+                                  <img src="/img/eurorider/difficulty/difficulty_eurorider_{$product.difficulty}.png" alt="Difficulty{$product.difficulty}" style="height:fit-content;">
                               </div>
                             {/if}
                             </div>
