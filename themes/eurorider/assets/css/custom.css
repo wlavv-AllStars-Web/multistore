@@ -1002,6 +1002,14 @@ body {
   .filters-desktop{
     display: block;
   }
+
+  .container-category {
+    padding: 0;
+  }
+
+  .container-category #content-wrapper{
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 992px) {
