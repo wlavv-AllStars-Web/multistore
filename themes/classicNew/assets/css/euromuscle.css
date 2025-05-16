@@ -9296,6 +9296,10 @@ transform: translate(-50%,-50%);
   padding: 0 !important;
 }
 
+.pagination{
+  margin-top: 2rem;
+}
+
 #products .pagination a{
   border: 1px solid #d0d0d0;
   color: var(--euromus-color-100);
