@@ -25,7 +25,7 @@
 <div id="js-product-list">
   {include file="catalog/_partials/productlist.tpl" products=$listing.products cssClass="row"}
 
-  {if $listing.products|count > 0}
+  {* {if $listing.products|count > 0}
     {if $pagination}
       {block name='pagination'}
         {include file='themes/ebusiness/templates/_partials/pagination.tpl' pagination=$pagination}
@@ -35,7 +35,7 @@
         {include file='themes/ebusiness/templates/_partials/pagination.tpl' pagination=$listing.pagination}
       {/block}
     {/if}
-  {/if}
+  {/if} *}
 
 
   {* {block name='pagination'} *}
