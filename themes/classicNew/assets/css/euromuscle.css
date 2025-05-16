@@ -6961,6 +6961,8 @@ transform: translate(-50%,-50%);
     background: #eee;
     padding-top: 0;
     margin-bottom: 1rem;
+    border-radius: .25rem;
+    overflow: hidden;
   }
 
   #contact #wrapper .container-contact #content-wrapper #main #content {
@@ -9603,4 +9605,39 @@ transform: translate(-50%,-50%);
   #product .product-container > .left-side .mySwiper-thumb-images{
     max-height: 670px;
   }
+}
+
+.page-cms-46 {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.page-cms-43 #terms {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.page-cms-47 #cms-payment {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.page-cms-44 #legal {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.page-cms-51 {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.page-cms-45 {
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.cms_specificRequest {
+  border-radius: .25rem;
+  overflow: hidden;
 }
