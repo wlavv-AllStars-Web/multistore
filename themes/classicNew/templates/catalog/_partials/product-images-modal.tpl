@@ -60,6 +60,11 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> *}
 
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <div class="modal fade js-product-images-modal" id="product-modal">
   <div class="btn-close-modal-images" style="
