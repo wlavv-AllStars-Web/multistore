@@ -9664,6 +9664,23 @@ transform: translate(-50%,-50%);
 }
 #product-modal .modal-dialog {
   margin: 0 !important;
+  transform: unset;
+  top: 0 !important;
+}
+#product-modal .modal-dialog .modal-content{
+  width: 100% !important;
+  top: 0 !important;
+  transform: unset !important;
+}
+
+#product-modal .modal-content .modal-body {
+  padding: 0;
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0;
+  margin-left: 0;
 }
 
 .mySwiper-modal-product-images img {
