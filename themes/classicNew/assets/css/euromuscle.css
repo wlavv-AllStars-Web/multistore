@@ -9448,6 +9448,9 @@ transform: translate(-50%,-50%);
     max-width: 1920px;
     margin: auto;
   }
+  .container-manufacturer > div #content-wrapper #main #products #js-product-list .products .filters-desktop #js-product-list-top{
+    max-width: 1920px;
+  }
   .container-manufacturer > div #content-wrapper #main #products #js-product-list .products .product{
     max-height: 300px;
   }
