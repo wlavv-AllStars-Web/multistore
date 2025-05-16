@@ -9335,6 +9335,10 @@ transform: translate(-50%,-50%);
   border: 1px solid var(--euromus-color-100);
 }
 
+#index .cars-cards .card .card-title {
+  user-select: none;
+}
+
 
 /* product page */
 @media screen and (min-width: 768px){
