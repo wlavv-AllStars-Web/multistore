@@ -60,7 +60,7 @@
           <div class="banners_50">
             {foreach from=$desktop['icones_50'] item=item key=key name=name}
               <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
-                <a href="{$item['link']}">
+                <a href="brand/{$item['link']}">
                   <img src="{$item['image_en']}" />
                 </a>
               </div>
