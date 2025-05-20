@@ -284,6 +284,9 @@ class CustomerPersisterCore
         if($shop_id == 1){
             $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
         }
+        if($shop_id == 6){
+            $payment_img = $base_url . 'img/bankwire_info_eurorider.jpg';
+        }
 
         return Mail::Send(
             $this->context->language->id,

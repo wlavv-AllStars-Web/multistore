@@ -734,6 +734,9 @@ abstract class PaymentModuleCore extends Module
                     if($shop_id == 1){
                         $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
                     }
+                    if($shop_id == 6){
+                        $payment_img = $base_url . 'img/bankwire_info_eurorider.jpg';
+                    }
 
                     if($this->context->shop->id != 3 && $this->context->shop->id != 2 && $this->context->shop->id != 1 && $this->context->shop->id != 6) {
                         

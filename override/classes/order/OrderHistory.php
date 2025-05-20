@@ -597,6 +597,11 @@ class OrderHistoryCore extends ObjectModel
                 if($order->id_shop == 1){
                     $payment_img = $base_url . 'img/asm/euromus_bank_info.jpg';
                 }
+                if($order->id_shop == 6){
+                    $payment_img = $base_url . 'img/bankwire_info_eurorider.jpg';
+                }
+
+                
 
 
 
