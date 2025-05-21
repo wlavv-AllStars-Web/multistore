@@ -839,7 +839,6 @@ body {
   }
 
   #new-products #main .banner-news-img{
-    height: 310px;
     overflow: hidden;
   }
 
@@ -885,7 +884,7 @@ body {
 
   #productList article {
     margin-bottom: 30px;
-
+    max-height: 260px;
   }
 
   .block-onepagecheckout.block-customer .customer-information {
