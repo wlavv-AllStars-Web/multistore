@@ -1014,6 +1014,10 @@ body {
     display: none;
   }
 
+  .menu-languageselector-mobile #language_selector {
+    width: 100%;
+  }
+
   #banner-news {
     margin-bottom: 0 !important;
   }
