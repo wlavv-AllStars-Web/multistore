@@ -1448,6 +1448,25 @@ body {
   .details-info-car-dektop{
     display: none !important;
   }
+
+  #contact #content-wrapper > .container {
+    height: 100%;
+    display: flex;
+  }
+
+  #contact #content-wrapper > .container #content{
+    height: 100%;
+  }
+
+  #contact #content-wrapper > .container #content .contact-form{
+    height: 100%;
+  }
+
+  #contact #content-wrapper > .container #content .contact-form > div{
+    height: 100%;
+  }
+
+
 }
 
 @media screen and (min-width: 564px) and (max-width: 768px) {
