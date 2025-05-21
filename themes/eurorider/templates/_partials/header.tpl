@@ -59,7 +59,7 @@
           <div class="left-nav">
             <div style="display: flex;">
               {hook h='displayNav1'}
-              <a title="Whatsapp" class="social-icon"
+              {* <a title="Whatsapp" class="social-icon"
                 style="color: rgb(255, 255, 255); margin-right: 8px; padding-right: 8px; display: flex; align-items: center; float: left; background: unset;"
                 href="https://wa.me/+351912201753" target="_blank"
                 onmouseover="this.style.color='var(--asm-color)';this.style.background='#161616'"
@@ -74,7 +74,7 @@
                   <p class="number_whatsapp_header" style="width:fit-content;margin:0;font-weight:600;">+33 0651871788</p>
                 {/if}
 
-              </a>
+              </a> *}
             </div>
           </div>
 
@@ -98,10 +98,10 @@
             <span class="languageMobile" style="font-weight: 600;"
               onclick="dropdownFlags()">{strtoupper($currentLanguageIso)}</span>
 
-            <a style="color: #fff;" href="https://wa.me/+351912201753" target="_blank" title="Whatsapp">
+            {* <a style="color: #fff;" href="https://wa.me/+351912201753" target="_blank" title="Whatsapp">
               <img src="https://www.all-stars-motorsport.com/img/whatsapp_search.png"
                 style="width: 20px; height: 20px; margin-top: -5px;" alt="Whatsapp">
-            </a>
+            </a> *}
           </div>
           <div class="col-4 d-flex justify-content-center">
             <img width="32" height="32" src="/img/eum.png" />
