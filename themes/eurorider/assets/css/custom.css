@@ -1449,6 +1449,11 @@ body {
     display: none !important;
   }
 
+  #contact #wrapper > .container {
+    display: flex;
+    height: 100%;
+  }
+
   #contact #content-wrapper > .container {
     height: 100%;
     display: flex;
