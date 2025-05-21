@@ -539,6 +539,7 @@ body {
 
   #productList #banner-news img {
     width: 100%;
+    max-width: 441px;
   }
 
 
