@@ -1018,6 +1018,10 @@ body {
     width: 100%;
   }
 
+  #_mobile_language_selector .language-selector-wrapper {
+    width: 100%;
+  }
+
   #banner-news {
     margin-bottom: 0 !important;
   }
