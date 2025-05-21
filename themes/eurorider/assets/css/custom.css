@@ -1030,6 +1030,10 @@ body {
     outline: 2px solid var(--asm-color);
   }
 
+  #banner-news .banner-news-img {
+    flex: 1;
+  }
+
 
 }
 
