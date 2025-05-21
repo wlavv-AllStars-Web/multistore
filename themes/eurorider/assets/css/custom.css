@@ -2231,7 +2231,11 @@ body {
 
   #new-products #main #banner-news{
     padding: 0;
-    min-height: 349px;
+    min-height: 300px;
+  }
+
+  #productList #banner-news img {
+    max-width: 300px;
   }
 
   #new-products #main .banner-news-img{
