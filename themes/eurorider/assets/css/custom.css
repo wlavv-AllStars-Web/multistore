@@ -1018,6 +1018,10 @@ body {
     margin-bottom: 0 !important;
   }
 
+  .product-miniature .thumbnail-container {
+    border: 1px solid #d0d0d0;
+  }
+
   .filters-sort-btn {
     color: var(--asm-color);
     padding: .5rem 1rem;
@@ -1038,6 +1042,12 @@ body {
   }
   .d-desktop{
     display: flex !important;
+  }
+
+  #productList article .thumbnail-container  {
+    height: fit-content !important;
+    margin-block: auto;
+    min-height: 314px;
   }
 
   .bg-mysidenav {
