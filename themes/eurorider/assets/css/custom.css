@@ -764,7 +764,6 @@ body {
   }
 
   .thumbnail-container {
-    width: 456px !important;
     border: 2px solid white;
     overflow: hidden;
     height: auto !important;
