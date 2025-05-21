@@ -843,8 +843,8 @@ body {
   }
 
   #new-products #main .banner-news-img img{
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
   }
 
   #products #js-product-list-top {
