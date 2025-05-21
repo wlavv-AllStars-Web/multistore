@@ -1014,6 +1014,10 @@ body {
     display: none;
   }
 
+  .container-not-found-filters {
+    margin-block: 2rem;
+  }
+
   .menu-languageselector-mobile #language_selector {
     width: 100%;
   }
