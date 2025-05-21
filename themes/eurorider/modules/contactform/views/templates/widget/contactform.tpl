@@ -194,7 +194,7 @@
               }
           </script>
 
-          <div class="whatsapp-contancts">
+          {* <div class="whatsapp-contancts">
             <div style="display:flex;align-items:center;justify-content:end;">
               <div style="display:flex;align-items:center;justify-content:center;margin-right:1rem;">
                   <img src="https://www.all-stars-motorsport.com/img/whatsapp_search.png" style="width: 50px; height: 50px;padding:3px;margin-left:1rem;" alt="Whatsapp">
@@ -219,7 +219,7 @@
                   </a>
               </div>
             </div>
-          </div>
+          </div> *}
 
           {* <div class=" whatsapp-mobile mobile">
             <div>
