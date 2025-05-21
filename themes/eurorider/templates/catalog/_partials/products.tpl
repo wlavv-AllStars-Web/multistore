@@ -159,7 +159,7 @@
 
     {if $page.page_name == 'new-products'}
       <article id="banner-news" class="d-flex flex-column justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12 " style="border-radius: .25rem .25rem 0 0;">
-        <div class="thumbnail-container reviews-loading" style="width: 526px;height:349px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative">   
+        <div class="thumbnail-container reviews-loading" style="display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative">   
           <div class="banner-news-img">
             <img src="/img/asm/banners/news/news_icon_{$language.iso_code}.webp" />
           </div>
