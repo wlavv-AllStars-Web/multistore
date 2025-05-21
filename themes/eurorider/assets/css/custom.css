@@ -1014,6 +1014,10 @@ body {
     display: none;
   }
 
+  #banner-news {
+    margin-bottom: 0 !important;
+  }
+
   .filters-sort-btn {
     color: var(--asm-color);
     padding: .5rem 1rem;
