@@ -9690,3 +9690,10 @@ transform: translate(-50%,-50%);
 .mySwiper-modal-product-images img {
   width: 100%;
 }
+
+#new-products .container-new-products {
+  padding: 0;
+}
+#new-products .container-new-products #content-wrapper{
+  padding: 0;
+}
