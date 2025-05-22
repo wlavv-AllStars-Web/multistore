@@ -177,7 +177,7 @@
                         <li>
                             <div class="float-xs-left">
                                 <span class="checkbox ets_checkinput">
-                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
+                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" autocomplete="off" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
                                 </span>
                             </div>
                             <div class="condition-label">
