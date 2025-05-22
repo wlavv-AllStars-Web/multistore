@@ -7506,3 +7506,17 @@ input[type="checkbox"]:checked::after {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 } 
+
+
+
+
+/* cms order status */
+
+.page-cms-86 .rte > div {
+  width: 100% !important;
+  padding: 2rem;
+}
+
+.page-cms-86 .rte > div >div{
+  max-width: 1000px;
+}
