@@ -6,7 +6,7 @@
 				<td width="5">&nbsp;</td>
 				<td>
 				<font size="2" face="Open-sans, sans-serif" color="#555454">
-						<img src="{$product['image']}" style="width:100px;height:auto;" />
+						<img src="{$product['image']}"  alt="image {$product['reference']}"  style="width:100px;height:auto;" />
 					</font>
 				</td>
 				<td width="10">&nbsp;</td>
