@@ -37,6 +37,11 @@ var changed_lastname_customer = false;
 var changed_firstname_invoice_customer = false;
 var changed_lastname_invoice_customer = false;
 $(document).ready(function(){
+    // reset conditions to approve on loading page
+    if(document.querySelector("#conditions_to_approve")){
+        document.querySelector("#conditions_to_approve").checked = false;
+    }
+
     ets_opc_display_customer_type();
     $(document).on('click','#form_ets_onepagecheckout input,#form_ets_onepagecheckout select',function(){
         $('#onepagecheckout-information-errros').html('');
