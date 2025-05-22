@@ -250,13 +250,9 @@ function loadKlarnaWidget_ets_opc() {
     loadKlarnaWidget(option.id, $(option).data('payment_method_category'));
 }
 
-const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput input");
-const availabilityCheckbox = document.querySelector("#availability-to-approve .checkbox.ets_checkinput input");
-const conditionsCheckboxA = document.querySelector("#conditions-to-approve a");
-const countrySelect = document.querySelector("#shipping_address_id_country");
-const addressSelect = document.querySelector("#use_shipping_address");
+const conditionsCheckbox = document.querySelector("#conditions-to-approve .checkbox.ets_checkinput")
+const conditionsCheckboxA = document.querySelector("#conditions-to-approve a")
 
-// Existing code for conditions link
 if (conditionsCheckboxA) {
     conditionsCheckboxA.addEventListener("click", (event) => {
         event.preventDefault(); 
@@ -265,113 +261,15 @@ if (conditionsCheckboxA) {
     });
 }
 
-function setPaymentClick(e) {
-    const payment_methods = document.querySelectorAll("#checkout-payment-step .payment-options .ets_payment_method")
-    payment_methods.forEach((m) => m.classList.remove("payment_method_selected"));
 
-    e.classList.add("payment_method_selected");
-
-    console.log("setPaymentClick triggered", element);
-    alert("Clicked!"); // Debugging
-}
-
-// Function to reset checkboxes and hide payment block
-function resetCheckboxesAndPayment() {
-    // Uncheck both checkboxes
-    if (conditionsCheckbox) {
-        conditionsCheckbox.checked = false;
+conditionsCheckbox.addEventListener("change", (e) => {
+    const checkbox = document.querySelector("#conditions_to_approve")
+    if(checkbox.checked){
+        document.querySelector(".block-onepagecheckout.block-payment").style.display = "block"
+    }else{
+        document.querySelector(".block-onepagecheckout.block-payment").style.display = "none"
     }
-    if (availabilityCheckbox) {
-        availabilityCheckbox.checked = false;
-    }
-
-    
-    
-    // Hide payment block
-    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-    const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
-    
-    if (paymentBlock) {
-        paymentBlock.style.display = "none";
-        paymentBlock.parentElement.style.display = "none";
-    }
-    if (alert) {
-        alert.style.display = "block";
-    }
-
-    ets_opc_displayShipping();
-
-    ets_refresh_shipping_cart(0);
-}
-
-// Add event listener for country select change
-if (countrySelect) {
-    countrySelect.addEventListener("change", resetCheckboxesAndPayment);
-}
-
-if (addressSelect) {
-    addressSelect.addEventListener("change", resetCheckboxesAndPayment);
-}
-
-// Function to check if any delivery option is selected
-function isDeliveryOptionSelected() {
-    const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
-    if (!deliveryOptions.length) return true; // If no options exist, consider it selected
-    
-    for (const option of deliveryOptions) {
-        if (option.checked) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Modified togglePaymentBlock function
-function togglePaymentBlock() {
-    const conditionsChecked = conditionsCheckbox ? conditionsCheckbox.checked : false;
-    const availabilityChecked = availabilityCheckbox ? availabilityCheckbox.checked : true; // If no availability checkbox, consider it checked
-    const alert = document.querySelector(".not-accepted-payments.alert.alert-danger");
-    const paymentBlock = document.querySelector(".block-onepagecheckout.block-payment");
-    
-    if (!paymentBlock) return;
-    
-    const showBoolean = !paymentBlock.parentElement.classList.contains("not-to-display-payments");
-    const deliverySelected = isDeliveryOptionSelected();
-    
-    const shouldShow = conditionsChecked && 
-                     (availabilityCheckbox ? availabilityChecked : true) && 
-                     showBoolean && 
-                     deliverySelected;
-
-    if (shouldShow) {
-        paymentBlock.style.display = "block";
-        paymentBlock.parentElement.style.display = "block";
-        if (alert) alert.style.display = "none";
-    } else {
-        paymentBlock.style.display = "none";
-        paymentBlock.parentElement.style.display = "none";
-        if (alert) alert.style.display = "block";
-    }
-}
-
-// Add event listeners
-if (conditionsCheckbox) {
-    conditionsCheckbox.addEventListener("change", togglePaymentBlock);
-}
-if (availabilityCheckbox) {
-    availabilityCheckbox.addEventListener("change", togglePaymentBlock);
-}
-
-// Add event listeners for delivery options
-const deliveryOptions = document.querySelectorAll('.delivery-options input[type="radio"]');
-deliveryOptions.forEach(option => {
-    option.addEventListener("change", togglePaymentBlock);
-});
-
-// Initial check
-togglePaymentBlock();
-
-resetCheckboxesAndPayment();
+})
 
 $(document).on('change','input[name="payment-option"]',function() {
     var $this = $(this);
@@ -416,23 +314,6 @@ $(document).on('change','select',function(){
 $(document).on('change','.ets-onepage-js-country',function(){
     var address_type = $(this).data('type');
     var id_country= $(this).val();
-    conditionsCheckbox.checked = false;
-
-    if(id_country == 249){
-        $('#shipping_address_vat_number').closest('.form-group').hide();
-        $('#shipping_address_dni').closest('.form-group').show();
-        $('#shipping_address_dni').prop('required', true);
-        $('#shipping_address_dni').closest('.form-group').find('label').addClass('required');
-        // console.log("canarias")
-    }else{
-        // console.log("nao é canarias")
-        $('#shipping_address_dni').closest('.form-group').hide();
-        $('#shipping_address_vat_number').closest('.form-group').show();
-        $('#shipping_address_dni').prop('required', false);
-        $('#shipping_address_dni').closest('.form-group').find('label').removeClass('required');
-    }
-
-
     if($('#'+address_type+'_postal_code').length && $('#'+address_type+'_postal_code').val())
     {
         validate_field('#'+address_type+'_postal_code');
@@ -467,18 +348,6 @@ $(document).on('change','.ets-onepage-js-country',function(){
                     $('.block-shipping .block-content').html(json.shipping_methods);
                     ets_opc_displayShipping();
                     ets_refresh_shipping_cart(0);
-
-                    // asg shipping methods + paymnet
-                    if (json.shipping_methods && !json.shipping_methods.includes('alert-danger')) {
-                        $('.not-accepted-payments').css('display', 'block');
-                        $('.block-onepagecheckout.block-payment').css('display', 'none');
-                        $('.not-accepted-payments').html(notAcceptedPaymentsMessage);
-                        $('.not-to-display-payments').removeClass('not-to-display-payments');
-                    } else {
-                        $('.not-accepted-payments').css('display', 'block');
-                        $('.not-accepted-payments').html(notAcceptedPaymentsMessageShipping);
-                        $('.block-onepagecheckout.block-payment').parent().addClass('not-to-display-payments');
-                    }
                 }
                 $('.block-onepagecheckout').removeClass('loading');
             },
@@ -628,8 +497,6 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         contentType: false,              
         success: function(json){ 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
-            loadingContainer.remove();
-            
             if(json.java_script)
                 $('body').append(json.java_script);
             if(json.hasError)
@@ -764,7 +631,6 @@ $(document).on('click','button[name="submitCompleteMyOrder"]',function(e){
         { 
             $('button[name="submitCompleteMyOrder"]').removeClass('loading');
             $("body#checkout").removeClass("loading")
-            loadingContainer.remove();
         }
     });
 });
@@ -782,7 +648,6 @@ $(document).mouseup(function (e)
     
 });
 $(document).on('change','.delivery-options-list input[type="radio"]',function(){
-    resetCheckboxesAndPayment()
     $('.block-onepagecheckout.block-payment').addClass('loading');
     $('#onepagecheckout-information-errros').html('');
     $.ajax({
@@ -888,19 +753,6 @@ $( document ).ajaxError(function( event, jqxhr, settings, thrownError){
     }
 });
 $(document ).ajaxComplete(function( event, xhr, settings ) {
-    try {
-        var response = JSON.parse(xhr.responseText); // Parse the JSON response
-
-        if (response.hasError) {  // Check if hasError is true
-            const loadingOverlay = document.querySelector(".loading-overlay");
-            if (loadingOverlay) {
-                document.body.removeChild(loadingOverlay);
-            }
-        }
-    } catch (e) {
-        console.error("Failed to parse response:", e);
-    }
-
     var data_post = settings.data;
     if(typeof data_post!= 'object' && data_post )
     {
@@ -1128,10 +980,6 @@ function ets_refresh_shipping_cart(del_product)
             },
             error: function(error)
             { 
-                const loadingOverlay = document.querySelector(".loading-overlay")
-                if(loadingOverlay){
-                    document.body.removeChild(loadingOverlay);
-                }
                 $('.loading').removeClass('loading');
             }
         });
