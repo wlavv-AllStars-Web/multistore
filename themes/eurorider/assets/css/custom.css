@@ -7521,6 +7521,7 @@ input[type="checkbox"]:checked::after {
   width: 100% !important;
   max-width: 1000px;
   margin-top: 75px !important;
-  margin-block: auto;
+  margin: auto;
+  display: flex;
   justify-content: space-between;
 }
