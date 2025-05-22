@@ -7520,4 +7520,7 @@ input[type="checkbox"]:checked::after {
 .page-cms-86 .rte > div >div{
   width: 100% !important;
   max-width: 1000px;
+  margin-top: 75px !important;
+  margin-block: auto;
+  justify-content: space-between;
 }
