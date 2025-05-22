@@ -7515,6 +7515,7 @@ input[type="checkbox"]:checked::after {
 .page-cms-86 .rte > div {
   width: 100% !important;
   padding: 2rem;
+  font-family: unset !important;
 }
 
 .page-cms-86 .rte > div >div{
@@ -7522,6 +7523,6 @@ input[type="checkbox"]:checked::after {
   max-width: 1000px;
   margin-top: 75px !important;
   margin: auto;
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
 }
