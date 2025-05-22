@@ -58,14 +58,28 @@
           </div>
 
           <div class="banners_50">
-            {foreach from=$desktop['icones_50'] item=item key=key name=name}
-              <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
-                <a href="brand/{$item['link']}">
-                  <img src="{$item['image_en']}" />
-                </a>
-              </div>
-            {/foreach}
+            <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
+              <a href="brand/{$desktop.icones_50[1].link}">
+                <img src="{$desktop.icones_50[1].image_en}" />
+              </a>
+            </div>
+            <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
+              <a href="brand/{$desktop.icones_50[0].link}">
+                <img src="{$desktop.icones_50[0].image_en}" />
+              </a>
+            </div>
+            <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
+              <a href="brand/{$desktop.icones_50[3].link}">
+                <img src="{$desktop.icones_50[3].image_en}" />
+              </a>
+            </div>
+            <div class="banner_50 col-lg-6 col-md-6 col-sm-12 px-2 px-md-2">
+              <a href="brand/{$desktop.icones_50[2].link}">
+                <img src="{$desktop.icones_50[2].image_en}" />
+              </a>
+            </div>
           </div>
+
 
           {* <div class="banners_33">
             {foreach from=$desktop['icones_33'] item=item key=key name=name}
