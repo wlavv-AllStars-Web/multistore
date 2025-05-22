@@ -63,6 +63,11 @@
               >
                 {$order.history.current.ostate_name}
               </span>
+              <span>
+                <a href="{$link->getCMSLink(86)}">
+                  <i class="material-icons">info_outline</i>
+                </a>
+              </span>
             </td>
             {* <td class="hidden-md-down">{$order.details.payment}</td> *}
             <td  class="text-center">
