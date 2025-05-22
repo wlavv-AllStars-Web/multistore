@@ -47,26 +47,6 @@
                 </div>
             </div>
 
-            <!-- block accept terms -->
-
-            {if Configuration::get('PS_CONDITIONS')}
-                <div id="conditions-to-approve" method="GET">
-                    <ul>
-                        <li>
-                            <div class="float-xs-left">
-                                <span class="checkbox ets_checkinput">
-                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
-                                </span>
-                            </div>
-                            <div class="condition-label">
-                                <label class="js-terms required" for="conditions_to_approve">
-                                    {l s='I agree to the' mod='ets_onepagecheckout'} <a href="{$link->getCMSLink(Configuration::get('PS_CONDITIONS_CMS_ID'))|escape:'html':'UTF-8'}" target="_blank">{l s='terms of service' mod='ets_onepagecheckout'}</a> {l s='and will adhere to them unconditionally.' mod='ets_onepagecheckout'}
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            {/if}
 
             <!-- block customer -->
 
@@ -188,6 +168,29 @@
                     </div>
                 </div>
             </div>
+
+            <!-- block accept terms -->
+
+            {if Configuration::get('PS_CONDITIONS')}
+                <div id="conditions-to-approve" method="GET">
+                    <ul>
+                        <li>
+                            <div class="float-xs-left">
+                                <span class="checkbox ets_checkinput">
+                                    <input id="conditions_to_approve" name="conditions_to_approve[terms-and-conditions]" value="1" class="ps-shown-by-js" type="checkbox"{if $ETS_OPC_CHECK_DEFAULT_CONDITION} checked="checked"{/if} />&nbsp; <i class="ets_checkbox"></i>
+                                </span>
+                            </div>
+                            <div class="condition-label">
+                                <label class="js-terms required" for="conditions_to_approve">
+                                    {l s='I agree to the' mod='ets_onepagecheckout'} <a href="{$link->getCMSLink(Configuration::get('PS_CONDITIONS_CMS_ID'))|escape:'html':'UTF-8'}" target="_blank">{l s='terms of service' mod='ets_onepagecheckout'}</a> {l s='and will adhere to them unconditionally.' mod='ets_onepagecheckout'}
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            {/if}
+
+
             <div class="" {if !$payment_methods} style="display:none"{/if}>
                 <div class="block-onepagecheckout block-payment" style="display: none;">
                     <div class="title-heading">
