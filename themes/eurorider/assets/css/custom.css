@@ -7570,6 +7570,9 @@ input[type="checkbox"]:checked::after {
   }
   .page-cms-86 .rte > div > div > div h2{
     line-height: 3rem;
+  }
+
+  .page-cms-86 .rte > div > div > div h2 span {
     font-size: 1.25rem;
   }
 }
