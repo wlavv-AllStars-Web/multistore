@@ -4968,6 +4968,15 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  .container-new-products > div #content-wrapper #main #products #js-product-list .products {
+    margin: unset !important;
+    gap: 0 !important;
+    row-gap: 1rem;
+  }
+  .container-new-products > div #content-wrapper #main #products #js-product-list .products .js-product{
+    margin: unset !important;
+  }
+  
   .container-new-products > div #content-wrapper #main #products #js-product-list {
     flex-direction: column;
   }
