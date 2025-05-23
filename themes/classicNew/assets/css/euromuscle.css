@@ -4138,6 +4138,9 @@ header.page-header {
 /* my account */
 
 .page-my-account #content .links a span.link-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-radius: .25rem;
   padding: 1.5rem 1rem;
   background: #f6f6f6;
