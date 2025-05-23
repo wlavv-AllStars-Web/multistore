@@ -291,7 +291,7 @@
           <div class="collapse container-drop" id="compatMobile">
             
             <div class="banner-tabs" >
-              <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
+              <img src="/img/eurorider/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
@@ -330,7 +330,7 @@
           <div class="collapse container-drop" id="shippingMobile">
             
             <div class="banner-tabs" >
-              <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+              <img src="/img/eurorider/banners/shipping/shipping_{$language.iso_code}.webp" />
             </div>
             <div class="tab">
               {hook h='extraRight' mod='totshippingpreview' mobile=1}
@@ -351,7 +351,7 @@
             {if $product.attachments}
              <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                 <div class="banner-tabs" >
-                  <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                  <img src="/img/eurorider/banners/instructions/instructions_{$language.iso_code}.webp" />
                 </div>
                 <section class="product-attachments tab">
                   {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -377,7 +377,7 @@
               
                <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
                  <div class="banner-tabs" >
-                   <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                   <img src="/img/eurorider/banners/instructions/instructions_{$language.iso_code}.webp" />
                  </div>
                  {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
                   <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
@@ -698,7 +698,7 @@
          
                   <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
                      <div class="banner-tabs" >
-                       <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
+                       <img src="/img/eurorider/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
@@ -733,7 +733,7 @@
                   {block name='product_attachments'}
                     {if $product.attachments}
                         <div class="banner-tabs" >
-                          <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                          <img src="/img/eurorider/banners/instructions/instructions_{$language.iso_code}.webp" />
                         </div>
                         <section class="product-attachments tab">
                           {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -755,7 +755,7 @@
                     {else}
 
                          <div class="banner-tabs" >
-                           <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                           <img src="/img/eurorider/banners/instructions/instructions_{$language.iso_code}.webp" />
                          </div>
                          {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
                           <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
@@ -792,7 +792,7 @@
          
                   <div  class="tab-pane fade in" id="product_shipping"  role="tabpanel">
                    <div class="banner-tabs" >
-                    <img src="/img/asm/banners/shipping/shipping_{$language.iso_code}.webp" />
+                    <img src="/img/eurorider/banners/shipping/shipping_{$language.iso_code}.webp" />
                    </div>
                     <div class="tab">
                       {hook h='extraRight' mod='totshippingpreview' mobile=0}
@@ -801,7 +801,7 @@
 
                   <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
                    <div class="banner-tabs" >
-                    <img src="/img/asm/banners/warranty/warranty_{$language.iso_code}.webp" />
+                    <img src="/img/eurorider/banners/warranty/warranty_{$language.iso_code}.webp" />
                    </div>
                    {* <pre>{$product_manufacturer|print_r}</pre> *}
                    <div style="max-width: 1350px;margin:auto;">
