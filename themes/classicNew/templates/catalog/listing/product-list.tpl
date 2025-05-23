@@ -83,7 +83,7 @@
         {/block}
 
         {block name='product_list'}
-          {include file='catalog/_partials/products.tpl' listing=$listing productClass="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3"}
+          {include file='catalog/_partials/products.tpl' listing=$listing productClass="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3"}
         {/block}
 
         {block name='product_list_bottom'}
