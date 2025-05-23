@@ -30,7 +30,7 @@
 
     {if $cars_products_page}
         {if $compat}
-          <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3" itemscope itemtype="http://schema.org/Product" style="display:flex;flex-direction: column;border-radius:0.25rem;" id_compat="{$compat['id_compat']}">
+          <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" itemscope itemtype="http://schema.org/Product" style="display:flex;flex-direction: column;border-radius:0.25rem;" id_compat="{$compat['id_compat']}">
           <div class="miniature-car" style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
             <div style="width: 100%;height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;position:relative;">
                 <img class="img-responsive" src="{$compat['cartoon']}" 
@@ -102,9 +102,9 @@
             {* <pre>{$product|print_r}</pre> *}
             {block name='product_miniature'}
               {if $index > 2}
-                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3" lazy=true}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" lazy=true}
               {else}
-                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3"}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product productClasses="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"}
               {/if}
             {/block}
         {/foreach}
