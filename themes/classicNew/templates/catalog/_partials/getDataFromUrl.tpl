@@ -122,8 +122,11 @@
             // }
  
         }
-        $('#name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
-        $('#name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">'+ nrItems + '</span>');
+        $('.filters-desktop #name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
+        $('.filters-mobile #name_sort_by').html(deleteHtmlParameters + '{l s="Sort By" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + $('.products-sort-order .dropdown-menu .current').text() + '</span>');
+        
+        $('.filters-desktop #name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">'+ nrItems + '</span>');
+        $('.filters-mobile #name_items_per_page').html(deleteHtmlNrItems + '{l s="Per Page" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">'+ nrItems + '</span>');
 
         if ($('body#category').length > 0) {
             category_name = document.querySelector("nav.breadcrumb li:last-child span").textContent
@@ -133,13 +136,15 @@
             //     category_name = $('#category_element_' + idCategory).text();
         }
         // console.log(deleteHtmlCategory)
-        $('#name_category').html(deleteHtmlCategory + '{l s="By Category" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + category_name + '</span>');
+        $('.filters-desktop #name_category').html(deleteHtmlCategory + '{l s="By Category" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + category_name + '</span>');
+        $('.filters-mobile #name_category').html(deleteHtmlCategory + '{l s="By Category" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + category_name + '</span>');
 
         if ($('body#manufacturer').length > 0) { manufacturer = $('#id_current_manufacturer_name').val();
         }else{
             manufacturer = $('#manufacturer_' + idManufacturer).text();
         }
-        $('#name_brand').html(deleteHtmlManufacturers + '{l s="By Brand" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + manufacturer + '</span>');
+        $('.filters-desktop #name_brand').html(deleteHtmlManufacturers + '{l s="By Brand" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + manufacturer + '</span>');
+        $('.filters-mobile #name_brand').html(deleteHtmlManufacturers + '{l s="By Brand" d="Shop.Theme.SortOrders"} <span style="var(--euromus-color-300);font-size: 0.85rem;">' + manufacturer + '</span>');
 
         if(news == 1){
             $('#multiFilter_news').val(1);
