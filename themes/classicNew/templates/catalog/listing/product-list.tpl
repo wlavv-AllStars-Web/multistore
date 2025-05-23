@@ -71,9 +71,9 @@
         </div>
       
         <div class="filters-desktop">
-        {block name='product_list_top'}
-          {include file='catalog/_partials/products-top.tpl' listing=$listing}
-        {/block}
+          {block name='product_list_top'}
+            {include file='catalog/_partials/products-top.tpl' listing=$listing}
+          {/block}
         </div>
 
         {block name='product_list_active_filters'}
@@ -138,36 +138,26 @@
 
   <script>
     function swapFiltersByScreenSize() {
-  const isMobile = window.innerWidth <= 992; // Check if it's a mobile screen
-  const mobileContainer = document.querySelector('.filters-mobile');
-  const desktopContainer = document.querySelector('.filters-desktop');
+      const isMobile = window.innerWidth <= 992; // Check if it's a mobile screen
+      const mobileContainer = document.querySelector('.filters-mobile');
+      const desktopContainer = document.querySelector('.filters-desktop');
 
-  const parentElement = mobileContainer.parentElement;
+      const parentElement = mobileContainer.parentElement;
 
-  if (isMobile) {
-    // Swap to put mobile filters first
-    if (!parentElement.contains(mobileContainer)) {
-      parentElement.appendChild(mobileContainer);
+      if (isMobile) {
+        mobileContainer.style.display = 'block';
+        desktopContainer.style.display = 'none';
+      } else {
+        mobileContainer.style.display = 'none';
+        desktopContainer.style.display = 'block';
+      }
     }
-    if (parentElement.contains(desktopContainer)) {
-      parentElement.removeChild(desktopContainer);
-    }
-  } else {
-    // Swap to put desktop filters first
-    if (!parentElement.contains(desktopContainer)) {
-      parentElement.appendChild(desktopContainer);
-    }
-    if (parentElement.contains(mobileContainer)) {
-      parentElement.removeChild(mobileContainer);
-    }
-  }
-}
 
-// Initial check when the page loads
-swapFiltersByScreenSize();
+    // Initial check when the page loads
+    swapFiltersByScreenSize();
 
-// Re-check on window resize
-window.addEventListener('resize', swapFiltersByScreenSize);
+    // Re-check on window resize
+    window.addEventListener('resize', swapFiltersByScreenSize);
 
   </script>
 {/block}
