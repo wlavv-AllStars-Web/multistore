@@ -7540,6 +7540,10 @@ input[type="checkbox"]:checked::after {
     margin-top: 1rem;
   }
 
+  .page-cms-86 .rte > div > div:first-child {
+    font-size: 1.25rem;  
+  }
+
   .page-cms-86 .rte > div > div:nth-child(even) {
     flex-direction: column;
   }
