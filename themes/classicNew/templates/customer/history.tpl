@@ -58,6 +58,11 @@
               >
                 {$order.history.current.ostate_name}
               </span>
+              <span>
+                <a href="{$link->getCMSLink(86)}">
+                  <i class="material-icons">info_outline</i>
+                </a>
+              </span>
             </td>
             <td class="text-sm-center hidden-md-down">
               {if $order.details.invoice_url}
