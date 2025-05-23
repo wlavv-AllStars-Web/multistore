@@ -244,7 +244,7 @@
             <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
             {/if}
             {if $page.page_name == "manufacturer"}
-              <span>{$manufacturer['name']}</span>
+              <span style="color:#444;font-size: 0.85rem;">{$manufacturer['name']}</span>
             {/if}
           </span>
           {if $page.page_name != "manufacturer"}
