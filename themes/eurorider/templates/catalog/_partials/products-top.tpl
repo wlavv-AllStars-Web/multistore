@@ -242,24 +242,28 @@
     </div>
   </div>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.dropdown-menu button[data-toggle="collapse"]').forEach((collapseElement) => {
-            // Prevent dropdown from closing when interacting with collapsible content
-            collapseElement.addEventListener('click',(e) => {
-                e.stopPropagation();
+    let clickCount = 0;
 
-                let collapseEl = collapseElement.parentElement.nextElementSibling
-                // Toggle the `collapsed` class on the button dynamically
-                if (collapseEl.classList.contains('collapsed')) {
-                    collapseEl.classList.remove('collapsed');
-                    collapseEl.classList.add('collapse');
-                } else {
-                    collapseEl.classList.add('collapsed');
-                    collapseEl.classList.remove('collapse');
-                }
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.dropdown-menu button.btn-custom-category').forEach((collapseElement) => {
+        collapseElement.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clickCount++;
+
+          const collapseEl = collapseElement.parentElement.nextElementSibling;
+
+          if (collapseEl.classList.contains('collapsed')) {
+            collapseEl.classList.remove('collapsed');
+            collapseEl.classList.add('collapse');
+          } else {
+            collapseEl.classList.add('collapsed');
+            collapseEl.classList.remove('collapse');
+          }
+
         });
+      });
     });
+
 
   </script>
 
