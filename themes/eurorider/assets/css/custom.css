@@ -5033,6 +5033,7 @@ ul {
   width: 100%;
   padding: 0;
   border: none;
+  user-select: none;
 }
 .dropdown-menu.menu-logos #ukoocompat_search_block_1 {
   padding: 0;
