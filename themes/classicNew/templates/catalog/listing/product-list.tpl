@@ -161,4 +161,33 @@
     window.addEventListener('resize', swapFiltersByScreenSize);
 
   </script>
+
+
+{include file='catalog/_partials/setFilterData.tpl'}
+{include file='catalog/_partials/getDataFromUrl.tpl'}
+
+<script defer="defer">
+  $('document').ready(function () {
+
+  // disable_cursor_hover();
+  // $('#nb_item').unbind('change');
+  getDataFromUrl();
+
+  });
+
+  function disable_cursor_hover(){
+    if($('#manufacturer').length > 0) {
+        $('.wmbtnlayered_brand').css('cursor', 'none');
+        $('.wmbtnlayered_brand > a').css('cursor', 'none');
+        $('#multiFilter_id_manufacturer').val($('#id_current_manufacturer').val());
+    }
+    if($('#category').length > 0) {
+        $('.wmbtnlayered_category').css('cursor', 'none');
+        $('.wmbtnlayered_category > a').css('cursor', 'none');
+        $('#multiFilter_id_category').val($('#id_current_category').val());
+    }
+  }
+</script>
+
 {/block}
+
