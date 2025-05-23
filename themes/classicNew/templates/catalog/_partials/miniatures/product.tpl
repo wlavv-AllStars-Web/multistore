@@ -132,6 +132,36 @@
         {* {include file='catalog/_partials/product-flags.tpl'} *}
       </div>
     </article>
+
+    
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('article.product-miniature').forEach((article) => {
+          const productLink = article.querySelector('.product-title a');
+
+          // Click on the whole article
+          article.addEventListener('click', function (e) {
+            // If the click originated from inside an "add-to-cart" button, do nothing
+            if (e.target.closest('.add-to-cart')) return;
+
+            // Simulate a click on the product link
+            if (productLink) {
+              window.location.href = productLink.href;
+            }
+          });
+
+          // Prevent click propagation on all add-to-cart buttons
+        //   article.querySelectorAll('.add-to-cart').forEach((btn) => {
+        //     btn.addEventListener('click', function (e) {
+        //       e.stopPropagation(); // Don't trigger the article click
+        //     });
+        //   });
+        });
+      });
+
+    </script>
+
     
   </div>
   {/block}
