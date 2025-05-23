@@ -99,8 +99,8 @@
 
       <a class="col-lg-4 col-md-6 col-sm-6 col-xs-6" id="identity-link" href="{$urls.pages.my_cars}">
         <span class="link-item">
-          <i class="fa-solid fa-car"></i>
-          {l s='My Cars' d='Shop.Theme.CustomerAccount'}
+          <i class="fa-solid fa-motorcycle"></i>
+          {l s='My Bikes' d='Shop.Theme.CustomerAccount'}
         </span>
       </a>
 
