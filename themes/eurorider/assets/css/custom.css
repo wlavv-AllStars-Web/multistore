@@ -7551,4 +7551,7 @@ input[type="checkbox"]:checked::after {
     width: 100% !important;
     text-align: left !important;
   }
+  .page-cms-86 .rte > div > div > div h2{
+    line-height: 3rem;
+  }
 }
