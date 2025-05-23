@@ -4963,6 +4963,10 @@ form .form-control-label {
 }
 
 @media screen and (max-width: 768px) {
+  .container-new-products > div #content-wrapper #main #products #js-product-list {
+    flex-direction: column;
+  }
+
   /* checkout */
   .container-checkout {
     padding: 0 !important;
@@ -7159,6 +7163,7 @@ transform: translate(-50%,-50%);
     padding: .5rem 1rem;
     background: var(--euromus-color-700);
     border-radius: .25rem;
+    margin-left: 1rem;
   }
 
   .js-product.product article {
