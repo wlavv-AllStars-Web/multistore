@@ -4971,7 +4971,7 @@ form .form-control-label {
   .container-new-products > div #content-wrapper #main #products #js-product-list .products {
     margin: unset !important;
     gap: 0 !important;
-    row-gap: 1rem;
+    row-gap: 1rem !important;
   }
   .container-new-products > div #content-wrapper #main #products #js-product-list .products .js-product{
     margin: unset !important;
