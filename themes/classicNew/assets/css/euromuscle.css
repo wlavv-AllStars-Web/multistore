@@ -9374,7 +9374,7 @@ transform: translate(-50%,-50%);
 /* product page */
 @media screen and (min-width: 768px){
   #cars-products #products #js-product-list {
-    padding: 0 !important;
+    padding: 0 1rem !important;
   }
 
   #js-product-list {
