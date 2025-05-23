@@ -149,7 +149,7 @@
         desktopContainer.style.display = 'none';
       } else {
         mobileContainer.style.display = 'none';
-        desktopContainer.style.display = 'flex';
+        desktopContainer.style.display = 'block';
       }
     }
 
