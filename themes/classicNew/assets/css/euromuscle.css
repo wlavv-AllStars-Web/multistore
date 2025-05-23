@@ -4977,7 +4977,7 @@ form .form-control-label {
     margin: unset !important;
   }
   
-  .container-new-products > div #content-wrapper #main #products #js-product-list {
+  #content-wrapper #main #products #js-product-list {
     flex-direction: column;
   }
 
