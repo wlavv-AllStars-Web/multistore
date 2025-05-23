@@ -7547,6 +7547,16 @@ input[type="checkbox"]:checked::after {
     flex-direction: column-reverse;
   }
 
+  .page-cms-86 .rte > div > div:nth-child(even) div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) div:nth-child(1){
+    display: flex;
+    justify-content: center;
+  }
+
   .page-cms-86 .rte > div > div > div {
     width: 100% !important;
     text-align: left !important;
