@@ -325,55 +325,28 @@
 
 <script>
 
-  // if(document.querySelector('button[data-button-action="add-pack-to-cart"]')){
-  //   document.querySelector('[data-button-action="add-pack-to-cart"]').addEventListener('click', function (event) {
-  //     event.preventDefault(); // Prevent the default form submission
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('article.product-miniature').forEach((article) => {
+      const productLink = article.querySelector('.product-title a');
 
-  //     const button = event.currentTarget;
-  //     const form = button.closest('form'); // Find the nearest form element
-  //     if (!form) {
-  //       console.error('No form found for the button.');
-  //       return;
-  //     }
+      // Click on the whole article
+      article.addEventListener('click', function (e) {
+        // If the click originated from inside an "add-to-cart" button, do nothing
+        if (e.target.closest('.add-to-cart')) return;
 
-  //     const formData = new FormData(form);
+        // Simulate a click on the product link
+        if (productLink) {
+          window.location.href = productLink.href;
+        }
+      });
 
-  //     fetch(form.action, {
-  //       method: form.method,
-  //       body: formData,
-  //     })
-  //       .then((response) => response.json()) // Adjust based on your server's response type
-  //       .then((data) => {
-  //         console.log('Response:', data);
-
-  //         prestashop.emit('updateCart', {
-  //           reason: {
-  //             idProduct: data.idProduct,
-  //             idProductAttribute: data.id_product_attribute,
-  //             linkAction: 'add-to-cart',
-  //             cart: data.cart
-  //           },
-  //           resp: data.cart
-  //         });
-  //         // Use the response data as needed
-  //         const modal = document.querySelector("#blockcart-modal");
-
-  //         if (modal) {
-  //         // Set the product image
-  //           const productImage = modal.querySelector(".modal-body .product-image");
-  //           if (productImage && data.cart.products.length > 0) {
-  //             const product = data.cart.products[0]; // Use the first product in the cart
-  //             productImage.setAttribute("src", product.cover.bySize.cart_default.url);
-  //           }
-  //         }
-
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error:', error);
-  //         alert('Failed to add product to cart.');
-  //       });
-  //   });
-  // }
-
+      // Prevent click propagation on all add-to-cart buttons
+    //   article.querySelectorAll('.add-to-cart').forEach((btn) => {
+    //     btn.addEventListener('click', function (e) {
+    //       e.stopPropagation(); // Don't trigger the article click
+    //     });
+    //   });
+    });
+  });
 
 </script>
