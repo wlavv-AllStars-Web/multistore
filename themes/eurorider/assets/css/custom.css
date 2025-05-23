@@ -7547,6 +7547,10 @@ input[type="checkbox"]:checked::after {
     flex-direction: column-reverse;
   }
 
+  .page-cms-86 .rte > div > div:nth-child(even) div:nth-child(1) > div {
+    font-size: 1rem;
+  }
+
   .page-cms-86 .rte > div > div:nth-child(even) div:nth-child(3) {
     display: flex;
     justify-content: center;
@@ -7556,6 +7560,9 @@ input[type="checkbox"]:checked::after {
     display: flex;
     justify-content: center;
   }
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) div:nth-child(3) > div{
+    font-size: 1rem;
+  }
 
   .page-cms-86 .rte > div > div > div {
     width: 100% !important;
@@ -7563,5 +7570,6 @@ input[type="checkbox"]:checked::after {
   }
   .page-cms-86 .rte > div > div > div h2{
     line-height: 3rem;
+    font-size: 1.25rem;
   }
 }
