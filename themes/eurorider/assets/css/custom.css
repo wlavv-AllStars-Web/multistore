@@ -7526,8 +7526,21 @@ input[type="checkbox"]:checked::after {
 .page-cms-86 .rte > div >div{
   width: 100% !important;
   max-width: 1000px;
-  margin-top: 75px !important;
   margin: auto;
   display: flex !important;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+
+  .page-cms-86 .rte > p img {
+    width: 100%;
+  }
+  .page-cms-86 .rte > div > div {
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+  .page-cms-86 .rte > div > div > div {
+    width: 100% !important;
+  }
 }
