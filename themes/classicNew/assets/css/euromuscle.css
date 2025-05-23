@@ -9720,6 +9720,7 @@ transform: translate(-50%,-50%);
   margin: auto;
   display: flex !important;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .page-cms-86 .rte > p img {
