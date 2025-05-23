@@ -4884,6 +4884,7 @@ justify-content: center;
   flex-direction:row-reverse;
   height:100%;
   width:100%;
+  gap: .5rem;
 }
 
 .images-container.js-images-container .product-cover {
