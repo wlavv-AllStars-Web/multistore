@@ -94,6 +94,11 @@
                 >
                   {$order.history.current.ostate_name}
                 </span>
+                <span>
+                  <a href="{$link->getCMSLink(86)}">
+                    <i class="material-icons">info_outline</i>
+                  </a>
+                </span>
               </div>
             </div>
             <div class="col-xs-2 text-xs-right">

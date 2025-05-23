@@ -9697,3 +9697,77 @@ transform: translate(-50%,-50%);
 #new-products .container-new-products #content-wrapper{
   padding: 0;
 }
+
+
+
+
+/* cms order status */
+
+.page-cms-86 .rte{
+  max-width: 1440px;
+  margin: auto;
+}
+
+.page-cms-86 .rte > div {
+  width: 100% !important;
+  padding: 2rem;
+  font-family: unset !important;
+}
+
+.page-cms-86 .rte > div >div{
+  width: 100% !important;
+  max-width: 1000px;
+  margin: auto;
+  display: flex !important;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+
+  .page-cms-86 .rte > p img {
+    width: 100%;
+  }
+  .page-cms-86 .rte > div > div {
+    margin-top: 1rem;
+  }
+
+  .page-cms-86 .rte > div > div:first-child {
+    font-size: 1.25rem;  
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(even) {
+    flex-direction: column;
+  }
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) {
+    flex-direction: column-reverse;
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(even) div:nth-child(1) > div {
+    font-size: 1rem;
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(even) div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) div:nth-child(1){
+    display: flex;
+    justify-content: center;
+  }
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) div:nth-child(3) > div{
+    font-size: 1rem;
+  }
+
+  .page-cms-86 .rte > div > div > div {
+    width: 100% !important;
+    text-align: left !important;
+  }
+  .page-cms-86 .rte > div > div > div h2{
+    line-height: 3rem;
+  }
+
+  .page-cms-86 .rte > div > div > div h2 span {
+    font-size: 1.25rem;
+  }
+}
