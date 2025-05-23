@@ -39,7 +39,7 @@
     <input type="hidden" id="temp_multiFilter_id_category" name="temp_id_category" value="{$id_category}"/>
     <input type="hidden" id="selected_filter_4" name="selected_filter_4" value="{$selected_filter_4}"/>
     <input type="hidden" id="temp_multiFilter_root_page" name="temp_root_file" value="{$root_page}"/>
-    <input type="hidden" id="id_current_manufacturer" name="id_current_manufacturer" value="{$manufacturer.id}"/>
+    <input type="hidden" id="id_current_manufacturer_name" name="id_current_manufacturer_name" value="{$manufacturer.name}"/>
 
 
     {block name='subcategory_list'}
