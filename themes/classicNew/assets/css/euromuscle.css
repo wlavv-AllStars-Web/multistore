@@ -2458,6 +2458,7 @@ a:focus{
         max-width: 280px;
         margin-top: .5rem;
         border-radius: .5rem;
+        width: 100%;
       }
 
       .product-comment-list-item{
@@ -3165,6 +3166,7 @@ a:focus{
       max-width: 280px;
       margin-top: .5rem;
       border-radius: .5rem;
+      width: 100%;
     }
 
     #_desktop_user_info .user-info a:focus {
