@@ -9714,17 +9714,21 @@ transform: translate(-50%,-50%);
   font-family: unset !important;
 }
 
-.page-cms-86 .rte > div >div{
+.page-cms-86 .rte > div > div{
   width: 100% !important;
   max-width: 1000px;
   margin: auto;
   display: flex !important;
   justify-content: space-between;
-  flex-direction: column;
 }
 
 .page-cms-86 .rte > p img {
   width: 100%;
+}
+
+.page-cms-86 .rte > div > div:first-child {
+  font-size: 1.25rem;  
+  flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
