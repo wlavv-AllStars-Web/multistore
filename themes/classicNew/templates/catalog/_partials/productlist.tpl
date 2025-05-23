@@ -46,7 +46,7 @@
     
                 <div class="mobile details-info-car-mobile">
                   <span style="background: #333;"><img src="{$compat['brand_logo']}" style="width: 40px;padding: .25rem"/></span>
-                  <span>|</span>
+                  {* <span>|</span> *}
                   <span style="color: var(--asm-color) !important;">{$compat['model']}</span>
                   <span>|</span>
                   <span>{$compat['type']}</span>
