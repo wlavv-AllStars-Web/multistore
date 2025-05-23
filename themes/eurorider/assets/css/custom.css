@@ -7549,5 +7549,6 @@ input[type="checkbox"]:checked::after {
 
   .page-cms-86 .rte > div > div > div {
     width: 100% !important;
+    text-align: left !important;
   }
 }
