@@ -246,8 +246,12 @@ body {
 }
 
 .collapse-container-category {
-  background: var(--bg-7);
-  color: var(--white);
+  background: #d0d0d0;
+  color: #333;
+}
+
+.collapse-container-category li:hover{
+  color: #fff;
 }
 
 .collapse-container-category li{
