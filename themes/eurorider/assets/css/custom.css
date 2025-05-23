@@ -7531,7 +7531,7 @@ input[type="checkbox"]:checked::after {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
   .page-cms-86 .rte > p img {
     width: 100%;

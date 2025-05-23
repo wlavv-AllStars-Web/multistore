@@ -9731,7 +9731,7 @@ transform: translate(-50%,-50%);
   flex-direction: column;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
   .page-cms-86 .rte > p img {
     width: 100%;
