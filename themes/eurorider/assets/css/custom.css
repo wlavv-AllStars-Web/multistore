@@ -7538,8 +7538,15 @@ input[type="checkbox"]:checked::after {
   }
   .page-cms-86 .rte > div > div {
     margin-top: 1rem;
+  }
+
+  .page-cms-86 .rte > div > div:nth-child(even) {
     flex-direction: column;
   }
+  .page-cms-86 .rte > div > div:nth-child(odd):not(:first-child) {
+    flex-direction: column-reverse;
+  }
+
   .page-cms-86 .rte > div > div > div {
     width: 100% !important;
   }
