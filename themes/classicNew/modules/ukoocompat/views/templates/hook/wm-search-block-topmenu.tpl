@@ -41,7 +41,7 @@
                         </form>
                     </div>
                     
-                    {if $page_name =='index'}
+                    {* {if $page_name =='index'} *}
                         <div style="display: none;">
                             
                             <form id="ukoocompat_clear_my_cars_custom_form" action="/{$lang_iso}/module/ukoocompat/listing" method="GET"> 
@@ -65,7 +65,7 @@
                             </form>    
                             
                         </div>
-                    {/if}
+                    {* {/if} *}
 
             <div  class="filterLogo" >
             {foreach from=$search->filters item=filter}
