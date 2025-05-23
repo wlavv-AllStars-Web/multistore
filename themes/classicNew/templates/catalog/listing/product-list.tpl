@@ -145,11 +145,11 @@
       const parentElement = mobileContainer.parentElement;
 
       if (isMobile) {
-        mobileContainer.style.display = 'block';
+        mobileContainer.style.display = 'flex';
         desktopContainer.style.display = 'none';
       } else {
         mobileContainer.style.display = 'none';
-        desktopContainer.style.display = 'block';
+        desktopContainer.style.display = 'flex';
       }
     }
 
