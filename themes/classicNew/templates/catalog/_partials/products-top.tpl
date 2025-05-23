@@ -243,6 +243,9 @@
             {if $page.page_name != "manufacturer"}
             <i class="material-icons pull-xs-right" translate="no">arrow_drop_down</i>
             {/if}
+            {if $page.page_name == "manufacturer"}
+              <span>{$manufacturer['name']}</span>
+            {/if}
           </span>
           {if $page.page_name != "manufacturer"}
             <div class="dropdown-menu">
