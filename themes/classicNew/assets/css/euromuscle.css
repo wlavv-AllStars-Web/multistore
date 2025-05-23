@@ -9722,6 +9722,10 @@ transform: translate(-50%,-50%);
   justify-content: space-between;
 }
 
+.page-cms-86 .rte > p img {
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
 
   .page-cms-86 .rte > p img {
