@@ -242,13 +242,11 @@
     </div>
   </div>
   <script>
-    let clickCount = 0;
 
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.dropdown-menu button.btn-custom-category').forEach((collapseElement) => {
         collapseElement.addEventListener('click', (e) => {
           e.stopPropagation();
-          clickCount++;
 
           const collapseEl = collapseElement.parentElement.nextElementSibling;
 
