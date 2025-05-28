@@ -48,16 +48,16 @@ class ReferencesType extends TranslatorAwareType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference', TextType::class, [
-                'required' => false,
-                'label' => $this->trans('Reference', 'Admin.Global'),
-                'label_help_box' => $this->trans('Allowed special characters: %allowed_characters%', 'Admin.Global', ['%allowed_characters%' => '.-_#']),
-                'constraints' => [
-                    new TypedRegex(TypedRegex::TYPE_REFERENCE),
-                    new Length(['max' => Reference::MAX_LENGTH]),
-                ],
-                'empty_data' => '',
-            ])
+            // ->add('reference', TextType::class, [
+            //     'required' => false,
+            //     'label' => $this->trans('Reference', 'Admin.Global'),
+            //     'label_help_box' => $this->trans('Allowed special characters: %allowed_characters%', 'Admin.Global', ['%allowed_characters%' => '.-_#']),
+            //     'constraints' => [
+            //         new TypedRegex(TypedRegex::TYPE_REFERENCE),
+            //         new Length(['max' => Reference::MAX_LENGTH]),
+            //     ],
+            //     'empty_data' => '',
+            // ])
             ->add('mpn', TextType::class, [
                 'required' => false,
                 'label' => $this->trans('MPN', 'Admin.Catalog.Feature'),
@@ -77,16 +77,16 @@ class ReferencesType extends TranslatorAwareType
                 ],
                 'empty_data' => '',
             ])
-            ->add('ean_13', TextType::class, [
-                'required' => false,
-                'label' => $this->trans('EAN-13 or JAN barcode', 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->trans('This type of product code is specific to Europe and Japan, but is widely used internationally. It is a superset of the UPC code: all products marked with an EAN will be accepted in North America.', 'Admin.Catalog.Help'),
-                'constraints' => [
-                    new TypedRegex(TypedRegex::TYPE_EAN_13),
-                    new Length(['max' => Ean13::MAX_LENGTH]),
-                ],
-                'empty_data' => '',
-            ])
+            // ->add('ean_13', TextType::class, [
+            //     'required' => false,
+            //     'label' => $this->trans('EAN-13 or JAN barcode', 'Admin.Catalog.Feature'),
+            //     'label_help_box' => $this->trans('This type of product code is specific to Europe and Japan, but is widely used internationally. It is a superset of the UPC code: all products marked with an EAN will be accepted in North America.', 'Admin.Catalog.Help'),
+            //     'constraints' => [
+            //         new TypedRegex(TypedRegex::TYPE_EAN_13),
+            //         new Length(['max' => Ean13::MAX_LENGTH]),
+            //     ],
+            //     'empty_data' => '',
+            // ])
             ->add('isbn', TextType::class, [
                 'required' => false,
                 'label' => $this->trans('ISBN', 'Admin.Catalog.Feature'),
