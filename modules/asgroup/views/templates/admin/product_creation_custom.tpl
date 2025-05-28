@@ -4,10 +4,6 @@
     <div class="col-lg-9">
         {*  *}
         <div class="form-group">
-            <h3>
-                References
-
-            </h3>
             <div id="product_details_references" class="form-columns-3">
                 <div class="form-group text-widget"> <label for="product_details_references_reference">
                         Reference
@@ -27,37 +23,6 @@
 
                 </div>
 
-                <div class="form-group text-widget"> <label for="product_details_references_mpn">
-                        MPN
-
-
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="MPN is used internationally to identify the Manufacturer Part Number."
-                            data-placement="top" data-original-title="" title="">
-                        </span>
-                    </label>
-                    <input type="text" id="product_details_references_mpn" name="product[details][references][mpn]"
-                        aria-label="product_details_references_mpn input" class="form-control" value="{$product->mpn}">
-
-
-
-                </div>
-
-                <div class="form-group text-widget"> <label for="product_details_references_upc">
-                        UPC barcode
-
-
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="This type of product code is widely used in the United States, Canada, the United Kingdom, Australia, New Zealand and in other countries."
-                            data-placement="top" data-original-title="" title="">
-                        </span>
-                    </label>
-                    <input type="text" id="product_details_references_upc" name="product[details][references][upc]"
-                        aria-label="product_details_references_upc input" class="form-control" value="{$product->upc}">
-
-
-
-                </div>
 
                 <div class="form-group text-widget"> <label for="product_details_references_ean_13">
                         EAN-13 or JAN barcode
@@ -79,24 +44,9 @@
                                 class="barcode-white"> </i></button>
                         <input type="text"
                             id="product_details_references_ean_13" name="product[details][references][ean_13]"
-                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean_13}"></div>
+                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean13}"></div>
                 </div>
 
-                <div class="form-group text-widget"> <label for="product_details_references_isbn">
-                        ISBN
-
-
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="The International Standard Book Number (ISBN) is used to identify books and other publications."
-                            data-placement="top" data-original-title="" title="">
-                        </span>
-                    </label>
-                    <input type="text" id="product_details_references_isbn" name="product[details][references][isbn]"
-                        aria-label="product_details_references_isbn input" class="form-control" value="{$product->isbn}">
-
-
-
-                </div>
 
             </div>
         </div>
