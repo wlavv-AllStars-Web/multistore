@@ -432,7 +432,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         
         $product = new \Product((int)$productId, true, $context->language->id, $context->shop->id);
 
-        $this->formBuilderModifier->addAfter(
+        $this->formBuilderModifier->addBefore(
             $productFormBuilder,
             'description',
             'product_creation_custom_html',
