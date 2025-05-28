@@ -49,7 +49,7 @@
                             <button id="product_details_print_ean"
                                 name="product[details][print_ean]" class="btn-secondary print_ean_btn ml-auto btn"
                                 onclick="generateEan()" type="button" style="display: flex; padding: 0px 0.5rem;">
-                                <i class="material-icons">dehaze</i>
+                                <i class="material-icons" style="transform: rotate(90deg);">dehaze</i>
                             </button>
                             <input type="text"
                                 id="product_details_references_ean_13" name="product[details][references][ean_13]"
