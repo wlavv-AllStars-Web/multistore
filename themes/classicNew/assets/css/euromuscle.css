@@ -315,6 +315,7 @@ main > #wrapper {
   height: 100%;
   display: flex;
   align-items: center;
+  max-height: 100px;
 }
 
 .mySwiper-thumb-images .js-thumb-container img {
