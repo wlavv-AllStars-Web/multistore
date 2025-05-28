@@ -592,7 +592,7 @@
             <div class="tab-pane fade in active" id="description" role="tabpanel">
               {if $product.description}
                 <div class="banner-tabs" >
-                  <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                  <img src="/img/eurmuscle/bannersProduct/brands/{$product_manufacturer->id}_{$language.iso_code}.webp" />
                 </div>
                 <div class="tab-description" style="display: flex;justify-content:center;">
                   {block name='product_description'}
@@ -624,7 +624,7 @@
                     {/if} *}
               {else}
                 <div class="banner-tabs" >
-                  <img src="https://www.all-stars-motorsport.com/img/app_icons/description/99_en.webp" />
+                  <img src="/img/eurmuscle/bannersProduct/brands/{$product_manufacturer->id}_{$language.iso_code}.webp" />
                 </div>
                 <div class="tab-description" style="display: flex;">
                   {block name='product_description'}

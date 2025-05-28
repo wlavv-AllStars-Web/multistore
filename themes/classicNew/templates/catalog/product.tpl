@@ -237,7 +237,7 @@
                 {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
                 {if $product.description}
                   <div class="banner-tabs" >
-                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}" />
+                    <img src="/img/eurmuscle/bannersProduct/brands/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}" />
                   </div>
                   <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
                     {block name='product_description'}
@@ -270,7 +270,7 @@
                       {/if} *}
                 {else}
                   <div class="banner-tabs" >
-                    <img src="/img/asm/banners/description/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}"/>
+                    <img src="/img/eurmuscle/bannersProduct/brands/{$product_manufacturer->id}_{$language.iso_code}.webp" alt="banner manufacturer {$product_manufacturer->id}"/>
                   </div>
                   <div class="tab-description tab" style="display: flex;">
                     {block name='product_description'}
