@@ -22,7 +22,7 @@
                     <input type="text" id="product_details_references_reference"
                         name="product[details][references][reference]"
                         aria-label="product_details_references_reference input" class="form-control"
-                        value="URUS-RE2-2380">
+                        value="{$product.reference}">
 
 
 
@@ -38,7 +38,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_mpn" name="product[details][references][mpn]"
-                        aria-label="product_details_references_mpn input" class="form-control">
+                        aria-label="product_details_references_mpn input" class="form-control" value="{$product.mpn}">
 
 
 
@@ -54,7 +54,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_upc" name="product[details][references][upc]"
-                        aria-label="product_details_references_upc input" class="form-control">
+                        aria-label="product_details_references_upc input" class="form-control" value="{$product.upc}">
 
 
 
@@ -73,12 +73,14 @@
 
 
 
-                    <div class="container-ean-btn"><button id="product_details_print_ean"
+                    <div class="container-ean-btn">
+                        <button id="product_details_print_ean"
                             name="product[details][print_ean]" class="btn-secondary print_ean_btn ml-auto btn"
                             onclick="generateEan()" type="button" style="display: flex; padding: 0px 0.5rem;"><i
-                                class="barcode-white"> </i></button><input type="text"
+                                class="barcode-white"> </i></button>
+                        <input type="text"
                             id="product_details_references_ean_13" name="product[details][references][ean_13]"
-                            aria-label="product_details_references_ean_13 input" class="form-control"></div>
+                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product.ean_13}"></div>
                 </div>
 
                 <div class="form-group text-widget"> <label for="product_details_references_isbn">
@@ -91,7 +93,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_isbn" name="product[details][references][isbn]"
-                        aria-label="product_details_references_isbn input" class="form-control">
+                        aria-label="product_details_references_isbn input" class="form-control" value="{$product.isbn}">
 
 
 
