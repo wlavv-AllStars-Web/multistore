@@ -1528,11 +1528,11 @@ class FrontControllerCore extends Controller
         $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 51]);
 
         if($this->context->shop->id == 1){
-            //             $cssPath = _PS_THEME_DIR_ . 'assets/css/euromuscle.css';
-            // $version = file_exists($cssPath) ? filemtime($cssPath) : time();
+                        $cssPath = _PS_THEME_DIR_ . 'assets/css/euromuscle.css';
+            $version = file_exists($cssPath) ? filemtime($cssPath) : time();
 
-            // $this->registerStylesheet('theme-custom-euromuscle', '/assets/css/euromuscle.css?v=' . $version, ['media' => 'all', 'priority' => 51]);
-            $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css', ['media' => 'all', 'priority' => 51]);
+            $this->registerStylesheet('theme-custom-euromuscle', '/assets/css/euromuscle.css?v=' . $version, ['media' => 'all', 'priority' => 51]);
+            // $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css', ['media' => 'all', 'priority' => 51]);
 
             $this->registerStylesheet(
                 'font-awesome-cdn',
