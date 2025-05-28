@@ -664,7 +664,7 @@
                        aria-controls="product-details"
                        {if !$product.description} aria-selected="true"{/if}>{l s='WARRANTY' d='Shop.Theme.Catalog'}</a>
                    </li>
-                   {if isset($product.manufacturer_name)}
+                   {if isset($product.manufacturer_name) && $product.manufacturer_name|trim != ''}
                    <li class="nav-item">
                      <a
                        class="nav-link"
@@ -886,7 +886,7 @@
                    <p>Product Warranty</p>
                   </div>
                   
-                  {if isset($product_manufacturer->name)}
+                  {if isset($product_manufacturer->name) && $product_manufacturer->name|trim != ''}
                   <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
                    <div class="banner-tabs" >
                        <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" alt="banner instructions"/>
