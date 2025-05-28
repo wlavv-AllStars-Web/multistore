@@ -356,6 +356,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         // print ean btn
         $detailsTabFormBuilder = $productFormBuilder->get('details');
 
+        pre($detailsTabFormBuilder);
+
         // $this->formBuilderModifier->addBefore(
         //     $detailsTabFormBuilder,
         //     'references',
