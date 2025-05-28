@@ -222,7 +222,7 @@
       <div class="collapse container-drop" id="compatMobile">
         
         <div class="banner-tabs" >
-          <img src="/img/asm/banners/compatibilities/compatibilities_{$language.iso_code}.webp" />
+          <img src="/img/eurmuscle/bannersProduct/compatibilities_{$language.iso_code}.webp" />
         </div>
                 {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
         {if $compats|count}
@@ -309,7 +309,7 @@
           {if $product.attachments}
           <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
               <div class="banner-tabs" >
-                <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" />
               </div>
               <section class="product-attachments tab">
                 {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -336,7 +336,7 @@
             
             <div class="tab-pane fade in" id="product_instructions_mobile" role="tabpanel">
               <div class="banner-tabs" >
-                <img src="/img/asm/banners/instructions/instructions_{$language.iso_code}.webp" />
+                <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" />
               </div>
               {* <div class="class_instructions" style="display: flex;gap:1rem;align-items:center;justify-content:center;padding:2rem;font-size:1rem;color:#333;">
                 <p class="tab" style="margin-bottom: 0;">{l s='No Instructions' d='Shop.Theme.Actions'}</p>
@@ -677,7 +677,7 @@
 
             <div class="tab-pane fade in" id="compatibilities" role="tabpanel">
                 <div class="banner-tabs" >
-                  <img src="https://www.all-stars-motorsport.com/img/app_icons/compatibilities_en.webp" />
+                  <img src="/img/eurmuscle/bannersProduct/compatibilities_{$language.iso_code}.webp" />
                 </div>
               <div>
               {if $compats|count}
@@ -784,13 +784,13 @@
 
             <div  class="tab-pane fade in" id="product_reviews"  role="tabpanel">
               <div class="banner-tabs" >
-                <img src="https://www.all-stars-motorsport.com/img/app_icons/reviews_en.webp" />
+                <img src="/img/eurmuscle/bannersProduct/reviews_{$language.iso_code}.webp" />
               </div>
               {hook h='displayFooterProduct' product=$product category=$category}
             </div>
             <div  class="tab-pane fade in" id="product_warranty"  role="tabpanel">
               <div class="banner-tabs" >
-                <img src="https://www.all-stars-motorsport.com/img/app_icons/warranty_en.webp" />
+                <img src="/img/eurmuscle/bannersProduct/warranty_{$language.iso_code}.webp" />
               </div>
               <p>Product Warranty</p>
             </div>
