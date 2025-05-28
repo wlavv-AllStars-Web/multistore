@@ -468,8 +468,8 @@ function generateEan() {
         })
         .then(data => {
             console.log("Generation successful:", data);
-            EANinput.value = data.html;
-            EANinput.setAttribute("value", data.html)
+            EANinput.value = data;
+            EANinput.setAttribute("value", data)
             
             const saveButton = document.querySelector("#product_footer_save");
             if (saveButton) {
