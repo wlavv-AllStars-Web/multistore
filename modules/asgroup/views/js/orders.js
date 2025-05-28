@@ -318,11 +318,11 @@ document.addEventListener("DOMContentLoaded", () => {
     //     }
     // }
 
-    const btn_print_ean = document.querySelector("#product_details #product_details_print_ean")
-    const containerReferences = document.querySelector("#product_details #product_details_references")
-    const inputEAN = document.querySelector("#product_details_references_ean_13")
-    const containerEanGroup = document.querySelector("#product_details_references .form-group:nth-child(4)")
-    const containerEanGroupLabel = document.querySelector("#product_details_references .form-group:nth-child(4) label")
+    const btn_print_ean = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_print_ean")
+    const containerReferences = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_references")
+    const inputEAN = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_references_ean_13")
+    const containerEanGroup = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_references .form-group:nth-child(4)")
+    const containerEanGroupLabel = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_references .form-group:nth-child(4) label")
 
 
 
@@ -348,9 +348,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(EANInputCombinations){
         
-        const EANvalue = document.querySelector("#product_details_references_ean_13").value;
+        const EANvalue = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_references_ean_13").value;
         const productIdDetails = document.querySelector(".product-form").getAttribute("data-product-id")
-        const btn_detailsEAN = document.querySelector("#product_details_print_ean");
+        const btn_detailsEAN = document.querySelector("#product_product_creation_custom_html-tab-nav #product_details_print_ean");
         
         if(EANvalue != ''){
             btn_detailsEAN.innerHTML = ''
