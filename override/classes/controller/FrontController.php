@@ -1531,7 +1531,7 @@ class FrontControllerCore extends Controller
                         $cssPath = _PS_THEME_DIR_ . 'assets/css/euromuscle.css';
             $version = file_exists($cssPath) ? filemtime($cssPath) : time();
 
-            $this->registerStylesheet('theme-custom-euromuscle', '/assets/css/euromuscle.css?v=' . $version, ['media' => 'all', 'priority' => 51]);
+            $this->registerStylesheet('theme-custom-euromuscle', '/assets/css/euromuscle.css?v=' . $version, ['media' => 'all', 'priority' => 51, 'server' => 'remote']);
             // $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css', ['media' => 'all', 'priority' => 51]);
 
             $this->registerStylesheet(
