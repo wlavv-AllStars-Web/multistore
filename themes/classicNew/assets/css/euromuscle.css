@@ -172,7 +172,7 @@
   background-color: red;
 }
 
-#tab-content .tab-pane {
+#tab-content #product_reviews.tab-pane {
   max-width: 1200px;
 }
 
