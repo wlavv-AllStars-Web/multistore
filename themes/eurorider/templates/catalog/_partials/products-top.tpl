@@ -121,6 +121,11 @@
 
 {else}
 
+  {if $page['page_name'] == 'new-products'}
+    <div id="banner_news" class="banner-news">
+      <img src="img/eurorider/banners/news/news_banner_{$language.iso_code}" alt="banner_news" />
+    </div>
+  {/if}
 
 
 <div id="js-product-list-top" class="products-selection">
