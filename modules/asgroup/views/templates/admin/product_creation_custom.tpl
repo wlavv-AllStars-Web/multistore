@@ -34,7 +34,7 @@
                         </span>
                     </label>
 
-
+                    <input type="text" id="product_details_references_ean_13" name="product[details][references][ean_13]" aria-label="product_details_references_ean_13 input" class="form-control">
 
                     {if !empty($product->ean13)}
                         <div class="container-ean-btn">
