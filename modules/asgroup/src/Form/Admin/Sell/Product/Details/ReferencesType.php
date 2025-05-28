@@ -48,7 +48,6 @@ class ReferencesType extends TranslatorAwareType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->remove('reference') // The reference field is not used in this module, so we remove it
             // ->add('reference', TextType::class, [
             //     'required' => false,
             //     'label' => $this->trans('Reference', 'Admin.Global'),
