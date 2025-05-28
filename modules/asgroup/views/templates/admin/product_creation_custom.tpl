@@ -36,15 +36,24 @@
 
 
 
-
-                    <div class="container-ean-btn">
-                        <button id="product_details_print_ean"
-                            name="product[details][print_ean]" class="btn-secondary print_ean_btn ml-auto btn"
-                            onclick="generateEan()" type="button" style="display: flex; padding: 0px 0.5rem;"><i
-                                class="barcode-white"> </i></button>
-                        <input type="text"
-                            id="product_details_references_ean_13" name="product[details][references][ean_13]"
-                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean13}"></div>
+                    {if !empty($product->ean13)}
+                        <div class="container-ean-btn">
+                            <button id="product_details_print_ean" name="product[details][print_ean]" class="btn-secondary print_ean_btn ml-auto btn" onclick="generateEan()" type="button">
+                                <i class="material-icons">local_printshop</i>
+                                <span class="btn-label"></span>
+                            </button>
+                            <input type="text" id="product_details_references_ean_13" name="product[details][references][ean_13]" aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean13}">
+                        </div>
+                    {else}
+                        <div class="container-ean-btn">
+                            <button id="product_details_print_ean"
+                                name="product[details][print_ean]" class="btn-secondary print_ean_btn ml-auto btn"
+                                onclick="generateEan()" type="button" style="display: flex; padding: 0px 0.5rem;"><i
+                                    class="barcode-white"> </i></button>
+                            <input type="text"
+                                id="product_details_references_ean_13" name="product[details][references][ean_13]"
+                                aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean13}"></div>
+                    {/if}
                 </div>
 
 
