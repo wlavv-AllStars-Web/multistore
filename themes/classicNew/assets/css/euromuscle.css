@@ -5904,6 +5904,10 @@ body#checkout section.checkout-step .address-selector {
   padding-block: 1rem 2rem;
 }
 
+.section_tabs_video:not(#description) .banner-tabs{
+ max-width: 801px !important;
+}
+
 .section_tabs_video .banner-tabs img{
   width: 100%;
 }
