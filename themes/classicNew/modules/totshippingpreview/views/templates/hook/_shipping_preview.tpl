@@ -79,7 +79,9 @@
 
 	<div id="totselectzone" class="totselectzone">
 		<div class="totselectzone__title">
-			{l s='Shipping fees' mod='totshippingpreview'}
+			<p>
+				{l s='Shipping fees' mod='totshippingpreview'}
+			</p>
 		</div>
 
 		<div id="shipping_before">
