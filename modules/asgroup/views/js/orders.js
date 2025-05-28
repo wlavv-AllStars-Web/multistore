@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn_detailsEAN.style.display = 'flex'
             btn_detailsEAN.style.padding = '0 .5rem'
             btn_detailsEAN.innerHTML = ''
-            btn_detailsEAN.innerHTML = '<i class="material-icons" style="transform: rotate(90deg);">dehaze</i>'
+            btn_detailsEAN.innerHTML = '<i class="barcode-white"> </i>'
         }
     }
 
