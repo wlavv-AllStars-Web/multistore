@@ -21,7 +21,7 @@
                     <input type="text" id="product_details_references_reference"
                         name="product[details][references][reference]"
                         aria-label="product_details_references_reference input" class="form-control"
-                        value="{$product.reference}">
+                        value="{$product->reference}">
 
 
 
@@ -37,7 +37,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_mpn" name="product[details][references][mpn]"
-                        aria-label="product_details_references_mpn input" class="form-control" value="{$product.mpn}">
+                        aria-label="product_details_references_mpn input" class="form-control" value="{$product->mpn}">
 
 
 
@@ -53,7 +53,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_upc" name="product[details][references][upc]"
-                        aria-label="product_details_references_upc input" class="form-control" value="{$product.upc}">
+                        aria-label="product_details_references_upc input" class="form-control" value="{$product->upc}">
 
 
 
@@ -79,7 +79,7 @@
                                 class="barcode-white"> </i></button>
                         <input type="text"
                             id="product_details_references_ean_13" name="product[details][references][ean_13]"
-                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product.ean_13}"></div>
+                            aria-label="product_details_references_ean_13 input" class="form-control" value="{$product->ean_13}"></div>
                 </div>
 
                 <div class="form-group text-widget"> <label for="product_details_references_isbn">
@@ -92,7 +92,7 @@
                         </span>
                     </label>
                     <input type="text" id="product_details_references_isbn" name="product[details][references][isbn]"
-                        aria-label="product_details_references_isbn input" class="form-control" value="{$product.isbn}">
+                        aria-label="product_details_references_isbn input" class="form-control" value="{$product->isbn}">
 
 
 
