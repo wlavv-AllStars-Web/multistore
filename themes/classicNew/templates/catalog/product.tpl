@@ -363,7 +363,7 @@
 
        {else}
         <div class="container-no-compats" style="padding: 3rem 1rem;">
-         <h2 style="text-align: center;font-weight:500;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+         <p style="text-align: center;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</p>
         </div>
        {/if}
 
@@ -819,7 +819,7 @@
                       </script>
           
                       {else}
-                        <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                        <p style="text-align: center;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</p>
                       {/if}
                     </div>
                   </div>
