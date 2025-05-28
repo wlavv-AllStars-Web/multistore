@@ -494,7 +494,7 @@ function generateEan() {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 console.log(response)
-                // return response.json(); 
+                return response.json(); 
             })
             .then(data => {
                 console.log("Generation successful:", data.html);
