@@ -1528,25 +1528,25 @@ class FrontControllerCore extends Controller
         $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 51]);
 
         if($this->context->shop->id == 1){
-$version = file_exists(_PS_THEME_DIR_ . 'assets/css/euromuscle.css') 
-    ? filemtime(_PS_THEME_DIR_ . 'assets/css/euromuscle.css') 
-    : time();
+            $version = file_exists(_PS_THEME_DIR_ . 'assets/css/euromuscle.css') 
+                ? filemtime(_PS_THEME_DIR_ . 'assets/css/euromuscle.css') 
+                : time();
 
-$euromuscleCss = '/assets/css/euromuscle.' . $version . '.css';
+            $euromuscleCss = '/assets/css/euromuscle.' . $version . '.css';
 
-// Copy the file programmatically to match the versioned name:
-if (!file_exists(_PS_THEME_DIR_ . 'assets/css/euromuscle.' . $version . '.css')) {
-    copy(
-        _PS_THEME_DIR_ . 'assets/css/euromuscle.css',
-        _PS_THEME_DIR_ . 'assets/css/euromuscle.' . $version . '.css'
-    );
-}
+            // Copy the file programmatically to match the versioned name:
+            if (!file_exists(_PS_THEME_DIR_ . 'assets/css/euromuscle.' . $version . '.css')) {
+                copy(
+                    _PS_THEME_DIR_ . 'assets/css/euromuscle.css',
+                    _PS_THEME_DIR_ . 'assets/css/euromuscle.' . $version . '.css'
+                );
+            }
 
-$this->registerStylesheet(
-    'theme-custom-euromuscle',
-    $euromuscleCss,
-    ['media' => 'all', 'priority' => 51]
-);
+            $this->registerStylesheet(
+                'theme-custom-euromuscle',
+                $euromuscleCss,
+                ['media' => 'all', 'priority' => 51]
+            );
 
             $this->registerStylesheet(
                 'font-awesome-cdn',
