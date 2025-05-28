@@ -371,6 +371,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         //     ]
         // );
 
+        $this->formBuilderModifier->remove($detailsTabFormBuilder, 'ean_13');
+
 
         $this->formBuilderModifier->addAfter(
             $detailsTabFormBuilder,
