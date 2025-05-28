@@ -356,20 +356,20 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         // print ean btn
         $detailsTabFormBuilder = $productFormBuilder->get('details');
 
-        $this->formBuilderModifier->addBefore(
-            $detailsTabFormBuilder,
-            'references',
-            'print_ean',
-            IconButtonType::class, 
-            [
-                'label' => $this->translator->trans('', [],'Modules.ASGroup.Admin'),
-                'icon' => 'local_printshop',
-                'attr' => [
-                    'class' => 'btn-secondary print_ean_btn ml-auto',
-                    'onclick' => 'generateEan()'
-                ],
-            ]
-        );
+        // $this->formBuilderModifier->addBefore(
+        //     $detailsTabFormBuilder,
+        //     'references',
+        //     'print_ean',
+        //     IconButtonType::class, 
+        //     [
+        //         'label' => $this->translator->trans('', [],'Modules.ASGroup.Admin'),
+        //         'icon' => 'local_printshop',
+        //         'attr' => [
+        //             'class' => 'btn-secondary print_ean_btn ml-auto',
+        //             'onclick' => 'generateEan()'
+        //         ],
+        //     ]
+        // );
 
 
         $this->formBuilderModifier->addAfter(
