@@ -434,6 +434,20 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         $this->formBuilderModifier->addAfter(
             $productFormBuilder,
+            'description',
+            'product_creation_custom_html',
+            CustomTabType::class,
+            [
+                'label' => $this->moduleInstance->l('ASG Product'),
+                'data' => [
+                    'id_product' => $productId,
+                    'content' => $this->moduleInstance->getASGProductCreation($product),
+                ],
+            ]
+        );
+
+        $this->formBuilderModifier->addAfter(
+            $productFormBuilder,
             'options',
             'compats_car_custom_html',
             CustomTabType::class,

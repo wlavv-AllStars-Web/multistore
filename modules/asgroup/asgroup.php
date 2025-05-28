@@ -1254,6 +1254,21 @@ class AsGroup extends Module
     }
 
 
+    public function getASGProductCreation($product) {
+
+        $storeId = $this->context->shop->id;
+
+        return $this->fetchTemplate('product_creation_custom.tpl',[
+            'product' => $product,
+            'brands'  => isset($brands['data']) ? $brands['data'] : [],
+            'shop_id' => $storeId,
+            // 'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
+            //         'configure' => $this->name,
+            //         'action' => 'getModels',
+            //     ]),
+        ]);
+        
+    }
     public function getCompatsCars($product) {
         // get brands compat
 
