@@ -839,7 +839,7 @@
                     {if $product.attachments}
                      <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                      <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions"/>
+                       <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" alt="banner instructions"/>
                      </div>
                         <section class="product-attachments">
                           {* <p class="h5 text-uppercase">{l s='Download Instructions' d='Shop.Theme.Actions'}</p> *}
@@ -858,7 +858,7 @@
                       
                        <div class="tab-pane fade in" id="product-installation" role="tabpanel">
                          <div class="banner-tabs" >
-                           <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions" />
+                           <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" alt="banner instructions" />
                          </div>
                          <p>{l s='No Instructions' d='Shop.Theme.Actions'}</p>
                        </div>
@@ -886,7 +886,7 @@
                   
                   <div  class="tab-pane fade in" id="product_brand"  role="tabpanel">
                    <div class="banner-tabs" >
-                       <img src="https://www.all-stars-motorsport.com/img/app_icons/instructions_en.webp" alt="banner instructions"/>
+                       <img src="/img/eurmuscle/bannersProduct/instructions_{$language.iso_code}.webp" alt="banner instructions"/>
                    </div>
                    <h4 style="padding: 1rem;">{$product_manufacturer->name}</h4>
                    <div style="padding: 1rem;">
