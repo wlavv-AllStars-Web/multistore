@@ -1528,7 +1528,7 @@ class FrontControllerCore extends Controller
         $this->registerStylesheet('theme-custom', '/assets/css/custom.css', ['media' => 'all', 'priority' => 51]);
 
         if($this->context->shop->id == 1){
-            $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css', ['media' => 'all', 'priority' => 51]);
+            $this->registerStylesheet('theme-custom', '/assets/css/euromuscle.css?t=123123', ['media' => 'all', 'priority' => 51]);
 
             $this->registerStylesheet(
                 'font-awesome-cdn',
