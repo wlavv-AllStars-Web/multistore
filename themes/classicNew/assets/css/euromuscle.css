@@ -172,6 +172,10 @@
   background-color: red;
 }
 
+.tabs .tab-pane {
+  max-width: 1200px;
+}
+
 /*  */
 
   .cars-container .card {
