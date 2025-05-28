@@ -172,7 +172,7 @@
   background-color: red;
 }
 
-.tabs .tab-pane {
+#tab-content .tab-pane {
   max-width: 1200px;
 }
 
