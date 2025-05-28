@@ -5899,13 +5899,13 @@ body#checkout section.checkout-step .address-selector {
   display:flex;
   justify-content:center;
   margin-bottom: 2rem;
-  max-width: 800px;
+  max-width: 801px;
   margin: auto;
   padding-block: 1rem 2rem;
 }
 
-.section_tabs_video:not(#description) .banner-tabs{
- max-width: 801px !important;
+.section_tabs_video #description .banner-tabs{
+ max-width: 800px !important;
 }
 
 .section_tabs_video .banner-tabs img{
