@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn_detailsEAN.innerHTML = '<i class="fa-solid fa-barcode"></i>'
         }
     }
-
+alert("paulo")
 
 
 })
