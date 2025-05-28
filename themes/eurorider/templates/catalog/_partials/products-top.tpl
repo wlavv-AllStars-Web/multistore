@@ -122,8 +122,8 @@
 {else}
 
   {if $page['page_name'] == 'new-products'}
-    <div id="banner_news" class="banner-news">
-      <img src="/img/eurorider/banners/news/news_banner_{$language.iso_code}.webp" alt="banner_news" style="margin: auto;"/>
+    <div id="banner_news" class="banner-news" style="display:flex;">
+      <img src="/img/eurorider/banners/news/news_banner_{$language.iso_code}.webp" alt="banner_news" style="margin: auto;max-width: 1441px;"/>
     </div>
   {/if}
 
