@@ -24,6 +24,7 @@ use PrestaShopBundle\Form\Admin\Type\SwitchType;
 use PrestaShopBundle\Form\Admin\Type\YesAndNoChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+
     class ProductFormModifier
 {
     /**
@@ -115,11 +116,17 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
         //     ]
         // );
+            
+
+        
+    $productFormBuilder->setAttribute('allow_extra_fields', true);
 
         $descriptionTabFormBuilder = $productFormBuilder->get('description');
-        $this->formBuilderModifier->addBefore(
+        
+        
+        $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
-            'description_short',
+            'images',
             'real_photos',
             SwitchType::class,
             [
@@ -136,10 +143,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
                 'label_help_box' => $this->translator->trans('Real Photos helper.',[], 'Admin.Catalog.Help'),
             ]
         );
+        
+
 
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
-            'description',
+            'real_photos',
             'youtube_1',
             TextType::class,
             [
@@ -355,7 +364,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         // print ean btn
         $detailsTabFormBuilder = $productFormBuilder->get('details');
-
+        
+        
         // pre($detailsTabFormBuilder);
 
         // $this->formBuilderModifier->addBefore(
@@ -434,7 +444,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         $productId = $data['productId'];
         
-        $product = new \Product((int)$productId, true, $context->language->id, $context->shop->id);
+        $product = new \Product((int)$productId, true, null, $context->shop->id);
 
         $this->formBuilderModifier->addBefore(
             $productFormBuilder,
@@ -464,30 +474,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
             ]
         );
 
-        $ASGCreationTabFormBuilder = $productFormBuilder->get('product_creation_custom_html');
 
-        $this->formBuilderModifier->addAfter(
-            $ASGCreationTabFormBuilder,
-            'housing',
-            'paulo',
-            TextType::class,
-            [
-                // you can remove the label if you dont need it by passing 'label' => false
-                'label' => $this->translator->trans('paulo', [], 'Modules.ASGroup.Admin'),
-                // customize label by any html attribute
-                'label_attr' => [
-                    'title' => 'h2',
-                    'class' => 'text-info',
-                ],
-                'attr' => [
-                    'placeholder' => $this->translator->trans('paulo', [], 'Modules.ASGroup.Admin'),
-                    'class' => 'col-md-3',
-                ],
-                // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-                'data' => $data['housing'] ,
-                'empty_data' => '',
-                'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
-            ]
-        );
     }
 }

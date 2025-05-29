@@ -37,6 +37,7 @@ use PrestaShop\PrestaShop\Core\Form\FormInterface; // If you use forms
 use PrestaShop\PrestaShop\Core\Grid\Column\Type\ImageColumn;
 use PrestaShopBundle\Form\Admin\Type\SwitchType;
 use PrestaShopBundle\Form\Admin\Type\TranslatableType;
+use PrestaShopBundle\Form\Admin\Type\TranslateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -353,6 +354,33 @@ class AsGroup extends Module
         // Please write your logic and operation and save the data as per your need
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
+        $idProduct = $params['id_product'];
+        
+        // 1. Handle Short Description (in ps_product_lang)
+        if (isset($productData['asg']['description_short']) && is_array($productData['asg']['description_short'])) {
+            foreach ($productData['asg']['description_short'] as $idLang => $shortDesc) {
+                // Save the raw HTML content (no escaping required)
+                Db::getInstance()->update('product_lang', [
+                    'description_short' => $shortDesc // No need to use pSQL() if it's HTML content
+                ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+            }
+        } else {
+            error_log('Product data is not valid or description_short is not set.');
+        }
+    
+        // 2. Handle Long Description (in ps_product_lang)
+        if (isset($productData['asg']['description_long']) && is_array($productData['asg']['description_long'])) {
+            foreach ($productData['asg']['description_long'] as $idLang => $longDesc) {
+                // Save the raw HTML content (no escaping required)
+                Db::getInstance()->update('product_lang', [
+                    'description' => $longDesc // No need to use pSQL() if it's HTML content
+                ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+            }
+        } else {
+            error_log('Product data is not valid or description_long is not set.');
+        }
+
+
 
         if (is_array($productData) && isset($productData['description']['real_photos'])){
             $real_photos = $productData['description']['real_photos'];
@@ -1254,21 +1282,40 @@ class AsGroup extends Module
     }
 
 
-    public function getASGProductCreation($product) {
+public function getASGProductCreation($product) {
+    $storeId = $this->context->shop->id;
+    
+    $baseUrl = $this->context->link->getBaseLink();
 
-        $storeId = $this->context->shop->id;
 
-        return $this->fetchTemplate('product_creation_custom.tpl',[
-            'product' => $product,
-            'brands'  => isset($brands['data']) ? $brands['data'] : [],
-            'shop_id' => $storeId,
-            // 'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
-            //         'configure' => $this->name,
-            //         'action' => 'getModels',
-            //     ]),
-        ]);
-        
+    // Get Symfony services
+    $formFactory = SymfonyContainer::getInstance()->get('form.factory');
+    $twig = SymfonyContainer::getInstance()->get('twig');
+    $formRenderer = $twig->getRuntime(\Symfony\Component\Form\FormRenderer::class);
+
+    // Get available languages
+    $languages = $this->context->controller->getLanguages();
+    
+    // Initialize the default values array (empty for now)
+    $defaultValues = [];
+    
+    // Populate the default values array with empty strings for each language
+    foreach ($languages as $lang) {
+        $defaultValues[$lang['iso_code']] = ''; // Empty string or existing value
     }
+
+    // Render the template with the languages and default values
+    return $this->fetchTemplate('product_creation_custom.tpl', [
+        'product' => $product,
+        'shop_id' => $storeId,
+        'languages' => $languages,
+        'defaultValues' => $defaultValues,
+        'base_url' => $baseUrl,
+    ]);
+}
+
+
+
     public function getCompatsCars($product) {
         // get brands compat
 
