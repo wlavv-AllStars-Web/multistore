@@ -177,7 +177,23 @@
                 </label>
             </div>
         </div>
-        
+
+        <div class="form-group">
+            <label for="product_visibility">Visibility</label>
+            <select class="form-control" id="product_visibility" name="product_visibility">
+                <option value="everywhere">Everywhere</option>
+                <option value="catalog">Catalog only</option>
+                <option value="search">Search only</option>
+                <option value="nowhere">Nowhere</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="product_ec_approved">Ec approved</label>
+            <select class="form-control" id="product_ec_approved" name="product_ec_approved">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
     </div>
 </div>
 
