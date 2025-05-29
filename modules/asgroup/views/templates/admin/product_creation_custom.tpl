@@ -68,8 +68,8 @@
                         <!-- TinyMCE Textarea for Short Description -->
                         <textarea name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                {$product->description_short[$language.id_lang]|escape:'html'}
-                            </textarea>
+                                    {$product->description_short[$language.id_lang]|escape:'html'}
+                                </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -109,8 +109,8 @@
                         <textarea name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5"
                             value="{$product->description[$language.id_lang]}">
-                                {$product->description[$language.id_lang]|escape:'html'}
-                            </textarea>
+                                    {$product->description[$language.id_lang]|escape:'html'}
+                                </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -193,6 +193,24 @@
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </select>
+        </div>
+        
+        <div class="form-group"> <label class="">
+                End of life
+
+
+                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                    data-content="End of life helper." data-placement="top" data-original-title="" title="">
+                </span>
+            </label>
+            <div class="input-group "><span class="ps-switch" id="product_description_wmdeprecated"><input
+                        id="product_description_wmdeprecated_0" class="ps-switch"
+                        name="product[description][wmdeprecated]" value="0" checked="" type="radio"><label
+                        for="product_description_wmdeprecated_0">No</label><input
+                        id="product_description_wmdeprecated_1" class="ps-switch"
+                        name="product[description][wmdeprecated]" value="1" type="radio"><label
+                        for="product_description_wmdeprecated_1">Yes</label><span class="slide-button"></span></span>
+            </div>
         </div>
     </div>
 </div>
@@ -377,7 +395,7 @@
                     // Get the TinyMCE instance for each textarea
                     const editorId = textarea.getAttribute('id'); // Get the TinyMCE instance id
                     const content = tinymce.get(editorId)
-                .getContent(); // Get the HTML content from TinyMCE
+                        .getContent(); // Get the HTML content from TinyMCE
 
                     // Create a hidden input to store the HTML content
                     const hiddenInput = document.createElement('input');
