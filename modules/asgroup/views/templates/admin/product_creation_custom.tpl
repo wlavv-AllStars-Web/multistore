@@ -58,13 +58,19 @@
                     {/if}
                 </div>
 
+                <div class="form-group text-widget">            
+                    <label title="h2" class="text-info" for="product_details_housing">
+                        Housing
+                    </label>  
+                    <input type="text" id="product_details_housing" name="product[details][housing]" placeholder="Housing" class="col-md-3 form-control" aria-label="product_details_housing input">
+                </div>
 
             </div>
         </div>
 
+        
+
         {*  *}
-        açsldkasldkas~dçlk
-        +saºdçl,~ºasç
     </div>
     <div class="col-lg-3">right</div>
 
