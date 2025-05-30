@@ -588,6 +588,27 @@ document.addEventListener("DOMContentLoaded", function () {
     //         }
     //     }
     // });
+
+    window.addEventListener('DOMContentLoaded', function() {
+    // List of element IDs to be removed
+    const elementsToRemove = [
+        'product_details_references_reference',
+        'product_details_references_ean_13',
+        'product_details_housing',
+        'product_description_description_short',
+        'product_description_description',
+        'product_seo_tags'
+    ];
+
+    // Loop through the IDs and remove each element from the DOM
+    elementsToRemove.forEach(function(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.remove();
+        }
+    });
+});
+
 </script>
 
 <style>
