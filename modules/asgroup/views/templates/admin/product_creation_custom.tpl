@@ -68,8 +68,8 @@
                         <!-- TinyMCE Textarea for Short Description -->
                         <textarea name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                            {$product->description_short[$language.id_lang]|escape:'html'}
-                                        </textarea>
+                                                {$product->description_short[$language.id_lang]|escape:'html'}
+                                            </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -109,8 +109,8 @@
                         <textarea name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5"
                             value="{$product->description[$language.id_lang]}">
-                                            {$product->description[$language.id_lang]|escape:'html'}
-                                        </textarea>
+                                                {$product->description[$language.id_lang]|escape:'html'}
+                                            </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -164,7 +164,7 @@
 
         <div class="form-group">
             <label for="product_visibility">Visibility</label>
-            <select class="form-control" id="product_visibility" name="product_visibility">
+            <select class="form-control" id="product_visibility" name="product[asg][visibility]">
                 <option value="everywhere">Everywhere</option>
                 <option value="catalog">Catalog only</option>
                 <option value="search">Search only</option>
@@ -174,11 +174,12 @@
 
         <div class="form-group">
             <label for="product_description_qty_pack">Qty Pack</label>
-            <input type="text" class="form-control" id="product_description_qty_pack" name="product[description][qty_pack]" placeholder="Enter quantity per pack">
+            <input type="text" class="form-control" id="product_description_qty_pack" name="product[asg][qty_pack]"
+                placeholder="Enter quantity per pack">
         </div>
 
         <div class="form-row">
-            <div class="form-group">
+            <div class="form-group col-lg-4">
                 <label for="product_description_ec_approved_0">
                     Ec approved
                     <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
@@ -188,11 +189,11 @@
 
                 <div class="input-group">
                     <span class="ps-switch" id="product_description_ec_approved">
-                        <input type="radio" id="product_description_ec_approved_0" name="product[description][ec_approved]"
+                        <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
                             value="0" checked>
                         <label for="product_description_ec_approved_0">No</label>
 
-                        <input type="radio" id="product_description_ec_approved_1" name="product[description][ec_approved]"
+                        <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
                             value="1">
                         <label for="product_description_ec_approved_1">Yes</label>
 
@@ -202,7 +203,7 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group col-lg-4">
                 <label for="product_description_wmdeprecated_0">
                     End of life
                     <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
@@ -212,18 +213,39 @@
 
                 <div class="input-group">
                     <span class="ps-switch" id="product_description_wmdeprecated">
-                        <input type="radio" id="product_description_wmdeprecated_0"
-                            name="product[description][wmdeprecated]" value="0" checked>
+                        <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
+                            value="0" checked>
                         <label for="product_description_wmdeprecated_0">No</label>
 
-                        <input type="radio" id="product_description_wmdeprecated_1"
-                            name="product[description][wmdeprecated]" value="1">
+                        <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
+                            value="1">
                         <label for="product_description_wmdeprecated_1">Yes</label>
 
                         <span class="slide-button"></span>
                     </span>
                 </div>
             </div>
+
+            <div class="form-group col-lg-4">
+                <label for="product_description_not_to_order_0">
+                    Not to order?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Not to order helper." data-placement="top" title=""></span>
+                </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_not_to_order">
+                    <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]" value="0" checked>
+                    <label for="product_description_not_to_order_0">No</label>
+
+                    <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]" value="1">
+                    <label for="product_description_not_to_order_1">Yes</label>
+
+                    <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
         </div>
 
         <div class="form-group">
@@ -231,7 +253,7 @@
             <div class="input-group">
                 <div class="form-check col-lg-12">
                     <input class="form-check-input" type="checkbox" id="show_compact_exception"
-                        name="product[description][show_compact_exception]" value="1">
+                        name="product[asg][show_compact_exception]" value="1">
                     <label class="form-check-label" for="show_compact_exception">
                         Show compact exception
                     </label>
@@ -239,7 +261,7 @@
 
                 <div class="form-check  col-lg-12">
                     <input class="form-check-input" type="checkbox" id="universal_product"
-                        name="product[description][universal_product]" value="1">
+                        name="product[asg][universal]" value="1">
                     <label class="form-check-label" for="universal_product">
                         Universal product
                     </label>
@@ -250,11 +272,11 @@
         <div class="form-group">
             <label for="youtube_code_1">YouTube</label>
             <div class="input-group mb-2">
-                <input type="text" class="form-control" id="youtube_code_1" name="product[description][youtube_code_1]"
+                <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
                     placeholder="YouTube Code 1">
             </div>
             <div class="input-group">
-                <input type="text" class="form-control" id="youtube_code_2" name="product[description][youtube_code_2]"
+                <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
                     placeholder="YouTube Code 2">
             </div>
         </div>
@@ -262,15 +284,14 @@
         <div class="form-group">
             <label for="youtube_code_1">HS Code</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="hs_code" name="product[description][hscode]"
-                    placeholder="HS Code">
+                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code">
             </div>
         </div>
 
         <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
                 Instructions Difficulty
 
-            </label> <select id="product_description_difficulty" name="product[description][difficulty]"
+            </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
                 class="custom-select form-control">
                 <option value="0">Default</option>
                 <option value="1" selected="selected">1</option>
