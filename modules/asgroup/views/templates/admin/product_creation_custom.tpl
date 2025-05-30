@@ -177,58 +177,59 @@
             <input type="text" class="form-control" id="product_description_qty_pack" name="product[description][qty_pack]" placeholder="Enter quantity per pack">
         </div>
 
+        <div class="form-row">
+            <div class="form-group">
+                <label for="product_description_ec_approved_0">
+                    Ec approved
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Ec approved helper." data-placement="top" title="">
+                    </span>
+                </label>
 
-        <div class="form-group">
-            <label for="product_description_ec_approved_0">
-                Ec approved
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="Ec approved helper." data-placement="top" title="">
-                </span>
-            </label>
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_ec_approved">
+                        <input type="radio" id="product_description_ec_approved_0" name="product[description][ec_approved]"
+                            value="0" checked>
+                        <label for="product_description_ec_approved_0">No</label>
 
-            <div class="input-group">
-                <span class="ps-switch" id="product_description_ec_approved">
-                    <input type="radio" id="product_description_ec_approved_0" name="product[description][ec_approved]"
-                        value="0" checked>
-                    <label for="product_description_ec_approved_0">No</label>
+                        <input type="radio" id="product_description_ec_approved_1" name="product[description][ec_approved]"
+                            value="1">
+                        <label for="product_description_ec_approved_1">Yes</label>
 
-                    <input type="radio" id="product_description_ec_approved_1" name="product[description][ec_approved]"
-                        value="1">
-                    <label for="product_description_ec_approved_1">Yes</label>
-
-                    <span class="slide-button"></span>
-                </span>
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
             </div>
-        </div>
 
 
-        <div class="form-group">
-            <label for="product_description_wmdeprecated_0">
-                End of life
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="End of life helper." data-placement="top" title="">
-                </span>
-            </label>
+            <div class="form-group">
+                <label for="product_description_wmdeprecated_0">
+                    End of life
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="End of life helper." data-placement="top" title="">
+                    </span>
+                </label>
 
-            <div class="input-group">
-                <span class="ps-switch" id="product_description_wmdeprecated">
-                    <input type="radio" id="product_description_wmdeprecated_0"
-                        name="product[description][wmdeprecated]" value="0" checked>
-                    <label for="product_description_wmdeprecated_0">No</label>
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_wmdeprecated">
+                        <input type="radio" id="product_description_wmdeprecated_0"
+                            name="product[description][wmdeprecated]" value="0" checked>
+                        <label for="product_description_wmdeprecated_0">No</label>
 
-                    <input type="radio" id="product_description_wmdeprecated_1"
-                        name="product[description][wmdeprecated]" value="1">
-                    <label for="product_description_wmdeprecated_1">Yes</label>
+                        <input type="radio" id="product_description_wmdeprecated_1"
+                            name="product[description][wmdeprecated]" value="1">
+                        <label for="product_description_wmdeprecated_1">Yes</label>
 
-                    <span class="slide-button"></span>
-                </span>
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <label>Options</label>
             <div class="input-group">
-                <div class="form-check">
+                <div class="form-check col-lg-12">
                     <input class="form-check-input" type="checkbox" id="show_compact_exception"
                         name="product[description][show_compact_exception]" value="1">
                     <label class="form-check-label" for="show_compact_exception">
@@ -236,7 +237,7 @@
                     </label>
                 </div>
 
-                <div class="form-check">
+                <div class="form-check  col-lg-12">
                     <input class="form-check-input" type="checkbox" id="universal_product"
                         name="product[description][universal_product]" value="1">
                     <label class="form-check-label" for="universal_product">
