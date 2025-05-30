@@ -16,7 +16,9 @@
                             data-content="Allowed special characters: .-_#" data-placement="top">
                         </span>
                     </label>
-                    <input type="text" class="form-control sync-input" data-sync="reference"
+                    {* <input type="text" class="form-control sync-input" data-sync="reference"
+                        value="{$product->reference}"> *}
+                    <input type="text" class="form-control" name="product[asg][reference]"
                         value="{$product->reference}">
                 </div>
 
@@ -28,14 +30,15 @@
                             data-placement="top">
                         </span>
                     </label>
-                    <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}">
+                    {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
+                    <input type="text" class="form-control" name="product[asg][ean13]" value="{$product->ean13}">
                 </div>
 
                 <div class="form-group text-widget">
                     <label title="h2" for="product_details_housing">
                         Housing
                     </label>
-                    <input type="text" class="form-control sync-input" data-sync="housing" value="{$product->housing}">
+                    <input type="text" class="form-control" name="product[asg][housing]" value="{$product->housing}">
                 </div>
             </div>
         </div>
@@ -548,43 +551,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    document.addEventListener('input', function(e) {
-        if (e.target.classList.contains('sync-input')) {
-            const syncKey = e.target.dataset.sync;
-            const newValue = e.target.value;
+    // document.addEventListener('input', function(e) {
+    //     if (e.target.classList.contains('sync-input')) {
+    //         const syncKey = e.target.dataset.sync;
+    //         const newValue = e.target.value;
 
-            document.querySelectorAll(`.sync-input[data-sync="` + syncKey + `"]`).forEach(input => {
-                if (input !== e.target) {
-                    input.value = newValue;
-                }
-            });
+    //         document.querySelectorAll(`.sync-input[data-sync="` + syncKey + `"]`).forEach(input => {
+    //             if (input !== e.target) {
+    //                 input.value = newValue;
+    //             }
+    //         });
 
-            if (syncKey === 'reference') {
-                const realReferenceInput = document.querySelector('#product_details_references_reference');
-                if (realReferenceInput) {
-                    realReferenceInput.value = newValue;
-                    realReferenceInput.dispatchEvent(new Event('input', { bubbles: true }));
-                    realReferenceInput.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-            }
-            if (syncKey === 'ean_13') {
-                const realEanInput = document.querySelector('#product_details_references_ean_13');
-                if (realEanInput) {
-                    realEanInput.value = newValue;
-                    realEanInput.dispatchEvent(new Event('input', { bubbles: true }));
-                    realEanInput.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-            }
-            if (syncKey === 'housing') {
-                const realHousingInput = document.querySelector('#product_details_references_ean_13');
-                if (realHousingInput) {
-                    realHousingInput.value = newValue;
-                    realHousingInput.dispatchEvent(new Event('input', { bubbles: true }));
-                    realHousingInput.dispatchEvent(new Event('change', { bubbles: true }));
-                }
-            }
-        }
-    });
+    //         if (syncKey === 'reference') {
+    //             const realReferenceInput = document.querySelector('#product_details_references_reference');
+    //             if (realReferenceInput) {
+    //                 realReferenceInput.value = newValue;
+    //                 realReferenceInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realReferenceInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //         if (syncKey === 'ean_13') {
+    //             const realEanInput = document.querySelector('#product_details_references_ean_13');
+    //             if (realEanInput) {
+    //                 realEanInput.value = newValue;
+    //                 realEanInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realEanInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //         if (syncKey === 'housing') {
+    //             const realHousingInput = document.querySelector('#product_details_references_ean_13');
+    //             if (realHousingInput) {
+    //                 realHousingInput.value = newValue;
+    //                 realHousingInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realHousingInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //     }
+    // });
 </script>
 
 <style>
