@@ -140,7 +140,7 @@
                 class="js-taggable-field js-locale-input js-locale-{$language.iso_code}{if !$smarty.foreach.langLoop.first} d-none{/if}"
                 style="flex-grow: 1;">
 
-                <div class="tokenfield form-control">
+                <div class="tokenfield">
                     {if isset($product->tags[$language.id_lang])}
                         {assign var="tags" value=$product->tags[$language.id_lang]}
                     {else}
