@@ -163,6 +163,9 @@ class ProductCore extends ObjectModel
     /** @var string Ean-13 barcode */
     public $ean13;
 
+    /** @var string Housing barcode */
+    public $housing;
+
     /** @var string ISBN */
     public $isbn;
 
@@ -271,6 +274,36 @@ class ProductCore extends ObjectModel
     public $ec_approved;
 
     public $universal;
+
+    public $wmdeprecated;
+
+    public $wmpackqt;
+
+    public $stock_arrive;
+
+    public $discount_percentage;
+
+    public $wmpending;
+
+    public $show_compat_exeption;
+
+    public $not_to_order;
+
+    public $disallow_stock;
+
+    public $online_only_client;
+
+    public $associatedProduct;
+
+    public $editing;
+
+    public $parcels;
+
+    public $notes;
+
+    public $fc;
+
+
 
 
     /**
@@ -528,6 +561,21 @@ class ProductCore extends ObjectModel
             ],
             'ec_approved' => ['type' => self::TYPE_INT],
             'universal' => ['type' => self::TYPE_INT],
+
+            'wmdeprecated' => ['type' => self::TYPE_INT],
+            'wmpackqt' => ['type' => self::TYPE_INT],
+            'stock_arrive' => ['type' => self::TYPE_INT],
+            'discount_percentage' => ['type' => self::TYPE_INT],
+            'wmpending' => ['type' => self::TYPE_INT],
+            'show_compat_exeption' => ['type' => self::TYPE_INT],
+            'not_to_order' => ['type' => self::TYPE_INT],
+            'disallow_stock' => ['type' => self::TYPE_INT],
+            'associatedProduct' => ['type' => self::TYPE_STRING, 'size' => 50],
+            'editing' => ['type' => self::TYPE_STRING, 'size' => 50],
+            'parcels' => ['type' => self::TYPE_INT],
+            'notes' => ['type' => self::TYPE_STRING, 'size' => 1024],
+            'fc' => ['type' => self::TYPE_INT],
+
 
             /* Shop fields */
             'id_category_default' => ['type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'],
