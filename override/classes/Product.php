@@ -285,7 +285,7 @@ class ProductCore extends ObjectModel
 
     public $wmpending;
 
-    public $show_compat_exeption;
+    public $show_compat_exception;
 
     public $not_to_order;
 
@@ -567,7 +567,7 @@ class ProductCore extends ObjectModel
             'stock_arrive' => ['type' => self::TYPE_INT],
             'discount_percentage' => ['type' => self::TYPE_INT],
             'wmpending' => ['type' => self::TYPE_INT],
-            'show_compat_exeption' => ['type' => self::TYPE_INT],
+            'show_compat_exception' => ['type' => self::TYPE_INT],
             'not_to_order' => ['type' => self::TYPE_INT],
             'disallow_stock' => ['type' => self::TYPE_INT],
             'associatedProduct' => ['type' => self::TYPE_STRING, 'size' => 50],
