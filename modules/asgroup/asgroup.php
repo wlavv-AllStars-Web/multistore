@@ -356,6 +356,30 @@ class AsGroup extends Module
         $productData = Tools::getValue('product');
         $idProduct = $params['id_product'];
 
+
+        if (isset($productData['asg']['reference'])) {
+            Db::getInstance()->update('product', [
+                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or notes is not set.');
+        }
+
+        if (isset($productData['asg']['ean13'])) {
+            Db::getInstance()->update('product', [
+                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or notes is not set.');
+        }
+
+        if (isset($productData['asg']['housing'])) {
+            Db::getInstance()->update('product', [
+                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or notes is not set.');
+        }
         
         // 1. Handle Short Description (in ps_product_lang)
         if (isset($productData['asg']['description_short']) && is_array($productData['asg']['description_short'])) {
@@ -382,7 +406,7 @@ class AsGroup extends Module
         }
 
 
-        if (isset($productData['asg']['notes']) && is_array($productData['asg']['notes'])) {
+        if (isset($productData['asg']['notes'])) {
             Db::getInstance()->update('product', [
                 'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
             ], 'id_product = ' . (int)$idProduct);
@@ -390,7 +414,7 @@ class AsGroup extends Module
             error_log('Product data is not valid or notes is not set.');
         }
 
-        if (isset($productData['asg']['visibility']) && in_array($productData['asg']['visibility'], ['both', 'none', 'catalog', 'search'])) {
+        if (isset($productData['asg']['visibility'])) {
             Db::getInstance()->update('product', [
                 'visibility' => $productData['asg']['visibility'] // No need to use pSQL() if it's a predefined enum
             ], 'id_product = ' . (int)$idProduct);
