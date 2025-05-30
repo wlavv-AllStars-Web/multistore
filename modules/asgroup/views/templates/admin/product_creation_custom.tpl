@@ -161,7 +161,7 @@
 
                     <input type="text"
                         id="product_seo_tags_{$language.id_lang}"
-                        name="product[seo][tags][{$language.id_lang}]"
+                        name="product[asg][tags][{$language.id_lang}]"
                         class="js-taggable-field form-control"
                         aria-label="product_seo_tags_{$language.id_lang} input"
                         value="{$tags_string|escape:'html'}"
@@ -220,8 +220,8 @@
         </div>
 
         <div class="form-group">
-            <label for="product_description_qty_pack">Qty Pack</label>
-            <input type="text" class="form-control" id="product_description_qty_pack" name="product[asg][qty_pack]"
+            <label for="product_description_wmpackqt">Qty Pack</label>
+            <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
                 placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
         </div>
 
@@ -374,6 +374,46 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Initialize tokenfield for each language input (tokenfield is an input for tag input)
+    const tokenInputs = document.querySelectorAll('.js-taggable-field');
+
+    tokenInputs.forEach(function (input) {
+        // Initialize the tokenfield
+        input.addEventListener('input', function (e) {
+            updateHiddenInput(input);
+        });
+    });
+
+    // Function to update the hidden input with the current tags (comma separated)
+    function updateHiddenInput(input) {
+        // Get all tokens (tags) from the input (assumes tokens are separated by commas)
+        const tokenString = input.value.trim();
+
+        // If there are tokens, update the hidden field
+        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+
+        // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
+        const langId = input.id.split('_')[3];
+
+        // Find the corresponding hidden input and update its value
+        const hiddenInput = document.querySelector(`#product_seo_tags_`+langId);
+        if (hiddenInput) {
+            hiddenInput.value = tagValues;
+        }
+    }
+
+    // Initialize the tokenfield with commas as delimiters for each language
+    tokenInputs.forEach(function (input) {
+        const langId = input.id.split('_')[3];  // Extract the language ID from the input ID
+
+        // Automatically trigger an update to ensure the hidden input is in sync when the page loads
+        updateHiddenInput(input);
+    });
+});
+
 
 
 

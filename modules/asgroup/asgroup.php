@@ -355,6 +355,7 @@ class AsGroup extends Module
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
         $idProduct = $params['id_product'];
+
         
         // 1. Handle Short Description (in ps_product_lang)
         if (isset($productData['asg']['description_short']) && is_array($productData['asg']['description_short'])) {
@@ -381,6 +382,179 @@ class AsGroup extends Module
         }
 
 
+        if (isset($productData['asg']['notes']) && is_array($productData['asg']['notes'])) {
+            Db::getInstance()->update('product', [
+                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or notes is not set.');
+        }
+
+        if (isset($productData['asg']['visibility']) && in_array($productData['asg']['visibility'], ['both', 'none', 'catalog', 'search'])) {
+            Db::getInstance()->update('product', [
+                'visibility' => $productData['asg']['visibility'] // No need to use pSQL() if it's a predefined enum
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or visibility is not set.');
+        }
+
+        if (isset($productData['asg']['wmpackqt']) && is_numeric($productData['asg']['wmpackqt'])) {
+            Db::getInstance()->update('product', [
+                'wmpackqt' => (int)$productData['asg']['wmpackqt'] // Ensure the value is cast to an integer
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or wmpackqt is not set.');
+        }
+
+        if (isset($productData['asg']['ec_approved']) && is_bool($productData['asg']['ec_approved'])) {
+            Db::getInstance()->update('product', [
+                'ec_approved' => (int)$productData['asg']['ec_approved'] // Convert to integer (0 or 1)
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or ec_approved is not set.');
+        }
+
+        if (isset($productData['asg']['wmdeprecated']) && is_bool($productData['asg']['wmdeprecated'])) {
+            Db::getInstance()->update('product', [
+                'wmdeprecated' => (int)$productData['asg']['wmdeprecated'] // Convert to 1 (true) or 0 (false)
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or wmdeprecated is not set.');
+        }
+
+        if (isset($productData['asg']['not_to_order']) && in_array($productData['asg']['not_to_order'], [0, 1], true)) {
+            Db::getInstance()->update('product', [
+                'not_to_order' => (int)$productData['asg']['not_to_order'] // Store 0 or 1 based on the flag
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or not_to_order is not set.');
+        }
+
+        if (isset($productData['asg']['show_compat_exception']) && in_array($productData['asg']['show_compat_exception'], [0, 1], true)) {
+            Db::getInstance()->update('product', [
+                'show_compat_exception' => (int)$productData['asg']['show_compat_exception'] // Store 0 or 1
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or show_compat_exception is not set.');
+        }
+
+        if (isset($productData['asg']['universal']) && in_array($productData['asg']['universal'], [0, 1], true)) {
+            Db::getInstance()->update('product', [
+                'universal' => (int)$productData['asg']['universal'] // Store 0 or 1
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or universal is not set.');
+        }
+
+        if (isset($productData['asg']['youtube_1']) && !empty($productData['asg']['youtube_1'])) {
+            // If youtube_1 is a valid URL or string, update it
+            $youtubeUrl = pSQL($productData['asg']['youtube_1']); // Sanitize the URL or string
+            Db::getInstance()->update('product', [
+                'youtube_1' => $youtubeUrl // Store sanitized URL or string
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or youtube_1 is not set.');
+        }
+
+        if (isset($productData['asg']['youtube_2']) && !empty($productData['asg']['youtube_2'])) {
+            // If youtube_2 is a valid URL or string, update it
+            $youtubeUrl = pSQL($productData['asg']['youtube_2']); // Sanitize the URL or string
+            Db::getInstance()->update('product', [
+                'youtube_2' => $youtubeUrl // Store sanitized URL or string
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or youtube_2 is not set.');
+        }
+
+
+        if (isset($productData['asg']['nc']) && is_numeric($productData['asg']['nc'])) {
+            // Ensure the value is cast to an integer
+            $ncValue = (int)$productData['asg']['nc'];
+
+            Db::getInstance()->update('product', [
+                'nc' => $ncValue // Store the numeric value
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or nc is not set.');
+        }
+
+        if (isset($productData['asg']['difficulty']) && is_numeric($productData['asg']['difficulty'])) {
+            // Ensure the value is cast to an integer
+            $difficultyValue = (int)$productData['asg']['difficulty'];
+
+            Db::getInstance()->update('product', [
+                'difficulty' => $difficultyValue // Store the numeric value
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or difficulty is not set.');
+        }
+
+        // Assuming $productData contains the tags for each language and $productId is the current product ID
+
+        // Assuming $productData contains the tags for each language and $productId is the current product ID
+
+            // Assuming $productData contains the tags for each language and $productId is the current product ID
+
+            foreach ($productData['asg']['tags'] as $langId => $tagsString) {
+                if (isset($tagsString) && !empty($tagsString)) {
+                    // Step 1: Convert the string of tags into an array
+                    $tags = explode(',', $tagsString);
+                    $tags = array_map('trim', $tags); // Trim whitespace from each tag
+                    
+                    foreach ($tags as $tag) {
+                        // Step 2: Check if the product-tag association already exists
+                        $existingAssociation = Db::getInstance()->getRow(
+                            'SELECT id_product_tag 
+                            FROM ' . _DB_PREFIX_ . 'product_tag 
+                            WHERE id_product = ' . (int)$productId . ' 
+                            AND id_lang = ' . (int)$langId . ' 
+                            AND id_tag IN (SELECT id_tag FROM ' . _DB_PREFIX_ . 'tag WHERE name = "' . pSQL($tag) . '" AND id_lang = ' . (int)$langId . ')'
+                        );
+
+                        // If the association exists, skip it
+                        if ($existingAssociation) {
+                            continue;
+                        }
+
+                        // Step 3: Check if the tag exists in ps_tag table for the given language
+                        $existingTag = Db::getInstance()->getRow(
+                            'SELECT id_tag FROM ' . _DB_PREFIX_ . 'tag WHERE name = "' . pSQL($tag) . '" AND id_lang = ' . (int)$langId
+                        );
+
+                        if ($existingTag) {
+                            // If the tag exists, use its id_tag
+                            $idTag = (int)$existingTag['id_tag'];
+                        } else {
+                            // If the tag doesn't exist, insert it into ps_tag
+                            Db::getInstance()->insert(
+                                _DB_PREFIX_ . 'tag',
+                                [
+                                    'name' => pSQL($tag),
+                                    'id_lang' => (int)$langId,
+                                ]
+                            );
+
+                            // Get the ID of the newly inserted tag
+                            $idTag = Db::getInstance()->Insert_ID();
+                        }
+
+                        // Step 4: Insert the product-tag association into ps_product_tag
+                        Db::getInstance()->insert(
+                            _DB_PREFIX_ . 'product_tag',
+                            [
+                                'id_product' => (int)$productId,
+                                'id_tag' => (int)$idTag,
+                                'id_lang' => (int)$langId,
+                            ]
+                        );
+                    }
+                }
+            }
+
+
+        // 
+        // 
+        // 
 
         if (is_array($productData) && isset($productData['description']['real_photos'])){
             $real_photos = $productData['description']['real_photos'];
