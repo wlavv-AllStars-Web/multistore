@@ -1420,9 +1420,13 @@ public function getASGProductCreation($product) {
         $defaultValues[$lang['iso_code']] = ''; // Empty string or existing value
     }
 
+    $data = $this->getCompats();
+    $compats = $data['compats'];
+
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'compats' => $compats,
         'shop_id' => $storeId,
         'languages' => $languages,
         'defaultValues' => $defaultValues,
@@ -1438,6 +1442,62 @@ public function getASGProductCreation($product) {
         
 
         $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
+        // $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
+        
+        $storeId = $this->context->shop->id;
+
+        // $url = 'https://webtools.euromuscleparts.com/api/get/bo/brands/'.$storeId.'/'.$key;
+
+        // $urlCompats = 'https://webtools.euromuscleparts.com/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
+
+        // // pre($product);
+
+        // // $adminUrl = $this->context->link->getAdminLink('AsGroup', true) . '&action=getmodelsbrand';
+
+        // // $adminUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . __PS_BASE_URI__ . 'modules/asgroup/asgroup.php';
+
+
+
+        // $ch = curl_init();
+        // curl_setopt($ch,CURLOPT_URL,$url);
+        // curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        // curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
+        // $json = curl_exec($ch);
+
+        // $ch2 = curl_init();
+        // curl_setopt($ch2,CURLOPT_URL,$urlCompats);
+        // curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
+        // curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
+        // $compats = curl_exec($ch2);
+        // curl_close($ch2);
+
+        // // Decode JSON string into an associative array
+        // $brands = json_decode($json, true);
+        // $compats = json_decode($compats, true);
+        // pre($compats);
+
+        # Get brands and compats data
+        $data = $this->getCompats();
+        $brands = $data['brands'];
+        $compats = $data['compats'];
+
+        return $this->fetchTemplate('compats_admin_cars.tpl',[
+            'product' => $product,
+            'brands'  => isset($brands['data']) ? $brands['data'] : [],
+            'compats' => isset($compats['data']) ? $compats['data'] : [],
+            'shop_id' => $storeId,
+            'key'   => $key,
+            'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
+                    'configure' => $this->name,
+                    'action' => 'getModels',
+                ]),
+        ]);
+        
+    }
+
+    public function getCompats() {
+
+        $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
         $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         
         $storeId = $this->context->shop->id;
@@ -1446,14 +1506,7 @@ public function getASGProductCreation($product) {
 
         $urlCompats = 'https://webtools.euromuscleparts.com/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
 
-        // pre($product);
-
-        // $adminUrl = $this->context->link->getAdminLink('AsGroup', true) . '&action=getmodelsbrand';
-
-        // $adminUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . __PS_BASE_URI__ . 'modules/asgroup/asgroup.php';
-
-
-
+        
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
@@ -1470,20 +1523,11 @@ public function getASGProductCreation($product) {
         // Decode JSON string into an associative array
         $brands = json_decode($json, true);
         $compats = json_decode($compats, true);
-        // pre($compats);
 
-        return $this->fetchTemplate('compats_admin_cars.tpl',[
-            'product' => $product,
-            'brands'  => isset($brands['data']) ? $brands['data'] : [],
-            'compats' => isset($compats['data']) ? $compats['data'] : [],
-            'shop_id' => $storeId,
-            'key'   => $key,
-            'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
-                    'configure' => $this->name,
-                    'action' => 'getModels',
-                ]),
-        ]);
-        
+        return [
+            'brands' => $brands['data'] ?? [],
+            'compats' => $compats['data'] ?? [],
+        ];
     }
 
     public function getModelsFromBrand($brand, $shop_id, $key)
