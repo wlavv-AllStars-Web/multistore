@@ -359,7 +359,7 @@ class AsGroup extends Module
 
         if (isset($productData['asg']['reference'])) {
             Db::getInstance()->update('product', [
-                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+                'reference' => $productData['asg']['reference'] // No need to use pSQL() if it's HTML content
             ], 'id_product = ' . (int)$idProduct);
         } else {
             error_log('Product data is not valid or notes is not set.');
@@ -367,7 +367,7 @@ class AsGroup extends Module
 
         if (isset($productData['asg']['ean13'])) {
             Db::getInstance()->update('product', [
-                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+                'ean13' => $productData['asg']['ean13'] // No need to use pSQL() if it's HTML content
             ], 'id_product = ' . (int)$idProduct);
         } else {
             error_log('Product data is not valid or notes is not set.');
@@ -375,7 +375,7 @@ class AsGroup extends Module
 
         if (isset($productData['asg']['housing'])) {
             Db::getInstance()->update('product', [
-                'notes' => $productData['asg']['notes'] // No need to use pSQL() if it's HTML content
+                'housing' => $productData['asg']['housing'] // No need to use pSQL() if it's HTML content
             ], 'id_product = ' . (int)$idProduct);
         } else {
             error_log('Product data is not valid or notes is not set.');
