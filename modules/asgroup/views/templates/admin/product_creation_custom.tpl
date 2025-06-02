@@ -647,3 +647,5 @@ document.addEventListener("DOMContentLoaded", function () {
         cursor: pointer;
     }
 </style>
+
+<pre>{$product|print_r}</pre>
