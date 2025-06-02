@@ -659,6 +659,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     hiddenInput.name = editor.target.name; // Get the original name of the textarea
                     hiddenInput.value = editor.getContent(); // Save the content
 
+                    console.log('Saving content for:', editor.target.name, 'Content:', hiddenInput.value);
                     form.appendChild(hiddenInput); // Append the hidden input to the form
                 });
 
