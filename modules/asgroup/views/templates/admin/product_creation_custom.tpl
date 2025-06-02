@@ -599,8 +599,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.preventDefault(); // Prevent default anchor behavior
 
                     // Deactivate all tabs and panes
-                    document.querySelectorAll(
-                        '#product_product_creation_custom_html .translationsLocales a').forEach(
+                    this.parentElement.parentElement.querySelector("a").forEach(
                         t => t.classList.remove('active'));
                     document.querySelectorAll('#product_product_creation_custom_html .tab-pane')
                         .forEach(pane => {
@@ -640,13 +639,22 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault(); // Prevent default form submission
 
             // Loop over all TinyMCE instances and get their HTML content
-            tinymce.editors.forEach(function(editor) {
-                const content = editor.getContent(); // Get the HTML content
-                const textarea = document.getElementById(editor.id); // Find the matching <textarea>
-                if (textarea) {
-                    textarea.value = content; // Update its value
-                }
-            });
+            document.querySelectorAll('.tinymce-textarea, .tinymce-textarea-description').forEach(
+                function(textarea) {
+                    // Get the TinyMCE instance for each textarea
+                    const editorId = textarea.getAttribute('id'); // Get the TinyMCE instance id
+                    const content = tinymce.get(editorId)
+                        .getContent(); // Get the HTML content from TinyMCE
+
+                    // Create a hidden input to store the HTML content
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = textarea.name;
+                    hiddenInput.value = content; // Set the HTML content as the value
+
+                    form.appendChild(hiddenInput); // Append the hidden input to the form
+                });
+
             // Now you can submit the form with the hidden inputs containing the HTML content
             form.submit(); // You can replace this with AJAX if needed
         });
