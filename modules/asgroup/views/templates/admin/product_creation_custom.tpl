@@ -764,4 +764,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 </style>
 
+<pre>{$compats|print_r}</pre>
 <pre>{$product|print_r}</pre>
