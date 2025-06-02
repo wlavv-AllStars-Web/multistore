@@ -377,39 +377,42 @@
 <script>
 
     function generateTagsASG() {
-        const tagName = "{$product->name[$id_lang]|escape:'javascript'}";
-        const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
-        const tagRef = "{$product->reference|escape:'javascript'}";
+        const tagNames = {};
+
+        {foreach from=$languages item=language}
+            tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
+        {/foreach}
+
         const tagRefVariatios = [];
         const tagCompats = [];
         
-        const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
+        // Loop through each language and apply tags
+        Object.keys(tagNames).forEach((langId) => {
+            const tagName = tagNames[langId];
+            const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
+            const tagRef = "{$product->reference|escape:'javascript'}";
+            const tagRefVariations = []; // Populate if needed
+            const tagCompats = [];       // Populate if needed
 
-        // Filter out empty/null/undefined strings and trim whitespaces
-        const filteredTags = allTags
-            .map(tag => tag && tag.trim())  // Remove extra whitespace
-            .filter(tag => tag && tag.length > 0);  // Only non-empty tags
+            const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...tagCompats];
 
-        const tagString = filteredTags.join(', ');
+            const filteredTags = allTags
+                .map(tag => tag && tag.trim())
+                .filter(tag => tag && tag.length > 0);
 
-        // Update all language inputs (visible + hidden)
-        document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
-            const langId = hiddenInput.id.split('_')[3];
+            const tagString = filteredTags.join(', ');
 
-            // Update hidden input value
-            hiddenInput.value = tagString;
-
-            // Update visible token input
+            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
             const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
+
+            if (hiddenInput) hiddenInput.value = tagString;
             if (tokenInput) {
                 tokenInput.value = tagString;
-
-                // Trigger sync
                 tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
             }
         });
 
-        console.log('Generated Tags:', tagString);
+        console.log('Generated tags for all languages.');
     }
 
 document.addEventListener('DOMContentLoaded', function () {
