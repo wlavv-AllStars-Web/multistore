@@ -603,15 +603,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Loop through the IDs and remove each element from the DOM
     elementsToRemove.forEach(function(id) {
-        let element;
-
-        if (id === '#product_options_visibility #product_options_visibility_visibility') {
-            element = document.querySelector(id);
-        } else {
-            const selected = document.querySelector(id);
-            if (selected) {
-                element = selected.parentElement;
-            }
+        if(id === '#product_options_visibility #product_options_visibility_visibility'){
+            console.log(id);
+            const element = document.querySelector(id); 
+        }else{
+            const element = document.querySelector(id).parentElement;
         }
 
         if (element) {
