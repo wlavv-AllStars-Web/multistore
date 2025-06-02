@@ -384,16 +384,10 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-    const buttonSaveProductFooter = document.querySelector("#product_footer_save");
-
-    // Helper function to escape values safely
-    function escapeValue(value) {
-        return value ? value.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0') : '';
-    }
-
-    // Generate tags based on the product data and append them to the relevant fields
+    let buttonSaveProductFooter = document.querySelector("#product_footer_save")
     function generateTagsASG() {
         const tagNames = {};
+
         {foreach from=$languages item=language}
             tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
         {/foreach}
@@ -401,147 +395,385 @@
         const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
         const tagRef = "{$product->reference|escape:'javascript'}";
         const tagRefVariations = [];
+
         {foreach from=$combinations item=combination}
             tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
         {/foreach}
 
+
         const tagCompats = new Set();
+
         {if isset($compats) && is_array($compats)}
             {foreach from=$compats item=compat}
-                {if !empty($compat.brand)} tagCompats.add("{$compat.brand|escape:'javascript'}"); {/if}
-                {if !empty($compat.model)} tagCompats.add("{$compat.model|escape:'javascript'}"); {/if}
-                {if !empty($compat.type)} tagCompats.add("{$compat.type|escape:'javascript'}"); {/if}
-                {if !empty($compat.version)} tagCompats.add("{$compat.version|escape:'javascript'}"); {/if}
+                {if !empty($compat.brand)}
+                    tagCompats.add("{$compat.brand|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.model)}
+                    tagCompats.add("{$compat.model|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.type)}
+                    tagCompats.add("{$compat.type|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.version)}
+                    tagCompats.add("{$compat.version|escape:'javascript'}");
+                {/if}
             {/foreach}
         {/if}
 
-        const uniqueTags = Array.from(tagCompats);
-
-        Object.keys(tagNames).forEach(langId => {
+        const uniqueTags = Array.from(tagCompats); 
+        
+        // Loop through each language and apply tags
+        Object.keys(tagNames).forEach((langId) => {
             const tagName = tagNames[langId];
+
             const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
-            const filteredTags = allTags.map(tag => tag.trim()).filter(tag => tag.length > 0);
-            const container = document.querySelector("#product_seo_tags_{$langId}").closest('.tokenfield');
+
+            const filteredTags = allTags
+                .map(tag => tag && tag.trim())
+                .filter(tag => tag && tag.length > 0);
+
+            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
+
             const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
 
-            // Add the filtered tags to the container if they do not exist
+            // Clear previous tags
+            // container.querySelectorAll('.token').forEach(el => el.remove());
+
+
             filteredTags.forEach(tag => {
+            // Only add the tag if it doesn't already exist in the container
                 if (!existingTags.includes(tag)) {
                     const token = document.createElement('div');
                     token.className = 'token';
                     token.dataset.value = tag;
-                    token.innerHTML = `<span class="token-label">${tag}</span><a href="#" class="close">&times;</a>`;
-                    token.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); token.remove(); updateHiddenInput(langId); });
+
+                    const label = document.createElement('span');
+                    label.className = 'token-label';
+                    label.style.maxWidth = '951.213px'; // Optional: dynamic width?
+                    label.textContent = tag;
+
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.className = 'close';
+                    close.tabIndex = -1;
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        token.remove();
+                        updateHiddenInput(langId);
+                    });
+
+                    token.appendChild(label);
+                    token.appendChild(close);
+
                     container.insertBefore(token, container.querySelector('.token-input'));
                 }
             });
 
+            // Update the hidden field for this lang
             updateHiddenInput(langId);
         });
 
         function updateHiddenInput(langId) {
-            const container = document.querySelector("#product_seo_tags_{$langId}").closest('.tokenfield');
-            const tokens = Array.from(container.querySelectorAll('.token'));
-            const values = tokens.map(token => token.dataset.value);
-            document.querySelector("#product_seo_tags_{$langId}").value = values.join(', ');
-            buttonSaveProductFooter.removeAttribute('disabled');
+            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
+            const tokens = container.querySelectorAll('.token');
+            const values = Array.from(tokens).map(token => token.dataset.value);
+            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
+            if (hiddenInput) {
+                hiddenInput.value = values.join(', ');
+            }
+            buttonSaveProductFooter.removeAttribute('disabled'); // Enable the save button
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Initialize tokenfield for each language input
-        document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(input => $(input).tokenfield());
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
+        if ($(input).tokenfield) {
+            $(input).tokenfield(); // initialize tokenfield
+        }
+    });
+});
 
-        // Handle the language tab change event
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const langId = this.dataset.lang;
-                document.querySelectorAll('.translation-field').forEach(el => el.style.display = 'none');
-                const target = document.querySelector('.lang-' + langId);
-                if (target) target.style.display = 'block';
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Initialize tokenfield for each language input (tokenfield is an input for tag input)
+    const tokenInputs = document.querySelectorAll('.js-taggable-field');
+
+    tokenInputs.forEach(function (input) {
+        // Initialize the tokenfield
+        input.addEventListener('input', function (e) {
+            updateHiddenInput(input);
+        });
+    });
+
+    // Function to update the hidden input with the current tags (comma separated)
+    function updateHiddenInput(input) {
+        // Get all tokens (tags) from the input (assumes tokens are separated by commas)
+        const tokenString = input.value.trim();
+
+        // If there are tokens, update the hidden field
+        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+
+        // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
+        const langId = input.id.split('_')[3];
+
+        // Find the corresponding hidden input and update its value
+        const hiddenInput = document.querySelector(`#product_seo_tags_`+langId);
+        if (hiddenInput) {
+            hiddenInput.value = tagValues;
+        }
+    }
+
+    // Initialize the tokenfield with commas as delimiters for each language
+    tokenInputs.forEach(function (input) {
+        const langId = input.id.split('_')[3];  // Extract the language ID from the input ID
+
+        // Automatically trigger an update to ensure the hidden input is in sync when the page loads
+        updateHiddenInput(input);
+    });
+});
+
+
+
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+        const langId = this.dataset.lang;
+
+        document.querySelectorAll('.translation-field').forEach(el => {
+            el.style.display = 'none';
+        });
+
+        const target = document.querySelector('.lang-' + langId);
+        if (target) {
+            target.style.display = 'block';
+        }
+        });
+    });
+ 
+    // Function to initialize TinyMCE on a textarea if not already initialized
+    function initTinyMCEOnElement(textarea) {
+        if (!textarea || textarea.classList.contains('mce-initialized')) return;
+
+        tinymce.init({
+            target: textarea,
+            valid_elements: '*[*]',
+            menubar: false,
+            plugins: 'lists link image table code',
+            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
+            height: 80,
+            statusbar: false, // Disable the status bar
+            path: false, // Disable the path toolbar
+            skin: 'prestashop',
+            content_css: 'https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css',
+            setup: function(editor) {
+                editor.on('init', function() {
+                    textarea.classList.add('mce-initialized');
+                    // After initialization, remove the mce-path element
+                    const mcePath = document.querySelector('.mce-path');
+                    if (mcePath) {
+                        mcePath.remove();
+                    }
+                });
+
+                editor.on('change input keyup', function () {
+                    editor.save(); // updates the underlying <textarea>
+                });
+            }
+        });
+    }
+
+    // Initialize TinyMCE for the active tab on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // value difficulty
+        document.querySelector("#product_description_difficulty").value = "{$product->difficulty}";
+
+        // Initialize TinyMCE for the active tab on page load
+        const activeShortDescriptionTextarea = document.querySelector(
+            '#product_product_creation_custom_html .tab-pane.show.active .tinymce-textarea');
+        if (activeShortDescriptionTextarea && !activeShortDescriptionTextarea.classList.contains(
+                'mce-container')) {
+            initTinyMCEOnElement(activeShortDescriptionTextarea);
+        }
+
+        const activeDescriptionTextarea = document.querySelector(
+            '#product_product_creation_custom_html .tab-pane.show.active .tinymce-textarea-description');
+        if (activeDescriptionTextarea && !activeDescriptionTextarea.classList.contains('mce-container')) {
+            initTinyMCEOnElement(activeDescriptionTextarea);
+        }
+
+        // Add click event to each language tab
+        document.querySelectorAll(
+            '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
+        ).forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
+                const tabContainer = this.closest('.translationsLocales');
+                const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
+
+                // Deactivate only sibling tabs within this group
+                tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
+
+                // Deactivate only sibling panes within this container
+                paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+
+                // Activate clicked tab
+                this.classList.add('active');
+
+                // Activate corresponding pane
+                const targetPane = document.querySelector(this.getAttribute('data-target'));
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+
+                    // Init TinyMCE if needed
+                    const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
+                    if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
+                        initTinyMCEOnElement(shortDescriptionTextarea);
+                    }
+
+                    const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
+                    if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
+                        initTinyMCEOnElement(descriptionTextarea);
+                    }
+                }
             });
         });
 
-        // Initialize TinyMCE on the active tab textarea
-        function initTinyMCE(textarea) {
-            if (!textarea || textarea.classList.contains('mce-initialized')) return;
-            tinymce.init({
-                target: textarea,
-                valid_elements: '*[*]',
-                menubar: false,
-                plugins: 'lists link image table code',
-                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
-                height: 80,
-                statusbar: false,
-                path: false,
-                skin: 'prestashop',
-                content_css: 'https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css',
-                setup(editor) {
-                    editor.on('init', () => textarea.classList.add('mce-initialized'));
-                    editor.on('change input keyup', () => editor.save());
+        // Submit the form with HTML content from TinyMCE editors
+        const form = document.querySelector('form'); // Assuming the form element
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // First, make sure all TinyMCE instances save their content into their corresponding <textarea> elements
+                tinymce.triggerSave();
+
+                // Optional: Loop through all TinyMCE instances and append content as hidden inputs (if needed)
+                tinymce.editors.forEach(function(editor) {
+                    // Create a hidden input for each TinyMCE editor
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = editor.target.name; // Get the original name of the textarea
+                    hiddenInput.value = editor.getContent(); // Save the content
+
+                    form.appendChild(hiddenInput); // Append the hidden input to the form
+                });
+
+            // Now you can submit the form with all hidden inputs containing the HTML content
+            form.submit(); // You can replace this with AJAX if needed
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const saveButton = document.querySelector('#product_footer_save');
+
+    if (saveButton) {
+        saveButton.addEventListener('click', function () {
+            // Ensure TinyMCE content is synced to the corresponding <textarea>
+            tinymce.triggerSave();
+        }, { capture: true }); // Capture phase to run early
+    }
+});
+
+
+
+
+    // document.addEventListener('input', function(e) {
+    //     if (e.target.classList.contains('sync-input')) {
+    //         const syncKey = e.target.dataset.sync;
+    //         const newValue = e.target.value;
+
+    //         document.querySelectorAll(`.sync-input[data-sync="` + syncKey + `"]`).forEach(input => {
+    //             if (input !== e.target) {
+    //                 input.value = newValue;
+    //             }
+    //         });
+
+    //         if (syncKey === 'reference') {
+    //             const realReferenceInput = document.querySelector('#product_details_references_reference');
+    //             if (realReferenceInput) {
+    //                 realReferenceInput.value = newValue;
+    //                 realReferenceInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realReferenceInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //         if (syncKey === 'ean_13') {
+    //             const realEanInput = document.querySelector('#product_details_references_ean_13');
+    //             if (realEanInput) {
+    //                 realEanInput.value = newValue;
+    //                 realEanInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realEanInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //         if (syncKey === 'housing') {
+    //             const realHousingInput = document.querySelector('#product_details_references_ean_13');
+    //             if (realHousingInput) {
+    //                 realHousingInput.value = newValue;
+    //                 realHousingInput.dispatchEvent(new Event('input', { bubbles: true }));
+    //                 realHousingInput.dispatchEvent(new Event('change', { bubbles: true }));
+    //             }
+    //         }
+    //     }
+    // });
+
+    window.addEventListener('DOMContentLoaded', function() {
+    // List of element IDs to be removed
+    const elementsToRemove = [
+        '#product_details #product_details_references_reference',
+        '#product_details #product_details_references_ean_13',
+        '#product_details #product_details_housing',
+        '#product_description #product_description_description_short',
+        '#product_description #product_description_description',
+        '#product_seo #product_seo_tags',
+        '#product_description #product_description_youtube_1',
+        '#product_description #product_description_youtube_2',
+        '#product_description #product_description_hs_code',
+        '#product_description #product_description_difficulty',
+        '#product_description #product_description_ec_approved',
+        '#product_description #product_description_wmdeprecated',
+        '#product_description #product_description_not_to_order',
+    ];
+
+    // Loop through the IDs and remove each element from the DOM
+    elementsToRemove.forEach(function(id) {
+
+        const element = document.querySelector(id).parentElement;
+
+        if (element) {
+            element.remove();
+        }
+    });
+
+    
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const visibilitySelect = document.querySelector('#product_visibility');
+
+        if (visibilitySelect) {
+            visibilitySelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+
+                // Find the matching radio input and check it
+                const matchingRadio = document.querySelector(
+                    `#product_options_visibility_visibility input[type="radio"][value="`+selectedValue+`"]`
+                );
+
+                if (matchingRadio) {
+                    matchingRadio.checked = true;
+
+                    // Optional: trigger change event if other scripts rely on it
+                    matchingRadio.dispatchEvent(new Event('change'));
                 }
             });
         }
 
-        // Initialize TinyMCE for the active description fields
-        const activeTextareas = document.querySelectorAll('.tab-pane.show.active .tinymce-textarea');
-        activeTextareas.forEach(textarea => initTinyMCE(textarea));
-
-        // Initialize TinyMCE when tab changes
-        document.querySelectorAll('#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetPane = document.querySelector(tab.getAttribute('data-target'));
-                targetPane && initTinyMCE(targetPane.querySelector('.tinymce-textarea'));
-            });
-        });
-
-        // Handle form submission to sync TinyMCE content
-        document.querySelector('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            tinymce.triggerSave(); // Ensure TinyMCE content is saved
-            tinymce.editors.forEach(editor => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = editor.target.name;
-                hiddenInput.value = editor.getContent();
-                this.appendChild(hiddenInput);
-            });
-            this.submit(); // Proceed with form submission
-        });
-
-        // Handle visibility select change
-        document.querySelector('#product_visibility')?.addEventListener('change', function () {
-            document.querySelector(`#product_options_visibility_visibility input[type="radio"][value="${this.value}"]`)?.checked = true;
-        });
     });
 
-    // Clean up unwanted elements from DOM
-    window.addEventListener('DOMContentLoaded', () => {
-        const elementsToRemove = [
-            '#product_details #product_details_references_reference',
-            '#product_details #product_details_references_ean_13',
-            '#product_details #product_details_housing',
-            '#product_description #product_description_description_short',
-            '#product_description #product_description_description',
-            '#product_seo #product_seo_tags',
-            '#product_description #product_description_youtube_1',
-            '#product_description #product_description_youtube_2',
-            '#product_description #product_description_hs_code',
-            '#product_description #product_description_difficulty',
-            '#product_description #product_description_ec_approved',
-            '#product_description #product_description_wmdeprecated',
-            '#product_description #product_description_not_to_order',
-        ];
-
-        elementsToRemove.forEach(id => {
-            const element = document.querySelector(id)?.parentElement;
-            element && element.remove();
-        });
-    });
 </script>
-
-
 
 <style>
     .tag-box {
