@@ -415,12 +415,22 @@ class AsGroup extends Module
         }
 
         if (isset($productData['asg']['visibility'])) {
+            $visibility = pSQL($productData['asg']['visibility']); // Always good to sanitize
+            $id = (int)$idProduct;
+
+            // Update ps_product
             Db::getInstance()->update('product', [
-                'visibility' => $productData['asg']['visibility'] // No need to use pSQL() if it's a predefined enum
-            ], 'id_product = ' . (int)$idProduct);
+                'visibility' => $visibility
+            ], 'id_product = ' . $id);
+
+            // Update ps_product_shop
+            Db::getInstance()->update('product_shop', [
+                'visibility' => $visibility
+            ], 'id_product = ' . $id);
         } else {
             error_log('Product data is not valid or visibility is not set.');
         }
+
 
         if (isset($productData['asg']['wmpackqt'])) {
             Db::getInstance()->update('product', [
