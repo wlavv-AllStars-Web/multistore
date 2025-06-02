@@ -568,6 +568,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         mcePath.remove();
                     }
                 });
+
+                editor.on('change input keyup', function () {
+                    editor.save(); // updates the underlying <textarea>
+                });
             }
         });
     }
