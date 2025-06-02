@@ -600,6 +600,11 @@ document.addEventListener("DOMContentLoaded", function () {
         '#product_seo #product_seo_tags',
         '#product_description #product_description_youtube_1',
         '#product_description #product_description_youtube_2',
+        '#product_description #product_description_hs_code',
+        '#product_description #product_description_difficulty',
+        '#product_description #product_description_ec_approved',
+        '#product_description #product_description_wmdeprecated',
+        '#product_description #product_description_not_to_order',
     ];
 
     // Loop through the IDs and remove each element from the DOM
