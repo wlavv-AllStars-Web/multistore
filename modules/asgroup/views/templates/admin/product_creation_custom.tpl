@@ -418,34 +418,40 @@
 
             const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
 
+            const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+
             // Clear previous tags
-            container.querySelectorAll('.token').forEach(el => el.remove());
+            // container.querySelectorAll('.token').forEach(el => el.remove());
+
 
             filteredTags.forEach(tag => {
-                const token = document.createElement('div');
-                token.className = 'token';
-                token.dataset.value = tag;
+            // Only add the tag if it doesn't already exist in the container
+                if (!existingTags.includes(tag)) {
+                    const token = document.createElement('div');
+                    token.className = 'token';
+                    token.dataset.value = tag;
 
-                const label = document.createElement('span');
-                label.className = 'token-label';
-                label.style.maxWidth = '951.213px'; // Optional: dynamic width?
-                label.textContent = tag;
+                    const label = document.createElement('span');
+                    label.className = 'token-label';
+                    label.style.maxWidth = '951.213px'; // Optional: dynamic width?
+                    label.textContent = tag;
 
-                const close = document.createElement('a');
-                close.href = '#';
-                close.className = 'close';
-                close.tabIndex = -1;
-                close.innerHTML = '&times;';
-                close.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    token.remove();
-                    updateHiddenInput(langId);
-                });
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.className = 'close';
+                    close.tabIndex = -1;
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        token.remove();
+                        updateHiddenInput(langId);
+                    });
 
-                token.appendChild(label);
-                token.appendChild(close);
+                    token.appendChild(label);
+                    token.appendChild(close);
 
-                container.insertBefore(token, container.querySelector('.token-input'));
+                    container.insertBefore(token, container.querySelector('.token-input'));
+                }
             });
 
             // Update the hidden field for this lang
