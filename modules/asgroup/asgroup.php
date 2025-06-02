@@ -1420,7 +1420,7 @@ public function getASGProductCreation($product) {
         $defaultValues[$lang['iso_code']] = ''; // Empty string or existing value
     }
 
-    $data = $this->getCompats();
+    $data = $this->getCompats($product->id);
     $compats = $data['compats'];
 
     // Render the template with the languages and default values
