@@ -383,16 +383,33 @@
             tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
         {/foreach}
 
+        const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
+        const tagRef = "{$product->reference|escape:'javascript'}";
         const tagRefVariatios = [];
-        const tagCompats = [];
+        const tagCompats = new Set();
+
+        {if isset($compats) && is_array($compats)}
+            {foreach from=$compats item=compat}
+                {if !empty($compat.brand)}
+                    tagCompatSet.add("{$compat.brand|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.model)}
+                    tagCompatSet.add("{$compat.model|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.type)}
+                    tagCompatSet.add("{$compat.type|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.version)}
+                    tagCompatSet.add("{$compat.version|escape:'javascript'}");
+                {/if}
+            {/foreach}
+        {/if}
+
+        const tagCompats = Array.from(tagCompatSet);
         
         // Loop through each language and apply tags
         Object.keys(tagNames).forEach((langId) => {
             const tagName = tagNames[langId];
-            const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
-            const tagRef = "{$product->reference|escape:'javascript'}";
-            const tagRefVariations = []; // Populate if needed
-            const tagCompats = [];       // Populate if needed
 
             const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...tagCompats];
 
