@@ -673,7 +673,7 @@ document.addEventListener("DOMContentLoaded", function () {
             hiddenInput.value = tagString;
 
             // Update visible token input
-            const tokenInput = document.querySelector(`#product_seo_tags_${langId}-tokenfield`);
+            const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
             if (tokenInput) {
                 tokenInput.value = tagString;
 
