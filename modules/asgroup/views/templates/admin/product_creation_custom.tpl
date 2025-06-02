@@ -400,7 +400,7 @@
                 .map(tag => tag && tag.trim())
                 .filter(tag => tag && tag.length > 0);
 
-            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
 
             // Clear previous tags
             container.querySelectorAll('.token').forEach(el => el.remove());
@@ -437,16 +437,16 @@
         });
 
         function updateHiddenInput(langId) {
-            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
             const tokens = container.querySelectorAll('.token');
             const values = Array.from(tokens).map(token => token.dataset.value);
-            const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
+            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
             if (hiddenInput) {
                 hiddenInput.value = values.join(', ');
             }
         }
     }
-    
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
         if ($(input).tokenfield) {
