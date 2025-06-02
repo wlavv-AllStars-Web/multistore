@@ -319,6 +319,9 @@
                 </div>
 
                 <div class="form-check col-lg-12">
+                
+                <input type="hidden" name="product[asg][universal]" value="0">
+
                 <input class="form-check-input" type="checkbox" id="universal_product"
                     name="product[asg][universal]" value="1"
                     {if isset($product->universal) && $product->universal == 1}checked{/if}>
