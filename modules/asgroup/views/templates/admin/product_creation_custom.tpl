@@ -678,6 +678,10 @@ document.addEventListener('DOMContentLoaded', function () {
     .dropdown-item {
         cursor: pointer;
     }
+
+    #product_options_visibility #product_options_visibility_visibility{
+        display: none !important;
+    }
 </style>
 
 <pre>{$product|print_r}</pre>

@@ -339,25 +339,25 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         );
 
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'disallow_stock',
-            'universal',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['universal'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'disallow_stock',
+        //     'universal',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['universal'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('Universal?',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
    
 
 
