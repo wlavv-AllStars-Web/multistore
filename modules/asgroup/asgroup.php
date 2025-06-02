@@ -1478,13 +1478,14 @@ public function getASGProductCreation($product) {
 
         # Get brands and compats data
         $data = $this->getCompats();
+        
         $brands = $data['brands'];
         $compats = $data['compats'];
 
         return $this->fetchTemplate('compats_admin_cars.tpl',[
             'product' => $product,
-            'brands'  => isset($brands['data']) ? $brands['data'] : [],
-            'compats' => isset($compats['data']) ? $compats['data'] : [],
+            'brands'  => isset($brands) ? $brands : [],
+            'compats' => isset($compats) ? $compats : [],
             'shop_id' => $storeId,
             'key'   => $key,
             'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
