@@ -205,7 +205,7 @@
         </div>
     </div>
 
-    <span class="btn btn-secondary" onclick="generateTagsASG()">Generate Tags</span>
+    <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
 
 
 </div>
