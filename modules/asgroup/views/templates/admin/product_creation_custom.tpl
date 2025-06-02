@@ -185,6 +185,8 @@
         {/foreach}
     </div>
 
+    <button class="btn btn-secondary">Generate Tags</button>
+
     <div class="dropdown">
         <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
                 type="button"
