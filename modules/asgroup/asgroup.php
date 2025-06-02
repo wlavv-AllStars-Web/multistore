@@ -530,7 +530,7 @@ class AsGroup extends Module
                         $existingAssociation = Db::getInstance()->getRow(
                             'SELECT id_product_tag 
                             FROM ' . _DB_PREFIX_ . 'product_tag 
-                            WHERE id_product = ' . (int)$productId . ' 
+                            WHERE id_product = ' . (int)$idProduct . ' 
                             AND id_lang = ' . (int)$langId . ' 
                             AND id_tag IN (SELECT id_tag FROM ' . _DB_PREFIX_ . 'tag WHERE name = "' . pSQL($tag) . '" AND id_lang = ' . (int)$langId . ')'
                         );
@@ -566,7 +566,7 @@ class AsGroup extends Module
                         Db::getInstance()->insert(
                             _DB_PREFIX_ . 'product_tag',
                             [
-                                'id_product' => (int)$productId,
+                                'id_product' => (int)$idProduct,
                                 'id_tag' => (int)$idTag,
                                 'id_lang' => (int)$langId,
                             ]
@@ -591,38 +591,38 @@ class AsGroup extends Module
             error_log('Product data is not valid or real_photos is not set.');
         }
 
-        if (is_array($productData) && isset($productData['description']['youtube_1'])){
-            $youtube_1 = $productData['description']['youtube_1'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['youtube_1'])){
+        //     $youtube_1 = $productData['description']['youtube_1'];
+        //     $idProduct = $params['id_product'];
         
-            Db::getInstance()->update('product', [
-                'youtube_1' => pSQL($youtube_1),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or youtube_code is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'youtube_1' => pSQL($youtube_1),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or youtube_code is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['youtube_2']) ){
-            $youtube_2 = $productData['description']['youtube_2'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['youtube_2']) ){
+        //     $youtube_2 = $productData['description']['youtube_2'];
+        //     $idProduct = $params['id_product'];
            
-            Db::getInstance()->update('product', [
-                'youtube_2' => pSQL($youtube_2),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or youtube_2 is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'youtube_2' => pSQL($youtube_2),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or youtube_2 is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['hs_code']) ){
-            $hs_code = $productData['description']['hs_code'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['hs_code']) ){
+        //     $hs_code = $productData['description']['hs_code'];
+        //     $idProduct = $params['id_product'];
             
-            Db::getInstance()->update('product', [
-                'nc' => pSQL($hs_code),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or youtube_2 is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'nc' => pSQL($hs_code),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or youtube_2 is not set.');
+        // }
 
         if (is_array($productData) && isset($productData['shipping']['dim_verify'])){
             $dim_verify = $productData['shipping']['dim_verify'];
@@ -635,71 +635,71 @@ class AsGroup extends Module
             error_log('Product data is not valid or dim_verify is not set.');
         }
 
-        if (is_array($productData) && isset($productData['description']['wmdeprecated'])){
-            $wmdeprecated = $productData['description']['wmdeprecated'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['wmdeprecated'])){
+        //     $wmdeprecated = $productData['description']['wmdeprecated'];
+        //     $idProduct = $params['id_product'];
             
-            Db::getInstance()->update('product', [
-                'wmdeprecated' => pSQL($wmdeprecated),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or wmdeprecated is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'wmdeprecated' => pSQL($wmdeprecated),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or wmdeprecated is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['details']['housing'])){
-            $housing = $productData['details']['housing'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['details']['housing'])){
+        //     $housing = $productData['details']['housing'];
+        //     $idProduct = $params['id_product'];
 
-            Db::getInstance()->update('product', [
-                'housing' => pSQL($housing),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or housing is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'housing' => pSQL($housing),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or housing is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['not_to_order'])){
-            $not_to_order = $productData['description']['not_to_order'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['not_to_order'])){
+        //     $not_to_order = $productData['description']['not_to_order'];
+        //     $idProduct = $params['id_product'];
            
-            Db::getInstance()->update('product', [
-                'not_to_order' => pSQL($not_to_order),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or not_to_order is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'not_to_order' => pSQL($not_to_order),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or not_to_order is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['difficulty'])){
-            $difficulty = $productData['description']['difficulty'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['difficulty'])){
+        //     $difficulty = $productData['description']['difficulty'];
+        //     $idProduct = $params['id_product'];
             
-            Db::getInstance()->update('product', [
-                'difficulty' => pSQL($difficulty),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or difficulty is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'difficulty' => pSQL($difficulty),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or difficulty is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['ec_approved'])){
-            $ec_approved = $productData['description']['ec_approved'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['ec_approved'])){
+        //     $ec_approved = $productData['description']['ec_approved'];
+        //     $idProduct = $params['id_product'];
            
-            Db::getInstance()->update('product', [
-                'ec_approved' => pSQL($ec_approved),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or ec_approved is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'ec_approved' => pSQL($ec_approved),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or ec_approved is not set.');
+        // }
 
-        if (is_array($productData) && isset($productData['description']['universal'])){
-            $universal = $productData['description']['universal'];
-            $idProduct = $params['id_product'];
+        // if (is_array($productData) && isset($productData['description']['universal'])){
+        //     $universal = $productData['description']['universal'];
+        //     $idProduct = $params['id_product'];
             
-            Db::getInstance()->update('product', [
-                'universal' => pSQL($universal),
-            ], 'id_product = ' . $idProduct);
-        }else{
-            error_log('Product data is not valid or universal is not set.');
-        }
+        //     Db::getInstance()->update('product', [
+        //         'universal' => pSQL($universal),
+        //     ], 'id_product = ' . $idProduct);
+        // }else{
+        //     error_log('Product data is not valid or universal is not set.');
+        // }
 
 
         if (is_array($productData) && isset($productData['description']['disallow_stock'])){
