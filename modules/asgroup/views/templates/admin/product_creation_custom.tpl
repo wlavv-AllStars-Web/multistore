@@ -597,12 +597,18 @@ document.addEventListener("DOMContentLoaded", function () {
         '#product_details #product_details_housing',
         '#product_description #product_description_description_short',
         '#product_description #product_description_description',
-        '#product_seo #product_seo_tags'
+        '#product_seo #product_seo_tags',
+        '#product_options_visibility #product_options_visibility_visibility'
     ];
 
     // Loop through the IDs and remove each element from the DOM
     elementsToRemove.forEach(function(id) {
-        const element = document.querySelector(id).parentElement;
+        if(id == '#product_options_visibility #product_options_visibility_visibility'){
+            const element = document.querySelector(id); 
+        }else{
+            const element = document.querySelector(id).parentElement;
+        }
+
         if (element) {
             element.remove();
         }
