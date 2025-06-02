@@ -416,12 +416,12 @@
         {/if}
 
         const uniqueTags = Array.from(tagCompats);
-        
+
         Object.keys(tagNames).forEach(langId => {
             const tagName = tagNames[langId];
             const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
             const filteredTags = allTags.map(tag => tag.trim()).filter(tag => tag.length > 0);
-            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const container = document.querySelector("#product_seo_tags_{$langId}").closest('.tokenfield');
             const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
 
             // Add the filtered tags to the container if they do not exist
@@ -440,10 +440,10 @@
         });
 
         function updateHiddenInput(langId) {
-            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const container = document.querySelector("#product_seo_tags_{$langId}").closest('.tokenfield');
             const tokens = Array.from(container.querySelectorAll('.token'));
             const values = tokens.map(token => token.dataset.value);
-            document.querySelector(`#product_seo_tags_${langId}`).value = values.join(', ');
+            document.querySelector("#product_seo_tags_{$langId}").value = values.join(', ');
             buttonSaveProductFooter.removeAttribute('disabled');
         }
     }
@@ -540,6 +540,7 @@
         });
     });
 </script>
+
 
 
 <style>
