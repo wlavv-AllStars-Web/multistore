@@ -1423,9 +1423,12 @@ public function getASGProductCreation($product) {
     $data = $this->getCompats($product->id);
     $compats = $data['compats'];
 
+    $combinations = $product->getAttributeCombinations($this->context->language->id);
+
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'combinations' => $combinations,
         'compats' => $compats,
         'shop_id' => $storeId,
         'languages' => $languages,
