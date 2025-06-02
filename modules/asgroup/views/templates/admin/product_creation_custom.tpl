@@ -386,32 +386,32 @@
         const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
         const tagRef = "{$product->reference|escape:'javascript'}";
         const tagRefVariations = [];
-        const tagCompatSet = new Set();
+        const tagCompats = new Set();
 
         {if isset($compats) && is_array($compats)}
             {foreach from=$compats item=compat}
                 {if !empty($compat.brand)}
-                    tagCompatSet.add("{$compat.brand|escape:'javascript'}");
+                    tagCompats.add("{$compat.brand|escape:'javascript'}");
                 {/if}
                 {if !empty($compat.model)}
-                    tagCompatSet.add("{$compat.model|escape:'javascript'}");
+                    tagCompats.add("{$compat.model|escape:'javascript'}");
                 {/if}
                 {if !empty($compat.type)}
-                    tagCompatSet.add("{$compat.type|escape:'javascript'}");
+                    tagCompats.add("{$compat.type|escape:'javascript'}");
                 {/if}
                 {if !empty($compat.version)}
-                    tagCompatSet.add("{$compat.version|escape:'javascript'}");
+                    tagCompats.add("{$compat.version|escape:'javascript'}");
                 {/if}
             {/foreach}
         {/if}
 
-        const tagCompats = Array.from(tagCompatSet);
+        const uniqueTags = Array.from(tagCompats); 
         
         // Loop through each language and apply tags
         Object.keys(tagNames).forEach((langId) => {
             const tagName = tagNames[langId];
 
-            const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...tagCompats];
+            const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
             const filteredTags = allTags
                 .map(tag => tag && tag.trim())
