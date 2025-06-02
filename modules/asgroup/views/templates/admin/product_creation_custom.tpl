@@ -648,7 +648,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-            function generateTagsASG() {
+            window.generateTagsASG = function () {
                 const tagName = {$product->name[$id_lang]};
                 const tagBrand = {$product->manufacturer_name};
                 const tagRef = {$product->reference};
