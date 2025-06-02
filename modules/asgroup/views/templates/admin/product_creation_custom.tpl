@@ -206,7 +206,7 @@
         </div>
     </div>
 
-    <button class="btn btn-secondary">Generate Tags</button>
+    <span class="btn btn-secondary" onclick="generateTagsASG()">Generate Tags</span>
 
 
 </div>
@@ -626,27 +626,65 @@ document.addEventListener("DOMContentLoaded", function () {
     
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const visibilitySelect = document.querySelector('#product_visibility');
+    document.addEventListener('DOMContentLoaded', function () {
+        const visibilitySelect = document.querySelector('#product_visibility');
 
-    if (visibilitySelect) {
-        visibilitySelect.addEventListener('change', function () {
-            const selectedValue = this.value;
+        if (visibilitySelect) {
+            visibilitySelect.addEventListener('change', function () {
+                const selectedValue = this.value;
 
-            // Find the matching radio input and check it
-            const matchingRadio = document.querySelector(
-                `#product_options_visibility_visibility input[type="radio"][value="`+selectedValue+`"]`
-            );
+                // Find the matching radio input and check it
+                const matchingRadio = document.querySelector(
+                    `#product_options_visibility_visibility input[type="radio"][value="`+selectedValue+`"]`
+                );
 
-            if (matchingRadio) {
-                matchingRadio.checked = true;
+                if (matchingRadio) {
+                    matchingRadio.checked = true;
 
-                // Optional: trigger change event if other scripts rely on it
-                matchingRadio.dispatchEvent(new Event('change'));
+                    // Optional: trigger change event if other scripts rely on it
+                    matchingRadio.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+    });
+
+    function generateTagsASG() {
+        const tagName = {$product->name[$id_lang]};
+        const tagBrand = {$product->manufacturer_name};
+        const tagRef = {$product->reference};
+        const tagRefVariatios = [];
+        const tagCompats = [];
+
+        
+        const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
+
+        // Filter out empty/null/undefined strings and trim whitespaces
+        const filteredTags = allTags
+            .map(tag => tag && tag.trim())  // Remove extra whitespace
+            .filter(tag => tag && tag.length > 0);  // Only non-empty tags
+
+        const tagString = filteredTags.join(', ');
+
+        // Update all language inputs (visible + hidden)
+        document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
+            const langId = hiddenInput.id.split('_')[3];
+
+            // Update hidden input value
+            hiddenInput.value = tagString;
+
+            // Update visible token input
+            const tokenInput = document.querySelector(`#product_seo_tags_${langId}-tokenfield`);
+            if (tokenInput) {
+                tokenInput.value = tagString;
+
+                // Trigger sync
+                tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
             }
         });
+
+        console.log('Generated Tags:', tagString);
     }
-});
+
 </script>
 
 <style>
