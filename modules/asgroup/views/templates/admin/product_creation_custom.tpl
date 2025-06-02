@@ -597,12 +597,12 @@ document.addEventListener("DOMContentLoaded", function () {
         'product_details_housing',
         'product_description_description_short',
         'product_description_description',
-        'product_seo_tags'
+        '#product_seo #product_seo_tags'
     ];
 
     // Loop through the IDs and remove each element from the DOM
     elementsToRemove.forEach(function(id) {
-        const element = document.getElementById(id);
+        const element = document.querySelector(id);
         if (element) {
             element.remove();
         }
