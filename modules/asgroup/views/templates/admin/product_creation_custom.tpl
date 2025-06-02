@@ -376,6 +376,43 @@
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
 
+    function generateTagsASG() {
+        const tagName = {$product->name[$id_lang]};
+        const tagBrand = {$product->manufacturer_name};
+        const tagRef = {$product->reference};
+        const tagRefVariatios = [];
+        const tagCompats = [];
+
+        
+        const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
+
+        // Filter out empty/null/undefined strings and trim whitespaces
+        const filteredTags = allTags
+            .map(tag => tag && tag.trim())  // Remove extra whitespace
+            .filter(tag => tag && tag.length > 0);  // Only non-empty tags
+
+        const tagString = filteredTags.join(', ');
+
+        // Update all language inputs (visible + hidden)
+        document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
+            const langId = hiddenInput.id.split('_')[3];
+
+            // Update hidden input value
+            hiddenInput.value = tagString;
+
+            // Update visible token input
+            const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
+            if (tokenInput) {
+                tokenInput.value = tagString;
+
+                // Trigger sync
+                tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+        });
+
+        console.log('Generated Tags:', tagString);
+    }
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
         if ($(input).tokenfield) {
@@ -647,43 +684,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-
-            window.generateTagsASG = function () {
-                const tagName = {$product->name[$id_lang]};
-                const tagBrand = {$product->manufacturer_name};
-                const tagRef = {$product->reference};
-                const tagRefVariatios = [];
-                const tagCompats = [];
-
-                
-                const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
-
-                // Filter out empty/null/undefined strings and trim whitespaces
-                const filteredTags = allTags
-                    .map(tag => tag && tag.trim())  // Remove extra whitespace
-                    .filter(tag => tag && tag.length > 0);  // Only non-empty tags
-
-                const tagString = filteredTags.join(', ');
-
-                // Update all language inputs (visible + hidden)
-                document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
-                    const langId = hiddenInput.id.split('_')[3];
-
-                    // Update hidden input value
-                    hiddenInput.value = tagString;
-
-                    // Update visible token input
-                    const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
-                    if (tokenInput) {
-                        tokenInput.value = tagString;
-
-                        // Trigger sync
-                        tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
-                    }
-                });
-
-                console.log('Generated Tags:', tagString);
-            }
     });
 
 </script>
