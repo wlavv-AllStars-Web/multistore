@@ -310,6 +310,7 @@
             <div class="input-group">
             
                 <div class="form-check col-lg-12">
+                <input type="hidden" name="product[asg][show_compat_exception]" value="0">
                 <input class="form-check-input" type="checkbox" id="show_compat_exception"
                     name="product[asg][show_compat_exception]" value="1"
                     {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
