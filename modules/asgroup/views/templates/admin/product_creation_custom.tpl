@@ -44,7 +44,7 @@
 
         <!-- Translations Section for Short Description and Full Description -->
 
-        <div class="translations tabbable" id="product_description_description_short_custom" tabindex="1">
+        {* <div class="translations tabbable" id="product_description_description_short_custom" tabindex="1">
             <label title="h2" for="product_custom_short">
                 Short desc.
             </label>
@@ -84,10 +84,10 @@
                     </div>
                 {/foreach}
             </div>
-        </div>
+        </div> *}
 
         <!-- Full Description Section -->
-        <div class="translations tabbable" id="product_description_full_description_custom" tabindex="2">
+        {* <div class="translations tabbable" id="product_description_full_description_custom" tabindex="2">
             <label title="h2" for="product_custom_description">
                 Description
             </label>
@@ -128,7 +128,7 @@
                     </div>
                 {/foreach}
             </div>
-        </div>
+        </div> *}
 
         <div class="form-group">
             <div id="custom_notes_asg">
@@ -772,6 +772,68 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     });
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Clone the original TinyMCE textareas from the #product_description tabs
+    const originalShortDesc = document.querySelector('#product_description #product_description_description_short');
+    const originalFullDesc = document.querySelector('#product_description #product_description_description');
+
+    if (originalShortDesc && originalFullDesc) {
+        // Clone both sections
+        const clonedShortDesc = originalShortDesc.cloneNode(true);
+        const clonedFullDesc = originalFullDesc.cloneNode(true);
+
+        // Insert the cloned sections into their respective new locations
+        const translationsContainer = document.querySelector('.translationsFields.tab-content');
+        if (translationsContainer) {
+            // Append the cloned sections as new tabs or sections
+            translationsContainer.appendChild(clonedShortDesc);
+            translationsContainer.appendChild(clonedFullDesc);
+        }
+
+        // Initialize TinyMCE on the cloned textareas
+        const clonedShortDescTextareas = clonedShortDesc.querySelectorAll('.tinymce-textarea');
+        clonedShortDescTextareas.forEach(textarea => {
+            initTinyMCEOnElement(textarea); // Initialize TinyMCE on cloned textarea
+        });
+
+        const clonedFullDescTextareas = clonedFullDesc.querySelectorAll('.tinymce-textarea-description');
+        clonedFullDescTextareas.forEach(textarea => {
+            initTinyMCEOnElement(textarea); // Initialize TinyMCE on cloned textarea
+        });
+    }
+
+    // Function to initialize TinyMCE on a textarea
+    function initTinyMCEOnElement(textarea) {
+        if (!textarea || textarea.classList.contains('mce-initialized')) return;
+
+        tinymce.init({
+            selector: `#${textarea.id}`, // Target the specific textarea by its id
+            valid_elements: '*[*]', // Allow all HTML tags
+            menubar: false,
+            plugins: 'lists link image table code',
+            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
+            height: 80,
+            statusbar: false,
+            path: false,
+            skin: 'prestashop',
+            content_css: 'https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css',
+            setup: function(editor) {
+                editor.on('init', function () {
+                    // Event when the editor is initialized
+                    textarea.classList.add('mce-initialized'); // Mark the textarea as initialized
+                });
+
+                editor.on('change input keyup', function () {
+                    editor.save(); // Save the content into the <textarea>
+                });
+            }
+        });
+    }
+});
 
 </script>
 
