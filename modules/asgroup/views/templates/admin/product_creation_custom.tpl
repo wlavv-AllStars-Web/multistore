@@ -400,21 +400,53 @@
                 .map(tag => tag && tag.trim())
                 .filter(tag => tag && tag.length > 0);
 
-            const tagString = filteredTags.join(', ');
+            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
 
-            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
-            const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
+            // Clear previous tags
+            container.querySelectorAll('.token').forEach(el => el.remove());
 
-            if (hiddenInput) hiddenInput.value = tagString;
-            if (tokenInput) {
-                tokenInput.value = tagString;
-                tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
-            }
+            filteredTags.forEach(tag => {
+                const token = document.createElement('div');
+                token.className = 'token';
+                token.dataset.value = tag;
+
+                const label = document.createElement('span');
+                label.className = 'token-label';
+                label.style.maxWidth = '951.213px'; // Optional: dynamic width?
+                label.textContent = tag;
+
+                const close = document.createElement('a');
+                close.href = '#';
+                close.className = 'close';
+                close.tabIndex = -1;
+                close.innerHTML = '&times;';
+                close.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    token.remove();
+                    updateHiddenInput(langId);
+                });
+
+                token.appendChild(label);
+                token.appendChild(close);
+
+                container.insertBefore(token, container.querySelector('.token-input'));
+            });
+
+            // Update the hidden field for this lang
+            updateHiddenInput(langId);
         });
 
-        console.log('Generated tags for all languages.');
+        function updateHiddenInput(langId) {
+            const container = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const tokens = container.querySelectorAll('.token');
+            const values = Array.from(tokens).map(token => token.dataset.value);
+            const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
+            if (hiddenInput) {
+                hiddenInput.value = values.join(', ');
+            }
+        }
     }
-
+    
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
         if ($(input).tokenfield) {
