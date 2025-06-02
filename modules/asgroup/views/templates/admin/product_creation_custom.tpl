@@ -137,7 +137,7 @@
     <h3>Tags</h3>
     <p class="subtitle">Enter the keywords that customers might search for when looking for this product.</p>
 
-    <div class="flex">
+    <div class="" style="display: flex;gap: 1rem;">
         <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags" tabindex="1">
             {foreach from=$languages item=language name=langLoop}
                 <div data-lang-id="{$language.id_lang}"
@@ -185,13 +185,14 @@
                 </div>
             {/foreach}
         </div>
-        <div class="dropdown">
+        <div class="dropdown" style="padding: .15rem;">
             <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
                     type="button"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    id="product_seo_tags_dropdown">
+                    id="product_seo_tags_dropdown"
+                    style="display: flex;align-items: center;">
                 {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
             </button>
             <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_seo_tags_dropdown">
