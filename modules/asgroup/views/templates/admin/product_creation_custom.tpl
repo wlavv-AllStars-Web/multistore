@@ -646,44 +646,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-    });
 
-    function generateTagsASG() {
-        const tagName = {$product->name[$id_lang]};
-        const tagBrand = {$product->manufacturer_name};
-        const tagRef = {$product->reference};
-        const tagRefVariatios = [];
-        const tagCompats = [];
 
-        
-        const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
+            function generateTagsASG() {
+                const tagName = {$product->name[$id_lang]};
+                const tagBrand = {$product->manufacturer_name};
+                const tagRef = {$product->reference};
+                const tagRefVariatios = [];
+                const tagCompats = [];
 
-        // Filter out empty/null/undefined strings and trim whitespaces
-        const filteredTags = allTags
-            .map(tag => tag && tag.trim())  // Remove extra whitespace
-            .filter(tag => tag && tag.length > 0);  // Only non-empty tags
+                
+                const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
 
-        const tagString = filteredTags.join(', ');
+                // Filter out empty/null/undefined strings and trim whitespaces
+                const filteredTags = allTags
+                    .map(tag => tag && tag.trim())  // Remove extra whitespace
+                    .filter(tag => tag && tag.length > 0);  // Only non-empty tags
 
-        // Update all language inputs (visible + hidden)
-        document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
-            const langId = hiddenInput.id.split('_')[3];
+                const tagString = filteredTags.join(', ');
 
-            // Update hidden input value
-            hiddenInput.value = tagString;
+                // Update all language inputs (visible + hidden)
+                document.querySelectorAll('.js-taggable-field').forEach((hiddenInput) => {
+                    const langId = hiddenInput.id.split('_')[3];
 
-            // Update visible token input
-            const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
-            if (tokenInput) {
-                tokenInput.value = tagString;
+                    // Update hidden input value
+                    hiddenInput.value = tagString;
 
-                // Trigger sync
-                tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
+                    // Update visible token input
+                    const tokenInput = document.querySelector(`#product_seo_tags_`+langId+`-tokenfield`);
+                    if (tokenInput) {
+                        tokenInput.value = tagString;
+
+                        // Trigger sync
+                        tokenInput.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                });
+
+                console.log('Generated Tags:', tagString);
             }
-        });
-
-        console.log('Generated Tags:', tagString);
-    }
+    });
 
 </script>
 
