@@ -633,35 +633,42 @@ document.querySelectorAll(
 });
 
         // Submit the form with HTML content from TinyMCE editors
-        // const form = document.querySelector('form'); // Assuming the form element
-        // form.addEventListener('submit', function(e) {
-        //     e.preventDefault(); // Prevent default form submission
+        const form = document.querySelector('form'); // Assuming the form element
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
 
-        //     // Loop over all TinyMCE instances and get their HTML content
-        //     document.querySelectorAll('.tinymce-textarea, .tinymce-textarea-description').forEach(
-        //         function(textarea) {
-        //             // Get the TinyMCE instance for each textarea
-        //             const editorId = textarea.getAttribute('id'); // Get the TinyMCE instance id
-        //             const content = tinymce.get(editorId)
-        //                 .getContent(); // Get the HTML content from TinyMCE
+            // Loop over all TinyMCE instances and get their HTML content
+            document.querySelectorAll('.tinymce-textarea, .tinymce-textarea-description').forEach(
+                function(textarea) {
+                    // Get the TinyMCE instance for each textarea
+                    const editorId = textarea.getAttribute('id'); // Get the TinyMCE instance id
+                    const content = tinymce.get(editorId)
+                        .getContent(); // Get the HTML content from TinyMCE
 
-        //             // Create a hidden input to store the HTML content
-        //             const hiddenInput = document.createElement('input');
-        //             hiddenInput.type = 'hidden';
-        //             hiddenInput.name = textarea.name;
-        //             hiddenInput.value = content; // Set the HTML content as the value
+                    // Create a hidden input to store the HTML content
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = textarea.name;
+                    hiddenInput.value = content; // Set the HTML content as the value
 
-        //             form.appendChild(hiddenInput); // Append the hidden input to the form
-        //         });
+                    form.appendChild(hiddenInput); // Append the hidden input to the form
+                });
 
-        //     // Now you can submit the form with the hidden inputs containing the HTML content
-        //     form.submit(); // You can replace this with AJAX if needed
-        // });
+            // Now you can submit the form with the hidden inputs containing the HTML content
+            form.submit(); // You can replace this with AJAX if needed
+        });
     });
 
-    document.querySelector('form').addEventListener('submit', function (e) {
-        tinymce.triggerSave(); // Updates all textarea values from TinyMCE editors
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+    const saveButton = document.querySelector('#product_footer_save');
+
+    if (saveButton) {
+        saveButton.addEventListener('click', function () {
+            // Ensure TinyMCE content is synced to the corresponding <textarea>
+            tinymce.triggerSave();
+        }, { capture: true }); // Capture phase to run early
+    }
+});
 
 
 
