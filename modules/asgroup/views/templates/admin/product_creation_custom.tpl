@@ -137,74 +137,77 @@
     <h3>Tags</h3>
     <p class="subtitle">Enter the keywords that customers might search for when looking for this product.</p>
 
-    <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags" tabindex="1">
-        {foreach from=$languages item=language name=langLoop}
-            <div data-lang-id="{$language.id_lang}"
-                class="js-taggable-field js-locale-input js-locale-{$language.iso_code}{if !$smarty.foreach.langLoop.first} d-none{/if}"
-                style="flex-grow: 1;">
+    <div class="flex">
+        <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags" tabindex="1">
+            {foreach from=$languages item=language name=langLoop}
+                <div data-lang-id="{$language.id_lang}"
+                    class="js-taggable-field js-locale-input js-locale-{$language.iso_code}{if !$smarty.foreach.langLoop.first} d-none{/if}"
+                    style="flex-grow: 1;">
 
-                <div class="tokenfield">
-                    {if isset($product->tags[$language.id_lang])}
-                        {assign var="tags" value=$product->tags[$language.id_lang]}
-                    {else}
-                        {assign var="tags" value=[]}
-                    {/if}
+                    <div class="tokenfield">
+                        {if isset($product->tags[$language.id_lang])}
+                            {assign var="tags" value=$product->tags[$language.id_lang]}
+                        {else}
+                            {assign var="tags" value=[]}
+                        {/if}
 
-                    {if is_array($tags)}
-                        {assign var="tags_string" value=""}  {* Initialize an empty string for concatenation *}
+                        {if is_array($tags)}
+                            {assign var="tags_string" value=""}  {* Initialize an empty string for concatenation *}
 
-                        {foreach from=$tags item=tag}
-                            {assign var="tags_string" value=$tags_string|cat:$tag|cat:','}  {* Concatenate each tag with a comma *}
-                        {/foreach}
+                            {foreach from=$tags item=tag}
+                                {assign var="tags_string" value=$tags_string|cat:$tag|cat:','}  {* Concatenate each tag with a comma *}
+                            {/foreach}
 
-                        {assign var="tags_string" value=$tags_string|substr:0:-1}  {* Remove the last comma *}
-                    {else}
-                        {assign var="tags_string" value=$tags}
-                    {/if}
+                            {assign var="tags_string" value=$tags_string|substr:0:-1}  {* Remove the last comma *}
+                        {else}
+                            {assign var="tags_string" value=$tags}
+                        {/if}
 
-                    <input type="text"
-                        id="product_seo_tags_{$language.id_lang}"
-                        name="product[asg][tags][{$language.id_lang}]"
-                        class="js-taggable-field form-control"
-                        aria-label="product_seo_tags_{$language.id_lang} input"
-                        value="{$tags_string|escape:'html'}"
-                        style="position: absolute; left: -10000px;"
-                        tabindex="-1">
-                    <input type="text" style="position: absolute; left: -10000px;" tabindex="-1">
+                        <input type="text"
+                            id="product_seo_tags_{$language.id_lang}"
+                            name="product[asg][tags][{$language.id_lang}]"
+                            class="js-taggable-field form-control"
+                            aria-label="product_seo_tags_{$language.id_lang} input"
+                            value="{$tags_string|escape:'html'}"
+                            style="position: absolute; left: -10000px;"
+                            tabindex="-1">
+                        <input type="text" style="position: absolute; left: -10000px;" tabindex="-1">
 
-                    <input type="text"
-                        class="token-input"
-                        autocomplete="off"
-                        placeholder=""
-                        id="product_seo_tags_{$language.id_lang}-tokenfield"
-                        tabindex="0"
-                        style="min-width: 60px; width: 0px;"
-                        maxlength="32">
+                        <input type="text"
+                            class="token-input"
+                            autocomplete="off"
+                            placeholder=""
+                            id="product_seo_tags_{$language.id_lang}-tokenfield"
+                            tabindex="0"
+                            style="min-width: 60px; width: 0px;"
+                            maxlength="32">
+                    </div>
                 </div>
+            {/foreach}
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    id="product_seo_tags_dropdown">
+                {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_seo_tags_dropdown">
+                {foreach from=$languages item=language}
+                    <span class="dropdown-item js-locale-item"
+                        data-locale="{$language.iso_code}">
+                        {$language.name} ({$language.iso_code|capitalize})
+                    </span>
+                {/foreach}
             </div>
-        {/foreach}
+        </div>
     </div>
 
     <button class="btn btn-secondary">Generate Tags</button>
 
-    <div class="dropdown">
-        <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
-                type="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="product_seo_tags_dropdown">
-            {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
-        </button>
-        <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_seo_tags_dropdown">
-            {foreach from=$languages item=language}
-                <span class="dropdown-item js-locale-item"
-                      data-locale="{$language.iso_code}">
-                    {$language.name} ({$language.iso_code|capitalize})
-                </span>
-            {/foreach}
-        </div>
-    </div>
+
 </div>
 
 
