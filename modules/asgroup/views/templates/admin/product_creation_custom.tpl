@@ -375,7 +375,7 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-
+    let buttonSaveProductFooter = document.querySelector("#product_footer_save")
     function generateTagsASG() {
         const tagNames = {};
 
@@ -444,6 +444,7 @@
             if (hiddenInput) {
                 hiddenInput.value = values.join(', ');
             }
+            buttonSaveProductFooter.removeAttribute('disabled'); // Enable the save button
         }
     }
 
