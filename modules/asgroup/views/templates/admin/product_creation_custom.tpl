@@ -389,6 +389,12 @@
         const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
         const tagRef = "{$product->reference|escape:'javascript'}";
         const tagRefVariations = [];
+
+        {foreach from=$combinations item=combination}
+            tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
+        {/foreach}
+
+
         const tagCompats = new Set();
 
         {if isset($compats) && is_array($compats)}
