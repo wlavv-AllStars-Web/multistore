@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Find the matching radio input and check it
             const matchingRadio = document.querySelector(
-                `#product_options_visibility_visibility input[type="radio"][value="${selectedValue}"]`
+                `#product_options_visibility_visibility input[type="radio"][value="`+selectedValue+`"]`
             );
 
             if (matchingRadio) {
