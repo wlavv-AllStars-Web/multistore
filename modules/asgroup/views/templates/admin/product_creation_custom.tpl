@@ -1,8 +1,8 @@
 <!-- Load the TinyMCE script -->
-<link href"https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css">
+{* <link href"https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css">
 </link>
 <link href"https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css">
-</link>
+</link> *}
 
 <div class="tab-container-product-creation-custom row">
     <div class="col-lg-9">
