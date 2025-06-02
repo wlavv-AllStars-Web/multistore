@@ -797,6 +797,3 @@ document.addEventListener("DOMContentLoaded", function () {
         display: none !important;
     }
 </style>
-
-
-<pre>{$combinations|print_r}</pre>
