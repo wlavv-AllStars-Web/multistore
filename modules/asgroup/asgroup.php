@@ -545,7 +545,7 @@ class AsGroup extends Module
                     foreach ($tags as $tag) {
                         // Step 2: Check if the product-tag association already exists
                         $existingAssociation = Db::getInstance()->getRow(
-                            'SELECT id_product_tag 
+                            'SELECT id_tag 
                             FROM ' . _DB_PREFIX_ . 'product_tag 
                             WHERE id_product = ' . (int)$idProduct . ' 
                             AND id_lang = ' . (int)$langId . ' 
@@ -568,7 +568,7 @@ class AsGroup extends Module
                         } else {
                             // If the tag doesn't exist, insert it into ps_tag
                             Db::getInstance()->insert(
-                                _DB_PREFIX_ . 'tag',
+                                'tag',
                                 [
                                     'name' => pSQL($tag),
                                     'id_lang' => (int)$langId,
@@ -581,7 +581,7 @@ class AsGroup extends Module
 
                         // Step 4: Insert the product-tag association into ps_product_tag
                         Db::getInstance()->insert(
-                            _DB_PREFIX_ . 'product_tag',
+                            'product_tag',
                             [
                                 'id_product' => (int)$idProduct,
                                 'id_tag' => (int)$idTag,
