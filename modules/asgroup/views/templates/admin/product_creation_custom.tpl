@@ -592,46 +592,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Add click event to each language tab
-        document.querySelectorAll(
-            '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]').forEach(
-            tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevent default anchor behavior
+document.querySelectorAll(
+    '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
+).forEach(tab => {
+    tab.addEventListener('click', function(e) {
+        e.preventDefault();
 
-                    // Deactivate all tabs and panes
-                    document.querySelectorAll('#product_product_creation_custom_html .translationsLocales a').forEach(
-                        t => t.classList.remove('active'));
-                    document.querySelectorAll('#product_product_creation_custom_html .tab-pane')
-                        .forEach(pane => {
-                            pane.classList.remove('show', 'active');
-                        });
+        // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
+        const tabContainer = this.closest('.translationsLocales');
+        const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
 
-                    // Activate clicked tab
-                    this.classList.add('active');
-                    const targetSelector = this.getAttribute('data-target');
-                    const targetPane = document.querySelector(targetSelector);
+        // Deactivate only sibling tabs within this group
+        tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
 
-                    if (targetPane) {
-                        targetPane.classList.add('show', 'active');
+        // Deactivate only sibling panes within this container
+        paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
+            pane.classList.remove('show', 'active');
+        });
 
-                        // Find the textarea inside the pane and initialize TinyMCE for short description
-                        const shortDescriptionTextarea = targetPane.querySelector(
-                            '.tinymce-textarea');
-                        if (shortDescriptionTextarea && !shortDescriptionTextarea.classList
-                            .contains('mce-container')) {
-                            initTinyMCEOnElement(shortDescriptionTextarea);
-                        }
+        // Activate clicked tab
+        this.classList.add('active');
 
-                        // Find the textarea inside the pane and initialize TinyMCE for full description
-                        const descriptionTextarea = targetPane.querySelector(
-                            '.tinymce-textarea-description');
-                        if (descriptionTextarea && !descriptionTextarea.classList.contains(
-                                'mce-container')) {
-                            initTinyMCEOnElement(descriptionTextarea);
-                        }
-                    }
-                });
-            });
+        // Activate corresponding pane
+        const targetPane = document.querySelector(this.getAttribute('data-target'));
+        if (targetPane) {
+            targetPane.classList.add('show', 'active');
+
+            // Init TinyMCE if needed
+            const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
+            if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
+                initTinyMCEOnElement(shortDescriptionTextarea);
+            }
+
+            const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
+            if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
+                initTinyMCEOnElement(descriptionTextarea);
+            }
+        }
+    });
+});
 
         // Submit the form with HTML content from TinyMCE editors
         const form = document.querySelector('form'); // Assuming the form element
