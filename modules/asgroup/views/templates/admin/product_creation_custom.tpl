@@ -598,24 +598,42 @@ document.addEventListener("DOMContentLoaded", function () {
         '#product_description #product_description_description_short',
         '#product_description #product_description_description',
         '#product_seo #product_seo_tags',
-        '#product_options_visibility #product_options_visibility_visibility'
     ];
 
     // Loop through the IDs and remove each element from the DOM
     elementsToRemove.forEach(function(id) {
-        if(id === '#product_options_visibility #product_options_visibility_visibility'){
-            console.log(id);
-            const element = document.querySelector(id); 
-        }else{
-            const element = document.querySelector(id).parentElement;
-        }
+
+        const element = document.querySelector(id).parentElement;
 
         if (element) {
             element.remove();
         }
     });
+
+    
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const visibilitySelect = document.querySelector('#product_visibility');
+
+    if (visibilitySelect) {
+        visibilitySelect.addEventListener('change', function () {
+            const selectedValue = this.value;
+
+            // Find the matching radio input and check it
+            const matchingRadio = document.querySelector(
+                `#product_options_visibility_visibility input[type="radio"][value="${selectedValue}"]`
+            );
+
+            if (matchingRadio) {
+                matchingRadio.checked = true;
+
+                // Optional: trigger change event if other scripts rely on it
+                matchingRadio.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+});
 </script>
 
 <style>
