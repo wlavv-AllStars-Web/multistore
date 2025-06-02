@@ -1477,7 +1477,7 @@ public function getASGProductCreation($product) {
         // pre($compats);
 
         # Get brands and compats data
-        $data = $this->getCompats();
+        $data = $this->getCompats($product);
         
         $brands = $data['brands'];
         $compats = $data['compats'];
@@ -1496,7 +1496,7 @@ public function getASGProductCreation($product) {
         
     }
 
-    public function getCompats() {
+    public function getCompats($product) {
 
         $key = 'DSuqgsPKdWGM7oyc77z759DAGtYhd1c3Ryr5UvdjrXmIepwfqBGOlYRPvW7Ba0XgvxBZJ8eeXtiaehD2yLHwGf2fSQfIh3iDtf9i115YQIbMqtmfBPrCUMxeqVt0Ua1iB6FuTeQ2cES8UUYcTVcIFir6f8Xh5TrXFr9UBzHuqbSKpZWFcuzeWCFyK0GqeZuLL7apgoTzdJjwcrI1sf0BmqBItDPBljAaBeG0Pcb5Z8HlyPbalUqKABCMW9i5sseA';
         $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
