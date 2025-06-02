@@ -599,7 +599,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.preventDefault(); // Prevent default anchor behavior
 
                     // Deactivate all tabs and panes
-                    this.parentElement.parentElement.querySelector("a").forEach(
+                    document.querySelectorAll(
+                        '#product_product_creation_custom_html .translationsLocales a').forEach(
                         t => t.classList.remove('active'));
                     document.querySelectorAll('#product_product_creation_custom_html .tab-pane')
                         .forEach(pane => {
