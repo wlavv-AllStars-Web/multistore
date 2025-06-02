@@ -1,6 +1,6 @@
 <!-- Load the TinyMCE script -->
-<link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
-<link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet">
+{* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
+<link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
 
 
 <div class="tab-container-product-creation-custom row">
@@ -541,6 +541,8 @@ document.addEventListener("DOMContentLoaded", function () {
             height: 80,
             statusbar: false, // Disable the status bar
             path: false, // Disable the path toolbar
+            skin: 'prestashop',
+            content_css: 'https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css',
             setup: function(editor) {
                 editor.on('init', function() {
                     textarea.classList.add('mce-initialized');
