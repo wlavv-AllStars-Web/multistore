@@ -377,12 +377,11 @@
 <script>
 
     function generateTagsASG() {
-        const tagName = {$product->name[$id_lang]};
-        const tagBrand = {$product->manufacturer_name};
-        const tagRef = {$product->reference};
+        const tagName = "{$product->name[$id_lang]|escape:'javascript'}";
+        const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
+        const tagRef = "{$product->reference|escape:'javascript'}";
         const tagRefVariatios = [];
         const tagCompats = [];
-
         
         const allTags = [tagName, tagBrand, tagRef, ...tagRefVariatios, ...tagCompats];
 
