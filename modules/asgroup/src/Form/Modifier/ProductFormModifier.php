@@ -71,7 +71,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         $result = Db::getInstance()->getRow($sql);
 
-        // pre($result['difficulty']);
 
         
         $data['productId'] = $idProduct;
@@ -146,182 +145,182 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         
 
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'real_photos',
-            'youtube_1',
-            TextType::class,
-            [
-                // you can remove the label if you dont need it by passing 'label' => false
-                'label' => $this->translator->trans('Youtube Code', [], 'Modules.ASGroup.Admin'),
-                // customize label by any html attribute
-                'label_attr' => [
-                    'title' => 'h2',
-                    'class' => 'text-info',
-                ],
-                'attr' => [
-                    'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.ASGroup.Admin'),
-                    'class' => 'col-md-3',
-                ],
-                // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-                'data' => $data['youtube_1'] ,
-                'empty_data' => '',
-                'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'real_photos',
+        //     'youtube_1',
+        //     TextType::class,
+        //     [
+        //         // you can remove the label if you dont need it by passing 'label' => false
+        //         'label' => $this->translator->trans('Youtube Code', [], 'Modules.ASGroup.Admin'),
+        //         // customize label by any html attribute
+        //         'label_attr' => [
+        //             'title' => 'h2',
+        //             'class' => 'text-info',
+        //         ],
+        //         'attr' => [
+        //             'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.ASGroup.Admin'),
+        //             'class' => 'col-md-3',
+        //         ],
+        //         // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
+        //         'data' => $data['youtube_1'] ,
+        //         'empty_data' => '',
+        //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
+        //     ]
+        // );
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'youtube_1',
-            'youtube_2',
-            TextType::class,
-            [
-                // you can remove the label if you dont need it by passing 'label' => false
-                'label' => $this->translator->trans('Youtube Code 2', [], 'Modules.ASGroup.Admin'),
-                // customize label by any html attribute
-                'label_attr' => [
-                    'title' => 'h2',
-                    'class' => 'text-info',
-                ],
-                'attr' => [
-                    'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.ASGroup.Admin'),
-                    'class' => 'col-md-3',
-                ],
-                // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-                'data' => $data['youtube_2'] ,
-                'empty_data' => '',
-                'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'youtube_1',
+        //     'youtube_2',
+        //     TextType::class,
+        //     [
+        //         // you can remove the label if you dont need it by passing 'label' => false
+        //         'label' => $this->translator->trans('Youtube Code 2', [], 'Modules.ASGroup.Admin'),
+        //         // customize label by any html attribute
+        //         'label_attr' => [
+        //             'title' => 'h2',
+        //             'class' => 'text-info',
+        //         ],
+        //         'attr' => [
+        //             'placeholder' => $this->translator->trans('Your youtube code here', [], 'Modules.ASGroup.Admin'),
+        //             'class' => 'col-md-3',
+        //         ],
+        //         // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
+        //         'data' => $data['youtube_2'] ,
+        //         'empty_data' => '',
+        //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
+        //     ]
+        // );
 
-        // hs code
+        // // hs code
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'youtube_2',
-            'hs_code',
-            TextType::class,
-            [
-                // you can remove the label if you dont need it by passing 'label' => false
-                'label' => $this->translator->trans('HS code', [], 'Modules.ASGroup.Admin'),
-                // customize label by any html attribute
-                'label_attr' => [
-                    'title' => 'h2',
-                    'class' => 'text-info',
-                ],
-                'attr' => [
-                    'placeholder' => $this->translator->trans('Product HS code here', [], 'Modules.ASGroup.Admin'),
-                    'class' => 'col-md-3',
-                ],
-                // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
-                'data' => $data['hs_code'] ,
-                'empty_data' => '',
-                'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'youtube_2',
+        //     'hs_code',
+        //     TextType::class,
+        //     [
+        //         // you can remove the label if you dont need it by passing 'label' => false
+        //         'label' => $this->translator->trans('HS code', [], 'Modules.ASGroup.Admin'),
+        //         // customize label by any html attribute
+        //         'label_attr' => [
+        //             'title' => 'h2',
+        //             'class' => 'text-info',
+        //         ],
+        //         'attr' => [
+        //             'placeholder' => $this->translator->trans('Product HS code here', [], 'Modules.ASGroup.Admin'),
+        //             'class' => 'col-md-3',
+        //         ],
+        //         // this is just an example, but in real case scenario you could have some data provider class to wrap more complex cases
+        //         'data' => $data['hs_code'] ,
+        //         'empty_data' => '',
+        //         'form_theme' => '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit_base.html.twig',
+        //     ]
+        // );
 
-        // difficulty select
+        // // difficulty select
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'hs_code',
-            'difficulty',
-            ChoiceType::class, // Use ChoiceType for a select field.
-            [
-                'label' => $this->translator->trans('Instructions Difficulty', [], 'Modules.ASGroup.Admin'),
-                'label_attr' => [
-                    'class' => 'text-info',
-                ],
-                'choices' => [
-                    'Default' => 0,
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3,
-                    '4' => 4,
-                    '5' => 5,
-                ],
-                'placeholder' => null,
-                'attr' => [
-                    // 'value' => $data['difficulty'] ?? null,
-                    // 'data-toggle' => 'select2',
-                    // 'data-minimumResultsForSearch' => '6',
-                ],
-                'required' => false, // Optional: Whether the field is required.
-                'data' => $data['difficulty'] ?? 0, // Default value.
-            ]
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'hs_code',
+        //     'difficulty',
+        //     ChoiceType::class, // Use ChoiceType for a select field.
+        //     [
+        //         'label' => $this->translator->trans('Instructions Difficulty', [], 'Modules.ASGroup.Admin'),
+        //         'label_attr' => [
+        //             'class' => 'text-info',
+        //         ],
+        //         'choices' => [
+        //             'Default' => 0,
+        //             '1' => 1,
+        //             '2' => 2,
+        //             '3' => 3,
+        //             '4' => 4,
+        //             '5' => 5,
+        //         ],
+        //         'placeholder' => null,
+        //         'attr' => [
+        //             // 'value' => $data['difficulty'] ?? null,
+        //             // 'data-toggle' => 'select2',
+        //             // 'data-minimumResultsForSearch' => '6',
+        //         ],
+        //         'required' => false, // Optional: Whether the field is required.
+        //         'data' => $data['difficulty'] ?? 0, // Default value.
+        //     ]
 
-        );
+        // );
 
 
-        // end of life
+        // // end of life
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'difficulty',
-            'ec_approved',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['ec_approved'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('Ec approved',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('Ec approved helper.',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'difficulty',
+        //     'ec_approved',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['ec_approved'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('Ec approved',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('Ec approved helper.',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'ec_approved',
-            'wmdeprecated',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['wmdeprecated'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('End of life',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('End of life helper.',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'ec_approved',
+        //     'wmdeprecated',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['wmdeprecated'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('End of life',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('End of life helper.',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
 
-        // not to oder producr
+        // // not to oder producr
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'wmdeprecated',
-            'not_to_order',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['not_to_order'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('Not to order?',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('Not to order helper.',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'wmdeprecated',
+        //     'not_to_order',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['not_to_order'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('Not to order?',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('Not to order helper.',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
 
         // disallow stock
 
         $this->formBuilderModifier->addAfter(
             $descriptionTabFormBuilder,
-            'not_to_order',
+            'real_photos',
             'disallow_stock',
             SwitchType::class,
             [
@@ -364,7 +363,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         // print ean btn
         $detailsTabFormBuilder = $productFormBuilder->get('details');
-        
         
         // pre($detailsTabFormBuilder);
 
@@ -439,6 +437,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
+
+
         // add new tab for ukooo new
         $context = \Context::getContext();
 
@@ -474,6 +474,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
             ]
         );
 
+
+        
 
     }
 }
