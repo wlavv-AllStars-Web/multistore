@@ -793,4 +793,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </style>
 
 
-<pre>{$product|print_r}</pre>
+<pre>{$combinations|print_r}</pre>
