@@ -108,8 +108,7 @@
                          translation-label-{$language.iso_code}">
                         <!-- TinyMCE Textarea for Full Description -->
                         <textarea name="product[asg][description_long][{$language.id_lang}]"
-                            class="form-control tinymce-textarea-description" rows="5"
-                            value="{$product->description[$language.id_lang]}">
+                            class="form-control tinymce-textarea-description" rows="5">
                                                 {$product->description[$language.id_lang]|escape:'html'}
                                             </textarea>
 
@@ -551,6 +550,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         tinymce.init({
             target: textarea,
+            valid_elements: '*[*]',
             menubar: false,
             plugins: 'lists link image table code',
             toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
