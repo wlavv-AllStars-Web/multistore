@@ -384,22 +384,29 @@ class AsGroup extends Module
         // 1. Handle Short Description (in ps_product_lang)
         if (isset($productData['asg']['description_short']) && is_array($productData['asg']['description_short'])) {
             foreach ($productData['asg']['description_short'] as $idLang => $shortDesc) {
-                // Save the raw HTML content (no escaping required)
-                Db::getInstance()->update('product_lang', [
-                    'description_short' => $shortDesc // No need to use pSQL() if it's HTML content
-                ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+                // Skip if empty
+                if (Tools::strlen(trim($shortDesc)) > 0) {
+                    Db::getInstance()->update('product_lang', [
+                        'description_short' => $shortDesc
+                    ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+                } else {
+                    error_log("Skipped empty description_short for lang ID $idLang");
+                }
             }
         } else {
             error_log('Product data is not valid or description_short is not set.');
         }
-    
+
         // 2. Handle Long Description (in ps_product_lang)
         if (isset($productData['asg']['description_long']) && is_array($productData['asg']['description_long'])) {
             foreach ($productData['asg']['description_long'] as $idLang => $longDesc) {
-                // Save the raw HTML content (no escaping required)
-                Db::getInstance()->update('product_lang', [
-                    'description' => $longDesc // No need to use pSQL() if it's HTML content
-                ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+                if (Tools::strlen(trim($longDesc)) > 0) {
+                    Db::getInstance()->update('product_lang', [
+                        'description' => $longDesc
+                    ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
+                } else {
+                    error_log("Skipped empty description_long for lang ID $idLang");
+                }
             }
         } else {
             error_log('Product data is not valid or description_long is not set.');
