@@ -67,10 +67,13 @@
                          tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
                          translation-label-{$language.iso_code}">
                         <!-- TinyMCE Textarea for Short Description -->
-                        <textarea name="product[asg][description_short][{$language.id_lang}]"
-                            class="form-control tinymce-textarea" rows="5">
-                                                {$product->description_short[$language.id_lang]|escape:'html'}
-                                            </textarea>
+                        <textarea
+                            id="description_short_{$language.id_lang}"
+                            name="product[asg][description_short][{$language.id_lang}]"
+                            class="form-control tinymce-textarea"
+                            rows="5">
+                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                        </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -107,10 +110,14 @@
                          tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
                          translation-label-{$language.iso_code}">
                         <!-- TinyMCE Textarea for Full Description -->
-                        <textarea name="product[asg][description_long][{$language.id_lang}]"
-                            class="form-control tinymce-textarea-description" rows="5">
-                                                {$product->description[$language.id_lang]|escape:'html'}
-                                            </textarea>
+                        <textarea
+                            id="description_long_{$language.id_lang}"
+                            name="product[asg][description_long][{$language.id_lang}]"
+                            class="form-control tinymce-textarea-description"
+                            rows="5">
+                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                        </textarea>
+
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -549,7 +556,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!textarea || textarea.classList.contains('mce-initialized')) return;
 
         tinymce.init({
-            target: textarea,
+            selector: `#`+textarea.id``,
             valid_elements: '*[*]',
             menubar: false,
             plugins: 'lists link image table code',
@@ -596,45 +603,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Add click event to each language tab
-document.querySelectorAll(
-    '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
-).forEach(tab => {
-    tab.addEventListener('click', function(e) {
-        e.preventDefault();
+        document.querySelectorAll(
+            '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
+        ).forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
 
-        // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
-        const tabContainer = this.closest('.translationsLocales');
-        const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
+                // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
+                const tabContainer = this.closest('.translationsLocales');
+                const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
 
-        // Deactivate only sibling tabs within this group
-        tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
+                // Deactivate only sibling tabs within this group
+                tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
 
-        // Deactivate only sibling panes within this container
-        paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
-            pane.classList.remove('show', 'active');
+                // Deactivate only sibling panes within this container
+                paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+
+                // Activate clicked tab
+                this.classList.add('active');
+
+                // Activate corresponding pane
+                const targetPane = document.querySelector(this.getAttribute('data-target'));
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+
+                    // Init TinyMCE if needed
+                    const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
+                    if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
+                        initTinyMCEOnElement(shortDescriptionTextarea);
+                    }
+
+                    const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
+                    if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
+                        initTinyMCEOnElement(descriptionTextarea);
+                    }
+                }
+            });
         });
-
-        // Activate clicked tab
-        this.classList.add('active');
-
-        // Activate corresponding pane
-        const targetPane = document.querySelector(this.getAttribute('data-target'));
-        if (targetPane) {
-            targetPane.classList.add('show', 'active');
-
-            // Init TinyMCE if needed
-            const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
-            if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
-                initTinyMCEOnElement(shortDescriptionTextarea);
-            }
-
-            const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
-            if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
-                initTinyMCEOnElement(descriptionTextarea);
-            }
-        }
-    });
-});
 
         // Submit the form with HTML content from TinyMCE editors
         const form = document.querySelector('form'); // Assuming the form element
