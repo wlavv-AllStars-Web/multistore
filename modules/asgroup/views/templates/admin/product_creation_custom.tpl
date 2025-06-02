@@ -791,3 +791,6 @@ document.addEventListener("DOMContentLoaded", function () {
         display: none !important;
     }
 </style>
+
+
+<pre>{$product|print_r}</pre>
