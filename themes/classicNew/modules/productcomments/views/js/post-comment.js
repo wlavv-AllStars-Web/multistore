@@ -2,12 +2,6 @@ jQuery(document).ready(function () {
   const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
 
-  $('body').on('click', '.post-product-comment', function (event) {
-    event.preventDefault();
-    showPostCommentModal();
-  });
-
-
   const selectors = {
     postCommentModal: isDesktop
       ? '#product_reviews.desktop #post-product-comment-modal'
