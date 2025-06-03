@@ -891,20 +891,38 @@ public function hookDisplayHeader()
         ];
 
         foreach ($jsFilesToVersion as $jsFile) {
-            $originalPath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $jsFile;
-            $version = file_exists($originalPath) ? filemtime($originalPath) : time();
-            $versionedName = pathinfo($jsFile, PATHINFO_FILENAME) . '.' . $version . '.js';
-            $versionedPath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $versionedName;
+            // Path in theme override
+            $themeOverridePath = _PS_THEME_DIR_ . 'modules/productcomments/views/js/' . $jsFile;
 
-            // Copy only if versioned file doesn't exist
+            // Path in module
+            $modulePath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $jsFile;
+
+            // Determine which file to use
+            $useThemeFile = file_exists($themeOverridePath);
+            $sourcePath = $useThemeFile ? $themeOverridePath : $modulePath;
+
+            $version = filemtime($sourcePath);
+            $versionedName = pathinfo($jsFile, PATHINFO_FILENAME) . '.' . $version . '.js';
+
+            // Output folder (theme or module)
+            $versionedPath = $useThemeFile
+                ? _PS_THEME_DIR_ . 'modules/productcomments/views/js/' . $versionedName
+                : _PS_MODULE_DIR_ . 'productcomments/views/js/' . $versionedName;
+
+            // Copy if not already copied
             if (!file_exists($versionedPath)) {
-                copy($originalPath, $versionedPath);
+                copy($sourcePath, $versionedPath);
             }
 
-            // Register the versioned JS file
-            $jsList[] = '/modules/productcomments/views/js/' . $versionedName;
+            // URL path (for browser)
+            $jsUrl = $useThemeFile
+                ? '/themes/' . _THEME_NAME_ . '/modules/productcomments/views/js/' . $versionedName
+                : '/modules/productcomments/views/js/' . $versionedName;
+
+            $jsList[] = $jsUrl;
         }
     }
+
 
     // Register styles
     foreach ($cssList as $cssUrl) {
