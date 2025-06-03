@@ -643,29 +643,30 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
+        // nao entra aqui
         // Submit the form with HTML content from TinyMCE editors
-        const form = document.querySelector('form'); // Assuming the form element
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
+        // const form = document.querySelector('form'); // Assuming the form element
+        //     form.addEventListener('submit', function(e) {
+        //         e.preventDefault(); // Prevent default form submission
 
-                // First, make sure all TinyMCE instances save their content into their corresponding <textarea> elements
-                tinymce.triggerSave();
+        //         // First, make sure all TinyMCE instances save their content into their corresponding <textarea> elements
+        //         tinymce.triggerSave();
 
-                // Optional: Loop through all TinyMCE instances and append content as hidden inputs (if needed)
-                tinymce.editors.forEach(function(editor) {
-                    // Create a hidden input for each TinyMCE editor
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = editor.target.name; // Get the original name of the textarea
-                    hiddenInput.value = editor.getContent(); // Save the content
+        //         // Optional: Loop through all TinyMCE instances and append content as hidden inputs (if needed)
+        //         tinymce.editors.forEach(function(editor) {
+        //             // Create a hidden input for each TinyMCE editor
+        //             const hiddenInput = document.createElement('input');
+        //             hiddenInput.type = 'hidden';
+        //             hiddenInput.name = editor.target.name; // Get the original name of the textarea
+        //             hiddenInput.value = editor.getContent(); // Save the content
 
-                    console.log('Saving content for:', editor.target.name, 'Content:', hiddenInput.value);
-                    form.appendChild(hiddenInput); // Append the hidden input to the form
-                });
+        //             console.log('Saving content for:', editor.target.name, 'Content:', hiddenInput.value);
+        //             form.appendChild(hiddenInput); // Append the hidden input to the form
+        //         });
 
-            // Now you can submit the form with all hidden inputs containing the HTML content
-            form.submit(); // You can replace this with AJAX if needed
-        });
+        //     // Now you can submit the form with all hidden inputs containing the HTML content
+        //     form.submit(); // You can replace this with AJAX if needed
+        // });
     });
 
     document.addEventListener('DOMContentLoaded', function () {
