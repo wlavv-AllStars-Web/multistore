@@ -4,22 +4,22 @@ jQuery(document).ready(function () {
 
   const selectors = {
     postCommentModal: isDesktop
-      ? '#product_reviews.desktop #post-product-comment-modal'
+      ? '#product_reviews #post-product-comment-modal'
       : '.container-reviews-mobile #post-product-comment-modal',
     commentPostedModal: isDesktop
-      ? '#product_reviews.desktop #product-comment-posted-modal'
+      ? '#product_reviews #product-comment-posted-modal'
       : '.container-reviews-mobile #product-comment-posted-modal',
     commentPostErrorModal: isDesktop
-      ? '#product_reviews.desktop #product-comment-post-error'
+      ? '#product_reviews #product-comment-post-error'
       : '.container-reviews-mobile #product-comment-post-error',
     postProductCommentButton: isDesktop
-      ? '#product_reviews.desktop .post-product-comment'
+      ? '#product_reviews .post-product-comment'
       : '.container-reviews-mobile .post-product-comment',
     commentForm: isDesktop
-      ? '#product_reviews.desktop #post-product-comment-form'
+      ? '#product_reviews #post-product-comment-form'
       : '.container-reviews-mobile #post-product-comment-form',
     gradeStars: isDesktop
-      ? '#product_reviews.desktop #post-product-comment-modal .grade-stars'
+      ? '#product_reviews #post-product-comment-modal .grade-stars'
       : '.container-reviews-mobile #post-product-comment-modal .grade-stars',
   };
 
