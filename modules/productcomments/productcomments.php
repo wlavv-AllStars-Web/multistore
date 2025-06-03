@@ -876,55 +876,76 @@ public function hookDisplayHeader()
     $jsList = [];
     $cssList = [];
 
-    // CSS (non-versioned in this example)
-    $cssList[] = '/modules/productcomments/views/css/productcomments.css';
+    $assetsToHandle = [
+        // Format: ['type' => 'css' or 'js', 'filename' => 'yourfile.js or .css']
+        ['type' => 'css', 'filename' => 'productcomments.css'],
+        ['type' => 'js', 'filename' => 'jquery.rating.plugin.js'],
+        ['type' => 'js', 'filename' => 'productListingComments.js'],
+    ];
 
-    // JS (without versioning)
-    $jsList[] = '/modules/productcomments/views/js/jquery.rating.plugin.js';
-    $jsList[] = '/modules/productcomments/views/js/productListingComments.js';
+    foreach ($assetsToHandle as $asset) {
+        $type = $asset['type'];
+        $filename = $asset['filename'];
 
-    // Add versioned JS only on product pages
+        $themeOverridePath = _PS_THEME_DIR_ . 'modules/productcomments/views/' . $type . '/' . $filename;
+        $modulePath = _PS_MODULE_DIR_ . 'productcomments/views/' . $type . '/' . $filename;
+
+        $useThemeFile = file_exists($themeOverridePath);
+        $sourcePath = $useThemeFile ? $themeOverridePath : $modulePath;
+
+        $version = filemtime($sourcePath);
+        $versionedName = pathinfo($filename, PATHINFO_FILENAME) . '.' . $version . '.' . $type;
+
+        $versionedPath = $useThemeFile
+            ? _PS_THEME_DIR_ . 'modules/productcomments/views/' . $type . '/' . $versionedName
+            : _PS_MODULE_DIR_ . 'productcomments/views/' . $type . '/' . $versionedName;
+
+        if (!file_exists($versionedPath)) {
+            copy($sourcePath, $versionedPath);
+        }
+
+        $assetUrl = $useThemeFile
+            ? '/themes/' . $this->context->shop->theme_name . '/modules/productcomments/views/' . $type . '/' . $versionedName
+            : '/modules/productcomments/views/' . $type . '/' . $versionedName;
+
+        if ($type === 'css') {
+            $cssList[] = $assetUrl;
+        } else {
+            $jsList[] = $assetUrl;
+        }
+    }
+
+    // Add dynamic JS only for Product page
     if ($this->context->controller instanceof ProductControllerCore) {
-        $jsFilesToVersion = [
-            'post-comment.js',
-            'list-comments.js',
-        ];
+        $productJsFiles = ['post-comment.js', 'list-comments.js'];
 
-        foreach ($jsFilesToVersion as $jsFile) {
-            // Path in theme override
+        foreach ($productJsFiles as $jsFile) {
             $themeOverridePath = _PS_THEME_DIR_ . 'modules/productcomments/views/js/' . $jsFile;
-
-            // Path in module
             $modulePath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $jsFile;
 
-            // Determine which file to use
             $useThemeFile = file_exists($themeOverridePath);
             $sourcePath = $useThemeFile ? $themeOverridePath : $modulePath;
 
             $version = filemtime($sourcePath);
             $versionedName = pathinfo($jsFile, PATHINFO_FILENAME) . '.' . $version . '.js';
 
-            // Output folder (theme or module)
             $versionedPath = $useThemeFile
                 ? _PS_THEME_DIR_ . 'modules/productcomments/views/js/' . $versionedName
                 : _PS_MODULE_DIR_ . 'productcomments/views/js/' . $versionedName;
 
-            // Copy if not already copied
             if (!file_exists($versionedPath)) {
                 copy($sourcePath, $versionedPath);
             }
 
-            // URL path (for browser)
             $jsUrl = $useThemeFile
-                ? '/themes/' . _THEME_NAME_ . '/modules/productcomments/views/js/' . $versionedName
+                ? '/themes/' . $this->context->shop->theme_name . '/modules/productcomments/views/js/' . $versionedName
                 : '/modules/productcomments/views/js/' . $versionedName;
 
             $jsList[] = $jsUrl;
         }
     }
 
-
-    // Register styles
+    // Register stylesheets
     foreach ($cssList as $cssUrl) {
         $this->context->controller->registerStylesheet(
             sha1($cssUrl),
@@ -936,7 +957,7 @@ public function hookDisplayHeader()
         );
     }
 
-    // Register scripts
+    // Register JavaScript files
     foreach ($jsList as $jsUrl) {
         $this->context->controller->registerJavascript(
             sha1($jsUrl),
