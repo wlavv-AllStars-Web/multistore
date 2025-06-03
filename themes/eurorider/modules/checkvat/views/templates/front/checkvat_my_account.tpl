@@ -34,7 +34,7 @@
 
 	{/if}
 	{if $msg_vat_valid}
-		<p id="msg_vat_valid" style="{if $msg_vat_valid}background-color:#DFFAD3;padding:10px{/if}">
+		<p id="msg_vat_valid" style="{if $msg_vat_valid}padding:10px{/if}">
 		<strong>{l s='Your VAT number is correct and has been successfully' mod='checkvat'}
 		{if isset($validation_auto) AND $validation_auto == False}, 
 		<span id="validation_auto">{l s='the webmaster will validate your account soon' mod='checkvat'}</span>{else}.{/if}

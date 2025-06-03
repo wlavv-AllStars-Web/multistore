@@ -19,6 +19,14 @@
 
 #my-account #msg_vat_valid {
   margin: auto;
+  padding: 10px;
+  margin: auto;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb !important;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-weight: lighter;
 }
 
 .loading-overlay-universals{
