@@ -776,14 +776,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     console.log(tinymce.editors);
-document.querySelector('form').addEventListener('submit', function (e) {
-    tinymce.editors.forEach(function(editor) {
-        const textarea = document.getElementById(editor.id);
-        if (textarea) {
-            textarea.value = editor.getContent(); // copy HTML to <textarea>
-        }
+    document.querySelector('form').addEventListener('submit', function (e) {
+        tinymce.editors.forEach(function(editor) {
+            const textarea = document.getElementById(editor.id);
+            if (textarea) {
+                textarea.value = editor.getContent(); // copy HTML to <textarea>
+            }
+        });
     });
-});
+
 
 
 </script>
