@@ -2,8 +2,6 @@ jQuery(function ($) {
 
   const isDesktop = window.screen.width >= 769;
 
-  console.log("test 1")
-
   const selectors = {
     postCommentModal: isDesktop
       ? '#product_reviews #post-product-comment-modal'
