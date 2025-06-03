@@ -1,6 +1,4 @@
 jQuery(function ($) {
-  console.log('jQuery ready inside post-comment.js');
-
 
   const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
