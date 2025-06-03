@@ -355,7 +355,8 @@ class AsGroup extends Module
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
         $idProduct = $params['id_product'];
-
+        
+        
 
         if (isset($productData['asg']['reference'])) {
             Db::getInstance()->update('product', [
@@ -1424,7 +1425,6 @@ public function getASGProductCreation($product) {
     $compats = $data['compats'];
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
-
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
