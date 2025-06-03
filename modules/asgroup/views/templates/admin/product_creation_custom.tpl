@@ -589,18 +589,26 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#product_description_difficulty").value = "{$product->difficulty}";
 
         // Initialize TinyMCE for the active tab on page load
-        const activeShortDescriptionTextarea = document.querySelector(
-            '#product_product_creation_custom_html .tab-pane.show.active .tinymce-textarea');
-        if (activeShortDescriptionTextarea && !activeShortDescriptionTextarea.classList.contains(
-                'mce-container')) {
-            initTinyMCEOnElement(activeShortDescriptionTextarea);
-        }
+        // const activeShortDescriptionTextarea = document.querySelector(
+        //     '#product_description_description_short_custom .tab-pane.show.active .tinymce-textarea');
+        // if (activeShortDescriptionTextarea && !activeShortDescriptionTextarea.classList.contains(
+        //         'mce-container')) {
+        //     initTinyMCEOnElement(activeShortDescriptionTextarea);
+        // }
 
-        const activeDescriptionTextarea = document.querySelector(
-            '#product_product_creation_custom_html .tab-pane.show.active .tinymce-textarea-description');
-        if (activeDescriptionTextarea && !activeDescriptionTextarea.classList.contains('mce-container')) {
-            initTinyMCEOnElement(activeDescriptionTextarea);
-        }
+        // const activeDescriptionTextarea = document.querySelector(
+        //     '#product_description_full_description_custom .tab-pane.show.active .tinymce-textarea-description');
+        // if (activeDescriptionTextarea && !activeDescriptionTextarea.classList.contains('mce-container')) {
+        //     initTinyMCEOnElement(activeDescriptionTextarea);
+        // }
+        document.querySelectorAll('#product_description_description_short_custom .tinymce-textarea').forEach(textarea => {
+  initTinyMCEOnElement(textarea);
+});
+
+document.querySelectorAll('#product_description_full_description_custom .tinymce-textarea-description').forEach(textarea => {
+  initTinyMCEOnElement(textarea);
+});
+
 
         // Add click event to each language tab
         document.querySelectorAll(
@@ -777,13 +785,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(tinymce.editors);
     document.querySelector('form').addEventListener('submit', function (e) {
-        tinymce.editors.forEach(function(editor) {
-            const textarea = document.getElementById(editor.id);
-            if (textarea) {
-                textarea.value = editor.getContent(); // copy HTML to <textarea>
-            }
-        });
+    tinymce.editors.forEach(function (editor) {
+        const textarea = document.getElementById(editor.id);
+        if (textarea) {
+        textarea.value = editor.getContent(); // ensures HTML is saved
+        }
     });
+    });
+
 
 
 
