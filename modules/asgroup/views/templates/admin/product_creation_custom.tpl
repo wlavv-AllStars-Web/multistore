@@ -669,16 +669,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-    const saveButton = document.querySelector('#product_footer_save');
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     const saveButton = document.querySelector('#product_footer_save');
 
-    if (saveButton) {
-        saveButton.addEventListener('click', function () {
-            // Ensure TinyMCE content is synced to the corresponding <textarea>
-            tinymce.triggerSave();
-        }, { capture: true }); // Capture phase to run early
-    }
-});
+    //     if (saveButton) {
+    //         saveButton.addEventListener('click', function () {
+    //             // Ensure TinyMCE content is synced to the corresponding <textarea>
+    //             tinymce.triggerSave();
+    //         }, { capture: true }); // Capture phase to run early
+    //     }
+    // });
 
 
 
@@ -774,6 +774,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     });
+
+    console.log(tinymce.editors);
+document.querySelector('form').addEventListener('submit', function (e) {
+    tinymce.editors.forEach(function(editor) {
+        const textarea = document.getElementById(editor.id);
+        if (textarea) {
+            textarea.value = editor.getContent(); // copy HTML to <textarea>
+        }
+    });
+});
+
 
 </script>
 
