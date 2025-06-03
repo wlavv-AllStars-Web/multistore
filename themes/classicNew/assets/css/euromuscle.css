@@ -5573,7 +5573,7 @@ form .form-control-label {
 }
 
 #tab-content p {
-  font-weight: 400 !important;
+  font-weight: 400;
   color: #484848;
   min-width: 150px;
   text-align: center;
