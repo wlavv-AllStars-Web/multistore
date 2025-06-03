@@ -1,4 +1,3 @@
-console.log('post-comment.js is loaded');
 jQuery(function ($) {
   console.log('jQuery ready inside post-comment.js');
 
@@ -6,7 +5,7 @@ jQuery(function ($) {
   const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
 
-  console.log("paulo 1")
+  console.log("test 1")
 
   const selectors = {
     postCommentModal: isDesktop
