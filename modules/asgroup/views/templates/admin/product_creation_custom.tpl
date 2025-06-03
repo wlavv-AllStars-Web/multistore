@@ -565,7 +565,7 @@
             statusbar: false, // Disable the status bar
             path: false, // Disable the path toolbar
             skin: 'prestashop',
-            content_css: 'https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css',
+            content_css:  '{$ps_base_url}/js/tiny_mce/skins/prestashop/content.min.css',
             setup: function(editor) {
                 editor.on('init', function() {
                     textarea.classList.add('mce-initialized');
