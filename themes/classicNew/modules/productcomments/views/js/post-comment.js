@@ -1,6 +1,5 @@
 jQuery(function ($) {
 
-  const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
 
   console.log("test 1")
