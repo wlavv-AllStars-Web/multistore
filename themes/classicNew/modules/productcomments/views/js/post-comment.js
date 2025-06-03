@@ -2,6 +2,8 @@ jQuery(document).ready(function () {
   const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
 
+  console.log("paulo 1")
+
   const selectors = {
     postCommentModal: isDesktop
       ? '#product_reviews #post-product-comment-modal'
@@ -30,7 +32,8 @@ jQuery(document).ready(function () {
   // Attach click handler to post-product-comment button
   $('body').on('click', selectors.postProductCommentButton, function (event) {
     event.preventDefault();
-    // console.log('Mobile button clicked'); 
+  
+    console.log('button clicked'); 
     showPostCommentModal();
   });
 
