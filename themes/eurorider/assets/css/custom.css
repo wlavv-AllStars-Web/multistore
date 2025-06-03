@@ -17,6 +17,9 @@
   --bg-9 : #999;
 }
 
+#my-account #msg_vat_valid {
+  margin: auto;
+}
 
 .loading-overlay-universals{
   position: fixed;
