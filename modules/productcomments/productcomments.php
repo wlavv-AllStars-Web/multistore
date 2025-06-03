@@ -871,25 +871,44 @@ class ProductComments extends Module implements WidgetInterface
     /**
      *  Inject the needed javascript and css files in the appropriate pages
      */
-    public function hookDisplayHeader()
-    {
-        $jsList = [];
-        $cssList = [];
+public function hookDisplayHeader()
+{
+    $jsList = [];
+    $cssList = [];
 
-        $cssList[] = '/modules/productcomments/views/css/productcomments.css';
-        $jsList[] = '/modules/productcomments/views/js/jquery.rating.plugin.js';
-        $jsList[] = '/modules/productcomments/views/js/productListingComments.js';
-        if ($this->context->controller instanceof ProductControllerCore) {
-            $jsList[] = '/modules/productcomments/views/js/post-comment.js';
-            $jsList[] = '/modules/productcomments/views/js/list-comments.js';
-        }
-        foreach ($cssList as $cssUrl) {
-            $this->context->controller->registerStylesheet(sha1($cssUrl), $cssUrl, ['media' => 'all', 'priority' => 80]);
-        }
-        foreach ($jsList as $jsUrl) {
-            $this->context->controller->registerJavascript(sha1($jsUrl), $jsUrl, ['position' => 'bottom', 'priority' => 80]);
-        }
+    $cssList[] = '/modules/productcomments/views/css/productcomments.css';
+    $jsList[] = '/modules/productcomments/views/js/jquery.rating.plugin.js';
+    $jsList[] = '/modules/productcomments/views/js/productListingComments.js';
+
+    if ($this->context->controller instanceof ProductControllerCore) {
+        $jsList[] = '/modules/productcomments/views/js/post-comment.js';
+        $jsList[] = '/modules/productcomments/views/js/list-comments.js';
     }
+
+    foreach ($cssList as $cssUrl) {
+        $this->context->controller->registerStylesheet(
+            sha1($cssUrl),
+            $cssUrl,
+            [
+                'media' => 'all',
+                'priority' => 80,
+            ]
+        );
+    }
+
+    foreach ($jsList as $jsUrl) {
+        $this->context->controller->registerJavascript(
+            sha1($jsUrl),
+            $jsUrl,
+            [
+                'position' => 'bottom',
+                'priority' => 80,
+                'depends' => ['jquery'], // ✅ Ensures jQuery is loaded before these scripts
+            ]
+        );
+    }
+}
+
 
     /**
      * Display the comment list with the post modal at the bottom of the page
