@@ -378,7 +378,7 @@
 
 .product-comment-list-item .comment-content .h4 {
   height: 22px;
-  color: var(--euromus-color-300) !important;
+  color: var(--euromus-color-text) !important;
   font-size: 16px;
   font-weight: 600 !important;
   letter-spacing: -0.32px;
