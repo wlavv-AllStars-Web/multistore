@@ -876,15 +876,37 @@ public function hookDisplayHeader()
     $jsList = [];
     $cssList = [];
 
+    // CSS (non-versioned in this example)
     $cssList[] = '/modules/productcomments/views/css/productcomments.css';
+
+    // JS (without versioning)
     $jsList[] = '/modules/productcomments/views/js/jquery.rating.plugin.js';
     $jsList[] = '/modules/productcomments/views/js/productListingComments.js';
 
+    // Add versioned JS only on product pages
     if ($this->context->controller instanceof ProductControllerCore) {
-        $jsList[] = '/modules/productcomments/views/js/post-comment.js';
-        $jsList[] = '/modules/productcomments/views/js/list-comments.js';
+        $jsFilesToVersion = [
+            'post-comment.js',
+            'list-comments.js',
+        ];
+
+        foreach ($jsFilesToVersion as $jsFile) {
+            $originalPath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $jsFile;
+            $version = file_exists($originalPath) ? filemtime($originalPath) : time();
+            $versionedName = pathinfo($jsFile, PATHINFO_FILENAME) . '.' . $version . '.js';
+            $versionedPath = _PS_MODULE_DIR_ . 'productcomments/views/js/' . $versionedName;
+
+            // Copy only if versioned file doesn't exist
+            if (!file_exists($versionedPath)) {
+                copy($originalPath, $versionedPath);
+            }
+
+            // Register the versioned JS file
+            $jsList[] = '/modules/productcomments/views/js/' . $versionedName;
+        }
     }
 
+    // Register styles
     foreach ($cssList as $cssUrl) {
         $this->context->controller->registerStylesheet(
             sha1($cssUrl),
@@ -896,6 +918,7 @@ public function hookDisplayHeader()
         );
     }
 
+    // Register scripts
     foreach ($jsList as $jsUrl) {
         $this->context->controller->registerJavascript(
             sha1($jsUrl),
@@ -903,11 +926,12 @@ public function hookDisplayHeader()
             [
                 'position' => 'bottom',
                 'priority' => 80,
-                'depends' => ['jquery'], // ✅ Ensures jQuery is loaded before these scripts
+                'depends' => ['jquery'],
             ]
         );
     }
 }
+
 
 
     /**
