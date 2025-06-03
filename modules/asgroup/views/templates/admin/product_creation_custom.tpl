@@ -486,52 +486,52 @@
         }
     }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
-        if ($(input).tokenfield) {
-            $(input).tokenfield(); // initialize tokenfield
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    // Initialize tokenfield for each language input (tokenfield is an input for tag input)
-    const tokenInputs = document.querySelectorAll('.js-taggable-field');
-
-    tokenInputs.forEach(function (input) {
-        // Initialize the tokenfield
-        input.addEventListener('input', function (e) {
-            updateHiddenInput(input);
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
+            if ($(input).tokenfield) {
+                $(input).tokenfield(); // initialize tokenfield
+            }
         });
     });
 
-    // Function to update the hidden input with the current tags (comma separated)
-    function updateHiddenInput(input) {
-        // Get all tokens (tags) from the input (assumes tokens are separated by commas)
-        const tokenString = input.value.trim();
+    document.addEventListener("DOMContentLoaded", function () {
 
-        // If there are tokens, update the hidden field
-        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+        // Initialize tokenfield for each language input (tokenfield is an input for tag input)
+        const tokenInputs = document.querySelectorAll('.js-taggable-field');
 
-        // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
-        const langId = input.id.split('_')[3];
+        tokenInputs.forEach(function (input) {
+            // Initialize the tokenfield
+            input.addEventListener('input', function (e) {
+                updateHiddenInput(input);
+            });
+        });
 
-        // Find the corresponding hidden input and update its value
-        const hiddenInput = document.querySelector(`#product_seo_tags_`+langId);
-        if (hiddenInput) {
-            hiddenInput.value = tagValues;
+        // Function to update the hidden input with the current tags (comma separated)
+        function updateHiddenInput(input) {
+            // Get all tokens (tags) from the input (assumes tokens are separated by commas)
+            const tokenString = input.value.trim();
+
+            // If there are tokens, update the hidden field
+            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+
+            // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
+            const langId = input.id.split('_')[3];
+
+            // Find the corresponding hidden input and update its value
+            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId);
+            if (hiddenInput) {
+                hiddenInput.value = tagValues;
+            }
         }
-    }
 
-    // Initialize the tokenfield with commas as delimiters for each language
-    tokenInputs.forEach(function (input) {
-        const langId = input.id.split('_')[3];  // Extract the language ID from the input ID
+        // Initialize the tokenfield with commas as delimiters for each language
+        tokenInputs.forEach(function (input) {
+            const langId = input.id.split('_')[3];  // Extract the language ID from the input ID
 
-        // Automatically trigger an update to ensure the hidden input is in sync when the page loads
-        updateHiddenInput(input);
+            // Automatically trigger an update to ensure the hidden input is in sync when the page loads
+            updateHiddenInput(input);
+        });
     });
-});
 
 
 
@@ -588,177 +588,88 @@ document.addEventListener("DOMContentLoaded", function () {
         // value difficulty
         document.querySelector("#product_description_difficulty").value = "{$product->difficulty}";
 
-        // Initialize TinyMCE for the active tab on page load
-        // const activeShortDescriptionTextarea = document.querySelector(
-        //     '#product_description_description_short_custom .tab-pane.show.active .tinymce-textarea');
-        // if (activeShortDescriptionTextarea && !activeShortDescriptionTextarea.classList.contains(
-        //         'mce-container')) {
-        //     initTinyMCEOnElement(activeShortDescriptionTextarea);
-        // }
 
-        // const activeDescriptionTextarea = document.querySelector(
-        //     '#product_description_full_description_custom .tab-pane.show.active .tinymce-textarea-description');
-        // if (activeDescriptionTextarea && !activeDescriptionTextarea.classList.contains('mce-container')) {
-        //     initTinyMCEOnElement(activeDescriptionTextarea);
-        // }
         document.querySelectorAll('#product_description_description_short_custom .tinymce-textarea').forEach(textarea => {
-  initTinyMCEOnElement(textarea);
-});
+            initTinyMCEOnElement(textarea);
+        });
 
-document.querySelectorAll('#product_description_full_description_custom .tinymce-textarea-description').forEach(textarea => {
-  initTinyMCEOnElement(textarea);
-});
+        document.querySelectorAll('#product_description_full_description_custom .tinymce-textarea-description').forEach(textarea => {
+            initTinyMCEOnElement(textarea);
+        });
 
 
-        // Add click event to each language tab
+            // Add click event to each language tab
         document.querySelectorAll(
             '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
-        ).forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
+            ).forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
 
-                // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
-                const tabContainer = this.closest('.translationsLocales');
-                const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
+                    // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
+                    const tabContainer = this.closest('.translationsLocales');
+                    const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
 
-                // Deactivate only sibling tabs within this group
-                tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
+                    // Deactivate only sibling tabs within this group
+                    tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
 
-                // Deactivate only sibling panes within this container
-                paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                    pane.classList.remove('show', 'active');
+                    // Deactivate only sibling panes within this container
+                    paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.classList.remove('show', 'active');
+                    });
+
+                    // Activate clicked tab
+                    this.classList.add('active');
+
+                    // Activate corresponding pane
+                    const targetPane = document.querySelector(this.getAttribute('data-target'));
+                    if (targetPane) {
+                        targetPane.classList.add('show', 'active');
+
+                        // Init TinyMCE if needed
+                        const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
+                        if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
+                            initTinyMCEOnElement(shortDescriptionTextarea);
+                        }
+
+                        const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
+                        if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
+                            initTinyMCEOnElement(descriptionTextarea);
+                        }
+                    }
                 });
-
-                // Activate clicked tab
-                this.classList.add('active');
-
-                // Activate corresponding pane
-                const targetPane = document.querySelector(this.getAttribute('data-target'));
-                if (targetPane) {
-                    targetPane.classList.add('show', 'active');
-
-                    // Init TinyMCE if needed
-                    const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
-                    if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
-                        initTinyMCEOnElement(shortDescriptionTextarea);
-                    }
-
-                    const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
-                    if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
-                        initTinyMCEOnElement(descriptionTextarea);
-                    }
-                }
             });
         });
 
-        // nao entra aqui
-        // Submit the form with HTML content from TinyMCE editors
-        // const form = document.querySelector('form'); // Assuming the form element
-        //     form.addEventListener('submit', function(e) {
-        //         e.preventDefault(); // Prevent default form submission
+        window.addEventListener('DOMContentLoaded', function() {
+        // List of element IDs to be removed
+        const elementsToRemove = [
+            '#product_details #product_details_references_reference',
+            '#product_details #product_details_references_ean_13',
+            '#product_details #product_details_housing',
+            '#product_description #product_description_description_short',
+            '#product_description #product_description_description',
+            '#product_seo #product_seo_tags',
+            '#product_description #product_description_youtube_1',
+            '#product_description #product_description_youtube_2',
+            '#product_description #product_description_hs_code',
+            '#product_description #product_description_difficulty',
+            '#product_description #product_description_ec_approved',
+            '#product_description #product_description_wmdeprecated',
+            '#product_description #product_description_not_to_order',
+        ];
 
-        //         // First, make sure all TinyMCE instances save their content into their corresponding <textarea> elements
-        //         tinymce.triggerSave();
+        // Loop through the IDs and remove each element from the DOM
+        elementsToRemove.forEach(function(id) {
 
-        //         // Optional: Loop through all TinyMCE instances and append content as hidden inputs (if needed)
-        //         tinymce.editors.forEach(function(editor) {
-        //             // Create a hidden input for each TinyMCE editor
-        //             const hiddenInput = document.createElement('input');
-        //             hiddenInput.type = 'hidden';
-        //             hiddenInput.name = editor.target.name; // Get the original name of the textarea
-        //             hiddenInput.value = editor.getContent(); // Save the content
+            const element = document.querySelector(id).parentElement;
 
-        //             console.log('Saving content for:', editor.target.name, 'Content:', hiddenInput.value);
-        //             form.appendChild(hiddenInput); // Append the hidden input to the form
-        //         });
+            if (element) {
+                element.remove();
+            }
+        });
 
-        //     // Now you can submit the form with all hidden inputs containing the HTML content
-        //     form.submit(); // You can replace this with AJAX if needed
-        // });
+        
     });
-
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     const saveButton = document.querySelector('#product_footer_save');
-
-    //     if (saveButton) {
-    //         saveButton.addEventListener('click', function () {
-    //             // Ensure TinyMCE content is synced to the corresponding <textarea>
-    //             tinymce.triggerSave();
-    //         }, { capture: true }); // Capture phase to run early
-    //     }
-    // });
-
-
-
-
-    // document.addEventListener('input', function(e) {
-    //     if (e.target.classList.contains('sync-input')) {
-    //         const syncKey = e.target.dataset.sync;
-    //         const newValue = e.target.value;
-
-    //         document.querySelectorAll(`.sync-input[data-sync="` + syncKey + `"]`).forEach(input => {
-    //             if (input !== e.target) {
-    //                 input.value = newValue;
-    //             }
-    //         });
-
-    //         if (syncKey === 'reference') {
-    //             const realReferenceInput = document.querySelector('#product_details_references_reference');
-    //             if (realReferenceInput) {
-    //                 realReferenceInput.value = newValue;
-    //                 realReferenceInput.dispatchEvent(new Event('input', { bubbles: true }));
-    //                 realReferenceInput.dispatchEvent(new Event('change', { bubbles: true }));
-    //             }
-    //         }
-    //         if (syncKey === 'ean_13') {
-    //             const realEanInput = document.querySelector('#product_details_references_ean_13');
-    //             if (realEanInput) {
-    //                 realEanInput.value = newValue;
-    //                 realEanInput.dispatchEvent(new Event('input', { bubbles: true }));
-    //                 realEanInput.dispatchEvent(new Event('change', { bubbles: true }));
-    //             }
-    //         }
-    //         if (syncKey === 'housing') {
-    //             const realHousingInput = document.querySelector('#product_details_references_ean_13');
-    //             if (realHousingInput) {
-    //                 realHousingInput.value = newValue;
-    //                 realHousingInput.dispatchEvent(new Event('input', { bubbles: true }));
-    //                 realHousingInput.dispatchEvent(new Event('change', { bubbles: true }));
-    //             }
-    //         }
-    //     }
-    // });
-
-    window.addEventListener('DOMContentLoaded', function() {
-    // List of element IDs to be removed
-    const elementsToRemove = [
-        '#product_details #product_details_references_reference',
-        '#product_details #product_details_references_ean_13',
-        '#product_details #product_details_housing',
-        '#product_description #product_description_description_short',
-        '#product_description #product_description_description',
-        '#product_seo #product_seo_tags',
-        '#product_description #product_description_youtube_1',
-        '#product_description #product_description_youtube_2',
-        '#product_description #product_description_hs_code',
-        '#product_description #product_description_difficulty',
-        '#product_description #product_description_ec_approved',
-        '#product_description #product_description_wmdeprecated',
-        '#product_description #product_description_not_to_order',
-    ];
-
-    // Loop through the IDs and remove each element from the DOM
-    elementsToRemove.forEach(function(id) {
-
-        const element = document.querySelector(id).parentElement;
-
-        if (element) {
-            element.remove();
-        }
-    });
-
-    
-});
 
     document.addEventListener('DOMContentLoaded', function () {
         const visibilitySelect = document.querySelector('#product_visibility');
@@ -783,14 +694,14 @@ document.querySelectorAll('#product_description_full_description_custom .tinymce
 
     });
 
-    console.log(tinymce.editors);
+
     document.querySelector('form').addEventListener('submit', function (e) {
-    tinymce.editors.forEach(function (editor) {
-        const textarea = document.getElementById(editor.id);
-        if (textarea) {
-        textarea.value = editor.getContent(); // ensures HTML is saved
-        }
-    });
+        tinymce.editors.forEach(function (editor) {
+            const textarea = document.getElementById(editor.id);
+            if (textarea) {
+            textarea.value = editor.getContent(); // ensures HTML is saved
+            }
+        });
     });
 
 
