@@ -35,7 +35,7 @@
     {hook h='displayAfterTitleTag'}
   {/block}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script> 
   <script type="text/javascript" src="/themes/classicNew/assets/js/euromusc.js" defer="defer"></script>
 
@@ -43,8 +43,11 @@
     <script>
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: "consent.given",
-      consent: "true"
+      event: "default_consent",
+      default: {
+        ad_storage: "granted",
+        analytics_storage: "granted"
+      }
     });
 
     (function(w,d,s,l,i){
