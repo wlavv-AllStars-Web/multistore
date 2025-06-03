@@ -176,6 +176,9 @@
   max-width: 1200px;
 }
 
+#product #tab-content #description {
+  width: 100%;
+}
 
 
 
