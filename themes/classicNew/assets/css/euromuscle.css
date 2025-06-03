@@ -9643,6 +9643,10 @@ transform: translate(-50%,-50%);
   }
 }
 
+.mySwiper-thumb-images{ 
+  padding-bottom: 1px;
+}
+
 .page-cms-46 {
   border-radius: .25rem;
   overflow: hidden;
