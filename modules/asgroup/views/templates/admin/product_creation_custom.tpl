@@ -278,7 +278,9 @@
                 </div>
             </div>
 
-        
+            <div class="form-group">
+                <button type="button" id="product_description_categories_add_categories_btn" name="product[description][categories][add_categories_btn]" class="add-categories-btn btn-outline-primary btn btn">Add categories</button>
+            </div>
 
 
 
