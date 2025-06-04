@@ -114,6 +114,10 @@ class AsGroup extends Module
 
     public function initContent()
     {
+        if (isset($_POST['action']) && $_POST['action'] == 'save_categories') {
+            $module = new Asgroup();
+            $module->handleAjaxRequest();
+        }
         parent::initContent();
         // your own code
     }
@@ -123,6 +127,37 @@ class AsGroup extends Module
      * @param array $params
      */
 
+     public function handleAjaxRequest()
+    {
+        // Check if the action and categories are set
+        if (isset($_POST['action']) && $_POST['action'] == 'save_categories' && isset($_POST['categories'])) {
+            $productId = 123; // Replace this with the actual product ID you want to associate with categories
+
+            // Get the categories from the POST request
+            $categories = $_POST['categories'];
+
+            // Validate the categories array
+            if (is_array($categories) && count($categories) > 0) {
+                $values = [];
+                foreach ($categories as $categoryId) {
+                    $values[] = "(NULL, $productId, $categoryId)"; // `NULL` for auto-incremented primary key
+                }
+
+                // Insert categories into the ps_category_product table
+                $query = 'INSERT INTO `' . _DB_PREFIX_ . 'category_product` (`id_category_product`, `id_product`, `id_category`) VALUES ' . implode(',', $values);
+
+                if (Db::getInstance()->execute($query)) {
+                    echo json_encode(['status' => 'success']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to save categories']);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'No categories selected']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
+        }
+    }
 
      public function hookActionDispatcherBefore(array $params)
     {
