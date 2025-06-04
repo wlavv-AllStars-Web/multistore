@@ -1504,6 +1504,8 @@ public function getASGProductCreation($product) {
 
     // Get available languages
     $languages = $this->context->controller->getLanguages(true);
+
+    pre($languages);
     
     // Initialize the default values array (empty for now)
     $defaultValues = [];
