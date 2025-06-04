@@ -391,6 +391,10 @@
 
 
     </div>
+
+    <div class="col-lg-12">
+        <hr>     
+    </div>
 </div>
 
 <!-- TinyMCE Initialization Script -->
