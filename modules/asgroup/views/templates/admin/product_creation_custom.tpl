@@ -67,13 +67,11 @@
                          tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
                          translation-label-{$language.iso_code}">
                         <!-- TinyMCE Textarea for Short Description -->
-                        <textarea
-                            id="description_short_{$language.id_lang}"
+                        <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
-                            class="form-control tinymce-textarea"
-                            rows="5">
-                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                        </textarea>
+                            class="form-control tinymce-textarea" rows="5">
+                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                            </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -110,13 +108,11 @@
                          tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
                          translation-label-{$language.iso_code}">
                         <!-- TinyMCE Textarea for Full Description -->
-                        <textarea
-                            id="description_long_{$language.id_lang}"
+                        <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
-                            class="form-control tinymce-textarea-description"
-                            rows="5">
-                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                        </textarea>
+                            class="form-control tinymce-textarea-description" rows="5">
+                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                            </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -138,84 +134,74 @@
         </div>
 
 
-<div class="form-group">
-    <h3>Tags</h3>
-    <p class="subtitle">Enter the keywords that customers might search for when looking for this product.</p>
+        <div class="form-group">
+            <h3>Tags</h3>
+            <p class="subtitle">Enter the keywords that customers might search for when looking for this product.</p>
 
-    <div class="" style="display: flex;gap: 1rem;">
-        <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags" tabindex="1">
-            {foreach from=$languages item=language name=langLoop}
-                <div data-lang-id="{$language.id_lang}"
-                    class="js-taggable-field js-locale-input js-locale-{$language.iso_code}{if !$smarty.foreach.langLoop.first} d-none{/if}"
-                    style="flex-grow: 1;">
+            <div class="" style="display: flex;gap: 1rem;">
+                <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags"
+                    tabindex="1">
+                    {foreach from=$languages item=language name=langLoop}
+                        <div data-lang-id="{$language.id_lang}"
+                            class="js-taggable-field js-locale-input js-locale-{$language.iso_code}{if !$smarty.foreach.langLoop.first} d-none{/if}"
+                            style="flex-grow: 1;">
 
-                    <div class="tokenfield">
-                        {if isset($product->tags[$language.id_lang])}
-                            {assign var="tags" value=$product->tags[$language.id_lang]}
-                        {else}
-                            {assign var="tags" value=[]}
-                        {/if}
+                            <div class="tokenfield">
+                                {if isset($product->tags[$language.id_lang])}
+                                    {assign var="tags" value=$product->tags[$language.id_lang]}
+                                {else}
+                                    {assign var="tags" value=[]}
+                                {/if}
 
-                        {if is_array($tags)}
-                            {assign var="tags_string" value=""}  {* Initialize an empty string for concatenation *}
+                                {if is_array($tags)}
+                                    {assign var="tags_string" value=""} {* Initialize an empty string for concatenation *}
 
-                            {foreach from=$tags item=tag}
-                                {assign var="tags_string" value=$tags_string|cat:$tag|cat:','}  {* Concatenate each tag with a comma *}
-                            {/foreach}
+                                    {foreach from=$tags item=tag}
+                                        {assign var="tags_string" value=$tags_string|cat:$tag|cat:','}
+                                        {* Concatenate each tag with a comma *}
+                                    {/foreach}
 
-                            {assign var="tags_string" value=$tags_string|substr:0:-1}  {* Remove the last comma *}
-                        {else}
-                            {assign var="tags_string" value=$tags}
-                        {/if}
+                                    {assign var="tags_string" value=$tags_string|substr:0:-1} {* Remove the last comma *}
+                                {else}
+                                    {assign var="tags_string" value=$tags}
+                                {/if}
 
-                        <input type="text"
-                            id="product_seo_tags_{$language.id_lang}"
-                            name="product[asg][tags][{$language.id_lang}]"
-                            class="js-taggable-field form-control"
-                            aria-label="product_seo_tags_{$language.id_lang} input"
-                            value="{$tags_string|escape:'html'}"
-                            style="position: absolute; left: -10000px;"
-                            tabindex="-1">
-                        <input type="text" style="position: absolute; left: -10000px;" tabindex="-1">
+                                <input type="text" id="product_seo_tags_{$language.id_lang}"
+                                    name="product[asg][tags][{$language.id_lang}]" class="js-taggable-field form-control"
+                                    aria-label="product_seo_tags_{$language.id_lang} input"
+                                    value="{$tags_string|escape:'html'}" style="position: absolute; left: -10000px;"
+                                    tabindex="-1">
+                                <input type="text" style="position: absolute; left: -10000px;" tabindex="-1">
 
-                        <input type="text"
-                            class="token-input"
-                            autocomplete="off"
-                            placeholder=""
-                            id="product_seo_tags_{$language.id_lang}-tokenfield"
-                            tabindex="0"
-                            style="min-width: 60px; width: 0px;"
-                            maxlength="32">
+                                <input type="text" class="token-input" autocomplete="off" placeholder=""
+                                    id="product_seo_tags_{$language.id_lang}-tokenfield" tabindex="0"
+                                    style="min-width: 60px; width: 0px;" maxlength="32">
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+                <div class="dropdown" style="padding: .15rem;">
+                    <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="product_seo_tags_dropdown"
+                        style="display: flex;align-items: center;">
+                        {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu"
+                        aria-labelledby="product_seo_tags_dropdown">
+                        {foreach from=$languages item=language}
+                            <span class="dropdown-item js-locale-item" data-locale="{$language.iso_code}">
+                                {$language.name} ({$language.iso_code|capitalize})
+                            </span>
+                        {/foreach}
                     </div>
                 </div>
-            {/foreach}
-        </div>
-        <div class="dropdown" style="padding: .15rem;">
-            <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
-                    type="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    id="product_seo_tags_dropdown"
-                    style="display: flex;align-items: center;">
-                {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
-            </button>
-            <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_seo_tags_dropdown">
-                {foreach from=$languages item=language}
-                    <span class="dropdown-item js-locale-item"
-                        data-locale="{$language.iso_code}">
-                        {$language.name} ({$language.iso_code|capitalize})
-                    </span>
-                {/foreach}
             </div>
+
+            <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
+            <span class="btn btn-danger" onclick="clearTagsASG()">Remove All Tags</span>
+
+
         </div>
-    </div>
-
-    <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
-    <span class="btn btn-danger" onclick="clearTagsASG()">Remove All Tags</span>
-
-
-</div>
 
 
 
@@ -227,10 +213,12 @@
         <div class="form-group">
             <label for="product_visibility">Visibility</label>
             <select class="form-control" id="product_visibility" name="product[asg][visibility]">
-                <option value="both" {if $product->visibility == 'both'}selected="selected"{/if}>Everywhere</option>
-                <option value="catalog" {if $product->visibility == 'catalog'}selected="selected"{/if}>Catalog only</option>
-                <option value="search" {if $product->visibility == 'search'}selected="selected"{/if}>Search only</option>
-                <option value="none" {if $product->visibility == 'none'}selected="selected"{/if}>Nowhere</option>
+                <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
+                <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
+                </option>
+                <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
+                </option>
+                <option value="none" {if $product->visibility == 'none'}selected="selected" {/if}>Nowhere</option>
             </select>
         </div>
 
@@ -250,15 +238,15 @@
 
                 <div class="input-group">
                     <span class="ps-switch" id="product_description_ec_approved">
-                    <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]" value="0"
-                        {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
-                    <label for="product_description_ec_approved_0">No</label>
+                        <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
+                            value="0" {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
+                        <label for="product_description_ec_approved_0">No</label>
 
-                    <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]" value="1"
-                        {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
-                    <label for="product_description_ec_approved_1">Yes</label>
+                        <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
+                            value="1" {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
+                        <label for="product_description_ec_approved_1">Yes</label>
 
-                    <span class="slide-button"></span>
+                        <span class="slide-button"></span>
                     </span>
                 </div>
             </div>
@@ -273,15 +261,15 @@
 
                 <div class="input-group">
                     <span class="ps-switch" id="product_description_wmdeprecated">
-                    <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]" value="0"
-                        {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
-                    <label for="product_description_wmdeprecated_0">No</label>
+                        <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
+                            value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_0">No</label>
 
-                    <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]" value="1"
-                        {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
-                    <label for="product_description_wmdeprecated_1">Yes</label>
+                        <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
+                            value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_1">Yes</label>
 
-                    <span class="slide-button"></span>
+                        <span class="slide-button"></span>
                     </span>
                 </div>
             </div>
@@ -296,15 +284,37 @@
 
                 <div class="input-group">
                     <span class="ps-switch" id="product_description_not_to_order">
-                    <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]" value="0"
-                        {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
-                    <label for="product_description_not_to_order_0">No</label>
+                        <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
+                            value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
+                        <label for="product_description_not_to_order_0">No</label>
 
-                    <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]" value="1"
-                        {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
-                    <label for="product_description_not_to_order_1">Yes</label>
+                        <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
+                            value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
+                        <label for="product_description_not_to_order_1">Yes</label>
 
-                    <span class="slide-button"></span>
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group col-lg-4"> 
+                <label class="">
+                    Disallow stock?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title="">
+                    </span>
+                </label>
+                <div class="input-group ">
+                    <span class="ps-switch" id="product_description_disallow_stock">
+                        <input id="product_description_disallow_stock_0" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="0" checked="" type="radio" {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_0">No</label>
+
+                        <input id="product_description_disallow_stock_1" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="1" type="radio" {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_1">Yes</label>
+
+                        <span class="slide-button"></span>
                     </span>
                 </div>
             </div>
@@ -315,27 +325,27 @@
         <div class="form-group">
             <label>Options</label>
             <div class="input-group">
-            
+
                 <div class="form-check col-lg-12">
-                <input type="hidden" name="product[asg][show_compat_exception]" value="0">
-                <input class="form-check-input" type="checkbox" id="show_compat_exception"
-                    name="product[asg][show_compat_exception]" value="1"
-                    {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
-                <label class="form-check-label" for="show_compat_exception">
-                    Show compact exception
-                </label>
+                    <input type="hidden" name="product[asg][show_compat_exception]" value="0">
+                    <input class="form-check-input" type="checkbox" id="show_compat_exception"
+                        name="product[asg][show_compat_exception]" value="1"
+                        {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
+                    <label class="form-check-label" for="show_compat_exception">
+                        Show compact exception
+                    </label>
                 </div>
 
                 <div class="form-check col-lg-12">
-                
-                <input type="hidden" name="product[asg][universal]" value="0">
 
-                <input class="form-check-input" type="checkbox" id="universal_product"
-                    name="product[asg][universal]" value="1"
-                    {if isset($product->universal) && $product->universal == 1}checked{/if}>
-                <label class="form-check-label" for="universal_product">
-                    Universal product
-                </label>
+                    <input type="hidden" name="product[asg][universal]" value="0">
+
+                    <input class="form-check-input" type="checkbox" id="universal_product"
+                        name="product[asg][universal]" value="1"
+                        {if isset($product->universal) && $product->universal == 1}checked{/if}>
+                    <label class="form-check-label" for="universal_product">
+                        Universal product
+                    </label>
                 </div>
 
             </div>
@@ -357,7 +367,8 @@
         <div class="form-group">
             <label for="youtube_code_1">HS Code</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code" value="{$product->nc}">
+                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
+                    value="{$product->nc}">
             </div>
         </div>
 
@@ -366,12 +377,12 @@
 
             </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
                 class="custom-select form-control">
-                    <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
-                    <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
-                    <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
-                    <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
-                    <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
-                    <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
+                <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
+                <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
+                <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
+                <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
+                <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
+                <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
             </select>
 
         </div>
@@ -386,6 +397,7 @@
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
+
     function generateTagsASG() {
         const tagNames = {};
 
@@ -421,8 +433,8 @@
             {/foreach}
         {/if}
 
-        const uniqueTags = Array.from(tagCompats); 
-        
+        const uniqueTags = Array.from(tagCompats);
+
         // Loop through each language and apply tags
         Object.keys(tagNames).forEach((langId) => {
             // const tagName = tagNames[langId];
@@ -433,16 +445,17 @@
                 .map(tag => tag && tag.trim())
                 .filter(tag => tag && tag.length >= 2);
 
-            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
+            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
 
-            const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+            const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset
+                .value);
 
             // Clear previous tags
             // container.querySelectorAll('.token').forEach(el => el.remove());
 
 
             filteredTags.forEach(tag => {
-            // Only add the tag if it doesn't already exist in the container
+                // Only add the tag if it doesn't already exist in the container
                 if (!existingTags.includes(tag)) {
                     const token = document.createElement('div');
                     token.className = 'token';
@@ -476,10 +489,10 @@
         });
 
         function updateHiddenInput(langId) {
-            const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
+            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
             const tokens = container.querySelectorAll('.token');
             const values = Array.from(tokens).map(token => token.dataset.value);
-            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
+            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId + ``);
             if (hiddenInput) {
                 hiddenInput.value = values.join(', ');
             }
@@ -487,22 +500,22 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function (input) {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function(input) {
             if ($(input).tokenfield) {
                 $(input).tokenfield(); // initialize tokenfield
             }
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
         // Initialize tokenfield for each language input (tokenfield is an input for tag input)
         const tokenInputs = document.querySelectorAll('.js-taggable-field');
 
-        tokenInputs.forEach(function (input) {
+        tokenInputs.forEach(function(input) {
             // Initialize the tokenfield
-            input.addEventListener('input', function (e) {
+            input.addEventListener('input', function(e) {
                 updateHiddenInput(input);
             });
         });
@@ -513,21 +526,22 @@
             const tokenString = input.value.trim();
 
             // If there are tokens, update the hidden field
-            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(
+                ',');
 
             // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
             const langId = input.id.split('_')[3];
 
             // Find the corresponding hidden input and update its value
-            const hiddenInput = document.querySelector(`#product_seo_tags_`+langId);
+            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
             if (hiddenInput) {
                 hiddenInput.value = tagValues;
             }
         }
 
         // Initialize the tokenfield with commas as delimiters for each language
-        tokenInputs.forEach(function (input) {
-            const langId = input.id.split('_')[3];  // Extract the language ID from the input ID
+        tokenInputs.forEach(function(input) {
+            const langId = input.id.split('_')[3]; // Extract the language ID from the input ID
 
             // Automatically trigger an update to ensure the hidden input is in sync when the page loads
             updateHiddenInput(input);
@@ -538,20 +552,20 @@
 
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-        const langId = this.dataset.lang;
+        btn.addEventListener('click', function() {
+            const langId = this.dataset.lang;
 
-        document.querySelectorAll('.translation-field').forEach(el => {
-            el.style.display = 'none';
-        });
+            document.querySelectorAll('.translation-field').forEach(el => {
+                el.style.display = 'none';
+            });
 
-        const target = document.querySelector('.lang-' + langId);
-        if (target) {
-            target.style.display = 'block';
-        }
+            const target = document.querySelector('.lang-' + langId);
+            if (target) {
+                target.style.display = 'block';
+            }
         });
     });
- 
+
     // Function to initialize TinyMCE on a textarea if not already initialized
     function initTinyMCEOnElement(textarea) {
         if (!textarea || textarea.classList.contains('mce-initialized')) return;
@@ -577,7 +591,7 @@
                     }
                 });
 
-                editor.on('change input keyup', function () {
+                editor.on('change input keyup', function() {
                     editor.save(); // updates the underlying <textarea>
                 });
             }
@@ -590,58 +604,66 @@
         document.querySelector("#product_description_difficulty").value = "{$product->difficulty}";
 
 
-        document.querySelectorAll('#product_description_description_short_custom .tinymce-textarea').forEach(textarea => {
-            initTinyMCEOnElement(textarea);
-        });
+        document.querySelectorAll('#product_description_description_short_custom .tinymce-textarea').forEach(
+            textarea => {
+                initTinyMCEOnElement(textarea);
+            });
 
-        document.querySelectorAll('#product_description_full_description_custom .tinymce-textarea-description').forEach(textarea => {
-            initTinyMCEOnElement(textarea);
-        });
+        document.querySelectorAll('#product_description_full_description_custom .tinymce-textarea-description')
+            .forEach(textarea => {
+                initTinyMCEOnElement(textarea);
+            });
 
 
-            // Add click event to each language tab
+        // Add click event to each language tab
         document.querySelectorAll(
             '#product_product_creation_custom_html .translationsLocales a[data-toggle="tab"]'
-            ).forEach(tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault();
+        ).forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
 
-                    // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
-                    const tabContainer = this.closest('.translationsLocales');
-                    const paneContainer = document.querySelector(this.getAttribute('data-target')).closest('.tab-content');
+                // Get the nearest .translationsLocales (tab container) and .tab-content (pane container)
+                const tabContainer = this.closest('.translationsLocales');
+                const paneContainer = document.querySelector(this.getAttribute('data-target'))
+                    .closest('.tab-content');
 
-                    // Deactivate only sibling tabs within this group
-                    tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList.remove('active'));
+                // Deactivate only sibling tabs within this group
+                tabContainer.querySelectorAll('a[data-toggle="tab"]').forEach(t => t.classList
+                    .remove('active'));
 
-                    // Deactivate only sibling panes within this container
-                    paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                        pane.classList.remove('show', 'active');
-                    });
-
-                    // Activate clicked tab
-                    this.classList.add('active');
-
-                    // Activate corresponding pane
-                    const targetPane = document.querySelector(this.getAttribute('data-target'));
-                    if (targetPane) {
-                        targetPane.classList.add('show', 'active');
-
-                        // Init TinyMCE if needed
-                        const shortDescriptionTextarea = targetPane.querySelector('.tinymce-textarea');
-                        if (shortDescriptionTextarea && !shortDescriptionTextarea.classList.contains('mce-container')) {
-                            initTinyMCEOnElement(shortDescriptionTextarea);
-                        }
-
-                        const descriptionTextarea = targetPane.querySelector('.tinymce-textarea-description');
-                        if (descriptionTextarea && !descriptionTextarea.classList.contains('mce-container')) {
-                            initTinyMCEOnElement(descriptionTextarea);
-                        }
-                    }
+                // Deactivate only sibling panes within this container
+                paneContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
                 });
+
+                // Activate clicked tab
+                this.classList.add('active');
+
+                // Activate corresponding pane
+                const targetPane = document.querySelector(this.getAttribute('data-target'));
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+
+                    // Init TinyMCE if needed
+                    const shortDescriptionTextarea = targetPane.querySelector(
+                        '.tinymce-textarea');
+                    if (shortDescriptionTextarea && !shortDescriptionTextarea.classList
+                        .contains('mce-container')) {
+                        initTinyMCEOnElement(shortDescriptionTextarea);
+                    }
+
+                    const descriptionTextarea = targetPane.querySelector(
+                        '.tinymce-textarea-description');
+                    if (descriptionTextarea && !descriptionTextarea.classList.contains(
+                            'mce-container')) {
+                        initTinyMCEOnElement(descriptionTextarea);
+                    }
+                }
             });
         });
+    });
 
-        window.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', function() {
         // List of element IDs to be removed
         const elementsToRemove = [
             '#product_details #product_details_references_reference',
@@ -669,19 +691,20 @@
             }
         });
 
-        
+
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const visibilitySelect = document.querySelector('#product_visibility');
 
         if (visibilitySelect) {
-            visibilitySelect.addEventListener('change', function () {
+            visibilitySelect.addEventListener('change', function() {
                 const selectedValue = this.value;
 
                 // Find the matching radio input and check it
                 const matchingRadio = document.querySelector(
-                    `#product_options_visibility_visibility input[type="radio"][value="`+selectedValue+`"]`
+                    `#product_options_visibility_visibility input[type="radio"][value="` +
+                    selectedValue + `"]`
                 );
 
                 if (matchingRadio) {
@@ -696,11 +719,11 @@
     });
 
 
-    document.querySelector('form').addEventListener('submit', function (e) {
-        tinymce.editors.forEach(function (editor) {
+    document.querySelector('form').addEventListener('submit', function(e) {
+        tinymce.editors.forEach(function(editor) {
             const textarea = document.getElementById(editor.id);
             if (textarea) {
-            textarea.value = editor.getContent(); // ensures HTML is saved
+                textarea.value = editor.getContent(); // ensures HTML is saved
             }
         });
     });
@@ -709,7 +732,7 @@
         const tagFields = document.querySelectorAll('[id^="product_seo_tags_"]');
 
         tagFields.forEach((input) => {
-            const langId = input.id.split('_')[3]; 
+            const langId = input.id.split('_')[3];
             const container = input.closest('.tokenfield');
 
             if (!container) return;
@@ -727,8 +750,6 @@
             }
         });
     }
-
-
 </script>
 
 <style>
@@ -767,7 +788,7 @@
         cursor: pointer;
     }
 
-    #product_options_visibility #product_options_visibility_visibility{
+    #product_options_visibility #product_options_visibility_visibility {
         display: none !important;
     }
 </style>
