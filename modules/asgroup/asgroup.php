@@ -1426,7 +1426,7 @@ public function getASGProductCreation($product) {
 
     $brands = Manufacturer::getManufacturers();
     $suppliers = Supplier::getSuppliers(false, Context::getContext()->language->id);
-    $categories = Category::getCategories($id_lang, true, false);
+    $categories = Category::getCategories(Context::getContext()->language->id, true, false);
 
 
 
