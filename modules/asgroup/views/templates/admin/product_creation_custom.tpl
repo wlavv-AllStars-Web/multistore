@@ -289,19 +289,40 @@
             <div class="form-group col-lg-4">
                 <h3>Categories</h3>
                 <div id="product_description_categories">
-                
-<div class="form-group mb-3">
-    <p class="subtitle">Categories Associated with this Product</p>
-    <ul id="associatedCategoriesList" class="list-group">
-        {foreach from=$categories item=cat}
-            {foreach from=$product_categories item=prod_cat}
-                {if $prod_cat.id_category == $cat.id_category}
-                    <li class="list-group-item">{$cat.name|escape:'html'}</li>
-                {/if}
-            {/foreach}
-        {/foreach}
-    </ul>
-</div>
+
+                    <div class="form-group mb-3">
+                        <p class="subtitle">Categories Associated with this Product</p>
+                        <div id="product_description_categories_product_categories" class="pstaggerTagsWrapper form-group d-block">
+                            {foreach from=$product_categories item=prod_cat key=key}
+                                <span id="product_description_categories_product_categories_{$key}" 
+                                    name="product[description][categories][product_categories][{$key}]"
+                                    class="pstaggerTag tag-item">
+                                    <input type="hidden" 
+                                        id="product_description_categories_product_categories_{$key}_display_name"
+                                        name="product[description][categories][product_categories][{$key}][display_name]"
+                                        class="category-name-preview-input"
+                                        value="{$prod_cat.name|escape:'html'}" />
+                                    
+                                    <span class="label text-preview category-name-preview">
+                                        <span class="text-preview-value">{$prod_cat.name|escape:'html'}</span>
+                                    </span>
+
+                                    <input type="hidden" 
+                                        id="product_description_categories_product_categories_{$key}_name"
+                                        name="product[description][categories][product_categories][{$key}][name]"
+                                        class="category-name-input"
+                                        value="{$prod_cat.name|escape:'html'}" />
+                                    
+                                    <a class="pstaggerClosingCross" href="#" data-id="{$prod_cat.id_category}">x</a>
+                                    <input type="hidden" 
+                                        id="product_description_categories_product_categories_{$key}_id"
+                                        name="product[description][categories][product_categories][{$key}][id]"
+                                        class="category-id-input"
+                                        value="{$prod_cat.id_category}" />
+                                </span>
+                            {/foreach}
+                        </div>
+                    </div>
 
                         <!-- Default Category Dropdown -->
                     <div class="form-group mb-3">
@@ -920,7 +941,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle removal of categories when the "x" button is clicked
+        const removeButtons = document.querySelectorAll('.pstaggerClosingCross');
+        
+        removeButtons.forEach(function (button) {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
 
+                const categoryId = this.getAttribute('data-id');
+                const tagItem = this.closest('.pstaggerTag');
+
+                // Remove the corresponding tag item
+                if (tagItem) {
+                    tagItem.remove();
+                    // Optionally, handle other actions like removing the category from the hidden inputs
+                }
+            });
+        });
+    });
 
 </script>
 
