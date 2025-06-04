@@ -251,7 +251,7 @@
                 <div id="product_description_categories">
 
                     <div class="form-group mb-3">
-                        <h5>Categories Associated with this Product</h5>
+                        <p class="subtitle">Categories Associated with this Product</p>
                         <ul id="associatedCategoriesList" class="list-group">
                             {foreach from=$categories item=cat}
                                 {if in_array($cat.id_category, $product_categories)}
@@ -264,7 +264,7 @@
                         <!-- Default Category Dropdown -->
                     <div class="form-group mb-3">
                         <label for="defaultCategorySelect" class="form-label">Select Default Category</label>
-                        <select class="form-select" id="defaultCategorySelect" name="product[asg][default_category]" required>
+                        <select class="custom-select form-control" id="defaultCategorySelect" name="product[asg][default_category]" required>
                             <option value="" disabled>Select a category</option>
                             {foreach from=$categories item=cat}
                                 <option value="{$cat.id_category}" 
