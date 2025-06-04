@@ -956,6 +956,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (tagItem) {
                     tagItem.remove();
                     // Optionally, handle other actions like removing the category from the hidden inputs
+                    const categoryCheckbox = document.querySelector(`input[type="checkbox"][value="`+categoryId+`"]`);
+                    if (categoryCheckbox) {
+                        categoryCheckbox.checked = false;
+                    }
                 }
             });
         });
