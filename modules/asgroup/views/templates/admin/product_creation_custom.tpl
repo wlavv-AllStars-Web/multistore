@@ -70,8 +70,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -111,8 +111,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -203,302 +203,306 @@
 
         </div>
 
-        
 
-            <div class="form-group">
-                <div class="form-group select-widget">
-                    <h3 for="product_description_manufacturer">Brand</h3>
-                    <select id="product_description_manufacturer" name="product[asg][manufacturer]" data-toggle="select2"
-                        data-minimumresultsforsearch="7" class="custom-select form-control select2-hidden-accessible"
+        <div class="form-group" style="display: flex;gap:1rem;">
+            <div class="form-group select-widget">
+                <h3 for="product_description_manufacturer">Brand</h3>
+                <select id="product_description_manufacturer" name="product[asg][manufacturer]"
+                        data-toggle="select2" data-minimumresultsforsearch="7"
+                        class="custom-select form-control select2-hidden-accessible"
                         data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
-
-                        <option value="0">No brand</option>
-
-                        {foreach from=$brands item=brand}
-                            <option value="{$brand.id_manufacturer}"
-                                {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected" {/if}>
-                                {$brand.name|escape:'html'}
-                            </option>
-                        {/foreach}
-                    </select>
-                </div>
-
-
-                <div class="form-group select-widget">
-                    <h3 for="product_description_supplier">Supplier</h3>
-                    <select id="product_description_supplier" name="product[asg][supplier]" data-toggle="select2"
-                        data-minimumresultsforsearch="7" class="custom-select form-control select2-hidden-accessible"
-                        data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
-
-                        <option value="0">No supplier</option>
-
-                        {foreach from=$suppliers item=supplier}
-                            <option value="{$supplier.id_supplier}"
-                                {if $supplier.id_supplier == $product->id_supplier}selected="selected" {/if}>
-                                {$supplier.name|escape:'html'}
-                            </option>
-                        {/foreach}
-                    </select>
-                </div>
+                        
+                    <option value="0">No brand</option>
+                    
+                    {foreach from=$brands item=brand}
+                        <option value="{$brand.id_manufacturer}"
+                            {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected"{/if}>
+                            {$brand.name|escape:'html'}
+                        </option>
+                    {/foreach}
+                </select>
             </div>
 
+
+            <div class="form-group select-widget">
+                <h3 for="product_description_supplier">Supplier</h3>
+                <select id="product_description_supplier" name="product[asg][supplier]"
+                        data-toggle="select2" data-minimumresultsforsearch="7"
+                        class="custom-select form-control select2-hidden-accessible"
+                        data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
+                        
+                    <option value="0">No supplier</option>
+                    
+                    {foreach from=$suppliers item=supplier}
+                        <option value="{$supplier.id_supplier}"
+                            {if $supplier.id_supplier == $product->id_supplier}selected="selected"{/if}>
+                            {$supplier.name|escape:'html'}
+                        </option>
+                    {/foreach}
+                </select>
+            </div>
+      
 
             {* categories *}
 
             <div class="form-group">
-                <h3>Categories</h3>
-                <div id="product_description_categories">
-                    <div id="product_description_categories_product_categories"
-                        class="pstaggerTagsWrapper form-group d-block" data-prototype="{$category_prototype nofilter}"
-                        data-prototype-name="__CATEGORY_INDEX__">
+    <h3>Categories</h3>
+    <div id="product_description_categories">
+        <div id="product_description_categories_product_categories"
+             class="pstaggerTagsWrapper form-group d-block"
+             data-prototype="{$category_prototype nofilter}"
+             data-prototype-name="__CATEGORY_INDEX__">
 
-                        {foreach from=$product_categories item=cat key=k}
-                            <span id="product_description_categories_product_categories_{$k}"
-                                name="product[description][categories][product_categories][{$k}]" class="pstaggerTag tag-item">
-                                <input type="hidden" class="category-name-preview-input"
-                                    name="product[description][categories][product_categories][{$k}][display_name]"
-                                    id="product_description_categories_product_categories_{$k}_display_name"
-                                    value="{$cat.name|escape:'html'}">
+            {foreach from=$product_categories item=cat key=k}
+                <span id="product_description_categories_product_categories_{$k}" name="product[description][categories][product_categories][{$k}]" class="pstaggerTag tag-item">
+                    <input type="hidden" class="category-name-preview-input"
+                           name="product[description][categories][product_categories][{$k}][display_name]"
+                           id="product_description_categories_product_categories_{$k}_display_name"
+                           value="{$cat.name|escape:'html'}">
 
-                                <span class="label text-preview category-name-preview">
-                                    <span class="text-preview-value">{$cat.name|escape:'html'}</span>
-                                </span>
+                    <span class="label text-preview category-name-preview">
+                        <span class="text-preview-value">{$cat.name|escape:'html'}</span>
+                    </span>
 
-                                <input type="hidden" class="category-name-input"
-                                    name="product[description][categories][product_categories][{$k}][name]"
-                                    id="product_description_categories_product_categories_{$k}_name"
-                                    value="{$cat.name|escape:'html'}">
+                    <input type="hidden" class="category-name-input"
+                           name="product[description][categories][product_categories][{$k}][name]"
+                           id="product_description_categories_product_categories_{$k}_name"
+                           value="{$cat.name|escape:'html'}">
 
-                                <a class="pstaggerClosingCross d-none" href="#">x</a>
+                    <a class="pstaggerClosingCross d-none" href="#">x</a>
 
-                                <input type="hidden" class="category-id-input"
-                                    name="product[description][categories][product_categories][{$k}][id]"
-                                    id="product_description_categories_product_categories_{$k}_id" value="{$cat.id_category}">
-                            </span>
-                        {/foreach}
-                    </div>
+                    <input type="hidden" class="category-id-input"
+                           name="product[description][categories][product_categories][{$k}][id]"
+                           id="product_description_categories_product_categories_{$k}_id"
+                           value="{$cat.id_category}">
+                </span>
+            {/foreach}
+        </div>
 
-                    <div class="form-group select-widget">
-                        <label for="product_description_categories_default_category_id">Default category</label>
-                        <select id="product_description_categories_default_category_id"
-                            name="product[description][categories][default_category_id]" data-toggle="select2"
-                            data-minimumresultsforsearch="7" class="custom-select form-control select2-hidden-accessible">
+        <div class="form-group select-widget">
+            <label for="product_description_categories_default_category_id">Default category</label>
+            <select id="product_description_categories_default_category_id"
+                    name="product[description][categories][default_category_id]"
+                    data-toggle="select2" data-minimumresultsforsearch="7"
+                    class="custom-select form-control select2-hidden-accessible">
+                
+                {foreach from=$categories item=cat}
+                    <option value="{$cat.id_category}"
+                        {if $cat.id_category == $product->id_category_default}selected="selected"{/if}>
+                        {$cat.name|escape:'html'}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
 
-                            {foreach from=$categories item=cat}
-                                <option value="{$cat.id_category}"
-                                    {if $cat.id_category == $product->id_category_default}selected="selected" {/if}>
-                                    {$cat.name|escape:'html'}
-                                </option>
-                            {/foreach}
-                        </select>
-                    </div>
+        <div class="form-group">
+            <button type="button"
+                    id="product_description_categories_add_categories_btn"
+                    name="product[description][categories][add_categories_btn]"
+                    class="add-categories-btn btn-outline-primary btn btn">
+                Add categories
+            </button>
+        </div>
+    </div>
+</div>
 
-                    <div class="form-group">
-                        <button type="button" id="product_description_categories_add_categories_btn"
-                            name="product[description][categories][add_categories_btn]"
-                            class="add-categories-btn btn-outline-primary btn btn">
-                            Add categories
-                        </button>
-                    </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="product_visibility">Visibility</label>
+            <select class="form-control" id="product_visibility" name="product[asg][visibility]">
+                <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
+                <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
+                </option>
+                <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
+                </option>
+                <option value="none" {if $product->visibility == 'none'}selected="selected" {/if}>Nowhere</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="product_description_wmpackqt">Qty Pack</label>
+            <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
+                placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-4">
+                <label for="product_description_ec_approved_0">
+                    Ec approved
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Ec approved helper." data-placement="top" title=""></span>
+                </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_ec_approved">
+                        <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
+                            value="0" {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
+                        <label for="product_description_ec_approved_0">No</label>
+
+                        <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
+                            value="1" {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
+                        <label for="product_description_ec_approved_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
                 </div>
             </div>
-        
-
-    </div>
 
 
-
-</div>
-
-<div class="col-lg-3">
-
-    <div class="form-group">
-        <label for="product_visibility">Visibility</label>
-        <select class="form-control" id="product_visibility" name="product[asg][visibility]">
-            <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
-            <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
-            </option>
-            <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
-            </option>
-            <option value="none" {if $product->visibility == 'none'}selected="selected" {/if}>Nowhere</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="product_description_wmpackqt">Qty Pack</label>
-        <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
-            placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-lg-4">
-            <label for="product_description_ec_approved_0">
-                Ec approved
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="Ec approved helper." data-placement="top" title=""></span>
-            </label>
-
-            <div class="input-group">
-                <span class="ps-switch" id="product_description_ec_approved">
-                    <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
-                        value="0" {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
-                    <label for="product_description_ec_approved_0">No</label>
-
-                    <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
-                        value="1" {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
-                    <label for="product_description_ec_approved_1">Yes</label>
-
-                    <span class="slide-button"></span>
-                </span>
-            </div>
-        </div>
-
-
-        <div class="form-group col-lg-4">
-            <label for="product_description_wmdeprecated_0">
-                End of life
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="End of life helper." data-placement="top" title=""></span>
-            </label>
-
-            <div class="input-group">
-                <span class="ps-switch" id="product_description_wmdeprecated">
-                    <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
-                        value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
-                    <label for="product_description_wmdeprecated_0">No</label>
-
-                    <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
-                        value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
-                    <label for="product_description_wmdeprecated_1">Yes</label>
-
-                    <span class="slide-button"></span>
-                </span>
-            </div>
-        </div>
-
-
-        <div class="form-group col-lg-4">
-            <label for="product_description_not_to_order_0">
-                Not to order?
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="Not to order helper." data-placement="top" title=""></span>
-            </label>
-
-            <div class="input-group">
-                <span class="ps-switch" id="product_description_not_to_order">
-                    <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
-                        value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
-                    <label for="product_description_not_to_order_0">No</label>
-
-                    <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
-                        value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
-                    <label for="product_description_not_to_order_1">Yes</label>
-
-                    <span class="slide-button"></span>
-                </span>
-            </div>
-        </div>
-
-        <div class="form-group col-lg-4">
-            <label class="">
-                Disallow stock?
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="Disallow stock helper." data-placement="top" data-original-title="" title=""
-                    style="position: absolute;">
-                </span>
-            </label>
-            <div class="input-group ">
-                <span class="ps-switch" id="product_description_disallow_stock">
-                    <input id="product_description_disallow_stock_0" class="ps-switch"
-                        name="product[asg][disallow_stock]" value="0" checked="" type="radio"
-                        {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
-                    <label for="product_description_disallow_stock_0">No</label>
-
-                    <input id="product_description_disallow_stock_1" class="ps-switch"
-                        name="product[asg][disallow_stock]" value="1" type="radio"
-                        {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
-                    <label for="product_description_disallow_stock_1">Yes</label>
-
-                    <span class="slide-button"></span>
-                </span>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div class="form-group">
-        <label>Options</label>
-        <div class="input-group">
-
-            <div class="form-check col-lg-12">
-                <input type="hidden" name="product[asg][show_compat_exception]" value="0">
-                <input class="form-check-input" type="checkbox" id="show_compat_exception"
-                    name="product[asg][show_compat_exception]" value="1"
-                    {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
-                <label class="form-check-label" for="show_compat_exception">
-                    Show compact exception
+            <div class="form-group col-lg-4">
+                <label for="product_description_wmdeprecated_0">
+                    End of life
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="End of life helper." data-placement="top" title=""></span>
                 </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_wmdeprecated">
+                        <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
+                            value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_0">No</label>
+
+                        <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
+                            value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
             </div>
 
-            <div class="form-check col-lg-12">
 
-                <input type="hidden" name="product[asg][universal]" value="0">
-
-                <input class="form-check-input" type="checkbox" id="universal_product" name="product[asg][universal]"
-                    value="1" {if isset($product->universal) && $product->universal == 1}checked{/if}>
-                <label class="form-check-label" for="universal_product">
-                    Universal product
+            <div class="form-group col-lg-4">
+                <label for="product_description_not_to_order_0">
+                    Not to order?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Not to order helper." data-placement="top" title=""></span>
                 </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_not_to_order">
+                        <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
+                            value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
+                        <label for="product_description_not_to_order_0">No</label>
+
+                        <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
+                            value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
+                        <label for="product_description_not_to_order_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
             </div>
 
+            <div class="form-group col-lg-4">
+                <label class="">
+                    Disallow stock?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title=""
+                        style="position: absolute;">
+                    </span>
+                </label>
+                <div class="input-group ">
+                    <span class="ps-switch" id="product_description_disallow_stock">
+                        <input id="product_description_disallow_stock_0" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="0" checked="" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_0">No</label>
+
+                        <input id="product_description_disallow_stock_1" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="1" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+
         </div>
+
+        <div class="form-group">
+            <label>Options</label>
+            <div class="input-group">
+
+                <div class="form-check col-lg-12">
+                    <input type="hidden" name="product[asg][show_compat_exception]" value="0">
+                    <input class="form-check-input" type="checkbox" id="show_compat_exception"
+                        name="product[asg][show_compat_exception]" value="1"
+                        {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
+                    <label class="form-check-label" for="show_compat_exception">
+                        Show compact exception
+                    </label>
+                </div>
+
+                <div class="form-check col-lg-12">
+
+                    <input type="hidden" name="product[asg][universal]" value="0">
+
+                    <input class="form-check-input" type="checkbox" id="universal_product"
+                        name="product[asg][universal]" value="1"
+                        {if isset($product->universal) && $product->universal == 1}checked{/if}>
+                    <label class="form-check-label" for="universal_product">
+                        Universal product
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="youtube_code_1">YouTube</label>
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
+                    placeholder="YouTube Code 1" value="{$product->youtube_1}">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
+                    placeholder="YouTube Code 2" value="{$product->youtube_2}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="youtube_code_1">HS Code</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
+                    value="{$product->nc}">
+            </div>
+        </div>
+
+        <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
+                Instructions Difficulty
+
+            </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
+                class="custom-select form-control">
+                <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
+                <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
+                <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
+                <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
+                <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
+                <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
+            </select>
+
+        </div>
+
+
+
+
     </div>
 
-
-    <div class="form-group">
-        <label for="youtube_code_1">YouTube</label>
-        <div class="input-group mb-2">
-            <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
-                placeholder="YouTube Code 1" value="{$product->youtube_1}">
-        </div>
-        <div class="input-group">
-            <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
-                placeholder="YouTube Code 2" value="{$product->youtube_2}">
-        </div>
+    <div class="col-lg-12">
+        <hr>
     </div>
-
-    <div class="form-group">
-        <label for="youtube_code_1">HS Code</label>
-        <div class="input-group">
-            <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
-                value="{$product->nc}">
-        </div>
-    </div>
-
-    <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
-            Instructions Difficulty
-
-        </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
-            class="custom-select form-control">
-            <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
-            <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
-            <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
-            <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
-            <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
-            <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
-        </select>
-
-    </div>
-
-
-
-
-</div>
-
-<div class="col-lg-12">
-    <hr>
-</div>
 </div>
 
 <!-- TinyMCE Initialization Script -->
@@ -862,10 +866,10 @@
 
     // categories
 
-    $('#product_description_categories_add_categories_btn').on('click', function() {
+    $('#product_description_categories_add_categories_btn').on('click', function () {
         // Collect existing values
         const existingCategories = [];
-        $('.category-id-input').each(function() {
+        $('.category-id-input').each(function () {
             existingCategories.push($(this).val());
         });
 
@@ -880,66 +884,65 @@
 
         prototype = prototype.replace(/__CATEGORY_INDEX__/g, index);
         prototype = prototype.replace(/value=""/g, 'value="' + newCategory.name + '"'); // fill name
-        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id +
-            '" />');
+        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id + '" />');
 
         $('#product_description_categories_product_categories').append(prototype);
     });
 
 
     // When "Apply" button is clicked in modal
-    $('#category_tree_selector_apply_btn').on('click', function() {
-        var selectedCategories = [];
-
-        // Find all checked categories
-        $('#category_tree_selector_category_tree input:checked').each(function() {
-            selectedCategories.push({
-                id: $(this).val(),
-                name: $(this).closest('label').text().trim()
-            });
-        });
-
-        // Add selected categories to the tags container
-        selectedCategories.forEach(function(category, index) {
-            var prototype = $('#product_description_categories_product_categories').data('prototype');
-            var newTag = prototype.replace(/__CATEGORY_INDEX__/g, index);
-
-            newTag = newTag
-                .replace('category-name-preview-input" />', 'category-name-preview-input" value="' +
-                    category.name + '" />')
-                .replace('category-name-input" value=""', 'category-name-input" value="' + category
-                    .name + '"')
-                .replace('category-id-input" />', 'category-id-input" value="' + category.id + '" />');
-
-            $('#product_description_categories_product_categories').append(newTag);
-        });
-
-        // Update the select dropdown with the new categories (if needed)
-        selectedCategories.forEach(function(category) {
-            var option = $('<option>', {
-                value: category.id,
-                text: category.name,
-                selected: true
-            });
-            $('#product_description_categories_default_category_id').append(option);
-        });
-
-        // Reinitialize select2 (if used)
-        $('#product_description_categories_default_category_id').select2();
-
-        // Reinitialize the pstagger input (if used)
-        $('#product_description_categories_product_categories').pstaggerInput({
-            // options for pstaggerInput
-        });
-
-        // Close the modal
-        $('#categories-modal').modal('hide');
+$('#category_tree_selector_apply_btn').on('click', function () {
+  var selectedCategories = [];
+  
+  // Find all checked categories
+  $('#category_tree_selector_category_tree input:checked').each(function () {
+    selectedCategories.push({
+      id: $(this).val(),
+      name: $(this).closest('label').text().trim()
     });
+  });
 
-    // Handle cancel button click
-    $('#category_tree_selector_cancel_btn').on('click', function() {
-        $('#categories-modal').modal('hide');
+  // Add selected categories to the tags container
+  selectedCategories.forEach(function (category, index) {
+    var prototype = $('#product_description_categories_product_categories').data('prototype');
+    var newTag = prototype.replace(/__CATEGORY_INDEX__/g, index);
+    
+    newTag = newTag
+      .replace('category-name-preview-input" />', 'category-name-preview-input" value="' + category.name + '" />')
+      .replace('category-name-input" value=""', 'category-name-input" value="' + category.name + '"')
+      .replace('category-id-input" />', 'category-id-input" value="' + category.id + '" />');
+    
+    $('#product_description_categories_product_categories').append(newTag);
+  });
+
+  // Update the select dropdown with the new categories (if needed)
+  selectedCategories.forEach(function (category) {
+    var option = $('<option>', {
+      value: category.id,
+      text: category.name,
+      selected: true
     });
+    $('#product_description_categories_default_category_id').append(option);
+  });
+
+  // Reinitialize select2 (if used)
+  $('#product_description_categories_default_category_id').select2();
+
+  // Reinitialize the pstagger input (if used)
+  $('#product_description_categories_product_categories').pstaggerInput({
+    // options for pstaggerInput
+  });
+
+  // Close the modal
+  $('#categories-modal').modal('hide');
+});
+
+// Handle cancel button click
+$('#category_tree_selector_cancel_btn').on('click', function () {
+  $('#categories-modal').modal('hide');
+});
+
+
 </script>
 
 <style>
