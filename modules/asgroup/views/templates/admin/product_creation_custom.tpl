@@ -1,7 +1,10 @@
 <!-- Load the TinyMCE script -->
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
-
+{assign var="category_tree" value=[]}
+{foreach from=$categories item=cat}
+    {$category_tree[$cat.id_parent][] = $cat}
+{/foreach}
 
 <div class="tab-container-product-creation-custom row">
     <div class="col-lg-9">
@@ -286,20 +289,16 @@
             <div class="form-group col-lg-4">
                 <div class="form-group mb-4">
                     <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
-                    <div id="categoryCheckboxes">
-                        {foreach from=$categories item=cat}
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
-                                    id="category_{$cat.id_category}" name="product[asg][categories][]"
-                                    {if in_array($cat.id_category, $product_category_ids)}checked{/if}>
-                                <label class="form-check-label" for="category_{$cat.id_category}">
-                                    {$cat.name|escape:'html'}
-                                </label>
-                            </div>
-                        {/foreach}
-                    </div>
+
+                    {assign var="product_category_ids" value=[]}
+                    {foreach from=$product_categories item=pc}
+                        {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
+                    {/foreach}
+
+                    {renderCategoryTree categories=$category_tree parent=0 selectedCategories=$product_category_ids}
                 </div>
             </div>
+
 
 
 
@@ -500,6 +499,50 @@
         <hr>
     </div>
 </div>
+
+{function name=renderCategoryTree categories=[] parent=0 selectedCategories=[]}
+    {if isset($categories[$parent])}
+        <ul class="category-tree">
+            {foreach from=$categories[$parent] item=cat}
+                <li>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}"
+                            id="category_{$cat.id_category}" name="product[asg][categories][]"
+                            {if in_array($cat.id_category, $selectedCategories)}checked{/if}>
+                        <label class="form-check-label" for="category_{$cat.id_category}">
+                            {$cat.name|escape:'html'}
+                        </label>
+                        {if isset($categories[$cat.id_category])}
+                            <button type="button" class="toggle-child btn btn-sm btn-link p-0" onclick="toggleCategory(this)">
+                                [+]
+                            </button>
+                        {/if}
+                    </div>
+
+                    {if isset($categories[$cat.id_category])}
+                        <div class="child-categories d-none" style="margin-left: 20px;">
+                            {renderCategoryTree categories=$categories parent=$cat.id_category selectedCategories=$selectedCategories}
+                        </div>
+                    {/if}
+                </li>
+            {/foreach}
+        </ul>
+    {/if}
+{/function}
+
+<script>
+    function toggleCategory(button) {
+        const container = button.closest('li').querySelector('.child-categories');
+        if (container.classList.contains('d-none')) {
+            container.classList.remove('d-none');
+            button.textContent = '[-]';
+        } else {
+            container.classList.add('d-none');
+            button.textContent = '[+]';
+        }
+    }
+</script>
+
 
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
@@ -906,5 +949,20 @@
 
     #product_options_visibility #product_options_visibility_visibility {
         display: none !important;
+    }
+</style>
+
+<style>
+    .category-tree {
+        list-style: none;
+        padding-left: 0;
+    }
+    .category-tree .form-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .toggle-child {
+        font-size: 12px;
     }
 </style>
