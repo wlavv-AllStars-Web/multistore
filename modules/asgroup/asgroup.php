@@ -1503,9 +1503,10 @@ public function getASGProductCreation($product) {
     $formRenderer = $twig->getRuntime(\Symfony\Component\Form\FormRenderer::class);
 
     // Get available languages
-    $languages = $this->context->controller->getLanguages(true);
-
-    pre($languages);
+    $allLanguages  = $this->context->controller->getLanguages(true);
+    $languages = array_filter($allLanguages, function ($lang) {
+        return (int)$lang['active'] === 1;
+    });
     
     // Initialize the default values array (empty for now)
     $defaultValues = [];
