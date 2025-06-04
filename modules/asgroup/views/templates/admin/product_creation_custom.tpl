@@ -205,41 +205,43 @@
 
 
         <div class="form-group" style="display: flex;gap:1rem;">
-            <div class="form-group select-widget">
-                <h3 for="product_description_manufacturer">Brand</h3>
-                <select id="product_description_manufacturer" name="product[asg][manufacturer]"
-                        data-toggle="select2" data-minimumresultsforsearch="7"
-                        class="custom-select form-control select2-hidden-accessible"
-                        data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
+            <div class="form-group">
+                <div class="select-widget">
+                    <h3 for="product_description_manufacturer">Brand</h3>
+                    <select id="product_description_manufacturer" name="product[asg][manufacturer]"
+                            data-toggle="select2" data-minimumresultsforsearch="7"
+                            class="custom-select form-control select2-hidden-accessible"
+                            data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
+                            
+                        <option value="0">No brand</option>
                         
-                    <option value="0">No brand</option>
-                    
-                    {foreach from=$brands item=brand}
-                        <option value="{$brand.id_manufacturer}"
-                            {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected"{/if}>
-                            {$brand.name|escape:'html'}
-                        </option>
-                    {/foreach}
-                </select>
-            </div>
+                        {foreach from=$brands item=brand}
+                            <option value="{$brand.id_manufacturer}"
+                                {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected"{/if}>
+                                {$brand.name|escape:'html'}
+                            </option>
+                        {/foreach}
+                    </select>
+                </div>
 
 
-            <div class="form-group select-widget">
-                <h3 for="product_description_supplier">Supplier</h3>
-                <select id="product_description_supplier" name="product[asg][supplier]"
-                        data-toggle="select2" data-minimumresultsforsearch="7"
-                        class="custom-select form-control select2-hidden-accessible"
-                        data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
+                <div class="select-widget">
+                    <h3 for="product_description_supplier">Supplier</h3>
+                    <select id="product_description_supplier" name="product[asg][supplier]"
+                            data-toggle="select2" data-minimumresultsforsearch="7"
+                            class="custom-select form-control select2-hidden-accessible"
+                            data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
+                            
+                        <option value="0">No supplier</option>
                         
-                    <option value="0">No supplier</option>
-                    
-                    {foreach from=$suppliers item=supplier}
-                        <option value="{$supplier.id_supplier}"
-                            {if $supplier.id_supplier == $product->id_supplier}selected="selected"{/if}>
-                            {$supplier.name|escape:'html'}
-                        </option>
-                    {/foreach}
-                </select>
+                        {foreach from=$suppliers item=supplier}
+                            <option value="{$supplier.id_supplier}"
+                                {if $supplier.id_supplier == $product->id_supplier}selected="selected"{/if}>
+                                {$supplier.name|escape:'html'}
+                            </option>
+                        {/foreach}
+                    </select>
+                </div>
             </div>
       
 
