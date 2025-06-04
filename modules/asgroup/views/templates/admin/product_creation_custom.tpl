@@ -204,7 +204,7 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group select-widget">
                 <h3 for="product_description_manufacturer">Brand</h3>
                 <select id="product_description_manufacturer" name="product[asg][manufacturer]"
@@ -242,6 +242,70 @@
                 </select>
             </div>
       
+
+            {* categories *}
+
+            <div class="form-group">
+    <h3>Categories</h3>
+    <div id="product_description_categories">
+        <div id="product_description_categories_product_categories"
+             class="pstaggerTagsWrapper form-group d-block"
+             data-prototype="{$category_prototype nofilter}"
+             data-prototype-name="__CATEGORY_INDEX__">
+
+            {foreach from=$product_categories item=cat key=k}
+                <span id="product_description_categories_product_categories_{$k}" name="product[description][categories][product_categories][{$k}]" class="pstaggerTag tag-item">
+                    <input type="hidden" class="category-name-preview-input"
+                           name="product[description][categories][product_categories][{$k}][display_name]"
+                           id="product_description_categories_product_categories_{$k}_display_name"
+                           value="{$cat.name|escape:'html'}">
+
+                    <span class="label text-preview category-name-preview">
+                        <span class="text-preview-value">{$cat.name|escape:'html'}</span>
+                    </span>
+
+                    <input type="hidden" class="category-name-input"
+                           name="product[description][categories][product_categories][{$k}][name]"
+                           id="product_description_categories_product_categories_{$k}_name"
+                           value="{$cat.name|escape:'html'}">
+
+                    <a class="pstaggerClosingCross d-none" href="#">x</a>
+
+                    <input type="hidden" class="category-id-input"
+                           name="product[description][categories][product_categories][{$k}][id]"
+                           id="product_description_categories_product_categories_{$k}_id"
+                           value="{$cat.id_category}">
+                </span>
+            {/foreach}
+        </div>
+
+        <div class="form-group select-widget">
+            <label for="product_description_categories_default_category_id">Default category</label>
+            <select id="product_description_categories_default_category_id"
+                    name="product[description][categories][default_category_id]"
+                    data-toggle="select2" data-minimumresultsforsearch="7"
+                    class="custom-select form-control select2-hidden-accessible">
+                
+                {foreach from=$categories item=cat}
+                    <option value="{$cat.id_category}"
+                        {if $cat.id_category == $product->id_category_default}selected="selected"{/if}>
+                        {$cat.name|escape:'html'}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button type="button"
+                    id="product_description_categories_add_categories_btn"
+                    name="product[description][categories][add_categories_btn]"
+                    class="add-categories-btn btn-outline-primary btn btn">
+                Add categories
+            </button>
+        </div>
+    </div>
+</div>
+
 
         </div>
 
