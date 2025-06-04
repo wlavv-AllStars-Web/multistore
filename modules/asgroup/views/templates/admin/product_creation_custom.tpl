@@ -18,7 +18,7 @@
                         {$cat.name|escape:'html'}
 
                         {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
-                            <span class="toggle-icon">+</span> <!-- Toggle icon for parent -->
+                            <span class="toggle-icon" style="cursor: pointer;">+</span> <!-- Toggle icon for parent -->
                         {/if}
                     </label>
 
@@ -914,24 +914,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleElements = document.querySelectorAll('.toggle-icon');
     
     toggleElements.forEach(function(toggle) {
-        // Add click event listener to each toggle
-        toggle.addEventListener('click', function() {
+        // Add click event listener to each toggle icon
+        toggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent checkbox click from being triggered
+            
             const parentLi = this.closest('li');
             const icon = parentLi.querySelector('.toggle-icon');
             const childUl = parentLi.querySelector('ul');
             
-            // Toggle the open class to show/hide children
-            childUl.style.display = (childUl.style.display === 'none') ? 'block' : 'none';
-            
-            // Toggle the icon between + and -
-            if (childUl.style.display === 'block') {
-                icon.textContent = '-'; // Change to minus when open
-            } else {
-                icon.textContent = '+'; // Change to plus when closed
+            // Toggle the visibility of child categories
+            if (childUl) {
+                childUl.style.display = (childUl.style.display === 'none') ? 'block' : 'none';
+                
+                // Toggle the icon between + and -
+                if (childUl.style.display === 'block') {
+                    icon.textContent = '-'; // Change to minus when open
+                } else {
+                    icon.textContent = '+'; // Change to plus when closed
+                }
             }
         });
     });
 });
+
 
 
 
