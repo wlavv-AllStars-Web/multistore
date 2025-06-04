@@ -8,10 +8,6 @@
         <ul class="category-tree level-{$level}" style="padding-left: {($level * 20)}px;">
             {foreach from=$categories[$parentId] item=cat}
                 <li class="has-children">
-                    {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
-                        <span class="toggle-icon" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></span> 
-                    {/if}
-
                     <label class="toggle-label">
                         <input 
                             type="checkbox" 
@@ -21,8 +17,10 @@
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
                         {$cat.name|escape:'html'}
 
+                        {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
+                            <span class="toggle-icon">+</span> <!-- Toggle icon for parent -->
+                        {/if}
                     </label>
-  
 
                     {* Recursive call for children *}
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
@@ -921,8 +919,8 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation(); // Prevent checkbox click from being triggered
             
             const parentLi = this.closest('li');
+            const icon = parentLi.querySelector('.toggle-icon');
             const childUl = parentLi.querySelector('ul');
-            const currentIcon = this;
             
             // Toggle the visibility of child categories
             if (childUl) {
@@ -930,9 +928,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Toggle the icon between + and -
                 if (childUl.style.display === 'block') {
-                    currentIcon.innerHTML  = '<i class="fa-solid fa-minus"></i>'; // Change to minus when open
+                    icon.textContent = '-'; // Change to minus when open
                 } else {
-                    currentIcon.innerHTML  = '<i class="fa-solid fa-plus"></i>'; // Change to plus when closed
+                    icon.textContent = '+'; // Change to plus when closed
                 }
             }
         });
