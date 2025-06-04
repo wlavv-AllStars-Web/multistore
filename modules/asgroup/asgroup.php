@@ -356,7 +356,21 @@ class AsGroup extends Module
         $productData = Tools::getValue('product');
         $idProduct = $params['id_product'];
         
-        
+        if (isset($productData['asg']['manufacturer'])) {
+            Db::getInstance()->update('product', [
+                'id_manufacturer' => $productData['asg']['manufacturer']
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or id_manufacturer is not set.');
+        }
+
+        if (isset($productData['asg']['supplier'])) {
+            Db::getInstance()->update('product', [
+                'id_supplier' => $productData['asg']['supplier']
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or id_supplier is not set.');
+        }
 
         if (isset($productData['asg']['reference'])) {
             Db::getInstance()->update('product', [
