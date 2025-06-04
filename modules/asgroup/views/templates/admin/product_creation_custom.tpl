@@ -862,6 +862,33 @@
             }
         });
     }
+
+
+    // categories
+
+    $('#product_description_categories_add_categories_btn').on('click', function () {
+        // Collect existing values
+        const existingCategories = [];
+        $('.category-id-input').each(function () {
+            existingCategories.push($(this).val());
+        });
+
+        // Example: get new category from modal/select/autocomplete
+        const newCategory = getSelectedCategory(); // <- your implementation
+
+        if (existingCategories.includes(newCategory.id)) return;
+
+        // Create new HTML using the prototype
+        let prototype = $('#product_description_categories_product_categories').data('prototype');
+        const index = existingCategories.length;
+
+        prototype = prototype.replace(/__CATEGORY_INDEX__/g, index);
+        prototype = prototype.replace(/value=""/g, 'value="' + newCategory.name + '"'); // fill name
+        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id + '" />');
+
+        $('#product_description_categories_product_categories').append(prototype);
+    });
+
 </script>
 
 <style>
