@@ -70,8 +70,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                            </textarea>
+                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -111,8 +111,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                            </textarea>
+                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -203,6 +203,47 @@
 
         </div>
 
+
+        <div class="form-group">
+            <div class="form-group select-widget">
+                <h3 for="product_description_manufacturer">Brand</h3>
+                <select id="product_description_manufacturer" name="product[asg][manufacturer]"
+                        data-toggle="select2" data-minimumresultsforsearch="7"
+                        class="custom-select form-control select2-hidden-accessible"
+                        data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
+                        
+                    <option value="0">No brand</option>
+                    
+                    {foreach from=$brands item=brand}
+                        <option value="{$brand.id_manufacturer}"
+                            {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected"{/if}>
+                            {$brand.name|escape:'html'}
+                        </option>
+                    {/foreach}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group select-widget">
+                    <h3 for="product_description_supplier">Supplier</h3>
+                    <select id="product_description_supplier" name="product[description][supplier]"
+                            data-toggle="select2" data-minimumresultsforsearch="7"
+                            class="custom-select form-control select2-hidden-accessible"
+                            data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
+                            
+                        <option value="0">No supplier</option>
+                        
+                        {foreach from=$suppliers item=supplier}
+                            <option value="{$supplier.id_supplier}"
+                                {if $supplier.id_supplier == $product->id_supplier}selected="selected"{/if}>
+                                {$supplier.name|escape:'html'}
+                            </option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+
+        </div>
 
 
 
@@ -297,21 +338,24 @@
                 </div>
             </div>
 
-            <div class="form-group col-lg-4"> 
+            <div class="form-group col-lg-4">
                 <label class="">
                     Disallow stock?
                     <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title="" style="position: absolute;">
+                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title=""
+                        style="position: absolute;">
                     </span>
                 </label>
                 <div class="input-group ">
                     <span class="ps-switch" id="product_description_disallow_stock">
                         <input id="product_description_disallow_stock_0" class="ps-switch"
-                            name="product[asg][disallow_stock]" value="0" checked="" type="radio" {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                            name="product[asg][disallow_stock]" value="0" checked="" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
                         <label for="product_description_disallow_stock_0">No</label>
 
                         <input id="product_description_disallow_stock_1" class="ps-switch"
-                            name="product[asg][disallow_stock]" value="1" type="radio" {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                            name="product[asg][disallow_stock]" value="1" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
                         <label for="product_description_disallow_stock_1">Yes</label>
 
                         <span class="slide-button"></span>
@@ -393,7 +437,7 @@
     </div>
 
     <div class="col-lg-12">
-        <hr>     
+        <hr>
     </div>
 </div>
 
