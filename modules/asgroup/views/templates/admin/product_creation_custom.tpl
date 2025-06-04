@@ -289,17 +289,19 @@
             <div class="form-group col-lg-4">
                 <h3>Categories</h3>
                 <div id="product_description_categories">
-
-                    <div class="form-group mb-3">
-                        <p class="subtitle">Categories Associated with this Product</p>
-                        <ul id="associatedCategoriesList" class="list-group">
-                            {foreach from=$categories item=cat}
-                                {if in_array($cat.id_category, $product_categories)}
-                                    <li class="list-group-item">{$cat.name|escape:'html'}</li>
-                                {/if}
-                            {/foreach}
-                        </ul>
-                    </div>
+                
+<div class="form-group mb-3">
+    <p class="subtitle">Categories Associated with this Product</p>
+    <ul id="associatedCategoriesList" class="list-group">
+        {foreach from=$categories item=cat}
+            {foreach from=$product_categories item=prod_cat}
+                {if $prod_cat.id_category == $cat.id_category}
+                    <li class="list-group-item">{$cat.name|escape:'html'}</li>
+                {/if}
+            {/foreach}
+        {/foreach}
+    </ul>
+</div>
 
                         <!-- Default Category Dropdown -->
                     <div class="form-group mb-3">
