@@ -1428,14 +1428,17 @@ public function getASGProductCreation($product) {
     $suppliers = Supplier::getSuppliers(false, Context::getContext()->language->id);
     $categories = Category::getCategories(Context::getContext()->language->id, true, false);
 
+    $id_product = (int)$product->id; // or any product ID
+    $product_categories = Product::getProductCategories($id_product);
+
 
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
-    pre($product);
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'product_categories' => $product_categories,
         'combinations' => $combinations,
         'compats' => $compats,
         'brands'  => isset($brands) ? $brands : [],
