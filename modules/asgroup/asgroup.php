@@ -1423,7 +1423,8 @@ public function getASGProductCreation($product) {
 
     $data = $this->getCompats($product->id);
     $compats = $data['compats'];
-    $brands = $data['brands'];
+
+    $brands = Manufacturer::getManufacturers();
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
