@@ -584,7 +584,7 @@
             featureContainer.insertAdjacentHTML('beforeend', newFeatureHTML);
 
             // Reinitialize select2 on the new feature select element (optional but if using select2)
-            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_${featureIndex}_feature_id`);
+            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_`+featureIndex+`_feature_id`);
             if (newSelect) {
                 $(newSelect).select2();  // Assuming you're using select2 for dropdown
             }
