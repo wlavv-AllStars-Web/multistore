@@ -66,7 +66,7 @@
   {* <meta name="description" content="{block name='head_seo_description'}{$page.meta.description}{/block}">
   <meta name="keywords" content="{block name='head_seo_keywords'}{$page.meta.keywords}{/block}"> *}
 
-  <meta name="description" content="{block name='head_seo_description'}{$page.meta.title} {$product.reference}{/block}">
+  <meta name="description" content="{block name='head_seo_description'}{$page.meta.title}, {$product.reference}{/block}">
   <meta name="keywords" content="{block name='head_seo_keywords'}{$page.meta.keywords}{/block}">
 
   <meta name="google-site-verification" content="7Bbibv4zGOhDXWLu37ZOovxUsNRzQ7sDLL4mSd0cz2I" />
