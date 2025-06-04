@@ -226,7 +226,7 @@
             <div class="form-group">
                 <div class="form-group select-widget">
                     <h3 for="product_description_supplier">Supplier</h3>
-                    <select id="product_description_supplier" name="product[description][supplier]"
+                    <select id="product_description_supplier" name="product[asg][supplier]"
                             data-toggle="select2" data-minimumresultsforsearch="7"
                             class="custom-select form-control select2-hidden-accessible"
                             data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
