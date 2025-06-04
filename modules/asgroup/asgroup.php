@@ -390,6 +390,8 @@ class AsGroup extends Module
         // We are using configuration table to save the data
         $productData = Tools::getValue('product');
         $idProduct = $params['id_product'];
+
+        pre($productData);
         
         if (isset($productData['asg']['manufacturer'])) {
             Db::getInstance()->update('product', [
