@@ -21,7 +21,7 @@
                     </label>
 
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
-                        <span class="toggle-icon" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></span> 
+                        <span class="toggle-icon btn-info" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></span> 
                     {/if}
 
                     {* Recursive call for children *}
@@ -990,8 +990,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .toggle-icon {
-        background: #222;
-        padding: 5px 7px;
+        /* background: #222; */
+        padding: 2px 7px;
         border-radius: .25rem; 
     }
     .toggle-icon i{
