@@ -1552,6 +1552,10 @@ public function getASGProductCreation($product) {
         ];
     }
 
+    $product_category_ids = array_map(function($cat) {
+        return (int)$cat['id_category'];
+    }, $product_categories);
+
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
@@ -1559,6 +1563,7 @@ public function getASGProductCreation($product) {
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
         'product_categories' => $product_categories,
+        'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,
         'compats' => $compats,
         'brands'  => isset($brands) ? $brands : [],
