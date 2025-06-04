@@ -360,6 +360,12 @@
 
         </div>
 
+        <div class="form-group">
+            <h3>Features</h3>
+            <button id="add-feature" class="btn btn-outline-primary"><i class="material-icons">add_circle</i><span class="btn-label">Add a feature</span></button>
+            <div id="product_details_features_feature_values"></div>
+        </div>
+
 
 
     </div>
@@ -559,6 +565,35 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+    // features
+    document.addEventListener('DOMContentLoaded', function () {
+        let featureIndex = 0;  // Track the feature index to prevent overriding
+
+        const addFeatureButton = document.getElementById('add-feature');
+        const featureContainer = document.getElementById('product_details_features_feature_values');
+        const prototype = featureContainer.getAttribute('data-prototype');
+
+        addFeatureButton.addEventListener('click', function () {
+            // Increment feature index
+            featureIndex++;
+
+            // Clone the prototype and replace the placeholder index
+            let newFeatureHTML = prototype.replace(/__FEATURE_VALUE_INDEX__/g, featureIndex);
+
+            // Insert the cloned feature into the container
+            featureContainer.insertAdjacentHTML('beforeend', newFeatureHTML);
+
+            // Reinitialize select2 on the new feature select element (optional but if using select2)
+            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_${featureIndex}_feature_id`);
+            if (newSelect) {
+                $(newSelect).select2();  // Assuming you're using select2 for dropdown
+            }
+        });
+    });
+
+
+    // fim features
+
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
     function generateTagsASG() {
