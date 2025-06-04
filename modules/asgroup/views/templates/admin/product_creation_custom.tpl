@@ -70,8 +70,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                        </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -111,8 +111,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                        </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -261,13 +261,14 @@
                         </ul>
                     </div>
 
-                        <!-- Default Category Dropdown -->
+                    <!-- Default Category Dropdown -->
                     <div class="form-group mb-3">
                         <label for="defaultCategorySelect" class="form-label">Select Default Category</label>
-                        <select class="custom-select form-control" id="defaultCategorySelect" name="product[asg][default_category]" required>
+                        <select class="custom-select form-control" id="defaultCategorySelect"
+                            name="product[asg][default_category]" required>
                             <option value="" disabled>Select a category</option>
                             {foreach from=$categories item=cat}
-                                <option value="{$cat.id_category}" 
+                                <option value="{$cat.id_category}"
                                     {if $cat.id_category == $product->id_category_default}selected="selected" {/if}>
                                     {$cat.name|escape:'html'}
                                 </option>
@@ -279,7 +280,9 @@
             </div>
 
             <div class="form-group">
-                <button type="button" id="product_description_categories_add_categories_btn" name="product[description][categories][add_categories_btn]" class="add-categories-btn btn-outline-primary btn btn">Add categories</button>
+                <button type="button" id="product_description_categories_add_categories_btn"
+                    name="product[description][categories][add_categories_btn]"
+                    class="add-categories-btn btn-outline-primary btn btn">Add categories</button>
             </div>
 
 
@@ -287,7 +290,135 @@
 
         </div>
 
+        {* test categories *}
 
+        <div class="form-group">
+            <h3>
+                Categories
+
+            </h3>
+            <div id="product_description_categories">
+                <div id="product_description_categories_product_categories"
+                    name="product[description][categories][product_categories]"
+                    class="pstaggerTagsWrapper form-group d-block" data-prototype="&lt;span id=&quot;product_description_categories_product_categories___CATEGORY_INDEX__&quot; name=&quot;product[description][categories][product_categories][__CATEGORY_INDEX__]&quot; class=&quot;pstaggerTag tag-item&quot;&gt;
+      &lt;input type=&quot;hidden&quot; id=&quot;product_description_categories_product_categories___CATEGORY_INDEX___display_name&quot; name=&quot;product[description][categories][product_categories][__CATEGORY_INDEX__][display_name]&quot; class=&quot;category-name-preview-input&quot; /&gt;
+  &lt;span class=&quot;label text-preview category-name-preview&quot;&gt;
+
+    &lt;span class=&quot;text-preview-value&quot;&gt;
+
+          &lt;/span&gt;
+
+          &lt;/span&gt;
+
+    &lt;input type=&quot;hidden&quot; id=&quot;product_description_categories_product_categories___CATEGORY_INDEX___name&quot; name=&quot;product[description][categories][product_categories][__CATEGORY_INDEX__][name]&quot; class=&quot;category-name-input&quot; /&gt;
+
+        &lt;a class=&quot;pstaggerClosingCross d-none&quot; href=&quot;#&quot;&gt;x&lt;/a&gt;
+    &lt;input type=&quot;hidden&quot; id=&quot;product_description_categories_product_categories___CATEGORY_INDEX___id&quot; name=&quot;product[description][categories][product_categories][__CATEGORY_INDEX__][id]&quot; class=&quot;category-id-input&quot; /&gt;
+
+  &lt;/span&gt;
+" data-prototype-name="__CATEGORY_INDEX__">
+                    <span id="product_description_categories_product_categories_0"
+                        name="product[description][categories][product_categories][0]" class="pstaggerTag tag-item">
+                        <input type="hidden" id="product_description_categories_product_categories_0_display_name"
+                            name="product[description][categories][product_categories][0][display_name]"
+                            class="category-name-preview-input" value="Home">
+                        <span class="label text-preview category-name-preview">
+
+                            <span class="text-preview-value">
+                                Home
+                            </span>
+
+                        </span>
+
+                        <input type="hidden" id="product_description_categories_product_categories_0_name"
+                            name="product[description][categories][product_categories][0][name]"
+                            class="category-name-input" value="Home">
+
+                        <a class="pstaggerClosingCross " href="#">x</a>
+                        <input type="hidden" id="product_description_categories_product_categories_0_id"
+                            name="product[description][categories][product_categories][0][id]" class="category-id-input"
+                            value="2">
+
+                    </span>
+                    <span id="product_description_categories_product_categories_1"
+                        name="product[description][categories][product_categories][1]" class="pstaggerTag tag-item">
+                        <input type="hidden" id="product_description_categories_product_categories_1_display_name"
+                            name="product[description][categories][product_categories][1][display_name]"
+                            class="category-name-preview-input" value="Truck">
+                        <span class="label text-preview category-name-preview">
+
+                            <span class="text-preview-value">
+                                Truck
+                            </span>
+
+                        </span>
+
+                        <input type="hidden" id="product_description_categories_product_categories_1_name"
+                            name="product[description][categories][product_categories][1][name]"
+                            class="category-name-input" value="Truck">
+
+                        <a class="pstaggerClosingCross d-none" href="#">x</a>
+                        <input type="hidden" id="product_description_categories_product_categories_1_id"
+                            name="product[description][categories][product_categories][1][id]" class="category-id-input"
+                            value="551">
+
+                    </span>
+                    <span id="product_description_categories_product_categories_2"
+                        name="product[description][categories][product_categories][2]" class="pstaggerTag tag-item">
+                        <input type="hidden" id="product_description_categories_product_categories_2_display_name"
+                            name="product[description][categories][product_categories][2][display_name]"
+                            class="category-name-preview-input" value="Tools">
+                        <span class="label text-preview category-name-preview">
+
+                            <span class="text-preview-value">
+                                Tools
+                            </span>
+
+                        </span>
+
+                        <input type="hidden" id="product_description_categories_product_categories_2_name"
+                            name="product[description][categories][product_categories][2][name]"
+                            class="category-name-input" value="Tools">
+
+                        <a class="pstaggerClosingCross " href="#">x</a>
+                        <input type="hidden" id="product_description_categories_product_categories_2_id"
+                            name="product[description][categories][product_categories][2][id]" class="category-id-input"
+                            value="554">
+
+                    </span>
+
+                </div>
+                <div class="form-group select-widget"> <label class=""
+                        for="product_description_categories_default_category_id">
+                        Default category
+
+                    </label> <select id="product_description_categories_default_category_id"
+                        name="product[description][categories][default_category_id]" data-toggle="select2"
+                        data-minimumresultsforsearch="7" class="custom-select form-control select2-hidden-accessible"
+                        data-select2-id="product_description_categories_default_category_id" tabindex="-1"
+                        aria-hidden="true">
+                        <option value="2">Home</option>
+                        <option value="551" selected="selected" data-select2-id="6">Truck</option>
+                        <option value="554">Tools</option>
+                    </select><span class="select2 select2-container select2-container--bootstrap" dir="ltr"
+                        data-select2-id="5" style="width: auto;"><span class="selection"><span
+                                class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true"
+                                aria-expanded="false" tabindex="0" aria-disabled="false"
+                                aria-labelledby="select2-product_description_categories_default_category_id-container"><span
+                                    class="select2-selection__rendered"
+                                    id="select2-product_description_categories_default_category_id-container"
+                                    role="textbox" aria-readonly="true" title="Truck">Truck</span><span
+                                    class="select2-selection__arrow" role="presentation"><b
+                                        role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                            aria-hidden="true"></span></span>
+
+                </div>
+
+                <div class="form-group"><button type="button" id="product_description_categories_add_categories_btn"
+                        name="product[description][categories][add_categories_btn]"
+                        class="add-categories-btn btn-outline-primary btn btn">Add categories</button></div>
+            </div>
+        </div>
 
     </div>
 
@@ -490,33 +621,38 @@
                 </div>
                 <div class="modal-body text-left font-weight-normal">
                     <p class="modal-message">
-                        <div id="categories-modal-content">
-                            <!-- Search and Select Categories -->
-                            <fieldset class="form-group tree-fieldset">
-                                <div class="ui-widget">
-                                    <div class="search search-with-icon">
-                                        <input type="text" id="ps-select-product-category" class="form-control autocomplete" placeholder="Search categories" autocomplete="off" spellcheck="false">
-                                    </div>
-    
-                                    <label class="form-control-label text-uppercase">Associated categories</label>
-                                    <div class="category-tree-container">
-                                        <!-- This will be dynamically populated with the categories -->
-                                        <ul id="category_tree_selector_category_tree">
-                                            <!-- Category list with checkboxes goes here -->
-                                        </ul>
-                                    </div>
+                    <div id="categories-modal-content">
+                        <!-- Search and Select Categories -->
+                        <fieldset class="form-group tree-fieldset">
+                            <div class="ui-widget">
+                                <div class="search search-with-icon">
+                                    <input type="text" id="ps-select-product-category" class="form-control autocomplete"
+                                        placeholder="Search categories" autocomplete="off" spellcheck="false">
                                 </div>
-                            </fieldset>
-    
-                            <div class="categories-tree-loader d-none">
-                                <div class="spinner m-auto d-block"></div>
+
+                                <label class="form-control-label text-uppercase">Associated categories</label>
+                                <div class="category-tree-container">
+                                    <!-- This will be dynamically populated with the categories -->
+                                    <ul id="category_tree_selector_category_tree">
+                                        <!-- Category list with checkboxes goes here -->
+                                    </ul>
+                                </div>
                             </div>
-    
-                            <div class="category-tree-footer text-center text-md-left">
-                                <button type="button" id="category_tree_selector_cancel_btn" name="category_tree_selector[cancel_btn]" class="js-cancel-categories-btn btn-outline-secondary btn btn">Cancel</button>
-                                <button type="button" id="category_tree_selector_apply_btn" name="category_tree_selector[apply_btn]" class="js-apply-categories-btn btn-outline-primary btn btn">Apply</button>
-                            </div>
+                        </fieldset>
+
+                        <div class="categories-tree-loader d-none">
+                            <div class="spinner m-auto d-block"></div>
                         </div>
+
+                        <div class="category-tree-footer text-center text-md-left">
+                            <button type="button" id="category_tree_selector_cancel_btn"
+                                name="category_tree_selector[cancel_btn]"
+                                class="js-cancel-categories-btn btn-outline-secondary btn btn">Cancel</button>
+                            <button type="button" id="category_tree_selector_apply_btn"
+                                name="category_tree_selector[apply_btn]"
+                                class="js-apply-categories-btn btn-outline-primary btn btn">Apply</button>
+                        </div>
+                    </div>
                     </p>
                 </div>
             </div>
@@ -890,75 +1026,73 @@
     // categories
 
 
-$(document).ready(function () {
-    // Initialize the category search
-    $('#ps-select-product-category').on('input', function () {
-        var searchTerm = $(this).val().toLowerCase();
+    $(document).ready(function() {
+        // Initialize the category search
+        $('#ps-select-product-category').on('input', function() {
+            var searchTerm = $(this).val().toLowerCase();
 
-        // Filter the categories based on the search term
-        $('#category_tree_selector_category_tree li').each(function () {
-            var categoryName = $(this).text().toLowerCase();
-            if (categoryName.indexOf(searchTerm) === -1) {
-                $(this).hide(); // Hide category if it doesn't match the search term
-            } else {
-                $(this).show(); // Show category if it matches
-            }
-        });
-    });
-
-    // Handle checkbox selection and updating the tags
-    $('#category_tree_selector_category_tree input[type="checkbox"]').on('change', function () {
-        var selectedCategories = [];
-        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function () {
-            var categoryId = $(this).val();
-            var categoryName = $(this).closest('li').find('label').text();
-            selectedCategories.push({ id: categoryId, name: categoryName });
+            // Filter the categories based on the search term
+            $('#category_tree_selector_category_tree li').each(function() {
+                var categoryName = $(this).text().toLowerCase();
+                if (categoryName.indexOf(searchTerm) === -1) {
+                    $(this).hide(); // Hide category if it doesn't match the search term
+                } else {
+                    $(this).show(); // Show category if it matches
+                }
+            });
         });
 
-        // Display the selected categories as tags in the modal
-        updateSelectedCategories(selectedCategories);
-    });
+        // Handle checkbox selection and updating the tags
+        $('#category_tree_selector_category_tree input[type="checkbox"]').on('change', function() {
+            var selectedCategories = [];
+            $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function() {
+                var categoryId = $(this).val();
+                var categoryName = $(this).closest('li').find('label').text();
+                selectedCategories.push({ id: categoryId, name: categoryName });
+            });
 
-    // Function to update the selected categories
-    function updateSelectedCategories(selectedCategories) {
-        var tagContainer = $('#categories-modal-content');
-        tagContainer.empty(); // Clear previous tags
+            // Display the selected categories as tags in the modal
+            updateSelectedCategories(selectedCategories);
+        });
 
-        selectedCategories.forEach(function (category, index) {
-            var tagHtml = `
+        // Function to update the selected categories
+        function updateSelectedCategories(selectedCategories) {
+            var tagContainer = $('#categories-modal-content');
+            tagContainer.empty(); // Clear previous tags
+
+            selectedCategories.forEach(function(category, index) {
+                var tagHtml = `
                 <span class="pstaggerTag tag-item">
-                    <input type="hidden" name="product[asg][categories][`+index+`][id]" value="`+category.id+`">
-                    <span class="category-name-preview">`+category.name+`</span>
+                    <input type="hidden" name="product[asg][categories][` + index + `][id]" value="` + category.id + `">
+                    <span class="category-name-preview">` + category.name + `</span>
                     <a href="#" class="pstaggerClosingCross d-none">x</a>
                 </span>
             `;
-            tagContainer.append(tagHtml);
+                tagContainer.append(tagHtml);
+            });
+        }
+
+        // Handle the "Apply" button click
+        $('#category_tree_selector_apply_btn').on('click', function() {
+            // Collect selected categories and append them to the parent form
+            var selectedCategories = [];
+            $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function() {
+                var categoryId = $(this).val();
+                selectedCategories.push(categoryId);
+            });
+
+            // Update the parent input fields (outside the modal) with the selected categories
+            $('#product_categories_input').val(selectedCategories.join(','));
+
+            // Close the modal
+            $('#categories-modal').modal('hide');
         });
-    }
 
-    // Handle the "Apply" button click
-    $('#category_tree_selector_apply_btn').on('click', function () {
-        // Collect selected categories and append them to the parent form
-        var selectedCategories = [];
-        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function () {
-            var categoryId = $(this).val();
-            selectedCategories.push(categoryId);
+        // Handle the "Cancel" button click
+        $('#category_tree_selector_cancel_btn').on('click', function() {
+            $('#categories-modal').modal('hide');
         });
-
-        // Update the parent input fields (outside the modal) with the selected categories
-        $('#product_categories_input').val(selectedCategories.join(','));
-
-        // Close the modal
-        $('#categories-modal').modal('hide');
     });
-
-    // Handle the "Cancel" button click
-    $('#category_tree_selector_cancel_btn').on('click', function () {
-        $('#categories-modal').modal('hide');
-    });
-});
-
-
 </script>
 
 <style>
@@ -1001,4 +1135,3 @@ $(document).ready(function () {
         display: none !important;
     }
 </style>
-
