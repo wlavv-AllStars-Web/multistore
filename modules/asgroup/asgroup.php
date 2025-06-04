@@ -1442,7 +1442,7 @@ public function getASGProductCreation($product) {
         ];
     }
 
-    pre($product_categories);
+
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
     // Render the template with the languages and default values
