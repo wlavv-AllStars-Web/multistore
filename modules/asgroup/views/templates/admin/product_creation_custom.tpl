@@ -278,6 +278,11 @@
                 </div>
             </div>
 
+            {assign var="product_category_ids" value=[]}
+            {foreach from=$product_categories item=pc}
+                {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
+            {/foreach}
+
             <div class="form-group col-lg-4">
                 <div class="form-group mb-4">
                     <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
@@ -285,17 +290,17 @@
                         {foreach from=$categories item=cat}
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
-                                    id="category_{$cat.id_category}" name="product[asg][categories][]" 
-                                    {if $product_categories && in_array($cat.id_category, $product_categories)}checked{/if}>
+                                    id="category_{$cat.id_category}" name="product[asg][categories][]"
+                                    {if in_array($cat.id_category, $product_category_ids)}checked{/if}>
                                 <label class="form-check-label" for="category_{$cat.id_category}">
                                     {$cat.name|escape:'html'}
                                 </label>
                             </div>
                         {/foreach}
                     </div>
-
                 </div>
             </div>
+
 
 
         </div>
