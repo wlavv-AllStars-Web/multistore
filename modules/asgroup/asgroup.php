@@ -636,8 +636,14 @@ class AsGroup extends Module
 
             // Assuming $productData contains the tags for each language and $productId is the current product ID
 
+
             foreach ($productData['asg']['tags'] as $langId => $tagsString) {
                 if (isset($tagsString) && !empty($tagsString)) {
+
+                    Db::getInstance()->update('product_lang', [
+                        'meta_keywords' => $tagsString
+                    ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$langId);
+
                     // Step 1: Convert the string of tags into an array
                     $tags = explode(',', $tagsString);
                     $tags = array_map('trim', $tags); // Trim whitespace from each tag
