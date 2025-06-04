@@ -1,26 +1,35 @@
 <!-- Load the TinyMCE script -->
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
-{function name=renderCategoryTree categories=[] parentId=2 selected_ids=[]}
+{function name=renderCategoryTree categories=[] parentId=0 selected_ids=[] level=0}
+    {assign var="selected_ids" value=$selected_ids|default:[]}
     {if isset($categories[$parentId])}
-        <ul class="category-level">
+        <ul class="category-tree level-{$level}" style="padding-left: {($level * 20)}px;">
             {foreach from=$categories[$parentId] item=cat}
                 <li>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
-                            id="category_{$cat.id_category}" name="product[asg][categories][]"
+                    <label>
+                        <input 
+                            type="checkbox" 
+                            class="form-check-input" 
+                            name="product[asg][categories][]" 
+                            value="{$cat.id_category}"
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
-                        <label class="form-check-label" for="category_{$cat.id_category}">
-                            {$cat.name|escape:'html'}
-                        </label>
-                    </div>
-                    {* Recursive call to render children *}
-                    {renderCategoryTree categories=$categories parentId=$cat.id_category selected_ids=$selected_ids}
+                        {$cat.name|escape:'html'}
+                    </label>
+
+                    {* Recursive call for children *}
+                    {renderCategoryTree 
+                        categories=$categories 
+                        parentId=$cat.id_category 
+                        selected_ids=$selected_ids 
+                        level=$level+1
+                    }
                 </li>
             {/foreach}
         </ul>
     {/if}
 {/function}
+
 
 <div class="tab-container-product-creation-custom row">
     <div class="col-lg-9">
