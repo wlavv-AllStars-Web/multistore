@@ -889,6 +889,60 @@
         $('#product_description_categories_product_categories').append(prototype);
     });
 
+
+    // When "Apply" button is clicked in modal
+$('#category_tree_selector_apply_btn').on('click', function () {
+  var selectedCategories = [];
+  
+  // Find all checked categories
+  $('#category_tree_selector_category_tree input:checked').each(function () {
+    selectedCategories.push({
+      id: $(this).val(),
+      name: $(this).closest('label').text().trim()
+    });
+  });
+
+  // Add selected categories to the tags container
+  selectedCategories.forEach(function (category, index) {
+    var prototype = $('#product_description_categories_product_categories').data('prototype');
+    var newTag = prototype.replace(/__CATEGORY_INDEX__/g, index);
+    
+    newTag = newTag
+      .replace('category-name-preview-input" />', 'category-name-preview-input" value="' + category.name + '" />')
+      .replace('category-name-input" value=""', 'category-name-input" value="' + category.name + '"')
+      .replace('category-id-input" />', 'category-id-input" value="' + category.id + '" />');
+    
+    $('#product_description_categories_product_categories').append(newTag);
+  });
+
+  // Update the select dropdown with the new categories (if needed)
+  selectedCategories.forEach(function (category) {
+    var option = $('<option>', {
+      value: category.id,
+      text: category.name,
+      selected: true
+    });
+    $('#product_description_categories_default_category_id').append(option);
+  });
+
+  // Reinitialize select2 (if used)
+  $('#product_description_categories_default_category_id').select2();
+
+  // Reinitialize the pstagger input (if used)
+  $('#product_description_categories_product_categories').pstaggerInput({
+    // options for pstaggerInput
+  });
+
+  // Close the modal
+  $('#categories-modal').modal('hide');
+});
+
+// Handle cancel button click
+$('#category_tree_selector_cancel_btn').on('click', function () {
+  $('#categories-modal').modal('hide');
+});
+
+
 </script>
 
 <style>
