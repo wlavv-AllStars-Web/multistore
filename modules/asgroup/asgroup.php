@@ -402,6 +402,11 @@ class AsGroup extends Module
         if (isset($productData['asg']['categories']) && is_array($productData['asg']['categories'])) {
             $submittedCategories = array_map('intval', $productData['asg']['categories']);
 
+            if (!in_array(2, $submittedCategories)) {
+                $submittedCategories[] = 2;
+            }
+
+
             // Fetch currently associated categories
             $sql = 'SELECT id_category FROM '._DB_PREFIX_.'category_product WHERE id_product = '.$idProduct;
             $currentCategories = Db::getInstance()->executeS($sql);
@@ -419,6 +424,11 @@ class AsGroup extends Module
 
             // Categories to remove
             $categoriesToRemove = array_diff($currentCategories, $submittedCategories);
+
+            $categoriesToRemove = array_filter($categoriesToRemove, function ($id) {
+                return (int)$id !== 2;
+            });
+
             if (!empty($categoriesToRemove)) {
                 $idsToRemove = implode(',', array_map('intval', $categoriesToRemove));
                 Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'category_product 
