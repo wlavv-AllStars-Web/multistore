@@ -1423,6 +1423,7 @@ public function getASGProductCreation($product) {
 
     $data = $this->getCompats($product->id);
     $compats = $data['compats'];
+    $brands = $data['brands'];
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
@@ -1431,6 +1432,7 @@ public function getASGProductCreation($product) {
         'product' => $product,
         'combinations' => $combinations,
         'compats' => $compats,
+        'brands'  => isset($brands) ? $brands : [],
         'ps_base_url' => _PS_BASE_URL_.__PS_BASE_URI__,
         'shop_id' => $storeId,
         'languages' => $languages,
