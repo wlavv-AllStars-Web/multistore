@@ -70,8 +70,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                </textarea>
+                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                    </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -111,8 +111,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                </textarea>
+                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                    </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -205,19 +205,19 @@
 
 
         <div class="form-group" style="display: flex;gap:1rem;">
-            <div class="form-group">
+            <div class="form-group col-lg-4">
                 <div class="select-widget">
                     <h3 for="product_description_manufacturer">Brand</h3>
                     <select id="product_description_manufacturer" name="product[asg][manufacturer]"
-                            data-toggle="select2" data-minimumresultsforsearch="7"
-                            class="custom-select form-control select2-hidden-accessible"
-                            data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
-                            
+                        data-toggle="select2" data-minimumresultsforsearch="7"
+                        class="custom-select form-control select2-hidden-accessible"
+                        data-select2-id="product_description_manufacturer" tabindex="-1" aria-hidden="true">
+
                         <option value="0">No brand</option>
-                        
+
                         {foreach from=$brands item=brand}
                             <option value="{$brand.id_manufacturer}"
-                                {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected"{/if}>
+                                {if $brand.id_manufacturer == $product->id_manufacturer}selected="selected" {/if}>
                                 {$brand.name|escape:'html'}
                             </option>
                         {/foreach}
@@ -227,86 +227,85 @@
 
                 <div class="select-widget">
                     <h3 for="product_description_supplier">Supplier</h3>
-                    <select id="product_description_supplier" name="product[asg][supplier]"
-                            data-toggle="select2" data-minimumresultsforsearch="7"
-                            class="custom-select form-control select2-hidden-accessible"
-                            data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
-                            
+                    <select id="product_description_supplier" name="product[asg][supplier]" data-toggle="select2"
+                        data-minimumresultsforsearch="7" class="custom-select form-control select2-hidden-accessible"
+                        data-select2-id="product_description_supplier" tabindex="-1" aria-hidden="true">
+
                         <option value="0">No supplier</option>
-                        
+
                         {foreach from=$suppliers item=supplier}
                             <option value="{$supplier.id_supplier}"
-                                {if $supplier.id_supplier == $product->id_supplier}selected="selected"{/if}>
+                                {if $supplier.id_supplier == $product->id_supplier}selected="selected" {/if}>
                                 {$supplier.name|escape:'html'}
                             </option>
                         {/foreach}
                     </select>
                 </div>
             </div>
-      
+
 
             {* categories *}
 
-            <div class="form-group">
-    <h3>Categories</h3>
-    <div id="product_description_categories">
-        <div id="product_description_categories_product_categories"
-             class="pstaggerTagsWrapper form-group d-block"
-             data-prototype="{$category_prototype nofilter}"
-             data-prototype-name="__CATEGORY_INDEX__">
+            <div class="form-group col-lg-4">
+                <h3>Categories</h3>
+                <div id="product_description_categories">
+                    <div id="product_description_categories_product_categories"
+                        class="pstaggerTagsWrapper form-group d-block" data-prototype="{$category_prototype nofilter}"
+                        data-prototype-name="__CATEGORY_INDEX__">
 
-            {foreach from=$product_categories item=cat key=k}
-                <span id="product_description_categories_product_categories_{$k}" name="product[description][categories][product_categories][{$k}]" class="pstaggerTag tag-item">
-                    <input type="hidden" class="category-name-preview-input"
-                           name="product[description][categories][product_categories][{$k}][display_name]"
-                           id="product_description_categories_product_categories_{$k}_display_name"
-                           value="{$cat.name|escape:'html'}">
+                        {foreach from=$product_categories item=cat key=k}
+                            <span id="product_description_categories_product_categories_{$k}"
+                                name="product[description][categories][product_categories][{$k}]"
+                                class="pstaggerTag tag-item">
+                                <input type="hidden" class="category-name-preview-input"
+                                    name="product[description][categories][product_categories][{$k}][display_name]"
+                                    id="product_description_categories_product_categories_{$k}_display_name"
+                                    value="{$cat.name|escape:'html'}">
 
-                    <span class="label text-preview category-name-preview">
-                        <span class="text-preview-value">{$cat.name|escape:'html'}</span>
-                    </span>
+                                <span class="label text-preview category-name-preview">
+                                    <span class="text-preview-value">{$cat.name|escape:'html'}</span>
+                                </span>
 
-                    <input type="hidden" class="category-name-input"
-                           name="product[description][categories][product_categories][{$k}][name]"
-                           id="product_description_categories_product_categories_{$k}_name"
-                           value="{$cat.name|escape:'html'}">
+                                <input type="hidden" class="category-name-input"
+                                    name="product[description][categories][product_categories][{$k}][name]"
+                                    id="product_description_categories_product_categories_{$k}_name"
+                                    value="{$cat.name|escape:'html'}">
 
-                    <a class="pstaggerClosingCross d-none" href="#">x</a>
+                                <a class="pstaggerClosingCross d-none" href="#">x</a>
 
-                    <input type="hidden" class="category-id-input"
-                           name="product[description][categories][product_categories][{$k}][id]"
-                           id="product_description_categories_product_categories_{$k}_id"
-                           value="{$cat.id_category}">
-                </span>
-            {/foreach}
-        </div>
+                                <input type="hidden" class="category-id-input"
+                                    name="product[description][categories][product_categories][{$k}][id]"
+                                    id="product_description_categories_product_categories_{$k}_id"
+                                    value="{$cat.id_category}">
+                            </span>
+                        {/foreach}
+                    </div>
 
-        <div class="form-group select-widget">
-            <label for="product_description_categories_default_category_id">Default category</label>
-            <select id="product_description_categories_default_category_id"
-                    name="product[description][categories][default_category_id]"
-                    data-toggle="select2" data-minimumresultsforsearch="7"
-                    class="custom-select form-control select2-hidden-accessible">
-                
-                {foreach from=$categories item=cat}
-                    <option value="{$cat.id_category}"
-                        {if $cat.id_category == $product->id_category_default}selected="selected"{/if}>
-                        {$cat.name|escape:'html'}
-                    </option>
-                {/foreach}
-            </select>
-        </div>
+                    <div class="form-group select-widget">
+                        <label for="product_description_categories_default_category_id">Default category</label>
+                        <select id="product_description_categories_default_category_id"
+                            name="product[description][categories][default_category_id]" data-toggle="select2"
+                            data-minimumresultsforsearch="7"
+                            class="custom-select form-control select2-hidden-accessible">
 
-        <div class="form-group">
-            <button type="button"
-                    id="product_description_categories_add_categories_btn"
-                    name="product[description][categories][add_categories_btn]"
-                    class="add-categories-btn btn-outline-primary btn btn">
-                Add categories
-            </button>
-        </div>
-    </div>
-</div>
+                            {foreach from=$categories item=cat}
+                                <option value="{$cat.id_category}"
+                                    {if $cat.id_category == $product->id_category_default}selected="selected" {/if}>
+                                    {$cat.name|escape:'html'}
+                                </option>
+                            {/foreach}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="product_description_categories_add_categories_btn"
+                            name="product[description][categories][add_categories_btn]"
+                            class="add-categories-btn btn-outline-primary btn btn">
+                            Add categories
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
@@ -868,10 +867,10 @@
 
     // categories
 
-    $('#product_description_categories_add_categories_btn').on('click', function () {
+    $('#product_description_categories_add_categories_btn').on('click', function() {
         // Collect existing values
         const existingCategories = [];
-        $('.category-id-input').each(function () {
+        $('.category-id-input').each(function() {
             existingCategories.push($(this).val());
         });
 
@@ -886,65 +885,66 @@
 
         prototype = prototype.replace(/__CATEGORY_INDEX__/g, index);
         prototype = prototype.replace(/value=""/g, 'value="' + newCategory.name + '"'); // fill name
-        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id + '" />');
+        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id +
+            '" />');
 
         $('#product_description_categories_product_categories').append(prototype);
     });
 
 
     // When "Apply" button is clicked in modal
-$('#category_tree_selector_apply_btn').on('click', function () {
-  var selectedCategories = [];
-  
-  // Find all checked categories
-  $('#category_tree_selector_category_tree input:checked').each(function () {
-    selectedCategories.push({
-      id: $(this).val(),
-      name: $(this).closest('label').text().trim()
+    $('#category_tree_selector_apply_btn').on('click', function() {
+        var selectedCategories = [];
+
+        // Find all checked categories
+        $('#category_tree_selector_category_tree input:checked').each(function() {
+            selectedCategories.push({
+                id: $(this).val(),
+                name: $(this).closest('label').text().trim()
+            });
+        });
+
+        // Add selected categories to the tags container
+        selectedCategories.forEach(function(category, index) {
+            var prototype = $('#product_description_categories_product_categories').data('prototype');
+            var newTag = prototype.replace(/__CATEGORY_INDEX__/g, index);
+
+            newTag = newTag
+                .replace('category-name-preview-input" />', 'category-name-preview-input" value="' +
+                    category.name + '" />')
+                .replace('category-name-input" value=""', 'category-name-input" value="' + category
+                    .name + '"')
+                .replace('category-id-input" />', 'category-id-input" value="' + category.id + '" />');
+
+            $('#product_description_categories_product_categories').append(newTag);
+        });
+
+        // Update the select dropdown with the new categories (if needed)
+        selectedCategories.forEach(function(category) {
+            var option = $('<option>', {
+                value: category.id,
+                text: category.name,
+                selected: true
+            });
+            $('#product_description_categories_default_category_id').append(option);
+        });
+
+        // Reinitialize select2 (if used)
+        $('#product_description_categories_default_category_id').select2();
+
+        // Reinitialize the pstagger input (if used)
+        $('#product_description_categories_product_categories').pstaggerInput({
+            // options for pstaggerInput
+        });
+
+        // Close the modal
+        $('#categories-modal').modal('hide');
     });
-  });
 
-  // Add selected categories to the tags container
-  selectedCategories.forEach(function (category, index) {
-    var prototype = $('#product_description_categories_product_categories').data('prototype');
-    var newTag = prototype.replace(/__CATEGORY_INDEX__/g, index);
-    
-    newTag = newTag
-      .replace('category-name-preview-input" />', 'category-name-preview-input" value="' + category.name + '" />')
-      .replace('category-name-input" value=""', 'category-name-input" value="' + category.name + '"')
-      .replace('category-id-input" />', 'category-id-input" value="' + category.id + '" />');
-    
-    $('#product_description_categories_product_categories').append(newTag);
-  });
-
-  // Update the select dropdown with the new categories (if needed)
-  selectedCategories.forEach(function (category) {
-    var option = $('<option>', {
-      value: category.id,
-      text: category.name,
-      selected: true
+    // Handle cancel button click
+    $('#category_tree_selector_cancel_btn').on('click', function() {
+        $('#categories-modal').modal('hide');
     });
-    $('#product_description_categories_default_category_id').append(option);
-  });
-
-  // Reinitialize select2 (if used)
-  $('#product_description_categories_default_category_id').select2();
-
-  // Reinitialize the pstagger input (if used)
-  $('#product_description_categories_product_categories').pstaggerInput({
-    // options for pstaggerInput
-  });
-
-  // Close the modal
-  $('#categories-modal').modal('hide');
-});
-
-// Handle cancel button click
-$('#category_tree_selector_cancel_btn').on('click', function () {
-  $('#categories-modal').modal('hide');
-});
-
-
 </script>
 
 <style>
