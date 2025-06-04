@@ -301,7 +301,7 @@
                 <label class="">
                     Disallow stock?
                     <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title="">
+                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title="" style="position: absolute;">
                     </span>
                 </label>
                 <div class="input-group ">
