@@ -6,6 +6,39 @@
     {$category_tree[$cat.id_parent][] = $cat}
 {/foreach}
 
+{function name=renderCategoryTree categories=[] parent=0 selectedCategories=[]}
+    {if isset($categories[$parent])}
+        <ul class="category-tree">
+            {foreach from=$categories[$parent] item=cat}
+                <li>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}"
+                            id="category_{$cat.id_category}" name="product[asg][categories][]"
+                            {if in_array($cat.id_category, $selectedCategories)}checked{/if}>
+                        <label class="form-check-label" for="category_{$cat.id_category}">
+                            {$cat.name|escape:'html'}
+                        </label>
+
+                        {if isset($categories[$cat.id_category])}
+                            <button type="button" class="toggle-child btn btn-sm btn-link p-0" onclick="toggleCategory(this)">
+                                [+]
+                            </button>
+                        {/if}
+                    </div>
+
+                    {if isset($categories[$cat.id_category])}
+                        <div class="child-categories d-none" style="margin-left: 20px;">
+                            {call name=renderCategoryTree categories=$categories parent=$cat.id_category selectedCategories=$selectedCategories}
+                        </div>
+                    {/if}
+                </li>
+            {/foreach}
+        </ul>
+    {/if}
+{/function}
+
+
+
 <div class="tab-container-product-creation-custom row">
     <div class="col-lg-9">
         <!-- Product Reference and EAN Section -->
@@ -286,18 +319,14 @@
                 {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
             {/foreach}
 
-            <div class="form-group col-lg-4">
-                <div class="form-group mb-4">
-                    <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
-
-                    {assign var="product_category_ids" value=[]}
-                    {foreach from=$product_categories item=pc}
-                        {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
-                    {/foreach}
-
-                    {renderCategoryTree categories=$category_tree parent=0 selectedCategories=$product_category_ids}
-                </div>
-            </div>
+<div class="form-group col-lg-4">
+    <div class="form-group mb-4">
+        <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
+        <div id="categoryCheckboxes">
+            {call name=renderCategoryTree categories=$category_tree parent=0 selectedCategories=$product_category_ids}
+        </div>
+    </div>
+</div>
 
 
 
@@ -499,36 +528,6 @@
         <hr>
     </div>
 </div>
-
-{function name=renderCategoryTree categories=[] parent=0 selectedCategories=[]}
-    {if isset($categories[$parent])}
-        <ul class="category-tree">
-            {foreach from=$categories[$parent] item=cat}
-                <li>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}"
-                            id="category_{$cat.id_category}" name="product[asg][categories][]"
-                            {if in_array($cat.id_category, $selectedCategories)}checked{/if}>
-                        <label class="form-check-label" for="category_{$cat.id_category}">
-                            {$cat.name|escape:'html'}
-                        </label>
-                        {if isset($categories[$cat.id_category])}
-                            <button type="button" class="toggle-child btn btn-sm btn-link p-0" onclick="toggleCategory(this)">
-                                [+]
-                            </button>
-                        {/if}
-                    </div>
-
-                    {if isset($categories[$cat.id_category])}
-                        <div class="child-categories d-none" style="margin-left: 20px;">
-                            {renderCategoryTree categories=$categories parent=$cat.id_category selectedCategories=$selectedCategories}
-                        </div>
-                    {/if}
-                </li>
-            {/foreach}
-        </ul>
-    {/if}
-{/function}
 
 <script>
     function toggleCategory(button) {
