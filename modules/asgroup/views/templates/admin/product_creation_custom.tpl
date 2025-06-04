@@ -574,6 +574,7 @@
         const prototype = featureContainer.getAttribute('data-prototype');
 
         addFeatureButton.addEventListener('click', function () {
+            event.preventDefault();
             // Increment feature index
             featureIndex++;
 
