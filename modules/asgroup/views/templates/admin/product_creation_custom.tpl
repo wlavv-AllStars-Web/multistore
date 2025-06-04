@@ -206,7 +206,7 @@
 
         <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group col-lg-4">
-                <div class="select-widget">
+                <div class="select-widget mb-3">
                     <h3 for="product_description_manufacturer">Brand</h3>
                     <select id="product_description_manufacturer" name="product[asg][manufacturer]"
                         data-toggle="select2" data-minimumresultsforsearch="7"
