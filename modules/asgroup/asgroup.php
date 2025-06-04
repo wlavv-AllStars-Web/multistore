@@ -1401,7 +1401,7 @@ class AsGroup extends Module
 
 public function getASGProductCreation($product) {
     $storeId = $this->context->shop->id;
-    
+    $id_lang = (int)Context::getContext()->language->id;
     $baseUrl = $this->context->link->getBaseLink();
 
 
@@ -1425,15 +1425,24 @@ public function getASGProductCreation($product) {
     $compats = $data['compats'];
 
     $brands = Manufacturer::getManufacturers();
-    $suppliers = Supplier::getSuppliers(false, Context::getContext()->language->id);
-    $categories = Category::getCategories(Context::getContext()->language->id, true, false);
+    $suppliers = Supplier::getSuppliers(false, $id_lang);
+    $categories = Category::getCategories($id_lang, true, false);
 
     $id_product = (int)$product->id; // or any product ID
     $product_categories = Product::getProductCategories($id_product);
 
+    $product_categories = [];
+
+    foreach (Product::getProductCategories($id_product) as $id_category) {
+        $category = new Category($id_category, $id_lang);
+        $product_categories[] = [
+            'id_category' => $category->id,
+            'name' => $category->name,
+            // add other fields if needed
+        ];
+    }
+
     pre($product_categories);
-
-
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
     // Render the template with the languages and default values
