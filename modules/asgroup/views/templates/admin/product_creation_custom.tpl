@@ -1,7 +1,7 @@
 <!-- Load the TinyMCE script -->
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
-{function name=renderCategoryTree categories=[] parentId=0 selected_ids=[]}
+{function name=renderCategoryTree categories=[] parentId=2 selected_ids=[]}
     {if isset($categories[$parentId])}
         <ul class="category-level">
             {foreach from=$categories[$parentId] item=cat}
@@ -322,7 +322,7 @@
             <div class="form-group col-lg-4">
                 <label for="categoryCheckboxes" class="form-label">Select Categories to Associate</label>
                 <div id="categoryCheckboxes">
-                    {renderCategoryTree categories=$category_tree parentId=0 selected_ids=$product_category_ids}
+                    {renderCategoryTree categories=$category_tree parentId=2 selected_ids=$product_category_ids}
                 </div>
             </div>
 
