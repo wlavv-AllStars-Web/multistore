@@ -1062,4 +1062,9 @@ document.addEventListener('DOMContentLoaded', function() {
     .toggle-icon i{
         color: #fff;
     }
+
+    .toggle-label {
+        user-select: none;
+    }
+
 </style>
