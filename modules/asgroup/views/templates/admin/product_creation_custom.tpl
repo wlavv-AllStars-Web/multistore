@@ -17,10 +17,10 @@
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
                         {$cat.name|escape:'html'}
 
-                        {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
-                            <span class="toggle-icon" style="cursor: pointer;">+</span> <!-- Toggle icon for parent -->
-                        {/if}
                     </label>
+                    {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
+                        <span class="toggle-icon" style="cursor: pointer;">+</span> <!-- Toggle icon for parent -->
+                    {/if}
 
                     {* Recursive call for children *}
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
