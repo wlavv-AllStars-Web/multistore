@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
+
 {function name=renderCategoryTree categories=[] parentId=0 selected_ids=[] level=0}
     {assign var="selected_ids" value=$selected_ids|default:[]}
     
@@ -17,7 +18,6 @@
                             value="{$cat.id_category}"
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
                         {$cat.name|escape:'html'}
-
                     </label>
 
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
@@ -964,6 +964,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     const buttonSaveProductFooter = document.querySelector("#product_footer_save");
                     if (buttonSaveProductFooter) {
                         buttonSaveProductFooter.removeAttribute('disabled');
+                    }
+                }
+            });
+        });
+    });
+
+
+     document.addEventListener('DOMContentLoaded', function () {
+        // Find all checkboxes
+        const checkboxes = document.querySelectorAll('.category-tree input[type="checkbox"]');
+        
+        // Function to check the parent checkbox
+        function checkParentCheckbox(childCheckbox) {
+            let parentCheckbox = childCheckbox.closest('li').parentElement.closest('li');
+            if (parentCheckbox) {
+                let parentCheckboxInput = parentCheckbox.querySelector('input[type="checkbox"]');
+                if (parentCheckboxInput) {
+                    parentCheckboxInput.checked = true;
+                    checkParentCheckbox(parentCheckboxInput);
+                }
+            }
+        }
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                // If this is the last child, automatically check the parent
+                if (this.checked) {
+                    let childLi = this.closest('li');
+                    if (!childLi.querySelector('ul') || childLi.querySelector('ul').style.display === 'none') {
+                        // If there are no child categories (last child), check the parent
+                        checkParentCheckbox(this);
                     }
                 }
             });
