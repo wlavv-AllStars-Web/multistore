@@ -988,4 +988,13 @@ document.addEventListener('DOMContentLoaded', function() {
         list-style: none;
         padding-left: 20px;
     }
+
+    .toggle-icon {
+        background: #222;
+        padding: 5px 7px;
+        border-radius: .25rem; 
+    }
+    .toggle-icon i{
+        color: #fff;
+    }
 </style>
