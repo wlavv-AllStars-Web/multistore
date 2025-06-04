@@ -431,7 +431,7 @@
 
             const filteredTags = allTags
                 .map(tag => tag && tag.trim())
-                .filter(tag => tag && tag.length > 0);
+                .filter(tag => tag && tag.length >= 2);
 
             const container = document.querySelector(`#product_seo_tags_`+langId+``).closest('.tokenfield');
 
