@@ -249,47 +249,25 @@
             <div class="form-group col-lg-4">
                 <h3>Categories</h3>
                 <div id="product_description_categories">
-                    <div id="product_description_categories_product_categories"
-                        class="pstaggerTagsWrapper form-group d-block" data-prototype="{$category_prototype nofilter}"
-                        data-prototype-name="__CATEGORY_INDEX__">
 
-                        {foreach from=$product_categories item=cat key=k}
-                            <span id="product_description_categories_product_categories_{$k}"
-                                name="product[description][categories][product_categories][{$k}]"
-                                class="pstaggerTag tag-item">
-                                <input type="hidden" class="category-name-preview-input"
-                                    name="product[description][categories][product_categories][{$k}][display_name]"
-                                    id="product_description_categories_product_categories_{$k}_display_name"
-                                    value="{$cat.name|escape:'html'}">
-
-                                <span class="label text-preview category-name-preview">
-                                    <span class="text-preview-value">{$cat.name|escape:'html'}</span>
-                                </span>
-
-                                <input type="hidden" class="category-name-input"
-                                    name="product[description][categories][product_categories][{$k}][name]"
-                                    id="product_description_categories_product_categories_{$k}_name"
-                                    value="{$cat.name|escape:'html'}">
-
-                                <a class="pstaggerClosingCross d-none" href="#">x</a>
-
-                                <input type="hidden" class="category-id-input"
-                                    name="product[description][categories][product_categories][{$k}][id]"
-                                    id="product_description_categories_product_categories_{$k}_id"
-                                    value="{$cat.id_category}">
-                            </span>
-                        {/foreach}
+                    <div class="form-group mb-3">
+                        <h5>Categories Associated with this Product</h5>
+                        <ul id="associatedCategoriesList" class="list-group">
+                            {foreach from=$categories item=cat}
+                                {if in_array($cat.id_category, $product->associated_categories)}
+                                    <li class="list-group-item">{$cat.name|escape:'html'}</li>
+                                {/if}
+                            {/foreach}
+                        </ul>
                     </div>
 
-                    <div class="form-group select-widget">
-                        <label for="product_description_categories_default_category_id">Default category</label>
-                        <select id="product_description_categories_default_category_id"
-                            name="product[description][categories][default_category_id]" data-toggle="select2"
-                            data-minimumresultsforsearch="7"
-                            class="custom-select form-control select2-hidden-accessible">
-
+                        <!-- Default Category Dropdown -->
+                    <div class="form-group mb-3">
+                        <label for="defaultCategorySelect" class="form-label">Select Default Category</label>
+                        <select class="form-select" id="defaultCategorySelect" name="product[asg][default_category]" required>
+                            <option value="" disabled>Select a category</option>
                             {foreach from=$categories item=cat}
-                                <option value="{$cat.id_category}"
+                                <option value="{$cat.id_category}" 
                                     {if $cat.id_category == $product->id_category_default}selected="selected" {/if}>
                                     {$cat.name|escape:'html'}
                                 </option>
@@ -297,13 +275,23 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <button type="button" id="product_description_categories_add_categories_btn"
-                            name="product[description][categories][add_categories_btn]"
-                            class="add-categories-btn btn-outline-primary btn btn">
-                            Add categories
-                        </button>
+
+                    <div class="mb-4">
+                        <h5>Select Categories to Associate</h5>
+                        <div id="categoryCheckboxes">
+                            {foreach from=$categories item=cat}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
+                                        id="category_{$cat.id_category}" name="product[asg][categories][]" 
+                                        {if in_array($cat.id_category, $product->associated_categories)}checked{/if}>
+                                    <label class="form-check-label" for="category_{$cat.id_category}">
+                                        {$cat.name|escape:'html'}
+                                    </label>
+                                </div>
+                            {/foreach}
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -867,68 +855,7 @@
 
     // categories
 
-    $('#product_description_categories_add_categories_btn').on('click', function() {
-        // Collect existing values
-        const existingCategories = [];
-        $('.category-id-input').each(function() {
-            existingCategories.push($(this).val());
-        });
 
-        // Example: get new category from modal/select/autocomplete
-        const newCategory = getSelectedCategory(); // <- your implementation
-
-        if (existingCategories.includes(newCategory.id)) return;
-
-        // Create new HTML using the prototype
-        let prototype = $('#product_description_categories_product_categories').data('prototype');
-        const index = existingCategories.length;
-
-        prototype = prototype.replace(/__CATEGORY_INDEX__/g, index);
-        prototype = prototype.replace(/value=""/g, 'value="' + newCategory.name + '"'); // fill name
-        prototype = prototype.replace(/category-id-input" \/>/, 'category-id-input" value="' + newCategory.id +
-            '" />');
-
-        $('#product_description_categories_product_categories').append(prototype);
-    });
-
-
-    // When "Apply" button is clicked in modal
-    $('#category_tree_selector_apply_btn').click(function() {
-        var selectedCategories = [];
-        // Loop through each checked checkbox
-        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function() {
-            selectedCategories.push($(this).val());
-        });
-
-        // Send the selected categories to the server
-        saveSelectedCategories(selectedCategories);
-    });
-
-    function saveSelectedCategories(selectedCategories) {
-        $.ajax({
-            url: 'modules/asgroup/asgroup.php',  // Updated URL for your PHP handler
-            type: 'POST',
-            data: {
-                action: 'save_categories', // This action will help identify the purpose of the request
-                categories: selectedCategories  // The selected categories' IDs
-            },
-            success: function(response) {
-                console.log('Categories saved successfully');
-                // Optionally, update the UI with the new categories
-            },
-            error: function(xhr, status, error) {
-                console.error('Error saving categories:', error);
-            }
-        });
-    }
-
-    function getSelectedCategory() {
-        var selectedCategories = [];
-        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function() {
-            selectedCategories.push($(this).val());
-        });
-        return selectedCategories;
-    }
 
 
 </script>
