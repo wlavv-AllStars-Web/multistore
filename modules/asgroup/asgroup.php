@@ -1426,6 +1426,8 @@ public function getASGProductCreation($product) {
 
     $brands = Manufacturer::getManufacturers();
     $suppliers = Supplier::getSuppliers(false, Context::getContext()->language->id);
+    $categories = Category::getCategories($id_lang, true, false);
+
 
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
@@ -1437,6 +1439,7 @@ public function getASGProductCreation($product) {
         'compats' => $compats,
         'brands'  => isset($brands) ? $brands : [],
         'suppliers'  => isset($suppliers) ? $suppliers : [],
+        'categories'  => isset($categories) ? $categories : [],
         'ps_base_url' => _PS_BASE_URL_.__PS_BASE_URI__,
         'shop_id' => $storeId,
         'languages' => $languages,
