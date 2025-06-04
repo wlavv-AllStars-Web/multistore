@@ -313,10 +313,12 @@
                                         class="category-name-input"
                                         value="{$prod_cat.name|escape:'html'}" />
                                     
+                                    {if $prod_cat.id_category != 2}
                                     <a class="pstaggerClosingCross" href="#" data-id="{$prod_cat.id_category}"
                                     {if $prod_cat.id_category == 2} style="pointer-events: none; color: #ccc;" title="This category cannot be removed" {/if}>
                                         x
                                     </a>
+                                    {/if}
 
                                     <input type="hidden" 
                                         id="product_description_categories_product_categories_{$key}_id"
