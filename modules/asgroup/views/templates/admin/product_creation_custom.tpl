@@ -212,6 +212,7 @@
     </div>
 
     <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
+    <span class="btn btn-danger" onclick="clearTagsASG()">Remove All Tags</span>
 
 
 </div>
@@ -704,7 +705,28 @@
         });
     });
 
+    function clearTagsASG() {
+        const tagFields = document.querySelectorAll('[id^="product_seo_tags_"]');
 
+        tagFields.forEach((input) => {
+            const langId = input.id.split('_')[3]; 
+            const container = input.closest('.tokenfield');
+
+            if (!container) return;
+
+            // Remove all existing tag tokens
+            container.querySelectorAll('.token').forEach(el => el.remove());
+
+            // Clear the hidden input
+            input.value = '';
+
+            // Enable save button since form is now changed
+            const buttonSaveProductFooter = document.querySelector("#product_footer_save");
+            if (buttonSaveProductFooter) {
+                buttonSaveProductFooter.removeAttribute('disabled');
+            }
+        });
+    }
 
 
 </script>
