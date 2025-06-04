@@ -922,6 +922,15 @@
         });
     }
 
+    function getSelectedCategory() {
+        var selectedCategories = [];
+        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function() {
+            selectedCategories.push($(this).val());
+        });
+        return selectedCategories;
+    }
+
+
 </script>
 
 <style>
