@@ -925,8 +925,8 @@ $(document).ready(function () {
         selectedCategories.forEach(function (category, index) {
             var tagHtml = `
                 <span class="pstaggerTag tag-item">
-                    <input type="hidden" name="product[asg][categories][${index}][id]" value="${category.id}">
-                    <span class="category-name-preview">${category.name}</span>
+                    <input type="hidden" name="product[asg][categories][`+index+`][id]" value="`+category.id+`">
+                    <span class="category-name-preview">`+category.name+`</span>
                     <a href="#" class="pstaggerClosingCross d-none">x</a>
                 </span>
             `;
