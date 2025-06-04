@@ -319,7 +319,13 @@
                     </div>
                 </div>
             </div> *}
-            {renderCategoryTree categories=$category_tree parentId=0 selected_ids=$product_category_ids}
+            <div class="form-group col-lg-4">
+                <label for="categoryCheckboxes" class="form-label">Select Categories to Associate</label>
+                <div id="categoryCheckboxes">
+                    {renderCategoryTree categories=$category_tree parentId=0 selected_ids=$product_category_ids}
+                </div>
+            </div>
+
 
 
 
