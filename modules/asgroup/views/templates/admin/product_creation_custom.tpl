@@ -1,7 +1,26 @@
 <!-- Load the TinyMCE script -->
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
-
+{function name=renderCategoryTree categories=[] parentId=0 selected_ids=[]}
+    {if isset($categories[$parentId])}
+        <ul class="category-level">
+            {foreach from=$categories[$parentId] item=cat}
+                <li>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
+                            id="category_{$cat.id_category}" name="product[asg][categories][]"
+                            {if in_array($cat.id_category, $selected_ids)}checked{/if}>
+                        <label class="form-check-label" for="category_{$cat.id_category}">
+                            {$cat.name|escape:'html'}
+                        </label>
+                    </div>
+                    {* Recursive call to render children *}
+                    {renderCategoryTree categories=$categories parentId=$cat.id_category selected_ids=$selected_ids}
+                </li>
+            {/foreach}
+        </ul>
+    {/if}
+{/function}
 
 <div class="tab-container-product-creation-custom row">
     <div class="col-lg-9">
@@ -278,7 +297,7 @@
                 </div>
             </div>
 
-            {assign var="product_category_ids" value=[]}
+            {* {assign var="product_category_ids" value=[]}
             {foreach from=$product_categories item=pc}
                 {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
             {/foreach}
@@ -299,7 +318,9 @@
                         {/foreach}
                     </div>
                 </div>
-            </div>
+            </div> *}
+            {renderCategoryTree categories=$category_tree parentId=0 selected_ids=$product_category_ids}
+
 
 
 
@@ -906,5 +927,10 @@
 
     #product_options_visibility #product_options_visibility_visibility {
         display: none !important;
+    }
+
+    .category-level {
+        list-style: none;
+        padding-left: 20px;
     }
 </style>
