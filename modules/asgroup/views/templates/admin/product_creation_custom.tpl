@@ -254,7 +254,7 @@
                         <h5>Categories Associated with this Product</h5>
                         <ul id="associatedCategoriesList" class="list-group">
                             {foreach from=$categories item=cat}
-                                {if in_array($cat.id_category, $product->associated_categories)}
+                                {if in_array($cat.id_category, $product_categories)}
                                     <li class="list-group-item">{$cat.name|escape:'html'}</li>
                                 {/if}
                             {/foreach}
@@ -283,13 +283,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
                                         id="category_{$cat.id_category}" name="product[asg][categories][]" 
-                                        {if in_array($cat.id_category, $product->associated_categories)}checked{/if}>
+                                        {if $product_categories && in_array($cat.id_category, $product_categories)}checked{/if}>
                                     <label class="form-check-label" for="category_{$cat.id_category}">
                                         {$cat.name|escape:'html'}
                                     </label>
                                 </div>
                             {/foreach}
                         </div>
+
                     </div>
 
                 </div>
