@@ -960,6 +960,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (categoryCheckbox) {
                         categoryCheckbox.checked = false;
                     }
+
+                    const buttonSaveProductFooter = document.querySelector("#product_footer_save");
+                    if (buttonSaveProductFooter) {
+                        buttonSaveProductFooter.removeAttribute('disabled');
+                    }
                 }
             });
         });
