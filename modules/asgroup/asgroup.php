@@ -1530,6 +1530,14 @@ public function getASGProductCreation($product) {
     $suppliers = Supplier::getSuppliers(false, $id_lang);
     $categories = Category::getCategories($id_lang, true, false);
 
+    $category_tree = [];
+
+    // Organize categories into a nested array
+    foreach ($categories as $cat) {
+        $category_tree[$cat['id_parent']][] = $cat;
+    }
+
+
     $id_product = (int)$product->id; // or any product ID
     $product_categories = Product::getProductCategories($id_product);
 
@@ -1556,6 +1564,7 @@ public function getASGProductCreation($product) {
         'brands'  => isset($brands) ? $brands : [],
         'suppliers'  => isset($suppliers) ? $suppliers : [],
         'categories'  => isset($categories) ? $categories : [],
+        'category_tree'  => isset($category_tree) ? $category_tree : [],
         'ps_base_url' => _PS_BASE_URL_.__PS_BASE_URI__,
         'shop_id' => $storeId,
         'languages' => $languages,
