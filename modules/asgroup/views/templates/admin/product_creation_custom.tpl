@@ -204,7 +204,7 @@
         </div>
 
 
-        <div class="form-group" style="display: flex;gap:1rem;">
+        <div class="form-group">
             <div class="form-group select-widget">
                 <h3 for="product_description_manufacturer">Brand</h3>
                 <select id="product_description_manufacturer" name="product[asg][manufacturer]"
