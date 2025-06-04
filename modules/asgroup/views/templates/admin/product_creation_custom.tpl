@@ -3,11 +3,12 @@
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
 {function name=renderCategoryTree categories=[] parentId=0 selected_ids=[] level=0}
     {assign var="selected_ids" value=$selected_ids|default:[]}
+    
     {if isset($categories[$parentId])}
         <ul class="category-tree level-{$level}" style="padding-left: {($level * 20)}px;">
             {foreach from=$categories[$parentId] item=cat}
-                <li>
-                    <label>
+                <li class="has-children">
+                    <label class="toggle-label">
                         <input 
                             type="checkbox" 
                             class="form-check-input" 
@@ -15,20 +16,29 @@
                             value="{$cat.id_category}"
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
                         {$cat.name|escape:'html'}
+
+                        {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
+                            <span class="toggle-icon">+</span> <!-- Toggle icon for parent -->
+                        {/if}
                     </label>
 
                     {* Recursive call for children *}
-                    {renderCategoryTree 
-                        categories=$categories 
-                        parentId=$cat.id_category 
-                        selected_ids=$selected_ids 
-                        level=$level+1
-                    }
+                    {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
+                        <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
+                            {renderCategoryTree 
+                                categories=$categories 
+                                parentId=$cat.id_category 
+                                selected_ids=$selected_ids 
+                                level=$level+1
+                            }
+                        </ul>
+                    {/if}
                 </li>
             {/foreach}
         </ul>
     {/if}
 {/function}
+
 
 
 <div class="tab-container-product-creation-custom row">
@@ -899,6 +909,29 @@
 
     // categories
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all elements with the class "toggle-icon"
+    const toggleElements = document.querySelectorAll('.toggle-icon');
+    
+    toggleElements.forEach(function(toggle) {
+        // Add click event listener to each toggle
+        toggle.addEventListener('click', function() {
+            const parentLi = this.closest('li');
+            const icon = parentLi.querySelector('.toggle-icon');
+            const childUl = parentLi.querySelector('ul');
+            
+            // Toggle the open class to show/hide children
+            childUl.style.display = (childUl.style.display === 'none') ? 'block' : 'none';
+            
+            // Toggle the icon between + and -
+            if (childUl.style.display === 'block') {
+                icon.textContent = '-'; // Change to minus when open
+            } else {
+                icon.textContent = '+'; // Change to plus when closed
+            }
+        });
+    });
+});
 
 
 
