@@ -425,9 +425,9 @@
         
         // Loop through each language and apply tags
         Object.keys(tagNames).forEach((langId) => {
-            const tagName = tagNames[langId];
+            // const tagName = tagNames[langId];
 
-            const allTags = [tagName, tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
+            const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
             const filteredTags = allTags
                 .map(tag => tag && tag.trim())
