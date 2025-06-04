@@ -399,35 +399,35 @@ class AsGroup extends Module
             error_log('Product data is not valid or id_manufacturer is not set.');
         }
 
-        if (isset($productData['asg']['categories']) && is_array($productData['asg']['categories'])) {
-            $submittedCategories = array_map('intval', $productData['asg']['categories']);
+        // if (isset($productData['asg']['categories']) && is_array($productData['asg']['categories'])) {
+        //     $submittedCategories = array_map('intval', $productData['asg']['categories']);
 
-            // Fetch currently associated categories
-            $sql = 'SELECT id_category FROM '._DB_PREFIX_.'category_product WHERE id_product = '.$idProduct;
-            $currentCategories = Db::getInstance()->executeS($sql);
-            $currentCategories = array_column($currentCategories, 'id_category');
+        //     // Fetch currently associated categories
+        //     $sql = 'SELECT id_category FROM '._DB_PREFIX_.'category_product WHERE id_product = '.$idProduct;
+        //     $currentCategories = Db::getInstance()->executeS($sql);
+        //     $currentCategories = array_column($currentCategories, 'id_category');
 
-            // Categories to add
-            $categoriesToAdd = array_diff($submittedCategories, $currentCategories);
-            foreach ($categoriesToAdd as $idCategory) {
-                Db::getInstance()->insert('category_product', [
-                    'id_category' => (int) $idCategory,
-                    'id_product' => $idProduct,
-                    'position' => 0, // Set position to 0 or compute it if needed
-                ]);
-            }
+        //     // Categories to add
+        //     $categoriesToAdd = array_diff($submittedCategories, $currentCategories);
+        //     foreach ($categoriesToAdd as $idCategory) {
+        //         Db::getInstance()->insert('category_product', [
+        //             'id_category' => (int) $idCategory,
+        //             'id_product' => $idProduct,
+        //             'position' => 0, // Set position to 0 or compute it if needed
+        //         ]);
+        //     }
 
-            // Categories to remove
-            $categoriesToRemove = array_diff($currentCategories, $submittedCategories);
-            if (!empty($categoriesToRemove)) {
-                $idsToRemove = implode(',', array_map('intval', $categoriesToRemove));
-                Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'category_product 
-                    WHERE id_product = '.$idProduct.' AND id_category IN ('.$idsToRemove.')');
-            }
+        //     // Categories to remove
+        //     $categoriesToRemove = array_diff($currentCategories, $submittedCategories);
+        //     if (!empty($categoriesToRemove)) {
+        //         $idsToRemove = implode(',', array_map('intval', $categoriesToRemove));
+        //         Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'category_product 
+        //             WHERE id_product = '.$idProduct.' AND id_category IN ('.$idsToRemove.')');
+        //     }
 
-        } else {
-            error_log('No categories submitted or invalid format.');
-        }
+        // } else {
+        //     error_log('No categories submitted or invalid format.');
+        // }
 
 
         
