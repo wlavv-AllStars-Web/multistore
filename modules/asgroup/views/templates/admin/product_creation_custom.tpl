@@ -203,7 +203,7 @@
 
         </div>
 
-        <div class="row">
+        
 
             <div class="form-group">
                 <div class="form-group select-widget">
@@ -302,7 +302,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 
     </div>
 
