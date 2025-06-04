@@ -977,10 +977,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-     document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         // Find all checkboxes
         const checkboxes = document.querySelectorAll('.category-tree input[type="checkbox"]');
-        
+
         // Function to check the parent checkbox
         function checkParentCheckbox(childCheckbox) {
             let parentCheckbox = childCheckbox.closest('li').parentElement.closest('li');
@@ -988,8 +988,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 let parentCheckboxInput = parentCheckbox.querySelector('input[type="checkbox"]');
                 if (parentCheckboxInput) {
                     parentCheckboxInput.checked = true;
-                    checkParentCheckbox(parentCheckboxInput);
+                    checkParentCheckbox(parentCheckboxInput); // Recursively check the parent
                 }
+            }
+        }
+
+        // Function to uncheck all child checkboxes of a parent
+        function uncheckChildCheckboxes(parentCheckbox) {
+            let childList = parentCheckbox.closest('li').querySelector('ul');
+            if (childList) {
+                const childCheckboxes = childList.querySelectorAll('input[type="checkbox"]');
+                childCheckboxes.forEach(function (childCheckbox) {
+                    childCheckbox.checked = false; // Uncheck each child
+                });
             }
         }
 
@@ -1002,10 +1013,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         // If there are no child categories (last child), check the parent
                         checkParentCheckbox(this);
                     }
+                } else {
+                    // If this checkbox is unchecked, also uncheck all its children
+                    let parentLi = this.closest('li');
+                    if (parentLi.querySelector('ul')) {
+                        uncheckChildCheckboxes(this);
+                    }
+                }
+            });
+        });
+
+        // Add event listener to handle parent checkbox clicks to uncheck children
+        const parentCheckboxes = document.querySelectorAll('.category-tree > li > label > input[type="checkbox"]');
+        
+        parentCheckboxes.forEach(function(parentCheckbox) {
+            parentCheckbox.addEventListener('change', function() {
+                if (!this.checked) {
+                    // Uncheck all children when a parent is unchecked
+                    uncheckChildCheckboxes(this);
                 }
             });
         });
     });
+
 
 </script>
 
