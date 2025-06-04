@@ -781,6 +781,7 @@
             '#product_description #product_description_ec_approved',
             '#product_description #product_description_wmdeprecated',
             '#product_description #product_description_not_to_order',
+            '#product_description #product_description_categories',
         ];
 
         // Loop through the IDs and remove each element from the DOM
