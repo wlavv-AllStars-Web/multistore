@@ -275,22 +275,23 @@
                         </select>
                     </div>
 
+                </div>
+            </div>
 
-                    <div class="mb-4">
-                        <h5>Select Categories to Associate</h5>
-                        <div id="categoryCheckboxes">
-                            {foreach from=$categories item=cat}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
-                                        id="category_{$cat.id_category}" name="product[asg][categories][]" 
-                                        {if $product_categories && in_array($cat.id_category, $product_categories)}checked{/if}>
-                                    <label class="form-check-label" for="category_{$cat.id_category}">
-                                        {$cat.name|escape:'html'}
-                                    </label>
-                                </div>
-                            {/foreach}
-                        </div>
-
+            <div class="form-group col-lg-4">
+                <div class="form-group mb-4">
+                    <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
+                    <div id="categoryCheckboxes">
+                        {foreach from=$categories item=cat}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{$cat.id_category}" 
+                                    id="category_{$cat.id_category}" name="product[asg][categories][]" 
+                                    {if $product_categories && in_array($cat.id_category, $product_categories)}checked{/if}>
+                                <label class="form-check-label" for="category_{$cat.id_category}">
+                                    {$cat.name|escape:'html'}
+                                </label>
+                            </div>
+                        {/foreach}
                     </div>
 
                 </div>
