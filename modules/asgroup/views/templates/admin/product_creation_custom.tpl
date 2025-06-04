@@ -479,49 +479,49 @@
     <div class="col-lg-12">
         <hr>
     </div>
-</div>
-
-<!-- The Modal Structure -->
-<div class="modal fade show" id="categories-modal" style="display: block;" aria-modal="true" role="dialog">
-    <div class="modal-dialog" style="max-width: 90%;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-            </div>
-            <div class="modal-body text-left font-weight-normal">
-                <p class="modal-message">
-                    <div id="categories-modal-content">
-                        <!-- Search and Select Categories -->
-                        <fieldset class="form-group tree-fieldset">
-                            <div class="ui-widget">
-                                <div class="search search-with-icon">
-                                    <input type="text" id="ps-select-product-category" class="form-control autocomplete" placeholder="Search categories" autocomplete="off" spellcheck="false">
+    <!-- The Modal Structure -->
+    <div class="modal fade" id="categories-modal" style="display: none;" aria-modal="true" role="dialog">
+        <div class="modal-dialog" style="max-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body text-left font-weight-normal">
+                    <p class="modal-message">
+                        <div id="categories-modal-content">
+                            <!-- Search and Select Categories -->
+                            <fieldset class="form-group tree-fieldset">
+                                <div class="ui-widget">
+                                    <div class="search search-with-icon">
+                                        <input type="text" id="ps-select-product-category" class="form-control autocomplete" placeholder="Search categories" autocomplete="off" spellcheck="false">
+                                    </div>
+    
+                                    <label class="form-control-label text-uppercase">Associated categories</label>
+                                    <div class="category-tree-container">
+                                        <!-- This will be dynamically populated with the categories -->
+                                        <ul id="category_tree_selector_category_tree">
+                                            <!-- Category list with checkboxes goes here -->
+                                        </ul>
+                                    </div>
                                 </div>
-
-                                <label class="form-control-label text-uppercase">Associated categories</label>
-                                <div class="category-tree-container">
-                                    <!-- This will be dynamically populated with the categories -->
-                                    <ul id="category_tree_selector_category_tree">
-                                        <!-- Category list with checkboxes goes here -->
-                                    </ul>
-                                </div>
+                            </fieldset>
+    
+                            <div class="categories-tree-loader d-none">
+                                <div class="spinner m-auto d-block"></div>
                             </div>
-                        </fieldset>
-
-                        <div class="categories-tree-loader d-none">
-                            <div class="spinner m-auto d-block"></div>
+    
+                            <div class="category-tree-footer text-center text-md-left">
+                                <button type="button" id="category_tree_selector_cancel_btn" name="category_tree_selector[cancel_btn]" class="js-cancel-categories-btn btn-outline-secondary btn btn">Cancel</button>
+                                <button type="button" id="category_tree_selector_apply_btn" name="category_tree_selector[apply_btn]" class="js-apply-categories-btn btn-outline-primary btn btn">Apply</button>
+                            </div>
                         </div>
-
-                        <div class="category-tree-footer text-center text-md-left">
-                            <button type="button" id="category_tree_selector_cancel_btn" name="category_tree_selector[cancel_btn]" class="js-cancel-categories-btn btn-outline-secondary btn btn">Cancel</button>
-                            <button type="button" id="category_tree_selector_apply_btn" name="category_tree_selector[apply_btn]" class="js-apply-categories-btn btn-outline-primary btn btn">Apply</button>
-                        </div>
-                    </div>
-                </p>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
