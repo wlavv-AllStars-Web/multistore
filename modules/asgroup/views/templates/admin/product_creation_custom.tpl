@@ -1,42 +1,6 @@
 <!-- Load the TinyMCE script -->
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
-{assign var="category_tree" value=[]}
-{foreach from=$categories item=cat}
-    {$category_tree[$cat.id_parent][] = $cat}
-{/foreach}
-
-{function name=renderCategoryTree categories=[] parent=0 selectedCategories=[]}
-    {if isset($categories[$parent])}
-        <ul class="category-tree">
-            {foreach from=$categories[$parent] item=cat}
-                <li>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{$cat.id_category}"
-                            id="category_{$cat.id_category}" name="product[asg][categories][]"
-                            {if in_array($cat.id_category, $selectedCategories)}checked{/if}>
-                        <label class="form-check-label" for="category_{$cat.id_category}">
-                            {$cat.name|escape:'html'}
-                        </label>
-
-                        {if isset($categories[$cat.id_category])}
-                            <button type="button" class="toggle-child btn btn-sm btn-link p-0" onclick="toggleCategory(this)">
-                                [+]
-                            </button>
-                        {/if}
-                    </div>
-
-                    {if isset($categories[$cat.id_category])}
-                        <div class="child-categories d-none" style="margin-left: 20px;">
-                            {call name=renderCategoryTree categories=$categories parent=$cat.id_category selectedCategories=$selectedCategories}
-                        </div>
-                    {/if}
-                </li>
-            {/foreach}
-        </ul>
-    {/if}
-{/function}
-
 
 
 <div class="tab-container-product-creation-custom row">
@@ -314,19 +278,7 @@
                 </div>
             </div>
 
-            {assign var="product_category_ids" value=[]}
-            {foreach from=$product_categories item=pc}
-                {assign var="product_category_ids" value=$product_category_ids|@array_merge:[$pc.id_category]}
-            {/foreach}
-
-<div class="form-group col-lg-4">
-    <div class="form-group mb-4">
-        <label for="defaultCategorySelect" class="form-label">Select Categories to Associate</label>
-        <div id="categoryCheckboxes">
-            {call name=renderCategoryTree categories=$category_tree parent=0 selectedCategories=$product_category_ids}
-        </div>
-    </div>
-</div>
+        
 
 
 
@@ -529,18 +481,48 @@
     </div>
 </div>
 
-<script>
-    function toggleCategory(button) {
-        const container = button.closest('li').querySelector('.child-categories');
-        if (container.classList.contains('d-none')) {
-            container.classList.remove('d-none');
-            button.textContent = '[-]';
-        } else {
-            container.classList.add('d-none');
-            button.textContent = '[+]';
-        }
-    }
-</script>
+<!-- The Modal Structure -->
+<div class="modal fade show" id="categories-modal" style="display: block;" aria-modal="true" role="dialog">
+    <div class="modal-dialog" style="max-width: 90%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body text-left font-weight-normal">
+                <p class="modal-message">
+                    <div id="categories-modal-content">
+                        <!-- Search and Select Categories -->
+                        <fieldset class="form-group tree-fieldset">
+                            <div class="ui-widget">
+                                <div class="search search-with-icon">
+                                    <input type="text" id="ps-select-product-category" class="form-control autocomplete" placeholder="Search categories" autocomplete="off" spellcheck="false">
+                                </div>
+
+                                <label class="form-control-label text-uppercase">Associated categories</label>
+                                <div class="category-tree-container">
+                                    <!-- This will be dynamically populated with the categories -->
+                                    <ul id="category_tree_selector_category_tree">
+                                        <!-- Category list with checkboxes goes here -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="categories-tree-loader d-none">
+                            <div class="spinner m-auto d-block"></div>
+                        </div>
+
+                        <div class="category-tree-footer text-center text-md-left">
+                            <button type="button" id="category_tree_selector_cancel_btn" name="category_tree_selector[cancel_btn]" class="js-cancel-categories-btn btn-outline-secondary btn btn">Cancel</button>
+                            <button type="button" id="category_tree_selector_apply_btn" name="category_tree_selector[apply_btn]" class="js-apply-categories-btn btn-outline-primary btn btn">Apply</button>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- TinyMCE Initialization Script -->
@@ -906,6 +888,73 @@
     // categories
 
 
+$(document).ready(function () {
+    // Initialize the category search
+    $('#ps-select-product-category').on('input', function () {
+        var searchTerm = $(this).val().toLowerCase();
+
+        // Filter the categories based on the search term
+        $('#category_tree_selector_category_tree li').each(function () {
+            var categoryName = $(this).text().toLowerCase();
+            if (categoryName.indexOf(searchTerm) === -1) {
+                $(this).hide(); // Hide category if it doesn't match the search term
+            } else {
+                $(this).show(); // Show category if it matches
+            }
+        });
+    });
+
+    // Handle checkbox selection and updating the tags
+    $('#category_tree_selector_category_tree input[type="checkbox"]').on('change', function () {
+        var selectedCategories = [];
+        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function () {
+            var categoryId = $(this).val();
+            var categoryName = $(this).closest('li').find('label').text();
+            selectedCategories.push({ id: categoryId, name: categoryName });
+        });
+
+        // Display the selected categories as tags in the modal
+        updateSelectedCategories(selectedCategories);
+    });
+
+    // Function to update the selected categories
+    function updateSelectedCategories(selectedCategories) {
+        var tagContainer = $('#categories-modal-content');
+        tagContainer.empty(); // Clear previous tags
+
+        selectedCategories.forEach(function (category, index) {
+            var tagHtml = `
+                <span class="pstaggerTag tag-item">
+                    <input type="hidden" name="product[asg][categories][${index}][id]" value="${category.id}">
+                    <span class="category-name-preview">${category.name}</span>
+                    <a href="#" class="pstaggerClosingCross d-none">x</a>
+                </span>
+            `;
+            tagContainer.append(tagHtml);
+        });
+    }
+
+    // Handle the "Apply" button click
+    $('#category_tree_selector_apply_btn').on('click', function () {
+        // Collect selected categories and append them to the parent form
+        var selectedCategories = [];
+        $('#category_tree_selector_category_tree input[type="checkbox"]:checked').each(function () {
+            var categoryId = $(this).val();
+            selectedCategories.push(categoryId);
+        });
+
+        // Update the parent input fields (outside the modal) with the selected categories
+        $('#product_categories_input').val(selectedCategories.join(','));
+
+        // Close the modal
+        $('#categories-modal').modal('hide');
+    });
+
+    // Handle the "Cancel" button click
+    $('#category_tree_selector_cancel_btn').on('click', function () {
+        $('#categories-modal').modal('hide');
+    });
+});
 
 
 </script>
@@ -951,17 +1000,3 @@
     }
 </style>
 
-<style>
-    .category-tree {
-        list-style: none;
-        padding-left: 0;
-    }
-    .category-tree .form-check {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .toggle-child {
-        font-size: 12px;
-    }
-</style>
