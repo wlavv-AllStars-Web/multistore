@@ -1431,6 +1431,7 @@ public function getASGProductCreation($product) {
     $id_product = (int)$product->id; // or any product ID
     $product_categories = Product::getProductCategories($id_product);
 
+    pre($product_categories);
 
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
