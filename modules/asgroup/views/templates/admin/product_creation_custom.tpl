@@ -1140,7 +1140,7 @@
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
-            '#product_pricing',
+
         ];
 
         // Loop through the IDs and remove each element from the DOM
@@ -1399,9 +1399,5 @@
 
     .toggle-label {
         user-select: none;
-    }
-
-    #product_pricing-tab-nav {
-        display: none;
     }
 </style>
