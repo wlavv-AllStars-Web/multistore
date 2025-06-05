@@ -882,158 +882,161 @@
       },
     },
   };
-    console.log('script loaded');
+
+  console.log('script loaded');
+
   // Initialize the class only when the DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
     if (window.p && window.p.specificPrice) {
       const Qw = p.specificPrice;
-    
-        if (window.prestashop && window.prestashop.instance) {
+
+      // Check if PrestaShop instance is available
+      if (window.prestashop && window.prestashop.instance) {
         const eventEmitter = window.prestashop.instance.eventEmitter;
-        } else {
+
+        class Jw {
+          constructor(t) {
+            this.productId = t;
+            this.listContainer = document.querySelector(Qw.listContainer);
+            this.eventEmitter = eventEmitter; // Use the eventEmitter here
+            this.$loadingSpinner = Xw(p.specificPrice.loadingSpinner);
+            this.$listTable = Xw(p.specificPrice.listTable);
+          }
+
+          setLoading(t) {
+            this.$loadingSpinner.toggle(t);
+            this.$listTable.toggle(!t);
+          }
+
+          render(t) {
+            const { listFields: e } = Qw;
+            const n = this.listContainer.querySelector(`tbody`);
+            const r = this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
+            n.innerHTML = "";
+            const i = t.specificPrices;
+
+            this.toggleListVisibility(i.length > 0);
+            i.forEach((t) => {
+              const i = document.createElement("tbody");
+              i.innerHTML = r.trim();
+              const o = i.firstChild;
+              const a = this.selectListField(o, e.specificPriceId);
+              const s = this.selectListField(o, e.combination);
+              const l = this.selectListField(o, e.currency);
+              const m = this.selectListField(o, e.country);
+              const c = this.selectListField(o, e.group);
+              const p = this.selectListField(o, e.shop);
+              const d = this.selectListField(o, e.customer);
+              const u = this.selectListField(o, e.price);
+              const g = this.selectListField(o, e.impact);
+              const h = this.selectListField(o, e.period);
+              const f = this.selectListField(o, e.from);
+              const b = this.selectListField(o, e.to);
+              const v = this.selectListField(o, e.fromQuantity);
+              const x = this.selectListField(o, e.deleteBtn);
+              const y = this.selectListField(o, e.editBtn);
+
+              a.textContent = String(t.id);
+              s.textContent = t.combination;
+              l.textContent = t.currency;
+              m.textContent = t.country;
+              c.textContent = t.group;
+              p.textContent = t.shop;
+              d.textContent = t.customer;
+              u.textContent = t.price;
+              g.textContent = t.impact;
+              v.textContent = t.fromQuantity;
+              x.dataset.specificPriceId = String(t.id);
+              y.dataset.specificPriceId = String(t.id);
+
+              if (t.period) {
+                f.textContent = t.period.from;
+                b.textContent = t.period.to;
+              } else {
+                h.textContent = String(h.dataset.unlimitedText);
+              }
+
+              n.append(o);
+              this.addEventListenerForDeleteBtn(x);
+            });
+          }
+
+          toggleListVisibility(t) {
+            this.listContainer.classList.toggle("d-none", !t);
+          }
+
+          selectListField(t, e) {
+            return t.querySelector(e);
+          }
+
+          addEventListenerForDeleteBtn(t) {
+            t.addEventListener("click", (t) => {
+              t.currentTarget instanceof HTMLElement &&
+                !D(t.currentTarget.dataset.specificPriceId) &&
+                this.deleteSpecificPrice(t.currentTarget.dataset);
+            });
+          }
+
+          deleteSpecificPrice(t) {
+            const e = new W(
+              {
+                id: p.specificPrice.deletionModalId,
+                confirmTitle: t.confirmTitle,
+                confirmMessage: t.confirmMessage,
+                confirmButtonLabel: t.confirmBtnLabel,
+                closeButtonLabel: t.cancelBtnLabel,
+                confirmButtonClass: t.confirmBtnClass,
+                closable: true,
+              },
+              () => {
+                return (
+                  (e = this),
+                  (n = null),
+                  (r = function* () {
+                    if (!t.specificPriceId) return;
+                    const e = yield Kw(t.specificPriceId);
+                    Xw.growl({ message: e.message });
+                    this.eventEmitter.emit(v.listUpdated);  // Event emission
+                  }),
+                  new Promise((t, i) => {
+                    var o = (t) => {
+                        try {
+                          s(r.next(t));
+                        } catch (t) {
+                          i(t);
+                        }
+                      },
+                      a = (t) => {
+                        try {
+                          s(r.throw(t));
+                        } catch (t) {
+                          i(t);
+                        }
+                      },
+                      s = (e) =>
+                        e.done ? t(e.value) : Promise.resolve(e.value).then(o, a);
+                    s((r = r.apply(e, n)).next());
+                  })
+                );
+                var e, n, r;
+              }
+            );
+            e.show();
+          }
+        }
+
+        window.Jw = Jw;
+        new Jw(19041);  // Initialize with productId (19041)
+        console.log(new Jw(19041)); 
+      } else {
         console.error('prestashop.instance is not available!');
-        }
-
-
-      class Jw {
-        constructor(t) {
-          this.productId = t;
-          this.listContainer = document.querySelector(Qw.listContainer);
-          this.eventEmitter = window.prestashop.instance.eventEmitter;
-          this.$loadingSpinner = Xw(p.specificPrice.loadingSpinner);
-          this.$listTable = Xw(p.specificPrice.listTable);
-        }
-
-        setLoading(t) {
-          this.$loadingSpinner.toggle(t);
-          this.$listTable.toggle(!t);
-        }
-
-        render(t) {
-          const { listFields: e } = Qw;
-          const n = this.listContainer.querySelector(``+Qw.listContainer+` tbody`);
-          const r = this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
-          n.innerHTML = "";
-          const i = t.specificPrices;
-
-          this.toggleListVisibility(i.length > 0);
-          i.forEach((t) => {
-            const i = document.createElement("tbody");
-            i.innerHTML = r.trim();
-            const o = i.firstChild;
-            const a = this.selectListField(o, e.specificPriceId);
-            const s = this.selectListField(o, e.combination);
-            const l = this.selectListField(o, e.currency);
-            const m = this.selectListField(o, e.country);
-            const c = this.selectListField(o, e.group);
-            const p = this.selectListField(o, e.shop);
-            const d = this.selectListField(o, e.customer);
-            const u = this.selectListField(o, e.price);
-            const g = this.selectListField(o, e.impact);
-            const h = this.selectListField(o, e.period);
-            const f = this.selectListField(o, e.from);
-            const b = this.selectListField(o, e.to);
-            const v = this.selectListField(o, e.fromQuantity);
-            const x = this.selectListField(o, e.deleteBtn);
-            const y = this.selectListField(o, e.editBtn);
-
-            a.textContent = String(t.id);
-            s.textContent = t.combination;
-            l.textContent = t.currency;
-            m.textContent = t.country;
-            c.textContent = t.group;
-            p.textContent = t.shop;
-            d.textContent = t.customer;
-            u.textContent = t.price;
-            g.textContent = t.impact;
-            v.textContent = t.fromQuantity;
-            x.dataset.specificPriceId = String(t.id);
-            y.dataset.specificPriceId = String(t.id);
-
-            if (t.period) {
-              f.textContent = t.period.from;
-              b.textContent = t.period.to;
-            } else {
-              h.textContent = String(h.dataset.unlimitedText);
-            }
-
-            n.append(o);
-            this.addEventListenerForDeleteBtn(x);
-          });
-        }
-
-        toggleListVisibility(t) {
-          this.listContainer.classList.toggle("d-none", !t);
-        }
-
-        selectListField(t, e) {
-          return t.querySelector(e);
-        }
-
-        addEventListenerForDeleteBtn(t) {
-          t.addEventListener("click", (t) => {
-            t.currentTarget instanceof HTMLElement &&
-              !D(t.currentTarget.dataset.specificPriceId) &&
-              this.deleteSpecificPrice(t.currentTarget.dataset);
-          });
-        }
-
-        deleteSpecificPrice(t) {
-          const e = new W(
-            {
-              id: p.specificPrice.deletionModalId,
-              confirmTitle: t.confirmTitle,
-              confirmMessage: t.confirmMessage,
-              confirmButtonLabel: t.confirmBtnLabel,
-              closeButtonLabel: t.cancelBtnLabel,
-              confirmButtonClass: t.confirmBtnClass,
-              closable: true,
-            },
-            () => {
-              return (
-                (e = this),
-                (n = null),
-                (r = function* () {
-                  if (!t.specificPriceId) return;
-                  const e = yield Kw(t.specificPriceId);
-                  Xw.growl({ message: e.message });
-                  this.eventEmitter.emit(v.listUpdated);
-                }),
-                new Promise((t, i) => {
-                  var o = (t) => {
-                      try {
-                        s(r.next(t));
-                      } catch (t) {
-                        i(t);
-                      }
-                    },
-                    a = (t) => {
-                      try {
-                        s(r.throw(t));
-                      } catch (t) {
-                        i(t);
-                      }
-                    },
-                    s = (e) =>
-                      e.done ? t(e.value) : Promise.resolve(e.value).then(o, a);
-                  s((r = r.apply(e, n)).next());
-                })
-              );
-              var e, n, r;
-            }
-          );
-          e.show();
-        }
       }
-
-      window.Jw = Jw;
-      new Jw(19041);
-      console.log(new Jw(19041)); // Example instantiation with productId
     } else {
       console.error('PrestaShop specificPrice configuration is missing.');
     }
   });
 </script>
+
 
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
