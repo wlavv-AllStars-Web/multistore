@@ -613,6 +613,91 @@
                 </tbody>
             </table>
         </div> *}
+
+            <table class="specific-price-list">
+                <tbody></tbody>
+            </table>
+
+            <template id="specific-price-row-template">
+                <tr>
+                <td class="specificPriceId"></td>
+                <td class="combination"></td>
+                <td class="currency"></td>
+                <td class="country"></td>
+                <td class="group"></td>
+                <td class="shop"></td>
+                <td class="customer"></td>
+                <td class="price"></td>
+                <td class="impact"></td>
+                <td class="period"></td>
+                <td class="from"></td>
+                <td class="to"></td>
+                <td class="fromQuantity"></td>
+                <td><button class="deleteBtn">Delete</button></td>
+                <td><button class="editBtn">Edit</button></td>
+                </tr>
+            </template>
+
+            <div id="specific-price-loading-spinner" style="display:none;">Loading...</div>
+     
+<script>
+  const p = {
+    specificPrice: {
+      listContainer: "#specific-prices-container_custom",
+      listTable: ".specific-price-list",
+      loadingSpinner: "#specific-price-loading-spinner",
+      listRowTemplate: "#specific-price-row-template",
+      deletionModalId: "confirm-delete-modal",
+
+      // Selectors inside a row
+      listFields: {
+        specificPriceId: ".specificPriceId",
+        combination: ".combination",
+        currency: ".currency",
+        country: ".country",
+        group: ".group",
+        shop: ".shop",
+        customer: ".customer",
+        price: ".price",
+        impact: ".impact",
+        period: ".period",
+        from: ".from",
+        to: ".to",
+        fromQuantity: ".fromQuantity",
+        deleteBtn: ".deleteBtn",
+        editBtn: ".editBtn"
+      }
+    }
+  };
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productId = 19041; // Replace this with actual product ID from PHP/Smarty
+    const specificPriceManager = new Jw(productId);
+
+    // Example render call with dummy data:
+    specificPriceManager.render({
+      specificPrices: [
+        {
+          id: 1,
+          combination: "Size M",
+          currency: "USD",
+          country: "USA",
+          group: "Default",
+          shop: "Main",
+          customer: "John Doe",
+          price: "$20",
+          impact: "-10%",
+          fromQuantity: "1",
+          period: { from: "2024-01-01", to: "2024-12-31" }
+        }
+      ]
+    });
+  });
+</script>
+
+
+        {* fim *}
     </div>
 </div>
 
@@ -814,21 +899,6 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-
-    window.onload = function() {
-    // Get the element you want to clone
-    var originalElement = document.getElementById('specific-prices-container');
-    
-    // Clone the element (true means deep clone, including child elements)
-    var clonedElement = originalElement.cloneNode(true);
-
-    // Optionally modify the cloned element (e.g., change its ID)
-    clonedElement.id = 'specific-prices-container-clone';
-
-    // Append the cloned element to a different container or the same container
-    document.querySelector("#specific-prices-container_custom").appendChild(clonedElement);
-    };
-
 
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
