@@ -558,7 +558,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {foreach from=$specific_prices item=specific}
+                        {foreach from=$specific_data item=specific}
                             <tr>
                                 <td>{$specific.id}</td>
                                 <td>{$specific.combination|default:'--'}</td>
