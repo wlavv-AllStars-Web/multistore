@@ -459,9 +459,7 @@
                 </label>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
             <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
 
             <div
