@@ -1590,6 +1590,10 @@ public function getASGProductCreation($product) {
 
     $specificPrices = SpecificPrice::getByProductId($product->id); // Or your custom logic
 
+    $specificPriceData = $this->buildSpecificPriceTable($product->id);
+
+    pre($specificPriceData);
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
@@ -1615,6 +1619,74 @@ public function getASGProductCreation($product) {
         'specific_prices' => $specificPrices,
     ]);
 }
+
+public function getProductSpecificPrices($productId)
+{
+    // Get product specific prices using SpecificPrice class
+    $specificPrices = SpecificPrice::getByProductId($productId);
+    return $specificPrices;
+}
+
+public function getCurrency($currencyId)
+{
+    // Fetch currency information by ID
+    $currency = new Currency($currencyId);
+    return $currency->iso_code;
+}
+
+
+public function getCountry($countryId)
+{
+    // Fetch country information by ID
+    $country = new Country($countryId);
+    return $country->name;
+}
+
+
+public function getGroup($groupId)
+{
+    // Fetch customer group by ID
+    $group = new Group($groupId);
+    return $group->name;
+}
+
+
+public function buildSpecificPriceTable($productId)
+{
+    $specificPrices = SpecificPrice::getByProductId($productId);
+    $priceData = [];
+
+    foreach ($specificPrices as $specificPrice) {
+        // Get related data
+        $currency = $this->getCurrency($specificPrice['id_currency']);
+        $country = $this->getCountry($specificPrice['id_country']);
+        $group = $this->getGroup($specificPrice['id_group']);
+        $shop = $this->getShopName($specificPrice['id_shop']);  // Implement this method to get shop name if needed
+        $customer = $this->getCustomerName($specificPrice['id_customer']);  // Implement this to fetch customer info if needed
+        $priceExclTax = $specificPrice['price'];
+        $discountTaxIncl = $specificPrice['reduction_type'] == 'amount' ? $specificPrice['reduction'] : $specificPrice['reduction'] . '%';
+        $duration = $specificPrice['from'] == '0000-00-00 00:00:00' ? 'Unlimited' : $specificPrice['from'] . ' to ' . $specificPrice['to'];
+        $quantity = $specificPrice['from_quantity'];
+
+        // Prepare table data
+        $priceData[] = [
+            'id' => $specificPrice['id_specific_price'],
+            'combination' => '--',  // You can add combinations if needed, or leave it as '--'
+            'currency' => $currency,
+            'country' => $country,
+            'group' => $group,
+            'store' => $shop,
+            'customer' => $customer,
+            'specific_price' => $priceExclTax,
+            'discount' => $discountTaxIncl,
+            'duration' => $duration,
+            'units' => $quantity,
+        ];
+    }
+
+    return $priceData;
+}
+
 
 
 

@@ -508,7 +508,7 @@
             </div>
         </div>
 
-        {* <div class="form-group">
+        <div class="form-group">
   <h2>
     {l s='Specific prices' d='Admin.Catalog.Feature'}
     <span class="help-box"
@@ -600,7 +600,7 @@
       </table>
     </div>
   </div>
-</div> *}
+</div>
 
 {* <div class="form-group">
   <button
