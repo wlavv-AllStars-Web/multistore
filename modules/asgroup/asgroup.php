@@ -1630,7 +1630,6 @@ public function getASGProductCreation($product) {
         'admin_base_url' => $adminBaseUrl,
         'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
             'configure' => $this->name,
-            'action' => 'deleteSpecificPrice',
         ]),
     ]);
 }
