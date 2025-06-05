@@ -503,7 +503,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        {* <div class="form-group">
             <h2>
                 {l s='Specific prices' d='Admin.Catalog.Feature'}
                 <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
@@ -621,21 +621,139 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> *}
+<div class="form-group">
+  <h2>
+    {l s='Specific prices' d='Admin.Catalog.Feature'}
+    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+          data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
+          data-placement="top"></span>
+  </h2>
 
-        {* <div class="form-group">
-  <button
-    id="product_pricing_show_catalog_price_rules"
-    name="product[asg][show_catalog_price_rules]"
-    class="btn-default btn"
-    data-hide-label="{l s='Hide catalog price rules' d='Admin.Catalog.Feature'}"
-    data-show-label="{l s='Show catalog price rules' d='Admin.Catalog.Feature'}"
-    type="button"
-  >
-    <i class="material-icons">visibility</i>
-    <span class="btn-label">{l s='Show catalog price rules' d='Admin.Catalog.Feature'}</span>
-  </button>
-</div> *}
+  <div id="specific-prices-container">
+    <div id="product_pricing_specific_prices">
+      <div class="form-group">
+        <button id="product_pricing_specific_prices_add_specific_price_btn"
+                name="product[pricing][specific_prices][add_specific_price_btn]"
+                class="js-add-specific-price-btn btn btn-outline-primary"
+                data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
+                data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
+                data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
+          <i class="material-icons">add_circle</i>
+          <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- LOADING SPINNER -->
+    <div id="specific-prices-list-spinner" class="d-none">Loading...</div>
+
+    <!-- PRICE LIST CONTAINER -->
+    <div id="specific-price-list-container" class="{if $specific_data|count == 0}d-none{/if}">
+      <table class="table" id="specific-prices-list-table">
+        <thead>
+          <tr>
+            <th>{l s='ID'}</th>
+            <th>{l s='Combination'}</th>
+            <th>{l s='Currency'}</th>
+            <th>{l s='Country'}</th>
+            <th>{l s='Group'}</th>
+            <th>{l s='Store'}</th>
+            <th>{l s='Customer'}</th>
+            <th>{l s='Specific price (tax excl.)'}</th>
+            <th>{l s='Discount (tax incl.)'}</th>
+            <th>{l s='Duration'}</th>
+            <th>{l s='Units'}</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {foreach from=$specific_data item=specific}
+            <tr>
+              <td>{$specific.id|default:'-'}</td>
+              <td>{$specific.combination|default:'--'}</td>
+              <td>{$specific.currency|escape:'html'}</td>
+              <td>{$specific.country[$language.id_lang]|default:'-'|escape:'html'}</td>
+              <td>{$specific.group[$language.id_lang]|default:'-'|escape:'html'}</td>
+              <td>{$specific.store|escape:'html'}</td>
+              <td>{$specific.customer|default:'All customers'}</td>
+              <td>
+                {if is_numeric($specific.specific_price)}
+                  {$specific.specific_price|string_format:'%.2f'}
+                {else}
+                  {$specific.specific_price}
+                {/if}
+              </td>
+              <td>{$specific.discount|escape:'html'}</td>
+              <td>
+                {if isset($specific.duration.from)}
+                  <span>{l s='From'}: {$specific.duration.from|date_format:"%Y-%m-%d"}</span><br>
+                  <span>{l s='To'}: {$specific.duration.to|date_format:"%Y-%m-%d"}</span>
+                {else}
+                  {l s='Unlimited'}
+                {/if}
+              </td>
+              <td>{$specific.units}</td>
+              <td>
+                <button class="btn btn-danger"
+                        data-role="deleteBtn"
+                        data-specific-price-id="{$specific.id}"
+                        data-confirm-title="{l s='Specific price deletion'}"
+                        data-confirm-message="{l s='Are you sure you want to delete this specific price?'}"
+                        data-confirm-btn-label="{l s='Delete'}"
+                        data-cancel-btn-label="{l s='Cancel'}"
+                        data-confirm-btn-class="btn-danger">
+                  <i class="material-icons">delete</i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-primary"
+                        data-role="editBtn"
+                        data-specific-price-id="{$specific.id}"
+                        data-modal-title="{l s='Edit specific price'}"
+                        data-confirm-button-label="{l s='Save and publish'}"
+                        data-cancel-button-label="{l s='Cancel'}">
+                  <i class="material-icons">edit</i>
+                </button>
+              </td>
+            </tr>
+          {/foreach}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ROW TEMPLATE FOR JS RENDERING -->
+    <template id="specific-price-list-row-template">
+      <tr>
+        <td data-role="specificPriceId"></td>
+        <td data-role="combination"></td>
+        <td data-role="currency"></td>
+        <td data-role="country"></td>
+        <td data-role="group"></td>
+        <td data-role="shop"></td>
+        <td data-role="customer"></td>
+        <td data-role="price"></td>
+        <td data-role="impact"></td>
+        <td data-role="period">
+          <span data-role="from"></span> - <span data-role="to"></span>
+        </td>
+        <td data-role="fromQuantity"></td>
+        <td>
+          <button class="btn btn-danger" data-role="deleteBtn" data-specific-price-id="">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-primary" data-role="editBtn" data-specific-price-id="">
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </tr>
+    </template>
+  </div>
+</div>
+
 
 
 
@@ -839,6 +957,23 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const productId = document.querySelector('[name="product[id_product]"]')?.value || 0;
+
+        if (typeof Jw !== 'undefined') {
+        window.specificPriceManager = new Jw(productId);
+
+        // Example hook (reload list on delete)
+        window.prestashop.instance.eventEmitter.on('listUpdated', () => {
+            location.reload(); // Or optionally re-fetch and render dynamically
+        });
+        } else {
+        console.error('Jw class not found. Make sure PrestaShop JS is loaded.');
+        }
+    });
+
+
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.js-delete-specific-price-custom').forEach(button => {
             button.addEventListener('click', (event) => {
