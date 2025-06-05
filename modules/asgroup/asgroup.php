@@ -1565,6 +1565,30 @@ public function getASGProductCreation($product) {
 
     $combinations = $product->getAttributeCombinations($this->context->language->id);
 
+    $price_tax_excl = $product->getPrice(false);
+    $price_tax_incl = $product->getPrice(true);
+    $tax_rules_group_id = $product->id_tax_rules_group;
+
+    $taxRulesGroups = TaxRulesGroup::getTaxRulesGroups(true); // get active tax rules
+    $countryId = (int) $this->context->country->id;
+
+    // Get all rates mapped by group ID
+    $groupRates = TaxRulesGroup::getAssociatedTaxRatesByIdCountry($countryId);
+
+    // Attach rate to each group
+    $taxRules = [];
+
+    foreach ($taxRulesGroups as $group) {
+        $groupId = (int)$group['id_tax_rules_group'];
+        $rate = isset($groupRates[$groupId]) ? $groupRates[$groupId] : 0;
+        $taxRules[] = [
+            'id' => $groupId,
+            'name' => $group['name'] . " ({$rate}%)",
+            'rate' => $rate,
+        ];
+    }
+
+
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
@@ -1581,6 +1605,10 @@ public function getASGProductCreation($product) {
         'languages' => $languages,
         'defaultValues' => $defaultValues,
         'base_url' => $baseUrl,
+        'retail_price_tax_excl' => $price_tax_excl,
+        'retail_price_tax_incl' => $price_tax_incl,
+        'selected_tax_rule_id' => $tax_rules_group_id,
+        'tax_rules' => $taxRules,
     ]);
 }
 

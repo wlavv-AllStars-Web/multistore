@@ -1,38 +1,36 @@
 <!-- Load the TinyMCE script -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 {* <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/skin.min.css" type="text/css" rel="stylesheet">
 <link href="https://euromuscleparts.com/js/tiny_mce/skins/prestashop/content.min.css" type="text/css" rel="stylesheet"> *}
 
 {function name=renderCategoryTree categories=[] parentId=0 selected_ids=[] level=0}
     {assign var="selected_ids" value=$selected_ids|default:[]}
-    
+
     {if isset($categories[$parentId])}
         <ul class="category-tree level-{$level}" style="padding-left: {($level * 20)}px;">
             {foreach from=$categories[$parentId] item=cat}
                 <li class="has-children">
                     <label class="toggle-label">
-                        <input 
-                            type="checkbox" 
-                            class="form-check-input" 
-                            name="product[asg][categories][]" 
-                            value="{$cat.id_category}"
+                        <input type="checkbox" class="form-check-input" name="product[asg][categories][]" value="{$cat.id_category}"
                             {if in_array($cat.id_category, $selected_ids)}checked{/if}>
                         {$cat.name|escape:'html'}
                     </label>
 
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
-                        <span class="toggle-icon btn-info" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></span> 
+                        <span class="toggle-icon btn-info" style="cursor: pointer;"><i class="fa-solid fa-plus"></i></span>
                     {/if}
 
                     {* Recursive call for children *}
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                categories=$categories 
-                                parentId=$cat.id_category 
-                                selected_ids=$selected_ids 
-                                level=$level+1
-                            }
+                                                                categories=$categories 
+                                                                parentId=$cat.id_category 
+                                                                selected_ids=$selected_ids 
+                                                                level=$level+1
+                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -110,8 +108,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                            </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -151,8 +149,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                    </textarea>
+                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                            </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -296,51 +294,49 @@
 
                     <div class="form-group mb-3">
                         <p class="subtitle">Categories Associated with this Product</p>
-                        <div id="product_description_categories_product_categories" class="pstaggerTagsWrapper form-group d-block">
+                        <div id="product_description_categories_product_categories"
+                            class="pstaggerTagsWrapper form-group d-block">
                             {foreach from=$product_categories item=prod_cat key=key}
-                                <span id="product_description_categories_product_categories_{$key}" 
+                                <span id="product_description_categories_product_categories_{$key}"
                                     name="product[description][categories][product_categories][{$key}]"
                                     class="pstaggerTag tag-item">
-                                    <input type="hidden" 
+                                    <input type="hidden"
                                         id="product_description_categories_product_categories_{$key}_display_name"
                                         name="product[description][categories][product_categories][{$key}][display_name]"
-                                        class="category-name-preview-input"
-                                        value="{$prod_cat.name|escape:'html'}" />
-                                    
+                                        class="category-name-preview-input" value="{$prod_cat.name|escape:'html'}" />
+
                                     <span class="label text-preview category-name-preview">
                                         <span class="text-preview-value">{$prod_cat.name|escape:'html'}</span>
                                     </span>
 
-                                    <input type="hidden" 
-                                        id="product_description_categories_product_categories_{$key}_name"
+                                    <input type="hidden" id="product_description_categories_product_categories_{$key}_name"
                                         name="product[description][categories][product_categories][{$key}][name]"
-                                        class="category-name-input"
-                                        value="{$prod_cat.name|escape:'html'}" />
-                                    
+                                        class="category-name-input" value="{$prod_cat.name|escape:'html'}" />
+
                                     {if $prod_cat.id_category != 2}
-                                    <a class="pstaggerClosingCross" href="#" data-id="{$prod_cat.id_category}"
-                                    {if $prod_cat.id_category == 2} style="pointer-events: none; color: #ccc;" title="This category cannot be removed" {/if}>
-                                        x
-                                    </a>
+                                        <a class="pstaggerClosingCross" href="#" data-id="{$prod_cat.id_category}"
+                                            {if $prod_cat.id_category == 2} style="pointer-events: none; color: #ccc;"
+                                            title="This category cannot be removed" {/if}>
+                                            x
+                                        </a>
                                     {/if}
 
-                                    <input type="hidden" 
-                                        id="product_description_categories_product_categories_{$key}_id"
+                                    <input type="hidden" id="product_description_categories_product_categories_{$key}_id"
                                         name="product[description][categories][product_categories][{$key}][id]"
-                                        class="category-id-input"
-                                        value="{$prod_cat.id_category}" />
+                                        class="category-id-input" value="{$prod_cat.id_category}" />
                                 </span>
                             {/foreach}
                         </div>
                     </div>
 
-                        <!-- Default Category Dropdown -->
+                    <!-- Default Category Dropdown -->
                     <div class="form-group mb-3">
                         <label for="defaultCategorySelect" class="form-label">Select Default Category</label>
-                        <select class="custom-select form-control" id="defaultCategorySelect" name="product[asg][default_category]" required>
+                        <select class="custom-select form-control" id="defaultCategorySelect"
+                            name="product[asg][default_category]" required>
                             <option value="" disabled>Select a category</option>
                             {foreach from=$categories item=cat}
-                                <option value="{$cat.id_category}" 
+                                <option value="{$cat.id_category}"
                                     {if $cat.id_category == $product->id_category_default}selected="selected" {/if}>
                                     {$cat.name|escape:'html'}
                                 </option>
@@ -365,10 +361,65 @@
         </div>
 
         <div class="form-group">
-            <h3>Features</h3>
-            <button id="add-feature" class="btn btn-outline-primary"><i class="material-icons">add_circle</i><span class="btn-label">Add a feature</span></button>
-            <div id="product_details_features_feature_values"></div>
+            <hr>
         </div>
+
+        <div class="form-group">
+            <h3>Retail price</h3>
+            <div id="product_pricing_retail_price" class="retail-price-widget">
+
+                <!-- Tax Excluded -->
+                <div class="form-group money-widget retail-price-tax-excluded">
+                    <label for="product_pricing_retail_price_price_tax_excluded">
+                        Retail price (tax excl.)
+                    </label>
+                    <div class="input-group money-type">
+                        <input type="text" id="product_pricing_retail_price_price_tax_excluded"
+                            name="product[asg][retail_price][price_tax_excluded]"
+                            class="js-comma-transformer form-control" value="{$retail_price_tax_excl|floatval}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">&nbsp;€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tax Rule -->
+                <div class="form-group select-widget retail-price-tax-rules-group-id">
+                    <label for="product_pricing_retail_price_tax_rules_group_id">Tax rule</label>
+                    <select id="product_pricing_retail_price_tax_rules_group_id"
+                        name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                        {foreach from=$tax_rules item=rule}
+                            <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
+                                {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
+                                {$rule.name}
+                            </option>
+                        {/foreach}
+                    </select>
+                    <small class="form-text">
+                        Tax: {foreach from=$tax_rules item=rule}
+                            {if $rule.id == $selected_tax_rule_id}{$rule.rate}%{/if}
+                        {/foreach}
+                    </small>
+                </div>
+
+                <!-- Tax Included -->
+                <div class="form-group money-widget retail-price-tax-included">
+                    <label for="product_pricing_retail_price_price_tax_included">
+                        Retail price (tax incl.)
+                    </label>
+                    <div class="input-group money-type">
+                        <input type="text" id="product_pricing_retail_price_price_tax_included"
+                            name="product[asg][retail_price][price_tax_included]"
+                            class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">&nbsp;€</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
 
 
@@ -570,14 +621,14 @@
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
     // features
-    document.addEventListener('DOMContentLoaded', function () {
-        let featureIndex = 0;  // Track the feature index to prevent overriding
+    document.addEventListener('DOMContentLoaded', function() {
+        let featureIndex = 0; // Track the feature index to prevent overriding
 
         const addFeatureButton = document.getElementById('add-feature');
         const featureContainer = document.getElementById('product_details_features_feature_values');
         const prototype = featureContainer.getAttribute('data-prototype');
 
-        addFeatureButton.addEventListener('click', function () {
+        addFeatureButton.addEventListener('click', function() {
             event.preventDefault();
             // Increment feature index
             featureIndex++;
@@ -589,9 +640,10 @@
             featureContainer.insertAdjacentHTML('beforeend', newFeatureHTML);
 
             // Reinitialize select2 on the new feature select element (optional but if using select2)
-            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_`+featureIndex+`_feature_id`);
+            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_` +
+                featureIndex + `_feature_id`);
             if (newSelect) {
-                $(newSelect).select2();  // Assuming you're using select2 for dropdown
+                $(newSelect).select2(); // Assuming you're using select2 for dropdown
             }
         });
     });
@@ -605,7 +657,7 @@
         const tagNames = {};
 
         {foreach from=$languages item=language}
-            tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
+        tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
         {/foreach}
 
         const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
@@ -613,27 +665,27 @@
         const tagRefVariations = [];
 
         {foreach from=$combinations item=combination}
-            tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
+        tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
         {/foreach}
 
 
         const tagCompats = new Set();
 
         {if isset($compats) && is_array($compats)}
-            {foreach from=$compats item=compat}
-                {if !empty($compat.brand)}
-                    tagCompats.add("{$compat.brand|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.model)}
-                    tagCompats.add("{$compat.model|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.type)}
-                    tagCompats.add("{$compat.type|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.version)}
-                    tagCompats.add("{$compat.version|escape:'javascript'}");
-                {/if}
-            {/foreach}
+        {foreach from=$compats item=compat}
+        {if !empty($compat.brand)}
+        tagCompats.add("{$compat.brand|escape:'javascript'}");
+        {/if}
+        {if !empty($compat.model)}
+        tagCompats.add("{$compat.model|escape:'javascript'}");
+        {/if}
+        {if !empty($compat.type)}
+        tagCompats.add("{$compat.type|escape:'javascript'}");
+        {/if}
+        {if !empty($compat.version)}
+        tagCompats.add("{$compat.version|escape:'javascript'}");
+        {/if}
+        {/foreach}
         {/if}
 
         const uniqueTags = Array.from(tagCompats);
@@ -958,41 +1010,44 @@
 
     // categories
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Get all elements with the class "toggle-icon"
-    const toggleElements = document.querySelectorAll('.toggle-icon');
-    
-    toggleElements.forEach(function(toggle) {
-        // Add click event listener to each toggle icon
-        toggle.addEventListener('click', function(event) {
-            event.stopPropagation(); // Prevent checkbox click from being triggered
-            
-            const parentLi = this.closest('li');
-            const childUl = parentLi.querySelector('ul');
-            const icon = parentLi.querySelector('.toggle-icon');
-            
-            // Toggle the visibility of child categories
-            if (childUl) {
-                childUl.style.display = (childUl.style.display === 'none') ? 'block' : 'none';
-                
-                // Toggle the icon between + and -
-                if (childUl.style.display === 'block') {
-                    icon.innerHTML = '<i class="fa-solid fa-minus"></i>'; // Change to minus when open
-                } else {
-                    icon.innerHTML = '<i class="fa-solid fa-plus"></i>'; // Change to plus when closed
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements with the class "toggle-icon"
+        const toggleElements = document.querySelectorAll('.toggle-icon');
+
+        toggleElements.forEach(function(toggle) {
+            // Add click event listener to each toggle icon
+            toggle.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent checkbox click from being triggered
+
+                const parentLi = this.closest('li');
+                const childUl = parentLi.querySelector('ul');
+                const icon = parentLi.querySelector('.toggle-icon');
+
+                // Toggle the visibility of child categories
+                if (childUl) {
+                    childUl.style.display = (childUl.style.display === 'none') ? 'block' :
+                        'none';
+
+                    // Toggle the icon between + and -
+                    if (childUl.style.display === 'block') {
+                        icon.innerHTML =
+                            '<i class="fa-solid fa-minus"></i>'; // Change to minus when open
+                    } else {
+                        icon.innerHTML =
+                            '<i class="fa-solid fa-plus"></i>'; // Change to plus when closed
+                    }
                 }
-            }
+            });
         });
     });
-});
 
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // Handle removal of categories when the "x" button is clicked
         const removeButtons = document.querySelectorAll('.pstaggerClosingCross');
-        
-        removeButtons.forEach(function (button) {
-            button.addEventListener('click', function (e) {
+
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
                 e.preventDefault();
 
                 const categoryId = this.getAttribute('data-id');
@@ -1002,12 +1057,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (tagItem) {
                     tagItem.remove();
                     // Optionally, handle other actions like removing the category from the hidden inputs
-                    const categoryCheckbox = document.querySelector(`input[type="checkbox"][value="`+categoryId+`"]`);
+                    const categoryCheckbox = document.querySelector(
+                        `input[type="checkbox"][value="` + categoryId + `"]`);
                     if (categoryCheckbox) {
                         categoryCheckbox.checked = false;
                     }
 
-                    const buttonSaveProductFooter = document.querySelector("#product_footer_save");
+                    const buttonSaveProductFooter = document.querySelector(
+                        "#product_footer_save");
                     if (buttonSaveProductFooter) {
                         buttonSaveProductFooter.removeAttribute('disabled');
                     }
@@ -1017,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // Find all checkboxes
         const checkboxes = document.querySelectorAll('.category-tree input[type="checkbox"]');
 
@@ -1038,18 +1095,19 @@ document.addEventListener('DOMContentLoaded', function() {
             let childList = parentCheckbox.closest('li').querySelector('ul');
             if (childList) {
                 const childCheckboxes = childList.querySelectorAll('input[type="checkbox"]');
-                childCheckboxes.forEach(function (childCheckbox) {
+                childCheckboxes.forEach(function(childCheckbox) {
                     childCheckbox.checked = false; // Uncheck each child
                 });
             }
         }
 
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
                 // If this is the last child, automatically check the parent
                 if (this.checked) {
                     let childLi = this.closest('li');
-                    if (!childLi.querySelector('ul') || childLi.querySelector('ul').style.display === 'none') {
+                    if (!childLi.querySelector('ul') || childLi.querySelector('ul').style
+                        .display === 'none') {
                         // If there are no child categories (last child), check the parent
                         checkParentCheckbox(this);
                     }
@@ -1064,8 +1122,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Add event listener to handle parent checkbox clicks to uncheck children
-        const parentCheckboxes = document.querySelectorAll('.category-tree > li > label > input[type="checkbox"]');
-        
+        const parentCheckboxes = document.querySelectorAll(
+            '.category-tree > li > label > input[type="checkbox"]');
+
         parentCheckboxes.forEach(function(parentCheckbox) {
             parentCheckbox.addEventListener('change', function() {
                 if (!this.checked) {
@@ -1075,8 +1134,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-
-
 </script>
 
 <style>
@@ -1127,14 +1184,14 @@ document.addEventListener('DOMContentLoaded', function() {
     .toggle-icon {
         /* background: #222; */
         padding: 2px 7px;
-        border-radius: .25rem; 
+        border-radius: .25rem;
     }
-    .toggle-icon i{
+
+    .toggle-icon i {
         color: #fff;
     }
 
     .toggle-label {
         user-select: none;
     }
-
 </style>
