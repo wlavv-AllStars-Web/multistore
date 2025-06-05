@@ -420,6 +420,48 @@
             </div>
         </div>
 
+        <div class="form-group money-widget">
+            <h3 for="product_pricing_wholesale_price">
+                {l s='Cost price' d='Admin.Catalog.Feature'}
+            </h3>
+            <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
+
+            <div class="input-group money-type">
+                <input
+                type="text"
+                id="product_pricing_wholesale_price"
+                name="product[pricing][wholesale_price]"
+                data-display-price-precision="6"
+                class="js-comma-transformer form-control"
+                value="{$product->wholesale_price|escape:'html':'UTF-8'}"
+                />
+                <div class="input-group-append">
+                <span class="input-group-text">
+                    &nbsp;{$currency->sign}
+                </span>
+                </div>
+            </div>
+
+            <div class="form-check form-check-radio form-checkbox modify-all-shops">
+                <div class="md-checkbox md-checkbox-inline">
+                <label>
+                    <input
+                    type="checkbox"
+                    id="product_pricing_modify_all_shops_wholesale_price"
+                    name="product[pricing][modify_all_shops_wholesale_price]"
+                    container_class="modify-all-shops"
+                    data-value-type="boolean"
+                    class="form-check-input"
+                    value="1"
+                    />
+                    <i class="md-checkbox-control"></i>
+                    {l s='Apply changes to all stores' d='Admin.Global'}
+                </label>
+                </div>
+            </div>
+        </div>
+
+
 
 
 

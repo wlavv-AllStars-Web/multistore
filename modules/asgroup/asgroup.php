@@ -1609,6 +1609,7 @@ public function getASGProductCreation($product) {
         'retail_price_tax_incl' => $price_tax_incl,
         'selected_tax_rule_id' => $tax_rules_group_id,
         'tax_rules' => $taxRules,
+        'currency' => $this->context->currency,
     ]);
 }
 
