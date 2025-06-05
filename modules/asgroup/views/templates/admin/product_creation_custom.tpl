@@ -26,11 +26,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                categories=$categories 
-                                                                                parentId=$cat.id_category 
-                                                                                selected_ids=$selected_ids 
-                                                                                level=$level+1
-                                                                            }
+                                                                                                                categories=$categories 
+                                                                                                                parentId=$cat.id_category 
+                                                                                                                selected_ids=$selected_ids 
+                                                                                                                level=$level+1
+                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -108,8 +108,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                </textarea>
+                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                        </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -149,8 +149,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                </textarea>
+                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                        </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -585,14 +585,21 @@
                                     </td>
                                     <td>{$specific.units}</td>
                                     <td>
-                                        <button type="button" class="js-delete-specific-price-btn btn"
-                                            data-id="{$specific.id}" title="{l s='Delete'}">
-                                            <i class="material-icons">delete</i>
+                                        <button type="button" title="Delete"
+                                            class="js-delete-specific-price-btn btn tooltip-link"
+                                            data-confirm-title="Specific price deletion"
+                                            data-confirm-message="Are you sure you want to delete this specific price?"
+                                            data-confirm-btn-label="Delete" data-cancel-btn-label="Cancel"
+                                            data-confirm-btn-class="btn-danger" data-specific-price-id="{$specific.id}"><i
+                                                class="material-icons">delete</i>
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="js-edit-specific-price-btn btn"
-                                            data-id="{$specific.id}" title="{l s='Edit'}">
+                                        <button type="button" title="Edit"
+                                            class="js-edit-specific-price-btn btn tooltip-link"
+                                            data-modal-title="Edit specific price"
+                                            data-confirm-button-label="Save and publish" data-cancel-button-label="Cancel"
+                                            data-specific-price-id="{$specific.id}">
                                             <i class="material-icons">edit</i>
                                         </button>
                                     </td>
