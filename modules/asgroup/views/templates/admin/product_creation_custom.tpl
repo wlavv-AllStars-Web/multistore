@@ -1,4 +1,3 @@
-
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -514,7 +513,7 @@
     </h2>
 
     <div id="specific-prices-container">
-        {* <div id="product_pricing_specific_prices">
+        <div id="product_pricing_specific_prices">
             <div class="form-group">
                 <button id="product_pricing_specific_prices_add_specific_price_btn"
                     name="product[pricing][specific_prices][add_specific_price_btn]"
@@ -588,7 +587,7 @@
                             <td class="from-qty">{$specific.units}</td>
 
                             <td>
-                                <button class="js-delete-specific-price-btn btn tooltip-link"
+                                <button class="btn btn-danger js-delete-specific-price-btn"
                                     data-specific-price-id="{$specific.id}"
                                     data-confirm-title="Specific price deletion"
                                     data-confirm-message="Are you sure you want to delete this specific price?"
@@ -613,38 +612,7 @@
                     {/foreach}
                 </tbody>
             </table>
-        </div> *}
-
-            <table class="specific-price-list">
-                <tbody></tbody>
-            </table>
-
-            <template id="specific-price-row-template">
-                <tr>
-                <td class="specificPriceId"></td>
-                <td class="combination"></td>
-                <td class="currency"></td>
-                <td class="country"></td>
-                <td class="group"></td>
-                <td class="shop"></td>
-                <td class="customer"></td>
-                <td class="price"></td>
-                <td class="impact"></td>
-                <td class="period"></td>
-                <td class="from"></td>
-                <td class="to"></td>
-                <td class="fromQuantity"></td>
-                <td><button class="deleteBtn">Delete</button></td>
-                <td><button class="editBtn">Edit</button></td>
-                </tr>
-            </template>
-
-            <div id="specific-price-loading-spinner" style="display:none;">Loading...</div>
-     
-
-
-
-        {* fim *}
+        </div>
     </div>
 </div>
 
@@ -843,205 +811,9 @@
     </div>
 </div>
 
-<script>
-  // Make sure 'p' object is available
-  var p = {
-    specificPrice: {
-      container: "#specific-prices-container",
-      paginationContainer: "#specific-prices-pagination",
-      loadingSpinner: "#specific-prices-loading",
-      listTable: "#specific-prices-list-table",
-      modalTemplate: "#specific-price-modal-template",
-      modalContentId: "specific-price-modal",
-      addSpecificPriceBtn: ".js-add-specific-price-btn",
-      form: 'form[name="specific_price"]',
-      listContainer: "#specific-price-list-container",
-      listRowTemplate: "#specific-price-tr-template",
-      deletionModalId: "modal-confirm-delete-combination",
-      listFields: {
-        specificPriceId: ".specific-price-id",
-        combination: ".combination",
-        currency: ".currency",
-        country: ".country",
-        group: ".group",
-        shop: ".shop",
-        customer: ".customer",
-        price: ".price",
-        impact: ".impact",
-        period: ".period",
-        from: ".period .from",
-        to: ".period .to",
-        fromQuantity: ".from-qty",
-        editBtn: ".js-edit-specific-price-btn",
-        deleteBtn: ".js-delete-specific-price-btn",
-      },
-      priority: {
-        priorityListWrapper: ".specific-price-priority-list",
-        priorityTypeCheckboxesSelector:
-          'input[name="product[pricing][priority_management][use_custom_priority]"]',
-      },
-    },
-  };
-
-  console.log('script loaded');
-
-  // Initialize the class only when the DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-   const checkPrestaShopInstance = setInterval(function () {
-     if (window.prestashop && window.prestashop.instance) {
-       clearInterval(checkPrestaShopInstance); // Stop checking once it's available
-       
-       const Qw = p.specificPrice;
-
-       const eventEmitter = window.prestashop.instance.eventEmitter;
-
-       class Jw {
-         constructor(t) {
-           this.productId = t;
-           this.listContainer = document.querySelector(Qw.listContainer);
-           this.eventEmitter = eventEmitter; // Use the eventEmitter here
-           this.$loadingSpinner = Xw(p.specificPrice.loadingSpinner);
-           this.$listTable = Xw(p.specificPrice.listTable);
-         }
-
-         setLoading(t) {
-           this.$loadingSpinner.toggle(t);
-           this.$listTable.toggle(!t);
-         }
-
-         render(t) {
-           const { listFields: e } = Qw;
-           const n = this.listContainer.querySelector(`tbody`);
-           const r = this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
-           n.innerHTML = "";
-           const i = t.specificPrices;
-
-           this.toggleListVisibility(i.length > 0);
-           i.forEach((t) => {
-             const i = document.createElement("tbody");
-             i.innerHTML = r.trim();
-             const o = i.firstChild;
-             const a = this.selectListField(o, e.specificPriceId);
-             const s = this.selectListField(o, e.combination);
-             const l = this.selectListField(o, e.currency);
-             const m = this.selectListField(o, e.country);
-             const c = this.selectListField(o, e.group);
-             const p = this.selectListField(o, e.shop);
-             const d = this.selectListField(o, e.customer);
-             const u = this.selectListField(o, e.price);
-             const g = this.selectListField(o, e.impact);
-             const h = this.selectListField(o, e.period);
-             const f = this.selectListField(o, e.from);
-             const b = this.selectListField(o, e.to);
-             const v = this.selectListField(o, e.fromQuantity);
-             const x = this.selectListField(o, e.deleteBtn);
-             const y = this.selectListField(o, e.editBtn);
-
-             a.textContent = String(t.id);
-             s.textContent = t.combination;
-             l.textContent = t.currency;
-             m.textContent = t.country;
-             c.textContent = t.group;
-             p.textContent = t.shop;
-             d.textContent = t.customer;
-             u.textContent = t.price;
-             g.textContent = t.impact;
-             v.textContent = t.fromQuantity;
-             x.dataset.specificPriceId = String(t.id);
-             y.dataset.specificPriceId = String(t.id);
-
-             if (t.period) {
-               f.textContent = t.period.from;
-               b.textContent = t.period.to;
-             } else {
-               h.textContent = String(h.dataset.unlimitedText);
-             }
-
-             n.append(o);
-             this.addEventListenerForDeleteBtn(x);
-           });
-         }
-
-         toggleListVisibility(t) {
-           this.listContainer.classList.toggle("d-none", !t);
-         }
-
-         selectListField(t, e) {
-           return t.querySelector(e);
-         }
-
-         addEventListenerForDeleteBtn(t) {
-           t.addEventListener("click", (t) => {
-             t.currentTarget instanceof HTMLElement &&
-               !D(t.currentTarget.dataset.specificPriceId) &&
-               this.deleteSpecificPrice(t.currentTarget.dataset);
-           });
-         }
-
-         deleteSpecificPrice(t) {
-           const e = new W(
-             {
-               id: p.specificPrice.deletionModalId,
-               confirmTitle: t.confirmTitle,
-               confirmMessage: t.confirmMessage,
-               confirmButtonLabel: t.confirmBtnLabel,
-               closeButtonLabel: t.cancelBtnLabel,
-               confirmButtonClass: t.confirmBtnClass,
-               closable: true,
-             },
-             () => {
-               return (
-                 (e = this),
-                 (n = null),
-                 (r = function* () {
-                   if (!t.specificPriceId) return;
-                   const e = yield Kw(t.specificPriceId);
-                   Xw.growl({ message: e.message });
-                   this.eventEmitter.emit(v.listUpdated);  // Event emission
-                 }),
-                 new Promise((t, i) => {
-                   var o = (t) => {
-                       try {
-                         s(r.next(t));
-                       } catch (t) {
-                         i(t);
-                       }
-                     },
-                     a = (t) => {
-                       try {
-                         s(r.throw(t));
-                       } catch (t) {
-                         i(t);
-                       }
-                     },
-                     s = (e) =>
-                       e.done ? t(e.value) : Promise.resolve(e.value).then(o, a);
-                   s((r = r.apply(e, n)).next());
-                 })
-               );
-               var e, n, r;
-             }
-           );
-           e.show();
-         }
-       }
-
-       window.Jw = Jw;
-       new Jw(19041);  // Initialize with productId (19041)
-       console.log(new Jw(19041));
-     } else {
-       console.error('prestashop.instance is not available!');
-     }
-   }, 100);  // Check every 100 milliseconds until PrestaShop is available
- });
-
-</script>
-
-
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-
 
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
@@ -1321,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
-            '#product_pricing #specific-prices-container',
+            '#product_prices #specific-prices-container',
 
         ];
 
@@ -1331,7 +1103,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const element = document.querySelector(id).parentElement;
 
             if (element) {
-                console.log('Removing element:', id);
                 element.remove();
             }
         });
