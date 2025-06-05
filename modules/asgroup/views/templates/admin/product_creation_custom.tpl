@@ -559,6 +559,7 @@
                         </thead>
                         <tbody>
 {foreach from=$specific_data item=specific}
+    <pre>{$specific|print_r}</pre>
     <tr>
         <td>{$specific.id}</td>
         <td>{$specific.combination|default:'--'}</td>
