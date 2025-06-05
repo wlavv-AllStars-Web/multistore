@@ -1650,6 +1650,27 @@ public function getGroup($groupId)
     return $group->name;
 }
 
+public function getShopName($shopId)
+{
+    // Fetch shop information using the Shop class
+    $shop = new Shop($shopId);
+    return $shop->name;
+}
+
+public function getCustomerName($customerId)
+{
+    $customer = new Customer($customerId);
+
+    // Check if the customer exists
+    if (Validate::isLoadedObject($customer)) {
+        return $customer->firstname . ' ' . $customer->lastname;
+    }
+
+    return 'All customers';  // Default if no customer is specified
+}
+
+
+
 
 public function buildSpecificPriceTable($productId)
 {
