@@ -1588,6 +1588,8 @@ public function getASGProductCreation($product) {
         ];
     }
 
+    $specificPrices = SpecificPrice::getByProductId($product->id); // Or your custom logic
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
@@ -1610,6 +1612,7 @@ public function getASGProductCreation($product) {
         'selected_tax_rule_id' => $tax_rules_group_id,
         'tax_rules' => $taxRules,
         'currency' => $this->context->currency,
+        'specific_prices' => $specificPrices,
     ]);
 }
 

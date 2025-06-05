@@ -508,6 +508,114 @@
             </div>
         </div>
 
+        <div class="form-group">
+  <h2>
+    {l s='Specific prices' d='Admin.Catalog.Feature'}
+    <span class="help-box"
+          data-toggle="popover"
+          data-trigger="hover"
+          data-html="true"
+          data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
+          data-placement="top">
+    </span>
+  </h2>
+
+  <div id="specific-prices-container">
+    <div id="product_pricing_specific_prices">
+      <div class="form-group">
+        <button
+          id="product_pricing_specific_prices_add_specific_price_btn"
+          name="product[pricing][specific_prices][add_specific_price_btn]"
+          class="js-add-specific-price-btn btn btn-outline-primary"
+          data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
+          data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
+          data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}"
+          type="button"
+        >
+          <i class="material-icons">add_circle</i>
+          <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="specific-price-list-container" {if not $specific_prices|@count}class="d-none"{/if}>
+      <table class="table" id="specific-prices-list-table">
+        <thead class="thead-default">
+          <tr>
+            <th>{l s='ID'}</th>
+            <th>{l s='Combination'}</th>
+            <th>{l s='Currency'}</th>
+            <th>{l s='Country'}</th>
+            <th>{l s='Group'}</th>
+            <th>{l s='Store'}</th>
+            <th>{l s='Customer'}</th>
+            <th>{l s='Specific price (tax excl.)'}</th>
+            <th>{l s='Discount (tax incl.)'}</th>
+            <th>{l s='Duration'}</th>
+            <th>{l s='Units'}</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {foreach from=$specific_prices item=specific}
+          <tr>
+            <td>{$specific.id_specific_price}</td>
+            <td>{$specific.combination_name|default:'-'}</td>
+            <td>{$specific.currency_name|escape:'html'}</td>
+            <td>{$specific.country_name|escape:'html'}</td>
+            <td>{$specific.group_name|escape:'html'}</td>
+            <td>{$specific.shop_name|escape:'html'}</td>
+            <td>{$specific.customer_name|default:'-'}</td>
+            <td>{$specific.price|string_format:'%.2f'}&nbsp;{$currency->sign}</td>
+            <td>{$specific.reduction|string_format:'%.2f'}&nbsp;{$currency->sign}</td>
+            <td>
+              <label>{l s='From'} <span>{$specific.from|date_format:"%Y-%m-%d"}</span></label><br>
+              <label>{l s='To'} <span>{$specific.to|date_format:"%Y-%m-%d"}</span></label>
+            </td>
+            <td>{$specific.from_quantity}</td>
+            <td>
+              <button
+                type="button"
+                class="js-delete-specific-price-btn btn"
+                data-id="{$specific.id_specific_price}"
+                title="{l s='Delete'}"
+              >
+                <i class="material-icons">delete</i>
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="js-edit-specific-price-btn btn"
+                data-id="{$specific.id_specific_price}"
+                title="{l s='Edit'}"
+              >
+                <i class="material-icons">edit</i>
+              </button>
+            </td>
+          </tr>
+        {/foreach}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <button
+    id="product_pricing_show_catalog_price_rules"
+    name="product[pricing][show_catalog_price_rules]"
+    class="btn-default btn"
+    data-hide-label="{l s='Hide catalog price rules' d='Admin.Catalog.Feature'}"
+    data-show-label="{l s='Show catalog price rules' d='Admin.Catalog.Feature'}"
+    type="button"
+  >
+    <i class="material-icons">visibility</i>
+    <span class="btn-label">{l s='Show catalog price rules' d='Admin.Catalog.Feature'}</span>
+  </button>
+</div>
+
 
 
 
