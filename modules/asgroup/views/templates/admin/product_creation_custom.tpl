@@ -1032,7 +1032,7 @@
         console.error('prestashop.instance is not available!');
       }
     } else {
-      console.error('PrestaShop specificPrice configuration is missing.');
+      console.log('PrestaShop specificPrice configuration is missing.');
     }
   });
 </script>
