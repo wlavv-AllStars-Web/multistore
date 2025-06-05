@@ -904,7 +904,7 @@
 
         render(t) {
           const { listFields: e } = Qw;
-          const n = this.listContainer.querySelector(`${Qw.listContainer} tbody`);
+          const n = this.listContainer.querySelector(``+Qw.listContainer+` tbody`);
           const r = this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
           n.innerHTML = "";
           const i = t.specificPrices;
