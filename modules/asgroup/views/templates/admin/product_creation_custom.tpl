@@ -605,7 +605,7 @@
 <div class="form-group">
   <button
     id="product_pricing_show_catalog_price_rules"
-    name="product[pricing][show_catalog_price_rules]"
+    name="product[asg][show_catalog_price_rules]"
     class="btn-default btn"
     data-hide-label="{l s='Hide catalog price rules' d='Admin.Catalog.Feature'}"
     data-show-label="{l s='Show catalog price rules' d='Admin.Catalog.Feature'}"
