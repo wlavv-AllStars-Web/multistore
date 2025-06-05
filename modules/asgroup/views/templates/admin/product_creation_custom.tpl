@@ -887,7 +887,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     if (window.p && window.p.specificPrice) {
       const Qw = p.specificPrice;
-
+    console.log('Qw: ' + Qw );
       class Jw {
         constructor(t) {
           this.productId = t;
@@ -1020,7 +1020,8 @@
       }
 
       window.Jw = Jw;
-      new Jw(19041); // Example instantiation with productId
+      new Jw(19041);
+      console.log(new Jw(19041)); // Example instantiation with productId
     } else {
       console.error('PrestaShop specificPrice configuration is missing.');
     }
