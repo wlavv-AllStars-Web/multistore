@@ -1,5 +1,5 @@
 
-
+<script src="https://euromuscleparts.com/admineuromus1/themes/new-theme/public/product_edit.bundle.js?1"></script>
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
