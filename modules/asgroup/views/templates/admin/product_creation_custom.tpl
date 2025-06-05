@@ -813,6 +813,29 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const submitButton = document.querySelector('#modal-specific-price-form .btn-lg.btn-confirm-submit');
+    const dismissButton = document.querySelector('#modal-specific-price-form [data-dismiss="modal"]');
+
+    if (submitButton && dismissButton) {
+        submitButton.addEventListener('click', function () {
+            // Trigger the modal dismiss button
+            dismissButton.click();
+
+            // Show notification (Bootstrap 5 Toast-style fallback)
+            const alertBox = document.createElement('div');
+            alertBox.className = 'alert alert-success position-fixed top-0 end-0 m-3 shadow';
+            alertBox.style.zIndex = '1055';
+            alertBox.innerText = 'Specific price saved successfully!';
+            document.body.appendChild(alertBox);
+
+            // Auto-dismiss after 3 seconds
+            setTimeout(() => {
+                alertBox.remove();
+            }, 3000);
+        });
+    }
+});
 
 
 function deleteSpecificPrice(id) {
