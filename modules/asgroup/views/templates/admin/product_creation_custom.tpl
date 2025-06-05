@@ -68,7 +68,7 @@
                         </span>
                     </label>
                     {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
-                    <div style="display: flex;gap: 1rem;">
+                    <div style="display: flex;gap: .5rem;">
                         <input id="product_details_references_ean_13" type="text" class="form-control" name="product[asg][ean13]" value="{$product->ean13}">
                         <span id="product_details_print_ean_btn" class="btn btn-info"><i class="material-icons">local_printshop</i></span>
                     </div>
