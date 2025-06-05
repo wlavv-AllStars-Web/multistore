@@ -882,7 +882,7 @@
       },
     },
   };
-
+    console.log('script loaded');
   // Initialize the class only when the DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
     if (window.p && window.p.specificPrice) {
