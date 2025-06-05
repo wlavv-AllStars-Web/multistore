@@ -538,7 +538,7 @@
                     </div>
                 </div>
 
-                <div id="specific-price-list-container" class="{if $specific_prices|count < 1}d-none{/if}">
+                <div id="specific-price-list-container" class="{if $specific_prices|count > 0}d-block{else}d-none{/if}">
                     <table class="table" id="specific-prices-list-table">
                         <thead class="thead-default">
                             <tr>
@@ -581,8 +581,13 @@
         <td>{$specific.specific_price|string_format:'%.2f'}</td>
         <td>{$specific.discount|string_format:'%.2f'}</td>
         <td>
+        {if isset($specific.duration) && is_array($specific.duration)}
             <label>{l s='From'} <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
             <label>{l s='To'} <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
+        {else}
+            <label>{l s='From'} <span>-</span></label><br>
+            <label>{l s='To'} <span>-</span></label>
+        {/if}
         </td>
         <td>{$specific.units}</td>
         <td>
