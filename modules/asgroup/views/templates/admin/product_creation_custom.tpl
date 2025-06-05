@@ -559,20 +559,27 @@
                         </thead>
                         <tbody>
 {foreach from=$specific_data item=specific}
-    <pre>{$specific|print_r}</pre>
     <tr>
         <td>{$specific.id}</td>
         <td>{$specific.combination|default:'--'}</td>
         <td>{$specific.currency|escape:'html'}</td>
         <td>
-            {foreach from=$specific.country item=country}
-                {$country|escape:'html'}<br>
-            {/foreach}
+            {if is_array($specific.country)}
+                {foreach from=$specific.country item=country}
+                    {$country|escape:'html'}<br>
+                {/foreach}
+            {else}
+                {$specific.country|escape:'html'}
+            {/if}
         </td>
         <td>
-            {foreach from=$specific.group item=group}
-                {$group|escape:'html'}<br>
-            {/foreach}
+            {if is_array($specific.group)}
+                {foreach from=$specific.group item=group}
+                    {$group|escape:'html'}<br>
+                {/foreach}
+            {else}
+                {$specific.group|escape:'html'}
+            {/if}
         </td>
         <td>{$specific.store|escape:'html'}</td>
         <td>{$specific.customer|default:'All customers'}</td>
@@ -605,6 +612,7 @@
         </td>
     </tr>
 {/foreach}
+
 
                         </tbody>
                     </table>
