@@ -564,16 +564,16 @@
         <td>{$specific.combination|default:'--'}</td>
         <td>{$specific.currency|escape:'html'}</td>
         
-        {if isset($specific.country[$specific.id_lang])}
+        {if isset($specific.country[$specific.id_lang]) && $specific.country[$specific.id_lang] != ''}
             <td>{$specific.country[$specific.id_lang]|escape:'html'}</td>
         {else}
-            <td>{$specific.country|default:'-'}</td>
+            <td>{l s='-'}</td>
         {/if}
 
-        {if isset($specific.group[$specific.id_lang])}
+        {if isset($specific.group[$specific.id_lang]) && $specific.group[$specific.id_lang] != ''}
             <td>{$specific.group[$specific.id_lang]|escape:'html'}</td>
         {else}
-            <td>{$specific.group|default:'-'}</td>
+            <td>{l s='-'}</td>
         {/if}
 
         <td>{$specific.store|escape:'html'}</td>
