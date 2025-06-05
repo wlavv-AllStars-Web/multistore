@@ -1590,7 +1590,7 @@ public function getASGProductCreation($product) {
 
     $specificPrices = SpecificPrice::getByProductId($product->id); // Or your custom logic
 
-    $specificPriceData = $this->buildSpecificPriceTable($product->id);
+    $specific_data = $this->buildSpecificPriceTable($product->id);
 
     // pre($specificPriceData);
 
@@ -1617,7 +1617,7 @@ public function getASGProductCreation($product) {
         'tax_rules' => $taxRules,
         'currency' => $this->context->currency,
         'specific_prices' => $specificPrices,
-        'specificPriceData' => $specificPriceData,
+        'specific_data' => $specific_data,
     ]);
 }
 
