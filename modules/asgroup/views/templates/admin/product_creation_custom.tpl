@@ -538,7 +538,7 @@
       </div>
     </div>
 
-    <div id="specific-price-list-container" {if $specific_prices|count < 1}class="d-none"{/if}>
+    <div id="specific-price-list-container" class="{if $specificPrices|count < 1}d-none{/if}">
       <table class="table" id="specific-prices-list-table">
         <thead class="thead-default">
           <tr>
