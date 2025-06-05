@@ -513,7 +513,7 @@
     </h2>
 
     <div id="specific-prices-container_custom">
-        <div id="product_pricing_specific_prices">
+        {* <div id="product_pricing_specific_prices">
             <div class="form-group">
                 <button id="product_pricing_specific_prices_add_specific_price_btn"
                     name="product[pricing][specific_prices][add_specific_price_btn]"
@@ -612,7 +612,7 @@
                     {/foreach}
                 </tbody>
             </table>
-        </div>
+        </div> *}
     </div>
 </div>
 
@@ -814,6 +814,21 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+
+    window.onload = function() {
+    // Get the element you want to clone
+    var originalElement = document.getElementById('specific-prices-container');
+    
+    // Clone the element (true means deep clone, including child elements)
+    var clonedElement = originalElement.cloneNode(true);
+
+    // Optionally modify the cloned element (e.g., change its ID)
+    clonedElement.id = 'specific-prices-container-clone';
+
+    // Append the cloned element to a different container or the same container
+    document.querySelector("#specific-prices-container_custom").appendChild(clonedElement);
+    };
+
 
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
