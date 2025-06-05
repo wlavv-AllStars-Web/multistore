@@ -1522,8 +1522,123 @@ const Yw=new S,{$:Zw}=window,Kw=t=>{return e=void 0,n=null,r=function*(){return 
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
-const Qw=p.specificPrice;class Jw{constructor(t){this.productId=t,this.listContainer=document.querySelector(Qw.listContainer),this.eventEmitter=window.prestashop.instance.eventEmitter,this.$loadingSpinner=Xw(p.specificPrice.loadingSpinner),this.$listTable=Xw(p.specificPrice.listTable)}setLoading(t){this.$loadingSpinner.toggle(t),this.$listTable.toggle(!t)}render(t){const{listFields:e}=Qw,n=this.listContainer.querySelector(`${Qw.listContainer} tbody`),r=this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;n.innerHTML="";const i=t.specificPrices;this.toggleListVisibility(i.length>0),i.forEach((t=>{const i=document.createElement("tbody");i.innerHTML=r.trim();const o=i.firstChild,a=this.selectListField(o,e.specificPriceId),s=this.selectListField(o,e.combination),l=this.selectListField(o,e.currency),m=this.selectListField(o,e.country),c=this.selectListField(o,e.group),p=this.selectListField(o,e.shop),d=this.selectListField(o,e.customer),u=this.selectListField(o,e.price),g=this.selectListField(o,e.impact),h=this.selectListField(o,e.period),f=this.selectListField(o,e.from),b=this.selectListField(o,e.to),v=this.selectListField(o,e.fromQuantity),x=this.selectListField(o,e.deleteBtn),y=this.selectListField(o,e.editBtn);a.textContent=String(t.id),s.textContent=t.combination,l.textContent=t.currency,m.textContent=t.country,c.textContent=t.group,p.textContent=t.shop,d.textContent=t.customer,u.textContent=t.price,g.textContent=t.impact,v.textContent=t.fromQuantity,x.dataset.specificPriceId=String(t.id),y.dataset.specificPriceId=String(t.id),t.period?(f.textContent=t.period.from,b.textContent=t.period.to):h.textContent=String(h.dataset.unlimitedText),n.append(o),this.addEventListenerForDeleteBtn(x)}))}toggleListVisibility(t){this.listContainer.classList.toggle("d-none",!t)}selectListField(t,e){return t.querySelector(e)}addEventListenerForDeleteBtn(t){t.addEventListener("click",(t=>{t.currentTarget instanceof HTMLElement&&!D(t.currentTarget.dataset.specificPriceId)&&this.deleteSpecificPrice(t.currentTarget.dataset)}))}deleteSpecificPrice(t){const e=new W({id:p.specificPrice.deletionModalId,confirmTitle:t.confirmTitle,confirmMessage:t.confirmMessage,confirmButtonLabel:t.confirmBtnLabel,closeButtonLabel:t.cancelBtnLabel,confirmButtonClass:t.confirmBtnClass,closable:!0},(()=>{return e=this,n=null,r=function*(){if(!t.specificPriceId)return;const e=yield Kw(t.specificPriceId);Xw.growl({message:e.message}),this.eventEmitter.emit(v.listUpdated)},new Promise(((t,i)=>{var o=t=>{try{s(r.next(t))}catch(t){i(t)}},a=t=>{try{s(r.throw(t))}catch(t){i(t)}},s=e=>e.done?t(e.value):Promise.resolve(e.value).then(o,a);s((r=r.apply(e,n)).next())}));var e,n,r}));e.show()}}window.SpecificPriceListManager = Jw;
-var t_=Object.defineProperty,e_=Object.getOwnPropertySymbols,n_=Object.prototype.hasOwnProperty,r_=Object.prototype.propertyIsEnumerable,i_=(t,e,n)=>e in t?t_(t,e,{enumerable:!0,configurable:!0,writable:!0,value:n}):t[e]=n;
+(function () {
+  const Qw=p.specificPrice;
+  class Jw {
+    constructor(t){
+      this.productId=t,
+      this.listContainer=document.querySelector(Qw.listContainer),
+      this.eventEmitter=window.prestashop.instance.eventEmitter,
+      this.$loadingSpinner=Xw(p.specificPrice.loadingSpinner),
+      this.$listTable=Xw(p.specificPrice.listTable)
+    }
+
+    setLoading(t){
+      this.$loadingSpinner.toggle(t),
+      this.$listTable.toggle(!t)
+    }
+
+    render(t){
+      const{listFields:e}=Qw,
+            n=this.listContainer.querySelector(`${Qw.listContainer} tbody`),
+            r=this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
+      n.innerHTML="";
+      const i=t.specificPrices;
+      this.toggleListVisibility(i.length>0),
+      i.forEach((t=>{
+        const i=document.createElement("tbody");
+        i.innerHTML=r.trim();
+        const o=i.firstChild,
+              a=this.selectListField(o,e.specificPriceId),
+              s=this.selectListField(o,e.combination),
+              l=this.selectListField(o,e.currency),
+              m=this.selectListField(o,e.country),
+              c=this.selectListField(o,e.group),
+              p=this.selectListField(o,e.shop),
+              d=this.selectListField(o,e.customer),
+              u=this.selectListField(o,e.price),
+              g=this.selectListField(o,e.impact),
+              h=this.selectListField(o,e.period),
+              f=this.selectListField(o,e.from),
+              b=this.selectListField(o,e.to),
+              v=this.selectListField(o,e.fromQuantity),
+              x=this.selectListField(o,e.deleteBtn),
+              y=this.selectListField(o,e.editBtn);
+        a.textContent=String(t.id),
+        s.textContent=t.combination,
+        l.textContent=t.currency,
+        m.textContent=t.country,
+        c.textContent=t.group,
+        p.textContent=t.shop,
+        d.textContent=t.customer,
+        u.textContent=t.price,
+        g.textContent=t.impact,
+        v.textContent=t.fromQuantity,
+        x.dataset.specificPriceId=String(t.id),
+        y.dataset.specificPriceId=String(t.id),
+        t.period?(f.textContent=t.period.from,b.textContent=t.period.to):h.textContent=String(h.dataset.unlimitedText),
+        n.append(o),
+        this.addEventListenerForDeleteBtn(x)
+      }))
+    }
+
+    toggleListVisibility(t){
+      this.listContainer.classList.toggle("d-none",!t)
+    }
+
+    selectListField(t,e){
+      return t.querySelector(e)
+    }
+
+    addEventListenerForDeleteBtn(t){
+      t.addEventListener("click",(t=>{
+        t.currentTarget instanceof HTMLElement&&!D(t.currentTarget.dataset.specificPriceId)&&this.deleteSpecificPrice(t.currentTarget.dataset)
+      }))
+    }
+
+    deleteSpecificPrice(t){
+      const e=new W({
+        id:p.specificPrice.deletionModalId,
+        confirmTitle:t.confirmTitle,
+        confirmMessage:t.confirmMessage,
+        confirmButtonLabel:t.confirmBtnLabel,
+        closeButtonLabel:t.cancelBtnLabel,
+        confirmButtonClass:t.confirmBtnClass,
+        closable:!0
+      },(()=>{
+        return e=this,n=null,r=function*(){
+          if(!t.specificPriceId)return;
+          const e=yield Kw(t.specificPriceId);
+          Xw.growl({message:e.message}),
+          this.eventEmitter.emit(v.listUpdated)
+        },
+        new Promise(((t,i)=>{
+          var o=t=>{
+            try{s(r.next(t))
+            }catch(t){i(t)}},
+            a=t=>{
+              try{s(r.throw(t))
+              }catch(t){i(t)}},
+            s=e=>e.done?t(e.value):Promise.resolve(e.value).then(o,a);
+          s((r=r.apply(e,n)).next())
+        }));
+        var e,n,r
+      }));
+      e.show()
+    }
+  }
+
+  // ✅ Attach the class to the window after it's fully defined
+  window.SpecificPriceListManager = Jw;
+
+  var t_=Object.defineProperty,
+      e_=Object.getOwnPropertySymbols,
+      n_=Object.prototype.hasOwnProperty,
+      r_=Object.prototype.propertyIsEnumerable,
+      i_=(t,e,n)=>e in t?t_(t,e,{enumerable:!0,configurable:!0,writable:!0,value:n}):t[e]=n;
+
+})();
+
 
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
