@@ -68,7 +68,7 @@
                         </span>
                     </label>
                     {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
-                    <input type="text" class="form-control" name="product[asg][ean13]" value="{$product->ean13}">
+                    <input id="product_details_references_ean_13" type="text" class="form-control" name="product[asg][ean13]" value="{$product->ean13}">
                 </div>
 
                 <div class="form-group text-widget">
