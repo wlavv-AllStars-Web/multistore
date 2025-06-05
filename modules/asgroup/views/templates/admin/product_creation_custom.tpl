@@ -1139,13 +1139,6 @@
             '#product_description #product_description_description_short',
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
-            '#product_description #product_description_youtube_1',
-            '#product_description #product_description_youtube_2',
-            '#product_description #product_description_hs_code',
-            '#product_description #product_description_difficulty',
-            '#product_description #product_description_ec_approved',
-            '#product_description #product_description_wmdeprecated',
-            '#product_description #product_description_not_to_order',
             '#product_description #product_description_categories',
             '#product_pricing',
         ];
@@ -1406,5 +1399,9 @@
 
     .toggle-label {
         user-select: none;
+    }
+
+    #product_pricing-tab-nav {
+        display: none;
     }
 </style>
