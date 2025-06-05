@@ -574,8 +574,7 @@
                                             <label>{l s='To'}
                                                 <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
                                         {else}
-                                            <label>{l s='From'} <span>-</span></label><br>
-                                            <label>{l s='To'} <span>-</span></label>
+                                            <label>{$specific.duration}</label>
                                         {/if}
                                     </td>
                                     <td>{$specific.units}</td>
