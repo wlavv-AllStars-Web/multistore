@@ -512,7 +512,7 @@
         </span>
     </h2>
 
-    <div id="specific-prices-container">
+    <div id="specific-prices-container_custom">
         <div id="product_pricing_specific_prices">
             <div class="form-group">
                 <button id="product_pricing_specific_prices_add_specific_price_btn"
@@ -587,7 +587,7 @@
                             <td class="from-qty">{$specific.units}</td>
 
                             <td>
-                                <button class="btn btn-danger js-delete-specific-price-btn"
+                                <button class="js-delete-specific-price-btn btn tooltip-link"
                                     data-specific-price-id="{$specific.id}"
                                     data-confirm-title="Specific price deletion"
                                     data-confirm-message="Are you sure you want to delete this specific price?"
