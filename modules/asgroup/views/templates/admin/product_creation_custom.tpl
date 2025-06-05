@@ -579,7 +579,7 @@
         <td>{$specific.store|escape:'html'}</td>
         <td>{$specific.customer|default:'All customers'}</td>
         <td>{$specific.specific_price|string_format:'%.2f'}</td>
-        <td>{$specific.discount|string_format:'%.2f'}</td>
+        <td>{$specific.reduction|escape:'html'}</td>
         <td>
         {if isset($specific.duration) && is_array($specific.duration)}
             <label>{l s='From'} <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
