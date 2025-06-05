@@ -1617,6 +1617,7 @@ public function getASGProductCreation($product) {
         'tax_rules' => $taxRules,
         'currency' => $this->context->currency,
         'specific_prices' => $specificPrices,
+        'specificPriceData' => $specificPriceData,
     ]);
 }
 
