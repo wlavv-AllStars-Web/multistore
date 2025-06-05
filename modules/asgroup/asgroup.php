@@ -1509,6 +1509,11 @@ public function getASGProductCreation($product) {
     $id_lang = (int)Context::getContext()->language->id;
     $baseUrl = $this->context->link->getBaseLink();
 
+    if (Tools::getValue('action') === 'deleteSpecificPrice' && Tools::getIsset('ajax')) {
+        $this->ajaxDeleteSpecificPrice();
+        exit;
+    }
+
 
     // Get Symfony services
     $formFactory = SymfonyContainer::getInstance()->get('form.factory');
@@ -1623,8 +1628,28 @@ public function getASGProductCreation($product) {
         'specific_prices' => $specificPrices,
         'specific_data' => $specific_data,
         'admin_base_url' => $adminBaseUrl,
+        'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
+            'configure' => $this->name,
+            'action' => 'deleteSpecificPrice',
+        ]),
     ]);
 }
+
+protected function ajaxDeleteSpecificPrice()
+{
+    $id = (int) Tools::getValue('id_specific_price');
+
+    if ($id && Validate::isUnsignedId($id)) {
+        $result = Db::getInstance()->delete('specific_price', 'id_specific_price = ' . (int) $id);
+
+        if ($result) {
+            die(json_encode(['success' => true]));
+        }
+    }
+
+    die(json_encode(['success' => false]));
+}
+
 
 public function getProductSpecificPrices($productId)
 {

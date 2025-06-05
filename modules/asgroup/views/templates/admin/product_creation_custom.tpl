@@ -587,7 +587,7 @@
                             <td class="from-qty">{$specific.units}</td>
 
                             <td>
-                                <button class="btn btn-danger js-delete-specific-price-btn"
+                                <span class="btn tooltip-link delete-specific-price"
                                     data-specific-price-id="{$specific.id}"
                                     data-confirm-title="Specific price deletion"
                                     data-confirm-message="Are you sure you want to delete this specific price?"
@@ -595,18 +595,18 @@
                                     data-cancel-btn-label="Cancel"
                                     data-confirm-btn-class="btn-danger">
                                     <i class="material-icons">delete</i>
-                                </button>
+                                </span>
                             </td>
 
                             <td>
-                                <button type="button" title="Edit"
+                                <span type="button" title="Edit"
                                     class="js-edit-specific-price-btn btn tooltip-link"
                                     data-modal-title="Edit specific price"
                                     data-confirm-button-label="Save and publish"
                                     data-cancel-button-label="Cancel"
                                     data-specific-price-id="{$specific.id}">
                                     <i class="material-icons">edit</i>
-                                </button>
+                                </span>
                             </td>
                         </tr>
                     {/foreach}
@@ -814,6 +814,41 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.delete-specific-price').forEach(function (el) {
+        el.addEventListener('click', function () {
+            const id = this.dataset.id;
+
+            if (!confirm('Are you sure you want to delete this specific price?')) return;
+
+            $.ajax({
+            url: '{$admin_url}', // already passed to the template
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                ajax: true,
+                action: 'deleteSpecificPrice',
+                id_specific_price: id
+            },
+            success: function (response) {
+                if (response.success) {
+                alert('Specific price deleted.');
+                location.reload(); // or dynamically remove the row instead
+                } else {
+                alert('Failed to delete.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+            });
+        });
+        });
+    });
+
+
 
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
