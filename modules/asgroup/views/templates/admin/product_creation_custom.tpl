@@ -558,52 +558,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {foreach from=$specific_data item=specific}
-                            <tr>
-                                <td>{$specific.id}</td>
-                                <td>{$specific.combination|default:'--'}</td>
-                                <td>{$specific.currency|escape:'html'}</td>
-                                <td>
-                                    {foreach from=$specific.country item=country}
-                                        {$country|escape:'html'}<br>
-                                    {/foreach}
-                                </td>
-                                <td>
-                                    {foreach from=$specific.group item=group}
-                                        {$group|escape:'html'}<br>
-                                    {/foreach}
-                                </td>
-                                <td>{$specific.store|escape:'html'}</td>
-                                <td>{$specific.customer|default:'All customers'}</td>
-                                <td>{$specific.specific_price|string_format:'%.2f'}</td>
-                                <td>{$specific.discount|string_format:'%.2f'}</td>
-                                <td>
-                                    <label>{l s='From'} <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
-                                    <label>{l s='To'} <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
-                                </td>
-                                <td>{$specific.units}</td>
-                                <td>
-                                    <button
-                                        type="button"
-                                        class="js-delete-specific-price-btn btn"
-                                        data-id="{$specific.id}"
-                                        title="{l s='Delete'}"
-                                    >
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        type="button"
-                                        class="js-edit-specific-price-btn btn"
-                                        data-id="{$specific.id}"
-                                        title="{l s='Edit'}"
-                                    >
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                </td>
-                            </tr>
-                        {/foreach}
+{foreach from=$specific_data item=specific}
+    <tr>
+        <td>{$specific.id}</td>
+        <td>{$specific.combination|default:'--'}</td>
+        <td>{$specific.currency|escape:'html'}</td>
+        <td>
+            {foreach from=$specific.country item=country}
+                {$country|escape:'html'}<br>
+            {/foreach}
+        </td>
+        <td>
+            {foreach from=$specific.group item=group}
+                {$group|escape:'html'}<br>
+            {/foreach}
+        </td>
+        <td>{$specific.store|escape:'html'}</td>
+        <td>{$specific.customer|default:'All customers'}</td>
+        <td>{$specific.specific_price|string_format:'%.2f'}</td>
+        <td>{$specific.discount|string_format:'%.2f'}</td>
+        <td>
+            <label>{l s='From'} <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
+            <label>{l s='To'} <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
+        </td>
+        <td>{$specific.units}</td>
+        <td>
+            <button
+                type="button"
+                class="js-delete-specific-price-btn btn"
+                data-id="{$specific.id}"
+                title="{l s='Delete'}"
+            >
+                <i class="material-icons">delete</i>
+            </button>
+        </td>
+        <td>
+            <button
+                type="button"
+                class="js-edit-specific-price-btn btn"
+                data-id="{$specific.id}"
+                title="{l s='Edit'}"
+            >
+                <i class="material-icons">edit</i>
+            </button>
+        </td>
+    </tr>
+{/foreach}
+
                         </tbody>
                     </table>
                 </div>
