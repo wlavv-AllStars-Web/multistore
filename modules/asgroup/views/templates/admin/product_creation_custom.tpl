@@ -551,14 +551,14 @@
                                     <td>{$specific.combination|default:'--'}</td>
                                     <td>{$specific.currency|escape:'html'}</td>
 
-                                    {if isset($specific.country[$specific.id_lang]) && $specific.country[$specific.id_lang] != ''}
-                                        <td>{$specific.country[$specific.id_lang]|escape:'html'}</td>
+                                    {if isset($specific.country[$language.id_lang]) && $specific.country[$language.id_lang] != ''}
+                                        <td>{$specific.country[$language.id_lang]|escape:'html'}</td>
                                     {else}
                                         <td>{l s='-'}</td>
                                     {/if}
 
-                                    {if isset($specific.group[$specific.id_lang]) && $specific.group[$specific.id_lang] != ''}
-                                        <td>{$specific.group[$specific.id_lang]|escape:'html'}</td>
+                                    {if isset($specific.group[$language.id_lang]) && $specific.group[$language.id_lang] != ''}
+                                        <td>{$specific.group[$language.id_lang]|escape:'html'}</td>
                                     {else}
                                         <td>{l s='-'}</td>
                                     {/if}
