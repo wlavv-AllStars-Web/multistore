@@ -318,28 +318,28 @@ document.addEventListener("DOMContentLoaded", () => {
     //     }
     // }
 
-    const btn_print_ean = document.querySelector("#product_product_creation_custom_html #product_details_print_ean")
-    const containerReferences = document.querySelector("#product_product_creation_custom_html #product_details_references")
-    const inputEAN = document.querySelector("#product_product_creation_custom_html #product_details_references_ean_13")
-    const containerEanGroup = document.querySelector("#product_product_creation_custom_html #product_details_references .form-group:nth-child(4)")
-    const containerEanGroupLabel = document.querySelector("#product_product_creation_custom_html #product_details_references .form-group:nth-child(4) label")
+    // const btn_print_ean = document.querySelector("#product_product_creation_custom_html #product_details_print_ean_btn")
+    // const containerReferences = document.querySelector("#product_product_creation_custom_html #product_details_references")
+    // const inputEAN = document.querySelector("#product_product_creation_custom_html #product_details_references_ean_13")
+    // const containerEanGroup = document.querySelector("#product_product_creation_custom_html #product_details_references .form-group:nth-child(4)")
+    // const containerEanGroupLabel = document.querySelector("#product_product_creation_custom_html #product_details_references .form-group:nth-child(4) label")
 
 
 
-    if(btn_print_ean && containerReferences && inputEAN){
-        // APPEND BTN TO INPUT
-        const containerEan = document.createElement("div")
-        containerEan.classList.add("container-ean-btn")
+    // if(btn_print_ean && containerReferences && inputEAN){
+    //     // APPEND BTN TO INPUT
+    //     const containerEan = document.createElement("div")
+    //     containerEan.classList.add("container-ean-btn")
 
-        containerEan.appendChild(btn_print_ean)
-        containerEan.appendChild(inputEAN)
+    //     containerEan.appendChild(btn_print_ean)
+    //     containerEan.appendChild(inputEAN)
         
 
-        containerEanGroup.insertAdjacentElement("beforeend", containerEan);
+    //     containerEanGroup.insertAdjacentElement("beforeend", containerEan);
 
-    }else{
-        console.log("error found")
-    }
+    // }else{
+    //     console.log("error found")
+    // }
 
 
     // btn generate ean combinations
@@ -448,9 +448,9 @@ function generateEanCombination(combinationId, ean13 = null) {
 
 function generateEan() {
     const EANinput = document.querySelector("#product_details_references_ean_13");
-    const EANvalue = document.querySelector("#product_details_references_ean_13").value;
+    const EANvalue = EANinput.value;
     const productIdDetails = document.querySelector(".product-form").getAttribute("data-product-id")
-    const btn_detailsEAN = document.querySelector("#product_details_print_ean");
+    const btn_detailsEAN = document.querySelector("#product_details_print_ean_btn");
 
     if(EANvalue == ''){
         const generateUrl = `https://webtools.euromuscleparts.com/barcode/product/generate/${productIdDetails}/0`;
@@ -462,7 +462,7 @@ function generateEan() {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            // console.log(reponse)
+            console.log(reponse)
             return response.json(); 
         })
         .then(data => {
