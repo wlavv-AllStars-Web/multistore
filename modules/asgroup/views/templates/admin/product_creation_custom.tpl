@@ -1,6 +1,4 @@
-<script src="/admineuromus1/themes/new-theme/public/product_edit.bundle.js"></script>
-<script src="/admineuromus1/themes/new-theme/public/main.bundle.js"></script>
-
+<!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -960,43 +958,21 @@
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const productId = document.querySelector('[name="product[id_product]"]')?.value || 0;
 
-        if (typeof Jw !== 'undefined') {
-        window.specificPriceManager = new Jw(productId);
+(function waitForOriginalManager() {
+  if (typeof window.SpecificPriceListManager === 'function') {
+    // Clone the original class only once
+    if (!window.OriginalSpecificPriceListManager) {
+      window.OriginalSpecificPriceListManager = window.SpecificPriceListManager;
+      console.log('[Clone] SpecificPriceListManager cloned to OriginalSpecificPriceListManager');
+    }
+  } else {
+    // Try again in 100ms
+    setTimeout(waitForOriginalManager, 100);
+  }
+})();
 
-        // Example hook (reload list on delete)
-        window.prestashop.instance.eventEmitter.on('listUpdated', () => {
-            location.reload(); // Or optionally re-fetch and render dynamically
-        });
-        } else {
-        console.error('Jw class not found. Make sure PrestaShop JS is loaded.');
-        }
-    });
 
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.js-delete-specific-price-custom').forEach(button => {
-            button.addEventListener('click', (event) => {
-            const el = event.currentTarget;
-            const dataset = {
-                specificPriceId: el.dataset.specificPriceId,
-                confirmTitle: el.dataset.confirmTitle,
-                confirmMessage: el.dataset.confirmMessage,
-                confirmBtnLabel: el.dataset.confirmBtnLabel,
-                cancelBtnLabel: el.dataset.cancelBtnLabel,
-                confirmBtnClass: el.dataset.confirmBtnClass,
-            };
-
-            if (window.specificPriceManager) {
-                window.specificPriceManager.deleteSpecificPrice(dataset);
-            } else {
-                console.error('specificPriceManager is not defined');
-            }
-            });
-        });
-    });
 
 
     // 
