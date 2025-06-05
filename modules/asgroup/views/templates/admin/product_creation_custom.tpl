@@ -508,7 +508,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        {* <div class="form-group">
   <h2>
     {l s='Specific prices' d='Admin.Catalog.Feature'}
     <span class="help-box"
@@ -600,9 +600,9 @@
       </table>
     </div>
   </div>
-</div>
+</div> *}
 
-<div class="form-group">
+{* <div class="form-group">
   <button
     id="product_pricing_show_catalog_price_rules"
     name="product[asg][show_catalog_price_rules]"
@@ -614,7 +614,7 @@
     <i class="material-icons">visibility</i>
     <span class="btn-label">{l s='Show catalog price rules' d='Admin.Catalog.Feature'}</span>
   </button>
-</div>
+</div> *}
 
 
 
