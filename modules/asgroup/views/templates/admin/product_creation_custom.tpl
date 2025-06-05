@@ -1093,6 +1093,7 @@
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
+            '#product_prices #specific-prices-container',
 
         ];
 
