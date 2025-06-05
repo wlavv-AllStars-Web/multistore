@@ -1686,7 +1686,7 @@ public function buildSpecificPriceTable($productId)
         $shop = $this->getShopName($specificPrice['id_shop']);  // Implement this method to get shop name if needed
         $customer = $this->getCustomerName($specificPrice['id_customer']);  // Implement this to fetch customer info if needed
         $priceExclTax = $specificPrice['price'];
-        $discountTaxIncl = $specificPrice['reduction_type'] == 'amount' ? round($specificPrice['reduction'] * 100, 2) . '%';;
+        $discountTaxIncl = $specificPrice['reduction_type'] == 'amount' ? $specificPrice['reduction'] : round($specificPrice['reduction'] * 100, 2) . '%';
         $duration = $specificPrice['from'] == '0000-00-00 00:00:00' ? 'Unlimited' : $specificPrice['from'] . ' to ' . $specificPrice['to'];
         $quantity = $specificPrice['from_quantity'];
 
