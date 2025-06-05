@@ -518,7 +518,7 @@ function generateEan() {
                 };
             })
             .catch(error => {
-                console.error("Error generating EAN:", error);
+                console.error("Error printing EAN:", error);
             });
     }
 }
