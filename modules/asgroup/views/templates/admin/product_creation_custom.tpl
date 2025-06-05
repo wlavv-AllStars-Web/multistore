@@ -588,6 +588,7 @@
 
                             <td>
                                 <span class="btn tooltip-link delete-specific-price"
+                                    onclick="deleteSpecificPrice({$specific.id})"
                                     data-specific-price-id="{$specific.id}"
                                     data-confirm-title="Specific price deletion"
                                     data-confirm-message="Are you sure you want to delete this specific price?"
@@ -816,37 +817,30 @@
 <script>
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.delete-specific-price').forEach(function (el) {
-        el.addEventListener('click', function () {
-            const id = this.dataset.id;
-
-            if (!confirm('Are you sure you want to delete this specific price?')) return;
-
-            $.ajax({
-            url: '{$admin_url}', // already passed to the template
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                ajax: true,
-                action: 'deleteSpecificPrice',
-                id_specific_price: id
-            },
-            success: function (response) {
-                if (response.success) {
-                alert('Specific price deleted.');
-                location.reload(); // or dynamically remove the row instead
-                } else {
-                alert('Failed to delete.');
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('Error:', error);
-            }
-            });
-        });
-        });
+    function deleteSpecificPrice(id) {
+    const url = '{$admin_url}'; // passed from PHP
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+        ajax: true,
+        deleteSpecificPrice: 1, // this triggers your PHP logic
+        id_specific_price: id,
+        },
+        success: function (response) {
+        console.log(response);
+        if (response.success) {
+            document.querySelector(`#specific-price-`+id+``).remove();
+        } else {
+            alert("Failed to delete specific price.");
+        }
+        },
+        error: function (xhr, status, error) {
+        console.error("AJAX error:", error);
+        }
     });
+    }
+
 
 
 
