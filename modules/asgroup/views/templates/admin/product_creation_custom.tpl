@@ -1,4 +1,3 @@
-<script src="https://euromuscleparts.com/admineuromus1/themes/new-theme/public/product_edit.bundle.js?1"></script>
 
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -845,33 +844,189 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const productId = {$product->id|intval}; // Or however you pass the product ID
+  // Make sure 'p' object is available
+  var p = {
+    specificPrice: {
+      container: "#specific-prices-container-custom",
+      paginationContainer: "#specific-prices-pagination",
+      loadingSpinner: "#specific-prices-loading",
+      listTable: "#specific-prices-list-table",
+      modalTemplate: "#specific-price-modal-template",
+      modalContentId: "specific-price-modal",
+      addSpecificPriceBtn: ".js-add-specific-price-btn",
+      form: 'form[name="specific_price"]',
+      listContainer: "#specific-price-list-container",
+      listRowTemplate: "#specific-price-tr-template",
+      deletionModalId: "modal-confirm-delete-combination",
+      listFields: {
+        specificPriceId: ".specific-price-id",
+        combination: ".combination",
+        currency: ".currency",
+        country: ".country",
+        group: ".group",
+        shop: ".shop",
+        customer: ".customer",
+        price: ".price",
+        impact: ".impact",
+        period: ".period",
+        from: ".period .from",
+        to: ".period .to",
+        fromQuantity: ".from-qty",
+        editBtn: ".js-edit-specific-price-btn",
+        deleteBtn: ".js-delete-specific-price-btn",
+      },
+      priority: {
+        priorityListWrapper: ".specific-price-priority-list",
+        priorityTypeCheckboxesSelector:
+          'input[name="product[pricing][priority_management][use_custom_priority]"]',
+      },
+    },
+  };
 
-    if (typeof Jw !== 'undefined') {
-      const manager = new Jw(productId);
-      manager.render({
-        specificPrices: [
-          {
-            id: 1,
-            combination: "Size M",
-            currency: "USD",
-            country: "USA",
-            group: "Default",
-            shop: "Main",
-            customer: "John Doe",
-            price: "$20",
-            impact: "-10%",
-            fromQuantity: "1",
-            period: { from: "2024-01-01", to: "2024-12-31" }
-          }
-        ]
-      });
+  // Initialize the class only when the DOM is ready
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.p && window.p.specificPrice) {
+      const Qw = p.specificPrice;
+
+      class Jw {
+        constructor(t) {
+          this.productId = t;
+          this.listContainer = document.querySelector(Qw.listContainer);
+          this.eventEmitter = window.prestashop.instance.eventEmitter;
+          this.$loadingSpinner = Xw(p.specificPrice.loadingSpinner);
+          this.$listTable = Xw(p.specificPrice.listTable);
+        }
+
+        setLoading(t) {
+          this.$loadingSpinner.toggle(t);
+          this.$listTable.toggle(!t);
+        }
+
+        render(t) {
+          const { listFields: e } = Qw;
+          const n = this.listContainer.querySelector(`${Qw.listContainer} tbody`);
+          const r = this.listContainer.querySelector(Qw.listRowTemplate).innerHTML;
+          n.innerHTML = "";
+          const i = t.specificPrices;
+
+          this.toggleListVisibility(i.length > 0);
+          i.forEach((t) => {
+            const i = document.createElement("tbody");
+            i.innerHTML = r.trim();
+            const o = i.firstChild;
+            const a = this.selectListField(o, e.specificPriceId);
+            const s = this.selectListField(o, e.combination);
+            const l = this.selectListField(o, e.currency);
+            const m = this.selectListField(o, e.country);
+            const c = this.selectListField(o, e.group);
+            const p = this.selectListField(o, e.shop);
+            const d = this.selectListField(o, e.customer);
+            const u = this.selectListField(o, e.price);
+            const g = this.selectListField(o, e.impact);
+            const h = this.selectListField(o, e.period);
+            const f = this.selectListField(o, e.from);
+            const b = this.selectListField(o, e.to);
+            const v = this.selectListField(o, e.fromQuantity);
+            const x = this.selectListField(o, e.deleteBtn);
+            const y = this.selectListField(o, e.editBtn);
+
+            a.textContent = String(t.id);
+            s.textContent = t.combination;
+            l.textContent = t.currency;
+            m.textContent = t.country;
+            c.textContent = t.group;
+            p.textContent = t.shop;
+            d.textContent = t.customer;
+            u.textContent = t.price;
+            g.textContent = t.impact;
+            v.textContent = t.fromQuantity;
+            x.dataset.specificPriceId = String(t.id);
+            y.dataset.specificPriceId = String(t.id);
+
+            if (t.period) {
+              f.textContent = t.period.from;
+              b.textContent = t.period.to;
+            } else {
+              h.textContent = String(h.dataset.unlimitedText);
+            }
+
+            n.append(o);
+            this.addEventListenerForDeleteBtn(x);
+          });
+        }
+
+        toggleListVisibility(t) {
+          this.listContainer.classList.toggle("d-none", !t);
+        }
+
+        selectListField(t, e) {
+          return t.querySelector(e);
+        }
+
+        addEventListenerForDeleteBtn(t) {
+          t.addEventListener("click", (t) => {
+            t.currentTarget instanceof HTMLElement &&
+              !D(t.currentTarget.dataset.specificPriceId) &&
+              this.deleteSpecificPrice(t.currentTarget.dataset);
+          });
+        }
+
+        deleteSpecificPrice(t) {
+          const e = new W(
+            {
+              id: p.specificPrice.deletionModalId,
+              confirmTitle: t.confirmTitle,
+              confirmMessage: t.confirmMessage,
+              confirmButtonLabel: t.confirmBtnLabel,
+              closeButtonLabel: t.cancelBtnLabel,
+              confirmButtonClass: t.confirmBtnClass,
+              closable: true,
+            },
+            () => {
+              return (
+                (e = this),
+                (n = null),
+                (r = function* () {
+                  if (!t.specificPriceId) return;
+                  const e = yield Kw(t.specificPriceId);
+                  Xw.growl({ message: e.message });
+                  this.eventEmitter.emit(v.listUpdated);
+                }),
+                new Promise((t, i) => {
+                  var o = (t) => {
+                      try {
+                        s(r.next(t));
+                      } catch (t) {
+                        i(t);
+                      }
+                    },
+                    a = (t) => {
+                      try {
+                        s(r.throw(t));
+                      } catch (t) {
+                        i(t);
+                      }
+                    },
+                    s = (e) =>
+                      e.done ? t(e.value) : Promise.resolve(e.value).then(o, a);
+                  s((r = r.apply(e, n)).next());
+                })
+              );
+              var e, n, r;
+            }
+          );
+          e.show();
+        }
+      }
+
+      window.Jw = Jw;
+      new Jw(19041); // Example instantiation with productId
     } else {
-      console.error('Jw is not available');
+      console.error('PrestaShop specificPrice configuration is missing.');
     }
   });
 </script>
+
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
