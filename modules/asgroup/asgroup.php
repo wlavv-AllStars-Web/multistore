@@ -1592,7 +1592,7 @@ public function getASGProductCreation($product) {
 
     $specificPriceData = $this->buildSpecificPriceTable($product->id);
 
-    pre($specificPriceData);
+    // pre($specificPriceData);
 
 
     // Render the template with the languages and default values
