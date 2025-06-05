@@ -887,7 +887,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     if (window.p && window.p.specificPrice) {
       const Qw = p.specificPrice;
-    console.log('Qw: ' + Qw );
+    console.log('Qw: ', Qw );
       class Jw {
         constructor(t) {
           this.productId = t;
