@@ -420,7 +420,7 @@
             </div>
         </div>
 
-        <div style="display: flex;gap: 1rem;">
+        <div style="display: flex;gap: 3rem;">
             <div class="form-group money-widget">
                 <h3 for="product_pricing_wholesale_price">
                     {l s='Cost price' d='Admin.Catalog.Feature'}
