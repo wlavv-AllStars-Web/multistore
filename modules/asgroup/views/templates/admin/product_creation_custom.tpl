@@ -243,6 +243,10 @@
 
         </div>
 
+        <div class="form-group">
+            <hr>
+        </div>
+
 
         <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group col-lg-4">
