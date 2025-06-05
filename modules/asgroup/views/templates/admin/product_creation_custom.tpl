@@ -564,22 +564,14 @@
         <td>{$specific.combination|default:'--'}</td>
         <td>{$specific.currency|escape:'html'}</td>
         
-        {if is_array($specific.country)}
-            <td>
-                {foreach from=$specific.country item=country}
-                    {$country|escape:'html'}<br>
-                {/foreach}
-            </td>
+        {if isset($specific.country[$specific.id_lang])}
+            <td>{$specific.country[$specific.id_lang]|escape:'html'}</td>
         {else}
             <td>{$specific.country|default:'-'}</td>
         {/if}
 
-        {if is_array($specific.group)}
-            <td>
-                {foreach from=$specific.group item=group}
-                    {$group|escape:'html'}<br>
-                {/foreach}
-            </td>
+        {if isset($specific.group[$specific.id_lang])}
+            <td>{$specific.group[$specific.id_lang]|escape:'html'}</td>
         {else}
             <td>{$specific.group|default:'-'}</td>
         {/if}
@@ -615,6 +607,7 @@
         </td>
     </tr>
 {/foreach}
+
 
 
 
