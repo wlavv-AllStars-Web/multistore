@@ -420,90 +420,93 @@
             </div>
         </div>
 
-        <div class="form-group money-widget">
-            <h3 for="product_pricing_wholesale_price">
-                {l s='Cost price' d='Admin.Catalog.Feature'}
-            </h3>
-            <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
+        <div style="display: flex;gap: 1rem;">
+            <div class="form-group money-widget">
+                <h3 for="product_pricing_wholesale_price">
+                    {l s='Cost price' d='Admin.Catalog.Feature'}
+                </h3>
+                <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
 
-            <div class="input-group money-type">
-                <input
-                type="text"
-                id="product_pricing_wholesale_price"
-                name="product[pricing][wholesale_price]"
-                data-display-price-precision="6"
-                class="js-comma-transformer form-control"
-                value="{$product->wholesale_price|escape:'html':'UTF-8'}"
-                />
-                <div class="input-group-append">
-                <span class="input-group-text">
-                    &nbsp;{$currency->sign}
-                </span>
-                </div>
-            </div>
-
-            <div class="form-check form-check-radio form-checkbox modify-all-shops">
-                <div class="md-checkbox md-checkbox-inline">
-                <label>
+                <div class="input-group money-type">
                     <input
-                    type="checkbox"
-                    id="product_pricing_modify_all_shops_wholesale_price"
-                    name="product[pricing][modify_all_shops_wholesale_price]"
-                    container_class="modify-all-shops"
-                    data-value-type="boolean"
-                    class="form-check-input"
-                    value="1"
+                    type="text"
+                    id="product_pricing_wholesale_price"
+                    name="product[pricing][wholesale_price]"
+                    data-display-price-precision="6"
+                    class="js-comma-transformer form-control"
+                    value="{$product->wholesale_price|escape:'html':'UTF-8'}"
                     />
-                    <i class="md-checkbox-control"></i>
-                    {l s='Apply changes to all stores' d='Admin.Global'}
-                </label>
+                    <div class="input-group-append">
+                    <span class="input-group-text">
+                        &nbsp;{$currency->sign}
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-check form-check-radio form-checkbox modify-all-shops">
+                    <div class="md-checkbox md-checkbox-inline">
+                    <label>
+                        <input
+                        type="checkbox"
+                        id="product_pricing_modify_all_shops_wholesale_price"
+                        name="product[pricing][modify_all_shops_wholesale_price]"
+                        container_class="modify-all-shops"
+                        data-value-type="boolean"
+                        class="form-check-input"
+                        value="1"
+                        />
+                        <i class="md-checkbox-control"></i>
+                        {l s='Apply changes to all stores' d='Admin.Global'}
+                    </label>
+                    </div>
                 </div>
             </div>
 
-            <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
+            <div class="form-group">
+                <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
 
-            <div
-                id="product_pricing_summary"
-                name="product[pricing][summary]"
-                class="price-summary-widget form-group"
-                data-price-tax-excluded="{$retail_price_tax_excl|string_format:'%.2f'} {$currency->sign} tax excl."
-                data-price-tax-included="{$retail_price_tax_incl|string_format:'%.2f'} {$currency->sign} tax incl."
-                data-unit-price="{$product->unit_price|string_format:'%.2f'} {$product->unity|escape} unit price"
-                data-margin="{($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'} {$currency->sign} margin"
-                data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
-                data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price"
-            >
-                <div class="price-summary-block">
-                <div class="price-summary-value price-tax-excluded-value">
-                    {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='tax excl.' d='Admin.Catalog.Feature'}
-                </div>
-                <div class="price-summary-value price-tax-included-value">
-                    {$retail_price_tax_incl|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='tax incl.' d='Admin.Catalog.Feature'}
-                </div>
-                <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
-                    {$product->unit_price|string_format:'%.2f'}&nbsp;{$currency->sign} / {$product->unity|escape}
-                </div>
-                </div>
+                <div
+                    id="product_pricing_summary"
+                    name="product[pricing][summary]"
+                    class="price-summary-widget form-group"
+                    data-price-tax-excluded="{$retail_price_tax_excl|string_format:'%.2f'} {$currency->sign} tax excl."
+                    data-price-tax-included="{$retail_price_tax_incl|string_format:'%.2f'} {$currency->sign} tax incl."
+                    data-unit-price="{$product->unit_price|string_format:'%.2f'} {$product->unity|escape} unit price"
+                    data-margin="{($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'} {$currency->sign} margin"
+                    data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
+                    data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price"
+                >
+                    <div class="price-summary-block">
+                    <div class="price-summary-value price-tax-excluded-value">
+                        {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='tax excl.' d='Admin.Catalog.Feature'}
+                    </div>
+                    <div class="price-summary-value price-tax-included-value">
+                        {$retail_price_tax_incl|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='tax incl.' d='Admin.Catalog.Feature'}
+                    </div>
+                    <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
+                        {$product->unit_price|string_format:'%.2f'}&nbsp;{$currency->sign} / {$product->unity|escape}
+                    </div>
+                    </div>
 
-                <div class="price-summary-block">
-                <div class="price-summary-value margin-value">
-                    {($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='margin' d='Admin.Catalog.Feature'}
-                </div>
-                <div class="price-summary-value margin-rate-value">
-                    {if $product->wholesale_price > 0}
-                    {((($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price) * 100)|string_format:'%.2f'}%
-                    {else}
-                    0%
-                    {/if}
-                    {l s='margin rate' d='Admin.Catalog.Feature'}
-                </div>
-                <div class="price-summary-value wholesale-price-value">
-                    {$product->wholesale_price|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='cost price' d='Admin.Catalog.Feature'}
-                </div>
+                    <div class="price-summary-block">
+                    <div class="price-summary-value margin-value">
+                        {($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='margin' d='Admin.Catalog.Feature'}
+                    </div>
+                    <div class="price-summary-value margin-rate-value">
+                        {if $product->wholesale_price > 0}
+                        {((($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price) * 100)|string_format:'%.2f'}%
+                        {else}
+                        0%
+                        {/if}
+                        {l s='margin rate' d='Admin.Catalog.Feature'}
+                    </div>
+                    <div class="price-summary-value wholesale-price-value">
+                        {$product->wholesale_price|string_format:'%.2f'}&nbsp;{$currency->sign} {l s='cost price' d='Admin.Catalog.Feature'}
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-
 
 
 
