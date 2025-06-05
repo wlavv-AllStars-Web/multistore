@@ -159,17 +159,12 @@ class AsGroup extends Module
         }
     }
 
-     public function hookActionDispatcherBefore(array $params)
-    {
-    //     // Get the container
-    //     $container = $this->get('prestashop.adapter.legacy.context')->getContainer();
-
-    //     // Override the default search provider with your custom one
-    //     $container->set(
-    //         'prestashop.core.product_search_provider',
-    //         $container->get('PrestaShop\Module\AsGroup\Adapter\Search\CustomSearchProductSearchProvider')
-    //     );
+public function hookActionDispatcherBefore(array $params)
+{
+    if (Tools::getValue('ajax') && Tools::getValue('action') == 'deleteSpecificPrice') {
+        $this->ajaxProcessDeleteSpecificPrice();
     }
+}
 
     public function hookActionAdminControllerSetMedia()
     {
@@ -1634,21 +1629,37 @@ public function getASGProductCreation($product) {
     ]);
 }
 
-protected function ajaxDeleteSpecificPrice()
+public function ajaxProcessDeleteSpecificPrice()
 {
-    $id = (int) Tools::getValue('id_specific_price');
-
-
-
-    if ($id && Validate::isUnsignedId($id)) {
-        $result = Db::getInstance()->delete('specific_price', 'id_specific_price = ' . (int) $id);
-
-        if ($result) {
-            die(json_encode(['success' => true]));
-        }
+    $id_specific_price = (int)Tools::getValue('id_specific_price');
+    
+    if (!$id_specific_price) {
+        die(json_encode([
+            'success' => false,
+            'message' => 'Invalid specific price ID'
+        ]));
     }
 
-    die(json_encode(['success' => false]));
+    try {
+        $specificPrice = new SpecificPrice($id_specific_price);
+        if (Validate::isLoadedObject($specificPrice)) {
+            if ($specificPrice->delete()) {
+                die(json_encode([
+                    'success' => true
+                ]));
+            }
+        }
+        
+        die(json_encode([
+            'success' => false,
+            'message' => 'Could not delete specific price'
+        ]));
+    } catch (Exception $e) {
+        die(json_encode([
+            'success' => false,
+            'message' => $e->getMessage()
+        ]));
+    }
 }
 
 

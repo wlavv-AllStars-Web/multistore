@@ -1,3 +1,5 @@
+{assign var=admin_url value=$link->getAdminLink('AdminModules', true, [], ['configure' => 'asgroup'])}
+{assign var=token value=Tools::getAdminTokenLite('AdminModules')}
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -590,11 +592,7 @@
                                 <span class="btn tooltip-link delete-specific-price"
                                     onclick="deleteSpecificPrice({$specific.id})"
                                     data-specific-price-id="{$specific.id}"
-                                    data-confirm-title="Specific price deletion"
-                                    data-confirm-message="Are you sure you want to delete this specific price?"
-                                    data-confirm-btn-label="Delete"
-                                    data-cancel-btn-label="Cancel"
-                                    data-confirm-btn-class="btn-danger">
+                                    title="Delete">
                                     <i class="material-icons">delete</i>
                                 </span>
                             </td>
@@ -817,29 +815,39 @@
 <script>
 
 
-    function deleteSpecificPrice(id) {
-    const url = '{$admin_url}'; // passed from PHP
+function deleteSpecificPrice(id) {
+    if (!confirm('Are you sure you want to delete this specific price?')) {
+        return;
+    }
+
     $.ajax({
-        url: url,
-        type: 'GET',
+        url: window.admin_url, // This should be set in your template
+        type: 'POST',
         data: {
-        ajax: true,
-        deleteSpecificPrice: 1, // this triggers your PHP logic
-        id_specific_price: id,
+            ajax: true,
+            action: 'deleteSpecificPrice',
+            id_specific_price: id,
+            token: window.token // Make sure to pass the security token
         },
-        success: function (response) {
-        console.log(response);
-        if (response.success) {
-            document.querySelector(`#specific-price-`+id+``).remove();
-        } else {
-            alert("Failed to delete specific price.");
-        }
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Find and remove the row from the table
+                $('tr[data-specific-price-id="' + id + '"]').remove();
+                
+                // If no more rows, hide the table
+                if ($('#specific-prices-list-table tbody tr').length === 0) {
+                    $('#specific-prices-list-table').addClass('d-none');
+                }
+            } else {
+                alert('Failed to delete specific price: ' + (response.message || 'Unknown error'));
+            }
         },
-        error: function (xhr, status, error) {
-        console.error("AJAX error:", error);
+        error: function(xhr, status, error) {
+            alert('AJAX error: ' + error);
         }
     });
-    }
+}
 
 
 
