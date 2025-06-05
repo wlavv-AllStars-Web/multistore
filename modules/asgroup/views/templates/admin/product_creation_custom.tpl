@@ -837,6 +837,7 @@ function deleteSpecificPrice(id) {
                 
                 // If no more rows, hide the table
                 if ($('#specific-prices-list-table tbody tr').length === 0) {
+                    $('#specific-prices-list-table').removeClass('d-block');
                     $('#specific-prices-list-table').addClass('d-none');
                 }
             } else {
