@@ -1,4 +1,4 @@
-<script src="{$admin_base_url}themes/new-theme/public/product_edit.bundle.js"></script>
+
 
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
