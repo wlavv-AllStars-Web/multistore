@@ -1594,6 +1594,10 @@ public function getASGProductCreation($product) {
 
     // pre($specificPriceData);
 
+    $adminBaseUrl = $this->context->link->getAdminLink('AdminDashboard', true);
+    $adminBaseUrl = preg_replace('#(index\.php).*#', '', $adminBaseUrl);
+
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
@@ -1618,6 +1622,7 @@ public function getASGProductCreation($product) {
         'currency' => $this->context->currency,
         'specific_prices' => $specificPrices,
         'specific_data' => $specific_data,
+        'admin_base_url' => $adminBaseUrl,
     ]);
 }
 
