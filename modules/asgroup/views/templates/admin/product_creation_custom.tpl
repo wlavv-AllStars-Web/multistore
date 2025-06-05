@@ -861,9 +861,7 @@
         });
     });
 
-    window.prestashop.instance.eventEmitter.on('listUpdated', () => {
-        location.reload(); // Or re-fetch and re-render your custom table
-    });
+
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
