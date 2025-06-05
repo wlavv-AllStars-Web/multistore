@@ -565,7 +565,11 @@
 
                                     <td>{$specific.store|escape:'html'}</td>
                                     <td>{$specific.customer|default:'All customers'}</td>
-                                    <td>{$specific.specific_price|string_format:'%.2f'}</td>
+                                        {if is_numeric($specific.specific_price)}
+                                            {$specific.specific_price|string_format:'%.2f'}
+                                        {else}
+                                            {$specific.specific_price}
+                                        {/if}
                                     <td>{$specific.discount|escape:'html'}</td>
                                     <td>
                                         {if isset($specific.duration) && is_array($specific.duration)}
