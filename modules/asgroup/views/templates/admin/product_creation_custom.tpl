@@ -1,5 +1,4 @@
 
-<script src="https://euromuscleparts.com/admineuromus1/themes/new-theme/public/product_edit.bundle.js?1"></script>
 <!-- Load the TinyMCE script -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -844,9 +843,38 @@
     </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productId = {$product->id|intval}; // Or however you pass the product ID
+
+    if (typeof Jw !== 'undefined') {
+      const manager = new Jw(productId);
+      manager.render({
+        specificPrices: [
+          {
+            id: 1,
+            combination: "Size M",
+            currency: "USD",
+            country: "USA",
+            group: "Default",
+            shop: "Main",
+            customer: "John Doe",
+            price: "$20",
+            impact: "-10%",
+            fromQuantity: "1",
+            period: { from: "2024-01-01", to: "2024-12-31" }
+          }
+        ]
+      });
+    } else {
+      console.error('Jw is not available');
+    }
+  });
+</script>
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
+
 
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
