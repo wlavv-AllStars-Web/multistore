@@ -1486,6 +1486,11 @@ class AsGroup extends Module
         if (Tools::getValue('getmodelsbrand')) {
             $this->ajaxProcessGetModels();
         }
+
+        if (Tools::getValue('deleteSpecificPrice')) {
+            $this->ajaxDeleteSpecificPrice();
+        }
+
         $this->context->smarty->assign([
             'ps_major_version' => Tools::substr(str_replace('.', '', _PS_VERSION_), 0, 2),
             'module_name' => $this->name,
@@ -1508,11 +1513,6 @@ public function getASGProductCreation($product) {
     $storeId = $this->context->shop->id;
     $id_lang = (int)Context::getContext()->language->id;
     $baseUrl = $this->context->link->getBaseLink();
-
-    if (Tools::getValue('action') === 'deleteSpecificPrice' && Tools::getIsset('ajax')) {
-        $this->ajaxDeleteSpecificPrice();
-        exit;
-    }
 
 
     // Get Symfony services
@@ -1638,6 +1638,8 @@ public function getASGProductCreation($product) {
 protected function ajaxDeleteSpecificPrice()
 {
     $id = (int) Tools::getValue('id_specific_price');
+
+
 
     if ($id && Validate::isUnsignedId($id)) {
         $result = Db::getInstance()->delete('specific_price', 'id_specific_price = ' . (int) $id);
