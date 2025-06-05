@@ -514,7 +514,7 @@
         </span>
     </h2>
 
-    <div id="specific-prices-container_custom">
+    <div id="specific-prices-container">
         {* <div id="product_pricing_specific_prices">
             <div class="form-group">
                 <button id="product_pricing_specific_prices_add_specific_price_btn"
@@ -642,64 +642,7 @@
 
             <div id="specific-price-loading-spinner" style="display:none;">Loading...</div>
      
-<script>
-  const p = {
-    specificPrice: {
-      listContainer: "#specific-prices-container_custom",
-      listTable: ".specific-price-list",
-      loadingSpinner: "#specific-price-loading-spinner",
-      listRowTemplate: "#specific-price-row-template",
-      deletionModalId: "confirm-delete-modal",
 
-      // Selectors inside a row
-      listFields: {
-        specificPriceId: ".specificPriceId",
-        combination: ".combination",
-        currency: ".currency",
-        country: ".country",
-        group: ".group",
-        shop: ".shop",
-        customer: ".customer",
-        price: ".price",
-        impact: ".impact",
-        period: ".period",
-        from: ".from",
-        to: ".to",
-        fromQuantity: ".fromQuantity",
-        deleteBtn: ".deleteBtn",
-        editBtn: ".editBtn"
-      }
-    }
-  };
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const productId = {$product->id|intval}; // Or however you pass the product ID
-
-    if (typeof Jw !== 'undefined') {
-      const manager = new Jw(productId);
-      manager.render({
-        specificPrices: [
-          {
-            id: 1,
-            combination: "Size M",
-            currency: "USD",
-            country: "USA",
-            group: "Default",
-            shop: "Main",
-            customer: "John Doe",
-            price: "$20",
-            impact: "-10%",
-            fromQuantity: "1",
-            period: { from: "2024-01-01", to: "2024-12-31" }
-          }
-        ]
-      });
-    } else {
-      console.error('Jw is not available');
-    }
-  });
-</script>
 
 
         {* fim *}
