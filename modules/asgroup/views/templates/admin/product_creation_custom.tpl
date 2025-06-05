@@ -588,14 +588,18 @@
                                     </td>
                                     <td>{$specific.units}</td>
                                     <td>
-                                        <button type="button" title="Delete"
-                                            class="js-delete-specific-price-btn btn tooltip-link"
+                                        <button
+                                            class="btn btn-danger js-delete-specific-price-custom"
+                                            data-specific-price-id="{$specific.id}"
                                             data-confirm-title="Specific price deletion"
                                             data-confirm-message="Are you sure you want to delete this specific price?"
-                                            data-confirm-btn-label="Delete" data-cancel-btn-label="Cancel"
-                                            data-confirm-btn-class="btn-danger" data-specific-price-id="{$specific.id}"><i
-                                                class="material-icons">delete</i>
+                                            data-confirm-btn-label="Delete"
+                                            data-cancel-btn-label="Cancel"
+                                            data-confirm-btn-class="btn-danger"
+                                            >
+                                            <i class="material-icons">delete</i>
                                         </button>
+
                                     </td>
                                     <td>
                                         <button type="button" title="Edit"
@@ -835,37 +839,32 @@
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-    // features
-    document.addEventListener('DOMContentLoaded', function() {
-        let featureIndex = 0; // Track the feature index to prevent overriding
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.js-delete-specific-price-custom').forEach(button => {
+            button.addEventListener('click', (event) => {
+            const el = event.currentTarget;
+            const dataset = {
+                specificPriceId: el.dataset.specificPriceId,
+                confirmTitle: el.dataset.confirmTitle,
+                confirmMessage: el.dataset.confirmMessage,
+                confirmBtnLabel: el.dataset.confirmBtnLabel,
+                cancelBtnLabel: el.dataset.cancelBtnLabel,
+                confirmBtnClass: el.dataset.confirmBtnClass,
+            };
 
-        const addFeatureButton = document.getElementById('add-feature');
-        const featureContainer = document.getElementById('product_details_features_feature_values');
-        const prototype = featureContainer.getAttribute('data-prototype');
-
-        addFeatureButton.addEventListener('click', function() {
-            event.preventDefault();
-            // Increment feature index
-            featureIndex++;
-
-            // Clone the prototype and replace the placeholder index
-            let newFeatureHTML = prototype.replace(/__FEATURE_VALUE_INDEX__/g, featureIndex);
-
-            // Insert the cloned feature into the container
-            featureContainer.insertAdjacentHTML('beforeend', newFeatureHTML);
-
-            // Reinitialize select2 on the new feature select element (optional but if using select2)
-            let newSelect = featureContainer.querySelector(`#product_details_features_feature_values_` +
-                featureIndex + `_feature_id`);
-            if (newSelect) {
-                $(newSelect).select2(); // Assuming you're using select2 for dropdown
+            if (window.specificPriceManager) {
+                window.specificPriceManager.deleteSpecificPrice(dataset);
+            } else {
+                console.error('specificPriceManager is not defined');
             }
+            });
         });
     });
 
-
-    // fim features
-
+    window.prestashop.instance.eventEmitter.on('listUpdated', () => {
+        location.reload(); // Or re-fetch and re-render your custom table
+    });
+    // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
     function generateTagsASG() {
