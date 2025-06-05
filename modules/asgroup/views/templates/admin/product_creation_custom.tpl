@@ -887,7 +887,14 @@
   document.addEventListener('DOMContentLoaded', function () {
     if (window.p && window.p.specificPrice) {
       const Qw = p.specificPrice;
-    console.log('Qw: ', Qw );
+    
+        if (window.prestashop && window.prestashop.instance) {
+        const eventEmitter = window.prestashop.instance.eventEmitter;
+        } else {
+        console.error('prestashop.instance is not available!');
+        }
+
+
       class Jw {
         constructor(t) {
           this.productId = t;
