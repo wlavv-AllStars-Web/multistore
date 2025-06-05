@@ -847,7 +847,7 @@
   // Make sure 'p' object is available
   var p = {
     specificPrice: {
-      container: "#specific-prices-container-custom",
+      container: "#specific-prices-container",
       paginationContainer: "#specific-prices-pagination",
       loadingSpinner: "#specific-prices-loading",
       listTable: "#specific-prices-list-table",
