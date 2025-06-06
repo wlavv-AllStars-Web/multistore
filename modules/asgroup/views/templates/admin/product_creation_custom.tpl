@@ -1579,7 +1579,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!asgName) return;
 
         const pricingName = asgName.replace("[asg]", "[pricing]");
-        const original = document.querySelector(`[name="${pricingName}"]`);
+        const original = document.querySelector(`[name="`+pricingName+`"]`);
 
         if (original) {
             // For inputs/selects, just copy value
