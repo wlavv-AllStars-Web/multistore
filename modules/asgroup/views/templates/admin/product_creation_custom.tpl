@@ -1333,6 +1333,7 @@
             const element = document.querySelector(id).parentElement;
 
             if (element) {
+                console.log('Removing element:', id);
                 element.remove();
             }
         });
