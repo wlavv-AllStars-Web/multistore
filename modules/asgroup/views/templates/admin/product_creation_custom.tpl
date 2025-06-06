@@ -853,9 +853,21 @@
             />
             <ul id="related-products-list" class="entities-list mt-3">
                 {foreach from=$related_products item=rp}
-                    <li class="related-product">
-                        <img src="{$rp.image_url}" alt="{$rp.name}" width="50">
-                        <strong>{$rp.reference}</strong> - {$rp.name}
+                    <li class="related-product entity-item col-lg-2">
+                        <div class="related-product-image">
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][image]" value="{$rp.image_url}" />
+                            <img src="{$rp.image_url}" alt="{$rp.name}" width="50" class="img-fluid" />
+                        </div>
+                        <div class="related-product-legend">
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][name]" value="{$rp.name}" />
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][id]" value="{$rp.id_product}" />
+                            <span class="label text-preview">
+                                <span class="text-preview-value">{$rp.reference} - {$rp.name}</span>
+                                <span class="text-preview-prefix">
+                                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                                </span>
+                            </span>
+                        </div>
                     </li>
                 {/foreach}
             </ul>
