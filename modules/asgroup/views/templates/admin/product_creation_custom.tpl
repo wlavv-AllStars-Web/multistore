@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                categories=$categories 
-                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                level=$level+1
-                                                                                                                                            }
+                                                                                                                                                                categories=$categories 
+                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                level=$level+1
+                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -83,7 +83,8 @@
                         <label title="h2" for="product_details_housing">
                             Housing
                         </label>
-                        <input type="text" class="form-control" name="product[asg][housing]" value="{$product->housing}">
+                        <input type="text" class="form-control" name="product[asg][housing]"
+                            value="{$product->housing}">
                     </div>
                 </div>
             </div>
@@ -116,12 +117,13 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                    </textarea>
+                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                        </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
-                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span> characters
+                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span>
+                                    characters
                                     allowed
                                 </em>
                             </small>
@@ -157,13 +159,14 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                    </textarea>
+                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                        </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
-                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span> characters
+                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span>
+                                    characters
                                     allowed
                                 </em>
                             </small>
@@ -182,7 +185,8 @@
 
             <div class="form-group">
                 <h3>Tags</h3>
-                <p class="subtitle">Enter the keywords that customers might search for when looking for this product.</p>
+                <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
+                </p>
 
                 <div class="" style="display: flex;gap: 1rem;">
                     <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags"
@@ -213,7 +217,8 @@
                                     {/if}
 
                                     <input type="text" id="product_seo_tags_{$language.id_lang}"
-                                        name="product[asg][tags][{$language.id_lang}]" class="js-taggable-field form-control"
+                                        name="product[asg][tags][{$language.id_lang}]"
+                                        class="js-taggable-field form-control"
                                         aria-label="product_seo_tags_{$language.id_lang} input"
                                         value="{$tags_string|escape:'html'}" style="position: absolute; left: -10000px;"
                                         tabindex="-1">
@@ -228,8 +233,8 @@
                     </div>
                     <div class="dropdown" style="padding: .15rem;">
                         <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="product_seo_tags_dropdown"
-                            style="display: flex;align-items: center;">
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            id="product_seo_tags_dropdown" style="display: flex;align-items: center;">
                             {if isset($languages.0.iso_code)}{$languages.0.iso_code|upper}{/if}
                         </button>
                         <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu"
@@ -260,7 +265,8 @@
             <div class="form-group">
                 <label for="product_visibility">Visibility</label>
                 <select class="form-control" id="product_visibility" name="product[asg][visibility]">
-                    <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
+                    <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere
+                    </option>
                     <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
                     </option>
                     <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
@@ -308,12 +314,14 @@
 
                     <div class="input-group">
                         <span class="ps-switch" id="product_description_wmdeprecated">
-                            <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
-                                value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
+                            <input type="radio" id="product_description_wmdeprecated_0"
+                                name="product[asg][wmdeprecated]" value="0"
+                                {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
                             <label for="product_description_wmdeprecated_0">No</label>
 
-                            <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
-                                value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
+                            <input type="radio" id="product_description_wmdeprecated_1"
+                                name="product[asg][wmdeprecated]" value="1"
+                                {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
                             <label for="product_description_wmdeprecated_1">Yes</label>
 
                             <span class="slide-button"></span>
@@ -331,12 +339,14 @@
 
                     <div class="input-group">
                         <span class="ps-switch" id="product_description_not_to_order">
-                            <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
-                                value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
+                            <input type="radio" id="product_description_not_to_order_0"
+                                name="product[asg][not_to_order]" value="0"
+                                {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
                             <label for="product_description_not_to_order_0">No</label>
 
-                            <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
-                                value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
+                            <input type="radio" id="product_description_not_to_order_1"
+                                name="product[asg][not_to_order]" value="1"
+                                {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
                             <label for="product_description_not_to_order_1">Yes</label>
 
                             <span class="slide-button"></span>
@@ -572,94 +582,211 @@
 
     </div>
 
-    <div class="col-lg-12 bg-creation-container br25 py-3">
-        <div class="form-group">
-            <h3>Retail price</h3>
-            <div id="product_pricing_retail_price" class="retail-price-widget">
+    <div class="col-lg-12 bg-creation-container br25 py-3 px-0">
 
-                <!-- Tax Excluded -->
-                <div class="form-group money-widget retail-price-tax-excluded">
-                    <label for="product_pricing_retail_price_price_tax_excluded">
-                        Retail price (tax excl.)
-                    </label>
-                    <div class="input-group money-type">
-                        <input type="text" id="product_pricing_retail_price_price_tax_excluded"
-                            name="product[asg][retail_price][price_tax_excluded]"
-                            class="js-comma-transformer form-control" value="{$retail_price_tax_excl|floatval}">
-                        <div class="input-group-append">
-                            <span class="input-group-text">&nbsp;€</span>
+        <div class="col-lg-9">
+            <div class="form-group">
+                <h3>Price</h3>
+                <div id="product_pricing_retail_price" class="retail-price-widget">
+
+                    <!-- Cost Price -->
+                    <div class="form-group money-widget">
+                        {* <h3 for="product_pricing_wholesale_price">
+                            {l s='Cost price' d='Admin.Catalog.Feature'}
+                        </h3> *}
+                        <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
+
+                        <div class="input-group money-type">
+                            <input type="text" id="product_pricing_wholesale_price"
+                                name="product[pricing][wholesale_price]" data-display-price-precision="6"
+                                class="js-comma-transformer form-control"
+                                value="{$product->wholesale_price|escape:'html':'UTF-8'}" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    &nbsp;{$currency->sign}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-radio form-checkbox modify-all-shops">
+                            <div class="md-checkbox md-checkbox-inline">
+                                <label>
+                                    <input type="checkbox" id="product_pricing_modify_all_shops_wholesale_price"
+                                        name="product[pricing][modify_all_shops_wholesale_price]"
+                                        container_class="modify-all-shops" data-value-type="boolean"
+                                        class="form-check-input" value="1" />
+                                    <i class="md-checkbox-control"></i>
+                                    {l s='Apply changes to all stores' d='Admin.Global'}
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Tax Rule -->
-                <div class="form-group select-widget retail-price-tax-rules-group-id">
-                    <label for="product_pricing_retail_price_tax_rules_group_id">Tax rule</label>
-                    <select id="product_pricing_retail_price_tax_rules_group_id"
-                        name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
-                        {foreach from=$tax_rules item=rule}
-                            <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
-                                {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
-                                {$rule.name}
-                            </option>
-                        {/foreach}
-                    </select>
-                    <small class="form-text">
-                        Tax: {foreach from=$tax_rules item=rule}
-                            {if $rule.id == $selected_tax_rule_id}{$rule.rate}%{/if}
-                        {/foreach}
-                    </small>
-                </div>
-
-                <!-- Tax Included -->
-                <div class="form-group money-widget retail-price-tax-included">
-                    <label for="product_pricing_retail_price_price_tax_included">
-                        Retail price (tax incl.)
-                    </label>
-                    <div class="input-group money-type">
-                        <input type="text" id="product_pricing_retail_price_price_tax_included"
-                            name="product[asg][retail_price][price_tax_included]"
-                            class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
-                        <div class="input-group-append">
-                            <span class="input-group-text">&nbsp;€</span>
+                    <!-- Tax Excluded -->
+                    <div class="form-group money-widget retail-price-tax-excluded">
+                        <label for="product_pricing_retail_price_price_tax_excluded">
+                            Retail price (tax excl.)
+                        </label>
+                        <div class="input-group money-type">
+                            <input type="text" id="product_pricing_retail_price_price_tax_excluded"
+                                name="product[asg][retail_price][price_tax_excluded]"
+                                class="js-comma-transformer form-control" value="{$retail_price_tax_excl|floatval}">
+                            <div class="input-group-append">
+                                <span class="input-group-text">&nbsp;€</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Tax Rule -->
+                    <div class="form-group select-widget retail-price-tax-rules-group-id">
+                        <label for="product_pricing_retail_price_tax_rules_group_id">Tax rule</label>
+                        <select id="product_pricing_retail_price_tax_rules_group_id"
+                            name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                            {foreach from=$tax_rules item=rule}
+                                <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
+                                    {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
+                                    {$rule.name}
+                                </option>
+                            {/foreach}
+                        </select>
+                        <small class="form-text">
+                            Tax: {foreach from=$tax_rules item=rule}
+                                {if $rule.id == $selected_tax_rule_id}{$rule.rate}%{/if}
+                            {/foreach}
+                        </small>
+                    </div>
+
+                    <!-- Tax Included -->
+                    <div class="form-group money-widget retail-price-tax-included">
+                        <label for="product_pricing_retail_price_price_tax_included">
+                            Retail price (tax incl.)
+                        </label>
+                        <div class="input-group money-type">
+                            <input type="text" id="product_pricing_retail_price_price_tax_included"
+                                name="product[asg][retail_price][price_tax_included]"
+                                class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
+                            <div class="input-group-append">
+                                <span class="input-group-text">&nbsp;€</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2>
+                    {l s='Specific prices' d='Admin.Catalog.Feature'}
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
+                        data-placement="top">
+                    </span>
+                </h2>
+
+                <div id="specific-prices-container">
+                    <div id="product_pricing_specific_prices">
+                        <div class="form-group">
+                            <button id="product_pricing_specific_prices_add_specific_price_btn"
+                                name="product[pricing][specific_prices][add_specific_price_btn]"
+                                class="js-add-specific-price-btn btn btn-outline-primary"
+                                data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
+                                data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
+                                data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
+                                <i class="material-icons">add_circle</i>
+                                <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="specific-price-list-container">
+                        <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
+                            id="specific-prices-list-table">
+                            <thead class="thead-default">
+                                <tr>
+                                    <th>{l s='ID'}</th>
+                                    <th>{l s='Combination'}</th>
+                                    <th>{l s='Currency'}</th>
+                                    <th>{l s='Country'}</th>
+                                    <th>{l s='Group'}</th>
+                                    <th>{l s='Store'}</th>
+                                    <th>{l s='Customer'}</th>
+                                    <th>{l s='Specific price (tax excl.)'}</th>
+                                    <th>{l s='Discount (tax incl.)'}</th>
+                                    <th>{l s='Duration'}</th>
+                                    <th>{l s='Units'}</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$specific_data item=specific}
+                                    <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
+                                        <td class="specific-price-id">{$specific.id|default:'-'}</td>
+                                        <td class="combination">{$specific.combination|default:'--'}</td>
+                                        <td class="currency">{$specific.currency|escape:'html'}</td>
+
+                                        {if isset($specific.country[$language.id_lang]) && $specific.country[$language.id_lang] != ''}
+                                            <td class="country">{$specific.country[$language.id_lang]|escape:'html'}</td>
+                                        {else}
+                                            <td class="country">{l s='-'}</td>
+                                        {/if}
+
+                                        {if isset($specific.group[$language.id_lang]) && $specific.group[$language.id_lang] != ''}
+                                            <td class="group">{$specific.group[$language.id_lang]|escape:'html'}</td>
+                                        {else}
+                                            <td class="group">{l s='-'}</td>
+                                        {/if}
+
+                                        <td class="shop">{$specific.store|escape:'html'}</td>
+                                        <td class="customer">{$specific.customer|default:'All customers'}</td>
+                                        <td class="price">
+                                            {if is_numeric($specific.specific_price)}
+                                                {$specific.specific_price|string_format:'%.2f'}
+                                            {else}
+                                                {$specific.specific_price}
+                                            {/if}
+                                        </td>
+                                        <td class="impact">{$specific.discount|escape:'html'}</td>
+                                        <td class="period">
+                                            {if isset($specific.duration) && is_array($specific.duration)}
+                                                <label>{l s='From'}
+                                                    <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
+                                                <label>{l s='To'}
+                                                    <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
+                                            {else}
+                                                <label>{$specific.duration}</label>
+                                            {/if}
+                                        </td>
+                                        <td class="from-qty">{$specific.units}</td>
+
+                                        <td>
+                                            <span class="btn tooltip-link delete-specific-price"
+                                                onclick="deleteSpecificPrice({$specific.id})"
+                                                data-specific-price-id="{$specific.id}" title="Delete">
+                                                <i class="material-icons">delete</i>
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span type="button" title="Edit"
+                                                class="js-edit-specific-price-btn btn tooltip-link"
+                                                data-modal-title="Edit specific price"
+                                                data-confirm-button-label="Save and publish"
+                                                data-cancel-button-label="Cancel" data-specific-price-id="{$specific.id}">
+                                                <i class="material-icons">edit</i>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div style="display: flex;gap: 3rem;">
-            <div class="form-group money-widget">
-                <h3 for="product_pricing_wholesale_price">
-                    {l s='Cost price' d='Admin.Catalog.Feature'}
-                </h3>
-                <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
-
-                <div class="input-group money-type">
-                    <input type="text" id="product_pricing_wholesale_price" name="product[pricing][wholesale_price]"
-                        data-display-price-precision="6" class="js-comma-transformer form-control"
-                        value="{$product->wholesale_price|escape:'html':'UTF-8'}" />
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            &nbsp;{$currency->sign}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-check form-check-radio form-checkbox modify-all-shops">
-                    <div class="md-checkbox md-checkbox-inline">
-                        <label>
-                            <input type="checkbox" id="product_pricing_modify_all_shops_wholesale_price"
-                                name="product[pricing][modify_all_shops_wholesale_price]"
-                                container_class="modify-all-shops" data-value-type="boolean" class="form-check-input"
-                                value="1" />
-                            <i class="md-checkbox-control"></i>
-                            {l s='Apply changes to all stores' d='Admin.Global'}
-                        </label>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-3">
+            
 
             <div class="form-group">
                 <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
@@ -707,115 +834,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <h2>
-                {l s='Specific prices' d='Admin.Catalog.Feature'}
-                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                    data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
-                    data-placement="top">
-                </span>
-            </h2>
-
-            <div id="specific-prices-container">
-                <div id="product_pricing_specific_prices">
-                    <div class="form-group">
-                        <button id="product_pricing_specific_prices_add_specific_price_btn"
-                            name="product[pricing][specific_prices][add_specific_price_btn]"
-                            class="js-add-specific-price-btn btn btn-outline-primary"
-                            data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
-                            data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
-                            data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
-                            <i class="material-icons">add_circle</i>
-                            <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="specific-price-list-container">
-                    <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                        id="specific-prices-list-table">
-                        <thead class="thead-default">
-                            <tr>
-                                <th>{l s='ID'}</th>
-                                <th>{l s='Combination'}</th>
-                                <th>{l s='Currency'}</th>
-                                <th>{l s='Country'}</th>
-                                <th>{l s='Group'}</th>
-                                <th>{l s='Store'}</th>
-                                <th>{l s='Customer'}</th>
-                                <th>{l s='Specific price (tax excl.)'}</th>
-                                <th>{l s='Discount (tax incl.)'}</th>
-                                <th>{l s='Duration'}</th>
-                                <th>{l s='Units'}</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach from=$specific_data item=specific}
-                                <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
-                                    <td class="specific-price-id">{$specific.id|default:'-'}</td>
-                                    <td class="combination">{$specific.combination|default:'--'}</td>
-                                    <td class="currency">{$specific.currency|escape:'html'}</td>
-
-                                    {if isset($specific.country[$language.id_lang]) && $specific.country[$language.id_lang] != ''}
-                                        <td class="country">{$specific.country[$language.id_lang]|escape:'html'}</td>
-                                    {else}
-                                        <td class="country">{l s='-'}</td>
-                                    {/if}
-
-                                    {if isset($specific.group[$language.id_lang]) && $specific.group[$language.id_lang] != ''}
-                                        <td class="group">{$specific.group[$language.id_lang]|escape:'html'}</td>
-                                    {else}
-                                        <td class="group">{l s='-'}</td>
-                                    {/if}
-
-                                    <td class="shop">{$specific.store|escape:'html'}</td>
-                                    <td class="customer">{$specific.customer|default:'All customers'}</td>
-                                    <td class="price">
-                                        {if is_numeric($specific.specific_price)}
-                                            {$specific.specific_price|string_format:'%.2f'}
-                                        {else}
-                                            {$specific.specific_price}
-                                        {/if}
-                                    </td>
-                                    <td class="impact">{$specific.discount|escape:'html'}</td>
-                                    <td class="period">
-                                        {if isset($specific.duration) && is_array($specific.duration)}
-                                            <label>{l s='From'}
-                                                <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
-                                            <label>{l s='To'}
-                                                <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
-                                        {else}
-                                            <label>{$specific.duration}</label>
-                                        {/if}
-                                    </td>
-                                    <td class="from-qty">{$specific.units}</td>
-
-                                    <td>
-                                        <span class="btn tooltip-link delete-specific-price"
-                                            onclick="deleteSpecificPrice({$specific.id})"
-                                            data-specific-price-id="{$specific.id}" title="Delete">
-                                            <i class="material-icons">delete</i>
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span type="button" title="Edit" class="js-edit-specific-price-btn btn tooltip-link"
-                                            data-modal-title="Edit specific price"
-                                            data-confirm-button-label="Save and publish" data-cancel-button-label="Cancel"
-                                            data-specific-price-id="{$specific.id}">
-                                            <i class="material-icons">edit</i>
-                                        </span>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
         </div>
     </div>
 
