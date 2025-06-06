@@ -967,6 +967,8 @@
       .replace(/__image__/g, product.image);
 
     $('#related-products-list').append(template);
+
+    $('#product_footer_save').prop('disabled', false);
   }
 
   // Close suggestions on click outside
