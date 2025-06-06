@@ -1652,4 +1652,8 @@
     #product_pricing-tab-nav {
         display: none;
     }
+
+    #product_description .form-group:nth-child(3) {
+        display: none;
+    }
 </style>
