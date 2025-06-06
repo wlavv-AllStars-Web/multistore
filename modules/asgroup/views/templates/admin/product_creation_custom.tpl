@@ -1330,6 +1330,9 @@
             '#product_pricing h3[for="product_pricing_wholesale_price"]',
             '#product_pricing #product_pricing_summary',
             '#product_description #product_description_related_products',
+            '#product_details label[for="product_details_references_reference"]',
+            '#product_details label[for="product_details_references_ean_13"]',
+            '#product_details #product_details_housing',
 
         ];
 
