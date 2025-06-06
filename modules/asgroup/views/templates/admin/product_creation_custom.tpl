@@ -594,7 +594,9 @@
                         {* <h3 for="product_pricing_wholesale_price">
                             {l s='Cost price' d='Admin.Catalog.Feature'}
                         </h3> *}
-                        <p class="subtitle">{l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}</p>
+                        <label for="product_pricing_wholesale_price">
+                            {l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}
+                        </label>
 
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_wholesale_price"
