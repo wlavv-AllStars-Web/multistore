@@ -1656,4 +1656,8 @@
     #product_description .form-group:nth-child(3) {
         display: none;
     }
+
+    #product_description_description_short_custom {
+        display: none;
+    }
 </style>
