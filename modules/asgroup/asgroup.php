@@ -1672,8 +1672,6 @@ public function ajaxProcessSearchProductByReferencePrefix()
         die(json_encode(['success' => false, 'message' => 'Query too short', 'products' => []]));
     }
 
-    pre($query);
-
     $idLang = (int)Context::getContext()->language->id;
 
     $results = Db::getInstance()->executeS("
