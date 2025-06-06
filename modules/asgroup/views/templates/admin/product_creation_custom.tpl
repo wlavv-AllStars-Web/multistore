@@ -843,15 +843,22 @@
     <div class="col-lg-12 bg-creation-container br25 py-3 ">
         <!-- Product Autocomplete Input -->
         <div class="form-group">
-        <h3>Related Products</h3>
-        <input
-            type="text"
-            id="related-product-autocomplete"
-            class="form-control"
-            placeholder="Type reference (min 3 chars)"
-            autocomplete="off"
-        />
-        <ul id="related-products-list" class="entities-list mt-3"></ul>
+            <h3>Related Products</h3>
+            <input
+                type="text"
+                id="related-product-autocomplete"
+                class="form-control"
+                placeholder="Type reference (min 3 chars)"
+                autocomplete="off"
+            />
+            <ul id="related-products-list" class="entities-list mt-3">
+                {foreach from=$related_products item=rp}
+                    <li class="related-product">
+                    <img src="{$rp.image_url}" alt="{$rp.name}" width="50">
+                    <strong>{$rp.reference}</strong> - {$rp.name}
+                    </li>
+                {/foreach}
+            </ul>
         </div>
 
         <!-- Template for Related Product -->

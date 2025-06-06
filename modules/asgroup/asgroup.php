@@ -1601,6 +1601,20 @@ public function getASGProductCreation($product) {
     $adminBaseUrl = preg_replace('#(index\.php).*#', '', $adminBaseUrl);
 
 
+    $relatedProducts = $product->getAccessories($id_lang);
+
+    foreach ($relatedProducts as &$related) {
+        $coverId = Product::getCover($related['id_product']);
+        if ($coverId) {
+            $related['image_url'] = $this->context->link->getImageLink($related['link_rewrite'], $coverId['id_image'], 'home_default');
+        } else {
+            $related['image_url'] = _THEME_PROD_DIR_.'default.jpg';
+        }
+    }
+    unset($related);
+
+
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
@@ -1609,6 +1623,7 @@ public function getASGProductCreation($product) {
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,
         'compats' => $compats,
+        'related_products' => $relatedProducts,
         'brands'  => isset($brands) ? $brands : [],
         'suppliers'  => isset($suppliers) ? $suppliers : [],
         'categories'  => isset($categories) ? $categories : [],
@@ -1685,7 +1700,7 @@ public function ajaxProcessSearchProductByReferencePrefix()
         ORDER BY p.reference ASC
         LIMIT 10
     ");
-    
+
     $products = [];
     foreach ($results as $row) {
         $products[] = [
