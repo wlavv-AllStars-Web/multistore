@@ -840,6 +840,64 @@
         </div>
     </div>
 
+    <div class="col-lg-12 bg-creation-container br25 py-3 ">
+        <div class="form-group">
+  <h3>Related products</h3>
+
+  <div
+    id="product_description_related_products"
+    data-prototype-template="&lt;li id=&quot;product_description_related_products___entity_index__&quot; class=&quot;related-product entity-item&quot;&gt;
+      &lt;div class=&quot;related-product-image&quot;&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___image&quot; name=&quot;product[description][related_products][__entity_index__][image]&quot; value=&quot;__image__&quot; /&gt;
+        &lt;img src=&quot;__image__&quot; alt=&quot;Image preview&quot; class=&quot;img-fluid&quot; /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;related-product-legend&quot;&gt;
+        &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___name&quot; name=&quot;product[description][related_products][__entity_index__][name]&quot; value=&quot;__name__&quot; /&gt;
+        &lt;span class=&quot;label text-preview&quot;&gt;
+          &lt;span class=&quot;text-preview-prefix&quot;&gt;
+            &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;delete&lt;/i&gt;
+          &lt;/span&gt;
+          &lt;span class=&quot;text-preview-value&quot;&gt;__name__&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___id&quot; name=&quot;product[description][related_products][__entity_index__][id]&quot; value=&quot;__id__&quot; /&gt;
+    &lt;/li&gt;"
+    data-prototype-index="__entity_index__"
+    data-prototype-mapping="{&quot;id&quot;:&quot;__id__&quot;,&quot;image&quot;:&quot;__image__&quot;,&quot;name&quot;:&quot;__name__&quot;}"
+    data-identifier-field="id"
+    data-remove-modal="{&quot;id&quot;:&quot;modal-confirm-remove-entity&quot;,&quot;title&quot;:&quot;Delete item&quot;,&quot;message&quot;:&quot;Are you sure you want to delete this item?&quot;,&quot;apply&quot;:&quot;Delete&quot;,&quot;cancel&quot;:&quot;Cancel&quot;,&quot;buttonClass&quot;:&quot;btn-danger&quot;}"
+    data-remote-url="{$link->getAdminLink('AdminProducts')}?ajax=1&action=searchProducts&query=__QUERY__&token={$token}"
+    data-data-limit="0"
+    data-min-length="3"
+    data-allow-delete="1"
+    data-suggestion-field="name"
+    class="entity-search-widget"
+  >
+    <div class="search search-with-icon">
+      <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+        <input
+          id="product_description_related_products_search_input"
+          class="entity-search-input form-control tt-input"
+          autocomplete="off"
+          placeholder="Search product by reference"
+          type="text"
+          spellcheck="false"
+          dir="auto"
+          style="position: relative; vertical-align: top;"
+        >
+        <pre aria-hidden="true" style="position: absolute; visibility: hidden;"></pre>
+        <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+          <div class="tt-dataset tt-dataset-1"></div>
+        </div>
+      </span>
+    </div>
+
+    <ul id="product_description_related_products_list" class="entities-list entities-list-container" style="display: none;"></ul>
+  </div>
+</div>
+
+    </div>
+
 </div>
 
 <!-- TinyMCE Initialization Script -->
