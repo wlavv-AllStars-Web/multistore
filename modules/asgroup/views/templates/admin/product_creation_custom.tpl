@@ -856,7 +856,7 @@
                     <li class="related-product entity-item col-lg-2">
                         <div class="related-product-image">
                             <input type="hidden" name="product[description][related_products][{$rp@iteration}][image]" value="{$rp.image_url}" />
-                            <img src="{$rp.image_url}" alt="{$rp.name}" width="50" class="img-fluid" />
+                            <img src="{$rp.image_url}" alt="{$rp.name}" width="50"/>
                         </div>
                         <div class="related-product-legend">
                             <input type="hidden" name="product[description][related_products][{$rp@iteration}][name]" value="{$rp.name}" />
@@ -878,7 +878,7 @@
             <li class="related-product entity-item col-lg-2">
                 <div class="related-product-image ">
                     <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
-                    <img src="__image__" alt="Image preview" class="img-fluid" />
+                    <img src="__image__" alt="Image preview"  />
                 </div>
                 <div class="related-product-legend">
                     <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
