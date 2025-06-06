@@ -566,13 +566,12 @@ class IndexController extends IndexControllerCore
         $lang = (int)Context::getContext()->language->id;
 				
         $sql = 'SELECT cl.*
-        FROM ' . _DB_PREFIX_ . 'category c
-        LEFT JOIN ' . _DB_PREFIX_ . 'category_lang cl ON (c.id_category = cl.id_category)
-        WHERE cl.id_shop = ' . (int)$shopId . ' 
-        AND cl.id_lang = ' . (int)$lang . ' 
-        AND cl.id_category != 1
-        AND cl.id_category != 219
-        AND c.active = 1';
+            FROM ' . _DB_PREFIX_ . 'category c
+            LEFT JOIN ' . _DB_PREFIX_ . 'category_lang cl ON (c.id_category = cl.id_category)
+            WHERE cl.id_shop = ' . (int)$shopId . '
+            AND cl.id_lang = ' . (int)$lang . '
+            AND c.id_category IN (550, 551, 552, 553, 554, 555)
+            AND c.active = 1';
         
 
 
