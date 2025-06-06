@@ -334,7 +334,7 @@
                     <label for="product_description_not_to_order_0">
                         Not to order?
                         <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="Not to order helper." data-placement="top" title=""></span>
+                            data-content="Not to order helper." data-placement="top" title="" style="position: absolute;"></span>
                     </label>
 
                     <div class="input-group">
