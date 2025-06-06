@@ -484,42 +484,42 @@ function generateEan() {
         });
     }else{
         const printUrl = `https://webtools.euromuscleparts.com/barcode/product/print/${productIdDetails}/0/1`;
+        window.open(printUrl, '_blank', 'width=1200,height=900');
+        // fetch(printUrl, {
+        //     method: 'GET',
+        //     })
+        //     .then(response => {
+        //         console.log(response)
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! status: ${response.status}`);
+        //         }
+        //         return response.json(); 
+        //     })
+        //     .then(data => {
+        //         console.log("Generation successful:", data.html);
 
-        fetch(printUrl, {
-            method: 'GET',
-            })
-            .then(response => {
-                console.log(response)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json(); 
-            })
-            .then(data => {
-                console.log("Generation successful:", data.html);
-
-                let printWindow = window.open('', '', 'width=1200,height=900');
+        //         let printWindow = window.open('', '', 'width=1200,height=900');
     
-                // Write the HTML content into the new window
-                printWindow.document.write('<html><head><title>Print Ean13</title></head><body>');
-                printWindow.document.write(data.html);
-                printWindow.document.write('</body></html>');
+        //         // Write the HTML content into the new window
+        //         printWindow.document.write('<html><head><title>Print Ean13</title></head><body>');
+        //         printWindow.document.write(data.html);
+        //         printWindow.document.write('</body></html>');
                 
-                // Ensure the page is fully loaded before triggering print
-                printWindow.document.close(); // Close the document to ensure the content is rendered
+        //         // Ensure the page is fully loaded before triggering print
+        //         printWindow.document.close(); // Close the document to ensure the content is rendered
             
-                // Wait for a short moment to ensure the content is rendered before printing
-                printWindow.onload = function() {
-                    // Trigger the print dialog
-                    printWindow.print();
+        //         // Wait for a short moment to ensure the content is rendered before printing
+        //         printWindow.onload = function() {
+        //             // Trigger the print dialog
+        //             printWindow.print();
                     
-                    // Optionally, you can close the window after printing
-                    printWindow.close();
-                };
-            })
-            .catch(error => {
-                console.error("Error printing EAN:", error);
-            });
+        //             // Optionally, you can close the window after printing
+        //             printWindow.close();
+        //         };
+        //     })
+        //     .catch(error => {
+        //         console.error("Error printing EAN:", error);
+        //     });
     }
 }
 
