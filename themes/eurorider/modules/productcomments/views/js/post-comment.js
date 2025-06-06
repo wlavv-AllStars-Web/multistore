@@ -1,25 +1,27 @@
-jQuery(function ($) {
-
+jQuery(document).ready(function () {
+  const $ = jQuery;
   const isDesktop = window.screen.width >= 769;
+
+  console.log('Screen width:', window.screen.width);
 
   const selectors = {
     postCommentModal: isDesktop
-      ? '#product_reviews #post-product-comment-modal'
+      ? '#product_reviews.desktop #post-product-comment-modal'
       : '.container-reviews-mobile #post-product-comment-modal',
     commentPostedModal: isDesktop
-      ? '#product_reviews #product-comment-posted-modal'
+      ? '#product_reviews.desktop #product-comment-posted-modal'
       : '.container-reviews-mobile #product-comment-posted-modal',
     commentPostErrorModal: isDesktop
-      ? '#product_reviews #product-comment-post-error'
+      ? '#product_reviews.desktop #product-comment-post-error'
       : '.container-reviews-mobile #product-comment-post-error',
     postProductCommentButton: isDesktop
-      ? '#product_reviews .post-product-comment'
+      ? '#product_reviews.desktop .post-product-comment'
       : '.container-reviews-mobile .post-product-comment',
     commentForm: isDesktop
-      ? '#product_reviews #post-product-comment-form'
+      ? '#product_reviews.desktop #post-product-comment-form'
       : '.container-reviews-mobile #post-product-comment-form',
     gradeStars: isDesktop
-      ? '#product_reviews #post-product-comment-modal .grade-stars'
+      ? '#product_reviews.desktop #post-product-comment-modal .grade-stars'
       : '.container-reviews-mobile #post-product-comment-modal .grade-stars',
   };
 
@@ -30,8 +32,7 @@ jQuery(function ($) {
   // Attach click handler to post-product-comment button
   $('body').on('click', selectors.postProductCommentButton, function (event) {
     event.preventDefault();
-  
-    console.log('button clicked'); 
+    // console.log('Mobile button clicked'); 
     showPostCommentModal();
   });
 
