@@ -615,6 +615,137 @@
     </div>
 </div>
 
+{* ----------------------------------------------------- *}
+<div class="form-group">
+  <h3>
+    Attached files
+    <span class="help-box"
+          data-toggle="popover"
+          data-trigger="hover"
+          data-html="true"
+          data-content="Instructions, size guide, or any file you want to add to a product."
+          data-placement="top"
+          title="">
+    </span>
+  </h3>
+
+  <p class="subtitle">Customers can download these files on the product page.</p>
+
+  <div class="small font-secondary">
+    <a target="_blank"
+       href="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup"
+       class="pt-0 btn btn-link px-0 align-right">
+      <i class="material-icons">open_in_new</i>Manage all files
+    </a>
+  </div>
+
+  <div id="product_details_attachments">
+    <div class="form-group">
+      <div id="product_details_attachments_attached_files"
+           data-prototype-template='
+             <tr id="product_details_attachments_attached_files___entity_index__" class="entity-item">
+               <input type="hidden" id="product_details_attachments_attached_files___entity_index___attachment_id"
+                      name="product[details][attachments][attached_files][__entity_index__][attachment_id]"
+                      value="__attachment_id__" />
+               <td>
+                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___name"
+                        name="product[details][attachments][attached_files][__entity_index__][name]"
+                        value="__name__" />
+                 <span class="label text-preview">
+                   <span class="text-preview-value">__name__</span>
+                 </span>
+               </td>
+               <td>
+                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___file_name"
+                        name="product[details][attachments][attached_files][__entity_index__][file_name]"
+                        value="__file_name__" />
+                 <span class="label text-preview">
+                   <span class="text-preview-value">__file_name__</span>
+                 </span>
+               </td>
+               <td>
+                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___mime_type"
+                        name="product[details][attachments][attached_files][__entity_index__][mime_type]"
+                        value="__mime_type__" />
+                 <span class="label text-preview">
+                   <span class="text-preview-value">__mime_type__</span>
+                 </span>
+               </td>
+               <td>
+                 <i class="material-icons entity-item-delete">clear</i>
+               </td>
+             </tr>'
+           data-prototype-index="__entity_index__"
+           data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
+           data-identifier-field="attachment_id"
+           data-filtered-identities="[]"
+           data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
+           data-remote-url="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup"
+           data-data-limit="0"
+           data-min-length="2"
+           data-allow-delete="1"
+           data-suggestion-field="name"
+           class="entity-search-widget">
+
+        <!-- Search Input -->
+        <div class="search search-with-icon">
+          <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+            <input id="product_details_attachments_attached_files_search_input"
+                   class="entity-search-input form-control tt-input"
+                   autocomplete="off"
+                   placeholder="Search file"
+                   type="text"
+                   spellcheck="false"
+                   dir="auto">
+            <pre aria-hidden="true" style='position: absolute; visibility: hidden; white-space: pre; font-family: "Open Sans", helvetica, arial, sans-serif; font-size: 14px;'></pre>
+            <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+              <div class="tt-dataset tt-dataset-2"></div>
+            </div>
+          </span>
+        </div>
+
+        <!-- Entity List -->
+        <div id="product_details_attachments_attached_files_list" class="entities-list-container" style="display: none;">
+          <div class="row">
+            <div class="col-sm">
+              <table class="table">
+                <thead class="thead-default">
+                  <tr>
+                    <th>Title</th>
+                    <th>File name</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="entities-list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty List Message -->
+        <div class="alert alert-info empty-entity-list mt-2" role="alert">
+          <p class="alert-text">No files attached</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Attachment Button -->
+  <div class="form-group">
+    <a id="product_details_attachments_add_attachment_btn"
+       name="product[details][attachments][add_attachment_btn]"
+       data-success-create-message="The file was successfully added."
+       data-modal-title="Add new file"
+       class="btn-outline-secondary add-attachment btn"
+       href="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup">
+      <i class="material-icons">add_circle</i>
+      <span class="btn-label">Add new file</span>
+    </a>
+  </div>
+</div>
+
+{* ------------------------------------- *}
 
     </div>
 
