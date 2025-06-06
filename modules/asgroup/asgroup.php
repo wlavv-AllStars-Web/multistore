@@ -164,6 +164,9 @@ class AsGroup extends Module
         if (Tools::getValue('ajax') && Tools::getValue('action') == 'deleteSpecificPrice') {
             $this->ajaxProcessDeleteSpecificPrice();
         }
+        if (Tools::getValue('ajax') && Tools::getValue('action') == 'searchProductByReferencePrefix') {
+            $this->ajaxProcessSearchProductByReferencePrefix();
+        }
     }
 
     public function hookActionAdminControllerSetMedia()
