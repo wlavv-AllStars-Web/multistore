@@ -923,7 +923,7 @@
     const $suggestions = $('<div class="autocomplete-suggestions list-group position-absolute w-100 bg-white shadow" style="z-index: 999;"></div>');
 
     products.forEach(product => {
-      const $item = $('<a href="#" class="list-group-item list-group-item-action">' + product.reference + ' - ' + product.name + '</a>');
+      const $item = $('<a href="#" class="list-group-item list-group-item-action"><img src="'+ product.image +'" />' + product.reference + ' - ' + product.name + '</a>');
 
       $item.on('click', function (e) {
         e.preventDefault();
