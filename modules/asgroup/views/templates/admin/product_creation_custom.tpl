@@ -642,39 +642,38 @@
   <div id="product_details_attachments">
     <div class="form-group">
       <div id="product_details_attachments_attached_files"
-           data-prototype-template='
-             <tr id="product_details_attachments_attached_files___entity_index__" class="entity-item">
-               <input type="hidden" id="product_details_attachments_attached_files___entity_index___attachment_id"
-                      name="product[details][attachments][attached_files][__entity_index__][attachment_id]"
-                      value="__attachment_id__" />
-               <td>
-                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___name"
-                        name="product[details][attachments][attached_files][__entity_index__][name]"
-                        value="__name__" />
-                 <span class="label text-preview">
-                   <span class="text-preview-value">__name__</span>
-                 </span>
-               </td>
-               <td>
-                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___file_name"
-                        name="product[details][attachments][attached_files][__entity_index__][file_name]"
-                        value="__file_name__" />
-                 <span class="label text-preview">
-                   <span class="text-preview-value">__file_name__</span>
-                 </span>
-               </td>
-               <td>
-                 <input type="hidden" id="product_details_attachments_attached_files___entity_index___mime_type"
-                        name="product[details][attachments][attached_files][__entity_index__][mime_type]"
-                        value="__mime_type__" />
-                 <span class="label text-preview">
-                   <span class="text-preview-value">__mime_type__</span>
-                 </span>
-               </td>
-               <td>
-                 <i class="material-icons entity-item-delete">clear</i>
-               </td>
-             </tr>'
+           data-prototype-template="&lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
+                &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot;
+                        name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot;
+                        value=&quot;__attachment_id__&quot; /&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___name&quot;
+                        name=&quot;product[details][attachments][attached_files][__entity_index__][name]&quot;
+                        value=&quot;__name__&quot; /&gt;
+                    &lt;span class=&quot;label text-preview&quot;&gt;
+                    &lt;span class=&quot;text-preview-value&quot;&gt;__name__&lt;/span&gt;
+                    &lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___file_name&quot;
+                        name=&quot;product[details][attachments][attached_files][__entity_index__][file_name]&quot;
+                        value=&quot;__file_name__&quot; /&gt;
+                    &lt;span class=&quot;label text-preview&quot;&gt;
+                    &lt;span class=&quot;text-preview-value&quot;&gt;__file_name__&lt;/span&gt;
+                    &lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___mime_type&quot;
+                        name=&quot;product[details][attachments][attached_files][__entity_index__][mime_type]&quot;
+                        value=&quot;__mime_type__&quot; /&gt;
+                    &lt;span class=&quot;label text-preview&quot;&gt;
+                    &lt;span class=&quot;text-preview-value&quot;&gt;__mime_type__&lt;/span&gt;
+                    &lt;/span&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;clear&lt;/i&gt;
+                &lt;/td&gt;
+                &lt;/tr&gt;"
            data-prototype-index="__entity_index__"
            data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
            data-identifier-field="attachment_id"
