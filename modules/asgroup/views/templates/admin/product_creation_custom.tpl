@@ -632,7 +632,7 @@
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_retail_price_price_tax_excluded"
                                 name="product[asg][retail_price][price_tax_excluded]"
-                                class="js-comma-transformer form-control" value="{$retail_price_tax_excl|floatval}">
+                                class="js-comma-transformer form-control" value="{$product->price|escape:'html':'UTF-8'}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
                             </div>
