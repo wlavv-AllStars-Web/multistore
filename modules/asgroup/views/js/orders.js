@@ -483,7 +483,7 @@ function generateEan() {
             console.error("Error generating EAN:", error);
         });
     }else{
-        const printUrl = `https://webtools.euromuscleparts.com/barcode/product/print/${productIdDetails}/0`;
+        const printUrl = `https://webtools.euromuscleparts.com/barcode/product/print/${productIdDetails}/0/1`;
 
         fetch(printUrl, {
             method: 'GET',
