@@ -856,22 +856,22 @@
 
         <!-- Template for Related Product -->
         <script type="text/template" id="related-product-template">
-        <li class="related-product entity-item">
-            <div class="related-product-image">
-            <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
-            <img src="__image__" alt="Image preview" class="img-fluid" />
-            </div>
-            <div class="related-product-legend">
-            <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
-            <span class="label text-preview">
-                <span class="text-preview-prefix">
-                <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+            <li class="related-product entity-item">
+                <div class="related-product-image">
+                <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
+                <img src="__image__" alt="Image preview" class="img-fluid" />
+                </div>
+                <div class="related-product-legend">
+                <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
+                <span class="label text-preview">
+                    <span class="text-preview-prefix">
+                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                    </span>
+                    <span class="text-preview-value">__name__</span>
                 </span>
-                <span class="text-preview-value">__name__</span>
-            </span>
-            </div>
-            <input type="hidden" name="product[description][related_products][__index__][id]" value="__id__" />
-        </li>
+                </div>
+                <input type="hidden" name="product[description][related_products][__index__][id]" value="__id__" />
+            </li>
         </script>
 
     </div>
@@ -923,7 +923,8 @@
     const $suggestions = $('<div class="autocomplete-suggestions list-group position-absolute w-100 bg-white shadow" style="z-index: 999;"></div>');
 
     products.forEach(product => {
-      const $item = $(`<a href="#" class="list-group-item list-group-item-action">${product.reference} - ${product.name}</a>`);
+      const $item = $('<a href="#" class="list-group-item list-group-item-action">' + product.reference + ' - ' + product.name + '</a>');
+
       $item.on('click', function (e) {
         e.preventDefault();
         addRelatedProduct(product);
