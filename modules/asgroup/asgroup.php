@@ -1602,17 +1602,24 @@ public function getASGProductCreation($product) {
 
 
     $relatedProducts = Db::getInstance()->executeS("
-        SELECT p.id_product, p.reference, pl.name, pl.link_rewrite
+        SELECT 
+            p.id_product, 
+            p.reference, 
+            pl.name, 
+            pl.link_rewrite,
+            i.id_image
         FROM "._DB_PREFIX_."accessory a
         INNER JOIN "._DB_PREFIX_."product p ON p.id_product = a.id_product_2
         INNER JOIN "._DB_PREFIX_."product_lang pl ON p.id_product = pl.id_product
+        LEFT JOIN "._DB_PREFIX_."image i ON i.id_product = p.id_product AND i.cover = 1
+        INNER JOIN "._DB_PREFIX_."product_shop ps ON p.id_product = ps.id_product
         WHERE a.id_product_1 = ".(int)$product->id."
         AND pl.id_lang = ".(int)$id_lang."
-        AND EXISTS (
-            SELECT 1 FROM "._DB_PREFIX_."product_shop ps 
-            WHERE ps.id_product = p.id_product AND ps.id_shop = ".(int)$this->context->shop->id."
-        )
+        AND ps.id_shop = ".(int)$this->context->shop->id."
+        GROUP BY p.id_product
+        ORDER BY pl.name ASC
     ");
+
 
 
     foreach ($relatedProducts as &$rp) {
