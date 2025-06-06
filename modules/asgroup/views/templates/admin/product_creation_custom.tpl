@@ -863,7 +863,7 @@
                                 <span class="text-preview-value">{$rp.reference} - {$rp.name}</span>
                                 <span class="text-preview-prefix">
                                     <i class="material-icons entity-item-delete"
-                                        onclick="$(this).closest('li').remove(); $('#product_footer_save').prop('disabled', false);">delete</i>
+                                        onclick="deleteRelatedProduct(this, '__id__')">delete</i>
                                 </span>
                             </span>
                         </div>
@@ -973,6 +973,24 @@
 
         $('#product_footer_save').prop('disabled', false);
     }
+
+    function deleteRelatedProduct(element, id) {
+        // Remove from custom list
+        $(element).closest('li').remove();
+
+        // Find and remove from the original PrestaShop list
+        const $originalItems = $('#product_description_related_products_list li');
+
+        $originalItems.each(function() {
+            const $input = $(this).find('input[name*="[id]"]');
+            if ($input.length && $input.val() === id.toString()) {
+                $(this).remove();
+            }
+        });
+
+        $('#product_footer_save').prop('disabled', false);
+    }
+
 
     // Close suggestions on click outside
     $(document).on('click', function(e) {
