@@ -386,8 +386,31 @@ class AsGroup extends Module
         // error_log('hookActionProductSave params: ' . print_r($params, true));
         // Please write your logic and operation and save the data as per your need
         // We are using configuration table to save the data
-        $productData = Tools::getValue('product');
+        $context = Context::getContext();
+        $idShop = (int)$context->shop->id;
         $idProduct = $params['id_product'];
+        $productData = Tools::getValue('product');
+
+
+        // prices
+
+        if (isset($productData['asg']['retail_price']['tax_rules_group_id'])) {
+            Db::getInstance()->update('product', [
+                'id_tax_rules_group' => $productData['asg']['retail_price']['tax_rules_group_id']
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or id_manufacturer is not set.');
+        }
+
+        if (isset($productData['asg']['retail_price']['price_tax_excluded'])) {
+            Db::getInstance()->update('product', [
+                'price' => $productData['asg']['retail_price']['price_tax_excluded']
+            ], 'id_product = ' . (int)$idProduct);
+        } else {
+            error_log('Product data is not valid or id_manufacturer is not set.');
+        }
+
+        // 
 
         if (isset($productData['asg']['default_category'])) {
             Db::getInstance()->update('product', [
