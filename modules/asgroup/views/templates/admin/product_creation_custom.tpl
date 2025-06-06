@@ -43,9 +43,9 @@
 
 
 
-<div class="tab-container-product-creation-custom row bg-container">
-    <div class="col-lg-12 bg-creation-container br25">
-        <div class="col-lg-9 bg-creation-container br25 px-0">
+<div class="tab-container-product-creation-custom row bg-container" style="gap: 2rem;">
+    <div class="col-lg-12 bg-creation-container br25" style="display: flex;">
+        <div class="col-lg-9 bg-creation-container br25">
             <!-- Product Reference and EAN Section -->
             <div class="form-group">
                 <div id="product_details_references" class="form-columns-3">
@@ -249,13 +249,13 @@
 
             </div>
 
-            <div class="form-group">
+            {* <div class="form-group">
                 <hr>
-            </div>
+            </div> *}
 
         </div>
 
-        <div class="col-lg-3 bg-creation-container br25 px-0">
+        <div class="col-lg-3 bg-creation-container br25">
 
             <div class="form-group">
                 <label for="product_visibility">Visibility</label>
@@ -447,7 +447,7 @@
         <hr>
     </div> *}
 
-    <div class="col-lg-12 bg-creation-container br25">
+    <div class="col-lg-12 bg-creation-container br25 py-3">
 
         <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group col-lg-4">
@@ -572,7 +572,7 @@
 
     </div>
 
-    <div class="col-lg-12 bg-creation-container br25">
+    <div class="col-lg-12 bg-creation-container br25 py-3">
         <div class="form-group">
             <h3>Retail price</h3>
             <div id="product_pricing_retail_price" class="retail-price-widget">
