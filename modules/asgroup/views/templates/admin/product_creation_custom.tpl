@@ -856,19 +856,19 @@
 
         <!-- Template for Related Product -->
         <script type="text/template" id="related-product-template">
-            <li class="related-product entity-item">
-                <div class="related-product-image">
-                <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
-                <img src="__image__" alt="Image preview" class="img-fluid" />
+            <li class="related-product entity-item col-lg-2">
+                <div class="related-product-image ">
+                    <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
+                    <img src="__image__" alt="Image preview" class="img-fluid" />
                 </div>
                 <div class="related-product-legend">
-                <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
-                <span class="label text-preview">
-                    <span class="text-preview-prefix">
-                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                    <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
+                    <span class="label text-preview">
+                        <span class="text-preview-value">__name__</span>
+                        <span class="text-preview-prefix">
+                            <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                        </span>
                     </span>
-                    <span class="text-preview-value">__name__</span>
-                </span>
                 </div>
                 <input type="hidden" name="product[description][related_products][__index__][id]" value="__id__" />
             </li>
@@ -1575,5 +1575,16 @@
 
     .br25 {
         border-radius: .25rem;
+    }
+
+    .entity-item {
+       display: flex;
+        border: 2px solid #333;
+        border-radius: .25rem; 
+    }
+
+    .entity-item-delete{
+        cursor: pointer;
+        color: var(--danger);
     }
 </style>
