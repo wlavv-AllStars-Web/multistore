@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                categories=$categories 
-                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                level=$level+1
-                                                                                                                            }
+                                                                                                                                                categories=$categories 
+                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                level=$level+1
+                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -43,8 +43,8 @@
 
 
 
-<div class="tab-container-product-creation-custom row">
-    <div class="col-lg-9">
+<div class="tab-container-product-creation-custom row bg-container">
+    <div class="col-lg-9 bg-creation-container br25">
         <!-- Product Reference and EAN Section -->
         <div class="form-group">
             <div id="product_details_references" class="form-columns-3">
@@ -115,8 +115,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                            </textarea>
+                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -156,8 +156,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                            </textarea>
+                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -254,7 +254,7 @@
 
     </div>
 
-    <div class="col-lg-3">
+    <div class="col-lg-3 bg-creation-container br25">
 
         <div class="form-group">
             <label for="product_visibility">Visibility</label>
@@ -441,11 +441,11 @@
 
     </div>
 
-    <div class="col-lg-12">
+    {* <div class="col-lg-12">
         <hr>
-    </div>
+    </div> *}
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 bg-creation-container br25">
 
         <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group col-lg-4">
@@ -561,10 +561,16 @@
 
         </div>
 
-        <div class="form-group">
+        {* <div class="form-group">
             <hr>
-        </div>
+        </div> *}
+        {* <div class="form-group">
+            <hr>
+        </div> *}
 
+    </div>
+
+    <div class="col-lg-12 bg-creation-container br25">
         <div class="form-group">
             <h3>Retail price</h3>
             <div id="product_pricing_retail_price" class="retail-price-widget">
@@ -809,11 +815,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <hr>
-        </div>
-
     </div>
 
 </div>
@@ -1422,5 +1423,17 @@
 
     .toggle-label {
         user-select: none;
+    }
+
+    .bg-container {
+        background: #eaebec;
+    }
+
+    .bg-creation-container {
+        background: #fff;
+    }
+
+    .br25 {
+        border-radius: .25rem;
     }
 </style>
