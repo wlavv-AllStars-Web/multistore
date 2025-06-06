@@ -642,7 +642,7 @@
   <div id="product_details_attachments">
     <div class="form-group">
       <div id="product_details_attachments_attached_files"
-           data-prototype-template="&lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
+           {* data-prototype-template="&lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
                 &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot;
                         name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot;
                         value=&quot;__attachment_id__&quot; /&gt;
@@ -683,7 +683,7 @@
            data-data-limit="0"
            data-min-length="2"
            data-allow-delete="1"
-           data-suggestion-field="name"
+           data-suggestion-field="name" *}
            class="entity-search-widget">
 
         <!-- Search Input -->
