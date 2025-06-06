@@ -318,25 +318,25 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
         // disallow stock
 
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'real_photos',
-            'disallow_stock',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['disallow_stock'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('Disallow stock?',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('Disallow stock helper.',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'real_photos',
+        //     'disallow_stock',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['disallow_stock'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('Disallow stock?',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('Disallow stock helper.',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
 
 
         // $this->formBuilderModifier->addAfter(
