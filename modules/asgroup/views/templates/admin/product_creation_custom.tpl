@@ -1323,6 +1323,7 @@
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
             '#product_prices #specific-prices-container',
+            '#product_description #product_description_related_products',
 
         ];
 
