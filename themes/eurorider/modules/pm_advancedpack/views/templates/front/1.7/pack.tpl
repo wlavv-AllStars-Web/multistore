@@ -12,8 +12,8 @@
         {block name='page_header_container'}
           {block name='page_header'}
             <h1 class="h1" itemprop="name">{block name='page_title'}{$product.name}{/block}</h1>
-            {if $product.description_short}
-              <div class="text-xs-justify text-justify" itemprop="description">{$product.description_short nofilter}</div>
+            {if $product.description}
+              <div class="text-xs-justify text-justify" itemprop="description">{$product.description nofilter}</div>
             {/if}
           {/block}
         {/block}

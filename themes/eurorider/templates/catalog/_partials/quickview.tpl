@@ -47,7 +47,7 @@
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}
           {block name='product_description_short'}
-            <div id="product-description-short" itemprop="description">{$product.description_short nofilter}</div>
+            <div id="product-description-short" itemprop="description">{$product.description nofilter}</div>
           {/block}
           <div class="line clearfix"></div>
           {block name='product_buy'}

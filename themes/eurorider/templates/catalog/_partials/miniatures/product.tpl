@@ -210,8 +210,8 @@
           </div>
          </div>
       {/block}
-      {if isset($product.description_short) && $product.description_short !=''}
-        <div class="short_description" style="color: black;">{$product.description_short|truncate:100:'...' nofilter}</div>
+      {if isset($product.description) && $product.description !=''}
+        <div class="short_description" style="color: black;">{$product.description|truncate:100:'...' nofilter}</div>
       {/if}
       
       {* <div class="hook-reviews"> *}

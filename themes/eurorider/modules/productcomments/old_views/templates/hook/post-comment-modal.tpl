@@ -63,7 +63,7 @@
             <div class="col-sm-4">
               <p class="h3">{$product.name}</p>
               {block name='product_description_short'}
-                <div itemprop="description">{$product.description_short nofilter}</div>
+                <div itemprop="description">{$product.description nofilter}</div>
               {/block}
             </div>
             <div class="col-sm-6">
