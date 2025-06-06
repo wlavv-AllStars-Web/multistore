@@ -1322,6 +1322,7 @@
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
+            '#product_description #product_description_manufacturer',
             '#product_pricing #specific-prices-container',
             '#product_pricing #product_pricing_retail_price',
             '#product_pricing h3[for="product_pricing_wholesale_price"]',
