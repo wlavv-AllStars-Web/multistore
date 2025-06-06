@@ -840,7 +840,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12 bg-creation-container br25 py-3 ">
+    {* <div class="col-lg-12 bg-creation-container br25 py-3 ">
         <!-- Product Autocomplete Input -->
         <div class="form-group">
             <h3>Related Products</h3>
@@ -893,7 +893,7 @@
             </li>
         </script>
 
-    </div>
+    </div> *}
 
 </div>
 
