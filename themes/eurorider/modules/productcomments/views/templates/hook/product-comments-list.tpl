@@ -57,7 +57,7 @@
 
 <div id="product-comments-list-footer">
   <div id="product-comments-list-pagination">
-    {if $list_total_pages > 0 && $nb_comments != 0}
+    {if $list_total_pages > 1 && $nb_comments != 0}
       <ul>
         {assign var = "prevCount" value = 0}
         <li id="pcl_page_{$prevCount}"><span class="prev"><i class="material-icons">chevron_left</i></span></li>
@@ -70,7 +70,7 @@
     {/if}
   </div>
   {if $post_allowed && $nb_comments != 0}
-    <button class="btn btn-comment btn-comment-big post-product-comment">
+    <button class="btn btn-comment btn-comment-big post-product-comment mb-3">
       <i class="material-icons edit" data-icon="edit"></i>
       {l s='Write your review' d='Modules.Productcomments.Shop'}
     </button>
