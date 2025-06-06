@@ -615,6 +615,10 @@
     </div>
 </div>
 
+        <div class="form-group">
+            <hr>
+        </div>
+
 <!-- ------------------------------------- -->
 <div class="form-group">
   <h3>
@@ -731,17 +735,11 @@
   </div>
 
   <!-- Add Attachment Button -->
-  <div class="form-group">
-    <a id="product_details_attachments_add_attachment_btn"
-       name="product[details][attachments][add_attachment_btn]"
-       data-success-create-message="The file was successfully added."
-       data-modal-title="Add new file"
-       class="btn-outline-secondary add-attachment btn"
-       href="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup">
-      <i class="material-icons">add_circle</i>
-      <span class="btn-label">Add new file</span>
+    <a id="product_details_attachments_add_attachment_btn" name="product[details][attachments][add_attachment_btn]" data-success-create-message="The file was successfully added." data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn" href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=BOxDZZ7vDGbRNPbVOauihbLhSu5T96ny8G2W98cjYKY">
+        <i class="material-icons">add_circle</i>
+        <span class="btn-label">Add new file</span>
     </a>
-  </div>
+
 </div>
 
 <!-- ------------------------------------- -->
