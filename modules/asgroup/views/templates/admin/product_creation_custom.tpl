@@ -598,7 +598,7 @@
 
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_wholesale_price_asg"
-                                name="product[pricing][wholesale_price]" data-display-price-precision="6"
+                                name="product[asg][wholesale_price]" data-display-price-precision="6"
                                 class="js-comma-transformer form-control"
                                 value="{$product->wholesale_price|escape:'html':'UTF-8'}" />
                             <div class="input-group-append">
@@ -612,7 +612,7 @@
                             <div class="md-checkbox md-checkbox-inline">
                                 <label>
                                     <input type="checkbox" id="product_pricing_modify_all_shops_wholesale_price_asg"
-                                        name="product[pricing][modify_all_shops_wholesale_price]"
+                                        name="product[asg][modify_all_shops_wholesale_price]"
                                         container_class="modify-all-shops" data-value-type="boolean"
                                         class="form-check-input" value="1" />
                                     <i class="md-checkbox-control"></i>
@@ -629,7 +629,7 @@
                         </label>
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_retail_price_price_tax_excluded_asg"
-                                name="product[pricing][retail_price][price_tax_excluded]"
+                                name="product[asg][retail_price][price_tax_excluded]"
                                 class="js-comma-transformer form-control"
                                 value="{$product->price|escape:'html':'UTF-8'}">
                             <div class="input-group-append">
@@ -642,7 +642,7 @@
                     <div class="form-group select-widget retail-price-tax-rules-group-id">
                         <label for="product_pricing_retail_price_tax_rules_group_id_asg">Tax rule</label>
                         <select id="product_pricing_retail_price_tax_rules_group_id_asg"
-                            name="product[pricing][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                            name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
                             {foreach from=$tax_rules item=rule}
                                 <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
                                     {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
@@ -664,7 +664,7 @@
                         </label>
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_retail_price_price_tax_included_asg"
-                                name="product[pricing][retail_price][price_tax_included]"
+                                name="product[asg][retail_price][price_tax_included]"
                                 class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
@@ -688,7 +688,7 @@
                     <div id="product_pricing_specific_prices_asg">
                         <div class="form-group">
                             <button id="product_pricing_specific_prices_add_specific_price_btn_asg"
-                                name="product[pricing][specific_prices][add_specific_price_btn]"
+                                name="product[asg][specific_prices][add_specific_price_btn]"
                                 class="js-add-specific-price-btn btn btn-outline-primary"
                                 data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
                                 data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
@@ -793,7 +793,7 @@
             <div class="form-group">
                 <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
 
-                <div id="product_pricing_summary" name="product[pricing][summary]"
+                <div id="product_pricing_summary" name="product[asg][summary]"
                     class="price-summary-widget form-group"
                     data-price-tax-excluded="{$retail_price_tax_excl|string_format:'%.2f'} {$currency->sign} tax excl."
                     data-price-tax-included="{$retail_price_tax_incl|string_format:'%.2f'} {$currency->sign} tax incl."
