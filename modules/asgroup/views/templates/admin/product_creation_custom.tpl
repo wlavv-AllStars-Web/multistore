@@ -810,10 +810,10 @@
                             {$retail_price_tax_incl|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='tax incl.' d='Admin.Catalog.Feature'}
                         </div>
-                        <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
+                        {* <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
                             {$product->unit_price|string_format:'%.2f'}&nbsp;{$currency->sign} /
                             {$product->unity|escape}
-                        </div>
+                        </div> *}
                     </div>
 
                     <div class="price-summary-block">
