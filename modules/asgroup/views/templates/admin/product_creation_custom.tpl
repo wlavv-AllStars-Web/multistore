@@ -1612,4 +1612,12 @@
         cursor: pointer;
         color: var(--danger);
     }
+
+    .related-product-image img {
+        max-width: 50px;
+    }
+
+    #product_pricing-tab-nav {
+        display: none;
+    }
 </style>
