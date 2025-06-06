@@ -1533,6 +1533,24 @@
     });
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Select all inputs, selects, and checkboxes
+    const elements = document.querySelectorAll('input, select, textarea');
+    const saveButton = document.getElementById('product_footer_save');
+
+    elements.forEach(function (element) {
+      element.addEventListener('change', function () {
+        if (saveButton) {
+          saveButton.removeAttribute('disabled');
+          saveButton.classList.remove('disabled'); // if it has a "disabled" class
+        }
+      });
+    });
+  });
+</script>
+
+
 <style>
     .tag-box {
         display: flex;
