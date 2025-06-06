@@ -1170,6 +1170,7 @@
                 updateHiddenInput(input);
             });
         });
+        
 
         // Function to update the hidden input with the current tags (comma separated)
         function updateHiddenInput(input) {
