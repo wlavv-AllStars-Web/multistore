@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                categories=$categories 
-                                                                                                                parentId=$cat.id_category 
-                                                                                                                selected_ids=$selected_ids 
-                                                                                                                level=$level+1
-                                                                                                            }
+                                                                                                                                categories=$categories 
+                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                level=$level+1
+                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -71,8 +71,10 @@
                     </label>
                     {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
                     <div style="display: flex;gap: .5rem;">
-                        <input id="product_details_references_ean_13" type="text" class="form-control" name="product[asg][ean13]" value="{$product->ean13}">
-                        <span id="product_details_print_ean_btn" onclick="generateEan()" class="btn btn-info"><i class="material-icons">local_printshop</i></span>
+                        <input id="product_details_references_ean_13" type="text" class="form-control"
+                            name="product[asg][ean13]" value="{$product->ean13}">
+                        <span id="product_details_print_ean_btn" onclick="generateEan()" class="btn btn-info"><i
+                                class="material-icons">local_printshop</i></span>
                     </div>
                 </div>
 
@@ -113,8 +115,8 @@
                         <textarea id="description_short_{$language.id_lang}"
                             name="product[asg][description_short][{$language.id_lang}]"
                             class="form-control tinymce-textarea" rows="5">
-                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                        </textarea>
+                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                            </textarea>
 
                         <small class="form-text text-muted text-right maxLength maxType">
                             <em>
@@ -154,8 +156,8 @@
                         <textarea id="description_long_{$language.id_lang}"
                             name="product[asg][description_long][{$language.id_lang}]"
                             class="form-control tinymce-textarea-description" rows="5">
-                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                        </textarea>
+                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                            </textarea>
 
 
                         <small class="form-text text-muted text-right maxLength maxType">
@@ -250,6 +252,200 @@
             <hr>
         </div>
 
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="product_visibility">Visibility</label>
+            <select class="form-control" id="product_visibility" name="product[asg][visibility]">
+                <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
+                <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
+                </option>
+                <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
+                </option>
+                <option value="none" {if $product->visibility == 'none'}selected="selected" {/if}>Nowhere</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="product_description_wmpackqt">Qty Pack</label>
+            <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
+                placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-4">
+                <label for="product_description_ec_approved_0">
+                    Ec approved
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Ec approved helper." data-placement="top" title=""></span>
+                </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_ec_approved">
+                        <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
+                            value="0" {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
+                        <label for="product_description_ec_approved_0">No</label>
+
+                        <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
+                            value="1" {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
+                        <label for="product_description_ec_approved_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="form-group col-lg-4">
+                <label for="product_description_wmdeprecated_0">
+                    End of life
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="End of life helper." data-placement="top" title=""></span>
+                </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_wmdeprecated">
+                        <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
+                            value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_0">No</label>
+
+                        <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
+                            value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
+                        <label for="product_description_wmdeprecated_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="form-group col-lg-4">
+                <label for="product_description_not_to_order_0">
+                    Not to order?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Not to order helper." data-placement="top" title=""></span>
+                </label>
+
+                <div class="input-group">
+                    <span class="ps-switch" id="product_description_not_to_order">
+                        <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
+                            value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
+                        <label for="product_description_not_to_order_0">No</label>
+
+                        <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
+                            value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
+                        <label for="product_description_not_to_order_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group col-lg-4">
+                <label class="">
+                    Disallow stock?
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title=""
+                        style="position: absolute;">
+                    </span>
+                </label>
+                <div class="input-group ">
+                    <span class="ps-switch" id="product_description_disallow_stock">
+                        <input id="product_description_disallow_stock_0" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="0" checked="" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_0">No</label>
+
+                        <input id="product_description_disallow_stock_1" class="ps-switch"
+                            name="product[asg][disallow_stock]" value="1" type="radio"
+                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
+                        <label for="product_description_disallow_stock_1">Yes</label>
+
+                        <span class="slide-button"></span>
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-group">
+            <label>Options</label>
+            <div class="input-group">
+
+                <div class="form-check col-lg-12">
+                    <input type="hidden" name="product[asg][show_compat_exception]" value="0">
+                    <input class="form-check-input" type="checkbox" id="show_compat_exception"
+                        name="product[asg][show_compat_exception]" value="1"
+                        {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
+                    <label class="form-check-label" for="show_compat_exception">
+                        Show compact exception
+                    </label>
+                </div>
+
+                <div class="form-check col-lg-12">
+
+                    <input type="hidden" name="product[asg][universal]" value="0">
+
+                    <input class="form-check-input" type="checkbox" id="universal_product"
+                        name="product[asg][universal]" value="1"
+                        {if isset($product->universal) && $product->universal == 1}checked{/if}>
+                    <label class="form-check-label" for="universal_product">
+                        Universal product
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="youtube_code_1">YouTube</label>
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
+                    placeholder="YouTube Code 1" value="{$product->youtube_1}">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
+                    placeholder="YouTube Code 2" value="{$product->youtube_2}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="youtube_code_1">HS Code</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
+                    value="{$product->nc}">
+            </div>
+        </div>
+
+        <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
+                Instructions Difficulty
+
+            </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
+                class="custom-select form-control">
+                <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
+                <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
+                <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
+                <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
+                <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
+                <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
+            </select>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="col-lg-12">
+        <hr>
+    </div>
+
+    <div class="col-lg-12">
 
         <div class="form-group" style="display: flex;gap:1rem;">
             <div class="form-group col-lg-4">
@@ -505,501 +701,185 @@
             </div>
         </div>
 
-<div class="form-group">
-    <h2>
-        {l s='Specific prices' d='Admin.Catalog.Feature'}
-        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-            data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
-            data-placement="top">
-        </span>
-    </h2>
+        <div class="form-group">
+            <h2>
+                {l s='Specific prices' d='Admin.Catalog.Feature'}
+                <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                    data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
+                    data-placement="top">
+                </span>
+            </h2>
 
-    <div id="specific-prices-container">
-        <div id="product_pricing_specific_prices">
-            <div class="form-group">
-                <button id="product_pricing_specific_prices_add_specific_price_btn"
-                    name="product[pricing][specific_prices][add_specific_price_btn]"
-                    class="js-add-specific-price-btn btn btn-outline-primary"
-                    data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
-                    data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
-                    data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
-                    <i class="material-icons">add_circle</i>
-                    <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
-                </button>
+            <div id="specific-prices-container">
+                <div id="product_pricing_specific_prices">
+                    <div class="form-group">
+                        <button id="product_pricing_specific_prices_add_specific_price_btn"
+                            name="product[pricing][specific_prices][add_specific_price_btn]"
+                            class="js-add-specific-price-btn btn btn-outline-primary"
+                            data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
+                            data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
+                            data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
+                            <i class="material-icons">add_circle</i>
+                            <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="specific-price-list-container">
+                    <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
+                        id="specific-prices-list-table">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>{l s='ID'}</th>
+                                <th>{l s='Combination'}</th>
+                                <th>{l s='Currency'}</th>
+                                <th>{l s='Country'}</th>
+                                <th>{l s='Group'}</th>
+                                <th>{l s='Store'}</th>
+                                <th>{l s='Customer'}</th>
+                                <th>{l s='Specific price (tax excl.)'}</th>
+                                <th>{l s='Discount (tax incl.)'}</th>
+                                <th>{l s='Duration'}</th>
+                                <th>{l s='Units'}</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$specific_data item=specific}
+                                <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
+                                    <td class="specific-price-id">{$specific.id|default:'-'}</td>
+                                    <td class="combination">{$specific.combination|default:'--'}</td>
+                                    <td class="currency">{$specific.currency|escape:'html'}</td>
+
+                                    {if isset($specific.country[$language.id_lang]) && $specific.country[$language.id_lang] != ''}
+                                        <td class="country">{$specific.country[$language.id_lang]|escape:'html'}</td>
+                                    {else}
+                                        <td class="country">{l s='-'}</td>
+                                    {/if}
+
+                                    {if isset($specific.group[$language.id_lang]) && $specific.group[$language.id_lang] != ''}
+                                        <td class="group">{$specific.group[$language.id_lang]|escape:'html'}</td>
+                                    {else}
+                                        <td class="group">{l s='-'}</td>
+                                    {/if}
+
+                                    <td class="shop">{$specific.store|escape:'html'}</td>
+                                    <td class="customer">{$specific.customer|default:'All customers'}</td>
+                                    <td class="price">
+                                        {if is_numeric($specific.specific_price)}
+                                            {$specific.specific_price|string_format:'%.2f'}
+                                        {else}
+                                            {$specific.specific_price}
+                                        {/if}
+                                    </td>
+                                    <td class="impact">{$specific.discount|escape:'html'}</td>
+                                    <td class="period">
+                                        {if isset($specific.duration) && is_array($specific.duration)}
+                                            <label>{l s='From'}
+                                                <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
+                                            <label>{l s='To'}
+                                                <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
+                                        {else}
+                                            <label>{$specific.duration}</label>
+                                        {/if}
+                                    </td>
+                                    <td class="from-qty">{$specific.units}</td>
+
+                                    <td>
+                                        <span class="btn tooltip-link delete-specific-price"
+                                            onclick="deleteSpecificPrice({$specific.id})"
+                                            data-specific-price-id="{$specific.id}" title="Delete">
+                                            <i class="material-icons">delete</i>
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span type="button" title="Edit" class="js-edit-specific-price-btn btn tooltip-link"
+                                            data-modal-title="Edit specific price"
+                                            data-confirm-button-label="Save and publish" data-cancel-button-label="Cancel"
+                                            data-specific-price-id="{$specific.id}">
+                                            <i class="material-icons">edit</i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-        <div id="specific-price-list-container">
-            <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                id="specific-prices-list-table">
-                <thead class="thead-default">
-                    <tr>
-                        <th>{l s='ID'}</th>
-                        <th>{l s='Combination'}</th>
-                        <th>{l s='Currency'}</th>
-                        <th>{l s='Country'}</th>
-                        <th>{l s='Group'}</th>
-                        <th>{l s='Store'}</th>
-                        <th>{l s='Customer'}</th>
-                        <th>{l s='Specific price (tax excl.)'}</th>
-                        <th>{l s='Discount (tax incl.)'}</th>
-                        <th>{l s='Duration'}</th>
-                        <th>{l s='Units'}</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {foreach from=$specific_data item=specific}
-                        <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
-                            <td class="specific-price-id">{$specific.id|default:'-'}</td>
-                            <td class="combination">{$specific.combination|default:'--'}</td>
-                            <td class="currency">{$specific.currency|escape:'html'}</td>
-
-                            {if isset($specific.country[$language.id_lang]) && $specific.country[$language.id_lang] != ''}
-                                <td class="country">{$specific.country[$language.id_lang]|escape:'html'}</td>
-                            {else}
-                                <td class="country">{l s='-'}</td>
-                            {/if}
-
-                            {if isset($specific.group[$language.id_lang]) && $specific.group[$language.id_lang] != ''}
-                                <td class="group">{$specific.group[$language.id_lang]|escape:'html'}</td>
-                            {else}
-                                <td class="group">{l s='-'}</td>
-                            {/if}
-
-                            <td class="shop">{$specific.store|escape:'html'}</td>
-                            <td class="customer">{$specific.customer|default:'All customers'}</td>
-                            <td class="price">
-                                {if is_numeric($specific.specific_price)}
-                                    {$specific.specific_price|string_format:'%.2f'}
-                                {else}
-                                    {$specific.specific_price}
-                                {/if}
-                            </td>
-                            <td class="impact">{$specific.discount|escape:'html'}</td>
-                            <td class="period">
-                                {if isset($specific.duration) && is_array($specific.duration)}
-                                    <label>{l s='From'} <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
-                                    <label>{l s='To'} <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
-                                {else}
-                                    <label>{$specific.duration}</label>
-                                {/if}
-                            </td>
-                            <td class="from-qty">{$specific.units}</td>
-
-                            <td>
-                                <span class="btn tooltip-link delete-specific-price"
-                                    onclick="deleteSpecificPrice({$specific.id})"
-                                    data-specific-price-id="{$specific.id}"
-                                    title="Delete">
-                                    <i class="material-icons">delete</i>
-                                </span>
-                            </td>
-
-                            <td>
-                                <span type="button" title="Edit"
-                                    class="js-edit-specific-price-btn btn tooltip-link"
-                                    data-modal-title="Edit specific price"
-                                    data-confirm-button-label="Save and publish"
-                                    data-cancel-button-label="Cancel"
-                                    data-specific-price-id="{$specific.id}">
-                                    <i class="material-icons">edit</i>
-                                </span>
-                            </td>
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
         <div class="form-group">
             <hr>
         </div>
 
-<!-- ------------------------------------- -->
-<div class="form-group">
-  <h3>
-    Attached files
-    <span class="help-box"
-          data-toggle="popover"
-          data-trigger="hover"
-          data-html="true"
-          data-content="Instructions, size guide, or any file you want to add to a product."
-          data-placement="top"
-          title="">
-    </span>
-  </h3>
-
-  <p class="subtitle">Customers can download these files on the product page.</p>
-
-  <div class="small font-secondary">
-    <a target="_blank"
-       href="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup"
-       class="pt-0 btn btn-link px-0 align-right">
-      <i class="material-icons">open_in_new</i>Manage all files
-    </a>
-  </div>
-
-  <div id="product_details_attachments">
-    <div class="form-group">
-      <div id="product_details_attachments_attached_files"
-           {* data-prototype-template="&lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
-                &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot;
-                        name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot;
-                        value=&quot;__attachment_id__&quot; /&gt;
-                &lt;td&gt;
-                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___name&quot;
-                        name=&quot;product[details][attachments][attached_files][__entity_index__][name]&quot;
-                        value=&quot;__name__&quot; /&gt;
-                    &lt;span class=&quot;label text-preview&quot;&gt;
-                    &lt;span class=&quot;text-preview-value&quot;&gt;__name__&lt;/span&gt;
-                    &lt;/span&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___file_name&quot;
-                        name=&quot;product[details][attachments][attached_files][__entity_index__][file_name]&quot;
-                        value=&quot;__file_name__&quot; /&gt;
-                    &lt;span class=&quot;label text-preview&quot;&gt;
-                    &lt;span class=&quot;text-preview-value&quot;&gt;__file_name__&lt;/span&gt;
-                    &lt;/span&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                    &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___mime_type&quot;
-                        name=&quot;product[details][attachments][attached_files][__entity_index__][mime_type]&quot;
-                        value=&quot;__mime_type__&quot; /&gt;
-                    &lt;span class=&quot;label text-preview&quot;&gt;
-                    &lt;span class=&quot;text-preview-value&quot;&gt;__mime_type__&lt;/span&gt;
-                    &lt;/span&gt;
-                &lt;/td&gt;
-                &lt;td&gt;
-                    &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;clear&lt;/i&gt;
-                &lt;/td&gt;
-                &lt;/tr&gt;"
-           data-prototype-index="__entity_index__"
-           data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
-           data-identifier-field="attachment_id"
-           data-filtered-identities="[]"
-           data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-           data-remote-url="{$admin_url}&configure=asgroup&tab_module=other&module_name=asgroup"
-           data-data-limit="0"
-           data-min-length="2"
-           data-allow-delete="1"
-           data-suggestion-field="name" *}
-           class="entity-search-widget">
-
-        <!-- Search Input -->
-        <div class="search search-with-icon">
-          <span class="twitter-typeahead" style="position: relative; display: inline-block;">
-            <input id="product_details_attachments_attached_files_search_input"
-                   class="entity-search-input form-control tt-input"
-                   autocomplete="off"
-                   placeholder="Search file"
-                   type="text"
-                   spellcheck="false"
-                   dir="auto">
-            <pre aria-hidden="true" style='position: absolute; visibility: hidden; white-space: pre; font-family: "Open Sans", helvetica, arial, sans-serif; font-size: 14px;'></pre>
-            <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-              <div class="tt-dataset tt-dataset-2"></div>
-            </div>
-          </span>
-        </div>
-
-        <!-- Entity List -->
-        <div id="product_details_attachments_attached_files_list" class="entities-list-container" style="display: none;">
-          <div class="row">
-            <div class="col-sm">
-              <table class="table">
-                <thead class="thead-default">
-                  <tr>
-                    <th>Title</th>
-                    <th>File name</th>
-                    <th>Type</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody class="entities-list"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <!-- Empty List Message -->
-        <div class="alert alert-info empty-entity-list mt-2" role="alert">
-          <p class="alert-text">No files attached</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add Attachment Button -->
-    <a id="product_details_attachments_add_attachment_btn" name="product[details][attachments][add_attachment_btn]" data-success-create-message="The file was successfully added." data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn" href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=BOxDZZ7vDGbRNPbVOauihbLhSu5T96ny8G2W98cjYKY">
-        <i class="material-icons">add_circle</i>
-        <span class="btn-label">Add new file</span>
-    </a>
-
-</div>
-
-<!-- ------------------------------------- -->
-
     </div>
 
-    <div class="col-lg-3">
-
-        <div class="form-group">
-            <label for="product_visibility">Visibility</label>
-            <select class="form-control" id="product_visibility" name="product[asg][visibility]">
-                <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere</option>
-                <option value="catalog" {if $product->visibility == 'catalog'}selected="selected" {/if}>Catalog only
-                </option>
-                <option value="search" {if $product->visibility == 'search'}selected="selected" {/if}>Search only
-                </option>
-                <option value="none" {if $product->visibility == 'none'}selected="selected" {/if}>Nowhere</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="product_description_wmpackqt">Qty Pack</label>
-            <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
-                placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-lg-4">
-                <label for="product_description_ec_approved_0">
-                    Ec approved
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Ec approved helper." data-placement="top" title=""></span>
-                </label>
-
-                <div class="input-group">
-                    <span class="ps-switch" id="product_description_ec_approved">
-                        <input type="radio" id="product_description_ec_approved_0" name="product[asg][ec_approved]"
-                            value="0" {if isset($product->ec_approved) && $product->ec_approved != 1}checked{/if}>
-                        <label for="product_description_ec_approved_0">No</label>
-
-                        <input type="radio" id="product_description_ec_approved_1" name="product[asg][ec_approved]"
-                            value="1" {if isset($product->ec_approved) && $product->ec_approved == 1}checked{/if}>
-                        <label for="product_description_ec_approved_1">Yes</label>
-
-                        <span class="slide-button"></span>
-                    </span>
-                </div>
-            </div>
-
-
-            <div class="form-group col-lg-4">
-                <label for="product_description_wmdeprecated_0">
-                    End of life
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="End of life helper." data-placement="top" title=""></span>
-                </label>
-
-                <div class="input-group">
-                    <span class="ps-switch" id="product_description_wmdeprecated">
-                        <input type="radio" id="product_description_wmdeprecated_0" name="product[asg][wmdeprecated]"
-                            value="0" {if isset($product->wmdeprecated) && $product->wmdeprecated != 1}checked{/if}>
-                        <label for="product_description_wmdeprecated_0">No</label>
-
-                        <input type="radio" id="product_description_wmdeprecated_1" name="product[asg][wmdeprecated]"
-                            value="1" {if isset($product->wmdeprecated) && $product->wmdeprecated == 1}checked{/if}>
-                        <label for="product_description_wmdeprecated_1">Yes</label>
-
-                        <span class="slide-button"></span>
-                    </span>
-                </div>
-            </div>
-
-
-            <div class="form-group col-lg-4">
-                <label for="product_description_not_to_order_0">
-                    Not to order?
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Not to order helper." data-placement="top" title=""></span>
-                </label>
-
-                <div class="input-group">
-                    <span class="ps-switch" id="product_description_not_to_order">
-                        <input type="radio" id="product_description_not_to_order_0" name="product[asg][not_to_order]"
-                            value="0" {if isset($product->not_to_order) && $product->not_to_order != 1}checked{/if}>
-                        <label for="product_description_not_to_order_0">No</label>
-
-                        <input type="radio" id="product_description_not_to_order_1" name="product[asg][not_to_order]"
-                            value="1" {if isset($product->not_to_order) && $product->not_to_order == 1}checked{/if}>
-                        <label for="product_description_not_to_order_1">Yes</label>
-
-                        <span class="slide-button"></span>
-                    </span>
-                </div>
-            </div>
-
-            <div class="form-group col-lg-4">
-                <label class="">
-                    Disallow stock?
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Disallow stock helper." data-placement="top" data-original-title="" title=""
-                        style="position: absolute;">
-                    </span>
-                </label>
-                <div class="input-group ">
-                    <span class="ps-switch" id="product_description_disallow_stock">
-                        <input id="product_description_disallow_stock_0" class="ps-switch"
-                            name="product[asg][disallow_stock]" value="0" checked="" type="radio"
-                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
-                        <label for="product_description_disallow_stock_0">No</label>
-
-                        <input id="product_description_disallow_stock_1" class="ps-switch"
-                            name="product[asg][disallow_stock]" value="1" type="radio"
-                            {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
-                        <label for="product_description_disallow_stock_1">Yes</label>
-
-                        <span class="slide-button"></span>
-                    </span>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="form-group">
-            <label>Options</label>
-            <div class="input-group">
-
-                <div class="form-check col-lg-12">
-                    <input type="hidden" name="product[asg][show_compat_exception]" value="0">
-                    <input class="form-check-input" type="checkbox" id="show_compat_exception"
-                        name="product[asg][show_compat_exception]" value="1"
-                        {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
-                    <label class="form-check-label" for="show_compat_exception">
-                        Show compact exception
-                    </label>
-                </div>
-
-                <div class="form-check col-lg-12">
-
-                    <input type="hidden" name="product[asg][universal]" value="0">
-
-                    <input class="form-check-input" type="checkbox" id="universal_product"
-                        name="product[asg][universal]" value="1"
-                        {if isset($product->universal) && $product->universal == 1}checked{/if}>
-                    <label class="form-check-label" for="universal_product">
-                        Universal product
-                    </label>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label for="youtube_code_1">YouTube</label>
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
-                    placeholder="YouTube Code 1" value="{$product->youtube_1}">
-            </div>
-            <div class="input-group">
-                <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
-                    placeholder="YouTube Code 2" value="{$product->youtube_2}">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="youtube_code_1">HS Code</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
-                    value="{$product->nc}">
-            </div>
-        </div>
-
-        <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
-                Instructions Difficulty
-
-            </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
-                class="custom-select form-control">
-                <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
-                <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
-                <option value="2" {if $product->difficulty == 2}selected{/if}>2</option>
-                <option value="3" {if $product->difficulty == 3}selected{/if}>3</option>
-                <option value="4" {if $product->difficulty == 4}selected{/if}>4</option>
-                <option value="5" {if $product->difficulty == 5}selected{/if}>5</option>
-            </select>
-
-        </div>
-
-
-
-
-    </div>
-
-    <div class="col-lg-12">
-        <hr>
-    </div>
 </div>
 
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const submitButton = document.querySelector('#modal-specific-price-form .btn-lg.btn-confirm-submit');
-    const dismissButton = document.querySelector('#modal-specific-price-form [data-dismiss="modal"]');
+    document.addEventListener('DOMContentLoaded', function() {
+        const submitButton = document.querySelector('#modal-specific-price-form .btn-lg.btn-confirm-submit');
+        const dismissButton = document.querySelector('#modal-specific-price-form [data-dismiss="modal"]');
 
-    if (submitButton && dismissButton) {
-        submitButton.addEventListener('click', function () {
-            // Trigger the modal dismiss button
-            dismissButton.click();
+        if (submitButton && dismissButton) {
+            submitButton.addEventListener('click', function() {
+                // Trigger the modal dismiss button
+                dismissButton.click();
 
-            // Show notification (Bootstrap 5 Toast-style fallback)
-            const alertBox = document.createElement('div');
-            alertBox.className = 'alert alert-success position-fixed top-0 end-0 m-3 shadow';
-            alertBox.style.zIndex = '1055';
-            alertBox.innerText = 'Specific price saved successfully!';
-            document.body.appendChild(alertBox);
+                // Show notification (Bootstrap 5 Toast-style fallback)
+                const alertBox = document.createElement('div');
+                alertBox.className = 'alert alert-success position-fixed top-0 end-0 m-3 shadow';
+                alertBox.style.zIndex = '1055';
+                alertBox.innerText = 'Specific price saved successfully!';
+                document.body.appendChild(alertBox);
 
-            // Auto-dismiss after 3 seconds
-            setTimeout(() => {
-                alertBox.remove();
-            }, 3000);
-        });
-    }
-});
-
-
-function deleteSpecificPrice(id) {
-    if (!confirm('Are you sure you want to delete this specific price?')) {
-        return;
-    }
-
-    $.ajax({
-        url: window.admin_url, // This should be set in your template
-        type: 'POST',
-        data: {
-            ajax: true,
-            action: 'deleteSpecificPrice',
-            id_specific_price: id,
-            token: window.token // Make sure to pass the security token
-        },
-        dataType: 'json',
-        success: function(response) {
-            if (response.success) {
-                // Find and remove the row from the table
-                $('tr[data-specific-price-id="' + id + '"]').remove();
-                
-                // If no more rows, hide the table
-                if ($('#specific-prices-list-table tbody tr').length === 0) {
-                    $('#specific-prices-list-table').removeClass('d-block');
-                    $('#specific-prices-list-table').addClass('d-none');
-                }
-            } else {
-                alert('Failed to delete specific price: ' + (response.message || 'Unknown error'));
-            }
-        },
-        error: function(xhr, status, error) {
-            alert('AJAX error: ' + error);
+                // Auto-dismiss after 3 seconds
+                setTimeout(() => {
+                    alertBox.remove();
+                }, 3000);
+            });
         }
     });
-}
+
+
+    function deleteSpecificPrice(id) {
+        if (!confirm('Are you sure you want to delete this specific price?')) {
+            return;
+        }
+
+        $.ajax({
+            url: window.admin_url, // This should be set in your template
+            type: 'POST',
+            data: {
+                ajax: true,
+                action: 'deleteSpecificPrice',
+                id_specific_price: id,
+                token: window.token // Make sure to pass the security token
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Find and remove the row from the table
+                    $('tr[data-specific-price-id="' + id + '"]').remove();
+
+                    // If no more rows, hide the table
+                    if ($('#specific-prices-list-table tbody tr').length === 0) {
+                        $('#specific-prices-list-table').removeClass('d-block');
+                        $('#specific-prices-list-table').addClass('d-none');
+                    }
+                } else {
+                    alert('Failed to delete specific price: ' + (response.message || 'Unknown error'));
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('AJAX error: ' + error);
+            }
+        });
+    }
 
 
 
@@ -1011,7 +891,7 @@ function deleteSpecificPrice(id) {
         const tagNames = {};
 
         {foreach from=$languages item=language}
-        tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
+            tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
         {/foreach}
 
         const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
@@ -1019,27 +899,27 @@ function deleteSpecificPrice(id) {
         const tagRefVariations = [];
 
         {foreach from=$combinations item=combination}
-        tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
+            tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
         {/foreach}
 
 
         const tagCompats = new Set();
 
         {if isset($compats) && is_array($compats)}
-        {foreach from=$compats item=compat}
-        {if !empty($compat.brand)}
-        tagCompats.add("{$compat.brand|escape:'javascript'}");
-        {/if}
-        {if !empty($compat.model)}
-        tagCompats.add("{$compat.model|escape:'javascript'}");
-        {/if}
-        {if !empty($compat.type)}
-        tagCompats.add("{$compat.type|escape:'javascript'}");
-        {/if}
-        {if !empty($compat.version)}
-        tagCompats.add("{$compat.version|escape:'javascript'}");
-        {/if}
-        {/foreach}
+            {foreach from=$compats item=compat}
+                {if !empty($compat.brand)}
+                    tagCompats.add("{$compat.brand|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.model)}
+                    tagCompats.add("{$compat.model|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.type)}
+                    tagCompats.add("{$compat.type|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.version)}
+                    tagCompats.add("{$compat.version|escape:'javascript'}");
+                {/if}
+            {/foreach}
         {/if}
 
         const uniqueTags = Array.from(tagCompats);
