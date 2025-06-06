@@ -489,10 +489,10 @@ function generateEan() {
             method: 'GET',
             })
             .then(response => {
+                console.log(response)
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                console.log(response)
                 return response.json(); 
             })
             .then(data => {
