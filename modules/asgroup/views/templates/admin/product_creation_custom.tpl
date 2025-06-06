@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                level=$level+1
-                                                                                                                                                                            }
+                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -117,8 +117,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                            </textarea>
+                                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -159,8 +159,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                            </textarea>
+                                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -334,7 +334,8 @@
                     <label for="product_description_not_to_order_0">
                         Not to order?
                         <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="Not to order helper." data-placement="top" title="" style="position: absolute;"></span>
+                            data-content="Not to order helper." data-placement="top" title=""
+                            style="position: absolute;"></span>
                     </label>
 
                     <div class="input-group">
@@ -587,20 +588,17 @@
         <div class="col-lg-8">
             <div class="form-group">
                 <h3>Price</h3>
-                <div id="product_pricing_retail_price" class="retail-price-widget">
+                <div id="product_pricing_retail_price_asg" class="retail-price-widget">
 
                     <!-- Cost Price -->
                     <div class="form-group money-widget">
-                        {* <h3 for="product_pricing_wholesale_price">
-                            {l s='Cost price' d='Admin.Catalog.Feature'}
-                        </h3> *}
-                        <label for="product_pricing_wholesale_price">
+                        <label for="product_pricing_wholesale_price_asg">
                             {l s='Cost price (tax excl.)' d='Admin.Catalog.Help'}
                         </label>
 
                         <div class="input-group money-type">
-                            <input type="text" id="product_pricing_wholesale_price"
-                                name="product[pricing][wholesale_price]" data-display-price-precision="6"
+                            <input type="text" id="product_pricing_wholesale_price_asg"
+                                name="product[asg][wholesale_price]" data-display-price-precision="6"
                                 class="js-comma-transformer form-control"
                                 value="{$product->wholesale_price|escape:'html':'UTF-8'}" />
                             <div class="input-group-append">
@@ -613,8 +611,8 @@
                         <div class="form-check form-check-radio form-checkbox modify-all-shops">
                             <div class="md-checkbox md-checkbox-inline">
                                 <label>
-                                    <input type="checkbox" id="product_pricing_modify_all_shops_wholesale_price"
-                                        name="product[pricing][modify_all_shops_wholesale_price]"
+                                    <input type="checkbox" id="product_pricing_modify_all_shops_wholesale_price_asg"
+                                        name="product[asg][modify_all_shops_wholesale_price]"
                                         container_class="modify-all-shops" data-value-type="boolean"
                                         class="form-check-input" value="1" />
                                     <i class="md-checkbox-control"></i>
@@ -626,13 +624,14 @@
 
                     <!-- Tax Excluded -->
                     <div class="form-group money-widget retail-price-tax-excluded ml-3">
-                        <label for="product_pricing_retail_price_price_tax_excluded">
+                        <label for="product_pricing_retail_price_price_tax_excluded_asg">
                             Retail price (tax excl.)
                         </label>
                         <div class="input-group money-type">
-                            <input type="text" id="product_pricing_retail_price_price_tax_excluded"
-                                name="product[pricing][retail_price][price_tax_excluded]"
-                                class="js-comma-transformer form-control" value="{$product->price|escape:'html':'UTF-8'}">
+                            <input type="text" id="product_pricing_retail_price_price_tax_excluded_asg"
+                                name="product[asg][retail_price][price_tax_excluded]"
+                                class="js-comma-transformer form-control"
+                                value="{$product->price|escape:'html':'UTF-8'}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
                             </div>
@@ -641,9 +640,9 @@
 
                     <!-- Tax Rule -->
                     <div class="form-group select-widget retail-price-tax-rules-group-id">
-                        <label for="product_pricing_retail_price_tax_rules_group_id">Tax rule</label>
-                        <select id="product_pricing_retail_price_tax_rules_group_id"
-                            name="product[pricing][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                        <label for="product_pricing_retail_price_tax_rules_group_id_asg">Tax rule</label>
+                        <select id="product_pricing_retail_price_tax_rules_group_id_asg"
+                            name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
                             {foreach from=$tax_rules item=rule}
                                 <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
                                     {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
@@ -660,12 +659,12 @@
 
                     <!-- Tax Included -->
                     <div class="form-group money-widget retail-price-tax-included">
-                        <label for="product_pricing_retail_price_price_tax_included">
+                        <label for="product_pricing_retail_price_price_tax_included_asg">
                             Retail price (tax incl.)
                         </label>
                         <div class="input-group money-type">
-                            <input type="text" id="product_pricing_retail_price_price_tax_included"
-                                name="product[pricing][retail_price][price_tax_included]"
+                            <input type="text" id="product_pricing_retail_price_price_tax_included_asg"
+                                name="product[asg][retail_price][price_tax_included]"
                                 class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
@@ -685,11 +684,11 @@
                     </span>
                 </h2>
 
-                <div id="specific-prices-container">
-                    <div id="product_pricing_specific_prices">
+                <div id="specific-prices-container_asg">
+                    <div id="product_pricing_specific_prices_asg">
                         <div class="form-group">
-                            <button id="product_pricing_specific_prices_add_specific_price_btn"
-                                name="product[pricing][specific_prices][add_specific_price_btn]"
+                            <button id="product_pricing_specific_prices_add_specific_price_btn_asg"
+                                name="product[asg][specific_prices][add_specific_price_btn]"
                                 class="js-add-specific-price-btn btn btn-outline-primary"
                                 data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
                                 data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
@@ -700,9 +699,9 @@
                         </div>
                     </div>
 
-                    <div id="specific-price-list-container">
+                    <div id="specific-price-list-container_asg">
                         <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                            id="specific-prices-list-table">
+                            id="specific-prices-list-table_asg">
                             <thead class="thead-default">
                                 <tr>
                                     <th>{l s='ID'}</th>
@@ -787,6 +786,7 @@
             </div>
         </div>
 
+
         <div class="col-lg-4">
 
 
@@ -844,27 +844,26 @@
         <!-- Product Autocomplete Input -->
         <div class="form-group">
             <h3>Related Products</h3>
-            <input
-                type="text"
-                id="related-product-autocomplete"
-                class="form-control"
-                placeholder="Type reference (min 3 chars)"
-                autocomplete="off"
-            />
+            <input type="text" id="related-product-autocomplete" class="form-control"
+                placeholder="Type reference (min 3 chars)" autocomplete="off" />
             <ul id="related-products-list" class="entities-list mt-3">
                 {foreach from=$related_products item=rp}
                     <li class="related-product entity-item col-lg-2">
                         <div class="related-product-image">
-                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][image]" value="{$rp.image_url}" />
-                            <img src="{$rp.image_url}" alt="{$rp.name}" width="50"/>
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][image]"
+                                value="{$rp.image_url}" />
+                            <img src="{$rp.image_url}" alt="{$rp.name}" width="50" />
                         </div>
                         <div class="related-product-legend">
-                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][name]" value="{$rp.name}" />
-                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][id]" value="{$rp.id_product}" />
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][name]"
+                                value="{$rp.name}" />
+                            <input type="hidden" name="product[description][related_products][{$rp@iteration}][id]"
+                                value="{$rp.id_product}" />
                             <span class="label text-preview">
                                 <span class="text-preview-value">{$rp.reference} - {$rp.name}</span>
                                 <span class="text-preview-prefix">
-                                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove(); $('#product_footer_save').prop('disabled', false);">delete</i>
+                                    <i class="material-icons entity-item-delete"
+                                        onclick="$(this).closest('li').remove(); $('#product_footer_save').prop('disabled', false);">delete</i>
                                 </span>
                             </span>
                         </div>
@@ -898,85 +897,89 @@
 </div>
 
 <script>
-  let typingTimer;
-  const delay = 300;
+    let typingTimer;
+    const delay = 300;
 
-  $('#related-product-autocomplete').on('input', function () {
-    clearTimeout(typingTimer);
-    const query = $(this).val();
+    $('#related-product-autocomplete').on('input', function() {
+        clearTimeout(typingTimer);
+        const query = $(this).val();
 
-    if (query.length >= 3) {
-      typingTimer = setTimeout(() => {
-        fetchMatchingProducts(query);
-      }, delay);
-    }
-  });
-
-  function fetchMatchingProducts(query) {
-    $.ajax({
-      url: window.admin_url,
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        ajax: true,
-        action: 'searchProductByReferencePrefix',
-        query: query,
-        token: window.token
-      },
-      success: function (res) {
-        if (!res.success || !res.products.length) {
-          return;
+        if (query.length >= 3) {
+            typingTimer = setTimeout(() => {
+                fetchMatchingProducts(query);
+            }, delay);
         }
-
-        // Show suggestions
-        showSuggestions(res.products);
-      },
-      error: function (xhr, status, error) {
-        console.error('Autocomplete error:', error);
-      }
-    });
-  }
-
-  function showSuggestions(products) {
-    const $input = $('#related-product-autocomplete');
-    const $suggestions = $('<div class="autocomplete-suggestions list-group position-absolute bg-white shadow" style="z-index: 999;"></div>');
-
-    products.forEach(product => {
-      const $item = $('<a href="#" class="list-group-item list-group-item-action"><img style="max-width:50px;" src="'+ product.image +'" />' + product.reference + ' - ' + product.name + '</a>');
-
-      $item.on('click', function (e) {
-        e.preventDefault();
-        addRelatedProduct(product);
-        $('.autocomplete-suggestions').remove();
-        $input.val('');
-      });
-      $suggestions.append($item);
     });
 
-    $('.autocomplete-suggestions').remove(); // Remove any existing ones
-    $input.after($suggestions);
-  }
+    function fetchMatchingProducts(query) {
+        $.ajax({
+            url: window.admin_url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                ajax: true,
+                action: 'searchProductByReferencePrefix',
+                query: query,
+                token: window.token
+            },
+            success: function(res) {
+                if (!res.success || !res.products.length) {
+                    return;
+                }
 
-  function addRelatedProduct(product) {
-    const index = $('#related-products-list li').length;
-    let template = $('#related-product-template').html();
-    template = template
-      .replace(/__index__/g, index)
-      .replace(/__id__/g, product.id)
-      .replace(/__name__/g, product.name)
-      .replace(/__image__/g, product.image);
-
-    $('#related-products-list').append(template);
-
-    $('#product_footer_save').prop('disabled', false);
-  }
-
-  // Close suggestions on click outside
-  $(document).on('click', function (e) {
-    if (!$(e.target).closest('.autocomplete-suggestions, #related-product-autocomplete').length) {
-      $('.autocomplete-suggestions').remove();
+                // Show suggestions
+                showSuggestions(res.products);
+            },
+            error: function(xhr, status, error) {
+                console.error('Autocomplete error:', error);
+            }
+        });
     }
-  });
+
+    function showSuggestions(products) {
+        const $input = $('#related-product-autocomplete');
+        const $suggestions = $(
+            '<div class="autocomplete-suggestions list-group position-absolute bg-white shadow" style="z-index: 999;"></div>'
+            );
+
+        products.forEach(product => {
+            const $item = $(
+                '<a href="#" class="list-group-item list-group-item-action"><img style="max-width:50px;" src="' +
+                product.image + '" />' + product.reference + ' - ' + product.name + '</a>');
+
+            $item.on('click', function(e) {
+                e.preventDefault();
+                addRelatedProduct(product);
+                $('.autocomplete-suggestions').remove();
+                $input.val('');
+            });
+            $suggestions.append($item);
+        });
+
+        $('.autocomplete-suggestions').remove(); // Remove any existing ones
+        $input.after($suggestions);
+    }
+
+    function addRelatedProduct(product) {
+        const index = $('#related-products-list li').length;
+        let template = $('#related-product-template').html();
+        template = template
+            .replace(/__index__/g, index)
+            .replace(/__id__/g, product.id)
+            .replace(/__name__/g, product.name)
+            .replace(/__image__/g, product.image);
+
+        $('#related-products-list').append(template);
+
+        $('#product_footer_save').prop('disabled', false);
+    }
+
+    // Close suggestions on click outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.autocomplete-suggestions, #related-product-autocomplete').length) {
+            $('.autocomplete-suggestions').remove();
+        }
+    });
 </script>
 
 
@@ -1170,7 +1173,7 @@
                 updateHiddenInput(input);
             });
         });
-        
+
 
         // Function to update the hidden input with the current tags (comma separated)
         function updateHiddenInput(input) {
@@ -1316,7 +1319,6 @@
     });
 
     window.addEventListener('DOMContentLoaded', function() {
-        // List of element IDs to be removed
         const elementsToRemove = [
             '#product_details #product_details_references_reference',
             '#product_details #product_details_references_ean_13',
@@ -1326,27 +1328,17 @@
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
             '#product_description #product_description_manufacturer',
-            '#product_pricing #specific-prices-container',
-            '#product_pricing #product_pricing_retail_price',
-            '#product_pricing h3[for="product_pricing_wholesale_price"]',
-            '#product_pricing #product_pricing_summary',
-            '#product_description #product_description_related_products',
-
-
         ];
 
-        // Loop through the IDs and remove each element from the DOM
-        elementsToRemove.forEach(function(id) {
-
-            const element = document.querySelector(id).parentElement;
-
-            if (element) {
-                console.log('Removing element:', id);
-                element.remove();
+        elementsToRemove.forEach(function(selector) {
+            const element = document.querySelector(selector);
+            if (element && element.parentElement) {
+                console.log('Removing element:', selector);
+                element.parentElement.remove();
+            } else {
+                console.log('Element not found for selector:', selector);
             }
         });
-
-
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -1536,20 +1528,20 @@
 </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Select all inputs, selects, and checkboxes
-    const elements = document.querySelectorAll('input, select, textarea');
-    const saveButton = document.getElementById('product_footer_save');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all inputs, selects, and checkboxes
+        const elements = document.querySelectorAll('input, select, textarea');
+        const saveButton = document.getElementById('product_footer_save');
 
-    elements.forEach(function (element) {
-      element.addEventListener('change', function () {
-        if (saveButton) {
-          saveButton.removeAttribute('disabled');
-          saveButton.classList.remove('disabled'); // if it has a "disabled" class
-        }
-      });
+        elements.forEach(function(element) {
+            element.addEventListener('change', function() {
+                if (saveButton) {
+                    saveButton.removeAttribute('disabled');
+                    saveButton.classList.remove('disabled'); // if it has a "disabled" class
+                }
+            });
+        });
     });
-  });
 </script>
 
 
@@ -1625,12 +1617,12 @@
     }
 
     .entity-item {
-       display: flex;
+        display: flex;
         border: 2px solid #333;
-        border-radius: .25rem; 
+        border-radius: .25rem;
     }
 
-    .entity-item-delete{
+    .entity-item-delete {
         cursor: pointer;
         color: var(--danger);
     }
