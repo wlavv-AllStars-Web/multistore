@@ -173,7 +173,7 @@ class AsGroup extends Module
     {
         $this->context->controller->addCss('/modules/asgroup/views/css/kpi.css');
         $this->context->controller->addCss('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=barcode');
-        $this->context->controller->addJS('/modules/asgroup/views/js/orders.js');
+        $this->context->controller->addJS('/modules/asgroup/views/js/orders.js?v=' . time());
     }
      
     // add input youtube code Product page in BO 
