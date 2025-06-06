@@ -1562,6 +1562,39 @@
     });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Get all input/select elements inside the #product_pricing_retail_price_asg container
+    const container = document.getElementById("product_pricing_retail_price_asg");
+    const fields = container.querySelectorAll("input[name^='product[asg]'], select[name^='product[asg]']");
+
+    fields.forEach(field => {
+        field.addEventListener("input", syncWithOriginal);
+        field.addEventListener("change", syncWithOriginal);
+    });
+
+    function syncWithOriginal(e) {
+        const source = e.target;
+        const asgName = source.getAttribute("name");
+        if (!asgName) return;
+
+        const pricingName = asgName.replace("[asg]", "[pricing]");
+        const original = document.querySelector(`[name="${pricingName}"]`);
+
+        if (original) {
+            // For inputs/selects, just copy value
+            original.value = source.value;
+
+            // If it's a select element, trigger change in case it's bound to events
+            if (original.tagName === "SELECT") {
+                original.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+        }
+    }
+});
+</script>
+
+
 
 <style>
     .tag-box {
