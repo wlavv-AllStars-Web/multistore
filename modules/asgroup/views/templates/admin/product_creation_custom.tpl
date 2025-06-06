@@ -864,7 +864,7 @@
                             <span class="label text-preview">
                                 <span class="text-preview-value">{$rp.reference} - {$rp.name}</span>
                                 <span class="text-preview-prefix">
-                                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                                    <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove(); $('#product_footer_save').prop('disabled', false);">delete</i>
                                 </span>
                             </span>
                         </div>
@@ -885,7 +885,7 @@
                     <span class="label text-preview">
                         <span class="text-preview-value">__name__</span>
                         <span class="text-preview-prefix">
-                            <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                            <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove(); $('#product_footer_save').prop('disabled', false);">delete</i>
                         </span>
                     </span>
                 </div>
