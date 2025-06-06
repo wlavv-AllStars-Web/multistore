@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const EANvalue = document.querySelector("#product_product_creation_custom_html #product_details_references_ean_13").value;
         const productIdDetails = document.querySelector(".product-form").getAttribute("data-product-id")
-        const btn_detailsEAN = document.querySelector("#product_product_creation_custom_html #product_details_print_ean");
+        const btn_detailsEAN = document.querySelector("#product_product_creation_custom_html #product_details_print_ean_btn");
         
         if(EANvalue != ''){
             btn_detailsEAN.innerHTML = ''
