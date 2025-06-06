@@ -625,7 +625,7 @@
                     </div>
 
                     <!-- Tax Excluded -->
-                    <div class="form-group money-widget retail-price-tax-excluded">
+                    <div class="form-group money-widget retail-price-tax-excluded ml-3">
                         <label for="product_pricing_retail_price_price_tax_excluded">
                             Retail price (tax excl.)
                         </label>
