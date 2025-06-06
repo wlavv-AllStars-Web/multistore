@@ -159,12 +159,12 @@ class AsGroup extends Module
         }
     }
 
-public function hookActionDispatcherBefore(array $params)
-{
-    if (Tools::getValue('ajax') && Tools::getValue('action') == 'deleteSpecificPrice') {
-        $this->ajaxProcessDeleteSpecificPrice();
+    public function hookActionDispatcherBefore(array $params)
+    {
+        if (Tools::getValue('ajax') && Tools::getValue('action') == 'deleteSpecificPrice') {
+            $this->ajaxProcessDeleteSpecificPrice();
+        }
     }
-}
 
     public function hookActionAdminControllerSetMedia()
     {
@@ -1629,38 +1629,73 @@ public function getASGProductCreation($product) {
     ]);
 }
 
-public function ajaxProcessDeleteSpecificPrice()
-{
-    $id_specific_price = (int)Tools::getValue('id_specific_price');
-    
-    if (!$id_specific_price) {
-        die(json_encode([
-            'success' => false,
-            'message' => 'Invalid specific price ID'
-        ]));
+    public function ajaxProcessDeleteSpecificPrice()
+    {
+        $id_specific_price = (int)Tools::getValue('id_specific_price');
+        
+        if (!$id_specific_price) {
+            die(json_encode([
+                'success' => false,
+                'message' => 'Invalid specific price ID'
+            ]));
+        }
+
+        try {
+            $specificPrice = new SpecificPrice($id_specific_price);
+            if (Validate::isLoadedObject($specificPrice)) {
+                if ($specificPrice->delete()) {
+                    die(json_encode([
+                        'success' => true
+                    ]));
+                }
+            }
+            
+            die(json_encode([
+                'success' => false,
+                'message' => 'Could not delete specific price'
+            ]));
+        } catch (Exception $e) {
+            die(json_encode([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]));
+        }
     }
 
-    try {
-        $specificPrice = new SpecificPrice($id_specific_price);
-        if (Validate::isLoadedObject($specificPrice)) {
-            if ($specificPrice->delete()) {
-                die(json_encode([
-                    'success' => true
-                ]));
-            }
-        }
-        
-        die(json_encode([
-            'success' => false,
-            'message' => 'Could not delete specific price'
-        ]));
-    } catch (Exception $e) {
-        die(json_encode([
-            'success' => false,
-            'message' => $e->getMessage()
-        ]));
+public function ajaxProcessSearchProductByReferencePrefix()
+{
+    $query = Tools::getValue('query');
+    if (!$query || Tools::strlen($query) < 3) {
+        die(json_encode(['success' => false, 'message' => 'Query too short', 'products' => []]));
     }
+
+    pre($query);
+
+    $idLang = (int)Context::getContext()->language->id;
+
+    $results = Db::getInstance()->executeS("
+        SELECT p.id_product, p.reference, pl.name, i.id_image
+        FROM "._DB_PREFIX_."product p
+        JOIN "._DB_PREFIX_."product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = $idLang
+        LEFT JOIN "._DB_PREFIX_."image i ON i.id_product = p.id_product AND i.cover = 1
+        WHERE p.reference LIKE '".pSQL($query)."%' 
+        ORDER BY p.reference ASC
+        LIMIT 10
+    ");
+
+    $products = [];
+    foreach ($results as $row) {
+        $products[] = [
+            'id' => (int)$row['id_product'],
+            'name' => $row['name'],
+            'reference' => $row['reference'],
+            'image' => Context::getContext()->link->getImageLink('default', $row['id_image'], 'home_default'),
+        ];
+    }
+
+    die(json_encode(['success' => true, 'products' => $products]));
 }
+  
 
 
 public function getProductSpecificPrices($productId)

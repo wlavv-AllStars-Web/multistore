@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                categories=$categories 
-                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                level=$level+1
-                                                                                                                                                            }
+                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                level=$level+1
+                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -117,8 +117,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                        </textarea>
+                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                            </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -159,8 +159,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                        </textarea>
+                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                            </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -788,7 +788,7 @@
         </div>
 
         <div class="col-lg-4">
-            
+
 
             <div class="form-group">
                 <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
@@ -836,69 +836,127 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
     <div class="col-lg-12 bg-creation-container br25 py-3 ">
+        <!-- Product Autocomplete Input -->
         <div class="form-group">
-  <h3>Related products</h3>
-
-  <div
-    id="product_description_related_products"
-    data-prototype-template="&lt;li id=&quot;product_description_related_products___entity_index__&quot; class=&quot;related-product entity-item&quot;&gt;
-      &lt;div class=&quot;related-product-image&quot;&gt;
-        &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___image&quot; name=&quot;product[description][related_products][__entity_index__][image]&quot; value=&quot;__image__&quot; /&gt;
-        &lt;img src=&quot;__image__&quot; alt=&quot;Image preview&quot; class=&quot;img-fluid&quot; /&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;related-product-legend&quot;&gt;
-        &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___name&quot; name=&quot;product[description][related_products][__entity_index__][name]&quot; value=&quot;__name__&quot; /&gt;
-        &lt;span class=&quot;label text-preview&quot;&gt;
-          &lt;span class=&quot;text-preview-prefix&quot;&gt;
-            &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;delete&lt;/i&gt;
-          &lt;/span&gt;
-          &lt;span class=&quot;text-preview-value&quot;&gt;__name__&lt;/span&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-      &lt;input type=&quot;hidden&quot; id=&quot;product_description_related_products___entity_index___id&quot; name=&quot;product[description][related_products][__entity_index__][id]&quot; value=&quot;__id__&quot; /&gt;
-    &lt;/li&gt;"
-    data-prototype-index="__entity_index__"
-    data-prototype-mapping="{&quot;id&quot;:&quot;__id__&quot;,&quot;image&quot;:&quot;__image__&quot;,&quot;name&quot;:&quot;__name__&quot;}"
-    data-identifier-field="id"
-    data-remove-modal="{&quot;id&quot;:&quot;modal-confirm-remove-entity&quot;,&quot;title&quot;:&quot;Delete item&quot;,&quot;message&quot;:&quot;Are you sure you want to delete this item?&quot;,&quot;apply&quot;:&quot;Delete&quot;,&quot;cancel&quot;:&quot;Cancel&quot;,&quot;buttonClass&quot;:&quot;btn-danger&quot;}"
-    data-remote-url="{$link->getAdminLink('AdminProducts')}?ajax=1&action=searchProducts&query=__QUERY__&token={$token}"
-    data-data-limit="0"
-    data-min-length="3"
-    data-allow-delete="1"
-    data-suggestion-field="name"
-    class="entity-search-widget"
-  >
-    <div class="search search-with-icon">
-      <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+        <h3>Related Products</h3>
         <input
-          id="product_description_related_products_search_input"
-          class="entity-search-input form-control tt-input"
-          autocomplete="off"
-          placeholder="Search product by reference"
-          type="text"
-          spellcheck="false"
-          dir="auto"
-          style="position: relative; vertical-align: top;"
-        >
-        <pre aria-hidden="true" style="position: absolute; visibility: hidden;"></pre>
-        <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-          <div class="tt-dataset tt-dataset-1"></div>
+            type="text"
+            id="related-product-autocomplete"
+            class="form-control"
+            placeholder="Type reference (min 3 chars)"
+            autocomplete="off"
+        />
+        <ul id="related-products-list" class="entities-list mt-3"></ul>
         </div>
-      </span>
+
+        <!-- Template for Related Product -->
+        <script type="text/template" id="related-product-template">
+        <li class="related-product entity-item">
+            <div class="related-product-image">
+            <input type="hidden" name="product[description][related_products][__index__][image]" value="__image__" />
+            <img src="__image__" alt="Image preview" class="img-fluid" />
+            </div>
+            <div class="related-product-legend">
+            <input type="hidden" name="product[description][related_products][__index__][name]" value="__name__" />
+            <span class="label text-preview">
+                <span class="text-preview-prefix">
+                <i class="material-icons entity-item-delete" onclick="$(this).closest('li').remove();">delete</i>
+                </span>
+                <span class="text-preview-value">__name__</span>
+            </span>
+            </div>
+            <input type="hidden" name="product[description][related_products][__index__][id]" value="__id__" />
+        </li>
+        </script>
+
     </div>
 
-    <ul id="product_description_related_products_list" class="entities-list entities-list-container" style="display: none;"></ul>
-  </div>
 </div>
 
-    </div>
+<script>
+  let typingTimer;
+  const delay = 300;
 
-</div>
+  $('#related-product-autocomplete').on('input', function () {
+    clearTimeout(typingTimer);
+    const query = $(this).val();
+
+    if (query.length >= 3) {
+      typingTimer = setTimeout(() => {
+        fetchMatchingProducts(query);
+      }, delay);
+    }
+  });
+
+  function fetchMatchingProducts(query) {
+    $.ajax({
+      url: window.admin_url,
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        ajax: true,
+        action: 'searchProductByReferencePrefix',
+        query: query,
+        token: window.token
+      },
+      success: function (res) {
+        if (!res.success || !res.products.length) {
+          return;
+        }
+
+        // Show suggestions
+        showSuggestions(res.products);
+      },
+      error: function (xhr, status, error) {
+        console.error('Autocomplete error:', error);
+      }
+    });
+  }
+
+  function showSuggestions(products) {
+    const $input = $('#related-product-autocomplete');
+    const $suggestions = $('<div class="autocomplete-suggestions list-group position-absolute w-100 bg-white shadow" style="z-index: 999;"></div>');
+
+    products.forEach(product => {
+      const $item = $(`<a href="#" class="list-group-item list-group-item-action">${product.reference} - ${product.name}</a>`);
+      $item.on('click', function (e) {
+        e.preventDefault();
+        addRelatedProduct(product);
+        $('.autocomplete-suggestions').remove();
+        $input.val('');
+      });
+      $suggestions.append($item);
+    });
+
+    $('.autocomplete-suggestions').remove(); // Remove any existing ones
+    $input.after($suggestions);
+  }
+
+  function addRelatedProduct(product) {
+    const index = $('#related-products-list li').length;
+    let template = $('#related-product-template').html();
+    template = template
+      .replace(/__index__/g, index)
+      .replace(/__id__/g, product.id)
+      .replace(/__name__/g, product.name)
+      .replace(/__image__/g, product.image);
+
+    $('#related-products-list').append(template);
+  }
+
+  // Close suggestions on click outside
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('.autocomplete-suggestions, #related-product-autocomplete').length) {
+      $('.autocomplete-suggestions').remove();
+    }
+  });
+</script>
+
 
 <!-- TinyMCE Initialization Script -->
 <script src="{$base_url}js/tiny_mce/tinymce.min.js"></script>
