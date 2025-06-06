@@ -1125,7 +1125,7 @@
                     close.addEventListener('click', (e) => {
                         e.preventDefault();
                         token.remove();
-                        updateHiddenInput(langId);
+                        updateHiddenInputByLangId(langId);
                     });
 
                     token.appendChild(label);
@@ -1136,10 +1136,10 @@
             });
 
             // Update the hidden field for this lang
-            updateHiddenInput(langId);
+            updateHiddenInputByLangId(langId);
         });
 
-        function updateHiddenInput(langId) {
+        function updateHiddenInputByLangId(langId) {
             const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
             const tokens = container.querySelectorAll('.token');
             const values = Array.from(tokens).map(token => token.dataset.value);
