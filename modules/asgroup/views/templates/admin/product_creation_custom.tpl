@@ -631,7 +631,7 @@
                         </label>
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_retail_price_price_tax_excluded"
-                                name="product[asg][retail_price][price_tax_excluded]"
+                                name="product[pricing][retail_price][price_tax_excluded]"
                                 class="js-comma-transformer form-control" value="{$product->price|escape:'html':'UTF-8'}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
@@ -643,7 +643,7 @@
                     <div class="form-group select-widget retail-price-tax-rules-group-id">
                         <label for="product_pricing_retail_price_tax_rules_group_id">Tax rule</label>
                         <select id="product_pricing_retail_price_tax_rules_group_id"
-                            name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                            name="product[pricing][retail_price][tax_rules_group_id]" class="custom-select form-control">
                             {foreach from=$tax_rules item=rule}
                                 <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
                                     {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
@@ -665,7 +665,7 @@
                         </label>
                         <div class="input-group money-type">
                             <input type="text" id="product_pricing_retail_price_price_tax_included"
-                                name="product[asg][retail_price][price_tax_included]"
+                                name="product[pricing][retail_price][price_tax_included]"
                                 class="js-comma-transformer form-control" value="{$retail_price_tax_incl|floatval}">
                             <div class="input-group-append">
                                 <span class="input-group-text">&nbsp;€</span>
@@ -840,7 +840,7 @@
         </div>
     </div>
 
-    {* <div class="col-lg-12 bg-creation-container br25 py-3 ">
+    <div class="col-lg-12 bg-creation-container br25 py-3 ">
         <!-- Product Autocomplete Input -->
         <div class="form-group">
             <h3>Related Products</h3>
@@ -893,7 +893,7 @@
             </li>
         </script>
 
-    </div> *}
+    </div>
 
 </div>
 
@@ -1325,10 +1325,10 @@
             '#product_seo #product_seo_tags',
             '#product_description #product_description_categories',
             '#product_description #product_description_manufacturer',
-            // '#product_pricing #specific-prices-container',
-            // '#product_pricing #product_pricing_retail_price',
-            // '#product_pricing h3[for="product_pricing_wholesale_price"]',
-            // '#product_pricing #product_pricing_summary',
+            '#product_pricing #specific-prices-container',
+            '#product_pricing #product_pricing_retail_price',
+            '#product_pricing h3[for="product_pricing_wholesale_price"]',
+            '#product_pricing #product_pricing_summary',
             '#product_description #product_description_related_products',
 
         ];
