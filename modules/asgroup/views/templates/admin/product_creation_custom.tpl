@@ -582,9 +582,9 @@
 
     </div>
 
-    <div class="col-lg-12 bg-creation-container br25 py-3 px-0">
+    <div class="col-lg-12 bg-creation-container br25 py-3 px-0" style="display: flex;">
 
-        <div class="col-lg-9">
+        <div class="col-lg-8">
             <div class="form-group">
                 <h3>Price</h3>
                 <div id="product_pricing_retail_price" class="retail-price-widget">
@@ -787,7 +787,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             
 
             <div class="form-group">
