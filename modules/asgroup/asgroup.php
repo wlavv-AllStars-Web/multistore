@@ -1601,17 +1601,27 @@ public function getASGProductCreation($product) {
     $adminBaseUrl = preg_replace('#(index\.php).*#', '', $adminBaseUrl);
 
 
-    $relatedProducts = $product->getAccessories($id_lang);
+    $relatedProducts = Db::getInstance()->executeS("
+        SELECT p.id_product, p.reference, pl.name, pl.link_rewrite
+        FROM "._DB_PREFIX_."accessory a
+        INNER JOIN "._DB_PREFIX_."product p ON p.id_product = a.id_product_2
+        INNER JOIN "._DB_PREFIX_."product_lang pl ON p.id_product = pl.id_product
+        WHERE a.id_product_1 = ".(int)$product->id."
+        AND pl.id_lang = ".(int)$id_lang."
+        AND EXISTS (
+            SELECT 1 FROM "._DB_PREFIX_."product_shop ps 
+            WHERE ps.id_product = p.id_product AND ps.id_shop = ".(int)$this->context->shop->id."
+        )
+    ");
 
-    foreach ($relatedProducts as &$related) {
-        $coverId = Product::getCover($related['id_product']);
-        if ($coverId) {
-            $related['image_url'] = $this->context->link->getImageLink($related['link_rewrite'], $coverId['id_image'], 'home_default');
-        } else {
-            $related['image_url'] = _THEME_PROD_DIR_.'default.jpg';
-        }
+
+    foreach ($relatedProducts as &$rp) {
+        $cover = Product::getCover($rp['id_product']);
+        $rp['image_url'] = $cover
+            ? $this->context->link->getImageLink($rp['link_rewrite'], $cover['id_image'], 'home_default')
+            : _THEME_PROD_DIR_.'default.jpg';
     }
-    unset($related);
+
 
 
 

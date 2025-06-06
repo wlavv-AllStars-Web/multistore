@@ -854,8 +854,8 @@
             <ul id="related-products-list" class="entities-list mt-3">
                 {foreach from=$related_products item=rp}
                     <li class="related-product">
-                    <img src="{$rp.image_url}" alt="{$rp.name}" width="50">
-                    <strong>{$rp.reference}</strong> - {$rp.name}
+                        <img src="{$rp.image_url}" alt="{$rp.name}" width="50">
+                        <strong>{$rp.reference}</strong> - {$rp.name}
                     </li>
                 {/foreach}
             </ul>
