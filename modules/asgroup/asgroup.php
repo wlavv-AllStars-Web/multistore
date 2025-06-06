@@ -1677,14 +1677,15 @@ public function ajaxProcessSearchProductByReferencePrefix()
     $results = Db::getInstance()->executeS("
         SELECT p.id_product, p.reference, pl.name, i.id_image
         FROM "._DB_PREFIX_."product p
+        INNER JOIN "._DB_PREFIX_."product_shop ps ON p.id_product = ps.id_product AND ps.id_shop = ".(int)Context::getContext()->shop->id."
         JOIN "._DB_PREFIX_."product_lang pl ON p.id_product = pl.id_product AND pl.id_lang = $idLang
         LEFT JOIN "._DB_PREFIX_."image i ON i.id_product = p.id_product AND i.cover = 1
-        LEFT JOIN "._DB_PREFIX_."product_shop ps ON p.id_product = ps.id_product AND ps.id_shop = ".(int)Context::getContext()->shop->id."
         WHERE p.reference LIKE '".pSQL($query)."%' 
+        GROUP BY p.reference
         ORDER BY p.reference ASC
         LIMIT 10
     ");
-
+    
     $products = [];
     foreach ($results as $row) {
         $products[] = [
