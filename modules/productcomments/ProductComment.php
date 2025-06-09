@@ -252,7 +252,7 @@ class ProductComment extends ObjectModel
             $result = (int) Db::getInstance((bool) _PS_USE_SQL_SLAVE_)->getValue('
 			SELECT COUNT(`id_product_comment`) AS "nbr"
 			FROM `' . _DB_PREFIX_ . 'product_comment` pc
-			WHERE `id_product` = ' . $id_product . ($validate ? ' AND `validate` = 1' : ''));
+			WHERE `id_product` = ' . $id_product . ($validate ? ' AND `validate` = 1' : ''). 'AND id_shop='. (int) Context::getContext()->shop->id);
             Cache::store($cache_id, (string) $result);
         }
 
@@ -275,7 +275,7 @@ class ProductComment extends ObjectModel
 		SELECT COUNT(pc.`id_product`) AS nbr
 		FROM `' . _DB_PREFIX_ . 'product_comment` pc
 		WHERE `id_product` = ' . $id_product . ($validate == '1' ? ' AND `validate` = 1' : '') . '
-		AND `grade` > 0');
+		AND `grade` > 0 AND id_shop = ' . (int) Context::getContext()->shop->id);
 
         return (int) ($result['nbr']);
     }
@@ -320,10 +320,10 @@ class ProductComment extends ObjectModel
     {
         $sql = '
             SELECT COUNT(*)
-            FROM `' . _DB_PREFIX_ . 'product_comment`';
+            FROM `' . _DB_PREFIX_ . 'product_comment` WHERE id_shop = ' . (int) Context::getContext()->shop->id;
 
         if (!$skip_validate) {
-            $sql .= ' WHERE `validate` = ' . (int) $validate;
+            $sql .= ' AND `validate` = ' . (int) $validate;
         }
 
         return (int) Db::getInstance()->getValue($sql);
