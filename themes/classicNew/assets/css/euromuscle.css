@@ -5618,6 +5618,14 @@ form .form-control-label {
   padding: 0 2rem;
 }
 
+.product-accessories .product-miniature {
+  width: 100%;
+}
+
+.product-accessories .product-miniature .thumbnail-container {
+  width: 100%;
+}
+
 #product_reviews {
   width: 100% !important;
 }
