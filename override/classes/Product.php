@@ -4772,7 +4772,6 @@ class ProductCore extends ObjectModel
                 AND a.`id_shop` = ' . (int) Context::getContext()->shop->id .
                 ($active ? ' AND product_shop.`active` = 1 AND product_shop.`visibility` != \'none\'' : '') . '
                 GROUP BY product_shop.id_product';
-pre($sql);
         if (!$result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql)) {
             return [];
         }
