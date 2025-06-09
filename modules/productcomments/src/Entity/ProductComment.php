@@ -116,6 +116,11 @@ class ProductComment
      */
     private $dateAdd;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_shop", type="integer")
+     */
     private $id_shop;
 
     /**
