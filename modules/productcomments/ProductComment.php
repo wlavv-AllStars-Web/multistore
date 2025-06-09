@@ -114,7 +114,7 @@ class ProductComment extends ObjectModel
 			IF(c.id_customer, CONCAT(c.`firstname`, \' \',  LEFT(c.`lastname`, 1)), pc.customer_name) customer_name, pc.`content`, pc.`grade`, pc.`date_add`, pc.title
 			  FROM `' . _DB_PREFIX_ . 'product_comment` pc
 			LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON c.`id_customer` = pc.`id_customer`
-			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . '
+			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . ' id_shop = ' . (int) Context::getContext()->shop->id . '
 			ORDER BY pc.`date_add` DESC
 			' . ($n ? 'LIMIT ' . (($p - 1) * $n) . ', ' . $n : ''));
             Cache::store($cache_id, $result);
