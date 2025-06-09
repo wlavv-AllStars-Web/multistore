@@ -141,8 +141,10 @@ class ProductCommentRepository extends ServiceEntityRepository
             ->leftJoin('pc', $this->databasePrefix . 'customer', 'c', 'pc.id_customer = c.id_customer AND c.deleted = :not_deleted')
             ->andWhere('pc.id_product = :id_product')
             ->andWhere('pc.deleted = :not_deleted')
+            ->andWhere('pc.id_shop = :id_shop') // Add this line
             ->setParameter('not_deleted', 0)
             ->setParameter('id_product', $productId)
+            ->setParameter('id_shop', (int) \Context::getContext()->shop->id) // Add this line
             ->setMaxResults($commentsPerPage)
             ->setFirstResult(($page - 1) * $commentsPerPage)
             ->addGroupBy('pc.id_product_comment')
@@ -205,8 +207,10 @@ class ProductCommentRepository extends ServiceEntityRepository
             ->from($this->databasePrefix . 'product_comment', 'pc')
             ->andWhere('pc.id_product = :id_product')
             ->andWhere('pc.deleted = :deleted')
+            ->andWhere('pc.id_shop = :id_shop') // Add this line
             ->setParameter('deleted', 0)
             ->setParameter('id_product', $productId)
+            ->setParameter('id_shop', (int) \Context::getContext()->shop->id) // Add this line
         ;
 
         if ($validatedOnly) {
@@ -307,16 +311,17 @@ class ProductCommentRepository extends ServiceEntityRepository
         $sql = 'SELECT';
 
         $count = count($productIds);
+        $shopId = (int) \Context::getContext()->shop->id;
 
         foreach ($productIds as $index => $id) {
             $esqID = (int) $id;
 
-            $sql .= ' SUM(IF(id_product = ' . $esqID . ' AND deleted = 0';
+            $sql .= ' SUM(IF(id_product = ' . $esqID . ' AND deleted = 0 AND id_shop = ' . $shopId; // Add shop condition
             if ($validatedOnly) {
                 $sql .= ' AND validate = 1';
             }
             $sql .= ',grade, 0))';
-            $sql .= ' / SUM(IF(id_product = ' . $esqID . ' AND deleted = 0';
+            $sql .= ' / SUM(IF(id_product = ' . $esqID . ' AND deleted = 0 AND id_shop = ' . $shopId; // Add shop condition
             if ($validatedOnly) {
                 $sql .= ' AND validate = 1';
             }
@@ -372,13 +377,13 @@ class ProductCommentRepository extends ServiceEntityRepository
     public function getCommentsNumberForProducts(array $productIds, $validatedOnly)
     {
         $sql = 'SELECT';
-
+        $shopId = (int) \Context::getContext()->shop->id;
         $count = count($productIds);
 
         foreach ($productIds as $index => $id) {
             $esqID = (int) $id;
 
-            $sql .= ' SUM(IF(id_product = ' . $esqID . ' AND deleted = 0';
+            $sql .= ' SUM(IF(id_product = ' . $esqID . ' AND deleted = 0 AND id_shop = ' . $shopId; // Add shop condition
             if ($validatedOnly) {
                 $sql .= ' AND validate = 1';
             }
@@ -496,8 +501,10 @@ class ProductCommentRepository extends ServiceEntityRepository
             ->leftJoin('p', $this->databasePrefix . 'product_lang', 'pl', 'p.id_product = pl.id_product')
             ->leftJoin('pl', $this->databasePrefix . 'lang', 'l', 'pl.id_lang = l.id_lang')
             ->andWhere('pc.id_customer = :id_customer')
+            ->andWhere('pc.id_shop = :id_shop') // Add this line
             ->andWhere('l.id_lang = :id_lang')
             ->setParameter('id_customer', $customerId)
+            ->setParameter('id_shop', (int) \Context::getContext()->shop->id) // Add this line
             ->setParameter('id_lang', $langId)
             ->addGroupBy('pc.id_product_comment')
             ->addOrderBy('pc.date_add', 'ASC')
@@ -505,7 +512,6 @@ class ProductCommentRepository extends ServiceEntityRepository
 
         return $qb->execute()->fetchAll();
     }
-
     /**
      * @param array $criteria
      *
@@ -519,7 +525,9 @@ class ProductCommentRepository extends ServiceEntityRepository
             ->select('pc.*')
             ->from($this->databasePrefix . 'product_comment', 'pc')
             ->andWhere('pc.deleted = :deleted')
+            ->andWhere('pc.id_shop = :id_shop') // Add this line
             ->setParameter('deleted', 0)
+            ->setParameter('id_shop', (int) \Context::getContext()->shop->id) // Add this line
             ->addOrderBy('pc.date_add', 'DESC')
             ->setMaxResults(1)
         ;
@@ -606,15 +614,16 @@ class ProductCommentRepository extends ServiceEntityRepository
     {
         $sql = 'SELECT DISTINCT(pc.`id_product_comment`), pc.`id_product`, pc.`content`, pc.`grade`, pc.`date_add`, pc.`title`
         , IF(c.id_customer, CONCAT(c.`firstname`, \' \',  c.`lastname`), pc.customer_name) customer_name, pl.`name`
-		FROM `' . $this->databasePrefix . 'product_comment_report` pcr
-		LEFT JOIN `' . $this->databasePrefix . 'product_comment` pc
-			ON pcr.id_product_comment = pc.id_product_comment
-		LEFT JOIN `' . $this->databasePrefix . 'customer` c ON (c.`id_customer` = pc.`id_customer`)
-		LEFT JOIN `' . $this->databasePrefix . 'product_lang` pl ON ' .
+        FROM `' . $this->databasePrefix . 'product_comment_report` pcr
+        LEFT JOIN `' . $this->databasePrefix . 'product_comment` pc
+            ON pcr.id_product_comment = pc.id_product_comment
+        LEFT JOIN `' . $this->databasePrefix . 'customer` c ON (c.`id_customer` = pc.`id_customer`)
+        LEFT JOIN `' . $this->databasePrefix . 'product_lang` pl ON ' .
         '(pl.`id_product` = pc.`id_product` ' .
         ' AND pl.`id_lang` = ' . $langId .
         ' AND pl.`id_shop` = ' . $shopId .
         ') 
+        WHERE pc.id_shop = ' . (int) \Context::getContext()->shop->id . ' // Add this line
         ORDER BY pc.`date_add` DESC';
 
         return $this->connection->executeQuery($sql)->fetchAll();
