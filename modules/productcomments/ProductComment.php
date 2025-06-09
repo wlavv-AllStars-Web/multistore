@@ -114,7 +114,7 @@ class ProductComment extends ObjectModel
 			IF(c.id_customer, CONCAT(c.`firstname`, \' \',  LEFT(c.`lastname`, 1)), pc.customer_name) customer_name, pc.`content`, pc.`grade`, pc.`date_add`, pc.title
 			  FROM `' . _DB_PREFIX_ . 'product_comment` pc
 			LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON c.`id_customer` = pc.`id_customer`
-			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . ' id_shop = ' . (int) Context::getContext()->shop->id . '
+			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . ' pc.id_shop = ' . (int) Context::getContext()->shop->id . '
 			ORDER BY pc.`date_add` DESC
 			' . ($n ? 'LIMIT ' . (($p - 1) * $n) . ', ' . $n : ''));
             Cache::store($cache_id, $result);
@@ -170,7 +170,7 @@ class ProductComment extends ObjectModel
 		LEFT JOIN `' . _DB_PREFIX_ . 'product_comment_grade` pcg ON (pcg.`id_product_comment` = pc.`id_product_comment`)
 		LEFT JOIN `' . _DB_PREFIX_ . 'product_comment_criterion` pcc ON (pcc.`id_product_comment_criterion` = pcg.`id_product_comment_criterion`)
 		LEFT JOIN `' . _DB_PREFIX_ . 'product_comment_criterion_lang` pccl ON (pccl.`id_product_comment_criterion` = pcg.`id_product_comment_criterion`)
-		WHERE pc.`id_product` = ' . $id_product . '
+		WHERE pc.`id_product` = ' . $id_product . ' AND pc.id_shop = ' . (int) Context::getContext()->shop->id .'
 		AND pccl.`id_lang` = ' . $id_lang .
         ($validate ? ' AND pc.`validate` = 1' : ''));
     }
@@ -184,7 +184,7 @@ class ProductComment extends ObjectModel
 				MAX(pc.`grade`) AS max
 			FROM `' . _DB_PREFIX_ . 'product_comment` pc
 			WHERE pc.`id_product` = ' . (int) $id_product . '
-			AND pc.`deleted` = 0' .
+			AND pc.`deleted` = 0 AND pc.id_shop=' . (int) Context::getContext()->shop->id .
             ($validate == '1' ? ' AND pc.`validate` = 1' : '');
 
         return Db::getInstance((bool) _PS_USE_SQL_SLAVE_)->getRow($sql);
@@ -201,7 +201,7 @@ class ProductComment extends ObjectModel
 		SELECT AVG(pc.`grade`) AS grade
 		FROM `' . _DB_PREFIX_ . 'product_comment` pc
 		WHERE pc.`id_product` = ' . (int) $id_product . '
-		AND pc.`deleted` = 0' .
+		AND pc.`deleted` = 0 AND pc.id_shop=' . (int) Context::getContext()->shop->id .
         ($validate == '1' ? ' AND pc.`validate` = 1' : ''));
     }
 
