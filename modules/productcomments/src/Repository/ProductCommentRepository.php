@@ -347,8 +347,10 @@ class ProductCommentRepository extends ServiceEntityRepository
             ->from($this->databasePrefix . 'product_comment', 'pc')
             ->andWhere('pc.id_product = :id_product')
             ->andWhere('pc.deleted = :deleted')
+            ->andWhere('pc.id_shop = :id_shop')
             ->setParameter('deleted', 0)
             ->setParameter('id_product', $productId)
+            ->setParameter('id_shop', (int) \Context::getContext()->shop->id)
         ;
 
         if ($validatedOnly) {
