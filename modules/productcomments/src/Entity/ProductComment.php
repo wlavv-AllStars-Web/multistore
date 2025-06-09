@@ -116,6 +116,8 @@ class ProductComment
      */
     private $dateAdd;
 
+    private $id_shop;
+
     /**
      * @return int
      */
@@ -326,6 +328,14 @@ class ProductComment
         return $this;
     }
 
+    // asg
+    public function setIdShop($id_shop)
+    {
+        $this->id_shop = $id_shop;
+
+        return $this;
+    }
+
     /**
      * @return array
      */
@@ -341,6 +351,7 @@ class ProductComment
             'grade' => $this->grade,
             'usefulness' => 3,
             'total_usefulness' => 5,
+            'id_shop' => $this->id_shop,
         ];
     }
 }
