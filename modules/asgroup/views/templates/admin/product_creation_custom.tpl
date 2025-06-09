@@ -946,6 +946,26 @@
 
     function showSuggestions(products) {
         const $input = $('#related-product-autocomplete');
+
+        // Remove existing suggestions
+        $('.autocomplete-suggestions').remove();
+
+        if (!products || products.length === 0) {
+            const $alert = $(`
+                <div class="alert alert-info mt-2" role="alert">
+                    No related products found.
+                </div>
+            `);
+            $input.after($alert);
+
+            // Optionally auto-remove the alert after a few seconds
+            setTimeout(() => {
+                $alert.fadeOut(300, function () { $(this).remove(); });
+            }, 3000);
+
+            return;
+        }
+
         const $suggestions = $(
             '<div class="autocomplete-suggestions list-group position-absolute bg-white shadow" style="z-index: 999;"></div>'
             );
