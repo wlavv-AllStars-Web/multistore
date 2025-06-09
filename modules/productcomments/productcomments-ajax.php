@@ -105,7 +105,7 @@ else if (Tools::getValue('action') && Tools::getValue('secure_key') == $productC
 					$comment->title = pSQL($title);
 					$comment->grade = 0;
 					$comment->validate = 0;
-					// $comment->id_shop = 5;
+					$comment->id_shop = 5;
 
 
 					$tgrade = 0;
