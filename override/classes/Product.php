@@ -4678,7 +4678,7 @@ class ProductCore extends ObjectModel
      */
     public function deleteAccessories()
     {
-        return Db::getInstance()->delete('accessory', 'id_product_1 = ' . (int) $this->id);
+        return Db::getInstance()->delete('accessory', 'id_product_1 = ' . (int) $this->id . ' AND id_shop = ' . (int) Context::getContext()->shop->id);
     }
 
     /**
@@ -4702,7 +4702,7 @@ class ProductCore extends ObjectModel
      */
     public function deleteFromAccessories()
     {
-        return Db::getInstance()->delete('accessory', 'id_product_2 = ' . (int) $this->id);
+        return Db::getInstance()->delete('accessory', 'id_product_2 = ' . (int) $this->id . ' AND id_shop = ' . (int) Context::getContext()->shop->id);
     }
 
     /**
@@ -4725,7 +4725,8 @@ class ProductCore extends ObjectModel
                 p.`id_product` = pl.`id_product`
                 AND pl.`id_lang` = ' . (int) $id_lang . Shop::addSqlRestrictionOnLang('pl') . '
             )
-            WHERE `id_product_1` = ' . (int) $id_product
+            WHERE `id_product_1` = ' . (int) $id_product .
+            ' AND id_shop = ' . (int) Context::getContext()->shop->id
         );
     }
 
@@ -4767,7 +4768,7 @@ class ProductCore extends ObjectModel
                 LEFT JOIN `' . _DB_PREFIX_ . 'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = ' . (int) $id_lang . ')
                 LEFT JOIN `' . _DB_PREFIX_ . 'manufacturer` m ON (p.`id_manufacturer`= m.`id_manufacturer`)
                 ' . Product::sqlStock('p', 0) . '
-                WHERE `id_product_1` = ' . (int) $this->id .
+                WHERE `id_product_1` = ' . (int) $this->id . ' AND id_shop = ' . (int) Context::getContext()->shop->id .
                 ($active ? ' AND product_shop.`active` = 1 AND product_shop.`visibility` != \'none\'' : '') . '
                 GROUP BY product_shop.id_product';
 
@@ -4823,6 +4824,7 @@ class ProductCore extends ObjectModel
             Db::getInstance()->insert('accessory', [
                 'id_product_1' => (int) $product_id,
                 'id_product_2' => (int) $id_product_2,
+                'id_shop' => (int) Context::getContext()->shop->id,
             ]);
         }
     }
@@ -5188,11 +5190,13 @@ class ProductCore extends ObjectModel
         $result = Db::getInstance()->executeS('
         SELECT *
         FROM `' . _DB_PREFIX_ . 'accessory`
-        WHERE `id_product_1` = ' . (int) $id_product_old);
+        WHERE `id_product_1` = ' . (int) $id_product_old . '
+        AND `id_shop` = ' . (int) Context::getContext()->shop->id);
         foreach ($result as $row) {
             $data = [
                 'id_product_1' => (int) $id_product_new,
                 'id_product_2' => (int) $row['id_product_2'],
+                'id_shop' => (int) $row['id_shop'],
             ];
             $return &= Db::getInstance()->insert('accessory', $data);
         }
