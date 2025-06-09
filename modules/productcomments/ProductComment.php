@@ -81,7 +81,7 @@ class ProductComment extends ObjectModel
             'validate' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
             'deleted' => ['type' => self::TYPE_BOOL],
             'date_add' => ['type' => self::TYPE_DATE],
-            'id_shop' => ['type' => self::TYPE_INT]
+            'id_shop' => ['type' => self::TYPE_INT],
         ],
     ];
 
