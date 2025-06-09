@@ -419,10 +419,12 @@
                     <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
                         placeholder="YouTube Code 1" value="{$product->youtube_1}">
                 </div>
+                {if $shop_id != 1}
                 <div class="input-group">
                     <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
                         placeholder="YouTube Code 2" value="{$product->youtube_2}">
                 </div>
+                {/if}
             </div>
 
             <div class="form-group">
