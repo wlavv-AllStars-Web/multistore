@@ -1255,9 +1255,9 @@
             target: textarea,
             valid_elements: '*[*]',
             menubar: false,
-            plugins: 'lists link image table code',
+            plugins: 'lists link image table code autoresize',
             toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
-            height: 100,
+            height: null, // Let TinyMCE handle the height automatically
             resize: true,
             statusbar: false, // Disable the status bar
             path: false, // Disable the path toolbar
