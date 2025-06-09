@@ -62,7 +62,7 @@ class ProductComment extends ObjectModel
     /** @var string Object creation date */
     public $date_add;
 
-    public $id_shop;
+    // public $id_shop;
 
     /**
      * @see ObjectModel::$definition
@@ -81,7 +81,7 @@ class ProductComment extends ObjectModel
             'validate' => ['type' => self::TYPE_BOOL, 'validate' => 'isBool'],
             'deleted' => ['type' => self::TYPE_BOOL],
             'date_add' => ['type' => self::TYPE_DATE],
-            'id_shop' => ['type' => self::TYPE_INT],
+            // 'id_shop' => ['type' => self::TYPE_INT],
         ],
     ];
 
