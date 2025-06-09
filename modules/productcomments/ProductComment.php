@@ -114,7 +114,7 @@ class ProductComment extends ObjectModel
 			IF(c.id_customer, CONCAT(c.`firstname`, \' \',  LEFT(c.`lastname`, 1)), pc.customer_name) customer_name, pc.`content`, pc.`grade`, pc.`date_add`, pc.title
 			  FROM `' . _DB_PREFIX_ . 'product_comment` pc
 			LEFT JOIN `' . _DB_PREFIX_ . 'customer` c ON c.`id_customer` = pc.`id_customer`
-			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . ' pc.id_shop = ' . (int) Context::getContext()->shop->id . '
+			WHERE pc.`id_product` = ' . $id_product . ($validate ? ' AND pc.`validate` = 1' : '') . ' pc.`id_shop` = ' . (int)Context::getContext()->shop->id . '
 			ORDER BY pc.`date_add` DESC
 			' . ($n ? 'LIMIT ' . (($p - 1) * $n) . ', ' . $n : ''));
             Cache::store($cache_id, $result);
@@ -137,6 +137,7 @@ class ProductComment extends ObjectModel
 				FROM `' . _DB_PREFIX_ . 'product_comment` pc
 				WHERE pc.`id_product` = ' . (int) $id_product . '
 				AND ' . (!$id_guest ? 'pc.`id_customer` = ' . (int) $id_customer : 'pc.`id_guest` = ' . (int) $id_guest) . '
+                AND pc.`id_shop` = ' . (int)Context::getContext()->shop->id . '
 				ORDER BY pc.`date_add` DESC '
                 . ($get_last ? 'LIMIT 1' : '')
             );
@@ -184,7 +185,8 @@ class ProductComment extends ObjectModel
 				MAX(pc.`grade`) AS max
 			FROM `' . _DB_PREFIX_ . 'product_comment` pc
 			WHERE pc.`id_product` = ' . (int) $id_product . '
-			AND pc.`deleted` = 0 AND pc.id_shop=' . (int) Context::getContext()->shop->id .
+			AND pc.`deleted` = 0
+            AND pc.`id_shop` = ' . (int)Context::getContext()->shop->id .
             ($validate == '1' ? ' AND pc.`validate` = 1' : '');
 
         return Db::getInstance((bool) _PS_USE_SQL_SLAVE_)->getRow($sql);
@@ -252,7 +254,8 @@ class ProductComment extends ObjectModel
             $result = (int) Db::getInstance((bool) _PS_USE_SQL_SLAVE_)->getValue('
 			SELECT COUNT(`id_product_comment`) AS "nbr"
 			FROM `' . _DB_PREFIX_ . 'product_comment` pc
-			WHERE `id_product` = ' . $id_product . ($validate ? ' AND `validate` = 1' : ''). 'AND id_shop='. (int) Context::getContext()->shop->id);
+			WHERE `id_product` = ' . $id_product . ($validate ? ' AND `validate` = 1' : ''). 
+            ' AND `id_shop` = ' . (int)Context::getContext()->shop->id);
             Cache::store($cache_id, (string) $result);
         }
 
