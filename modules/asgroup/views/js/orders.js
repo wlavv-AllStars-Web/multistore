@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn_detailsEAN.innerHTML = '<i class="material-icons">local_printshop</i>'
         }else{
             btn_detailsEAN.style.display = 'flex'
-            btn_detailsEAN.style.padding = '0 .5rem'
+            btn_detailsEAN.style.padding = '.5rem'
             btn_detailsEAN.innerHTML = ''
             btn_detailsEAN.innerHTML = '<i class="fa-solid fa-barcode" style="font-size:21px"></i>'
         }
