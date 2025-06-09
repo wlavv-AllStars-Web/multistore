@@ -1594,6 +1594,30 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script defer="defer">
+  document.addEventListener('DOMContentLoaded', function () {
+    function updateRetailPriceTaxIncluded() {
+      const priceExclInput = document.getElementById('product_pricing_retail_price_price_tax_excluded_asg');
+      const taxRulesSelect = document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg');
+      const priceInclInput = document.getElementById('product_pricing_retail_price_price_tax_included_asg');
+
+      const priceExcl = parseFloat(priceExclInput.value.replace(',', '.')) || 0;
+      const selectedOption = taxRulesSelect.options[taxRulesSelect.selectedIndex];
+      const taxRate = parseFloat(selectedOption.getAttribute('data-tax-rate')) || 0;
+
+      const priceIncl = priceExcl * (1 + (taxRate / 100));
+      priceInclInput.value = priceIncl.toFixed(2);
+    }
+
+    document.getElementById('product_pricing_retail_price_price_tax_excluded_asg')
+      .addEventListener('input', updateRetailPriceTaxIncluded);
+
+    document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg')
+      .addEventListener('change', updateRetailPriceTaxIncluded);
+  });
+</script>
+
+
 
 
 <style>
