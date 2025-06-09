@@ -1257,7 +1257,8 @@
             menubar: false,
             plugins: 'lists link image table code',
             toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code',
-            height: 80,
+            height: 100,
+            resize: true,
             statusbar: false, // Disable the status bar
             path: false, // Disable the path toolbar
             skin: 'prestashop',
