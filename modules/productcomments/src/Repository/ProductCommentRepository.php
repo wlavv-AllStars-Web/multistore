@@ -623,7 +623,7 @@ class ProductCommentRepository extends ServiceEntityRepository
         ' AND pl.`id_lang` = ' . $langId .
         ' AND pl.`id_shop` = ' . $shopId .
         ') 
-        WHERE pc.id_shop = ' . (int) \Context::getContext()->shop->id . ' // Add this line
+        WHERE pc.id_shop = ' . (int) \Context::getContext()->shop->id . '
         ORDER BY pc.`date_add` DESC';
 
         return $this->connection->executeQuery($sql)->fetchAll();
