@@ -328,7 +328,13 @@ class ProductComment
         return $this;
     }
 
+
     // asg
+        public function getIdShop()
+    {
+        return $this->id_shop;
+    }
+    
     public function setIdShop($id_shop)
     {
         $this->id_shop = $id_shop;
