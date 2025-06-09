@@ -362,7 +362,7 @@ class ProductComment
             'grade' => $this->grade,
             'usefulness' => 3,
             'total_usefulness' => 5,
-            'id_shop' => $this->id_shop,
+            'id_shop' => $this->getIdShop(),
         ];
     }
 }
