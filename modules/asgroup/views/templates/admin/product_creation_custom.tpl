@@ -953,7 +953,7 @@
         if (!products || products.length === 0) {
             const $alert = $(`
                 <div class="alert alert-info mt-2" role="alert">
-                    No related products found.
+                    No products found.
                 </div>
             `);
             $input.after($alert);
