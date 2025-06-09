@@ -95,7 +95,6 @@ class ProductCommentsPostCommentModuleFrontController extends ModuleFrontControl
             ->setCustomerId($this->context->cookie->id_customer)
             ->setGuestId($this->context->cookie->id_guest)
             ->setDateAdd(new \DateTime('now', new \DateTimeZone('UTC')))
-            ->setIdShop((int) $this->context->shop->id)
         ;
 
         //Validate comment
