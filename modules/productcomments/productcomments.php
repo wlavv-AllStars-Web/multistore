@@ -161,95 +161,131 @@ class ProductComments extends Module implements WidgetInterface
 			`' . _DB_PREFIX_ . 'product_comment_report`');
     }
 
+    public function getCommentForCurrentShop($id_product_comment)
+    {
+        $commentRepository = $this->get('product_comment_repository');
+        $comment = $commentRepository->find($id_product_comment);
+
+        if (!$comment || $comment->id_shop != (int) Context::getContext()->shop->id) {
+            return null;
+        }
+
+        return $comment;
+    }
+
+
     public function getCacheId($id_product = null)
     {
         return parent::getCacheId() . '|' . (int) $id_product;
     }
 
-    protected function _postProcess()
-    {
-        $id_product_comment = (int) Tools::getValue('id_product_comment');
-        $commentRepository = $this->get('product_comment_repository');
-        $criterionRepository = $this->get('product_comment_criterion_repository');
+protected function _postProcess()
+{
+    $id_product_comment = (int) Tools::getValue('id_product_comment');
+    $commentRepository = $this->get('product_comment_repository');
+    $criterionRepository = $this->get('product_comment_criterion_repository');
 
-        if (Tools::isSubmit('submitModerate')) {
-            $errors = [];
-            $productCommentsMinimalTime = Tools::getValue('PRODUCT_COMMENTS_MINIMAL_TIME');
-            if (!Validate::isUnsignedInt($productCommentsMinimalTime) || 0 >= $productCommentsMinimalTime) {
-                $errors[] = $this->trans(
-                    '%s is invalid. Please enter an integer greater than %s.',
-                    [$this->trans('Minimum time between 2 reviews from the same user', [], 'Modules.Productcomments.Admin'), '0'],
-                    'Admin.Notifications.Error'
-                );
-            }
-            $productCommentsPerPage = Tools::getValue('PRODUCT_COMMENTS_COMMENTS_PER_PAGE');
-            if (!Validate::isUnsignedInt($productCommentsPerPage) || 0 >= $productCommentsPerPage) {
-                $errors[] = $this->trans(
-                    '%s is invalid. Please enter an integer greater than %s.',
-                    [$this->trans('Number of comments per page', [], 'Modules.Productcomments.Admin'), '0'],
-                    'Admin.Notifications.Error'
-                );
-            }
-            if (count($errors)) {
-                $this->_html .= $this->displayError(implode('<br />', $errors));
-            } else {
-                Configuration::updateValue('PRODUCT_COMMENTS_MODERATE', (int) Tools::getValue('PRODUCT_COMMENTS_MODERATE'));
-                Configuration::updateValue('PRODUCT_COMMENTS_ALLOW_GUESTS', (int) Tools::getValue('PRODUCT_COMMENTS_ALLOW_GUESTS'));
-                Configuration::updateValue('PRODUCT_COMMENTS_USEFULNESS', (int) Tools::getValue('PRODUCT_COMMENTS_USEFULNESS'));
-                Configuration::updateValue('PRODUCT_COMMENTS_ANONYMISATION', (int) Tools::getValue('PRODUCT_COMMENTS_ANONYMISATION'));
-                Configuration::updateValue('PRODUCT_COMMENTS_MINIMAL_TIME', $productCommentsMinimalTime);
-                Configuration::updateValue('PRODUCT_COMMENTS_COMMENTS_PER_PAGE', $productCommentsPerPage);
-                $this->_html .= $this->displayConfirmation($this->trans('Settings updated', [], 'Modules.Productcomments.Admin'));
-            }
-        } elseif (Tools::isSubmit('productcomments')) {
-            $comment = $commentRepository->find($id_product_comment);
-            $commentRepository->validate($comment, 1);
-            $commentRepository->deleteReports($id_product_comment);
-        } elseif (Tools::isSubmit('deleteproductcomments')) {
-            $comment = $commentRepository->find($id_product_comment);
-            $commentRepository->delete($comment);
-        } elseif (Tools::isSubmit('submitEditCriterion')) {
-            $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
-            $criterion->setType((int) Tools::getValue('id_product_comment_criterion_type'));
-            $criterion->setActive(Tools::getValue('active'));
-
-            $languages = Language::getLanguages();
-            $name = [];
-            foreach ($languages as $key => $value) {
-                $name[$value['id_lang']] = Tools::getValue('name_' . $value['id_lang']);
-            }
-            $criterion->setNames($name);
-
-            if (!$criterion->isValid()) {
-                $this->_html .= $this->displayError($this->trans('The criterion cannot be saved', [], 'Modules.Productcomments.Admin'));
-            } else {
-                $criterion->setCategories(Tools::getValue('categoryBox'));
-                $criterion->setProducts(Tools::getValue('ids_product'));
-                if ($criterionRepository->update($criterion)) {
-                    Tools::redirectAdmin(Context::getContext()->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name, 'conf' => 4]));
-                } else {
-                    $this->_html .= $this->displayError($this->trans('The criterion cannot be saved', [], 'Modules.Productcomments.Admin'));
-                }
-            }
-        } elseif (Tools::isSubmit('deleteproductcommentscriterion')) {
-            $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
-            if ($criterionRepository->delete($criterion)) {
-                $this->_html .= $this->displayConfirmation($this->trans('Criterion deleted', [], 'Modules.Productcomments.Admin'));
-            }
-        } elseif (Tools::isSubmit('statusproductcommentscriterion')) {
-            $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
-            $criterion->setActive(!$criterion->isActive());
-            Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name, 'tab_module' => $this->tab, 'conf' => 4, 'module_name' => $this->name]));
-        } elseif ($id_product_comment = (int) Tools::getValue('approveComment')) {
-            $comment = $commentRepository->find($id_product_comment);
-            $commentRepository->validate($comment, 1);
-        } elseif ($id_product_comment = (int) Tools::getValue('noabuseComment')) {
-            $commentRepository->deleteReports($id_product_comment);
-            Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name]));
+    if (Tools::isSubmit('submitModerate')) {
+        $errors = [];
+        $productCommentsMinimalTime = Tools::getValue('PRODUCT_COMMENTS_MINIMAL_TIME');
+        if (!Validate::isUnsignedInt($productCommentsMinimalTime) || 0 >= $productCommentsMinimalTime) {
+            $errors[] = $this->trans(
+                '%s is invalid. Please enter an integer greater than %s.',
+                [$this->trans('Minimum time between 2 reviews from the same user', [], 'Modules.Productcomments.Admin'), '0'],
+                'Admin.Notifications.Error'
+            );
         }
+        $productCommentsPerPage = Tools::getValue('PRODUCT_COMMENTS_COMMENTS_PER_PAGE');
+        if (!Validate::isUnsignedInt($productCommentsPerPage) || 0 >= $productCommentsPerPage) {
+            $errors[] = $this->trans(
+                '%s is invalid. Please enter an integer greater than %s.',
+                [$this->trans('Number of comments per page', [], 'Modules.Productcomments.Admin'), '0'],
+                'Admin.Notifications.Error'
+            );
+        }
+        if (count($errors)) {
+            $this->_html .= $this->displayError(implode('<br />', $errors));
+        } else {
+            Configuration::updateValue('PRODUCT_COMMENTS_MODERATE', (int) Tools::getValue('PRODUCT_COMMENTS_MODERATE'));
+            Configuration::updateValue('PRODUCT_COMMENTS_ALLOW_GUESTS', (int) Tools::getValue('PRODUCT_COMMENTS_ALLOW_GUESTS'));
+            Configuration::updateValue('PRODUCT_COMMENTS_USEFULNESS', (int) Tools::getValue('PRODUCT_COMMENTS_USEFULNESS'));
+            Configuration::updateValue('PRODUCT_COMMENTS_ANONYMISATION', (int) Tools::getValue('PRODUCT_COMMENTS_ANONYMISATION'));
+            Configuration::updateValue('PRODUCT_COMMENTS_MINIMAL_TIME', $productCommentsMinimalTime);
+            Configuration::updateValue('PRODUCT_COMMENTS_COMMENTS_PER_PAGE', $productCommentsPerPage);
+            $this->_html .= $this->displayConfirmation($this->trans('Settings updated', [], 'Modules.Productcomments.Admin'));
+        }
+    } elseif (Tools::isSubmit('productcomments')) {
+        $comment = $this->getCommentForCurrentShop($id_product_comment);
+        if (!$comment) {
+            $this->_html .= $this->displayError($this->trans('Comment not found or does not belong to this shop.', [], 'Modules.Productcomments.Admin'));
+            return;
+        }
+        $commentRepository->validate($comment, 1);
+        $commentRepository->deleteReports($id_product_comment);
+    } elseif (Tools::isSubmit('deleteproductcomments')) {
+        $comment = $this->getCommentForCurrentShop($id_product_comment);
+        if (!$comment) {
+            $this->_html .= $this->displayError($this->trans('Comment not found or does not belong to this shop.', [], 'Modules.Productcomments.Admin'));
+            return;
+        }
+        $commentRepository->delete($comment);
+    } elseif (Tools::isSubmit('submitEditCriterion')) {
+        $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
+        $criterion->setType((int) Tools::getValue('id_product_comment_criterion_type'));
+        $criterion->setActive(Tools::getValue('active'));
 
-        $this->_clearcache('productcomments_reviews.tpl');
+        $languages = Language::getLanguages();
+        $name = [];
+        foreach ($languages as $key => $value) {
+            $name[$value['id_lang']] = Tools::getValue('name_' . $value['id_lang']);
+        }
+        $criterion->setNames($name);
+
+        if (!$criterion->isValid()) {
+            $this->_html .= $this->displayError($this->trans('The criterion cannot be saved', [], 'Modules.Productcomments.Admin'));
+        } else {
+            $criterion->setCategories(Tools::getValue('categoryBox'));
+            $criterion->setProducts(Tools::getValue('ids_product'));
+            if ($criterionRepository->update($criterion)) {
+                Tools::redirectAdmin(Context::getContext()->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name, 'conf' => 4]));
+            } else {
+                $this->_html .= $this->displayError($this->trans('The criterion cannot be saved', [], 'Modules.Productcomments.Admin'));
+            }
+        }
+    } elseif (Tools::isSubmit('deleteproductcommentscriterion')) {
+        $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
+        if ($criterionRepository->delete($criterion)) {
+            $this->_html .= $this->displayConfirmation($this->trans('Criterion deleted', [], 'Modules.Productcomments.Admin'));
+        }
+    } elseif (Tools::isSubmit('statusproductcommentscriterion')) {
+        $criterion = $criterionRepository->findRelation((int) Tools::getValue('id_product_comment_criterion'));
+        $criterion->setActive(!$criterion->isActive());
+        Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules', true, [], [
+            'configure' => $this->name,
+            'tab_module' => $this->tab,
+            'conf' => 4,
+            'module_name' => $this->name
+        ]));
+    } elseif ($id_product_comment = (int) Tools::getValue('approveComment')) {
+        $comment = $this->getCommentForCurrentShop($id_product_comment);
+        if (!$comment) {
+            $this->_html .= $this->displayError($this->trans('Comment not found or does not belong to this shop.', [], 'Modules.Productcomments.Admin'));
+            return;
+        }
+        $commentRepository->validate($comment, 1);
+    } elseif ($id_product_comment = (int) Tools::getValue('noabuseComment')) {
+        $comment = $this->getCommentForCurrentShop($id_product_comment);
+        if (!$comment) {
+            $this->_html .= $this->displayError($this->trans('Comment not found or does not belong to this shop.', [], 'Modules.Productcomments.Admin'));
+            return;
+        }
+        $commentRepository->deleteReports($id_product_comment);
+        Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name]));
     }
+
+    $this->_clearcache('productcomments_reviews.tpl');
+}
+
 
     public function getContent()
     {
