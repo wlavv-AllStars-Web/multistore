@@ -931,7 +931,7 @@
                 token: window.token
             },
             success: function(res) {
-                if (!res.success || !res.products.length) {
+                if (!res.success) {
                     return;
                 }
 
