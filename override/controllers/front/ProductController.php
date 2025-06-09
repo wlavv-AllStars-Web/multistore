@@ -411,6 +411,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
             $this->context->smarty->assign('packs', Pack::getPacksTable($this->product->id, $this->context->language->id, true, 1));
 
             $accessories = $this->product->getAccessories($this->context->language->id);
+            pre($accessories);
             if (is_array($accessories)) {
                 foreach ($accessories as &$accessory) {
                     $accessory = $presenter->present(
