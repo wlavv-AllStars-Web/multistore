@@ -4718,15 +4718,15 @@ class ProductCore extends ObjectModel
         return Db::getInstance()->executeS(
             '
             SELECT p.`id_product`, p.`reference`, pl.`name`
-            FROM `' . _DB_PREFIX_ . 'accessory`
-            LEFT JOIN `' . _DB_PREFIX_ . 'product` p ON (p.`id_product`= `id_product_2`)
+            FROM `' . _DB_PREFIX_ . 'accessory` a
+            LEFT JOIN `' . _DB_PREFIX_ . 'product` p ON (p.`id_product` = a.`id_product_2`)
             ' . Shop::addSqlAssociation('product', 'p') . '
             LEFT JOIN `' . _DB_PREFIX_ . 'product_lang` pl ON (
                 p.`id_product` = pl.`id_product`
                 AND pl.`id_lang` = ' . (int) $id_lang . Shop::addSqlRestrictionOnLang('pl') . '
             )
-            WHERE `id_product_1` = ' . (int) $id_product .
-            ' AND id_shop = ' . (int) Context::getContext()->shop->id
+            WHERE a.`id_product_1` = ' . (int) $id_product . '
+            AND a.`id_shop` = ' . (int) Context::getContext()->shop->id
         );
     }
 
@@ -4750,8 +4750,8 @@ class ProductCore extends ObjectModel
                             INTERVAL ' . (Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20) . ' DAY
                         )
                     ) > 0 AS new
-                FROM `' . _DB_PREFIX_ . 'accessory`
-                LEFT JOIN `' . _DB_PREFIX_ . 'product` p ON p.`id_product` = `id_product_2`
+                FROM `' . _DB_PREFIX_ . 'accessory` a
+                LEFT JOIN `' . _DB_PREFIX_ . 'product` p ON p.`id_product` = a.`id_product_2`
                 ' . Shop::addSqlAssociation('product', 'p') . '
                 LEFT JOIN `' . _DB_PREFIX_ . 'product_attribute_shop` product_attribute_shop
                     ON (p.`id_product` = product_attribute_shop.`id_product` AND product_attribute_shop.`default_on` = 1 AND product_attribute_shop.id_shop=' . (int) $this->id_shop . ')
@@ -4768,7 +4768,8 @@ class ProductCore extends ObjectModel
                 LEFT JOIN `' . _DB_PREFIX_ . 'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = ' . (int) $id_lang . ')
                 LEFT JOIN `' . _DB_PREFIX_ . 'manufacturer` m ON (p.`id_manufacturer`= m.`id_manufacturer`)
                 ' . Product::sqlStock('p', 0) . '
-                WHERE `id_product_1` = ' . (int) $this->id . ' AND id_shop = ' . (int) Context::getContext()->shop->id .
+                WHERE a.`id_product_1` = ' . (int) $this->id . '
+                AND a.`id_shop` = ' . (int) Context::getContext()->shop->id .
                 ($active ? ' AND product_shop.`active` = 1 AND product_shop.`visibility` != \'none\'' : '') . '
                 GROUP BY product_shop.id_product';
 
@@ -4779,8 +4780,6 @@ class ProductCore extends ObjectModel
         foreach ($result as $k => &$row) {
             if (!Product::checkAccessStatic((int) $row['id_product'], false)) {
                 unset($result[$k]);
-
-                continue;
             } else {
                 $row['id_product_attribute'] = Product::getDefaultAttribute((int) $row['id_product']);
             }
@@ -4788,6 +4787,7 @@ class ProductCore extends ObjectModel
 
         return $this->getProductsProperties($id_lang, $result);
     }
+
 
     /**
      * @param int $accessory_id Product identifier
