@@ -418,6 +418,12 @@
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
                         placeholder="YouTube Code 1" value="{$product->youtube_1}">
+                    {if $shop_id == 1}
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="{l s='Euromuscle only has one youtube video.' d='Admin.Catalog.Help'}"
+                        data-placement="top">
+                    </span>
+                    {/if}
                 </div>
                 {if $shop_id != 1}
                 <div class="input-group">
