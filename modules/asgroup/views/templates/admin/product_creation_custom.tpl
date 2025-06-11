@@ -1817,7 +1817,7 @@
 
         if (isClone) {
           // Find original matching select
-          const originalSelect = document.querySelector(`#product_details select[name="${name}"]`);
+          const originalSelect = document.querySelector(`#product_details select[name="`+name+`"]`);
           if (originalSelect) {
             originalSelect.value = this.value;
             originalSelect.dispatchEvent(new Event('change')); // trigger any other listeners
