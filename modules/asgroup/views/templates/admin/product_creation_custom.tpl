@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -86,6 +86,41 @@
                         <input type="text" class="form-control" name="product[asg][housing]"
                             value="{$product->housing}">
                     </div>
+
+                    <div class="form-group text-widget"> <label for="product_details_references_mpn">
+                            MPN
+                            <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                                data-content="MPN is used internationally to identify the Manufacturer Part Number."
+                                data-placement="top" data-original-title="" title="">
+                            </span>
+                        </label>
+                        <input type="text" id="product_details_references_mpn" name="product[asg][mpn]"
+                            aria-label="product_details_references_mpn input" class="form-control">
+                    </div>
+
+                    <div class="form-group text-widget"> <label for="product_details_references_upc">
+                            UPC barcode
+                            <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                                data-content="This type of product code is widely used in the United States, Canada, the United Kingdom, Australia, New Zealand and in other countries."
+                                data-placement="top" data-original-title="" title="">
+                            </span>
+                        </label>
+                        <input type="text" id="product_details_references_upc" name="product[asg][upc]"
+                            aria-label="product_details_references_upc input" class="form-control">
+                    </div>
+
+                    <div class="form-group text-widget"> <label for="product_details_references_isbn">
+                            ISBN
+                            <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                                data-content="The International Standard Book Number (ISBN) is used to identify books and other publications."
+                                data-placement="top" data-original-title="" title="">
+                            </span>
+                        </label>
+                        <input type="text" id="product_details_references_isbn"
+                            name="product[details][references][isbn]" aria-label="product_details_references_isbn input"
+                            class="form-control">
+                    </div>
+
                 </div>
             </div>
 
@@ -117,8 +152,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                </textarea>
+                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                            </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -159,8 +194,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                </textarea>
+                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                            </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -419,17 +454,17 @@
                     <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
                         placeholder="YouTube Code 1" value="{$product->youtube_1}">
                     {if $shop_id == 1}
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="{l s='Euromuscle only has one youtube video.' d='Admin.Catalog.Help'}"
-                        data-placement="top">
-                    </span>
+                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                            data-content="{l s='Euromuscle only has one youtube video.' d='Admin.Catalog.Help'}"
+                            data-placement="top">
+                        </span>
                     {/if}
                 </div>
                 {if $shop_id != 1}
-                <div class="input-group">
-                    <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
-                        placeholder="YouTube Code 2" value="{$product->youtube_2}">
-                </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="youtube_2" name="product[asg][youtube_2]"
+                            placeholder="YouTube Code 2" value="{$product->youtube_2}">
+                    </div>
                 {/if}
             </div>
 
@@ -801,8 +836,7 @@
             <div class="form-group">
                 <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
 
-                <div id="product_pricing_summary" name="product[asg][summary]"
-                    class="price-summary-widget form-group"
+                <div id="product_pricing_summary" name="product[asg][summary]" class="price-summary-widget form-group"
                     data-price-tax-excluded="{$retail_price_tax_excl|string_format:'%.2f'} {$currency->sign} tax excl."
                     data-price-tax-included="{$retail_price_tax_incl|string_format:'%.2f'} {$currency->sign} tax incl."
                     data-unit-price="{$product->unit_price|string_format:'%.2f'} {$product->unity|escape} unit price"
@@ -960,7 +994,7 @@
 
             // Optionally auto-remove the alert after a few seconds
             setTimeout(() => {
-                $alert.fadeOut(300, function () { $(this).remove(); });
+                $alert.fadeOut(300, function() { $(this).remove(); });
             }, 3000);
 
             return;
@@ -968,7 +1002,7 @@
 
         const $suggestions = $(
             '<div class="autocomplete-suggestions list-group position-absolute bg-white shadow" style="z-index: 999;"></div>'
-            );
+        );
 
         products.forEach(product => {
             const $item = $(
@@ -1370,6 +1404,9 @@
             '#product_details #product_details_references_reference',
             '#product_details #product_details_references_ean_13',
             '#product_details #product_details_housing',
+            '#product_details #product_details_mpn',
+            '#product_details #product_details_references_upc',
+            '#product_details #product_details_references_isbn',
             '#product_description #product_description_description_short',
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
@@ -1592,58 +1629,61 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Get all input/select elements inside the #product_pricing_retail_price_asg container
-    const container = document.getElementById("product_pricing_retail_price_asg");
-    const fields = container.querySelectorAll("input[name^='product[asg]'], select[name^='product[asg]']");
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all input/select elements inside the #product_pricing_retail_price_asg container
+        const container = document.getElementById("product_pricing_retail_price_asg");
+        const fields = container.querySelectorAll("input[name^='product[asg]'], select[name^='product[asg]']");
 
-    fields.forEach(field => {
-        field.addEventListener("input", syncWithOriginal);
-        field.addEventListener("change", syncWithOriginal);
-    });
+        fields.forEach(field => {
+            field.addEventListener("input", syncWithOriginal);
+            field.addEventListener("change", syncWithOriginal);
+        });
 
-    function syncWithOriginal(e) {
-        const source = e.target;
-        const asgName = source.getAttribute("name");
-        if (!asgName) return;
+        function syncWithOriginal(e) {
+            const source = e.target;
+            const asgName = source.getAttribute("name");
+            if (!asgName) return;
 
-        const pricingName = asgName.replace("[asg]", "[pricing]");
-        const original = document.querySelector(`[name="`+pricingName+`"]`);
+            const pricingName = asgName.replace("[asg]", "[pricing]");
+            const original = document.querySelector(`[name="` + pricingName + `"]`);
 
-        if (original) {
-            // For inputs/selects, just copy value
-            original.value = source.value;
+            if (original) {
+                // For inputs/selects, just copy value
+                original.value = source.value;
 
-            // If it's a select element, trigger change in case it's bound to events
-            if (original.tagName === "SELECT") {
-                original.dispatchEvent(new Event("change", { bubbles: true }));
+                // If it's a select element, trigger change in case it's bound to events
+                if (original.tagName === "SELECT") {
+                    original.dispatchEvent(new Event("change", { bubbles: true }));
+                }
             }
         }
-    }
-});
+    });
 </script>
 
 <script defer="defer">
-  document.addEventListener('DOMContentLoaded', function () {
-    function updateRetailPriceTaxIncluded() {
-      const priceExclInput = document.getElementById('product_pricing_retail_price_price_tax_excluded_asg');
-      const taxRulesSelect = document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg');
-      const priceInclInput = document.getElementById('product_pricing_retail_price_price_tax_included_asg');
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateRetailPriceTaxIncluded() {
+            const priceExclInput = document.getElementById(
+                'product_pricing_retail_price_price_tax_excluded_asg');
+            const taxRulesSelect = document.getElementById(
+                'product_pricing_retail_price_tax_rules_group_id_asg');
+            const priceInclInput = document.getElementById(
+                'product_pricing_retail_price_price_tax_included_asg');
 
-      const priceExcl = parseFloat(priceExclInput.value.replace(',', '.')) || 0;
-      const selectedOption = taxRulesSelect.options[taxRulesSelect.selectedIndex];
-      const taxRate = parseFloat(selectedOption.getAttribute('data-tax-rate')) || 0;
+            const priceExcl = parseFloat(priceExclInput.value.replace(',', '.')) || 0;
+            const selectedOption = taxRulesSelect.options[taxRulesSelect.selectedIndex];
+            const taxRate = parseFloat(selectedOption.getAttribute('data-tax-rate')) || 0;
 
-      const priceIncl = priceExcl * (1 + (taxRate / 100));
-      priceInclInput.value = priceIncl.toFixed(2);
-    }
+            const priceIncl = priceExcl * (1 + (taxRate / 100));
+            priceInclInput.value = priceIncl.toFixed(2);
+        }
 
-    document.getElementById('product_pricing_retail_price_price_tax_excluded_asg')
-      .addEventListener('input', updateRetailPriceTaxIncluded);
+        document.getElementById('product_pricing_retail_price_price_tax_excluded_asg')
+            .addEventListener('input', updateRetailPriceTaxIncluded);
 
-    document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg')
-      .addEventListener('change', updateRetailPriceTaxIncluded);
-  });
+        document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg')
+            .addEventListener('change', updateRetailPriceTaxIncluded);
+    });
 </script>
 
 
