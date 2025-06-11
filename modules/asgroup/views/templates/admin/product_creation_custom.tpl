@@ -1513,6 +1513,7 @@
     window.addEventListener('DOMContentLoaded', function() {
         const specifictElementToRemove = [
             '#product_details #product_details_features_feature_values'
+            '#product_details > h3'
         ]
 
         const elementsToRemove = [
@@ -1523,6 +1524,7 @@
             '#product_details #product_details_references_upc',
             '#product_details #product_details_references_isbn',
             '#product_details #product_details_features_add_feature',
+            '#product_details #product_details_references',
             '#product_description #product_description_description_short',
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
