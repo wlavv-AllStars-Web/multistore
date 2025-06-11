@@ -378,27 +378,56 @@
             </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
-            <div class="container-table-compats">
-              {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
-              <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Version</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Audi</td>
-                    <td>A3</td>
-                    <td>8V / 8.5V - 12-20</td>
-                    <td>2.0 TFSI - 190 / 220</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    {if $compats|count}
+                    <div class="container-table-compats table-mobile">
+                      {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
+                      <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                            <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {foreach from=$compats item=compat name=compatLoop}
+                          <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
+                            <td>{$compat.brand}</td>
+                            <td>{$compat.model}</td>
+                            <td>{$compat.type}</td>
+                            <td>{$compat.version}</td>
+                          </tr>
+                        {/foreach}
+                        </tbody>
+                      </table>
+
+                      {if $compats|count > 5}
+                        <div style="text-align: center;">
+                          <button id="showMoreBtn" class="btn btn-primary" onclick="toggleRows()">{l s='Show More' d='Shop.Theme.Actions'}</button>
+                        </div>
+                      {/if}
+                    </div>
+
+                    <script>
+                      function toggleRows() {
+                        var hiddenRows = document.querySelectorAll(".table-mobile .hidden-row");
+                                var btn = document.getElementById("showMoreBtn");
+
+                                // Toggle rows visibility
+                                let isHidden = hiddenRows[0].style.display === "none";
+                                hiddenRows.forEach(row => {
+                                  row.style.display = isHidden ? "table-row" : "none";
+                                });
+
+                                // Toggle button text
+                                btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
+                      }
+                    </script>
+
+                    {else}
+                      <h2 style="text-align: center;font-weight:500;padding:0 1rem 1rem 1rem;margin-bottom:0;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                    {/if}
 
 
 
@@ -804,27 +833,57 @@
                      </div>
                     {* <div class="tab">{hook h='displayProductTabContent' mod='ukoocompat' id_module=124}</div> *}
 
-                    <div class="container-table-compats">
-                      {* {hook h='displayProductTabContent' mod='ukoocompat'} *}
-                      <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
-                        <thead class="thead-dark">
-                          <tr>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Version</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Audi</td>
-                            <td>A3</td>
-                            <td>8V / 8.5V - 12-20</td>
-                            <td>2.0 TFSI - 190 / 220</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                      {if $compats|count}
+                      <div class="container-table-compats table-desk mb-4">
+                        <table class="table table-bordered table-compats" style="max-width: 1350px;width:100%;margin:2rem auto;">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">{l s="Brand" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Model" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Type" d="Shop.Theme.ProductPage"}</th>
+                              <th scope="col">{l s="Version" d="Shop.Theme.ProductPage"}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {foreach from=$compats item=compat name=compatLoop}
+                            <tr {if $smarty.foreach.compatLoop.index >= 5} class="hidden-row" style="display: none;" {/if}>
+                              <td>{$compat.brand}</td>
+                              <td>{$compat.model}</td>
+                              <td>{$compat.type}</td>
+                              <td>{$compat.version}</td>
+                            </tr>
+                          {/foreach}
+                          </tbody>
+                        </table>
+
+                        {if $compats|count > 5}
+                          <div style="text-align: center;">
+                            <button id="showMoreBtnDesk" class="btn btn-primary table-desk-btn" onclick="toggleRowsDesk()">{l s='Show More' d='Shop.Theme.Actions'}</button>
+                          </div>
+                        {/if}
+
+
+                      </div>
+
+                      <script>
+                        function toggleRowsDesk() {
+                          var hiddenRows = document.querySelectorAll(".table-desk .hidden-row");
+                          var btn = document.getElementById("showMoreBtnDesk");
+
+                          // Toggle rows visibility
+                          let isHidden = hiddenRows[0].style.display === "none";
+                          hiddenRows.forEach(row => {
+                            row.style.display = isHidden ? "table-row" : "none";
+                          });
+
+                          // Toggle button text
+                          btn.textContent = isHidden ? "{l s='Show Less' d='Shop.Theme.Actions'}" : "{l s='Show More' d='Shop.Theme.Actions'}";
+                        }
+                      </script>
+                      {else}
+                        <h2 style="text-align: center;font-weight:500;padding:1rem;">{l s="No compatibilities available." d="Shop.Theme.Product"}</h2>
+                      {/if}
+
                   </div>
          
                   {* {block name='product_details'}
