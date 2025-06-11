@@ -299,99 +299,100 @@
                     Features
                 </h3>
                 <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                    data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
-                            &lt;div class=&quot;col-xl-3&quot;&gt;
-                            &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
-                                &lt;label class=&quot;form-control-label&quot;&gt;Feature&lt;/label&gt;
-                                &lt;select id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_id&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_id]&quot; data-toggle=&quot;select2&quot; class=&quot;feature-selector custom-select form-control&quot;&gt;&lt;option value=&quot;&quot;&gt;Choose a feature&lt;/option&gt;&lt;option value=&quot;15&quot;&gt;Bolt Pattern&lt;/option&gt;&lt;option value=&quot;19&quot;&gt;Brand&lt;/option&gt;&lt;option value=&quot;11&quot;&gt;Color&lt;/option&gt;&lt;option value=&quot;17&quot;&gt;Diameter&lt;/option&gt;&lt;option value=&quot;18&quot;&gt;Offset&lt;/option&gt;&lt;option value=&quot;14&quot;&gt;Width&lt;/option&gt;&lt;/select&gt;    
+                    data-protorype='<div class="form-group row product-feature">
+                            <div class="col-xl-3">
+                            <fieldset class="form-group mb-0">
+                                <label class="form-control-label">Feature</label>
+                                <select id="product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_id]" data-toggle="select2" class="feature-selector custom-select form-control"><option value="">Choose a feature</option><option value="15">Bolt Pattern</option><option value="19">Brand</option><option value="11">Color</option><option value="17">Diameter</option><option value="18">Offset</option><option value="14">Width</option></select>    
 
 
 
-                            &lt;/fieldset&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;col-xl-4&quot;&gt;
-                            &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
-                                &lt;label class=&quot;form-control-label&quot;&gt;Pre-defined value&lt;/label&gt;
-                                &lt;select id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_value_id&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_value_id]&quot; disabled=&quot;disabled&quot; disabled=&quot;disabled&quot; data-toggle=&quot;select2&quot; class=&quot;feature-value-selector custom-select form-control&quot;&gt;&lt;option value=&quot;&quot;&gt;Choose a value&lt;/option&gt;&lt;/select&gt;    
+                            </fieldset>
+                            </div>
+                            <div class="col-xl-4">
+                            <fieldset class="form-group mb-0">
+                                <label class="form-control-label">Pre-defined value</label>
+                                <select id="product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_value_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_value_id]" disabled="disabled" disabled="disabled" data-toggle="select2" class="feature-value-selector custom-select form-control"><option value="">Choose a value</option></select>    
 
 
 
-                            &lt;/fieldset&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;col-lg-11 col-xl-4&quot;&gt;
-                            &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
-                                &lt;label class=&quot;form-control-label&quot;&gt;OR Customized value&lt;/label&gt;
-                                &lt;input type=&quot;hidden&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_id&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value_id]&quot; class=&quot;custom-value-id&quot; /&gt;
+                            </fieldset>
+                            </div>
+                            <div class="col-lg-11 col-xl-4">
+                            <fieldset class="form-group mb-0">
+                                <label class="form-control-label">OR Customized value</label>
+                                <input type="hidden" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value_id]" class="custom-value-id" />
 
-                                        &lt;div class=&quot;custom-values input-group locale-input-group js-locale-input-group d-flex&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value&quot; tabindex=&quot;1&quot;&gt;
-                                                            &lt;div data-lang-id=&quot;2&quot; class=&quot; js-locale-input js-locale-en&quot; style=&quot;flex-grow: 1;&quot;&gt;
+                                        <div class="custom-values input-group locale-input-group js-locale-input-group d-flex" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value" tabindex="1">
+                                                            <div data-lang-id="2" class=" js-locale-input js-locale-en" style="flex-grow: 1;">
 
-                            &lt;input type=&quot;text&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][2]&quot; aria-label=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2 input&quot; class=&quot;form-control&quot; /&gt;
-
-
-
-                                &lt;/div&gt;
-                                                                                &lt;div data-lang-id=&quot;4&quot; class=&quot; js-locale-input js-locale-es d-none&quot; style=&quot;flex-grow: 1;&quot;&gt;
-
-                            &lt;input type=&quot;text&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][4]&quot; aria-label=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4 input&quot; class=&quot;form-control&quot; /&gt;
+                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][2]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2 input" class="form-control" />
 
 
 
-                                &lt;/div&gt;
-                                                                                &lt;div data-lang-id=&quot;5&quot; class=&quot; js-locale-input js-locale-fr d-none&quot; style=&quot;flex-grow: 1;&quot;&gt;
+                                </div>
+                                                                                <div data-lang-id="4" class=" js-locale-input js-locale-es d-none" style="flex-grow: 1;">
 
-                            &lt;input type=&quot;text&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][5]&quot; aria-label=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5 input&quot; class=&quot;form-control&quot; /&gt;
-
-
-
-                                &lt;/div&gt;
-                                                                                &lt;div data-lang-id=&quot;1&quot; class=&quot; js-locale-input js-locale-pt d-none&quot; style=&quot;flex-grow: 1;&quot;&gt;
-
-                            &lt;input type=&quot;text&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][1]&quot; aria-label=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1 input&quot; class=&quot;form-control&quot; /&gt;
+                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][4]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4 input" class="form-control" />
 
 
 
-                                &lt;/div&gt;
-                                                                                &lt;div data-lang-id=&quot;7&quot; class=&quot; js-locale-input js-locale-it d-none&quot; style=&quot;flex-grow: 1;&quot;&gt;
+                                </div>
+                                                                                <div data-lang-id="5" class=" js-locale-input js-locale-fr d-none" style="flex-grow: 1;">
 
-                            &lt;input type=&quot;text&quot; id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][7]&quot; aria-label=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7 input&quot; class=&quot;form-control&quot; /&gt;
+                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][5]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5 input" class="form-control" />
 
 
 
-                                &lt;/div&gt;
-                                            &lt;div class=&quot;dropdown&quot;&gt;
-                                &lt;button class=&quot;btn btn-outline-secondary dropdown-toggle js-locale-btn&quot;
-                                        type=&quot;button&quot;
-                                        data-toggle=&quot;dropdown&quot;
-                                                data-change-language-url=&quot;/admineuromus1/index.php/configure/advanced/employees/change-form-language?_token=PBBUiTEuqEcvxJ_Q53trz9wmwEcy0EmwGBlf4zaDrEw&quot;
-                                                    aria-haspopup=&quot;true&quot;
-                                        aria-expanded=&quot;false&quot;
-                                        id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown&quot;
-                                &gt;
+                                </div>
+                                                                                <div data-lang-id="1" class=" js-locale-input js-locale-pt d-none" style="flex-grow: 1;">
+
+                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][1]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1 input" class="form-control" />
+
+
+
+                                </div>
+                                                                                <div data-lang-id="7" class=" js-locale-input js-locale-it d-none" style="flex-grow: 1;">
+
+                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][7]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7 input" class="form-control" />
+
+
+
+                                </div>
+                                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
+                                        type="button"
+                                        data-toggle="dropdown"
+                                                data-change-language-url="/admineuromus1/index.php/configure/advanced/employees/change-form-language?_token=PBBUiTEuqEcvxJ_Q53trz9wmwEcy0EmwGBlf4zaDrEw"
+                                                    aria-haspopup="true"
+                                        aria-expanded="false"
+                                        id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown"
+                                >
                                     EN
-                                &lt;/button&gt;
-                                &lt;div class=&quot;dropdown-menu dropdown-menu-right locale-dropdown-menu&quot; aria-labelledby=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown&quot;&gt;
-                                                &lt;span class=&quot;dropdown-item js-locale-item&quot; data-locale=&quot;en&quot;&gt;English (English)&lt;/span&gt;
-                                                &lt;span class=&quot;dropdown-item js-locale-item&quot; data-locale=&quot;es&quot;&gt;Español (Spanish)&lt;/span&gt;
-                                                &lt;span class=&quot;dropdown-item js-locale-item&quot; data-locale=&quot;fr&quot;&gt;Français (French)&lt;/span&gt;
-                                                &lt;span class=&quot;dropdown-item js-locale-item&quot; data-locale=&quot;pt&quot;&gt;Português (Portuguese)&lt;/span&gt;
-                                                &lt;span class=&quot;dropdown-item js-locale-item&quot; data-locale=&quot;it&quot;&gt;Italiano (Italian)&lt;/span&gt;
-                                            &lt;/div&gt;
-                                &lt;/div&gt;
-                                &lt;/div&gt;
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown">
+                                                <span class="dropdown-item js-locale-item" data-locale="en">English (English)</span>
+                                                <span class="dropdown-item js-locale-item" data-locale="es">Español (Spanish)</span>
+                                                <span class="dropdown-item js-locale-item" data-locale="fr">Français (French)</span>
+                                                <span class="dropdown-item js-locale-item" data-locale="pt">Português (Portuguese)</span>
+                                                <span class="dropdown-item js-locale-item" data-locale="it">Italiano (Italian)</span>
+                                            </div>
+                                </div>
+                                </div>
 
 
 
-                            &lt;/fieldset&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;col-lg-1 col-xl-1&quot;&gt;
+                            </fieldset>
+                            </div>
+                            <div class="col-lg-1 col-xl-1">
 
-                        &lt;button id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___delete&quot; name=&quot;product[details][features][feature_values][__FEATURE_VALUE_INDEX__][delete]&quot; class=&quot;tooltip-link delete-feature-value pl-0 pr-0 btn&quot; data-modal-title=&quot;Delete item&quot; data-modal-message=&quot;Are you sure you want to delete this item?&quot; data-modal-apply=&quot;Delete&quot; data-modal-cancel=&quot;Cancel&quot; data-toggle=&quot;pstooltip&quot; data-original-title=&quot;Delete&quot; type=&quot;button&quot;&gt;
-                            &lt;i class=&quot;material-icons&quot;&gt;delete&lt;/i&gt;
-                            &lt;span class=&quot;btn-label&quot;&gt;&lt;/span&gt;
-                        &lt;/button&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;" data-prototype-name="__FEATURE_VALUE_INDEX__"
+                        <button id="product_details_features_feature_values___FEATURE_VALUE_INDEX___delete" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][delete]" class="tooltip-link delete-feature-value pl-0 pr-0 btn" data-modal-title="Delete item" data-modal-message="Are you sure you want to delete this item?" data-modal-apply="Delete" data-modal-cancel="Cancel" data-toggle="pstooltip" data-original-title="Delete" type="button">
+                            <i class="material-icons">delete</i>
+                            <span class="btn-label"></span>
+                        </button>
+                            </div>
+                        </div>' 
+                    data-prototype-name="__FEATURE_VALUE_INDEX__"
                     class="form-group row feature-values-collection">
                     <div class="col-sm"></div>
                 </div>
@@ -1815,27 +1816,27 @@
 
     // features
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const container = document.getElementById("product_details_features_feature_values");
-//     const prototypeTemplate = container.getAttribute("data-prototype");
-//     let index = container.children.length;
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("product_details_features_feature_values");
+    const prototypeTemplate = container.getAttribute("data-prototype");
+    let index = container.children.length;
 
-//     document.getElementById("add-feature-btn").addEventListener("click", function () {
-//         const newFormHtml = prototypeTemplate.replace(/__FEATURE_VALUE_INDEX__/g, index);
+    document.getElementById("add-feature-btn").addEventListener("click", function () {
+        const newFormHtml = prototypeTemplate.replace(/__FEATURE_VALUE_INDEX__/g, index);
         
-//         // Unescape HTML
-//         const tempDiv = document.createElement("div");
-//         tempDiv.innerHTML = newFormHtml;
+        // Unescape HTML
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = newFormHtml;
         
-//         const newForm = tempDiv.firstElementChild; // Get the actual div.form-group.row
-//         container.appendChild(newForm);
+        const newForm = tempDiv.firstElementChild; // Get the actual div.form-group.row
+        container.appendChild(newForm);
 
-//         // If you're using select2 or similar, re-initialize it
-//         $(newForm).find('select[data-toggle="select2"]').select2();
+        // If you're using select2 or similar, re-initialize it
+        $(newForm).find('select[data-toggle="select2"]').select2();
 
-//         index++;
-//     });
-// });
+        index++;
+    });
+});
 
 
 </script>
