@@ -41,26 +41,6 @@
     {/if}
 {/function}
 
-{capture name='attached_file_row_template'}
-<tr id="product_details_attachments_attached_files___entity_index__" class="entity-item">
-  <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][attachment_id]" value="__attachment_id__" />
-  <td>
-    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][name]" value="__name__" />
-    <span class="label text-preview"><span class="text-preview-value">__name__</span></span>
-  </td>
-  <td>
-    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][file_name]" value="__file_name__" />
-    <span class="label text-preview"><span class="text-preview-value">__file_name__</span></span>
-  </td>
-  <td>
-    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][mime_type]" value="__mime_type__" />
-    <span class="label text-preview"><span class="text-preview-value">__mime_type__</span></span>
-  </td>
-  <td><i class="material-icons entity-item-delete">clear</i></td>
-</tr>
-{/capture}
-
-
 
 
 <div class="tab-container-product-creation-custom row bg-container" style="gap: 2rem;">
@@ -314,85 +294,7 @@
                 <hr>
             </div> *}
 
-            <div class="form-group">
-  <h3>
-    Attached files
-    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-          data-content="Instructions, size guide, or any file you want to add to a product." data-placement="top"></span>
-  </h3>
-
-  <p class="subtitle">Customers can download these files on the product page.</p>
-
-  <div class="small font-secondary">
-    <a target="_blank"
-       href="{$link->getAdminLink('AdminAttachments')|escape:'html':'UTF-8'}"
-       class="pt-0 btn btn-link px-0 align-right">
-      <i class="material-icons">open_in_new</i>Manage all files
-    </a>
-  </div>
-
-  <div id="product_details_attachments">
-    <div class="form-group">
-      <div id="product_details_attachments_attached_files"
-           class="entity-search-widget"
-           data-prototype-template="{$smarty.capture.attached_file_row_template|escape:'html'}"
-           data-prototype-index="__entity_index__"
-           data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
-           data-identifier-field="attachment_id"
-           data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-           data-remote-url="{$link->getAdminLink('AdminAttachments', true)|cat:'&ajax=1&action=search&query=__QUERY__'|escape:'html'}"
-           data-data-limit="0"
-           data-min-length="2"
-           data-allow-delete="1"
-           data-suggestion-field="name">
-
-        <div class="search search-with-icon">
-          <input id="product_details_attachments_attached_files_search_input"
-                 class="entity-search-input form-control"
-                 autocomplete="off"
-                 placeholder="Search file"
-                 type="text" />
-        </div>
-
-        <div id="product_details_attachments_attached_files_list"
-             class="entities-list-container" style="display: none;">
-          <div class="row">
-            <div class="col-sm">
-              <table class="table">
-                <thead class="thead-default">
-                  <tr>
-                    <th>Title</th>
-                    <th>File name</th>
-                    <th>Type</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody class="entities-list"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert alert-info empty-entity-list mt-2" role="alert">
-          <p class="alert-text">No files attached</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <a id="product_details_attachments_add_attachment_btn"
-         name="product[details][attachments][add_attachment_btn]"
-         data-success-create-message="The file was successfully added."
-         data-modal-title="Add new file"
-         class="btn-outline-secondary add-attachment btn"
-         href="{$link->getAdminLink('AdminAttachments')|cat:'&liteDisplaying=1&saveAndStay=1'|escape:'html'}">
-        <i class="material-icons">add_circle</i>
-        <span class="btn-label">Add new file</span>
-      </a>
-    </div>
-  </div>
-</div>
-
+                                
 
 
         </div>
