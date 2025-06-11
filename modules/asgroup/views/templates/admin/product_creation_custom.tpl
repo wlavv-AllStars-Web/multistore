@@ -1518,6 +1518,7 @@
             '#product_details #product_details_references_mpn',
             '#product_details #product_details_references_upc',
             '#product_details #product_details_references_isbn',
+            '#product_details #product_details_features_add_feature',
             '#product_description #product_description_description_short',
             '#product_description #product_description_description',
             '#product_seo #product_seo_tags',
