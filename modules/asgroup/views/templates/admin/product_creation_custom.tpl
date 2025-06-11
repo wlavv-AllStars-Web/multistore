@@ -298,8 +298,7 @@
                 <h3>
                     Features
                 </h3>
-                <div id="product_details_features_feature_values"
-                    name="product[details][features][feature_values]"
+                <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
                     data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
                             &lt;div class=&quot;col-xl-3&quot;&gt;
                             &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
@@ -392,11 +391,10 @@
                             &lt;span class=&quot;btn-label&quot;&gt;&lt;/span&gt;
                         &lt;/button&gt;
                             &lt;/div&gt;
-                        &lt;/div&gt;"
-                    data-prototype-name="__FEATURE_VALUE_INDEX__"
-                    class="form-group row feature-values-collection d-none">
+                        &lt;/div&gt;" data-prototype-name="__FEATURE_VALUE_INDEX__"
+                    class="form-group row feature-values-collection">
+                    <div class="col-sm"></div>
                 </div>
-
                 <div class="form-group">
                     <button id="product_details_features_add_feature" name="product[details][features][add_feature]"
                         class="btn-outline-primary feature-value-add-button btn" type="button">
@@ -1817,44 +1815,28 @@
 
     // features
 
-    document.addEventListener('DOMContentLoaded', function () {
-  const syncFeatureFields = () => {
-    // Find all feature_id selects
-    const featureSelects = document.querySelectorAll('select[name^="product[details][features][feature_values]"][name$="[feature_id]"]');
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("product_details_features_feature_values");
+    const prototypeTemplate = container.getAttribute("data-prototype");
+    let index = container.children.length;
 
-    featureSelects.forEach(select => {
-      // Avoid multiple bindings
-      if (select.dataset.listenerAttached) return;
+    document.getElementById("add-feature-btn").addEventListener("click", function () {
+        const newFormHtml = prototypeTemplate.replace(/__FEATURE_VALUE_INDEX__/g, index);
+        
+        // Unescape HTML
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = newFormHtml;
+        
+        const newForm = tempDiv.firstElementChild; // Get the actual div.form-group.row
+        container.appendChild(newForm);
 
-      select.addEventListener('change', function () {
-        const name = this.getAttribute('name');
+        // If you're using select2 or similar, re-initialize it
+        $(newForm).find('select[data-toggle="select2"]').select2();
 
-        // Identify if this is the clone version
-        const isClone = !this.closest('#product_details'); // not inside the original container
-
-        if (isClone) {
-          // Find original matching select
-          const originalSelect = document.querySelector(`#product_details select[name="`+name+`"]`);
-          if (originalSelect) {
-            originalSelect.value = this.value;
-            originalSelect.dispatchEvent(new Event('change')); // trigger any other listeners
-          }
-        }
-      });
-
-      select.dataset.listenerAttached = true;
+        index++;
     });
-  };
-
-  // Initial bind
-  syncFeatureFields();
-
-  // Re-bind whenever a new feature is added dynamically
-  document.querySelector('#product_details_features_add_feature').addEventListener('click', () => {
-    // Wait a tick for the DOM to update
-    setTimeout(syncFeatureFields, 100);
-  });
 });
+
 
 </script>
 
