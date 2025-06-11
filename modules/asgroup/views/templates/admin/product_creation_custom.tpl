@@ -1404,7 +1404,7 @@
             '#product_details #product_details_references_reference',
             '#product_details #product_details_references_ean_13',
             '#product_details #product_details_housing',
-            '#product_details #product_details_mpn',
+            '#product_details #product_details_references_mpn',
             '#product_details #product_details_references_upc',
             '#product_details #product_details_references_isbn',
             '#product_description #product_description_description_short',
