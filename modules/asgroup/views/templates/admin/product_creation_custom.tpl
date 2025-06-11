@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -40,6 +40,26 @@
         </ul>
     {/if}
 {/function}
+
+{capture name='attached_file_row_template'}
+<tr id="product_details_attachments_attached_files___entity_index__" class="entity-item">
+  <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][attachment_id]" value="__attachment_id__" />
+  <td>
+    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][name]" value="__name__" />
+    <span class="label text-preview"><span class="text-preview-value">__name__</span></span>
+  </td>
+  <td>
+    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][file_name]" value="__file_name__" />
+    <span class="label text-preview"><span class="text-preview-value">__file_name__</span></span>
+  </td>
+  <td>
+    <input type="hidden" name="product[details][attachments][attached_files][__entity_index__][mime_type]" value="__mime_type__" />
+    <span class="label text-preview"><span class="text-preview-value">__mime_type__</span></span>
+  </td>
+  <td><i class="material-icons entity-item-delete">clear</i></td>
+</tr>
+{/capture}
+
 
 
 
@@ -153,8 +173,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                </textarea>
+                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                            </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -195,8 +215,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                </textarea>
+                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                            </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -295,112 +315,83 @@
             </div> *}
 
             <div class="form-group">
-                <h3>
-                    Attached files
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Instructions, size guide, or any file you want to add to a product."
-                        data-placement="top" title="">
-                    </span>
-                </h3>
+  <h3>
+    Attached files
+    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+          data-content="Instructions, size guide, or any file you want to add to a product." data-placement="top"></span>
+  </h3>
 
-                <p class="subtitle">Customers can download these files on the product page.</p>
+  <p class="subtitle">Customers can download these files on the product page.</p>
 
-                <div class="small font-secondary">
-                    <a target="_blank" href="{$link->getAdminLink('AdminAttachments')|escape:'html':'UTF-8'}"
-                        class="pt-0 btn btn-link px-0 align-right">
-                        <i class="material-icons">open_in_new</i>Manage all files
-                    </a>
-                </div>
+  <div class="small font-secondary">
+    <a target="_blank"
+       href="{$link->getAdminLink('AdminAttachments')|escape:'html':'UTF-8'}"
+       class="pt-0 btn btn-link px-0 align-right">
+      <i class="material-icons">open_in_new</i>Manage all files
+    </a>
+  </div>
 
-                <div id="product_details_attachments">
-                    <div class="form-group">
-                        <div id="product_details_attachments_attached_files" class="entity-search-widget"
-                            data-prototype-template='
-<tr id="product_details_attachments_attached_files___entity_index__" class="entity-item">
-  <input type="hidden" id="product_details_attachments_attached_files___entity_index___attachment_id"
-         name="product[details][attachments][attached_files][__entity_index__][attachment_id]"
-         value="__attachment_id__" />
+  <div id="product_details_attachments">
+    <div class="form-group">
+      <div id="product_details_attachments_attached_files"
+           class="entity-search-widget"
+           data-prototype-template="{$smarty.capture.attached_file_row_template|escape:'html'}"
+           data-prototype-index="__entity_index__"
+           data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
+           data-identifier-field="attachment_id"
+           data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
+           data-remote-url="{$link->getAdminLink('AdminAttachments', true)|cat:'&ajax=1&action=search&query=__QUERY__'|escape:'html'}"
+           data-data-limit="0"
+           data-min-length="2"
+           data-allow-delete="1"
+           data-suggestion-field="name">
 
-  <td>
-    <input type="hidden" id="product_details_attachments_attached_files___entity_index___name"
-           name="product[details][attachments][attached_files][__entity_index__][name]"
-           value="__name__" />
-    <span class="label text-preview">
-      <span class="text-preview-value">__name__</span>
-    </span>
-  </td>
+        <div class="search search-with-icon">
+          <input id="product_details_attachments_attached_files_search_input"
+                 class="entity-search-input form-control"
+                 autocomplete="off"
+                 placeholder="Search file"
+                 type="text" />
+        </div>
 
-  <td>
-    <input type="hidden" id="product_details_attachments_attached_files___entity_index___file_name"
-           name="product[details][attachments][attached_files][__entity_index__][file_name]"
-           value="__file_name__" />
-    <span class="label text-preview">
-      <span class="text-preview-value">__file_name__</span>
-    </span>
-  </td>
-
-  <td>
-    <input type="hidden" id="product_details_attachments_attached_files___entity_index___mime_type"
-           name="product[details][attachments][attached_files][__entity_index__][mime_type]"
-           value="__mime_type__" />
-    <span class="label text-preview">
-      <span class="text-preview-value">__mime_type__</span>
-    </span>
-  </td>
-
-  <td>
-    <i class="material-icons entity-item-delete">clear</i>
-  </td>
-</tr>' data-prototype-index="__entity_index__"
-                            data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
-                            data-identifier-field="attachment_id"
-                            data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-                            data-remote-url="{$link->getAdminLink('AdminAttachments', true)|cat:'&ajax=1&action=search&query=__QUERY__'|escape:'html':'UTF-8'}"
-                            data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name">
-
-                            <div class="search search-with-icon">
-                                <input id="product_details_attachments_attached_files_search_input"
-                                    class="entity-search-input form-control" autocomplete="off"
-                                    placeholder="Search file" type="text" />
-                            </div>
-
-                            <div id="product_details_attachments_attached_files_list" class="entities-list-container"
-                                style="display: none;">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <table class="table">
-                                            <thead class="thead-default">
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>File name</th>
-                                                    <th>Type</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="entities-list"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="alert alert-info empty-entity-list mt-2" role="alert">
-                                <p class="alert-text">No files attached</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <a id="product_details_attachments_add_attachment_btn"
-                            name="product[details][attachments][add_attachment_btn]"
-                            data-success-create-message="The file was successfully added."
-                            data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
-                            href="{$link->getAdminLink('AdminAttachments')|cat:'&liteDisplaying=1&saveAndStay=1'|escape:'html':'UTF-8'}">
-                            <i class="material-icons">add_circle</i>
-                            <span class="btn-label">Add new file</span>
-                        </a>
-                    </div>
-                </div>
+        <div id="product_details_attachments_attached_files_list"
+             class="entities-list-container" style="display: none;">
+          <div class="row">
+            <div class="col-sm">
+              <table class="table">
+                <thead class="thead-default">
+                  <tr>
+                    <th>Title</th>
+                    <th>File name</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="entities-list"></tbody>
+              </table>
             </div>
+          </div>
+        </div>
+
+        <div class="alert alert-info empty-entity-list mt-2" role="alert">
+          <p class="alert-text">No files attached</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <a id="product_details_attachments_add_attachment_btn"
+         name="product[details][attachments][add_attachment_btn]"
+         data-success-create-message="The file was successfully added."
+         data-modal-title="Add new file"
+         class="btn-outline-secondary add-attachment btn"
+         href="{$link->getAdminLink('AdminAttachments')|cat:'&liteDisplaying=1&saveAndStay=1'|escape:'html'}">
+        <i class="material-icons">add_circle</i>
+        <span class="btn-label">Add new file</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 
 
