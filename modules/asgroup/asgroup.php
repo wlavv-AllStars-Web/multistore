@@ -1654,7 +1654,20 @@ public function getASGProductCreation($product) {
 
 
 
-    $features = FeatureValue::getFeatureValuesWithLang(Context::getContext()->language->id, $product->id);
+    $features = []; // Initialize an empty array to store all feature values
+    $featuresIds = Product::getFeaturesStatic((int)$product->id); // Get the features associated with the product
+
+    foreach ($featuresIds as $key => $value) {
+        // Fetch the feature values for each feature
+        $featureValues = FeatureValue::getFeatureValuesWithLang(Context::getContext()->language->id, $value['id_feature']);
+        
+        // Append the results to the features array
+        $features[] = [
+            'id_feature' => $value['id_feature'],
+            'feature_values' => $featureValues, // You can store the feature values in a sub-array
+        ];
+    }
+
 
     pre($features);
 
