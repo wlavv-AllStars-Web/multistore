@@ -1180,8 +1180,8 @@
             const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
             const filteredTags = allTags
-                .map(tag => tag && tag.trim())
-                .filter(tag => tag && tag.length >= 2);
+                .filter(tag => typeof tag === 'string' && tag.trim().length >= 2)
+                .map(tag => tag.trim());
 
             const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
 
