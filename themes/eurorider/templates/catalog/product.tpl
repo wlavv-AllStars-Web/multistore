@@ -275,17 +275,17 @@
           {block name='product_description'}
             <div class="product-description">{$product.description nofilter}</div>
           {/block}
-          {if !empty($product.youtube_code)}
+          {if !empty($product.youtube_1)}
             <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
               <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
                 <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                   <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                     <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                   </div>
                 </div>
                 <div  class="iframeClass"  style="display:none;height:318px">
-                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
                   </iframe>
                 </div>
               </div>
@@ -306,21 +306,21 @@
         </div>
         <div class="tab-description tab" style="display: flex;">
           {block name='product_description'}
-            <div class="product-description" style="{if empty($product.youtube_code)}width:90%;{else}width: 60%;{/if}">
+            <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">
               <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
             </div>
           {/block}
-          {if !empty($product.youtube_code)}
+          {if !empty($product.youtube_1)}
             <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
               <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                 <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                   <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                     <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                   </div>
                 </div>
                 <div  class="iframeClass"  style="display:none;height:318px">
-                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
                   </iframe>
                 </div>
               </div>
@@ -538,7 +538,7 @@
 
       </div>
 
-      <div class="section_tabs_video d-desktop" style="display: flex;{if empty($product.youtube_code)}justify-content:center;{/if}">
+      <div class="section_tabs_video d-desktop" style="display: flex;{if empty($product.youtube_1)}justify-content:center;{/if}">
              {* inicio tabs *}
              <div class="column_tabs" style="width:100%">
              {block name='product_tabs'}
@@ -652,17 +652,17 @@
                          <div class="product-description">{$product.description nofilter}</div>
                        {/block}
                        <div class="videos-container" style="display: flex;gap: 1rem;">
-                        {if !empty($product.youtube_code)}
+                        {if !empty($product.youtube_1)}
                          <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
                            <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
                              </div>
                              <div  class="iframeClass"  style="display:none;height:318px">
-                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
                                </iframe>
                              </div>
                            </div>
@@ -700,21 +700,21 @@
                      </div>
                      <div class="tab-description tab" style="display: flex;">
                        {block name='product_description'}
-                         <div class="product-description" style="{if empty($product.youtube_code)}width:90%;{else}width: 60%;{/if}">
+                         <div class="product-description" style="{if empty($product.youtube_1)}width:90%;{else}width: 60%;{/if}">
                            <p>{l s='No description.' d='Shop.Theme.Catalog'}</p>
                          </div>
                        {/block}
-                       {if !empty($product.youtube_code)}
+                       {if !empty($product.youtube_1)}
                          <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
                            <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                              <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
-                             <img src="https://i3.ytimg.com/vi/{$product.youtube_code}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                             <img src="https://i3.ytimg.com/vi/{$product.youtube_1}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                                <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
                                  <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
                                </div>
                              </div>
                              <div  class="iframeClass"  style="display:none;height:318px">
-                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_code}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                               <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_1}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
                                </iframe>
                              </div>
                            </div>
