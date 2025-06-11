@@ -1654,28 +1654,34 @@ public function getASGProductCreation($product) {
 
 
 
-    $features = []; // Initialize an empty array to store all feature values
-    $featuresIds = Product::getFeaturesStatic((int)$product->id); // Get the features associated with the product
+    // Get features associated with the product
+    $featuresSelected = Product::getFeaturesStatic((int)$product->id);
 
-    foreach ($featuresIds as $key => $value) {
-        // Fetch the feature values for each feature
-        $featureValues = FeatureValue::getFeatureValuesWithLang(Context::getContext()->language->id, $value['id_feature']);
-        
-        // Append the results to the features array
-        $features[] = [
-            'id_feature' => $value['id_feature'],
-            'feature_values' => $featureValues, // You can store the feature values in a sub-array
+    // We'll gather full data here (selected + options)
+    $featuresData = [];
+
+    foreach ($featuresSelected as $featureItem) {
+        $featureId = $featureItem['id_feature'];
+        $featureValueId = $featureItem['id_feature_value'];
+
+        $featureValues = FeatureValue::getFeatureValuesWithLang(
+            Context::getContext()->language->id,
+            $featureId
+        );
+
+        $featuresData[] = [
+            'id_feature' => $featureId,
+            'id_feature_value' => $featureValueId,
+            'values' => $featureValues,
         ];
     }
 
-
-    pre($features);
 
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
-        'features' => $features,
+        'featuresData' => $featuresData,
         'product_categories' => $product_categories,
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,

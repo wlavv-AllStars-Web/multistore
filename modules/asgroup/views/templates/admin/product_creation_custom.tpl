@@ -294,116 +294,48 @@
                 <hr>
             </div> *}
 
-            <div class="form-group">
-                <h3>
-                    Features
-                </h3>
-                <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                    data-prototype='<div class="form-group row product-feature">
-                            <div class="col-xl-3">
-                            <fieldset class="form-group mb-0">
-                                <label class="form-control-label">Feature</label>
-                                <select id="product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_id]" data-toggle="select2" class="feature-selector custom-select form-control"><option value="">Choose a feature</option><option value="15">Bolt Pattern</option><option value="19">Brand</option><option value="11">Color</option><option value="17">Diameter</option><option value="18">Offset</option><option value="14">Width</option></select>    
+<div class="form-group row feature-values-collection">
+  {foreach from=$featuresData item=featureData name=feat}
+    <div class="form-group row product-feature">
+      <div class="col-xl-3">
+        <fieldset class="form-group mb-0">
+          <label class="form-control-label">Feature</label>
+          <select name="product[details][features][feature_values][{$smarty.foreach.feat.index}][feature_id]"
+                  class="feature-selector custom-select form-control">
+            <option value="{$featureData.id_feature}">Feature #{$featureData.id_feature}</option>
+          </select>
+        </fieldset>
+      </div>
+
+      <div class="col-xl-4">
+        <fieldset class="form-group mb-0">
+          <label class="form-control-label">Pre-defined value</label>
+          <select name="product[details][features][feature_values][{$smarty.foreach.feat.index}][feature_value_id]"
+                  class="feature-value-selector custom-select form-control">
+            <option value="">Choose a value</option>
+            {foreach from=$featureData.values item=value}
+              <option value="{$value.id_feature_value}"
+                {if $value.id_feature_value == $featureData.id_feature_value}selected{/if}>
+                {$value.value}
+              </option>
+            {/foreach}
+          </select>
+        </fieldset>
+      </div>
+
+      <div class="col-lg-11 col-xl-4">
+        <fieldset class="form-group mb-0">
+          <label class="form-control-label">OR Customized value</label>
+          <input type="text"
+                 name="product[details][features][feature_values][{$smarty.foreach.feat.index}][custom_value]"
+                 class="form-control" value="">
+        </fieldset>
+      </div>
+    </div>
+  {/foreach}
+</div>
 
 
-
-                            </fieldset>
-                            </div>
-                            <div class="col-xl-4">
-                            <fieldset class="form-group mb-0">
-                                <label class="form-control-label">Pre-defined value</label>
-                                <select id="product_details_features_feature_values___FEATURE_VALUE_INDEX___feature_value_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][feature_value_id]" disabled="disabled" disabled="disabled" data-toggle="select2" class="feature-value-selector custom-select form-control"><option value="">Choose a value</option></select>    
-
-
-
-                            </fieldset>
-                            </div>
-                            <div class="col-lg-11 col-xl-4">
-                            <fieldset class="form-group mb-0">
-                                <label class="form-control-label">OR Customized value</label>
-                                <input type="hidden" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_id" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value_id]" class="custom-value-id" />
-
-                                        <div class="custom-values input-group locale-input-group js-locale-input-group d-flex" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value" tabindex="1">
-                                                            <div data-lang-id="2" class=" js-locale-input js-locale-en" style="flex-grow: 1;">
-
-                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][2]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_2 input" class="form-control" />
-
-
-
-                                </div>
-                                                                                <div data-lang-id="4" class=" js-locale-input js-locale-es d-none" style="flex-grow: 1;">
-
-                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][4]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_4 input" class="form-control" />
-
-
-
-                                </div>
-                                                                                <div data-lang-id="5" class=" js-locale-input js-locale-fr d-none" style="flex-grow: 1;">
-
-                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][5]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_5 input" class="form-control" />
-
-
-
-                                </div>
-                                                                                <div data-lang-id="1" class=" js-locale-input js-locale-pt d-none" style="flex-grow: 1;">
-
-                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][1]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_1 input" class="form-control" />
-
-
-
-                                </div>
-                                                                                <div data-lang-id="7" class=" js-locale-input js-locale-it d-none" style="flex-grow: 1;">
-
-                            <input type="text" id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][custom_value][7]" aria-label="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_7 input" class="form-control" />
-
-
-
-                                </div>
-                                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
-                                        type="button"
-                                        data-toggle="dropdown"
-                                                data-change-language-url="/admineuromus1/index.php/configure/advanced/employees/change-form-language?_token=PBBUiTEuqEcvxJ_Q53trz9wmwEcy0EmwGBlf4zaDrEw"
-                                                    aria-haspopup="true"
-                                        aria-expanded="false"
-                                        id="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown"
-                                >
-                                    EN
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu" aria-labelledby="product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown">
-                                                <span class="dropdown-item js-locale-item" data-locale="en">English (English)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="es">Español (Spanish)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="fr">Français (French)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="pt">Português (Portuguese)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="it">Italiano (Italian)</span>
-                                            </div>
-                                </div>
-                                </div>
-
-
-
-                            </fieldset>
-                            </div>
-                            <div class="col-lg-1 col-xl-1">
-
-                        <button id="product_details_features_feature_values___FEATURE_VALUE_INDEX___delete" name="product[details][features][feature_values][__FEATURE_VALUE_INDEX__][delete]" class="tooltip-link delete-feature-value pl-0 pr-0 btn" data-modal-title="Delete item" data-modal-message="Are you sure you want to delete this item?" data-modal-apply="Delete" data-modal-cancel="Cancel" data-toggle="pstooltip" data-original-title="Delete" type="button">
-                            <i class="material-icons">delete</i>
-                            <span class="btn-label"></span>
-                        </button>
-                            </div>
-                        </div>' 
-                    data-prototype-name="__FEATURE_VALUE_INDEX__"
-                    class="form-group row feature-values-collection">
-                    <div class="col-sm"></div>
-                </div>
-                <div class="form-group">
-                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]"
-                        class="btn-outline-primary feature-value-add-button btn" type="button">
-                        <i class="material-icons">add_circle</i>
-                        <span class="btn-label">Add a feature</span>
-                    </button>
-                </div>
-            </div>
 
         </div>
 
