@@ -290,7 +290,23 @@
                 </div>
               </div>
             </div>
-            {/if}
+          {/if}
+          {if !empty($product.youtube_2)}
+            <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
+              <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
+                <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_2}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                  <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                    <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                  </div>
+                </div>
+                <div  class="iframeClass"  style="display:none;height:318px">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_2}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          {/if}
             <small style="text-align: center;">{l s="Content protected by copyright © 2024 - All rights reserved" d="Shop.Theme.Catalog"}</small>
         </div>
         {* {if $product.features}
@@ -325,7 +341,23 @@
                 </div>
               </div>
             </div>
-            {/if}
+          {/if}
+          {if !empty($product.youtube_2)}
+            <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+              <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
+                <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
+                <img src="https://i3.ytimg.com/vi/{$product.youtube_2}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
+                  <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+                    <img class="image_play" alt="video player" src="/img/youtube_play.png" loading="lazy" />
+                  </div>
+                </div>
+                <div  class="iframeClass"  style="display:none;height:318px">
+                  <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{$product.youtube_2}?autoplay=0&mute=1&rel=0" loading="lazy" style="width:100%;height:318px;">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          {/if}
           {* fim tabs *}
           
         </div>
