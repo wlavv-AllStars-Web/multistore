@@ -294,6 +294,83 @@
                 <hr>
             </div> *}
 
+            <div class="form-group">
+  <h3>
+    Related Documents
+    <span class="help-box"
+          data-toggle="popover"
+          data-trigger="hover"
+          data-html="true"
+          data-content="Attach manuals, guides, or PDF specs here."
+          data-placement="top"></span>
+  </h3>
+  <p class="subtitle">These documents will appear below the product description.</p>
+
+  <div class="small font-secondary">
+    <a target="_blank" href="/admineuromus1/index.php/sell/attachments/?_token={$token}" class="pt-0 btn btn-link px-0 align-right">
+      <i class="material-icons">open_in_new</i>Manage all files
+    </a>
+  </div>
+
+  <div id="product_details_attachments_2">
+    <div class="form-group">
+      <div id="product_details_attachments_2_attached_files"
+           data-prototype-template="<!-- SAME TEMPLATE AS ORIGINAL BUT WITH ID PREFIX 'product_details_attachments_2_attached_files' -->"
+           data-prototype-index="__entity_index__"
+           data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
+           data-identifier-field="attachment_id"
+           data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
+           data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token={$token}"
+           data-data-limit="0"
+           data-min-length="2"
+           data-allow-delete="1"
+           data-suggestion-field="name"
+           class="entity-search-widget">
+
+        <div class="search search-with-icon">
+          <input id="product_details_attachments_2_attached_files_search_input"
+                 class="entity-search-input form-control"
+                 autocomplete="off"
+                 placeholder="Search file"
+                 type="text">
+        </div>
+
+        <div id="product_details_attachments_2_attached_files_list" class="entities-list-container" style="display: none;">
+          <div class="row">
+            <div class="col-sm">
+              <table class="table">
+                <thead class="thead-default">
+                  <tr>
+                    <th>Title</th>
+                    <th>File name</th>
+                    <th>Type</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="entities-list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-info empty-entity-list mt-2" role="alert">
+          <p class="alert-text">No files attached</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <a id="product_details_attachments_2_add_attachment_btn"
+         class="btn-outline-secondary add-attachment btn"
+         href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token={$token}">
+        <i class="material-icons">add_circle</i>
+        <span class="btn-label">Add new file</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
         </div>
 
         <div class="col-lg-3 bg-creation-container br25">
