@@ -135,15 +135,15 @@
         <div class="swiper-slide">
           <li class="js-thumb-container">
           <picture>
-             {if !empty($image.bySize.medium_default.sources.avif)}<source srcset="{$image.bySize.medium_default.sources.avif}" type="image/avif">{/if}
-             {if !empty($image.bySize.medium_default.sources.webp)}<source srcset="{$image.bySize.medium_default.sources.webp}" type="image/webp">{/if}
+             {if !empty($image.bySize.large_default.sources.avif)}<source srcset="{$image.bySize.large_default.sources.avif}" type="image/avif">{/if}
+             {if !empty($image.bySize.large_default.sources.webp)}<source srcset="{$image.bySize.large_default.sources.webp}" type="image/webp">{/if}
              <img
                class="thumb js-thumb {if $image.id_image == $product.default_image.id_image} selected js-thumb-selected {/if}"
-               data-image-medium-src="{$image.bySize.tm_thickbox_default.url}"
-               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-medium-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
                data-image-large-src="{$image.bySize.tm_thickbox_default.url}"
                {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-large-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
-               src="{$image.bySize.medium_default.url}"
+               data-image-large-src="{$image.bySize.tm_thickbox_default.url}"
+               {if !empty($image.bySize.tm_thickbox_default.sources)}data-image-large-sources="{$image.bySize.tm_thickbox_default.sources|@json_encode}"{/if}
+               src="{$image.bySize.large_default.url}"
                {if !empty($image.legend)}
                  alt="{$image.legend}"
                  title="{$image.legend}"
@@ -151,8 +151,8 @@
                  alt="{$product.name}"
                {/if}
                loading="lazy"
-               width="{$product.default_image.bySize.medium_default.width}"
-               height="{$product.default_image.bySize.medium_default.height}"
+               width="{$product.default_image.bySize.large_default.width}"
+               height="{$product.default_image.bySize.large_default.height}"
              >
            </picture>
           </li>
