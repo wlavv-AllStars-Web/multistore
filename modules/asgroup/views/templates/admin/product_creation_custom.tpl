@@ -1817,27 +1817,27 @@
 
     // features
 
-document.addEventListener("DOMContentLoaded", function () {
-    const container = document.getElementById("product_details_features_feature_values");
-    const prototypeTemplate = container.getAttribute("data-prototype");
-    let index = container.children.length;
+// document.addEventListener("DOMContentLoaded", function () {
+//     const container = document.getElementById("product_details_features_feature_values");
+//     const prototypeTemplate = container.getAttribute("data-prototype");
+//     let index = container.children.length;
 
-    document.getElementById("add-feature-btn").addEventListener("click", function () {
-        const newFormHtml = prototypeTemplate.replace(/__FEATURE_VALUE_INDEX__/g, index);
+//     document.getElementById("add-feature-btn").addEventListener("click", function () {
+//         const newFormHtml = prototypeTemplate.replace(/__FEATURE_VALUE_INDEX__/g, index);
         
-        // Unescape HTML
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = newFormHtml;
+//         // Unescape HTML
+//         const tempDiv = document.createElement("div");
+//         tempDiv.innerHTML = newFormHtml;
         
-        const newForm = tempDiv.firstElementChild; // Get the actual div.form-group.row
-        container.appendChild(newForm);
+//         const newForm = tempDiv.firstElementChild; // Get the actual div.form-group.row
+//         container.appendChild(newForm);
 
-        // If you're using select2 or similar, re-initialize it
-        $(newForm).find('select[data-toggle="select2"]').select2();
+//         // If you're using select2 or similar, re-initialize it
+//         $(newForm).find('select[data-toggle="select2"]').select2();
 
-        index++;
-    });
-});
+//         index++;
+//     });
+// });
 
 
 </script>
