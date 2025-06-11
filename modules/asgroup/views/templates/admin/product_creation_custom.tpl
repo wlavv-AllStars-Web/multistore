@@ -1261,6 +1261,7 @@
 
         // Function to update the hidden input with the current tags (comma separated)
         function updateHiddenInput(input) {
+            if (!input || typeof input.value !== 'string') return;
             // Get all tokens (tags) from the input (assumes tokens are separated by commas)
             const tokenString = input.value.trim();
 
