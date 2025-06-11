@@ -299,7 +299,7 @@
                     Features
                 </h3>
                 <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                    data-protorype='<div class="form-group row product-feature">
+                    data-prototype='<div class="form-group row product-feature">
                             <div class="col-xl-3">
                             <fieldset class="form-group mb-0">
                                 <label class="form-control-label">Feature</label>
