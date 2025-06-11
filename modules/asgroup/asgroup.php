@@ -1653,35 +1653,9 @@ public function getASGProductCreation($product) {
     }
 
 
-
-    // Get features associated with the product
-    $featuresSelected = Product::getFeaturesStatic((int)$product->id);
-
-    // We'll gather full data here (selected + options)
-    $featuresData = [];
-
-    foreach ($featuresSelected as $featureItem) {
-        $featureId = $featureItem['id_feature'];
-        $featureValueId = $featureItem['id_feature_value'];
-
-        $featureValues = FeatureValue::getFeatureValuesWithLang(
-            Context::getContext()->language->id,
-            $featureId
-        );
-
-        $featuresData[] = [
-            'id_feature' => $featureId,
-            'id_feature_value' => $featureValueId,
-            'values' => $featureValues,
-        ];
-    }
-
-
-
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
-        'featuresData' => $featuresData,
         'product_categories' => $product_categories,
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,

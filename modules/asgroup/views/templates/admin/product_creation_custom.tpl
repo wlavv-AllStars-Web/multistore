@@ -294,49 +294,6 @@
                 <hr>
             </div> *}
 
-<div class="form-group row feature-values-collection">
-  {foreach from=$featuresData item=featureData name=feat}
-    <div class="form-group row product-feature">
-      <div class="col-xl-3">
-        <fieldset class="form-group mb-0">
-          <label class="form-control-label">Feature</label>
-          <select name="product[details][features][feature_values][{$smarty.foreach.feat.index}][feature_id]"
-                  class="feature-selector custom-select form-control">
-            <option value="{$featureData.id_feature}">Feature #{$featureData.id_feature}</option>
-          </select>
-        </fieldset>
-      </div>
-
-      <div class="col-xl-4">
-        <fieldset class="form-group mb-0">
-          <label class="form-control-label">Pre-defined value</label>
-          <select name="product[details][features][feature_values][{$smarty.foreach.feat.index}][feature_value_id]"
-                  class="feature-value-selector custom-select form-control">
-            <option value="">Choose a value</option>
-            {foreach from=$featureData.values item=value}
-              <option value="{$value.id_feature_value}"
-                {if $value.id_feature_value == $featureData.id_feature_value}selected{/if}>
-                {$value.value}
-              </option>
-            {/foreach}
-          </select>
-        </fieldset>
-      </div>
-
-      <div class="col-lg-11 col-xl-4">
-        <fieldset class="form-group mb-0">
-          <label class="form-control-label">OR Customized value</label>
-          <input type="text"
-                 name="product[details][features][feature_values][{$smarty.foreach.feat.index}][custom_value]"
-                 class="form-control" value="">
-        </fieldset>
-      </div>
-    </div>
-  {/foreach}
-</div>
-
-
-
         </div>
 
         <div class="col-lg-3 bg-creation-container br25">
