@@ -1654,7 +1654,7 @@ public function getASGProductCreation($product) {
 
 
 
-    $features = Product::getFeaturesStatic((int)$product->id);
+    $features = FeatureValue::getFeatureValuesWithLang(Context::getContext()->language->id, $product->id);
 
     pre($features);
 
