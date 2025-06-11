@@ -1796,6 +1796,49 @@
         document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg')
             .addEventListener('change', updateRetailPriceTaxIncluded);
     });
+
+
+    // features
+
+    document.addEventListener('DOMContentLoaded', function () {
+  const syncFeatureFields = () => {
+    // Find all feature_id selects
+    const featureSelects = document.querySelectorAll('select[name^="product[details][features][feature_values]"][name$="[feature_id]"]');
+
+    featureSelects.forEach(select => {
+      // Avoid multiple bindings
+      if (select.dataset.listenerAttached) return;
+
+      select.addEventListener('change', function () {
+        const name = this.getAttribute('name');
+
+        // Identify if this is the clone version
+        const isClone = !this.closest('#product_details'); // not inside the original container
+
+        if (isClone) {
+          // Find original matching select
+          const originalSelect = document.querySelector(`#product_details select[name="${name}"]`);
+          if (originalSelect) {
+            originalSelect.value = this.value;
+            originalSelect.dispatchEvent(new Event('change')); // trigger any other listeners
+          }
+        }
+      });
+
+      select.dataset.listenerAttached = true;
+    });
+  };
+
+  // Initial bind
+  syncFeatureFields();
+
+  // Re-bind whenever a new feature is added dynamically
+  document.querySelector('#product_details_features_add_feature').addEventListener('click', () => {
+    // Wait a tick for the DOM to update
+    setTimeout(syncFeatureFields, 100);
+  });
+});
+
 </script>
 
 
