@@ -723,8 +723,8 @@
                             </div>
                           {/if}
                           {if !empty($product.youtube_2)}
-                            <div class="column_video" style="display:flex;justify-content:center;align-items:center;margin:2rem 0;">
-                              <div class="video3 video" style="width:480px;border-radius: 0.25rem;overflow: hidden;">
+                            <div class="column_video" style="width: 40%;display:flex;justify-content:center;align-items:center;">
+                              <div class="video3 video" style="width: 75%;border-radius: 0.25rem;overflow: hidden;">
                                 <div onclick="this.nextElementSibling.style.display='block'; this.style.display='none'" style="position: relative;cursor:pointer;">
                                 <img src="https://i3.ytimg.com/vi/{$product.youtube_2}/hqdefault.jpg" style="width: 100%;max-height:318px;object-fit:cover;" loading="lazy"/>
                                   <div class="play" style="position: absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
