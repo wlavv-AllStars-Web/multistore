@@ -1401,11 +1401,6 @@
     });
 
     window.addEventListener('DOMContentLoaded', function() {
-        const specifictElementToRemove = [
-            '#product_details #product_details_features_feature_values',
-            '#product_details > h3'
-        ];
-
 
         const elementsToRemove = [
             '#product_details #product_details_references_reference',
@@ -1422,15 +1417,6 @@
             '#product_description #product_description_categories',
             '#product_description #product_description_manufacturer',
         ];
-
-        specifictElementToRemove.forEach(function(selector) {
-            const element = document.querySelector(selector);
-            if (element) {
-                element.remove();
-            } else {
-                console.log('Element not found for selector:', selector);
-            }
-        });
 
         elementsToRemove.forEach(function(selector) {
             const element = document.querySelector(selector);
