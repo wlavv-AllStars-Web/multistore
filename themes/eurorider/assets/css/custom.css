@@ -915,6 +915,10 @@ body {
 
   /* product page */
 
+  .product-cover .layer{
+    background: rgba(255, 255, 255, 0)!important;
+  }
+
   .images-container.js-images-container .mySwiper-thumb-images .swiper-wrapper {
     width: 100%;
   }
