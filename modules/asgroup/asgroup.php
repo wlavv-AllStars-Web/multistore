@@ -1654,11 +1654,15 @@ public function getASGProductCreation($product) {
 
 
 
+    $features = Product::getFeaturesStatic((int)$product->id);
+
+    pre($features);
 
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'features' => $features,
         'product_categories' => $product_categories,
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,
