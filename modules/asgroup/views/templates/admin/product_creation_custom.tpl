@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -153,8 +153,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                        </textarea>
+                                                                                                                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                    </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -195,8 +195,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                        </textarea>
+                                                                                                                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                    </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -453,7 +453,11 @@
             </div>
             {* fim attachmetns *}
 
-     
+            {* inicio features *}
+
+            
+
+            {* fim features *}
         </div>
 
         <div class="col-lg-3 bg-creation-container br25">
