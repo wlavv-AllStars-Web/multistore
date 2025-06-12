@@ -315,7 +315,9 @@
                 </div>
                 <div id="product_details_attachments">
                     <div class="form-group">
-                        <div id="product_details_attachments_attached_files" data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
+                    {literal}
+                        <div id="product_details_attachments_attached_files" 
+                            data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
                                                 &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot; value=&quot;__attachment_id__&quot; /&gt;
 
                                                 &lt;td&gt;
@@ -363,6 +365,7 @@
                             data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
                             data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
                             class="entity-search-widget">
+             
                             <div class="search search-with-icon"><span class="twitter-typeahead"
                                     style="position: relative; display: inline-block;"><input
                                         id="product_details_attachments_attached_files_search_input"
@@ -402,7 +405,7 @@
                                 </p>
                             </div>
                         </div>
-
+                    {/literal}
                     </div>
 
                     <div class="form-group">
