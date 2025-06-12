@@ -1611,9 +1611,6 @@ body {
     border-radius: .25rem;
   } 
 
-  #banner_news img {
-    width: 100%;
-  }
 
   /* #productList .product-miniature {
     max-width: unset;
@@ -3174,6 +3171,10 @@ body {
 
   #product .product-accessories {
     background: #f6f6f6;
+  }
+
+  #banner_news img {
+    width: 100%;
   }
 
 
