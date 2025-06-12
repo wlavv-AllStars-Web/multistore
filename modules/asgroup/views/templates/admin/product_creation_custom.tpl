@@ -357,9 +357,9 @@
                                     &lt;/td&gt;
                                     &lt;/tr&gt;" 
                             data-prototype-index="__entity_index__"
-                            data-prototype-mapping="{&quot;attachment_id&quot;:&quot;__attachment_id__&quot;,&quot;name&quot;:&quot;__name__&quot;,&quot;file_name&quot;:&quot;__file_name__&quot;,&quot;mime_type&quot;:&quot;__mime_type__&quot;}"
                             data-identifier-field="attachment_id" data-filtered-identities="[]"
-                            data-remove-modal="{&quot;id&quot;:&quot;modal-confirm-remove-entity&quot;,&quot;title&quot;:&quot;Delete item&quot;,&quot;message&quot;:&quot;Are you sure you want to delete this item?&quot;,&quot;apply&quot;:&quot;Delete&quot;,&quot;cancel&quot;:&quot;Cancel&quot;,&quot;buttonClass&quot;:&quot;btn-danger&quot;}"
+                            data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
+                            data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
                             data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
                             data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
                             class="entity-search-widget">
