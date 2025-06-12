@@ -391,29 +391,29 @@
                                 </tr>
                             </thead>
                             <tbody class="entities-list">
-                                {foreach from=$product.details.attachments.attached_files item=file name=attachedFiles}
-                                    <tr class="entity-item" id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
-                                        <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][attachment_id]" value="{$file.attachment_id}">
-                                        <td>
-                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][name]" value="{$file.name}">
-                                            <span class="label text-preview">
-                                                <span class="text-preview-value">{$file.name}</span>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][file_name]" value="{$file.file_name}">
-                                            <span class="label text-preview">
-                                                <span class="text-preview-value">{$file.file_name}</span>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][mime_type]" value="{$file.mime_type}">
-                                            <span class="label text-preview">
-                                                <span class="text-preview-value">{$file.mime_type}</span>
-                                            </span>
-                                        </td>
-                                        <td><i class="material-icons entity-item-delete">clear</i></td>
-                                    </tr>
+                                {foreach from=$attachments item=file name=attachedFiles}
+                                <tr class="entity-item" id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
+                                    <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][attachment_id]" value="{$file.id_attachment}">
+                                    <td>
+                                        <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][name]" value="{$file.name}">
+                                        <span class="label text-preview">
+                                            <span class="text-preview-value">{$file.name}</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][file_name]" value="{$file.file_name}">
+                                        <span class="label text-preview">
+                                            <span class="text-preview-value">{$file.file_name}</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][mime_type]" value="{$file.mime}">
+                                        <span class="label text-preview">
+                                            <span class="text-preview-value">{$file.mime}</span>
+                                        </span>
+                                    </td>
+                                    <td><i class="material-icons entity-item-delete">clear</i></td>
+                                </tr>
                                 {/foreach}
                             </tbody>
                         </table>
