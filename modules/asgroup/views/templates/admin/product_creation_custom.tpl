@@ -1694,10 +1694,10 @@
 
     window.addEventListener('DOMContentLoaded', function() {
 
-        const singleElementsToRemove = [
-            '#product_details #product_details_features_feature_values',
-            '#product_details > h3'
-        ]
+        // const singleElementsToRemove = [
+        //     '#product_details #product_details_features_feature_values',
+        //     '#product_details > h3'
+        // ]
 
         const elementsToRemove = [
             '#product_details #product_details_features_add_feature',
@@ -1716,15 +1716,15 @@
             '#product_description #product_description_manufacturer',
         ];
 
-        singleElementsToRemove.forEach(function(selector) {
-            const element = document.querySelector(selector);
-            if (element) {
-                console.log('Removing element:', selector);
-                element.remove();
-            } else {
-                console.log('Element not found for selector:', selector);
-            }
-        });
+        // singleElementsToRemove.forEach(function(selector) {
+        //     const element = document.querySelector(selector);
+        //     if (element) {
+        //         console.log('Removing element:', selector);
+        //         element.remove();
+        //     } else {
+        //         console.log('Element not found for selector:', selector);
+        //     }
+        // });
 
         elementsToRemove.forEach(function(selector) {
             const element = document.querySelector(selector);
