@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -153,8 +153,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                        </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -195,8 +195,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                        </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -458,8 +458,8 @@
             <div class="form-group">
                 <h3>Features</h3>
                 {literal}
-                    <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                        data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
+                <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
+                    data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
                                                         &lt;div class=&quot;col-xl-3&quot;&gt;
                                                         &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
                                                             &lt;label class=&quot;form-control-label&quot;&gt;Feature&lt;/label&gt;
@@ -543,122 +543,13 @@
                                                         &lt;span class=&quot;btn-label&quot;&gt;&lt;/span&gt;
                                                     &lt;/button&gt;
                                                         &lt;/div&gt;
-                                                    &lt;/div&gt;" data-prototype-name="__FEATURE_VALUE_INDEX__"
-                        class="form-group row feature-values-collection">
-                        <div class="col-sm"></div>
-                    </div>
-                {/literal}
-                <div class="form-group">
-                    {foreach from=$features item=feature name=featureloop}
-                        <div class="form-group row product-feature">
-                            <div class="col-xl-3">
-                                <fieldset class="form-group mb-0">
-                                    <label class="form-control-label">Feature</label>
-                                    <select
-                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_id]"
-                                        class="feature-selector custom-select form-control">
-                                        <option value="{$feature.id_feature}" selected>{$feature.feature_name}</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-xl-4">
-                                <fieldset class="form-group mb-0">
-                                    <label class="form-control-label">Pre-defined value</label>
-                                    <select
-                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_value_id]"
-                                        class="feature-value-selector custom-select form-control">
-                                        <option value="{$feature.id_feature_value}" selected>{$feature.feature_value}
-                                        </option>
-                                    </select>
-                                </fieldset>
-                            </div>
-
-                            <div class="col-lg-11 col-xl-4">
-                                <fieldset class="form-group mb-0">
-                                    <label class="form-control-label">OR Customized value</label>
-                                    <input type="hidden"
-                                        id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_id"
-                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][custom_value_id]"
-                                        class="custom-value-id">
-
-                                    <div class="custom-values input-group locale-input-group js-locale-input-group d-flex"
-                                        id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value"
-                                        tabindex="1">
-                                        <div data-lang-id="2" class="js-locale-input js-locale-en" style="flex-grow: 1;">
-                                            <input type="text"
-                                                id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_2"
-                                                name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][custom_value][2]"
-                                                aria-label="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_2 input"
-                                                class="form-control">
-                                        </div>
-
-                                        <!-- Repeat for other languages (like Spanish, French, etc.) -->
-                                        <div data-lang-id="4" class="js-locale-input js-locale-es d-none"
-                                            style="flex-grow: 1;">
-                                            <input type="text"
-                                                id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_4"
-                                                name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][custom_value][4]"
-                                                aria-label="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_4 input"
-                                                class="form-control">
-                                        </div>
-                                        <div data-lang-id="5" class="js-locale-input js-locale-fr d-none"
-                                            style="flex-grow: 1;">
-                                            <input type="text"
-                                                id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_5"
-                                                name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][custom_value][5]"
-                                                aria-label="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_5 input"
-                                                class="form-control">
-                                        </div>
-                                        <div data-lang-id="1" class="js-locale-input js-locale-pt d-none"
-                                            style="flex-grow: 1;">
-                                            <input type="text"
-                                                id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_1"
-                                                name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][custom_value][1]"
-                                                aria-label="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_1 input"
-                                                class="form-control">
-                                        </div>
-
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-secondary dropdown-toggle js-locale-btn"
-                                                type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false"
-                                                id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_dropdown">
-                                                EN
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right locale-dropdown-menu"
-                                                aria-labelledby="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_custom_value_dropdown">
-                                                <span class="dropdown-item js-locale-item" data-locale="en">English
-                                                    (English)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="es">Español
-                                                    (Spanish)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="fr">Français
-                                                    (French)</span>
-                                                <span class="dropdown-item js-locale-item" data-locale="pt">Português
-                                                    (Portuguese)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="col-lg-1 col-xl-1">
-                                <button
-                                    id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_delete"
-                                    name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][delete]"
-                                    class="tooltip-link delete-feature-value pl-0 pr-0 btn" data-modal-title="Delete item"
-                                    data-modal-message="Are you sure you want to delete this item?"
-                                    data-modal-apply="Delete" data-modal-cancel="Cancel" data-toggle="pstooltip"
-                                    data-original-title="Delete" type="button">
-                                    <i class="material-icons">delete</i>
-                                    <span class="btn-label"></span>
-                                </button>
-                            </div>
-                        </div>
-                    {/foreach}
+                                                    &lt;/div&gt;" 
+                        data-prototype-name="__FEATURE_VALUE_INDEX__" class="form-group row feature-values-collection">
+                    <div class="col-sm"></div>
                 </div>
-                <div class="form-group">
-                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]"
-                        class="btn-outline-primary feature-value-add-button btn" type="button">
+                {/literal}
+                <div class="form-group">            
+                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]" class="btn-outline-primary feature-value-add-button btn" type="button">
                         <i class="material-icons">add_circle</i>
                         <span class="btn-label">Add a feature</span>
                     </button>
