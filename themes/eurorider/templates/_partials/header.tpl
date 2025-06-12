@@ -183,9 +183,9 @@
               margin: 20px 45px;">
             </a>
           </div>
-          <div class="col-md-4  d-none d-lg-flex justify-content-center align-items-center"
+          <div class="col-md-4  d-none d-lg-flex justify-content-end align-items-center"
             style="flex-direction: column;">
-            <img width="75" height="75" src="/img/eurorider/eu.webp" />
+            <img width="50" height="50" src="/img/eurorider/eu.webp" />
             <div style="display: flex;gap: .25rem;padding: .5rem 1rem; color: var(--asm-color);">
               <span>{l s="Shipped from" d="Shop.Theme.Header"}</span><span
                 style="font-weight: 700;">{l s="Europe" d="Shop.Theme.Header"}</span>
