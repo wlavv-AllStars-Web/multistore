@@ -395,10 +395,10 @@
                                                 {foreach from=$attachments item=file name=attachedFiles}
                                                     <tr class="entity-item"
                                                         id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
-                                                        <input type="hidden"
-                                                            name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][attachment_id]"
-                                                            value="{$file.id_attachment}">
                                                         <td>
+                                                            <input type="hidden"
+                                                                name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][attachment_id]"
+                                                                value="{$file.id_attachment}">
                                                             <input type="hidden"
                                                                 name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][name]"
                                                                 value="{$file.name}">
