@@ -1656,6 +1656,7 @@ public function getASGProductCreation($product) {
         // Get product attachments (if available)
     $attachments = Attachment::getAttachmentsByProductId($product->id, $id_lang);
 
+    pre($attachments);
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
