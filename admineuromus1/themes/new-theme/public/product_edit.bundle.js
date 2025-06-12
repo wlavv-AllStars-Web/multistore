@@ -13264,7 +13264,7 @@
      * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
      */
     const o = "#combination_list",
-      a = "#product_details_attachments",
+      a = "#product_product_creation_custom_html #product_details_attachments",
       s = "combination-is-selected",
       l = "bulk-select-all",
       m = "bulk-select-all-in-page",
