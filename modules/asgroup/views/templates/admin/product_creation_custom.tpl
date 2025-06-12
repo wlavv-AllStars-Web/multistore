@@ -393,7 +393,7 @@
                                             </thead>
                                             <tbody class="entities-list">
                                                 {foreach from=$attachments item=file name=attachedFiles}
-                                                    <tr class="entity-item"
+                                                    <tr class="entity-item" style="display: contents;"
                                                         id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
                                                         <td>
                                                             <input type="hidden"
