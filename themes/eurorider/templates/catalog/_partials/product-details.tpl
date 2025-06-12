@@ -57,7 +57,8 @@
                  {if $product.available_later || $product.available_now}
                    {if $product.quantity < 1}
                      <div>{l s="Shipped within:" d="Shop.Theme.Catalog"}
-                       <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">?
+                       <div class="tooltip" style="font-size: 1rem;width:15px;text-align:center;cursor:pointer;">
+                          <i class="fa-solid fa-circle-question"></i>
                          <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
                        </div>
                        <span style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.available_later}</span>
