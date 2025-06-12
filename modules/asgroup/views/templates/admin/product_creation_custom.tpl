@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -153,8 +153,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                        </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -195,8 +195,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                        </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -458,8 +458,8 @@
             <div class="form-group">
                 <h3>Features</h3>
                 {literal}
-                    <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                        data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
+                <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
+                    data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
                                                         &lt;div class=&quot;col-xl-3&quot;&gt;
                                                         &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
                                                             &lt;label class=&quot;form-control-label&quot;&gt;Feature&lt;/label&gt;
@@ -543,41 +543,35 @@
                                                         &lt;span class=&quot;btn-label&quot;&gt;&lt;/span&gt;
                                                     &lt;/button&gt;
                                                         &lt;/div&gt;
-                                                    &lt;/div&gt;" data-prototype-name="__FEATURE_VALUE_INDEX__"
-                        class="form-group row feature-values-collection">
-                    {/literal}
-                    {foreach from=$features item=feature name=featureloop}
-                        <div class="form-group row product-feature">
-                            <div class="col-xl-3">
-                                <fieldset class="form-group mb-0">
-                                    <label class="form-control-label">Feature</label>
-                                    <select
-                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_id]"
-                                        class="feature-selector custom-select form-control">
-                                        <option value="{$feature.id_feature}" selected>{$feature.feature_name}</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div class="col-xl-4">
-                                <fieldset class="form-group mb-0">
-                                    <label class="form-control-label">Pre-defined value</label>
-                                    <select
-                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_value_id]"
-                                        class="feature-value-selector custom-select form-control">
-                                        <option value="{$feature.id_feature_value}" selected>{$feature.feature_value}
-                                        </option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <!-- Continue with other columns if needed -->
-                        </div>
-                    {/foreach}
+                                                    &lt;/div&gt;" 
+                        data-prototype-name="__FEATURE_VALUE_INDEX__" class="form-group row feature-values-collection">
+                        {/literal}
+{foreach from=$features item=feature name=featureloop}
+    <div class="form-group row product-feature">
+        <div class="col-xl-3">
+            <fieldset class="form-group mb-0">
+                <label class="form-control-label">Feature</label>
+                <select name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_id]" class="feature-selector custom-select form-control">
+                    <option value="{$feature.id_feature}" selected>{$feature.feature_name}</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="col-xl-4">
+            <fieldset class="form-group mb-0">
+                <label class="form-control-label">Pre-defined value</label>
+                <select name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_value_id]" class="feature-value-selector custom-select form-control">
+                    <option value="{$feature.id_feature_value}" selected>{$feature.feature_value}</option>
+                </select>
+            </fieldset>
+        </div>
+        <!-- Continue with other columns if needed -->
+    </div>
+{/foreach}
 
                 </div>
-
-                <div class="form-group">
-                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]"
-                        class="btn-outline-primary feature-value-add-button btn" type="button">
+                
+                <div class="form-group">            
+                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]" class="btn-outline-primary feature-value-add-button btn" type="button">
                         <i class="material-icons">add_circle</i>
                         <span class="btn-label">Add a feature</span>
                     </button>
