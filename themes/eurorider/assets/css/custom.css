@@ -4373,7 +4373,7 @@ ul {
 .tooltip {
   position: relative;
   display: inline-block;
-  /* border-bottom: 1px dotted #103054; */
+  border-bottom: none !important;
   opacity: 1 !important; /* If you want dots under the hoverable text */
   z-index: 1;
 }
