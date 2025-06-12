@@ -1653,6 +1653,10 @@ public function getASGProductCreation($product) {
     }
 
 
+        // Get product attachments (if available)
+    $attachments = Attachment::getAttachmentsByProductId($product->id, $id_lang);
+
+
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
@@ -1681,6 +1685,7 @@ public function getASGProductCreation($product) {
         'admin_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
             'configure' => $this->name,
         ]),
+        'attachments' => $attachments, // Pass attachments to the template
     ]);
 }
 
