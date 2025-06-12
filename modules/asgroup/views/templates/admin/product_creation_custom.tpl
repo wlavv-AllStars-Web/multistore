@@ -1532,7 +1532,7 @@
     window.addEventListener('DOMContentLoaded', function() {
 
         const elementsToRemove = [
-            '#product_details #product_details_attachments'
+            '#product_details #product_details_attachments',
             '#product_details #product_details_references_reference',
             '#product_details #product_details_references_ean_13',
             '#product_details #product_details_housing',
