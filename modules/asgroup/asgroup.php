@@ -1654,7 +1654,8 @@ public function getASGProductCreation($product) {
 
 
         // Get product attachments (if available)
-    $attachments = Attachment::getAttachmentsByProductId($product->id, $id_lang);
+    $attachments = Attachment::getAttachments($id_lang, $product->id);
+
 
     pre($attachments);
 
