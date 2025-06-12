@@ -1217,6 +1217,44 @@
         }
     });
 
+    function fetchFeatureValues(featureId, $valueSelect) {
+    $.ajax({
+            url: window.admin_url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                ajax: true,
+                action: 'getFeatureValuesByFeatureId', // You need to handle this in your controller
+                feature_id: featureId,
+                token: window.token
+            },
+            success: function(res) {
+                if (!res.success || !res.values) {
+                    $valueSelect.prop('disabled', true).empty().append('<option value="">Choose a value</option>');
+                    return;
+                }
+
+                $valueSelect.empty().append('<option value="">Choose a value</option>');
+
+                res.values.forEach(function(value) {
+                    $valueSelect.append(
+                        $('<option>', {
+                            value: value.id,
+                            text: value.name
+                        })
+                    );
+                });
+
+                $valueSelect.prop('disabled', false);
+            },
+            error: function(xhr, status, error) {
+                console.error('Feature value fetch error:', error);
+                $valueSelect.prop('disabled', true).empty().append('<option value="">Choose a value</option>');
+            }
+        });
+    }
+
+
     function fetchMatchingProducts(query) {
         $.ajax({
             url: window.admin_url,
@@ -1830,6 +1868,21 @@
                 }
             });
         });
+    });
+
+
+    $(document).on('change', '.feature-selector', function () {
+        const $featureSelect = $(this);
+        const featureId = $featureSelect.val();
+        const $container = $featureSelect.closest('.product-feature');
+        const $valueSelect = $container.find('.feature-value-selector');
+
+        if (!featureId) {
+            $valueSelect.prop('disabled', true).empty().append('<option value="">Choose a value</option>');
+            return;
+        }
+
+        fetchFeatureValues(featureId, $valueSelect);
     });
 
 

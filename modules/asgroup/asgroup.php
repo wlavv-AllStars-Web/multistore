@@ -161,11 +161,18 @@ class AsGroup extends Module
 
     public function hookActionDispatcherBefore(array $params)
     {
-        if (Tools::getValue('ajax') && Tools::getValue('action') == 'deleteSpecificPrice') {
-            $this->ajaxProcessDeleteSpecificPrice();
-        }
-        if (Tools::getValue('ajax') && Tools::getValue('action') == 'searchProductByReferencePrefix') {
-            $this->ajaxProcessSearchProductByReferencePrefix();
+        if (Tools::getValue('ajax')) {
+            switch (Tools::getValue('action')) {
+                case 'deleteSpecificPrice':
+                    $this->ajaxProcessDeleteSpecificPrice();
+                    break;
+                case 'searchProductByReferencePrefix':
+                    $this->ajaxProcessSearchProductByReferencePrefix();
+                    break;
+                case 'getFeatureValuesByFeatureId':
+                    $this->ajaxProcessGetFeatureValuesByFeatureId();
+                    break;
+            }
         }
     }
 
@@ -1757,6 +1764,44 @@ public function ajaxProcessSearchProductByReferencePrefix()
     die(json_encode(['success' => true, 'products' => $products]));
 }
   
+public function ajaxProcessGetFeatureValuesByFeatureId()
+{
+    $idFeature = (int) Tools::getValue('feature_id');
+    $idLang = (int) Context::getContext()->language->id;
+
+    if (!$idFeature) {
+        die(json_encode([
+            'success' => false,
+            'message' => 'Invalid feature ID',
+            'values' => []
+        ]));
+    }
+
+    $values = Db::getInstance()->executeS("
+        SELECT fv.id_feature_value, fvl.value
+        FROM "._DB_PREFIX_."feature_value fv
+        INNER JOIN "._DB_PREFIX_."feature_value_lang fvl
+            ON fv.id_feature_value = fvl.id_feature_value
+        WHERE fv.id_feature = $idFeature
+            AND fvl.id_lang = $idLang
+            AND fv.custom = 0
+        ORDER BY fvl.value ASC
+    ");
+
+    $result = [];
+    foreach ($values as $value) {
+        $result[] = [
+            'id' => (int) $value['id_feature_value'],
+            'name' => $value['value'],
+        ];
+    }
+
+    die(json_encode([
+        'success' => true,
+        'values' => $result
+    ]));
+}
+
 
 
 public function getProductSpecificPrices($productId)
