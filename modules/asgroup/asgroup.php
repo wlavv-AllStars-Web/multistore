@@ -1656,10 +1656,29 @@ public function getASGProductCreation($product) {
         // Get product attachments (if available)
     $attachments = Attachment::getAttachments($id_lang, $product->id);
 
+    $features = [];
+    $featureData = Product::getFeaturesStatic($product->id);
+
+    foreach ($featureData as $feature) {
+        $featureId = $feature['id_feature'];
+        $valueId = $feature['id_feature_value'];
+        $featureObj = new Feature($featureId, $id_lang);
+        $featureValueObj = new FeatureValue($valueId, $id_lang);
+
+        $features[] = [
+            'id_feature' => $featureId,
+            'feature_name' => $featureObj->name,
+            'id_feature_value' => $valueId,
+            'feature_value' => $featureValueObj->value,
+        ];
+    }
+
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'features' => $features,
         'product_categories' => $product_categories,
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,

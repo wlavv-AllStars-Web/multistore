@@ -545,7 +545,28 @@
                                                         &lt;/div&gt;
                                                     &lt;/div&gt;" 
                         data-prototype-name="__FEATURE_VALUE_INDEX__" class="form-group row feature-values-collection">
-                    <div class="col-sm"></div>
+{foreach from=$features item=feature name=featureloop}
+    <div class="form-group row product-feature">
+        <div class="col-xl-3">
+            <fieldset class="form-group mb-0">
+                <label class="form-control-label">Feature</label>
+                <select name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_id]" class="feature-selector custom-select form-control">
+                    <option value="{$feature.id_feature}" selected>{$feature.feature_name}</option>
+                </select>
+            </fieldset>
+        </div>
+        <div class="col-xl-4">
+            <fieldset class="form-group mb-0">
+                <label class="form-control-label">Pre-defined value</label>
+                <select name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_value_id]" class="feature-value-selector custom-select form-control">
+                    <option value="{$feature.id_feature_value}" selected>{$feature.feature_value}</option>
+                </select>
+            </fieldset>
+        </div>
+        <!-- Continue with other columns if needed -->
+    </div>
+{/foreach}
+
                 </div>
                 {/literal}
                 <div class="form-group">            
