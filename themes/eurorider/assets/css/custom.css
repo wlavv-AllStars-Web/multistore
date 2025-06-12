@@ -24,6 +24,10 @@
   width: 100% !important;
 }
 
+.totselectzone__title {
+  margin-bottom: 1rem;
+}
+
 #my-account #msg_vat_valid {
   margin: auto;
   padding: 10px;
