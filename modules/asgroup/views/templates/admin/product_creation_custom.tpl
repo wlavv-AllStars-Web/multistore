@@ -296,130 +296,151 @@
 
             {* aqui attachments  *}
 
-            <div class="form-group">
-                <h3>
-                    Attached files
+<div class="form-group">
+    <h3>
+        Attached files
+        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+            data-content="Instructions, size guide, or any file you want to add to a product."
+            data-placement="top" data-original-title="" title="">
+        </span>
+    </h3>
+    <p class="subtitle">Customers can download these files on the product page.</p>
+    <div class="small font-secondary">
+        <a target="_blank"
+            href="/admineuromus1/index.php/sell/attachments/?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
+            class="pt-0 btn btn-link px-0 align-right">
+            <i class="material-icons">open_in_new</i>Manage all files</a>
+    </div>
+    <div id="product_details_attachments">
+        <div class="form-group">
+            {literal}
+            <div id="product_details_attachments_attached_files"
+                data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
+                                            &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot; value=&quot;__attachment_id__&quot; /&gt;
 
-
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="Instructions, size guide, or any file you want to add to a product."
-                        data-placement="top" data-original-title="" title="">
-                    </span>
-                </h3>
-                <p class="subtitle">Customers can download these files on the product page.</p>
-                <div class="small font-secondary">
-                    <a target="_blank"
-                        href="/admineuromus1/index.php/sell/attachments/?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
-                        class="pt-0 btn btn-link px-0 align-right">
-                        <i class="material-icons">open_in_new</i>Manage all files</a>
-                </div>
-                <div id="product_details_attachments">
-                    <div class="form-group">
-                    {literal}
-                        <div id="product_details_attachments_attached_files" 
-                            data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
-                                                &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___attachment_id&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][attachment_id]&quot; value=&quot;__attachment_id__&quot; /&gt;
-
-                                                &lt;td&gt;
+                                            &lt;td&gt;
                                         &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___name&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][name]&quot; value=&quot;__name__&quot; /&gt;
                                 &lt;span class=&quot;label text-preview &quot;&gt;
 
                                     &lt;span class=&quot;text-preview-value&quot;&gt;
                                                     __name__
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                    &lt;/td&gt;
-                                                &lt;td&gt;
+                                &lt;/td&gt;
+                                            &lt;td&gt;
                                         &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___file_name&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][file_name]&quot; value=&quot;__file_name__&quot; /&gt;
                                 &lt;span class=&quot;label text-preview &quot;&gt;
 
                                     &lt;span class=&quot;text-preview-value&quot;&gt;
                                                     __file_name__
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                    &lt;/td&gt;
-                                                &lt;td&gt;
+                                &lt;/td&gt;
+                                            &lt;td&gt;
                                         &lt;input type=&quot;hidden&quot; id=&quot;product_details_attachments_attached_files___entity_index___mime_type&quot; name=&quot;product[details][attachments][attached_files][__entity_index__][mime_type]&quot; value=&quot;__mime_type__&quot; /&gt;
                                 &lt;span class=&quot;label text-preview &quot;&gt;
 
                                     &lt;span class=&quot;text-preview-value&quot;&gt;
                                                     __mime_type__
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                        &lt;/span&gt;
+                                    &lt;/span&gt;
 
-                                    &lt;/td&gt;
+                                &lt;/td&gt;
 
-                                        &lt;td&gt;
-                                    &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;clear&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;/tr&gt;" 
-                            data-prototype-index="__entity_index__"
-                            data-identifier-field="attachment_id" data-filtered-identities="[]"
-                            data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
-                            data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-                            data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
-                            data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
-                            class="entity-search-widget">
-             
-                            <div class="search search-with-icon"><span class="twitter-typeahead"
-                                    style="position: relative; display: inline-block;"><input
-                                        id="product_details_attachments_attached_files_search_input"
-                                        class="entity-search-input form-control tt-input" autocomplete="off"
-                                        placeholder="Search file" type="text" spellcheck="false" dir="auto"
-                                        style="position: relative; vertical-align: top;">
-                                    <pre aria-hidden="true"
-                                        style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre>
-                                    <div class="tt-menu"
-                                        style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-                                        <div class="tt-dataset tt-dataset-2"></div>
-                                    </div>
-                                </span>
-                            </div>
-                            <div id="product_details_attachments_attached_files_list" class="entities-list-container"
-                                style="display: none;">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <table class="table">
-                                            <thead class="thead-default">
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>File name</th>
-                                                    <th>Type</th>
+                                    &lt;td&gt;
+                                &lt;i class=&quot;material-icons entity-item-delete&quot;&gt;clear&lt;/i&gt;
+                                &lt;/td&gt;
+                                &lt;/tr&gt;" 
+                data-prototype-index="__entity_index__"
+                data-identifier-field="attachment_id" data-filtered-identities="[]"
+                data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
+                data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
+                data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
+                data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
+                class="entity-search-widget">
+            {/literal}
 
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="entities-list"></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="alert alert-info empty-entity-list mt-2" role="alert">
-                                <p class="alert-text">
-                                    No files attached
-                                </p>
-                            </div>
-                        </div>
-                    {/literal}
+            <div class="search search-with-icon">
+                <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+                    <input id="product_details_attachments_attached_files_search_input"
+                        class="entity-search-input form-control tt-input" autocomplete="off"
+                        placeholder="Search file" type="text" spellcheck="false" dir="auto"
+                        style="position: relative; vertical-align: top;">
+                    <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, helvetica, arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre>
+                    <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                        <div class="tt-dataset tt-dataset-2"></div>
                     </div>
+                </span>
+            </div>
 
-                    <div class="form-group">
-                        <a id="product_details_attachments_add_attachment_btn"
-                            name="product[details][attachments][add_attachment_btn]"
-                            data-success-create-message="The file was successfully added."
-                            data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
-                            href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I">
-                            <i class="material-icons">add_circle</i>
-                            <span class="btn-label">Add new file</span>
-                        </a>
+            <div id="product_details_attachments_attached_files_list" class="entities-list-container" style="display: none;">
+                <div class="row">
+                    <div class="col-sm">
+                        <table class="table">
+                            <thead class="thead-default">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>File name</th>
+                                    <th>Type</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="entities-list">
+                                {foreach from=$product.details.attachments.attached_files item=file name=attachedFiles}
+                                    <tr class="entity-item" id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
+                                        <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][attachment_id]" value="{$file.attachment_id}">
+                                        <td>
+                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][name]" value="{$file.name}">
+                                            <span class="label text-preview">
+                                                <span class="text-preview-value">{$file.name}</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][file_name]" value="{$file.file_name}">
+                                            <span class="label text-preview">
+                                                <span class="text-preview-value">{$file.file_name}</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="product[details][attachments][attached_files][{$smarty.foreach.attachedFiles.index}][mime_type]" value="{$file.mime_type}">
+                                            <span class="label text-preview">
+                                                <span class="text-preview-value">{$file.mime_type}</span>
+                                            </span>
+                                        </td>
+                                        <td><i class="material-icons entity-item-delete">clear</i></td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+
+            <div class="alert alert-info empty-entity-list mt-2" role="alert">
+                <p class="alert-text">
+                    No files attached
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <a id="product_details_attachments_add_attachment_btn"
+                name="product[details][attachments][add_attachment_btn]"
+                data-success-create-message="The file was successfully added."
+                data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
+                href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I">
+                <i class="material-icons">add_circle</i>
+                <span class="btn-label">Add new file</span>
+            </a>
+        </div>
+    </div>
+</div>
+
 
             {* fim attachmetns *}
         </div>
