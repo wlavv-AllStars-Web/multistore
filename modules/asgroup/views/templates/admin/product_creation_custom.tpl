@@ -548,6 +548,37 @@
                     <div class="col-sm"></div>
                 </div>
                 {/literal}
+                <div class="form-group">
+                    {foreach from=$features item=feature name=featureloop}
+                        <div class="form-group row product-feature">
+                            <div class="col-xl-3">
+                                <fieldset class="form-group mb-0">
+                                    <label class="form-control-label">Feature</label>
+                                    <select
+                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_id]"
+                                        class="feature-selector custom-select form-control">
+                                        <option value="{$feature.id_feature}" selected>{$feature.feature_name}</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-xl-4">
+                                <fieldset class="form-group mb-0">
+                                    <label class="form-control-label">Pre-defined value</label>
+                                    <select
+                                        name="product[details][features][feature_values][{$smarty.foreach.featureloop.index}][feature_value_id]"
+                                        class="feature-value-selector custom-select form-control">
+                                        <option value="{$feature.id_feature_value}" selected>{$feature.feature_value}</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-1 col-xl-1">
+                                <button id="product_details_features_feature_values_{$smarty.foreach.featureloop.index}_delete" class="delete-feature-value btn" type="button">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
                 <div class="form-group">            
                     <button id="product_details_features_add_feature" name="product[details][features][add_feature]" class="btn-outline-primary feature-value-add-button btn" type="button">
                         <i class="material-icons">add_circle</i>
