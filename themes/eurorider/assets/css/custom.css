@@ -17,6 +17,13 @@
   --bg-9 : #999;
 }
 
+#header .logo{
+  max-width: 250px !important;
+  padding: 0px;
+  margin: 0px 45px !important;
+  width: 100% !important;
+}
+
 #my-account #msg_vat_valid {
   margin: auto;
   padding: 10px;
