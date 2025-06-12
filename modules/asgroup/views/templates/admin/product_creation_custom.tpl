@@ -548,6 +548,23 @@
                     <div class="col-sm"></div>
                 </div>
                 {/literal}
+                <div class="form-group">
+                    {foreach from=$product_features item=feature}
+                        <div class="product-feature" data-id-feature="{$feature.id_feature}" data-id-value="{$feature.id_feature_value}">
+                            <span class="feature-name">{$feature.name|escape:'html'}</span>: 
+                            <span class="feature-value">{$feature.value|escape:'html'}</span>
+                            <button 
+                                type="button" 
+                                class="btn btn-danger btn-sm js-delete-feature" 
+                                data-id-product="{$product.id}" 
+                                data-id-feature="{$feature.id_feature}" 
+                                data-id-value="{$feature.id_feature_value}">
+                                Delete
+                            </button>
+                        </div>
+                    {/foreach}
+
+                </div>
                 <div class="form-group">            
                     <button id="product_details_features_add_feature" name="product[details][features][add_feature]" class="btn-outline-primary feature-value-add-button btn" type="button">
                         <i class="material-icons">add_circle</i>
@@ -1884,6 +1901,42 @@
 
         fetchFeatureValues(featureId, $valueSelect);
     });
+
+    $(document).on('click', '.js-delete-feature', function() {
+        const $btn = $(this);
+        const productId = $btn.data('id-product');
+        const featureId = $btn.data('id-feature');
+        const featureValueId = $btn.data('id-value');
+
+        if (!confirm('Are you sure you want to delete this feature from the product?')) {
+            return;
+        }
+
+        $.ajax({
+            url: window.admin_url,
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                ajax: true,
+                action: 'deleteProductFeature',
+                id_product: productId,
+                id_feature: featureId,
+                id_feature_value: featureValueId,
+                token: window.token
+            },
+            success: function(res) {
+                if (res.success) {
+                    $btn.closest('.product-feature').fadeOut();
+                } else {
+                    alert('Failed to delete feature: ' + res.message);
+                }
+            },
+            error: function() {
+                alert('An error occurred while deleting the feature.');
+            }
+        });
+    });
+
 
 
     document.addEventListener('DOMContentLoaded', function() {

@@ -172,6 +172,9 @@ class AsGroup extends Module
                 case 'getFeatureValuesByFeatureId':
                     $this->ajaxProcessGetFeatureValuesByFeatureId();
                     break;
+                case 'deleteProductFeature':
+                    $this->ajaxProcessDeleteProductFeature();
+                    break;
             }
         }
     }
@@ -1663,11 +1666,27 @@ public function getASGProductCreation($product) {
         // Get product attachments (if available)
     $attachments = Attachment::getAttachments($id_lang, $product->id);
 
+    $product_features = $product->getFeatures();
+
+    $features = [];
+
+    foreach ($product_features as $pf) {
+        $feature = new Feature((int)$pf['id_feature'], $id_lang);
+        $feature_value = new FeatureValue((int)$pf['id_feature_value'], $id_lang);
+
+        $features[] = [
+            'id_feature' => $feature->id,
+            'id_feature_value' => $feature_value->id,
+            'name' => $feature->name,
+            'value' => $feature_value->value,
+        ];
+    }
 
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
+        'product_features' => $features,
         'product_categories' => $product_categories,
         'product_category_ids' => $product_category_ids,
         'combinations' => $combinations,
@@ -1801,6 +1820,29 @@ public function ajaxProcessGetFeatureValuesByFeatureId()
         'values' => $result
     ]));
 }
+
+public function ajaxProcessDeleteProductFeature()
+{
+    $idProduct = (int) Tools::getValue('id_product');
+    $idFeature = (int) Tools::getValue('id_feature');
+    $idFeatureValue = (int) Tools::getValue('id_feature_value');
+
+    if (!$idProduct || !$idFeature || !$idFeatureValue) {
+        die(json_encode(['success' => false, 'message' => 'Missing parameters']));
+    }
+
+    $success = Db::getInstance()->delete(
+        'feature_product',
+        'id_product = '.(int)$idProduct.' AND id_feature = '.(int)$idFeature.' AND id_feature_value = '.(int)$idFeatureValue
+    );
+
+    if ($success) {
+        die(json_encode(['success' => true]));
+    } else {
+        die(json_encode(['success' => false, 'message' => 'DB deletion failed']));
+    }
+}
+
 
 
 
