@@ -1559,6 +1559,39 @@ class FrontControllerCore extends Controller
             );
         }
 
+        if($this->context->shop->id == 6){
+            $version = file_exists(_PS_THEME_DIR_ . 'assets/css/custom.css') 
+                ? filemtime(_PS_THEME_DIR_ . 'assets/css/custom.css') 
+                : time();
+
+            $customCss = '/assets/css/custom.' . $version . '.css';
+
+            // Copy the file programmatically to match the versioned name:
+            if (!file_exists(_PS_THEME_DIR_ . 'assets/css/custom.' . $version . '.css')) {
+                copy(
+                    _PS_THEME_DIR_ . 'assets/css/custom.css',
+                    _PS_THEME_DIR_ . 'assets/css/custom.' . $version . '.css'
+                );
+            }
+
+            $this->registerStylesheet(
+                'theme-custom-custom',
+                $customCss,
+                ['media' => 'all', 'priority' => 51]
+            );
+
+            $this->registerStylesheet(
+                'font-awesome-cdn',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+                [
+                    'server' => 'remote',
+                    'media' => 'all',
+                    'priority' => 52,
+                ]
+            );
+        }
+
+
         if ($this->context->language->is_rtl) {
             $this->registerStylesheet('theme-rtl', '/assets/css/rtl.css', ['media' => 'all', 'priority' => 900]);
         }
