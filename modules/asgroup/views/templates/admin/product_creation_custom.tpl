@@ -556,7 +556,7 @@
                             <button 
                                 type="button" 
                                 class="btn btn-danger btn-sm js-delete-feature" 
-                                data-id-product="{$product.id}" 
+                                data-id-product="{$product->id}" 
                                 data-id-feature="{$feature.id_feature}" 
                                 data-id-value="{$feature.id_feature_value}">
                                 Delete
