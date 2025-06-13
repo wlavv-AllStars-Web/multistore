@@ -5167,9 +5167,14 @@ ul {
 }
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a {
   color: var(--bg-3) !important;
-  justify-content: start;
+  justify-content: center;
   font-size: 1rem;
 }
+
+#_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a {
+  max-width: 100px;
+}
+
 #_desktop_top_menu
   .list-menu-desktop
   .dropdown
