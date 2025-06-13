@@ -1480,6 +1480,10 @@ body {
     top: 1rem;
   }
 
+  .fa-solid {
+    color: inherit;
+  }
+
 
   #current_car_settings .current-car-content .details-info-car-mobile{
     outline: 2px solid #efefef;
