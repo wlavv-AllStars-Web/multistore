@@ -1508,18 +1508,23 @@
 
         // atachmerts token
 
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        var token = getUrlParameter('_token');
         
         // Get the element
         var el = document.getElementById('product_details_attachments');
 
-        // Your token from PHP or inline somewhere (e.g., set via Smarty or a data attribute)
-        var token = '{$token}';  // Make sure to pass this via Smarty variable if you have it
-
-        // Replace __token__ placeholder
+        if (token && el) {
+        // Replace __token__ in data-remote-url
         var url = el.getAttribute('data-remote-url').replace('__token__', token);
-
-        // Update the attribute
         el.setAttribute('data-remote-url', url);
+        }
 
     });
 
