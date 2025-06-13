@@ -716,6 +716,30 @@
                     </div>
                 </div>
 
+                <div class="form-group col-lg-4">
+                    <label for="product_description_real_photos_0">
+                        Real Photos
+                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                            data-content="Real Photos helper." data-placement="top" title=""></span>
+                    </label>
+
+                    <div class="input-group">
+                        <span class="ps-switch" id="product_description_real_photos">
+                            <input type="radio" id="product_description_real_photos_0"
+                                name="product[asg][real_photos]" value="0"
+                                {if isset($product->real_photos) && $product->real_photos != 1}checked{/if}>
+                            <label for="product_description_real_photos_0">No</label>
+
+                            <input type="radio" id="product_description_real_photos_1"
+                                name="product[asg][real_photos]" value="1"
+                                {if isset($product->real_photos) && $product->real_photos == 1}checked{/if}>
+                            <label for="product_description_real_photos_1">Yes</label>
+
+                            <span class="slide-button"></span>
+                        </span>
+                    </div>
+                </div>
+
 
                 <div class="form-group col-lg-4" style="display: none;">
                     <label for="product_description_not_to_order_0">

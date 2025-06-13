@@ -734,8 +734,8 @@ class AsGroup extends Module
         // 
         // 
 
-        if (is_array($productData) && isset($productData['description']['real_photos'])){
-            $real_photos = $productData['description']['real_photos'];
+        if (is_array($productData) && isset($productData['asg']['real_photos'])){
+            $real_photos = $productData['asg']['real_photos'];
             $idProduct = $params['id_product'];
 
             Db::getInstance()->update('product', [
