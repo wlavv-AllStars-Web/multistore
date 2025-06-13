@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -46,6 +46,72 @@
 <div class="tab-container-product-creation-custom row bg-container" style="gap: 2rem;">
     <div class="col-lg-12 bg-creation-container br25" style="display: flex;">
         <div class="col-lg-9 bg-creation-container br25">
+            <!-- Product images -->
+
+            <div class="form-group">
+            {literal}
+                    <div class="manage-shop-images-button-container form-group" data-product-id="{$product->id}"
+                        data-translations="{&quot;button.label&quot;:&quot;Manage images&quot;,&quot;modal.save&quot;:&quot;Save and publish&quot;,&quot;modal.close&quot;:&quot;Close&quot;,&quot;modal.cancel&quot;:&quot;Cancel&quot;,&quot;cover.label&quot;:&quot;Cover&quot;,&quot;modal.noImages&quot;:&quot;Product has no images.&quot;,&quot;grid.imageHeader&quot;:&quot;Image&quot;,&quot;warning.deletedImages&quot;:&quot;Images will be deleted.&quot;}"
+                        data-v-app="">
+                        <div el=".manage-shop-images-button-container"
+                            template="&lt;image-shop-association-modal :productId=productId /&gt;" i18n="[object Object]">
+                            <button type="button" class="btn-outline-secondary manage-shop-images-button btn btn">Manage
+                                images</button>
+                        </div>
+                    </div>
+            
+                    <div id="product_description_images" name="product[description][images]"
+                        class="product-image-dropzone image-dropzone"
+                        data-translations="{&quot;window.selectAll&quot;:&quot;Select all&quot;,&quot;window.settingsUpdated&quot;:&quot;Settings updated&quot;,&quot;window.imageReplaced&quot;:&quot;Image replaced&quot;,&quot;window.unselectAll&quot;:&quot;Unselect all&quot;,&quot;window.replaceSelection&quot;:&quot;Replace selection&quot;,&quot;window.cantDisableCover&quot;:&quot;Using another image as cover will automatically uncheck this box.&quot;,&quot;window.selectedFiles&quot;:&quot;&lt;span&gt;{filesNb}&lt;/span&gt; selected file(s)&quot;,&quot;window.notAssociatedToShop&quot;:&quot;Image is not associated to this store&quot;,&quot;window.useAsCover&quot;:&quot;Use as cover image&quot;,&quot;window.applyToAllStores&quot;:&quot;Apply changes to all associated stores&quot;,&quot;window.saveImage&quot;:&quot;Save image settings&quot;,&quot;window.delete&quot;:&quot;Delete selection&quot;,&quot;window.close&quot;:&quot;Close window&quot;,&quot;window.closePhotoSwipe&quot;:&quot;Close (esc)&quot;,&quot;window.download&quot;:&quot;Download&quot;,&quot;window.toggleFullscreen&quot;:&quot;Toggle Fullscreen&quot;,&quot;window.zoomPhotoSwipe&quot;:&quot;Zoom in\/out&quot;,&quot;window.previousPhotoSwipe&quot;:&quot;Previous (arrow left)&quot;,&quot;window.nextPhotoSwipe&quot;:&quot;Next (arrow right)&quot;,&quot;window.downloadImage&quot;:&quot;Download image&quot;,&quot;window.zoom&quot;:&quot;Zoom on selection&quot;,&quot;modal.close&quot;:&quot;Cancel&quot;,&quot;modal.accept&quot;:&quot;Delete&quot;,&quot;modal.title&quot;:&quot;Are you sure you want to delete the selected image?|Are you sure you want to delete the {filesNb} selected images?&quot;,&quot;delete.success&quot;:&quot;The selection has been successfully deleted.&quot;,&quot;window.fileisTooLarge&quot;:&quot;The file is too large. The maximum size allowed is {{maxFilesize}} MB. The file you are trying to upload is {{filesize}} MB.&quot;,&quot;window.dropImages&quot;:&quot;Drop images here&quot;,&quot;window.selectFiles&quot;:&quot;or select files&quot;,&quot;window.recommendedSize&quot;:&quot;Recommended size 800 x 800px for default theme.&quot;,&quot;window.recommendedFormats&quot;:&quot;JPG, GIF, PNG or WebP format.&quot;,&quot;window.cover&quot;:&quot;Cover&quot;,&quot;window.caption&quot;:&quot;Caption&quot;}"
+                        data-locales="[{&quot;id_lang&quot;:2,&quot;name&quot;:&quot;English (English)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;en&quot;,&quot;language_code&quot;:&quot;en-us&quot;,&quot;locale&quot;:&quot;en-US&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}},{&quot;id_lang&quot;:4,&quot;name&quot;:&quot;Espa\u00f1ol (Spanish)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;es&quot;,&quot;language_code&quot;:&quot;es-es&quot;,&quot;locale&quot;:&quot;es-ES&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}},{&quot;id_lang&quot;:5,&quot;name&quot;:&quot;Fran\u00e7ais (French)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;fr&quot;,&quot;language_code&quot;:&quot;fr-fr&quot;,&quot;locale&quot;:&quot;fr-FR&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}}]"
+                        data-product-id="{$product->id}" data-shop-id="6" data-is-multi-store-active="1"
+                        data-form-name="product_image" data-token="1wmsJ5J4q0QW37mlFDA_hKewjQbYcU6-TQ_sCjswQ4A"
+                        data-v-app="">
+                        <div id="product-images-container" el=".product-image-dropzone"
+                            template="&lt;dropzone :productId=productId :locales=locales :token=token :formName=formName /&gt;"
+                            i18n="[object Object]">
+                            <div id="product-images-dropzone" class="dropzone dropzone-container">
+                                <div class="dz-preview openfilemanager" style="">
+                                    <div><span><i class="material-icons">add_a_photo</i></span></div>
+                                </div>
+                                <div class="dz-default dz-message openfilemanager dz-clickable d-none"><i
+                                        class="material-icons">add_a_photo</i><br> Drop images here<br><a>or select
+                                        files</a><br><small>Recommended size 800 x 800px for default theme.<br> JPG, GIF,
+                                        PNG or WebP format.</small></div>
+            {/literal}
+                                <!--v-if-->
+                                    {foreach from=$product->images item=image}
+                                        <div class="dz-preview is-cover dz-complete dz-image-preview" data-id="{$image->id}">
+                                            <div class="dz-image">
+                                                <img data-dz-thumbnail="" alt="undefined" src="{$image->src}">
+                                            </div>
+                                        </div>
+                                    {/foreach}
+
+                        </div>
+                        <!--v-if-->
+                        <!--v-if-->
+                        <div class="dz-template d-none">
+                            <div class="dz-preview dz-file-preview">
+                                <div class="dz-image"><img data-dz-thumbnail=""></div>
+                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                <div class="dz-success-mark"><span>✔</span></div>
+                                <div class="dz-error-mark"><span>✘</span></div>
+                                <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+                                <div class="dz-hover"><i class="material-icons drag-indicator">drag_indicator</i>
+                                    <div class="md-checkbox"><label><input type="checkbox"><i
+                                                class="md-checkbox-control"></i></label></div>
+                                </div>
+                                <div class="iscover">Cover</div>
+                            </div>
+                        </div>
+                        <!--v-if-->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- fim images -->
             <!-- Product Reference and EAN Section -->
             <div class="form-group">
                 <div id="product_details_references" class="form-columns-3">
@@ -153,8 +219,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                        </textarea>
+                                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                            </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -195,8 +261,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                        </textarea>
+                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                            </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -458,8 +524,8 @@
             <div class="form-group">
                 <h3>Features</h3>
                 {literal}
-                <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
-                    data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
+                    <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
+                        data-prototype="&lt;div class=&quot;form-group row product-feature&quot;&gt;
                                                         &lt;div class=&quot;col-xl-3&quot;&gt;
                                                         &lt;fieldset class=&quot;form-group mb-0&quot;&gt;
                                                             &lt;label class=&quot;form-control-label&quot;&gt;Feature&lt;/label&gt;
@@ -543,21 +609,19 @@
                                                         &lt;span class=&quot;btn-label&quot;&gt;&lt;/span&gt;
                                                     &lt;/button&gt;
                                                         &lt;/div&gt;
-                                                    &lt;/div&gt;" 
-                        data-prototype-name="__FEATURE_VALUE_INDEX__" class="form-group row feature-values-collection">
-                    <div class="col-sm"></div>
-                </div>
+                                                    &lt;/div&gt;" data-prototype-name="__FEATURE_VALUE_INDEX__"
+                        class="form-group row feature-values-collection">
+                        <div class="col-sm"></div>
+                    </div>
                 {/literal}
                 <div class="form-group">
                     {foreach from=$product_features item=feature}
-                        <div class="product-feature" data-id-feature="{$feature.id_feature}" data-id-value="{$feature.id_feature_value}">
-                            <span class="feature-name">{$feature.name|escape:'html'}</span>: 
+                        <div class="product-feature" data-id-feature="{$feature.id_feature}"
+                            data-id-value="{$feature.id_feature_value}">
+                            <span class="feature-name">{$feature.name|escape:'html'}</span>:
                             <span class="feature-value">{$feature.value|escape:'html'}</span>
-                            <button 
-                                type="button" 
-                                class="btn btn-danger btn-sm js-delete-feature" 
-                                data-id-product="{$product->id}" 
-                                data-id-feature="{$feature.id_feature}" 
+                            <button type="button" class="btn btn-danger btn-sm js-delete-feature"
+                                data-id-product="{$product->id}" data-id-feature="{$feature.id_feature}"
                                 data-id-value="{$feature.id_feature_value}">
                                 Delete
                             </button>
@@ -565,8 +629,9 @@
                     {/foreach}
 
                 </div>
-                <div class="form-group">            
-                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]" class="btn-outline-primary feature-value-add-button btn" type="button">
+                <div class="form-group">
+                    <button id="product_details_features_add_feature" name="product[details][features][add_feature]"
+                        class="btn-outline-primary feature-value-add-button btn" type="button">
                         <i class="material-icons">add_circle</i>
                         <span class="btn-label">Add a feature</span>
                     </button>
@@ -1235,7 +1300,7 @@
     });
 
     function fetchFeatureValues(featureId, $valueSelect) {
-    $.ajax({
+        $.ajax({
             url: window.admin_url,
             method: 'POST',
             dataType: 'json',
@@ -1247,7 +1312,8 @@
             },
             success: function(res) {
                 if (!res.success || !res.values) {
-                    $valueSelect.prop('disabled', true).empty().append('<option value="">Choose a value</option>');
+                    $valueSelect.prop('disabled', true).empty().append(
+                        '<option value="">Choose a value</option>');
                     return;
                 }
 
@@ -1266,7 +1332,8 @@
             },
             error: function(xhr, status, error) {
                 console.error('Feature value fetch error:', error);
-                $valueSelect.prop('disabled', true).empty().append('<option value="">Choose a value</option>');
+                $valueSelect.prop('disabled', true).empty().append(
+                    '<option value="">Choose a value</option>');
             }
         });
     }
@@ -1888,7 +1955,7 @@
     });
 
 
-    $(document).on('change', '.feature-selector', function () {
+    $(document).on('change', '.feature-selector', function() {
         const $featureSelect = $(this);
         const featureId = $featureSelect.val();
         const $container = $featureSelect.closest('.product-feature');
@@ -2081,10 +2148,8 @@
     });
 
     if({$shop_id} == 6){
-        document.querySelector("#product_pm_advancedpack_custom_html-tab-nav").style.display = 'none'
+    document.querySelector("#product_pm_advancedpack_custom_html-tab-nav").style.display = 'none'
     }
-
-
 </script>
 
 
