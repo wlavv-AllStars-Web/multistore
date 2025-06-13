@@ -87,7 +87,7 @@
                             value="{$product->housing}">
                     </div>
 
-                    <div class="form-group text-widget"> <label for="product_details_references_mpn">
+                    <div class="form-group text-widget"> <label for="product_details_references_mpn" style="display: none;">
                             MPN
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="MPN is used internationally to identify the Manufacturer Part Number."
@@ -98,7 +98,7 @@
                             aria-label="product_details_references_mpn input" class="form-control">
                     </div>
 
-                    <div class="form-group text-widget"> <label for="product_details_references_upc">
+                    <div class="form-group text-widget"> <label for="product_details_references_upc" style="display: none;">
                             UPC barcode
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="This type of product code is widely used in the United States, Canada, the United Kingdom, Australia, New Zealand and in other countries."
@@ -109,7 +109,7 @@
                             aria-label="product_details_references_upc input" class="form-control">
                     </div>
 
-                    <div class="form-group text-widget"> <label for="product_details_references_isbn">
+                    <div class="form-group text-widget"> <label for="product_details_references_isbn" style="display: none;">
                             ISBN
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="The International Standard Book Number (ISBN) is used to identify books and other publications."
@@ -211,7 +211,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <div id="custom_notes_asg">
                     <label>Notes</label>
                     <textarea name="product[asg][notes]" class="form-control" rows="3">{$product->notes}</textarea>
@@ -591,7 +591,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label for="product_description_wmpackqt">Qty Pack</label>
                 <input type="text" class="form-control" id="product_description_wmpackqt" name="product[asg][wmpackqt]"
                     placeholder="Enter quantity per pack" value="{$product->wmpackqt}">
@@ -646,7 +646,7 @@
                 </div>
 
 
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-4" style="display: none;">
                     <label for="product_description_not_to_order_0">
                         Not to order?
                         <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
@@ -2074,6 +2074,11 @@
         document.getElementById('product_pricing_retail_price_tax_rules_group_id_asg')
             .addEventListener('change', updateRetailPriceTaxIncluded);
     });
+
+    if($shop_id == 6){
+        document.querySelector("#product_pm_advancedpack_custom_html-tab-nav").style.display = 'none'
+    }
+
 </script>
 
 
@@ -2174,6 +2179,14 @@
     }
 
     #product_description_description_short_custom {
+        display: none;
+    }
+
+    #product_options-tab-nav {
+        display: none;
+    }
+
+    #product_details-tab-nav {
         display: none;
     }
 </style>
