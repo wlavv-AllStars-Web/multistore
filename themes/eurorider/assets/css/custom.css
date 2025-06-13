@@ -5177,6 +5177,7 @@ ul {
   border-radius: 50%;
   background: linear-gradient(90deg, #3da936, #abf7cb, #3da936);
   background-size: auto;
+  animation: outlineMove 250ms linear infinite;
 }
 
 @keyframes outlineMove {
