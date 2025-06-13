@@ -5173,10 +5173,10 @@ ul {
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img{
   max-width: 100px;
+  border-radius: 50%;
 }
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover{
-  border-radius: 50%;
   outline: 4px solid var(--asm-color-100);
   outline-offset: -1px;
   transition: all ease-in-out 250ms;
