@@ -2299,4 +2299,8 @@
     #product_details-tab-nav {
         display: none;
     }
+
+    #product_description-tab-nav {
+        display: none;
+    }
 </style>
