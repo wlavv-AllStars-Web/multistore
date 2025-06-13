@@ -426,7 +426,7 @@
                                 data-identifier-field="attachment_id" data-filtered-identities="[]"
                                 data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
                                 data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-                                data-remote-url="{literal}{$remoteUrlAttachments}{/literal}"
+                                data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=__token__"
                                 data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
                                 class="entity-search-widget">
                             {/literal}
@@ -1504,6 +1504,23 @@
                 }, 3000);
             });
         }
+
+
+        // atachmerts token
+
+        
+        // Get the element
+        var el = document.getElementById('product_details_attachments');
+
+        // Your token from PHP or inline somewhere (e.g., set via Smarty or a data attribute)
+        var token = '{$token}';  // Make sure to pass this via Smarty variable if you have it
+
+        // Replace __token__ placeholder
+        var url = el.getAttribute('data-remote-url').replace('__token__', token);
+
+        // Update the attribute
+        el.setAttribute('data-remote-url', url);
+
     });
 
 
