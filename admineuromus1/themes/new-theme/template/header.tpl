@@ -27,7 +27,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="robots" content="NOFOLLOW, NOINDEX">
 
-<link rel="icon" type="image/x-icon" href="{$img_dir}favicon.ico" />
+<link rel="icon" type="image/x-icon" href="{$img_dir}favicon-0.ico" />
 <link rel="apple-touch-icon" href="{$img_dir}app_icon.png" />
 
 <title>{if $meta_title != ''}{$meta_title} • {/if}{$shop_name}</title>
