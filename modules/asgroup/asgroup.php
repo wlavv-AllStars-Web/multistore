@@ -1683,10 +1683,16 @@ public function getASGProductCreation($product) {
     }
 
     // Get the PrestaShop token
-    $token = $this->context->token;
+    $token = Tools::getAdminTokenLite('AdminModules');
 
-    // Build the URL dynamically with the token
-    $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=" . urlencode($token);
+    // Check if the token is available
+    if ($token) {
+        // Build the URL dynamically with the token
+        $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=" . urlencode($token);
+    } else {
+        // Fallback in case token is null (optional)
+        $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__";
+    }
 
 
     // Render the template with the languages and default values
