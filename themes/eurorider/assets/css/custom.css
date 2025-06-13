@@ -5173,9 +5173,20 @@ ul {
 
 .brand-outline {
   display: inline-block;
-  padding: 4px; /* This is your animated outline thickness */
-  border-radius: 50%; /* Circular outline */
+  position: relative;
+  border-radius: 50%;
+}
+
+.brand-outline::before {
+  content: '';
+  position: absolute;
+  top: -5px; /* match padding / thickness */
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
   background: conic-gradient(#3da936, #abf7cb, #3da936);
+  z-index: 1;
   animation: rotateOutline 2s linear infinite;
 }
 
@@ -5183,6 +5194,8 @@ ul {
   display: block;
   border-radius: 50%;
   max-width: 100px;
+  position: relative;
+  z-index: 2; /* ensure it's above the rotating ring */
 }
 
 @keyframes rotateOutline {
