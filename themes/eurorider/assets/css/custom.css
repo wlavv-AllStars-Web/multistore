@@ -5078,7 +5078,7 @@ ul {
   display: none;
 } */
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li {
-  min-width: 25%;
+  /* min-width: 25%; */
 }
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a {
@@ -5178,6 +5178,7 @@ ul {
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover{
   border-radius: 50%;
   outline: 4px solid var(--asm-color-100);
+  outline-offset: -1px;
 }
 
 #_desktop_top_menu
