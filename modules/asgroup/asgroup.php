@@ -1684,6 +1684,8 @@ public function getASGProductCreation($product) {
 
     $remoteUrlAttachments = $this->context->link->getAdminLink('AdminProducts', true) . '&sell/attachments/search/__QUERY__';
 
+    $img_upd_token = $this->get('security.csrf.token_manager')->getToken('product_image')->getValue();
+
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
         'product' => $product,
@@ -1714,7 +1716,8 @@ public function getASGProductCreation($product) {
             'configure' => $this->name,
         ]),
         'attachments' => $attachments, // Pass attachments to the template
-        'remoteUrlAttachments' => $remoteUrlAttachments
+        'remoteUrlAttachments' => $remoteUrlAttachments,
+        'img_upd_token' => $img_upd_token,
     ]);
 }
 
@@ -1948,36 +1951,6 @@ public function buildSpecificPriceTable($productId)
         // $keyFront = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         
         $storeId = $this->context->shop->id;
-
-        // $url = 'https://webtools.euromuscleparts.com/api/get/bo/brands/'.$storeId.'/'.$key;
-
-        // $urlCompats = 'https://webtools.euromuscleparts.com/api/get/product/compats/'.$product->id .'/'.$storeId.'/'.$keyFront;
-
-        // // pre($product);
-
-        // // $adminUrl = $this->context->link->getAdminLink('AsGroup', true) . '&action=getmodelsbrand';
-
-        // // $adminUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . __PS_BASE_URI__ . 'modules/asgroup/asgroup.php';
-
-
-
-        // $ch = curl_init();
-        // curl_setopt($ch,CURLOPT_URL,$url);
-        // curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        // curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 4);
-        // $json = curl_exec($ch);
-
-        // $ch2 = curl_init();
-        // curl_setopt($ch2,CURLOPT_URL,$urlCompats);
-        // curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
-        // curl_setopt($ch2,CURLOPT_CONNECTTIMEOUT, 4);
-        // $compats = curl_exec($ch2);
-        // curl_close($ch2);
-
-        // // Decode JSON string into an associative array
-        // $brands = json_decode($json, true);
-        // $compats = json_decode($compats, true);
-        // pre($compats);
 
         # Get brands and compats data
         $data = $this->getCompats($product->id);
