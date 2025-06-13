@@ -1682,13 +1682,9 @@ public function getASGProductCreation($product) {
         ];
     }
 
-    $controller = 'AdminProducts'; // or the controller you're targeting
-    $employee_id = (int) $this->context->employee->id;
-    $profile_id = (int) $this->context->employee->id_profile;
-    // Get the PrestaShop token
-    $token = Tools::getAdminTokenLite('AdminProducts');
+    $dataRemoteUrl = $this->context->link->getAdminLink('AdminProducts', true) . '&sell/attachments/search/__QUERY__';
 
-    pre($token);
+    pre($dataRemoteUrl);
 
     // Check if the token is available
     if ($token) {
