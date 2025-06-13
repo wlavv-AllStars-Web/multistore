@@ -1479,10 +1479,10 @@ body {
     right: 1rem;
     top: 1rem;
   }
-
+/* 
   .fa-solid {
     color: var(--bg-2);
-  }
+  } */
 
 
   #current_car_settings .current-car-content .details-info-car-mobile{
