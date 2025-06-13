@@ -50,7 +50,7 @@
       {if !empty($manufacturer.short_description)}
         <div class="description_short" style="display: flex;flex-direction:column;width:80%;">
         {if strlen($manufacturer.short_description) > 550}
-          <div id="manufacturer-short_description" class="text_description hiddenTextDescription" style="font-size:15px;line-height:22px;text-transform:uppercase;font-weight:500;padding:0 3rem;margin:0 !important;text-align:center;">
+          <div id="manufacturer-short_description" class="text_description hiddenTextDescription" style="font-size:15px;line-height:22px;text-transform:uppercase;font-weight:500;padding:1rem 3rem 0 3rem;margin:0 !important;text-align:center;">
             {$manufacturer.short_description nofilter}
           </div>
 
@@ -187,7 +187,7 @@
     }
 
     .description_box{
-      max-height: 171px;
+      /* max-height: 171px; */
       overflow: hidden;
     }
 
