@@ -2079,6 +2079,12 @@
         document.querySelector("#product_pm_advancedpack_custom_html-tab-nav").style.display = 'none'
     }
 
+    const metadescription = document.querySelector("#product_seo-tab #product_seo_meta_description");
+    if (metadescription) {
+        metadescription.parentElement.style.display = 'none';
+    }
+
+
 </script>
 
 
