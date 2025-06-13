@@ -2156,10 +2156,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const saveButton = document.getElementById('product_footer_save');
-  const watchElements = [
-    document.getElementById('product-images-container'),
-    document.getElementById('product_description_full_description_custom')
-  ];
 
   function enableSave() {
     if (saveButton) {
@@ -2167,19 +2163,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  watchElements.forEach(el => {
-    if (el) {
-      // For input/textarea/select changes inside the element
+  // Watch image container for changes
+  const imageContainer = document.getElementById('product-images-container');
+  if (imageContainer) {
+    const observer = new MutationObserver(enableSave);
+    observer.observe(imageContainer, { childList: true, subtree: true });
+  }
+
+  // Attach input/change listeners to all textareas inside description container
+  const descContainer = document.getElementById('product_description_full_description_custom');
+  if (descContainer) {
+    const textareas = descContainer.querySelectorAll('textarea, input');
+    textareas.forEach(el => {
       el.addEventListener('input', enableSave);
       el.addEventListener('change', enableSave);
+    });
 
-      // For DOM changes (e.g. images added/removed)
-      const observer = new MutationObserver(enableSave);
-      observer.observe(el, { childList: true, subtree: true });
-    }
-  });
+    // In case dynamic textareas are added later (unlikely, but safe to cover)
+    const descObserver = new MutationObserver(function() {
+      const newTextareas = descContainer.querySelectorAll('textarea, input');
+      newTextareas.forEach(el => {
+        el.addEventListener('input', enableSave);
+        el.addEventListener('change', enableSave);
+      });
+    });
+    descObserver.observe(descContainer, { childList: true, subtree: true });
+  }
 });
 </script>
+
 
 
 <style>
