@@ -5171,13 +5171,19 @@ ul {
   font-size: 1rem;
 }
 
-#_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img{
-  max-width: 100px;
-  padding: 4px;
-  border-radius: 50%;
+.brand-outline {
+  display: inline-block;
+  padding: 4px; /* This is your animated outline thickness */
+  border-radius: 50%; /* Circular outline */
   background: linear-gradient(90deg, #3da936, #abf7cb, #3da936);
-  background-size: auto;
-  animation: outlineMove 250ms linear infinite;
+  background-size: 300% 300%;
+  animation: outlineMove 2s linear infinite;
+}
+
+.brand-outline img {
+  display: block;
+  border-radius: 50%;
+  max-width: 100px;
 }
 
 @keyframes outlineMove {
