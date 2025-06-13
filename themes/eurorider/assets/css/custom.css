@@ -5185,7 +5185,7 @@ ul {
   max-width: 100px;
 }
 
-@keyframes outlineMove {
+@keyframes rotateOutline {
   from {
     transform: rotate(0deg);
   }
