@@ -87,7 +87,7 @@
                             value="{$product->housing}">
                     </div>
 
-                    <div class="form-group text-widget"> <label for="product_details_references_mpn" style="display: none;">
+                    {* <div class="form-group text-widget"> <label for="product_details_references_mpn" style="display: none;">
                             MPN
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="MPN is used internationally to identify the Manufacturer Part Number."
@@ -96,9 +96,9 @@
                         </label>
                         <input type="text" id="product_details_references_mpn" name="product[asg][mpn]"
                             aria-label="product_details_references_mpn input" class="form-control">
-                    </div>
+                    </div> *}
 
-                    <div class="form-group text-widget"> <label for="product_details_references_upc" style="display: none;">
+                    {* <div class="form-group text-widget"> <label for="product_details_references_upc" style="display: none;">
                             UPC barcode
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="This type of product code is widely used in the United States, Canada, the United Kingdom, Australia, New Zealand and in other countries."
@@ -107,9 +107,9 @@
                         </label>
                         <input type="text" id="product_details_references_upc" name="product[asg][upc]"
                             aria-label="product_details_references_upc input" class="form-control">
-                    </div>
+                    </div> *}
 
-                    <div class="form-group text-widget"> <label for="product_details_references_isbn" style="display: none;">
+                    {* <div class="form-group text-widget"> <label for="product_details_references_isbn" style="display: none;">
                             ISBN
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="The International Standard Book Number (ISBN) is used to identify books and other publications."
@@ -119,7 +119,7 @@
                         <input type="text" id="product_details_references_isbn"
                             name="product[details][references][isbn]" aria-label="product_details_references_isbn input"
                             class="form-control">
-                    </div>
+                    </div> *}
 
                 </div>
 
@@ -1732,9 +1732,9 @@
             '#product_details #product_details_references_reference',
             '#product_details #product_details_references_ean_13',
             '#product_details #product_details_housing',
-            '#product_details #product_details_references_mpn',
-            '#product_details #product_details_references_upc',
-            '#product_details #product_details_references_isbn',
+            // '#product_details #product_details_references_mpn',
+            // '#product_details #product_details_references_upc',
+            // '#product_details #product_details_references_isbn',
             '#product_details #product_details_references',
             '#product_description #product_description_description_short',
             '#product_description #product_description_description',
