@@ -272,7 +272,8 @@
                 <li class="col-lg-3">
                   <a
                     href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
-                    {$manufacturer.name}
+                    {* {$manufacturer.name} *}
+                      <img src="/img/eurorider/brands/brand_{$manufacturer.id_manufacturer}.png" alt="logo-{$manufacturer.name}"/>
                   </a>
                 </li>
               {/foreach}
