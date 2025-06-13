@@ -61,8 +61,35 @@
                           <i class="fa-regular fa-circle-question" style="font-size: 1rem;"></i>
                          <div class="tooltiptext">{l s="This product is currently out of stock or requires a specific order. Please check ETA mentioned as working days to know approximate shipping date for this item." d="Shop.Theme.Catalog"}</div>
                        </div>
-                       <span style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.available_later}</span>
+                        <span class="tooltip-trigger" style="background: #f6ed1d;color:#333;padding: 0.25rem 0.5rem;">{$product.available_later}</span>
                      </div>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                          const tooltip = document.querySelector(".tooltip");
+                          const span = document.querySelector(".tooltip-trigger");
+                          const tooltipText = tooltip.querySelector(".tooltiptext");
+
+                          // Show tooltip on click of tooltip or span
+                          function showTooltip() {
+                            tooltipText.style.display = "block";
+                          }
+
+                          tooltip.addEventListener("click", function(event) {
+                            showTooltip();
+                            event.stopPropagation(); // Prevent click from bubbling up
+                          });
+
+                          span.addEventListener("click", function(event) {
+                            showTooltip();
+                            event.stopPropagation(); // Prevent click from bubbling up
+                          });
+
+                          // Hide tooltip on click anywhere else
+                          document.addEventListener("click", function() {
+                            tooltipText.style.display = "none";
+                          });
+                        });
+                      </script>
                    {else}
                      <div>{l s="Availability:" d="Shop.Theme.Catalog"} <span style="background: #88f941;color:#333;padding: 0.25rem 0.5rem;">{$product.available_now}</span></div>
                    {/if}
