@@ -682,12 +682,12 @@
                     <div class="input-group ">
                         <span class="ps-switch" id="product_description_disallow_stock">
                             <input id="product_description_disallow_stock_0" class="ps-switch"
-                                name="product[description][disallow_stock]" value="0" checked="" type="radio"
+                                name="product[asg][disallow_stock]" value="0" checked="" type="radio"
                                 {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
                             <label for="product_description_disallow_stock_0">No</label>
 
                             <input id="product_description_disallow_stock_1" class="ps-switch"
-                                name="product[description][disallow_stock]" value="1" type="radio"
+                                name="product[asg][disallow_stock]" value="1" type="radio"
                                 {if isset($product->disallow_stock) && $product->disallow_stock != 1}checked{/if}>
                             <label for="product_description_disallow_stock_1">Yes</label>
 

@@ -757,8 +757,8 @@ class AsGroup extends Module
         }
 
 
-        if (is_array($productData) && isset($productData['description']['disallow_stock'])){
-            $disallow_stock = $productData['description']['disallow_stock'];
+        if (is_array($productData) && isset($productData['asg']['disallow_stock'])){
+            $disallow_stock = $productData['asg']['disallow_stock'];
             $idProduct = $params['id_product'];
             
             Db::getInstance()->update('product', [
