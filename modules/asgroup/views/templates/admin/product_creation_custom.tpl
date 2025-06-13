@@ -2153,6 +2153,33 @@
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const saveButton = document.getElementById('product_footer_save');
+  const watchElements = [
+    document.getElementById('product-images-container'),
+    document.getElementById('product_description_full_description_custom')
+  ];
+
+  function enableSave() {
+    if (saveButton) {
+      saveButton.removeAttribute('disabled');
+    }
+  }
+
+  watchElements.forEach(el => {
+    if (el) {
+      // For input/textarea/select changes inside the element
+      el.addEventListener('input', enableSave);
+      el.addEventListener('change', enableSave);
+
+      // For DOM changes (e.g. images added/removed)
+      const observer = new MutationObserver(enableSave);
+      observer.observe(el, { childList: true, subtree: true });
+    }
+  });
+});
+</script>
 
 
 <style>
