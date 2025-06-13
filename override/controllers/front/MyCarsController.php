@@ -19,7 +19,7 @@ class MyCarsControllerCore extends FrontController
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
             $shop_id = $this->context->shop->id; 
 
-            $url = 'https://webtools.euromuscleparts.com/api/remove/car/'.$id_customer.'/'.$id_compat.'/'.$shop_id.'/'.$key;
+            $url = 'https://webtools.all-stars-motorsport.com/api/remove/car/'.$id_customer.'/'.$id_compat.'/'.$shop_id.'/'.$key;
             // pre($url);
     
             // Initialize cURL
@@ -78,7 +78,7 @@ class MyCarsControllerCore extends FrontController
         $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
         $shop_id = $this->context->shop->id; 
 
-        $url = 'https://webtools.euromuscleparts.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
+        $url = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
         // pre($url);
 
         // Initialize cURL

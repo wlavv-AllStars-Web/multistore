@@ -29,29 +29,29 @@
     			</td>
 
     			<td class="cms_catalog_right_line">
-    				<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
+    				<a href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.csv" download="{$manufacturer.name|replace:' ':''}.csv">
     					<img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/csv{if $manufacturer.csv == 1}_updated{elseif $manufacturer.csv == 2}_none{elseif $manufacturer.csv == 3}_commingSoon{/if}.png" alt="csv_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
     				</a>
     			</td>
 
     			<td class="cms_catalog_right_line">
     			    {if ($manufacturer.id_manufacturer == 11) || ($manufacturer.id_manufacturer == 20) }
-        				<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.pdf" download="{$manufacturer.name|replace:' ':''}.pdf">
+        				<a href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.pdf" download="{$manufacturer.name|replace:' ':''}.pdf">
     			    {else}
-        				<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.xlsx" download="{$manufacturer.name|replace:' ':''}.xlsx">
+        				<a href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}.xlsx" download="{$manufacturer.name|replace:' ':''}.xlsx">
     			    {/if}
     			    	<img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/xlsx{if $manufacturer.xlsx == 1}_updated{elseif $manufacturer.xlsx == 2}_none{elseif $manufacturer.xlsx == 3}_commingSoon{/if}.png" alt="xlsx_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
     				</a>
     			</td>
 
     			<td class="cms_catalog_right_line">
-    				<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_images.zip" download="{$manufacturer.name|replace:' ':''}_IMAGES.zip">
+    				<a href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_images.zip" download="{$manufacturer.name|replace:' ':''}_IMAGES.zip">
     					<img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/zip{if $manufacturer.pictures == 1}_updated{elseif $manufacturer.pictures == 2}_none{elseif $manufacturer.pictures == 3}_commingSoon{/if}.png" alt="pictures_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
     				</a>
     			</td>
 
     			<td class="cms_catalog_right_line">
-    				<a href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_logos.zip" download="{$manufacturer.name|replace:' ':''}_LOGOS.zip">
+    				<a href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$manufacturer.name|replace:' ':''}/{$manufacturer.name|replace:' ':''}_logos.zip" download="{$manufacturer.name|replace:' ':''}_LOGOS.zip">
     					<img class="cms_catalog_image" src="/img/asd/Content_pages/catalog/icons/jpg{if $manufacturer.logos == 1}_updated{elseif $manufacturer.logos == 2}_none{/if}.png" alt="logos_{$manufacturer.name|replace:' ':''}" width="80" height="80"/>
     				</a>
     			</td>

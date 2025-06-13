@@ -30,7 +30,7 @@
     <section id="main" style="max-width:1350px;margin:auto;">
 
         
-        <img class="p-img" src="http://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product->manufacturer_name|replace:' ':''}/{$product.id_manufacturer}.webp" style="width: 100%; margin: 0 auto;" alt="Brand banner"/>
+        <img class="p-img" src="http://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$product->manufacturer_name|replace:' ':''}/{$product.id_manufacturer}.webp" style="width: 100%; margin: 0 auto;" alt="Brand banner"/>
 
         <div class="row row-container-product" style="text-align: center;margin-top: 50px;">
             <div class="col-lg-4">
@@ -201,7 +201,7 @@
                     <h1 style="color:#0273eb;padding-bottom: 5px;font-size: 24px;">{l s='Links' d='Shop.Theme.Catalog'}:</h1>
                     <div class="links-productpage" style="font-size: 18px; color: #666;line-height: 1.7; font-weight: 400;">
                         <div>
-                            <a style="color: #666;" href="https://webtools.euromuscleparts.com/uploads/manufacturer/ASD/{$product_manufacturer->name|replace:' ':''}/{$product_manufacturer->name|replace:' ':''}.xlsx" download="{$product_manufacturer->name|replace:' ':''}.xlsx">{l s='CatalogueLink' d='Shop.Theme.Catalog'}</a> 
+                            <a style="color: #666;" href="https://webtools.all-stars-motorsport.com/uploads/manufacturer/ASD/{$product_manufacturer->name|replace:' ':''}/{$product_manufacturer->name|replace:' ':''}.xlsx" download="{$product_manufacturer->name|replace:' ':''}.xlsx">{l s='CatalogueLink' d='Shop.Theme.Catalog'}</a> 
                         </div>
                         <div>
                             <a style="color: #666;" href="{$product_manufacturer->site_url}" target="_blank">{l s='Manufacturer website' d='Shop.Theme.Catalog'}</a> 

@@ -109,11 +109,11 @@ class IndexController extends IndexControllerCore
             // alterar para $id_shop
             $store = $id_shop;
     
-            $urlBrands = 'https://webtools.euromuscleparts.com/api/get/brands/'.$store.'/'. $key;
+            $urlBrands = 'https://webtools.all-stars-motorsport.com/api/get/brands/'.$store.'/'. $key;
             echo 'urlbrands: ' . $urlBrands;
             // exit;
     
-            // $urlModels = 'https://webtools.euromuscleparts.com/api/get/brand/'.$brand.'/2/'.$key;
+            // $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/brand/'.$brand.'/2/'.$key;
     
 
             $cacheId = 'brands_webtools_'.$store;
@@ -156,7 +156,7 @@ class IndexController extends IndexControllerCore
             $store = $id_shop;
             // $store = 2;
 
-            $urlModels = 'https://webtools.euromuscleparts.com/api/get/model/'.$brand.'/'.$store.'/'.$key;
+            $urlModels = 'https://webtools.all-stars-motorsport.com/api/get/model/'.$brand.'/'.$store.'/'.$key;
             echo 'urlModels: ' . $urlModels;
 
 
@@ -184,7 +184,7 @@ class IndexController extends IndexControllerCore
             $store = $id_shop;
             // $store = 2;
 
-            $urlTypes = 'https://webtools.euromuscleparts.com/api/get/type/'.$model.'/'.$store.'/'.$key;
+            $urlTypes = 'https://webtools.all-stars-motorsport.com/api/get/type/'.$model.'/'.$store.'/'.$key;
             echo 'urltypes: '.$urlTypes;
 
 
@@ -212,7 +212,7 @@ class IndexController extends IndexControllerCore
             $store = $id_shop;
             // $store = 2;
 
-            $urlVersions = 'https://webtools.euromuscleparts.com/api/get/version/'.$type.'/'.$store.'/'.$key;
+            $urlVersions = 'https://webtools.all-stars-motorsport.com/api/get/version/'.$type.'/'.$store.'/'.$key;
             echo 'urlversions: '. $urlVersions;
 
 
@@ -243,7 +243,7 @@ class IndexController extends IndexControllerCore
             $store = $id_shop;
             // $store = 2;
 
-            $urlProductIdCompat = 'https://webtools.euromuscleparts.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
+            $urlProductIdCompat = 'https://webtools.all-stars-motorsport.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$version.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -289,7 +289,7 @@ class IndexController extends IndexControllerCore
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
 
 
-            $urlVersionsHome = 'https://webtools.euromuscleparts.com/api/get/version/'.$type.'/'.$store.'/'.$key;
+            $urlVersionsHome = 'https://webtools.all-stars-motorsport.com/api/get/version/'.$type.'/'.$store.'/'.$key;
 
 
             $ch = curl_init();
@@ -313,7 +313,7 @@ class IndexController extends IndexControllerCore
                     $versionId = $version['id_version']; // Adjust this key if necessary
                     
                     // Construct the URL for the compat request
-                    $urlCompat = 'https://webtools.euromuscleparts.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$versionId.'/'.$store.'/'.$key;
+                    $urlCompat = 'https://webtools.all-stars-motorsport.com/api/get/compats/'.$brand.'/'.$model.'/'.$type.'/'.$versionId.'/'.$store.'/'.$key;
         
                     // Initialize cURL to get the compat data for the version
                     $ch = curl_init();
@@ -396,7 +396,7 @@ class IndexController extends IndexControllerCore
             // getTypes
 
             if($isModel == true){
-                $urlTypesHome = 'https://webtools.euromuscleparts.com/api/get/type/'.$model.'/'.$store.'/'.$keyToken;
+                $urlTypesHome = 'https://webtools.all-stars-motorsport.com/api/get/type/'.$model.'/'.$store.'/'.$keyToken;
 
 
                 $ch = curl_init();
@@ -419,7 +419,7 @@ class IndexController extends IndexControllerCore
         
                     // Fetch versions for each type
                     $typeId = $type['id_type']; // Adjust this key based on your data structure
-                    $urlVersionsHome = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/version/' . $typeId . '/' . $store . '/' . $keyToken;
+                    $urlVersionsHome = 'https://webtools.all-stars-motorsport/api/get/version/' . $typeId . '/' . $store . '/' . $keyToken;
         
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $urlVersionsHome);
@@ -438,7 +438,7 @@ class IndexController extends IndexControllerCore
                             $versionId = $version['id_version'];
         
                             // Fetch compat data for each version
-                            $urlCompat = 'https://webtools.' . $_SERVER['SERVER_NAME'] . '/api/get/compats/' . $brand . '/' . $model . '/' . $typeId . '/' . $versionId . '/' . $store . '/' . $keyToken;
+                            $urlCompat = 'https://webtools.all-stars-motorsport.com/api/get/compats/' . $brand . '/' . $model . '/' . $typeId . '/' . $versionId . '/' . $store . '/' . $keyToken;
         
                             $ch = curl_init();
                             curl_setopt($ch, CURLOPT_URL, $urlCompat);

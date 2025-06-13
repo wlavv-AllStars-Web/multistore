@@ -43,7 +43,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
             $exists = 0;
             if($this->context->customer->id){
                 $id_customer = $this->context->customer->id;
-                $urlCarsGarage = 'https://webtools.euromuscleparts.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
+                $urlCarsGarage = 'https://webtools.all-stars-motorsport.com/api/get/cars/'.$id_customer.'/'.$shop_id.'/'.$key;
 
                 $ch2 = curl_init();
                 curl_setopt($ch2,CURLOPT_URL,$urlCarsGarage);
@@ -66,7 +66,7 @@ class CarsProductsControllerCore extends ProductListingFrontController{
                 
             }
 
-            $url = 'https://webtools.euromuscleparts.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
+            $url = 'https://webtools.all-stars-motorsport.com/api/get/products/' . $id_compat . '/'. $shop_id . '/' . $key;
 
 
             $ch = curl_init();

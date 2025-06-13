@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 100); 
             }else{
                 orderWeightInput.classList.remove("input-error");
-                const url = `https://webtools.euromuscleparts.com/dpd/csv/generate/${orderID}/${orderWeight}`
+                const url = `https://webtools.all-stars-motorsport.com/dpd/csv/generate/${orderID}/${orderWeight}`
         
                 location.href = url
             }
@@ -373,7 +373,7 @@ function generateEanCombination(combinationId, ean13 = null) {
     const ean13Value = ean13 ? ean13 : ''
 
     if(ean13Value == ''){
-        const generateUrl = `https://webtools.euromuscleparts.com/barcode/product/generate/${productId}/${idCombination}`;
+        const generateUrl = `https://webtools.all-stars-motorsport.com/barcode/product/generate/${productId}/${idCombination}`;
 
         fetch(generateUrl, {
         method: 'GET',
@@ -405,7 +405,7 @@ function generateEanCombination(combinationId, ean13 = null) {
     }else{
  
         
-        const printUrl = `https://webtools.euromuscleparts.com/barcode/product/print/${productId}/${idCombination}`;
+        const printUrl = `https://webtools.all-stars-motorsport.com/barcode/product/print/${productId}/${idCombination}`;
         window.open(printUrl, '_blank', 'width=1200,height=900');
         // fetch(printUrl, {
         //     method: 'GET',
@@ -453,7 +453,7 @@ function generateEan() {
     const btn_detailsEAN = document.querySelector("#product_details_print_ean_btn");
 
     if(EANvalue == ''){
-        const generateUrl = `https://webtools.euromuscleparts.com/barcode/product/generate/${productIdDetails}/0`;
+        const generateUrl = `https://webtools.all-stars-motorsport.com/barcode/product/generate/${productIdDetails}/0`;
 
         fetch(generateUrl, {
         method: 'GET',
@@ -483,7 +483,7 @@ function generateEan() {
             console.error("Error generating EAN:", error);
         });
     }else{
-        const printUrl = `https://webtools.euromuscleparts.com/barcode/product/print/${productIdDetails}/0/1`;
+        const printUrl = `https://webtools.all-stars-motorsport.com/barcode/product/print/${productIdDetails}/0/1`;
         window.open(printUrl, '_blank', 'width=1200,height=900');
         // fetch(printUrl, {
         //     method: 'GET',

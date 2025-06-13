@@ -457,7 +457,7 @@ class ProductControllerCore extends ProductPresentingFrontControllerCore
             // ASG add compats to the product
 
             $key = 'UMb85YcQcDKQK021JKLAMM5yJ9pCgt';
-            $urlCompats = 'https://webtools.euromuscleparts.com/api/get/product/compats/' . $this->product->id. '/'. $this->context->shop->id . '/' . $key;
+            $urlCompats = 'https://webtools.all-stars-motorsport.com/api/get/product/compats/' . $this->product->id. '/'. $this->context->shop->id . '/' . $key;
 
             // pre($url);
     

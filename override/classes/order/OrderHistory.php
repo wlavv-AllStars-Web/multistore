@@ -909,7 +909,7 @@ class OrderHistoryCore extends ObjectModel
                     <tr>
                         <td style="text-align:center;padding-top:20px;">
                         
-                            <a href="http://webtools.euromuscleparts.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">';
+                            <a href="http://webtools.all-stars-motorsport.com/customTools/worldline/validate?order_reference='.$reference.'" style="background-color: #0273eb; color: white; padding: .5rem 1rem; border: none; cursor: pointer;border-radius: .25rem;">';
                                 
                                 
                                 if($lang == 1){
