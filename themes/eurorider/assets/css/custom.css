@@ -5174,13 +5174,13 @@ ul {
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img{
   max-width: 100px;
   border-radius: 50%;
+  transition: box-shadow 250ms ease-in-out;
 }
 
-#_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover{
-  outline: 4px solid var(--asm-color-100);
-  outline-offset: -1px;
-  transition: all ease-in-out 250ms;
+#_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover {
+  box-shadow: 0 0 0 4px var(--asm-color-100), 0 0 10px var(--asm-color-100);
 }
+
 
 #_desktop_top_menu
   .list-menu-desktop
