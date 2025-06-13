@@ -1686,7 +1686,7 @@ public function getASGProductCreation($product) {
     $employee_id = (int) $this->context->employee->id;
     $profile_id = (int) $this->context->employee->id_profile;
     // Get the PrestaShop token
-    $token = Tools::getAdminToken($controller . $employee_id . $profile_id);
+    $token = Tools::getAdminTokenLite('AdminProducts');
 
     pre($token);
 
