@@ -426,7 +426,7 @@
                                 data-identifier-field="attachment_id" data-filtered-identities="[]"
                                 data-prototype-mapping='{"attachment_id":"__attachment_id__","name":"__name__","file_name":"__file_name__","mime_type":"__mime_type__"}'
                                 data-remove-modal='{"id":"modal-confirm-remove-entity","title":"Delete item","message":"Are you sure you want to delete this item?","apply":"Delete","cancel":"Cancel","buttonClass":"btn-danger"}'
-                                data-remote-url="/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
+                                data-remote-url="{literal}{$remoteUrlAttachments}{/literal}"
                                 data-data-limit="0" data-min-length="2" data-allow-delete="1" data-suggestion-field="name"
                                 class="entity-search-widget">
                             {/literal}

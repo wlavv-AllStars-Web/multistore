@@ -1682,6 +1682,12 @@ public function getASGProductCreation($product) {
         ];
     }
 
+    // Get the PrestaShop token
+    $token = $this->context->token;
+
+    // Build the URL dynamically with the token
+    $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=" . urlencode($token);
+
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
@@ -1713,6 +1719,7 @@ public function getASGProductCreation($product) {
             'configure' => $this->name,
         ]),
         'attachments' => $attachments, // Pass attachments to the template
+        'remoteUrlAttachments' => $remoteUrlAttachments
     ]);
 }
 
