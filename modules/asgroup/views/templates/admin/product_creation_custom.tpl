@@ -284,6 +284,9 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <hr>
+            </div>
 
             <div class="form-group">
                 <h3>Tags</h3>
@@ -356,10 +359,9 @@
 
             </div>
 
-            {* <div class="form-group">
+            <div class="form-group">
                 <hr>
-            </div> *}
-
+            </div>
             {* aqui attachments  *}
 
             <div class="form-group">
@@ -518,6 +520,10 @@
                 </div>
             </div>
             {* fim attachmetns *}
+
+            <div class="form-group">
+                <hr>
+            </div>
 
             {* inicio features *}
 
