@@ -269,6 +269,7 @@
               aria-expanded="false">{l s='Brands' d='Shop.Theme.Homepage'}</a>
             <ul class="dropdown-menu-brands">
               {foreach from=$manufacturers item=$manufacturer }
+                {if $manufacturer.id_manufacturer != 69}
                 <li class="col-lg-3">
                   <a
                     href="/{$currentLanguage->iso_code }/brand/{$manufacturer.id_manufacturer}-{$manufacturer.link_rewrite}">
@@ -278,6 +279,7 @@
                     </span>
                   </a>
                 </li>
+                {/if}
               {/foreach}
             </ul>
           </li>
