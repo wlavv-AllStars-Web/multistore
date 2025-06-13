@@ -1861,8 +1861,11 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                 if ($manufacturer > 0) {
                     $sqlCount .= ' AND ps_product.id_manufacturer = ' . $manufacturer;
                 }
-
-                $totalProducts = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sqlCount);
+                
+                
+                $totalProducts = Db::getInstance()->getValue($sqlCount);
+                
+                // pre($totalProducts);
 
                 $sql = 'SELECT cp.id_category, 
                    cp.id_product, 
@@ -1882,6 +1885,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                         AND pl.id_shop = ' . $this->context->shop->id . '
                     WHERE cp.id_product IN (' . $idList . ')  
                         AND p.active = 1 
+                        AND ps.active = 1
                         AND p.visibility != "none" 
                         AND ps.id_shop = ' . $this->context->shop->id;
 
@@ -1923,7 +1927,7 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $sql .= ' LIMIT ' . $resultsPerPage . ' OFFSET ' . $offset;
                 }
 
-
+                // pre($sql);
 
                 $productsCar =  Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
 
@@ -1943,7 +1947,6 @@ abstract class ProductListingFrontControllerCore extends ProductPresentingFrontC
                     $query,
                     $result
                 );
-
 
 
                 // universal products
