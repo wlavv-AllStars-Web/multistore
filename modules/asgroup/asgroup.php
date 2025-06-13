@@ -1683,9 +1683,13 @@ public function getASGProductCreation($product) {
     }
 
     // Get the PrestaShop token
-    $token = $this->context->token;
+    $tokenProducts = Tools::getAdminToken(
+            'AdminProducts'.
+            (int)Tab::getIdFromClassName('AdminProducts').
+            (int)$this->context->employee->id
+        );
 
-    pre(urlencode($token));
+    pre(urlencode($tokenProducts));
 
     // Check if the token is available
     if ($token) {
