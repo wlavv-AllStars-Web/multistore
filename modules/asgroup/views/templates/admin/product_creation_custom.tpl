@@ -512,7 +512,7 @@
                                 name="product[details][attachments][add_attachment_btn]"
                                 data-success-create-message="The file was successfully added."
                                 data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
-                                href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I">
+                                href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=__token__">
                                 <i class="material-icons">add_circle</i>
                                 <span class="btn-label">Add new file</span>
                             </a>
@@ -589,7 +589,7 @@
                                                             &lt;button class=&quot;btn btn-outline-secondary dropdown-toggle js-locale-btn&quot;
                                                                     type=&quot;button&quot;
                                                                     data-toggle=&quot;dropdown&quot;
-                                                                            data-change-language-url=&quot;/admineuromus1/index.php/configure/advanced/employees/change-form-language?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I&quot;
+                                                                            data-change-language-url=&quot;/admineuromus1/index.php/configure/advanced/employees/change-form-language?_token=__token__&quot;
                                                                                 aria-haspopup=&quot;true&quot;
                                                                     aria-expanded=&quot;false&quot;
                                                                     id=&quot;product_details_features_feature_values___FEATURE_VALUE_INDEX___custom_value_dropdown&quot;
@@ -1518,20 +1518,18 @@
 
         var token = getUrlParameter('_token');
         
-        if (token) {
-            // Handle product_details_attachments_attached_files
-            var el1 = document.getElementById('product_details_attachments_attached_files');
-            if (el1 && el1.hasAttribute('data-remote-url')) {
-                var url1 = el1.getAttribute('data-remote-url').replace('__token__', token);
-                el1.setAttribute('data-remote-url', url1);
-            }
 
-            // Handle link_manageall_files (anchor tag)
-            var el2 = document.getElementById('link_manageall_files');
-            if (el2 && el2.hasAttribute('href')) {
-                var url2 = el2.getAttribute('href').replace('__token__', token);
-                el2.setAttribute('href', url2);
+        if (token) {
+        // Select all elements in the DOM
+        document.querySelectorAll('*').forEach(function(el) {
+            // Loop through all attributes of the element
+            Array.from(el.attributes).forEach(function(attr) {
+            if (attr.value.includes('__token__')) {
+                // Replace __token__ with actual token
+                el.setAttribute(attr.name, attr.value.replace(/__token__/g, token));
             }
+            });
+        });
         }
 
     });
