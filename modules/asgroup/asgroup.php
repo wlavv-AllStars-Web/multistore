@@ -1682,19 +1682,7 @@ public function getASGProductCreation($product) {
         ];
     }
 
-    $dataRemoteUrl = $this->context->link->getAdminLink('AdminProducts', true) . '&sell/attachments/search/__QUERY__';
-
-    pre($dataRemoteUrl);
-
-    // Check if the token is available
-    if ($token) {
-        // Build the URL dynamically with the token
-        $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__?_token=" . urlencode($token);
-    } else {
-        // Fallback in case token is null (optional)
-        $remoteUrlAttachments = "/admineuromus1/index.php/sell/attachments/search/__QUERY__";
-    }
-
+    $remoteUrlAttachments = $this->context->link->getAdminLink('AdminProducts', true) . '&sell/attachments/search/__QUERY__';
 
     // Render the template with the languages and default values
     return $this->fetchTemplate('product_creation_custom.tpl', [
