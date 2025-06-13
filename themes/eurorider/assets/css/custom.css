@@ -5173,6 +5173,19 @@ ul {
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img{
   max-width: 100px;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #3da936, #abf7cb, #3da936);
+  background-size: auto;
+}
+
+@keyframes outlineMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover{
