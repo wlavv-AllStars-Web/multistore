@@ -1481,7 +1481,7 @@ body {
   }
 
   .fa-solid {
-    color: inherit;
+    color: var(--bg-2);
   }
 
 
