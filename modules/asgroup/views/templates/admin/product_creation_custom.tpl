@@ -2075,7 +2075,7 @@
             .addEventListener('change', updateRetailPriceTaxIncluded);
     });
 
-    if($shop_id == 6){
+    if({$shop_id} == 6){
         document.querySelector("#product_pm_advancedpack_custom_html-tab-nav").style.display = 'none'
     }
 
