@@ -2154,42 +2154,12 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const saveButton = document.getElementById('product_footer_save');
-
-  function enableSave() {
-    if (saveButton) {
-      saveButton.removeAttribute('disabled');
-    }
-  }
-
-  // Watch image container for changes
-  const imageContainer = document.getElementById('product-images-container');
-  if (imageContainer) {
-    const observer = new MutationObserver(enableSave);
-    observer.observe(imageContainer, { childList: true, subtree: true });
-  }
-
-  // Attach input/change listeners to all textareas inside description container
-  const descContainer = document.getElementById('product_description_full_description_custom');
-  if (descContainer) {
-    const textareas = descContainer.querySelectorAll('textarea, input');
-    textareas.forEach(el => {
-      el.addEventListener('input', enableSave);
-      el.addEventListener('change', enableSave);
+    document.addEventListener('DOMContentLoaded', function() {
+        const saveButton = document.getElementById('product_footer_save');
+        if (saveButton) {
+            saveButton.removeAttribute('disabled');
+        }
     });
-
-    // In case dynamic textareas are added later (unlikely, but safe to cover)
-    const descObserver = new MutationObserver(function() {
-      const newTextareas = descContainer.querySelectorAll('textarea, input');
-      newTextareas.forEach(el => {
-        el.addEventListener('input', enableSave);
-        el.addEventListener('change', enableSave);
-      });
-    });
-    descObserver.observe(descContainer, { childList: true, subtree: true });
-  }
-});
 </script>
 
 
