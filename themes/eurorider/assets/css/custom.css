@@ -5078,7 +5078,7 @@ ul {
   display: none;
 } */
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li {
-  /* min-width: 25%; */
+  min-width: 25%;
 }
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a {
@@ -5861,6 +5861,12 @@ body::-ms-scrollbar-thumb:hover {
 }
 
 @media screen and (min-width: 992px) {
+
+  #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li {
+    min-width: unset;
+  }
+
+
   .bg-mysidenav {
     display: none;
   }

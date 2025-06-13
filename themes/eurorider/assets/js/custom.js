@@ -217,7 +217,11 @@ document.addEventListener('click', (e) => {
 function toggleDropdown() {
   if (!dropdownContent.style.display || dropdownContent.style.display === "none") {
     dropdownContent.style.display = "flex";
-    dropdownContent.style.flexWrap = "wrap";
+    if(window.screen.width >= 992){
+      dropdownContent.style.flexWrap = "nowrap";
+    }else{
+      dropdownContent.style.flexWrap = "wrap";
+    }
   } else {
     closeDropdown();
   }
