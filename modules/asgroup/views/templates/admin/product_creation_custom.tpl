@@ -1518,7 +1518,7 @@
         var token = getUrlParameter('_token');
         
         // Get the element
-        var el = document.getElementById('product_details_attachments');
+        var el = document.getElementById('product_details_attachments_attached_files');
 
         if (token && el) {
         // Replace __token__ in data-remote-url
