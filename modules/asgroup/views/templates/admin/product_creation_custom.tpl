@@ -691,6 +691,10 @@
             </div>
 
             <div class="form-group">
+                <hr>
+            </div>
+
+            <div class="form-group">
                 <label for="product_visibility">Visibility</label>
                 <select class="form-control" id="product_visibility" name="product[asg][visibility]">
                     <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere
