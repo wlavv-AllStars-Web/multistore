@@ -375,7 +375,8 @@
                 <p class="subtitle">Customers can download these files on the product page.</p>
                 <div class="small font-secondary">
                     <a target="_blank"
-                        href="/admineuromus1/index.php/sell/attachments/?_token=wu94jxst-xskjjn4xtgNTcD7AjpZmTsxEWlc4HKhx0I"
+                        id="link_manageall_files"
+                        href="/admineuromus1/index.php/sell/attachments/?_token=__token__"
                         class="pt-0 btn btn-link px-0 align-right">
                         <i class="material-icons">open_in_new</i>Manage all files</a>
                 </div>
@@ -1517,13 +1518,20 @@
 
         var token = getUrlParameter('_token');
         
-        // Get the element
-        var el = document.getElementById('product_details_attachments_attached_files');
+        if (token) {
+            // Handle product_details_attachments_attached_files
+            var el1 = document.getElementById('product_details_attachments_attached_files');
+            if (el1 && el1.hasAttribute('data-remote-url')) {
+                var url1 = el1.getAttribute('data-remote-url').replace('__token__', token);
+                el1.setAttribute('data-remote-url', url1);
+            }
 
-        if (token && el) {
-        // Replace __token__ in data-remote-url
-        var url = el.getAttribute('data-remote-url').replace('__token__', token);
-        el.setAttribute('data-remote-url', url);
+            // Handle link_manageall_files (anchor tag)
+            var el2 = document.getElementById('link_manageall_files');
+            if (el2 && el2.hasAttribute('href')) {
+                var url2 = el2.getAttribute('href').replace('__token__', token);
+                el2.setAttribute('href', url2);
+            }
         }
 
     });
