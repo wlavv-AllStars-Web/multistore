@@ -671,7 +671,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-4" style="display: none;">
                     <label class="">
                         Disallow stock?
                         <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
