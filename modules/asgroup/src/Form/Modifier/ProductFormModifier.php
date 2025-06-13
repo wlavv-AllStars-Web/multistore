@@ -123,25 +123,25 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
         $descriptionTabFormBuilder = $productFormBuilder->get('description');
         
         
-        $this->formBuilderModifier->addAfter(
-            $descriptionTabFormBuilder,
-            'images',
-            'real_photos',
-            SwitchType::class,
-            [
-                'choices' => [
-                    $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
-                    $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
-                ],
-                'data' => $data['real_photos'] ,
-                'placeholder' => false,
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-                'label' => $this->translator->trans('Real Photos',[], 'Admin.Catalog.Feature'),
-                'label_help_box' => $this->translator->trans('Real Photos helper.',[], 'Admin.Catalog.Help'),
-            ]
-        );
+        // $this->formBuilderModifier->addAfter(
+        //     $descriptionTabFormBuilder,
+        //     'images',
+        //     'real_photos',
+        //     SwitchType::class,
+        //     [
+        //         'choices' => [
+        //             $this->translator->trans('No',[], 'Admin.Catalog.Feature') => 0,
+        //             $this->translator->trans('Yes',[], 'Admin.Catalog.Feature') => 1,
+        //         ],
+        //         'data' => $data['real_photos'] ,
+        //         'placeholder' => false,
+        //         'expanded' => true,
+        //         'multiple' => false,
+        //         'required' => false,
+        //         'label' => $this->translator->trans('Real Photos',[], 'Admin.Catalog.Feature'),
+        //         'label_help_box' => $this->translator->trans('Real Photos helper.',[], 'Admin.Catalog.Help'),
+        //     ]
+        // );
         
 
 
