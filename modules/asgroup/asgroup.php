@@ -1685,6 +1685,8 @@ public function getASGProductCreation($product) {
     // Get the PrestaShop token
     $token = Tools::getAdminTokenLite('AdminModules');
 
+    pre($token);
+
     // Check if the token is available
     if ($token) {
         // Build the URL dynamically with the token
