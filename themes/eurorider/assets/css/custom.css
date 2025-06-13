@@ -5178,7 +5178,7 @@ ul {
 }
 
 #_desktop_top_menu .list-menu-desktop .dropdown .dropdown-menu-brands li a img:hover {
-  box-shadow: 0 0 0 4px var(--asm-color-100), 0 0 10px var(--asm-color-100);
+  box-shadow: 0 0 0 4px var(--asm-color-100);
 }
 
 
