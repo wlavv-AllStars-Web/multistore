@@ -1471,7 +1471,7 @@ body {
 @media screen and (max-width: 768px) {
 
   #header .logo{
-    margin: 0px 15px;
+    margin: 0px 15px !important;
   }
 
 
