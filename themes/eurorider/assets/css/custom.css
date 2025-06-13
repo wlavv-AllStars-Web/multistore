@@ -20,7 +20,7 @@
 #header .logo{
   max-width: 250px !important;
   padding: 0px;
-  margin: 0px 45px !important;
+  margin: 0px 45px;
   width: 100% !important;
 }
 
@@ -1469,6 +1469,12 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+
+  #header .logo{
+    margin: 0px 15px;
+  }
+
+
   #current_car_settings .current-car-content .details-info-car-mobile{
     outline: 2px solid #efefef;
     border-radius: .25rem;
