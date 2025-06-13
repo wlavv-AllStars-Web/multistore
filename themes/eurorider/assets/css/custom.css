@@ -1474,6 +1474,12 @@ body {
     margin: 0px 15px !important;
   }
 
+  #mySidenav .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
 
   #current_car_settings .current-car-content .details-info-car-mobile{
     outline: 2px solid #efefef;
