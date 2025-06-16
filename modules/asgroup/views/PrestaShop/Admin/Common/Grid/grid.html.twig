@@ -43,11 +43,11 @@
     {{ include('@PrestaShop/Admin/Common/Grid/Blocks/pagination.html.twig', {'grid': grid}) }}
   {% endblock %}
 
-  {% if grid.id == 'product' %}
-    {% block grid_bulk_actions_block %}
+  {% block grid_bulk_actions_block %}
+    {% if grid.id == 'product' or grid.id != 'product' %}
       {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
-    {% endblock %}
-  {% endif %}
+    {% endif %}
+  {% endblock %}
   
 </div>
 
