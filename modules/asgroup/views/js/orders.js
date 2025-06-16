@@ -670,6 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if(btn_filter_category) {
-        btn_filter_category.style.display = "none"
+        btn_filter_category.parentElement.classList.remove('d-inline-block')
+        btn_filter_category.parentElement.style.display = "none"
     }
 });
