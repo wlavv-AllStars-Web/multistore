@@ -1772,6 +1772,8 @@
             skin: 'prestashop',
             content_css:  '{$ps_base_url}/js/tiny_mce/skins/prestashop/content.min.css',
             entity_encoding: 'raw',
+            autoresize_on_init: true,
+            autoresize_bottom_margin: 20
             setup: function(editor) {
                 editor.on('init', function() {
                     textarea.classList.add('mce-initialized');
