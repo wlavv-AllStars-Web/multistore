@@ -25,8 +25,8 @@
 <div class="product-header-v2">
   {% set productData = productForm.vars.data %}
 
-  <div class="product-header-details">
-    <div class="product-header-summary">
+  <div class="product-header-details-custom">
+    <div class="product-header-summary custom">
           {# Only display stock when Stock management is enabled #}
       {% if stockEnabled %}
         {% set quantityData = productData.stock.quantities.delta_quantity.quantity %}
@@ -80,3 +80,36 @@
 
   {% include '@PrestaShop/Admin/Sell/Catalog/Product/Blocks/header-details.html.twig' %}
 </div>
+
+<style>
+  .product-page .product-header-v2 {
+    align-items:center;
+  }
+
+  .product-page .product-header-v2 .product-header-form{
+    min-width:50%;
+  }
+
+  .product-page .product-header-v2 .product-header-details-custom .product-header-summary-custom .product-field-preview {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 29px;
+  }
+  .product-page .product-header-v2 .product-header-details-custom .product-header-summary-custom {
+    justify-content:center;
+  }
+  .product-page .product-header-v2 .product-header-details-custom .product-header-summary-custom .product-field-preview .product-field-value {
+    padding: 0 .75rem;
+    color: #fff;
+    background-color: #6c868e;
+    border-radius: 24px;
+  }
+  .product-page .product-header-v2 .product-header-details-custom .product-header-summary-custom .product-field-preview .product-field-value.success {
+    background-color: #70b580;
+  }
+
+  .product-page .product-header-v2 .product-header-details .product-header-summary .product-total-quantity,
+  .product-page .product-header-v2 .product-header-details .product-header-summary .product-field-label {
+    display:none;
+  }
+</style>
