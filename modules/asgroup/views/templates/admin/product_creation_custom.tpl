@@ -1771,6 +1771,7 @@
             path: false, // Disable the path toolbar
             skin: 'prestashop',
             content_css:  '{$ps_base_url}/js/tiny_mce/skins/prestashop/content.min.css',
+            entity_encoding: 'raw',
             setup: function(editor) {
                 editor.on('init', function() {
                     textarea.classList.add('mce-initialized');
