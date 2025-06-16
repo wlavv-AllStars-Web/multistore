@@ -650,3 +650,19 @@ function carrierGenerateExpedition(e){
 
 
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const maxField = document.getElementById('product_id_product_max_field');
+    const minField = document.getElementById('product_id_product_min_field');
+
+    if (maxField && minField) {
+        maxField.addEventListener('input', function() {
+            minField.value = maxField.value;
+        });
+
+        maxField.addEventListener('change', function() {
+            minField.value = maxField.value;
+        });
+    }
+});
