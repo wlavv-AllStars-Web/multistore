@@ -869,24 +869,24 @@ class AsGroup extends Module
         // pre($definition->getColumns());
 
 
-        $definition
-        ->getColumns()
-        ->addAfter(
-            'reference',
-            (new DataColumn('created_at'))
-                ->setName($this->l('Created'))
-                ->setOptions([
-                    'field' => 'created_at',
-                    'attr' => [
-                        'class' => 'text-center', 
-                    ],
-                ])
-        );
+        // $definition
+        // ->getColumns()
+        // ->addAfter(
+        //     'reference',
+        //     (new DataColumn('created_at'))
+        //         ->setName($this->l('Created'))
+        //         ->setOptions([
+        //             'field' => 'created_at',
+        //             'attr' => [
+        //                 'class' => 'text-center', 
+        //             ],
+        //         ])
+        // );
 
         $definition
         ->getColumns()
         ->addAfter(
-            'created_at',
+            'reference',
             (new DataColumn('manufacturer_name'))
                 ->setName($this->l('Manufacturer'))
                 ->setOptions([
@@ -1056,6 +1056,9 @@ class AsGroup extends Module
             ->setAssociatedColumn('ean13')
             );
 
+        $definition
+        ->getFilters()
+        ->remove('quantity');
     }
 
     public function hookActionProductGridDataModifier(array &$params)
