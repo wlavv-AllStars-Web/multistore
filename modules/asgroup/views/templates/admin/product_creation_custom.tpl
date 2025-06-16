@@ -96,7 +96,7 @@
             {literal}
                     <div class="manage-shop-images-button-container form-group" data-product-id="{/literal}{$product->id}{literal}"
                         data-translations="{&quot;button.label&quot;:&quot;Manage images&quot;,&quot;modal.save&quot;:&quot;Save and publish&quot;,&quot;modal.close&quot;:&quot;Close&quot;,&quot;modal.cancel&quot;:&quot;Cancel&quot;,&quot;cover.label&quot;:&quot;Cover&quot;,&quot;modal.noImages&quot;:&quot;Product has no images.&quot;,&quot;grid.imageHeader&quot;:&quot;Image&quot;,&quot;warning.deletedImages&quot;:&quot;Images will be deleted.&quot;}"
-                        data-v-app="">
+                        data-v-app="" style="display: none;">
                         <div el=".manage-shop-images-button-container"
                             template="&lt;image-shop-association-modal :productId=productId /&gt;" i18n="[object Object]">
                             <button type="button" class="btn-outline-secondary manage-shop-images-button btn btn">Manage
@@ -697,7 +697,7 @@
                 <hr>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label for="product_visibility">Visibility</label>
                 <select class="form-control" id="product_visibility" name="product[asg][visibility]">
                     <option value="both" {if $product->visibility == 'both'}selected="selected" {/if}>Everywhere
@@ -846,17 +846,17 @@
                 <label>Options</label>
                 <div class="input-group">
 
-                    <div class="form-check col-lg-12">
+                    <div class="form-check col-lg-6">
                         <input type="hidden" name="product[asg][show_compat_exception]" value="0">
                         <input class="form-check-input" type="checkbox" id="show_compat_exception"
                             name="product[asg][show_compat_exception]" value="1"
                             {if isset($product->show_compat_exception) && $product->show_compat_exception == 1}checked{/if}>
                         <label class="form-check-label" for="show_compat_exception">
-                            Show compact exception
+                            Compact exception
                         </label>
                     </div>
 
-                    <div class="form-check col-lg-12">
+                    <div class="form-check col-lg-6">
 
                         <input type="hidden" name="product[asg][universal]" value="0">
 
@@ -864,7 +864,7 @@
                             name="product[asg][universal]" value="1"
                             {if isset($product->universal) && $product->universal == 1}checked{/if}>
                         <label class="form-check-label" for="universal_product">
-                            Universal product
+                            Universal
                         </label>
                     </div>
 
