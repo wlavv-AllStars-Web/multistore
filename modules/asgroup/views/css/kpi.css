@@ -571,6 +571,6 @@
     min-width: 100px;
 }
 
-.adminproducts #product_filter_form #product_id_product_min_field {
-    display: none;
+#product_id_product_min_field {
+    display: none !important;
 }
