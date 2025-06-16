@@ -26,7 +26,7 @@
   {% set productData = productForm.vars.data %}
 
   <div class="product-header-details-custom">
-    <div class="product-header-summary custom">
+    <div class="product-header-summary-custom">
           {# Only display stock when Stock management is enabled #}
       {% if stockEnabled %}
         {% set quantityData = productData.stock.quantities.delta_quantity.quantity %}
