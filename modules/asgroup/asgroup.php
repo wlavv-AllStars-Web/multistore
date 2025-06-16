@@ -533,7 +533,7 @@ class AsGroup extends Module
             foreach ($productData['asg']['description_long'] as $idLang => $longDesc) {
                 if (Tools::strlen(trim($longDesc)) > 0) {
                     Db::getInstance()->update('product_lang', [
-                        'description' => $longDesc
+                        'description' => pSQL($longDesc, true)
                     ], 'id_product = ' . (int)$idProduct . ' AND id_lang = ' . (int)$idLang);
                 } else {
                     error_log("Skipped empty description_long for lang ID $idLang");
