@@ -216,8 +216,8 @@
 
             <div class="form-group">
                 <h3>Tags</h3>
-                <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
-                </p>
+                {* <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
+                </p> *}
 
                 <div class="" style="display: flex;gap: 1rem;">
                     <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags"
