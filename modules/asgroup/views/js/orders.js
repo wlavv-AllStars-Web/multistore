@@ -664,5 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
         maxField.addEventListener('change', function() {
             minField.value = maxField.value;
         });
+
+        minField.style.display = "none"
     }
 });
