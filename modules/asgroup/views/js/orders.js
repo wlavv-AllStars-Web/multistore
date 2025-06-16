@@ -655,6 +655,7 @@ function carrierGenerateExpedition(e){
 document.addEventListener('DOMContentLoaded', function() {
     const maxField = document.getElementById('product_id_product_max_field');
     const minField = document.getElementById('product_id_product_min_field');
+    const btn_filter_category = document.querySelector('.product_list_category_filter')
 
     if (maxField && minField) {
         maxField.addEventListener('input', function() {
@@ -666,5 +667,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         minField.style.display = "none"
+    }
+
+    if(btn_filter_category) {
+        btn_filter_category.style.display = "none"
     }
 });
