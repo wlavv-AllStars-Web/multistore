@@ -46,6 +46,50 @@
 <div class="tab-container-product-creation-custom row bg-container" style="gap: 2rem;">
     <div class="col-lg-12 bg-creation-container br25" style="display: flex;">
         <div class="col-lg-9 bg-creation-container br25">
+
+                        <!-- Full Description Section -->
+            <div class="translations tabbable" id="product_description_full_description_custom" tabindex="2">
+                <label title="h2" for="product_custom_description">
+                    Description
+                </label>
+                <ul class="translationsLocales nav nav-pills">
+                    {foreach from=$languages item=language}
+                        <li class="nav-item">
+                            <a href="#" data-locale="{$language.iso_code}"
+                                class="{if $language.iso_code == 'en'}active{/if} nav-link" data-toggle="tab"
+                                data-target=".translationsFields-product_description_full_description_{$language.id_lang}">
+                                {$language.iso_code|upper}
+                            </a>
+                        </li>
+                    {/foreach}
+                </ul>
+
+                <div class="translationsFields tab-content">
+                    <!-- Full Description Textarea -->
+                    {foreach from=$languages item=language}
+                        <div data-locale="{$language.iso_code}" class="translationsFields-product_description_full_description_{$language.id_lang} 
+                            tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
+                            translation-label-{$language.iso_code}">
+                            <!-- TinyMCE Textarea for Full Description -->
+                            <textarea id="description_long_{$language.id_lang}"
+                                name="product[asg][description_long][{$language.id_lang}]"
+                                class="form-control tinymce-textarea-description" rows="5">
+                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                            </textarea>
+
+
+                            <small class="form-text text-muted text-right maxLength maxType">
+                                <em>
+                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span>
+                                    characters
+                                    allowed
+                                </em>
+                            </small>
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+
             <!-- Product images -->
 
             <div class="form-group">
@@ -157,48 +201,7 @@
                 </div>
             </div>
 
-            <!-- Full Description Section -->
-            <div class="translations tabbable" id="product_description_full_description_custom" tabindex="2">
-                <label title="h2" for="product_custom_description">
-                    Description
-                </label>
-                <ul class="translationsLocales nav nav-pills">
-                    {foreach from=$languages item=language}
-                        <li class="nav-item">
-                            <a href="#" data-locale="{$language.iso_code}"
-                                class="{if $language.iso_code == 'en'}active{/if} nav-link" data-toggle="tab"
-                                data-target=".translationsFields-product_description_full_description_{$language.id_lang}">
-                                {$language.iso_code|upper}
-                            </a>
-                        </li>
-                    {/foreach}
-                </ul>
 
-                <div class="translationsFields tab-content">
-                    <!-- Full Description Textarea -->
-                    {foreach from=$languages item=language}
-                        <div data-locale="{$language.iso_code}" class="translationsFields-product_description_full_description_{$language.id_lang} 
-                            tab-pane translation-field panel panel-default {if $language.iso_code == 'en'}show active{/if} 
-                            translation-label-{$language.iso_code}">
-                            <!-- TinyMCE Textarea for Full Description -->
-                            <textarea id="description_long_{$language.id_lang}"
-                                name="product[asg][description_long][{$language.id_lang}]"
-                                class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
-
-
-                            <small class="form-text text-muted text-right maxLength maxType">
-                                <em>
-                                    <span class="currentLength">0</span> of <span class="currentTotalMax">800</span>
-                                    characters
-                                    allowed
-                                </em>
-                            </small>
-                        </div>
-                    {/foreach}
-                </div>
-            </div>
 
             <div class="form-group" style="display: none;">
                 <div id="custom_notes_asg">
