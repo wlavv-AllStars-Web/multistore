@@ -582,9 +582,9 @@
                     <div class="form-group text-widget">
                         <h3 for="product_details_references_reference">
                             Reference
-                            <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                            {{* <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="Allowed special characters: .-_#" data-placement="top">
-                            </span>
+                            </span> *}}
                         </h3>
                         {* <input type="text" class="form-control sync-input" data-sync="reference"
                             value="{$product->reference}"> *}
@@ -594,11 +594,11 @@
 
                     <div class="form-group text-widget">
                         <h3 for="product_details_references_ean_13">
-                            EAN-13 or JAN barcode
-                            <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                            EAN-13
+                            {{* <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="This type of product code is specific to Europe and Japan, but is widely used internationally."
                                 data-placement="top">
-                            </span>
+                            </span> *}}
                         </h3>
                         {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
                         <div style="display: flex;gap: .5rem;">
