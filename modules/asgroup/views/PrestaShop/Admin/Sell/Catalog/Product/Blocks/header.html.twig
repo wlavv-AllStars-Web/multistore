@@ -24,52 +24,60 @@
  *#}
 <div class="product-header-v2">
   {% set productData = productForm.vars.data %}
-   {# Only display stock when Stock management is enabled #}
-    {% if stockEnabled %}
-      {% set quantityData = productData.stock.quantities.delta_quantity.quantity %}
-      {% if productData.header.type != 'combinations' %}
-        {% set lowStock = productData.stock.options.low_stock_threshold %}
-      {% else %}
-        {% set lowStock = 0 %}
-      {% endif %}
 
-      {% set outOfStockLabel = 'out of stock'|trans({}, 'Admin.Catalog.Feature') %}
-      {% set lowStockLabel = 'low stock'|trans({}, 'Admin.Catalog.Feature') %}
-      {% set inStockLabel = 'in stock'|trans({}, 'Admin.Catalog.Feature') %}
+  <div class="product-header-details">
+    <div class="product-header-summary">
+          {# Only display stock when Stock management is enabled #}
+      {% if stockEnabled %}
+        {% set quantityData = productData.stock.quantities.delta_quantity.quantity %}
+        {% if productData.header.type != 'combinations' %}
+          {% set lowStock = productData.stock.options.low_stock_threshold %}
+        {% else %}
+          {% set lowStock = 0 %}
+        {% endif %}
 
-      {% if quantityData <= 0 %}
-        {% set stockClass = 'danger' %}
-        {% set stockLabel = outOfStockLabel %}
-      {% elseif lowStock > 0 and quantityData <= lowStock %}
-        {% set stockClass = 'warning' %}
-        {% set stockLabel = lowStockLabel %}
-      {% else %}
-        {% set stockClass = 'success' %}
-        {% set stockLabel = inStockLabel %}
-      {% endif %}
+        {% set outOfStockLabel = 'out of stock'|trans({}, 'Admin.Catalog.Feature') %}
+        {% set lowStockLabel = 'low stock'|trans({}, 'Admin.Catalog.Feature') %}
+        {% set inStockLabel = 'in stock'|trans({}, 'Admin.Catalog.Feature') %}
 
-      <div
-        class="product-field-preview"
-        data-role="quantity"
-        {# these data attributes are needed for dynamic quantity update in javascript side #}
-        data-low-stock-threshold="{{ lowStock }}"
-        data-out-of-stock-label="{{ outOfStockLabel }}"
-        data-low-stock-label="{{ lowStockLabel }}"
-        data-in-stock-label="{{ inStockLabel }}"
-      >
-        <div class="product-total-quantity product-field-value {{ stockClass }}">
-          {{ quantityData }}
+        {% if quantityData <= 0 %}
+          {% set stockClass = 'danger' %}
+          {% set stockLabel = outOfStockLabel %}
+        {% elseif lowStock > 0 and quantityData <= lowStock %}
+          {% set stockClass = 'warning' %}
+          {% set stockLabel = lowStockLabel %}
+        {% else %}
+          {% set stockClass = 'success' %}
+          {% set stockLabel = inStockLabel %}
+        {% endif %}
+
+        <div
+          class="product-field-preview"
+          data-role="quantity"
+          {# these data attributes are needed for dynamic quantity update in javascript side #}
+          data-low-stock-threshold="{{ lowStock }}"
+          data-out-of-stock-label="{{ outOfStockLabel }}"
+          data-low-stock-label="{{ lowStockLabel }}"
+          data-in-stock-label="{{ inStockLabel }}"
+        >
+          <div class="product-total-quantity product-field-value {{ stockClass }}">
+            {{ quantityData }}
+          </div>
+          <div class="product-field-label product-total-quantity-label">
+            {{ stockLabel }}
+          </div>
         </div>
-        <div class="product-field-label product-total-quantity-label">
-          {{ stockLabel }}
-        </div>
-      </div>
-    {% endif %}
-  {#**
-  <div class="product-header-cover">
-    {{ form_row(productForm.header.cover_thumbnail) }}
+      {% endif %}
+    </div>
   </div>
-  *#}
+  
+  {#
+  *  <div class="product-header-cover">
+  *    {{ form_row(productForm.header.cover_thumbnail) }}
+  *  </div>
+  #}
+
+
   <div class="product-header-form">
     {% block product_header_form %}
       {{ form_row(productForm.header) }}
