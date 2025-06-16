@@ -269,7 +269,7 @@
      <div class="d-mobile description-product-mobile">
       {if $product.description}
         <div class="banner-tabs" >
-          <img src="/img/asm/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
+          <img src="/img/eurorider/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
         </div>
         <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
           {block name='product_description'}
@@ -318,7 +318,7 @@
             {/if} *}
       {else}
         <div class="banner-tabs" >
-          <img src="/img/asm/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
+          <img src="/img/eurorider/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
         </div>
         <div class="tab-description tab" style="display: flex;">
           {block name='product_description'}
@@ -706,7 +706,7 @@
                   {* {debug} *}
                    {if $product.description}
                      <div class="banner-tabs" >
-                       <img src="/img/asm/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
+                       <img src="/img/eurorider/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
                      </div>
                      <div class="tab-description tab" style="display: flex;justify-content:center;flex-direction:column;padding:1rem;color:#333;">
                        {block name='product_description'}
@@ -757,7 +757,7 @@
                          {/if} *}
                    {else}
                      <div class="banner-tabs" >
-                      <img src="/img/asm/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
+                      <img src="/img/eurorider/banners/description/{$product_manufacturer->id}_desc_{$language.iso_code}.webp" />
                      </div>
                      <div class="tab-description tab" style="display: flex;">
                        {block name='product_description'}
