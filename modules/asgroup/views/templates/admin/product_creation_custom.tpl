@@ -925,7 +925,7 @@
         <hr>
     </div> *}
 
-    <div class="col-lg-12 bg-creation-container br25 py-3">
+    <div class="col-lg-12 bg-creation-container br25 py-3" style="display: none;">
 
         <div class="form-group" style="display: flex;gap:1rem;">
 
