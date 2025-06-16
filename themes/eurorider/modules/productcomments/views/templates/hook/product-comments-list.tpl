@@ -40,7 +40,7 @@
 </div>
 
 <div class="banner-tabs" >
-  <img src="/img/eurorider/banners/reviews/reviews_{$language.iso_code}.webp" />
+  <img class="banner_review" src="/img/eurorider/banners/reviews/reviews_{$language.iso_code}.webp" />
 </div>
 
 {include file='module:productcomments/views/templates/hook/product-comment-item-prototype.tpl' assign="comment_prototype"}
