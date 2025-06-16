@@ -1061,6 +1061,30 @@ class AsGroup extends Module
         $definition
         ->getFilters()
         ->remove('quantity');
+
+        $definition->getFilters()->remove('reference');
+        $definition->getFilters()->remove('name');
+
+        $definition->getFilters()
+            ->add((new Filter('reference', TextType::class))
+                ->setTypeOptions([
+                    'required' => false,
+                    'attr' => [
+                        'placeholder' => '', // explicitly no placeholder
+                    ],
+                ])
+                ->setAssociatedColumn('reference')
+            )
+            ->add((new Filter('name', TextType::class))
+                ->setTypeOptions([
+                    'required' => false,
+                    'attr' => [
+                        'placeholder' => '', // explicitly no placeholder
+                    ],
+                ])
+                ->setAssociatedColumn('name')
+            );
+
     }
 
     public function hookActionProductGridDataModifier(array &$params)
