@@ -28,51 +28,7 @@
   {# It is important to use vars.data and not vars.value because value contains the localized value which may
    # not be written with numeric characters anymore depending on the language but data is the initial float data.
    #}
-     {% set productData = productForm.vars.data %}
-
-    {# Only display stock when Stock management is enabled #}
-    {% if stockEnabled %}
-      {% set quantityData = productData.stock.quantities.delta_quantity.quantity %}
-      {% if productData.header.type != 'combinations' %}
-        {% set lowStock = productData.stock.options.low_stock_threshold %}
-      {% else %}
-        {% set lowStock = 0 %}
-      {% endif %}
-
-      {% set outOfStockLabel = 'out of stock'|trans({}, 'Admin.Catalog.Feature') %}
-      {% set lowStockLabel = 'low stock'|trans({}, 'Admin.Catalog.Feature') %}
-      {% set inStockLabel = 'in stock'|trans({}, 'Admin.Catalog.Feature') %}
-
-      {% if quantityData <= 0 %}
-        {% set stockClass = 'danger' %}
-        {% set stockLabel = outOfStockLabel %}
-      {% elseif lowStock > 0 and quantityData <= lowStock %}
-        {% set stockClass = 'warning' %}
-        {% set stockLabel = lowStockLabel %}
-      {% else %}
-        {% set stockClass = 'success' %}
-        {% set stockLabel = inStockLabel %}
-      {% endif %}
-
-      <div
-        class="product-field-preview"
-        data-role="quantity"
-        {# these data attributes are needed for dynamic quantity update in javascript side #}
-        data-low-stock-threshold="{{ lowStock }}"
-        data-out-of-stock-label="{{ outOfStockLabel }}"
-        data-low-stock-label="{{ lowStockLabel }}"
-        data-in-stock-label="{{ inStockLabel }}"
-      >
-        <div class="product-total-quantity product-field-value {{ stockClass }}">
-          {{ quantityData }}
-        </div>
-        <div class="product-field-label product-total-quantity-label">
-          {{ stockLabel }}
-        </div>
-      </div>
-    {% endif %}
-
-
+  {% set productData = productForm.vars.data %}
   <div class="product-header-summary">
     <div class="product-field-preview" data-role="price-tax-excluded">
       <div class="product-field-value">
@@ -110,7 +66,7 @@
       </div>
     </div>
 
-
+   
   </div>
 {% endblock %}
 
