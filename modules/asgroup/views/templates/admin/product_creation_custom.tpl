@@ -1696,6 +1696,12 @@
 
     document.addEventListener("DOMContentLoaded", function() {
 
+        const btn_saveFinal = document.querySelector("#product_footer_save")
+
+        if(btn_saveFinal) {
+            btn_saveFinal.removeAttribute("disabled")
+        }
+
         // Initialize tokenfield for each language input (tokenfield is an input for tag input)
         const tokenInputs = document.querySelectorAll('.js-taggable-field');
 
