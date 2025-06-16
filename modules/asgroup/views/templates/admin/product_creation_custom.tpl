@@ -577,12 +577,12 @@
             <div class="form-group">
                 <div id="product_details_references" class="">
                     <div class="form-group text-widget">
-                        <label for="product_details_references_reference">
+                        <h3 for="product_details_references_reference">
                             Reference
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="Allowed special characters: .-_#" data-placement="top">
                             </span>
-                        </label>
+                        </h3>
                         {* <input type="text" class="form-control sync-input" data-sync="reference"
                             value="{$product->reference}"> *}
                         <input type="text" class="form-control" name="product[asg][reference]"
@@ -590,13 +590,13 @@
                     </div>
 
                     <div class="form-group text-widget">
-                        <label for="product_details_references_ean_13">
+                        <h3 for="product_details_references_ean_13">
                             EAN-13 or JAN barcode
                             <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                                 data-content="This type of product code is specific to Europe and Japan, but is widely used internationally."
                                 data-placement="top">
                             </span>
-                        </label>
+                        </h3>
                         {* <input type="text" class="form-control sync-input" data-sync="ean_13" value="{$product->ean13}"> *}
                         <div style="display: flex;gap: .5rem;">
                             <input id="product_details_references_ean_13" type="text" class="form-control"
@@ -607,9 +607,9 @@
                     </div>
 
                     <div class="form-group text-widget">
-                        <label title="h2" for="product_details_housing">
+                        <h3 for="product_details_housing">
                             Housing
-                        </label>
+                        </h3>
                         <input type="text" class="form-control" name="product[asg][housing]"
                             value="{$product->housing}">
                     </div>
