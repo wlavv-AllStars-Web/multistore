@@ -1783,6 +1783,12 @@
 
                 editor.on('change input keyup', function() {
                     editor.save(); // updates the underlying <textarea>
+
+                    const btn = document.querySelector("#product_footer_save");
+                    if (btn) {
+                        // Remove the attribute (replace 'disabled' with your attribute)
+                        btn.removeAttribute('disabled');
+                    }
                 });
             }
         });
