@@ -570,3 +570,7 @@
 #product_grid_table tbody .data-type.column-id_product.clickable.text-left.cursor-pointer{
     min-width: 100px;
 }
+
+.adminproducts #product_filter_form #product_id_product_min_field {
+    display: none;
+}
