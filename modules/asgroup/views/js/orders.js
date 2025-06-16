@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const btn_saveFinal = document.querySelector("#product_footer_save")
+
+    if(btn_saveFinal) {
+        btn_saveFinal.removeAttribute("disabled")
+    }
+
+
     // Function to clone a button and set up its behavior
     function cloneButton(originalButtonSelector, btnGroupSelector) {
         const originalButton = document.querySelector(originalButtonSelector);
