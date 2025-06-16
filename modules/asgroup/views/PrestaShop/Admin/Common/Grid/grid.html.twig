@@ -27,9 +27,7 @@
   
   {% block grid_header_row %}
     {% if grid.id != 'product' %}
-      {% block grid_bulk_actions_block %}
-        {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
-      {% endblock %}
+      {{ block('grid_bulk_actions_block') }}
     {% endif %}
   {% endblock %}
 
@@ -37,14 +35,16 @@
     {{ include('@PrestaShop/Admin/Common/Grid/Blocks/table.html.twig', {'grid': grid}) }}
 
     {% if grid.id == 'product' %}
-      {% block grid_bulk_actions_block %}
-        {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
-      {% endblock %}
+      {{ block('grid_bulk_actions_block') }}
     {% endif %}
   {% endblock %}
 
   {% block grid_footer_row %}
     {{ include('@PrestaShop/Admin/Common/Grid/Blocks/pagination.html.twig', {'grid': grid}) }}
+  {% endblock %}
+
+  {% block grid_bulk_actions_block %}
+    {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
   {% endblock %}
   
 </div>
