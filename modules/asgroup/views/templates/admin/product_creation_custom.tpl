@@ -92,7 +92,7 @@
 
             <!-- Product images -->
 
-            <div class="form-group">
+            <div class="form-group mt-2">
             {literal}
                     <div class="manage-shop-images-button-container form-group" data-product-id="{/literal}{$product->id}{literal}"
                         data-translations="{&quot;button.label&quot;:&quot;Manage images&quot;,&quot;modal.save&quot;:&quot;Save and publish&quot;,&quot;modal.close&quot;:&quot;Close&quot;,&quot;modal.cancel&quot;:&quot;Cancel&quot;,&quot;cover.label&quot;:&quot;Cover&quot;,&quot;modal.noImages&quot;:&quot;Product has no images.&quot;,&quot;grid.imageHeader&quot;:&quot;Image&quot;,&quot;warning.deletedImages&quot;:&quot;Images will be deleted.&quot;}"
