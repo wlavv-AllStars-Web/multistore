@@ -43,9 +43,11 @@
     {{ include('@PrestaShop/Admin/Common/Grid/Blocks/pagination.html.twig', {'grid': grid}) }}
   {% endblock %}
 
-  {% block grid_bulk_actions_block %}
-    {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
-  {% endblock %}
+  {% if grid.id == 'product' %}
+    {% block grid_bulk_actions_block %}
+      {{ include('@PrestaShop/Admin/Common/Grid/Blocks/bulk_actions.html.twig', {'grid': grid}) }}
+    {% endblock %}
+  {% endif %}
   
 </div>
 
