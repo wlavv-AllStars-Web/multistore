@@ -1003,7 +1003,9 @@ class AsGroup extends Module
         );
 
 
-
+        $definition
+        ->getColumns()
+        ->remove('shop');
 
         // filter product grid
 
@@ -1038,7 +1040,7 @@ class AsGroup extends Module
             ->setTypeOptions([
                 'required' => false,
                 'attr' => [
-                    'placeholder' => $this->trans('Housing', [], 'Admin.Actions'),
+                    // 'placeholder' => $this->trans('Housing', [], 'Admin.Actions'),
                 ],
             ])
             ->setAssociatedColumn('housing')
@@ -1050,7 +1052,7 @@ class AsGroup extends Module
             ->setTypeOptions([
                 'required' => false,
                 'attr' => [
-                    'placeholder' => $this->trans('Ean13', [], 'Admin.Actions'),
+                    // 'placeholder' => $this->trans('Ean13', [], 'Admin.Actions'),
                 ],
             ])
             ->setAssociatedColumn('ean13')
