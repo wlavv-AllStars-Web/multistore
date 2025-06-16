@@ -28,43 +28,7 @@
   {# It is important to use vars.data and not vars.value because value contains the localized value which may
    # not be written with numeric characters anymore depending on the language but data is the initial float data.
    #}
-  {% set productData = productForm.vars.data %}
-  <div class="product-header-summary">
-    <div class="product-field-preview" data-role="price-tax-excluded">
-      <div class="product-field-value">
-        {% if productData.pricing.retail_price.ecotax_tax_excluded is defined %}
-          {% set final_price_tax_excluded = productData.pricing.retail_price.price_tax_excluded + productData.pricing.retail_price.ecotax_tax_excluded %}
-          {{ final_price_tax_excluded|price_format }}
-        {% else %}
-          {{ productData.pricing.retail_price.price_tax_excluded|price_format }}
-        {% endif %}
-      </div>
-      <div class="product-field-label">
-        {{ 'tax excl.'|trans({}, 'Admin.Global') }}
-      </div>
-    </div>
-
-    <div class="product-field-preview" data-role="price-tax-included">
-      <div class="product-field-value">
-        {{ productData.pricing.retail_price.price_tax_included|price_format }}
-      </div>
-      <div class="product-field-label">
-        {# If tax feature is enabled display it in the label #}
-        {% if taxEnabled %}
-          {# First find the selected tax rate #}
-          {% set taxRate = 0 %}
-          {% for group_label, choice in productForm.pricing.retail_price.tax_rules_group_id.vars.choices %}
-            {% if choice.data == productData.pricing.retail_price.tax_rules_group_id %}
-              {% set taxRate = choice.attr['data-tax-rate'] %}
-            {% endif %}
-          {% endfor %}
-
-          {{ 'tax incl. (tax rule: %taxRate%%)'|trans({'%taxRate%': taxRate|round(2)}, 'Admin.Catalog.Feature') }}
-        {% else %}
-          {{ 'tax incl.'|trans({}, 'Admin.Catalog.Feature') }}
-        {% endif %}
-      </div>
-    </div>
+     {% set productData = productForm.vars.data %}
 
     {# Only display stock when Stock management is enabled #}
     {% if stockEnabled %}
@@ -102,9 +66,51 @@
         <div class="product-total-quantity product-field-value {{ stockClass }}">
           {{ quantityData }}
         </div>
-
+        <div class="product-field-label product-total-quantity-label">
+          {{ stockLabel }}
+        </div>
       </div>
     {% endif %}
+
+
+  <div class="product-header-summary">
+    <div class="product-field-preview" data-role="price-tax-excluded">
+      <div class="product-field-value">
+        {% if productData.pricing.retail_price.ecotax_tax_excluded is defined %}
+          {% set final_price_tax_excluded = productData.pricing.retail_price.price_tax_excluded + productData.pricing.retail_price.ecotax_tax_excluded %}
+          {{ final_price_tax_excluded|price_format }}
+        {% else %}
+          {{ productData.pricing.retail_price.price_tax_excluded|price_format }}
+        {% endif %}
+      </div>
+      <div class="product-field-label">
+        {{ 'tax excl.'|trans({}, 'Admin.Global') }}
+      </div>
+    </div>
+
+    <div class="product-field-preview" data-role="price-tax-included">
+      <div class="product-field-value">
+        {{ productData.pricing.retail_price.price_tax_included|price_format }}
+      </div>
+      <div class="product-field-label">
+        {# If tax feature is enabled display it in the label #}
+        {% if taxEnabled %}
+          {# First find the selected tax rate #}
+          {% set taxRate = 0 %}
+          {% for group_label, choice in productForm.pricing.retail_price.tax_rules_group_id.vars.choices %}
+            {% if choice.data == productData.pricing.retail_price.tax_rules_group_id %}
+              {% set taxRate = choice.attr['data-tax-rate'] %}
+            {% endif %}
+          {% endfor %}
+
+          {{ 'tax incl. (tax rule: %taxRate%%)'|trans({'%taxRate%': taxRate|round(2)}, 'Admin.Catalog.Feature') }}
+        {% else %}
+          {{ 'tax incl.'|trans({}, 'Admin.Catalog.Feature') }}
+        {% endif %}
+      </div>
+    </div>
+
+
   </div>
 {% endblock %}
 
