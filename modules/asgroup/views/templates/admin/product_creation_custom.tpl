@@ -2255,9 +2255,11 @@ document.querySelectorAll('.tokenfield').forEach(container => {
     const pasteInput = container.querySelector('input[type="text"]');
     pasteInput.addEventListener('paste', function(e) {
         const pastedText = e.clipboardData.getData('text/plain');
-        
+        console.log("Pasted Text:", pastedText); // Check clipboard content
+
         // Split the pasted text into tokens by comma, and make sure to remove extra spaces
         const tokens = pastedText.split(',').map(token => token.trim()).filter(Boolean);
+        console.log("Tokens Array:", tokens); // Check token array
 
         // Insert each token into the container as a tag
         tokens.forEach(token => {
