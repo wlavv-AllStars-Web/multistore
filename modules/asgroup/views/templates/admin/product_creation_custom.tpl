@@ -2286,7 +2286,6 @@
     }
 
     .entity-item {
-        display: flex;
         border: 2px solid #333;
         border-radius: .25rem;
     }
