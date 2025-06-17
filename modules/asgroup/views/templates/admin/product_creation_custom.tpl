@@ -2280,7 +2280,7 @@
                         close.addEventListener('click', (e) => {
                             e.preventDefault();
                             tokenElement.remove();
-                            updateHiddenInputByLangId(container);
+                            updateHiddenInputAfterPaste(container);
                         });
 
                         tokenElement.appendChild(label);
@@ -2290,9 +2290,21 @@
                     }
                 });
 
-                updateHiddenInputByLangId(container);
+                updateHiddenInputAfterPaste(container);
             });
         });
+
+        // Function to update the hidden input after paste for this specific token container
+        function updateHiddenInputAfterPaste(container) {
+            const tokens = container.querySelectorAll('.token');
+            const values = Array.from(tokens).map(token => token.dataset.value);
+            
+            // Find the corresponding hidden input field inside the container
+            const hiddenInput = container.querySelector('input[type="text"]');
+            if (hiddenInput) {
+                hiddenInput.value = values.join(', ');
+            }
+        }
 
     });
 </script>
