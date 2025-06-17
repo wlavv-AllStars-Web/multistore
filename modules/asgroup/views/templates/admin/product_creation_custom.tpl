@@ -1663,83 +1663,85 @@
     });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize tokenfield for each language input
     const tokenInputs = document.querySelectorAll('.token-input');
 
     tokenInputs.forEach(function(input) {
-        // Initialize the tokenfield
-        input.addEventListener('input', function(e) {
-            updateHiddenInput(input);
-        });
-    });
-
-    // Function to update the hidden input with the current tags (comma separated)
-    function updateHiddenInput(input) {
-        console.log("Updating hidden input. Current value:", input.value);
-        if (!input || typeof input.value !== 'string') return;
-
-        const tokenString = input.value.trim();
-        console.log("Token String:", tokenString);
-
-        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
-
-        console.log("Tag Values to Update:", tagValues);
-
-        const langId = input.id.split('_')[3];
-        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-        if (hiddenInput) {
-            hiddenInput.value = tagValues;
-        }
-
-        // Get the container specific to this input
         const container = input.closest('.tokenfield');
-        
-        // Only check existing tokens in this specific container
-        const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
 
-        // Split the input text by commas, then check if each token already exists in the specific container
-        const newTags = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+        input.addEventListener('keydown', function(e) {
+            // Check for comma (`,`) or Enter key
+            if (e.key === ',' || e.key === 'Enter') {
+                e.preventDefault();
+                
+                const tag = input.value.trim().replace(/,$/, '');
+                if (tag.length === 0) {
+                    input.value = '';
+                    return;
+                }
 
-        newTags.forEach(tag => {
-            if (!existingTags.includes(tag)) {
-                // If the tag doesn't already exist, add it
-                const tokenElement = document.createElement('div');
-                tokenElement.classList.add('token');
-                tokenElement.dataset.value = tag;
+                // Check if the tag already exists
+                const existingTags = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
+                if (!existingTags.includes(tag)) {
+                    createToken(container, tag, input);
+                }
 
-                const label = document.createElement('span');
-                label.classList.add('token-label');
-                label.textContent = tag;
-
-                const close = document.createElement('a');
-                close.href = '#';
-                close.classList.add('close');
-                close.innerHTML = '&times;';
-                close.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    tokenElement.remove();
-                    updateHiddenInputByLangId(langId); // Update the hidden input after removing a token
-                });
-
-                tokenElement.appendChild(label);
-                tokenElement.appendChild(close);
-
-                // Insert the new token into the container
-                container.insertBefore(tokenElement, container.querySelector('.token-input'));
+                input.value = '';
+                updateHiddenInput(container, input);
             }
         });
 
-        // Update the hidden input after adding new tokens
-        updateHiddenInputByLangId(langId);
+        // Optional: handle blur if you want to create token when user clicks away
+        input.addEventListener('blur', function() {
+            const tag = input.value.trim().replace(/,$/, '');
+            if (tag.length === 0) {
+                input.value = '';
+                return;
+            }
+
+            const existingTags = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
+            if (!existingTags.includes(tag)) {
+                createToken(container, tag, input);
+            }
+
+            input.value = '';
+            updateHiddenInput(container, input);
+        });
+    });
+
+    function createToken(container, tag, input) {
+        const tokenElement = document.createElement('div');
+        tokenElement.classList.add('token');
+        tokenElement.dataset.value = tag;
+
+        const label = document.createElement('span');
+        label.classList.add('token-label');
+        label.textContent = tag;
+
+        const close = document.createElement('a');
+        close.href = '#';
+        close.classList.add('close');
+        close.innerHTML = '&times;';
+        close.addEventListener('click', (e) => {
+            e.preventDefault();
+            tokenElement.remove();
+            updateHiddenInput(container, input);
+        });
+
+        tokenElement.appendChild(label);
+        tokenElement.appendChild(close);
+
+        container.insertBefore(tokenElement, input);
     }
 
-    // Automatically trigger an update to ensure the hidden input is in sync when the page loads
-    tokenInputs.forEach(function(input) {
-        const langId = input.id.split('_')[3]; // Extract the language ID from the input ID
-        updateHiddenInput(input); // Trigger update to keep everything in sync
-    });
+    function updateHiddenInput(container, input) {
+        const tokens = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
+        const langId = input.id.split('_')[3];
+        const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
+        if (hiddenInput) {
+            hiddenInput.value = tokens.join(', ');
+        }
+    }
 });
-
 
 
 
