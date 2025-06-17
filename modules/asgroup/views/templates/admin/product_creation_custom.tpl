@@ -2211,21 +2211,21 @@
     });
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.tokenfield').forEach(container => {
-            container.addEventListener('copy', function(e) {
-            e.preventDefault();
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     document.querySelectorAll('.tokenfield').forEach(container => {
+    //         container.addEventListener('copy', function(e) {
+    //         e.preventDefault();
 
-            const tokens = Array.from(container.querySelectorAll('.token'))
-                .map(token => token.dataset.value)
-                .filter(Boolean);
+    //         const tokens = Array.from(container.querySelectorAll('.token'))
+    //             .map(token => token.dataset.value)
+    //             .filter(Boolean);
 
-            const textToCopy = tokens.join(', ');
+    //         const textToCopy = tokens.join(', ');
 
-            e.clipboardData.setData('text/plain', textToCopy);
-            });
-        });
-    });
+    //         e.clipboardData.setData('text/plain', textToCopy);
+    //         });
+    //     });
+    // });
 
 </script>
 
@@ -2351,9 +2351,10 @@
     .tokenfield .token > .token-label {
         user-select: text;
     }
-    /* .tokenfield .token > .token-label::after {
+    .tokenfield .token > .token-label::after {
         content: ", ";
-    } */
+        opacity: 0; 
+    }
     .tokenfield .token:last-child > .token-label::after {
         content: "";
     }
