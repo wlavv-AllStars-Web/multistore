@@ -1672,6 +1672,7 @@ document.addEventListener("DOMContentLoaded", function() {
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
+                console.log(input)
 
                 let rawTag = input.value;
                 let tag = rawTag.trim();
