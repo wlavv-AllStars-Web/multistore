@@ -2257,6 +2257,12 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHiddenInput(container);
         });
 
+        container.querySelector('input.token-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' || e.key === 'Delete') {
+                deleteSelectedTokens(container); // Call the function to delete selected tokens
+            }
+        });
+
         // Handle copy event
         container.addEventListener('copy', function(e) {
             e.preventDefault();
@@ -2294,6 +2300,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (hiddenInput) {
             hiddenInput.value = values.join(', '); // Update hidden input with a comma-separated string
         }
+    }
+
+    function deleteSelectedTokens(container) {
+        // Get all the selected tokens inside this token field
+        const selectedTokens = Array.from(container.querySelectorAll('.token.selected'));
+        
+        // Remove the selected tokens from the DOM
+        selectedTokens.forEach(token => {
+            token.remove(); // Remove token element
+        });
+
+        // Update the hidden input field after deleting tokens
+        updateHiddenInput(container);
     }
 });
 
