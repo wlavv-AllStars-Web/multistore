@@ -1106,10 +1106,6 @@
             <div class="form-group">
                 <h2>
                     {l s='Specific prices' d='Admin.Catalog.Feature'}
-                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                        data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
-                        data-placement="top">
-                    </span>
                 </h2>
 
                 <div id="specific-prices-container_asg">
@@ -1132,11 +1128,11 @@
                             id="specific-prices-list-table_asg">
                             <thead class="thead-default">
                                 <tr>
-                                    <th>{l s='ID'}</th>
+                                    {* <th>{l s='ID'}</th>
                                     <th>{l s='Combination'}</th>
                                     <th>{l s='Currency'}</th>
                                     <th>{l s='Country'}</th>
-                                    <th>{l s='Group'}</th>
+                                    <th>{l s='Group'}</th> *}
                                     <th>{l s='Store'}</th>
                                     <th>{l s='Customer'}</th>
                                     <th>{l s='Specific price (tax excl.)'}</th>
@@ -1150,7 +1146,7 @@
                             <tbody>
                                 {foreach from=$specific_data item=specific}
                                     <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
-                                        <td class="specific-price-id">{$specific.id|default:'-'}</td>
+                                        {* <td class="specific-price-id">{$specific.id|default:'-'}</td>
                                         <td class="combination">{$specific.combination|default:'--'}</td>
                                         <td class="currency">{$specific.currency|escape:'html'}</td>
 
@@ -1164,7 +1160,7 @@
                                             <td class="group">{$specific.group[$language.id_lang]|escape:'html'}</td>
                                         {else}
                                             <td class="group">{l s='-'}</td>
-                                        {/if}
+                                        {/if}  *}
 
                                         <td class="shop">{$specific.store|escape:'html'}</td>
                                         <td class="customer">{$specific.customer|default:'All customers'}</td>
