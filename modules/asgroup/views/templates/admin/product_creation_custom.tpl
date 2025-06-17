@@ -2321,4 +2321,8 @@
     #product_description-tab-nav {
         display: none;
     }
+
+    .related-product.entity-item {
+        display: flex;
+    }
 </style>
