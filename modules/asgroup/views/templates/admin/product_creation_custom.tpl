@@ -2469,4 +2469,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .tokenfield .token:last-child>.token-label::after {
         content: "";
     }
+
+    .tokenfield .token.active {
+        outline: 2px solid var(--danger);
+    }
 </style>
