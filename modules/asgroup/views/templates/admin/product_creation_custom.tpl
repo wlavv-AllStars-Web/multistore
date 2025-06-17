@@ -2292,28 +2292,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Function to delete the selected tokens (those with the selected text)
+        // Function to delete the selected tokens (those with the active class)
         function deleteSelectedTokens(container) {
             // Get all tokens inside the container
             const tokens = Array.from(container.querySelectorAll('.token'));
             
-            // Get the current selection from the user
-            const selection = window.getSelection();
-            
-            // Check if there is any selected text inside a token
-            const selectedTokens = tokens.filter(token => {
-                const label = token.querySelector('.token-label');
-                return label && selection.containsNode(label, true);
-            });
+            // Check for tokens with the active class
+            const activeTokens = tokens.filter(token => token.classList.contains('active'));
 
-            // If selected tokens are found, delete them
-            selectedTokens.forEach(token => {
+            // If active tokens are found, delete them
+            activeTokens.forEach(token => {
                 token.remove();
             });
 
             // Update the hidden input field after deleting tokens
             updateHiddenInput(container);
         }
+
+        // Add event listener for mouse selection to add the active class to tokens
+        container.addEventListener('mouseup', function () {
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim();
+
+            if (selectedText.length > 0) {
+                // Go through all tokens and check if the selected text matches the token's label
+                container.querySelectorAll('.token').forEach(token => {
+                    const label = token.querySelector('.token-label');
+                    if (label && label.textContent.trim() === selectedText) {
+                        token.classList.add('active'); // Mark the token as active
+                    } else {
+                        token.classList.remove('active'); // Remove active class from non-matching tokens
+                    }
+                });
+            }
+        });
 
 
 
