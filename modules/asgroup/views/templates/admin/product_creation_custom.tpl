@@ -2248,7 +2248,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     close.addEventListener('click', (e) => {
                         e.preventDefault();
                         tokenElement.remove();
-                        updateHiddenInput(container); // Update the hidden input after removing a token
+                        updateHiddenInputCopyPasteDelete(container); // Update the hidden input after removing a token
                     });
 
                     tokenElement.appendChild(label);
@@ -2260,7 +2260,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Update the hidden input with the new tokens
-            updateHiddenInput(container);
+            updateHiddenInputCopyPasteDelete(container);
         });
 
 
@@ -2312,13 +2312,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Update the hidden input field after deleting tokens
-            updateHiddenInput(container);
+            updateHiddenInputCopyPasteDelete(container);
         }
 
 
 
             // Function to update the hidden input field with the current tokens
-        function updateHiddenInput(container) {
+        function updateHiddenInputCopyPasteDelete(container) {
             const tokens = container.querySelectorAll('.token');
             const values = Array.from(tokens).map(token => token.dataset.value);
             const hiddenInput = container.querySelector('input[type="text"].token-input');
