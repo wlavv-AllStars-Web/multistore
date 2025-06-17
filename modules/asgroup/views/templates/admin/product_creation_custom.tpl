@@ -2209,6 +2209,23 @@
             saveButton.removeAttribute('disabled');
         }
     });
+
+
+    document.querySelectorAll('.tokenfield').forEach(container => {
+        container.addEventListener('copy', function(e) {
+            e.preventDefault();
+
+            const tokens = Array.from(container.querySelectorAll('.token'))
+            .map(token => token.dataset.value)
+            .filter(Boolean);
+
+            const textToCopy = tokens.join(', ');
+
+            e.clipboardData.setData('text/plain', textToCopy);
+        });
+    });
+
+
 </script>
 
 
