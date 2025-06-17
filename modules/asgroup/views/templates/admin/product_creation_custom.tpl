@@ -1662,53 +1662,52 @@
         });
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
+    let debounceTimeout; // To store the debounce timeout
 
+    // Initialize tokenfield for each language input (tokenfield is an input for tag input)
+    const tokenInputs = document.querySelectorAll('.token-input');
 
-        // Initialize tokenfield for each language input (tokenfield is an input for tag input)
-        const tokenInputs = document.querySelectorAll('.token-input');
+    tokenInputs.forEach(function(input) {
+        // Initialize the tokenfield
+        input.addEventListener('input', function(e) {
+            // Clear the previous debounce timeout
+            clearTimeout(debounceTimeout);
 
-        tokenInputs.forEach(function(input) {
-            // Initialize the tokenfield
-            input.addEventListener('input', function(e) {
+            // Set a new timeout to update the hidden input after 300ms of inactivity
+            debounceTimeout = setTimeout(function() {
                 updateHiddenInput(input);
-            });
-        });
-
-
-        // Function to update the hidden input with the current tags (comma separated)
-        function updateHiddenInput(input) {
-            console.log("Updating hidden input. Current value:", input.value);
-            if (!input || typeof input.value !== 'string') return;
-            // Get all tokens (tags) from the input (assumes tokens are separated by commas)
-            const tokenString = input.value.trim();
-            
-            console.log("Token String:", tokenString);
-
-            // If there are tokens, update the hidden field
-            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
-
-            console.log("Tag Values to Update:", tagValues);
-
-            // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
-            const langId = input.id.split('_')[3];
-
-            // Find the corresponding hidden input and update its value
-            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-            if (hiddenInput) {
-                hiddenInput.value = tagValues;
-            }
-        }
-
-
-        // Initialize the tokenfield with commas as delimiters for each language
-        tokenInputs.forEach(function(input) {
-            const langId = input.id.split('_')[3]; // Extract the language ID from the input ID
-
-            // Automatically trigger an update to ensure the hidden input is in sync when the page loads
-            updateHiddenInput(input);
+            }, 300); // 300ms delay to wait before updating hidden input
         });
     });
+
+    // Function to update the hidden input with the current tags (comma separated)
+    function updateHiddenInput(input) {
+        console.log("Updating hidden input. Current value:", input.value);
+        if (!input || typeof input.value !== 'string') return;
+
+        const tokenString = input.value.trim();
+        console.log("Token String:", tokenString);
+
+        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+
+        console.log("Tag Values to Update:", tagValues);
+
+        const langId = input.id.split('_')[3];
+        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
+        if (hiddenInput) {
+            hiddenInput.value = tagValues;
+        }
+    }
+
+    // Initialize the tokenfield with commas as delimiters for each language
+    tokenInputs.forEach(function(input) {
+        const langId = input.id.split('_')[3]; // Extract the language ID from the input ID
+
+        // Automatically trigger an update to ensure the hidden input is in sync when the page loads
+        updateHiddenInput(input);
+    });
+});
 
 
 
@@ -2302,22 +2301,26 @@ document.addEventListener('DOMContentLoaded', function() {
         function deleteSelectedTokens(container) {
             // Get all tokens inside the container
             const tokens = Array.from(container.querySelectorAll('.token'));
-            
+
             // Check for tokens with the active class
             const activeTokens = tokens.filter(token => token.classList.contains('active'));
 
-            // If active tokens are found, delete them
-            activeTokens.forEach(token => {
-                token.remove();
-            });
+            if (activeTokens.length === 0) {
+                // If no active token, do nothing or handle case where you want to delete the last token if input is empty
+                const lastToken = tokens[tokens.length - 1]; // Select the last token if no active token
+                if (lastToken) {
+                    lastToken.remove();
+                }
+            } else {
+                // If active tokens are found, delete them
+                activeTokens.forEach(token => token.remove());
+            }
 
             // Update the hidden input field after deleting tokens
             updateHiddenInputCopyPasteDelete(container);
         }
 
-
-
-            // Function to update the hidden input field with the current tokens
+        // Function to update the hidden input field with the current tokens
         function updateHiddenInputCopyPasteDelete(container) {
             const tokens = container.querySelectorAll('.token');
             const values = Array.from(tokens).map(token => token.dataset.value);
