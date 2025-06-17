@@ -1677,24 +1677,29 @@
 
 
         // Function to update the hidden input with the current tags (comma separated)
-        function updateHiddenInput(input) {
-            if (!input || typeof input.value !== 'string') return;
-            // Get all tokens (tags) from the input (assumes tokens are separated by commas)
-            const tokenString = input.value.trim();
+function updateHiddenInput(input) {
+    console.log("Updating hidden input. Current value:", input.value);
+    if (!input || typeof input.value !== 'string') return;
+    // Get all tokens (tags) from the input (assumes tokens are separated by commas)
+    const tokenString = input.value.trim();
+    
+    console.log("Token String:", tokenString);
 
-            // If there are tokens, update the hidden field
-            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(
-                ',');
+    // If there are tokens, update the hidden field
+    let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
 
-            // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
-            const langId = input.id.split('_')[3];
+    console.log("Tag Values to Update:", tagValues);
 
-            // Find the corresponding hidden input and update its value
-            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-            if (hiddenInput) {
-                hiddenInput.value = tagValues;
-            }
-        }
+    // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
+    const langId = input.id.split('_')[3];
+
+    // Find the corresponding hidden input and update its value
+    const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
+    if (hiddenInput) {
+        hiddenInput.value = tagValues;
+    }
+}
+
 
         // Initialize the tokenfield with commas as delimiters for each language
         tokenInputs.forEach(function(input) {
