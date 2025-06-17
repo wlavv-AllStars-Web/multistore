@@ -2342,18 +2342,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const langIds = [];
-  {foreach from=$languages item=language}
-    langIds.push({$language.id_lang});
-  {/foreach}
+  const langIds = [
+    {foreach from=$languages item=language name=langs}
+      {$language.id_lang}{if !$smarty.foreach.langs.last},{/if}
+    {/foreach}
+  ];
 
+  // For each name input, listen for changes
   langIds.forEach(langId => {
-    const nameInput = document.getElementById('product_header_name_'+langId);
-    const metaInput = document.getElementById('product_seo_meta_title_'+langId);
-
-    if (nameInput && metaInput) {
+    const nameInput = document.getElementById(`product_header_name_`+langId);
+    
+    if (nameInput) {
       nameInput.addEventListener("input", function() {
-        metaInput.value = nameInput.value;
+        const newValue = nameInput.value;
+
+        // Update all name + meta title fields
+        langIds.forEach(otherLangId => {
+          const otherNameInput = document.getElementById(`product_header_name_`+otherLangId);
+          const otherMetaInput = document.getElementById(`product_seo_meta_title_`+otherLangId);
+
+          if (otherNameInput) {
+            otherNameInput.value = newValue;
+          }
+          if (otherMetaInput) {
+            otherMetaInput.value = newValue;
+          }
+        });
       });
     }
   });
