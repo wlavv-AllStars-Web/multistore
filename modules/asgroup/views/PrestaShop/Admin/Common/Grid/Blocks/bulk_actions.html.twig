@@ -31,29 +31,24 @@
     </div>
   {% endif %}
 
-{% for grid in grids %}
-  {% if loop.first %}
-    {% if grid.actions.bulk|length > 0 and grid.data.records_total > 0 and  grid.id != "order" %}
-    test
-        <div class="btn-group">
-          <button class="btn btn-outline-secondary dropdown-toggle js-bulk-actions-btn"
-                  data-toggle="dropdown"
-                  disabled
-          >
-            {{ 'Bulk actions'|trans({}, 'Admin.Global') }}
-            <i class="icon-caret-up"></i>
-          </button>
+{% if grid is defined and grid.actions.bulk|length > 0 and grid.data.records_total > 0 and grid.id != "order" %}
+test
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary dropdown-toggle js-bulk-actions-btn"
+              data-toggle="dropdown"
+              disabled
+      >
+        {{ 'Bulk actions'|trans({}, 'Admin.Global') }}
+        <i class="icon-caret-up"></i>
+      </button>
 
-          <div class="dropdown-menu">
-            {% for action in grid.actions.bulk %}
-              {{ include('@PrestaShop/Admin/Common/Grid/Actions/Bulk/'~action.type~'.html.twig', {'action': action, 'grid': grid}) }}
-            {% endfor %}
-          </div>
-        </div>
-    {% endif %}
-  {% endif %}
-{% endfor %}
-
+      <div class="dropdown-menu">
+        {% for action in grid.actions.bulk %}
+          {{ include('@PrestaShop/Admin/Common/Grid/Actions/Bulk/'~action.type~'.html.twig', {'action': action, 'grid': grid}) }}
+        {% endfor %}
+      </div>
+    </div>
+{% endif %}
 {% if grid.id == "order" %}
   <div class="custom-button-container">
 
