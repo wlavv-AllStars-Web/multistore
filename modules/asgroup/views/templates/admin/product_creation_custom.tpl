@@ -2238,63 +2238,68 @@
         });
 
 
-        document.querySelectorAll('.tokenfield').forEach(container => {
-            const pasteInput = container.querySelector('input[type="text"]');
+        document.querySelectorAll('.token-input').forEach(function (inputField) {
+        const langId = inputField.id.split('_')[3]; // Extract language ID from the input ID
 
-            pasteInput.addEventListener('paste', function(e) {
-                const pastedText = e.clipboardData.getData('text/plain');
+        inputField.addEventListener('paste', function (e) {
+            // Get pasted text and clean it up
+            const pastedText = e.clipboardData.getData('text/plain');
+            console.log('Pasted Text:', pastedText);
 
-                // Split the pasted text into individual tags by commas
-                const tokens = pastedText.split(',').map(token => token.trim()).filter(Boolean);
+            // Split pasted text into tokens (tags) using a comma as a delimiter
+            const tokens = pastedText.split(',').map(tag => tag.trim()).filter(Boolean);
 
-                console.log(tokens); // Log the tokens to see what's being pasted
+            console.log('Parsed Tokens:', tokens);
 
-                // Insert each token into the container as a tag
-                tokens.forEach(token => {
-                    const existingTags = Array.from(container.querySelectorAll(
-                        '.token')).map(t => t.dataset.value);
+            // Get the token container for the correct language
+            const tokenContainer = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+            const existingTokens = Array.from(tokenContainer.querySelectorAll('.token')).map(token => token.dataset.value);
 
-                    // If the token does not already exist, add it as a new tag
-                    if (!existingTags.includes(token)) {
-                        const tokenElement = document.createElement('div');
-                        tokenElement.className = 'token';
-                        tokenElement.dataset.value = token;
+            // Add new tokens if they don't already exist
+            tokens.forEach(token => {
+                if (!existingTokens.includes(token)) {
+                    const tokenElement = document.createElement('div');
+                    tokenElement.classList.add('token');
+                    tokenElement.dataset.value = token;
 
-                        const label = document.createElement('span');
-                        label.className = 'token-label';
-                        label.textContent = token;
+                    const label = document.createElement('span');
+                    label.classList.add('token-label');
+                    label.textContent = token;
 
-                        const close = document.createElement('a');
-                        close.href = '#';
-                        close.className = 'close';
-                        close.innerHTML = '&times;';
-                        close.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            tokenElement.remove();
-                            updateHiddenInputAfterPaste(container);
-                        });
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.classList.add('close');
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        tokenElement.remove();
+                        updateHiddenInputByLangId(langId); // Update hidden input after removing token
+                    });
 
-                        tokenElement.appendChild(label);
-                        tokenElement.appendChild(close);
-                        container.insertBefore(tokenElement, container.querySelector(
-                            '.token-input'));
-                    }
-                });
+                    tokenElement.appendChild(label);
+                    tokenElement.appendChild(close);
 
-                updateHiddenInputAfterPaste(container);
+                    // Insert token into the container
+                    tokenContainer.insertBefore(tokenElement, tokenContainer.querySelector('.token-input'));
+                }
             });
+
+            // Update the hidden input with new tokens
+            updateHiddenInputByLangId(langId);
         });
+    });
 
-        // Function to update hidden input after paste
-        function updateHiddenInputAfterPaste(container) {
-            const tokens = container.querySelectorAll('.token');
-            const values = Array.from(tokens).map(token => token.dataset.value);
+    // Function to update hidden input after pasting tokens
+    function updateHiddenInputByLangId(langId) {
+        const tokenContainer = document.querySelector(`#product_seo_tags_${langId}`).closest('.tokenfield');
+        const tokens = tokenContainer.querySelectorAll('.token');
+        const values = Array.from(tokens).map(token => token.dataset.value);
+        const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
 
-            const hiddenInput = container.querySelector('input[type="text"]');
-            if (hiddenInput) {
-                hiddenInput.value = values.join(', ');
-            }
+        if (hiddenInput) {
+            hiddenInput.value = values.join(', ');
         }
+    }
 
 
 
