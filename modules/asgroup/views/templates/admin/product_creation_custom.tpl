@@ -2309,29 +2309,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHiddenInput(container);
         }
 
-        // Add event listener for mouse selection to add the active class to tokens
-        container.addEventListener('mouseup', function () {
-            const selection = window.getSelection();
-            const selectedText = selection.toString().trim();
-
-            if (selectedText.length > 0) {
-                // Go through all tokens and check if the selected text matches any part of the token's label
-                container.querySelectorAll('.token').forEach(token => {
-                    const label = token.querySelector('.token-label');
-                    if (label) {
-                        const tokenText = label.textContent.trim();
-
-                        // Check if the selected text is part of the token's text
-                        if (tokenText.includes(selectedText)) {
-                            token.classList.add('active'); // Mark the token as active
-                        } else {
-                            token.classList.remove('active'); // Remove active class from non-matching tokens
-                        }
-                    }
-                });
-            }
-        });
-
 
 
             // Function to update the hidden input field with the current tokens
