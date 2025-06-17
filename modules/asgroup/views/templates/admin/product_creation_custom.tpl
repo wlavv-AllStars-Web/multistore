@@ -2248,17 +2248,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     tokenElement.appendChild(label);
                     tokenElement.appendChild(close);
 
-                    // Attach the keydown event listener directly to the token for deletion
-                    tokenElement.addEventListener('keydown', function (e) {
-                        if (e.key === 'Backspace' || e.key === 'Delete') {
-                            tokenElement.remove(); // Remove token element
-                            updateHiddenInput(container); // Update the hidden input after removing a token
-                        }
-                    });
-
-                    // Make the token focusable so it can listen to keydown events
-                    tokenElement.setAttribute('tabindex', '0');
-
                     // Insert the new token into the container
                     container.insertBefore(tokenElement, container.querySelector('.token-input'));
                 }
@@ -2295,38 +2284,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.clipboardData.setData('text/plain', textToCopy);
             }
         });
+
+        container.addEventListener('keydown', function (e) {
+            if (e.key === 'Backspace' || e.key === 'Delete') {
+                deleteSelectedTokens(container);
+            }
+        });
+
+         // Function to delete the selected tokens
+        function deleteSelectedTokens(container) {
+            // Get the current selection
+            const selection = window.getSelection();
+            
+            if (!selection.isCollapsed) {  // Check if there is a selection
+                const selectedText = selection.toString().trim();
+
+                // Get all tokens in the container
+                const tokens = Array.from(container.querySelectorAll('.token'));
+                
+                // Loop through all tokens and delete the ones that match the selected text
+                tokens.forEach(token => {
+                    const tokenLabel = token.querySelector('.token-label').textContent.trim();
+                    if (tokenLabel === selectedText) {
+                        token.remove(); // Remove matching token
+                    }
+                });
+
+                // Clear the selection after deletion
+                selection.removeAllRanges();
+
+                // Update the hidden input field after deleting tokens
+                updateHiddenInput(container);
+            }
+        }
+
+
+            // Function to update the hidden input field with the current tokens
+        function updateHiddenInput(container) {
+            const tokens = container.querySelectorAll('.token');
+            const values = Array.from(tokens).map(token => token.dataset.value);
+            const hiddenInput = container.querySelector('input[type="text"].token-input');
+            
+            if (hiddenInput) {
+                hiddenInput.value = values.join(', '); // Update hidden input with a comma-separated string
+            }
+        }
+
     });
 
-    // Function to update the hidden input field with the current tokens
-    function updateHiddenInput(container) {
-        const tokens = container.querySelectorAll('.token');
-        const values = Array.from(tokens).map(token => token.dataset.value);
-        const hiddenInput = container.querySelector('input[type="text"].token-input');
-        
-        if (hiddenInput) {
-            hiddenInput.value = values.join(', '); // Update hidden input with a comma-separated string
-        }
-    }
 
-    // Function to delete selected tokens
-    function deleteSelectedTokens(container) {
-        // Get all the selected tokens inside this token field using mouse selection
-        const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(token => {
-            const label = token.querySelector('.token-label');
-            if (!label) return false; // Skip if no label
 
-            // Check if the label is selected (by mouse selection)
-            return window.getSelection().containsNode(label, true);
-        });
-
-        // Remove the selected tokens from the DOM
-        selectedTokens.forEach(token => {
-            token.remove(); // Remove token element
-        });
-
-        // Update the hidden input field after deleting tokens
-        updateHiddenInput(container);
-    }
 });
 
 </script>
