@@ -1665,7 +1665,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const tokenInputs = document.querySelectorAll('.token-input');
 
-
     tokenInputs.forEach(function(input) {
         const container = input.closest('.tokenfield');
 
@@ -1673,22 +1672,28 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.key === 'Enter') {
                 e.preventDefault();
 
-                let tag = input.value.trim();
-                console.log(tag)
+                let rawTag = input.value;
+                let tag = rawTag.trim();
+
+                console.log("Raw tag:", rawTag);
+                console.log("Trimmed tag:", tag);
+
                 if (tag.length === 0) {
                     input.value = '';
                     return;
                 }
 
-                // Get existing tags (case-insensitive match)
+                // Get existing tags and normalize to lowercase for comparison
                 const existingTags = Array.from(container.querySelectorAll('.token')).map(
-                    t => t.dataset.value.toLowerCase()
+                    t => t.dataset.value.trim().toLowerCase()
                 );
 
-                console.log(existingTags)
+                console.log("Existing tags:", existingTags);
 
                 if (!existingTags.includes(tag.toLowerCase())) {
                     createToken(container, tag, input);
+                } else {
+                    console.log(`Tag "${tag}" already exists. Skipping.`);
                 }
 
                 input.value = '';
@@ -1725,12 +1730,13 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateHiddenInput(container, input) {
         const tokens = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
         const langId = input.id.split('_')[3];
-        const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
+        const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
         if (hiddenInput) {
             hiddenInput.value = tokens.join(', ');
         }
     }
 });
+
 
 
 
