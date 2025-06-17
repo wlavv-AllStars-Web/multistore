@@ -1554,7 +1554,6 @@
 
 
 
-
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
@@ -2338,6 +2337,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const langIds = [];
+  {foreach from=$languages item=language}
+    langIds.push({$language.id_lang});
+  {/foreach}
+
+  langIds.forEach(langId => {
+    const nameInput = document.getElementById('product_header_name_'+langId);
+    const metaInput = document.getElementById('product_seo_meta_title_'+langId);
+
+    if (nameInput && metaInput) {
+      nameInput.addEventListener("input", function() {
+        metaInput.value = nameInput.value;
+      });
+    }
+  });
+});
 </script>
 
 
