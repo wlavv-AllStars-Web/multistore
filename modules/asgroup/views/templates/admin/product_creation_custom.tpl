@@ -1667,6 +1667,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     tokenInputs.forEach(function(input) {
         const container = input.closest('.tokenfield');
+        console.log(input);
 
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
