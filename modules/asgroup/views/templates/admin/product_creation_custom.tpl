@@ -2220,6 +2220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const existingTokens = Array.from(container.querySelectorAll('.token'))
                     .map(token => token.dataset.value.toLowerCase());
 
+                console.log("existingtokens ->"+ existingTokens)
                 if (existingTokens.includes(newTokenValue.toLowerCase())) {
                     // Token already exists, do not add it
                     input.value = '';  // Clear the input
