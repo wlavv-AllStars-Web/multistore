@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -74,8 +74,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                        {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                                    </textarea>
+                                                                                                                                                            {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                        </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -186,8 +186,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                                        {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                                    </textarea>
+                                                                                                                                                            {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                        </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -2227,36 +2227,29 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.tokenfield').forEach(container => {
             container.addEventListener('copy', function(e) {
-                const selection = window.getSelection();
-                if (!selection.rangeCount) return;
+                e.preventDefault();
 
-                const range = selection.getRangeAt(0);
-                const selectionRects = Array.from(range.getClientRects());
-
+                // Get all the selected tokens inside this token field
                 const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
                     token => {
                         const label = token.querySelector('.token-label');
-                        if (!label) return false;
-                        const tokenRect = label.getBoundingClientRect();
+                        if (!label) return false; // Skip if no label
 
-                        return selectionRects.some(selRect =>
-                            selRect.bottom >= tokenRect.top &&
-                            selRect.top <= tokenRect.bottom &&
-                            selRect.right >= tokenRect.left &&
-                            selRect.left <= tokenRect.right
-                        );
+                        // Check if the label is selected
+                        return window.getSelection().containsNode(label, true);
                     });
 
-                if (selectedTokens.length === 0) return; // Let default copy happen
+                // If there are selected tokens, prepare the text to copy
+                if (selectedTokens.length > 0) {
+                    const textToCopy = selectedTokens
+                        .map(token => token.dataset.value || token.querySelector('.token-label')
+                            ?.textContent.trim())
+                        .filter(Boolean)
+                        .join(', ');
 
-                e.preventDefault();
-                const textToCopy = selectedTokens
-                    .map(token => token.dataset.value || token.querySelector('.token-label')
-                        ?.textContent.trim())
-                    .filter(Boolean)
-                    .join(', ');
-
-                e.clipboardData.setData('text/plain', textToCopy);
+                    // Set the copied text to clipboard
+                    e.clipboardData.setData('text/plain', textToCopy);
+                }
             });
         });
     });
