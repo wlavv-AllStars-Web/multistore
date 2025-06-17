@@ -2218,12 +2218,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Process the pasted text and split by commas to create tokens
             const tokens = pastedText.split(',').map(tag => tag.trim()).filter(Boolean);
 
-            // Get the existing tokens inside this container to avoid duplicates
-            const existingTokens = Array.from(container.querySelectorAll('.token'))
-                                         .map(token => token.dataset.value);
+            // Remove all existing tokens in the container before pasting new ones
+            container.querySelectorAll('.token').forEach(token => token.remove());
 
-            // Insert tokens that don't already exist in the token list
+            // Add the new tokens, checking for duplicates
             tokens.forEach(token => {
+                // Check if the token already exists in the container
+                const existingTokens = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
+                
                 if (!existingTokens.includes(token)) {
                     const tokenElement = document.createElement('div');
                     tokenElement.classList.add('token');
@@ -2248,9 +2250,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Insert the new token into the container
                     container.insertBefore(tokenElement, container.querySelector('.token-input'));
-
-                    // Update the existing tokens array after adding the new token
-                    existingTokens.push(token); // Add the new token to existing tokens to avoid future duplication
                 }
             });
 
