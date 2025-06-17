@@ -2213,8 +2213,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (e.key === 'Enter' || e.key === ',' ) {
                 e.preventDefault();
-                console.log("New token value: [" + newTokenValue + "]");
                 const newTokenValue = input.value.trim();
+                console.log("New token value: [" + newTokenValue + "]");
                 if (!newTokenValue) return;
 
                 // Get existing token values (case-insensitive check)
