@@ -1149,88 +1149,90 @@
             </div>
 
             <div class="form-group">
-                <h2>
-                    {l s='Specific prices' d='Admin.Catalog.Feature'}
-                </h2>
-
-                <div id="specific-prices-container_asg">
-                    <div id="product_pricing_specific_prices_asg">
-                        <div class="form-group">
-                            <button id="product_pricing_specific_prices_add_specific_price_btn_asg"
-                                name="product[asg][specific_prices][add_specific_price_btn]"
-                                class="js-add-specific-price-btn btn btn-outline-primary"
-                                data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
-                                data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
-                                data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
-                                <i class="material-icons">add_circle</i>
-                                <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
-                            </button>
+                <div id="specific-prices-container_asg" style="display: flex;gap:2rem;">
+                    <div>
+                        <h2>
+                            {l s='Specific prices' d='Admin.Catalog.Feature'}
+                        </h2>
+                        <div id="product_pricing_specific_prices_asg">
+                            <div class="form-group">
+                                <button id="product_pricing_specific_prices_add_specific_price_btn_asg"
+                                    name="product[asg][specific_prices][add_specific_price_btn]"
+                                    class="js-add-specific-price-btn btn btn-outline-primary"
+                                    data-modal-title="{l s='Add new specific price' d='Admin.Catalog.Feature'}"
+                                    data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
+                                    data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
+                                    <i class="material-icons">add_circle</i>
+                                    <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <div>
+                        <div id="specific-price-list-container_asg">
+                            <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
+                                id="specific-prices-list-table_asg" style="width: fit-content;"> 
+                                <thead class="thead-default">
+                                    <tr>
 
-                    <div id="specific-price-list-container_asg">
-                        <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                            id="specific-prices-list-table_asg" style="width: fit-content;"> 
-                            <thead class="thead-default">
-                                <tr>
-
-                                    <th>{l s='Store'}</th>
-                                    <th>{l s='Customer'}</th>
-                                    <th>{l s='Specific price (tax excl.)'}</th>
-                                    <th>{l s='Discount (tax incl.)'}</th>
-                                    <th>{l s='Duration'}</th>
-                                    <th>{l s='Units'}</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$specific_data item=specific}
-                                    <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
-
-                                        <td class="shop">{$specific.store|escape:'html'}</td>
-                                        <td class="customer">{$specific.customer|default:'All customers'}</td>
-                                        <td class="price">
-                                            {if is_numeric($specific.specific_price)}
-                                                {$specific.specific_price|string_format:'%.2f'}
-                                            {else}
-                                                {$specific.specific_price}
-                                            {/if}
-                                        </td>
-                                        <td class="impact">{$specific.discount|escape:'html'}</td>
-                                        <td class="period">
-                                            {if isset($specific.duration) && is_array($specific.duration)}
-                                                <label>{l s='From'}
-                                                    <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
-                                                <label>{l s='To'}
-                                                    <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
-                                            {else}
-                                                <label>{$specific.duration}</label>
-                                            {/if}
-                                        </td>
-                                        <td class="from-qty">{$specific.units}</td>
-
-                                        <td>
-                                            <span class="btn tooltip-link delete-specific-price"
-                                                onclick="deleteSpecificPrice({$specific.id})"
-                                                data-specific-price-id="{$specific.id}" title="Delete">
-                                                <i class="material-icons">delete</i>
-                                            </span>
-                                        </td>
-
-                                        <td>
-                                            <span type="button" title="Edit"
-                                                class="js-edit-specific-price-btn btn tooltip-link"
-                                                data-modal-title="Edit specific price"
-                                                data-confirm-button-label="Save and publish"
-                                                data-cancel-button-label="Cancel" data-specific-price-id="{$specific.id}">
-                                                <i class="material-icons">edit</i>
-                                            </span>
-                                        </td>
+                                        <th>{l s='Store'}</th>
+                                        <th>{l s='Customer'}</th>
+                                        <th>{l s='Specific price (tax excl.)'}</th>
+                                        <th>{l s='Discount (tax incl.)'}</th>
+                                        <th>{l s='Duration'}</th>
+                                        <th>{l s='Units'}</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$specific_data item=specific}
+                                        <tr class="specific-price-row" data-specific-price-id="{$specific.id}">
+
+                                            <td class="shop">{$specific.store|escape:'html'}</td>
+                                            <td class="customer">{$specific.customer|default:'All customers'}</td>
+                                            <td class="price">
+                                                {if is_numeric($specific.specific_price)}
+                                                    {$specific.specific_price|string_format:'%.2f'}
+                                                {else}
+                                                    {$specific.specific_price}
+                                                {/if}
+                                            </td>
+                                            <td class="impact">{$specific.discount|escape:'html'}</td>
+                                            <td class="period">
+                                                {if isset($specific.duration) && is_array($specific.duration)}
+                                                    <label>{l s='From'}
+                                                        <span>{$specific.duration.from|date_format:"%Y-%m-%d"}</span></label><br>
+                                                    <label>{l s='To'}
+                                                        <span>{$specific.duration.to|date_format:"%Y-%m-%d"}</span></label>
+                                                {else}
+                                                    <label>{$specific.duration}</label>
+                                                {/if}
+                                            </td>
+                                            <td class="from-qty">{$specific.units}</td>
+
+                                            <td>
+                                                <span class="btn tooltip-link delete-specific-price"
+                                                    onclick="deleteSpecificPrice({$specific.id})"
+                                                    data-specific-price-id="{$specific.id}" title="Delete">
+                                                    <i class="material-icons">delete</i>
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span type="button" title="Edit"
+                                                    class="js-edit-specific-price-btn btn tooltip-link"
+                                                    data-modal-title="Edit specific price"
+                                                    data-confirm-button-label="Save and publish"
+                                                    data-cancel-button-label="Cancel" data-specific-price-id="{$specific.id}">
+                                                    <i class="material-icons">edit</i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
