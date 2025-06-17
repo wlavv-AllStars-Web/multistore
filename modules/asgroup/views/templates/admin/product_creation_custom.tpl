@@ -2230,29 +2230,28 @@ document.querySelectorAll('.tokenfield').forEach(container => {
         if (!selection.rangeCount) return;
 
         const range = selection.getRangeAt(0);
-        if (!range || !selection.toString().trim()) {
-            return; // Let normal copy happen if nothing meaningful selected
+
+        // Find tokens that intersect the selection
+        const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(token => {
+            const tokenRange = document.createRange();
+            tokenRange.selectNodeContents(token);
+            return range.intersectsNode(token);
+        });
+
+        if (selectedTokens.length === 0) {
+            return; // Let default copy happen if no tokens matched
         }
 
-        // Clone the selected DOM fragment
-        const tempDiv = document.createElement('div');
-        tempDiv.appendChild(range.cloneContents());
-
-        // Extract token-label text only
-        const tokens = Array.from(tempDiv.querySelectorAll('.token-label'))
-            .map(el => el.textContent.trim())
-            .filter(Boolean);
-
-        if (tokens.length === 0) {
-            // No tokens selected, let normal copy happen
-            return;
-        }
-
-        // Prevent default and set our formatted copy text
         e.preventDefault();
-        e.clipboardData.setData('text/plain', tokens.join(', '));
+        const textToCopy = selectedTokens
+            .map(token => token.dataset.value || token.querySelector('.token-label')?.textContent.trim())
+            .filter(Boolean)
+            .join(', ');
+
+        e.clipboardData.setData('text/plain', textToCopy);
     });
 });
+
 
 
 </script>
