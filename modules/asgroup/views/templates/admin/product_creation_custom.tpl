@@ -2248,6 +2248,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     tokenElement.appendChild(label);
                     tokenElement.appendChild(close);
 
+                    // Attach the keydown event listener directly to the token for deletion
+                    tokenElement.addEventListener('keydown', function (e) {
+                        if (e.key === 'Backspace' || e.key === 'Delete') {
+                            tokenElement.remove(); // Remove token element
+                            updateHiddenInput(container); // Update the hidden input after removing a token
+                        }
+                    });
+
+                    // Make the token focusable so it can listen to keydown events
+                    tokenElement.setAttribute('tabindex', '0');
+
                     // Insert the new token into the container
                     container.insertBefore(tokenElement, container.querySelector('.token-input'));
                 }
@@ -2257,11 +2268,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHiddenInput(container);
         });
 
-        container.querySelector('input.token-input').addEventListener('keydown', function (e) {
-            if (e.key === 'Backspace' || e.key === 'Delete') {
-                deleteSelectedTokens(container); // Call the function to delete selected tokens
-            }
-        });
 
         // Handle copy event
         container.addEventListener('copy', function(e) {
