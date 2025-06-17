@@ -2291,34 +2291,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Handle keydown event for delete
-        container.addEventListener('keydown', function (e) {
-            if (e.key === 'Backspace' || e.key === 'Delete') {
-                deleteSelectedTokens(container);
-            }
-        });
+        // container.addEventListener('keydown', function (e) {
+        //     if (e.key === 'Backspace' || e.key === 'Delete') {
+        //         deleteSelectedTokens(container);
+        //     }
+        // });
 
         // Function to delete the selected tokens (those with the active class)
-        function deleteSelectedTokens(container) {
-            // Get all tokens inside the container
-            const tokens = Array.from(container.querySelectorAll('.token'));
+        // function deleteSelectedTokens(container) {
+        //     // Get all tokens inside the container
+        //     const tokens = Array.from(container.querySelectorAll('.token'));
 
-            // Check for tokens with the active class
-            const activeTokens = tokens.filter(token => token.classList.contains('active'));
+        //     // Check for tokens with the active class
+        //     const activeTokens = tokens.filter(token => token.classList.contains('active'));
 
-            if (activeTokens.length === 0) {
-                // If no active token, do nothing or handle case where you want to delete the last token if input is empty
-                const lastToken = tokens[tokens.length - 1]; // Select the last token if no active token
-                if (lastToken) {
-                    lastToken.remove();
-                }
-            } else {
-                // If active tokens are found, delete them
-                activeTokens.forEach(token => token.remove());
-            }
+        //     if (activeTokens.length === 0) {
+        //         // If no active token, do nothing or handle case where you want to delete the last token if input is empty
+        //         const lastToken = tokens[tokens.length - 1]; // Select the last token if no active token
+        //         if (lastToken) {
+        //             lastToken.remove();
+        //         }
+        //     } else {
+        //         // If active tokens are found, delete them
+        //         activeTokens.forEach(token => token.remove());
+        //     }
 
-            // Update the hidden input field after deleting tokens
-            updateHiddenInputCopyPasteDelete(container);
-        }
+        //     // Update the hidden input field after deleting tokens
+        //     updateHiddenInputCopyPasteDelete(container);
+        // }
 
         // Function to update the hidden input field with the current tokens
         function updateHiddenInputCopyPasteDelete(container) {
