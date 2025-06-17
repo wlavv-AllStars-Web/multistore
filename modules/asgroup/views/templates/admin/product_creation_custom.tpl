@@ -400,7 +400,7 @@
                                             </thead>
                                             <tbody class="entities-list">
                                                 {foreach from=$attachments item=file name=attachedFiles}
-                                                    <tr class="entity-item" style="display: revert-layer;"
+                                                    <tr class="entity-item"
                                                         id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
                                                         <td>
                                                             <input type="hidden"
@@ -2308,7 +2308,6 @@
     }
 
     .entity-item {
-        display: flex;
         border: 2px solid #333;
         border-radius: .25rem;
     }
