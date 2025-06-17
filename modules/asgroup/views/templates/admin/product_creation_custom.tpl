@@ -2333,9 +2333,9 @@
     .tokenfield .token > .token-label {
         user-select: text;
     }
-    .tokenfield .token > .token-label::after {
+    /* .tokenfield .token > .token-label::after {
         content: ", ";
-    }
+    } */
     .tokenfield .token:last-child > .token-label::after {
         content: "";
     }
