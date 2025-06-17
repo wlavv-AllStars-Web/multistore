@@ -1625,6 +1625,19 @@
                     label.style.maxWidth = '951.213px'; // Optional: dynamic width?
                     label.textContent = tag;
 
+                    const comma = document.createElement('span')
+                    comma.className = 'token-comma'
+                    comma.textContent = ', ';
+
+                    // Style to make it invisible but copyable
+                    comma.style.position = 'absolute';
+                    comma.style.left = '-9999px';
+                    comma.style.height = '1px';
+                    comma.style.width = '1px';
+                    comma.style.overflow = 'hidden';
+
+                    label.appendChild(comma)
+
                     const close = document.createElement('a');
                     close.href = '#';
                     close.className = 'close';
