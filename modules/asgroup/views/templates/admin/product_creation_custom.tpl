@@ -2204,37 +2204,95 @@ function generateTagsASG() {
         }
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.tokenfield').forEach(container => {
-            container.addEventListener('copy', function(e) {
-                e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tokenfield').forEach(container => {
+        // Handle the paste event
+        container.addEventListener('paste', function(e) {
+            e.preventDefault(); // Prevent the default paste behavior
 
-                // Get all the selected tokens inside this token field
-                const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
-                    token => {
-                        const label = token.querySelector('.token-label');
-                        if (!label) return false; // Skip if no label
+            // Get the pasted text from clipboard
+            const pastedText = e.clipboardData.getData('text/plain');
+            console.log('Pasted Text:', pastedText);
 
-                        // Check if the label is selected
-                        return window.getSelection().containsNode(label, true);
+            // Process the pasted text and split by commas to create tokens
+            const tokens = pastedText.split(',').map(tag => tag.trim()).filter(Boolean);
+
+            // Get the existing tokens inside this container to avoid duplicates
+            const existingTokens = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+
+            tokens.forEach(token => {
+                // Only add the token if it doesn't already exist
+                if (!existingTokens.includes(token)) {
+                    const tokenElement = document.createElement('div');
+                    tokenElement.classList.add('token');
+                    tokenElement.dataset.value = token;
+
+                    const label = document.createElement('span');
+                    label.classList.add('token-label');
+                    label.textContent = token;
+
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.classList.add('close');
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        tokenElement.remove();
+                        updateHiddenInput(container); // Update the hidden input after removing a token
                     });
 
-                // If there are selected tokens, prepare the text to copy
-                if (selectedTokens.length > 0) {
-                    const textToCopy = selectedTokens
-                        .map(token => token.dataset.value || token.querySelector('.token-label')
-                            ?.textContent.trim())
-                        .filter(Boolean)
-                        .join(', ');
+                    tokenElement.appendChild(label);
+                    tokenElement.appendChild(close);
 
-                    // Set the copied text to clipboard
-                    e.clipboardData.setData('text/plain', textToCopy);
+                    // Insert the new token into the container
+                    container.insertBefore(tokenElement, container.querySelector('.token-input'));
                 }
             });
 
+            // Update the hidden input with the new tokens
+            updateHiddenInput(container);
         });
 
+        // Handle copy event (you already have this)
+        container.addEventListener('copy', function(e) {
+            e.preventDefault();
+
+            // Get all the selected tokens inside this token field
+            const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
+                token => {
+                    const label = token.querySelector('.token-label');
+                    if (!label) return false; // Skip if no label
+
+                    // Check if the label is selected
+                    return window.getSelection().containsNode(label, true);
+                });
+
+            // If there are selected tokens, prepare the text to copy
+            if (selectedTokens.length > 0) {
+                const textToCopy = selectedTokens
+                    .map(token => token.dataset.value || token.querySelector('.token-label')
+                        ?.textContent.trim())
+                    .filter(Boolean)
+                    .join(', ');
+
+                // Set the copied text to clipboard
+                e.clipboardData.setData('text/plain', textToCopy);
+            }
+        });
     });
+
+    // Function to update the hidden input field with the current tokens
+    function updateHiddenInput(container) {
+        const tokens = container.querySelectorAll('.token');
+        const values = Array.from(tokens).map(token => token.dataset.value);
+        const hiddenInput = container.querySelector('input[type="text"].token-input');
+        
+        if (hiddenInput) {
+            hiddenInput.value = values.join(', '); // Update hidden input with a comma-separated string
+        }
+    }
+});
+
 
 </script>
 
