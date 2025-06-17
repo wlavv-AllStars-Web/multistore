@@ -30,8 +30,11 @@
       <small class="tracking_not_found"><i class="material-icons">report</i></small>
     </div>
   {% endif %}
+  
+{% set bulkRendered = bulkRendered|default(false) %}
 
-{% if grid is defined and grid.actions.bulk|length > 0 and grid.data.records_total > 0 and grid.id != "order" %}
+{% if not bulkRendered and grid.actions.bulk|length > 0 and grid.data.records_total > 0 and grid.id != "order" %}
+
 test
     <div class="btn-group">
       <button class="btn btn-outline-secondary dropdown-toggle js-bulk-actions-btn"
