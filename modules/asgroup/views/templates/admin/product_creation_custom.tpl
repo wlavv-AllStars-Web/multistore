@@ -2342,11 +2342,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const langIds = [
+  const langIds = [];
     {foreach from=$languages item=language name=langs}
-      {$language.id_lang}{if !$smarty.foreach.langs.last},{/if}
+        langIds.push({$language.id_lang})
     {/foreach}
-  ];
+  console.log(langIds)
 
   langIds.forEach(langId => {
     const nameInput = document.getElementById(`product_header_name_`+langId);
