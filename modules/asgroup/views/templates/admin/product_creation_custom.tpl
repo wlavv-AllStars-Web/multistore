@@ -1682,23 +1682,64 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Function to update the hidden input with the current tags (comma separated)
-    function updateHiddenInput(input) {
-        console.log("Updating hidden input. Current value:", input.value);
-        if (!input || typeof input.value !== 'string') return;
+function updateHiddenInput(input) {
+    console.log("Updating hidden input. Current value:", input.value);
+    if (!input || typeof input.value !== 'string') return;
 
-        const tokenString = input.value.trim();
-        console.log("Token String:", tokenString);
+    const tokenString = input.value.trim();
+    console.log("Token String:", tokenString);
 
-        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+    let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
 
-        console.log("Tag Values to Update:", tagValues);
+    console.log("Tag Values to Update:", tagValues);
 
-        const langId = input.id.split('_')[3];
-        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-        if (hiddenInput) {
-            hiddenInput.value = tagValues;
-        }
+    const langId = input.id.split('_')[3];
+    const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
+    if (hiddenInput) {
+        hiddenInput.value = tagValues;
     }
+
+    // Get the container specific to this input
+    const container = input.closest('.tokenfield');
+    
+    // Only check existing tokens in this specific container
+    const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+
+    // Split the input text by commas, then check if each token already exists in the specific container
+    const newTags = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+
+    newTags.forEach(tag => {
+        if (!existingTags.includes(tag)) {
+            // If the tag doesn't already exist, add it
+            const tokenElement = document.createElement('div');
+            tokenElement.classList.add('token');
+            tokenElement.dataset.value = tag;
+
+            const label = document.createElement('span');
+            label.classList.add('token-label');
+            label.textContent = tag;
+
+            const close = document.createElement('a');
+            close.href = '#';
+            close.classList.add('close');
+            close.innerHTML = '&times;';
+            close.addEventListener('click', (e) => {
+                e.preventDefault();
+                tokenElement.remove();
+                updateHiddenInputByLangId(langId); // Update the hidden input after removing a token
+            });
+
+            tokenElement.appendChild(label);
+            tokenElement.appendChild(close);
+
+            // Insert the new token into the container
+            container.insertBefore(tokenElement, container.querySelector('.token-input'));
+        }
+    });
+
+    // Update the hidden input after adding new tokens
+    updateHiddenInputByLangId(langId);
+}
 
     // Initialize the tokenfield with commas as delimiters for each language
     tokenInputs.forEach(function(input) {
@@ -2289,36 +2330,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.clipboardData.setData('text/plain', textToCopy);
             }
         });
-
-        // Handle keydown event for delete
-        // container.addEventListener('keydown', function (e) {
-        //     if (e.key === 'Backspace' || e.key === 'Delete') {
-        //         deleteSelectedTokens(container);
-        //     }
-        // });
-
-        // Function to delete the selected tokens (those with the active class)
-        // function deleteSelectedTokens(container) {
-        //     // Get all tokens inside the container
-        //     const tokens = Array.from(container.querySelectorAll('.token'));
-
-        //     // Check for tokens with the active class
-        //     const activeTokens = tokens.filter(token => token.classList.contains('active'));
-
-        //     if (activeTokens.length === 0) {
-        //         // If no active token, do nothing or handle case where you want to delete the last token if input is empty
-        //         const lastToken = tokens[tokens.length - 1]; // Select the last token if no active token
-        //         if (lastToken) {
-        //             lastToken.remove();
-        //         }
-        //     } else {
-        //         // If active tokens are found, delete them
-        //         activeTokens.forEach(token => token.remove());
-        //     }
-
-        //     // Update the hidden input field after deleting tokens
-        //     updateHiddenInputCopyPasteDelete(container);
-        // }
 
         // Function to update the hidden input field with the current tokens
         function updateHiddenInputCopyPasteDelete(container) {
