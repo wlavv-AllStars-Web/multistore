@@ -26,8 +26,7 @@
 
 declare(strict_types=1);
 
-namespace PrestaShop\PrestaShop\Core\Domain\Product;
-
+namespace PrestaShop\Module\AsGroup\Core\Domain\Product;
 /**
  * Defines settings for product.
  * If related Value Object does not exist, then various settings (e.g. regex, length constraints) are saved here
