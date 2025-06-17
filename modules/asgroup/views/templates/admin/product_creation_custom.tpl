@@ -2285,37 +2285,54 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Handle mouse drag and hover to add "active" class
+        let isMouseDown = false;
+
+        container.addEventListener('mousedown', function (e) {
+            if (e.button === 0) { // Left mouse button
+                isMouseDown = true;
+                // Reset active tokens when mouse down
+                container.querySelectorAll('.token').forEach(token => {
+                    token.classList.remove('active');
+                });
+            }
+        });
+
+        // Mouse move event to add "active" class on hover
+        container.addEventListener('mousemove', function (e) {
+            if (isMouseDown) {
+                const token = e.target.closest('.token');
+                if (token && !token.classList.contains('active')) {
+                    token.classList.add('active');
+                }
+            }
+        });
+
+                // Mouse up event to stop dragging
+        container.addEventListener('mouseup', function () {
+            isMouseDown = false;
+        });
+
+        // Handle keydown event for delete
         container.addEventListener('keydown', function (e) {
             if (e.key === 'Backspace' || e.key === 'Delete') {
                 deleteSelectedTokens(container);
             }
         });
 
-         // Function to delete the selected tokens
+
+        // Function to delete the selected tokens (those with the "active" class)
         function deleteSelectedTokens(container) {
-            // Get the current selection
-            const selection = window.getSelection();
-            
-            if (!selection.isCollapsed) {  // Check if there is a selection
-                const selectedText = selection.toString().trim();
+            // Get all the tokens with the "active" class
+            const selectedTokens = container.querySelectorAll('.token.active');
 
-                // Get all tokens in the container
-                const tokens = Array.from(container.querySelectorAll('.token'));
-                
-                // Loop through all tokens and delete the ones that match the selected text
-                tokens.forEach(token => {
-                    const tokenLabel = token.querySelector('.token-label').textContent.trim();
-                    if (tokenLabel === selectedText) {
-                        token.remove(); // Remove matching token
-                    }
-                });
+            // Remove those tokens
+            selectedTokens.forEach(token => {
+                token.remove();
+            });
 
-                // Clear the selection after deletion
-                selection.removeAllRanges();
-
-                // Update the hidden input field after deleting tokens
-                updateHiddenInput(container);
-            }
+            // Update the hidden input field after deleting tokens
+            updateHiddenInput(container);
         }
 
 
