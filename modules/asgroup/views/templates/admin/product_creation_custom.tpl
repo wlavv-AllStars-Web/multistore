@@ -2207,6 +2207,55 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tokenfield').forEach(container => {
+        const input = container.querySelector('.token-input');
+
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ',' ) {
+                e.preventDefault();
+
+                const newTokenValue = input.value.trim();
+                if (!newTokenValue) return;
+
+                // Get existing token values (case-insensitive check)
+                const existingTokens = Array.from(container.querySelectorAll('.token'))
+                    .map(token => token.dataset.value.toLowerCase());
+
+                if (existingTokens.includes(newTokenValue.toLowerCase())) {
+                    // Token already exists, do not add it
+                    input.value = '';  // Clear the input
+                    return;
+                }
+
+                // Add the new token
+                const tokenElement = document.createElement('div');
+                tokenElement.classList.add('token');
+                tokenElement.dataset.value = newTokenValue;
+
+                const label = document.createElement('span');
+                label.classList.add('token-label');
+                label.textContent = newTokenValue;
+
+                const close = document.createElement('a');
+                close.href = '#';
+                close.classList.add('close');
+                close.innerHTML = '&times;';
+                close.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tokenElement.remove();
+                    updateHiddenInput(container);
+                });
+
+                tokenElement.appendChild(label);
+                tokenElement.appendChild(close);
+
+                container.insertBefore(tokenElement, input);
+
+                updateHiddenInput(container);
+
+                input.value = ''; // Clear the input after adding
+            }
+        });
+
         // Handle the paste event
         container.addEventListener('paste', function(e) {
             e.preventDefault(); // Prevent the default paste behavior
