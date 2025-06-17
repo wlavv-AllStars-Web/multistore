@@ -457,7 +457,7 @@
 
             {* inicio features *}
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <h3>Features</h3>
                 {literal}
                     <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
@@ -1067,7 +1067,7 @@
                     </div>
 
                     <!-- Tax Rule -->
-                    <div class="form-group select-widget retail-price-tax-rules-group-id">
+                    <div class="form-group select-widget retail-price-tax-rules-group-id" style="display: none;">
                         <label for="product_pricing_retail_price_tax_rules_group_id_asg">Tax rule</label>
                         <select id="product_pricing_retail_price_tax_rules_group_id_asg"
                             name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
@@ -1228,7 +1228,7 @@
                     data-margin="{($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'} {$currency->sign} margin"
                     data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
                     data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price">
-                    <div class="price-summary-block">
+                    <div class="price-summary-block" style="display: none;">
                         <div class="price-summary-value price-tax-excluded-value">
                             {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='tax excl.' d='Admin.Catalog.Feature'}
@@ -1256,7 +1256,7 @@
                             {/if}
                             {l s='margin rate' d='Admin.Catalog.Feature'}
                         </div>
-                        <div class="price-summary-value wholesale-price-value">
+                        <div class="price-summary-value wholesale-price-value" style="display: none;"
                             {$product->wholesale_price|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='cost price' d='Admin.Catalog.Feature'}
                         </div>
