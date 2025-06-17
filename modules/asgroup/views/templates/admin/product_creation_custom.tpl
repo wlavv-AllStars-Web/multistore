@@ -2348,24 +2348,18 @@ document.addEventListener("DOMContentLoaded", function() {
     {/foreach}
   ];
 
-  // For each name input, listen for changes
   langIds.forEach(langId => {
     const nameInput = document.getElementById(`product_header_name_`+langId);
-    
+
     if (nameInput) {
       nameInput.addEventListener("input", function() {
-        const newValue = nameInput.value;
-
-        // Update all name + meta title fields
+        // On any name change, loop through all languages
         langIds.forEach(otherLangId => {
           const otherNameInput = document.getElementById(`product_header_name_`+otherLangId);
           const otherMetaInput = document.getElementById(`product_seo_meta_title_`+otherLangId);
 
-          if (otherNameInput) {
-            otherNameInput.value = newValue;
-          }
-          if (otherMetaInput) {
-            otherMetaInput.value = newValue;
+          if (otherNameInput && otherMetaInput) {
+            otherMetaInput.value = otherNameInput.value;
           }
         });
       });
@@ -2373,6 +2367,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+
 
 
 
