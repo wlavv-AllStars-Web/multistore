@@ -2349,4 +2349,8 @@
     #product_description-tab-nav {
         display: none;
     }
+
+    .translationsFields .maxLength {
+        display: none;
+    }
 </style>
