@@ -278,7 +278,6 @@
 
                 <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
                 <span class="btn btn-danger" onclick="clearTagsASG()">Remove All Tags</span>
-                <span class="btn btn-secondary" onclick="copyTagsASG()">Copy Tags</span>
 
 
             </div>
@@ -1246,7 +1245,7 @@
         <div class="form-group">
             <h3>Related Products</h3>
             <input type="text" id="related-product-autocomplete" class="form-control"
-                placeholder="Reference, Name or id product (min 3 chars)" autocomplete="off" />
+                placeholder="Reference, Name id product (min 3 chars)" autocomplete="off" />
             <ul id="related-products-list" class="entities-list mt-3">
                 {foreach from=$related_products item=rp}
                     <li class="related-product entity-item col-lg-2">
@@ -1300,27 +1299,6 @@
 <script>
     let typingTimer;
     const delay = 300;
-
-    function copyTagsASG() {
-        let allTags = [];
-
-        document.querySelectorAll('.tokenfield').forEach(container => {
-            const tokens = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
-            allTags = allTags.concat(tokens);
-        });
-
-        // Remove duplicates
-        const uniqueTags = [...new Set(allTags)];
-
-        const tagString = uniqueTags.join(', ');
-
-        navigator.clipboard.writeText(tagString).then(() => {
-            alert('Tags copied to clipboard!');
-        }).catch(err => {
-            console.error('Could not copy tags: ', err);
-        });
-    }
-
 
     $('#related-product-autocomplete').on('input', function() {
         clearTimeout(typingTimer);
@@ -2346,5 +2324,19 @@
 
     .related-product.entity-item {
         display: flex;
+    }
+
+    .product-page-v2 .tokenfield .token .close {
+        user-select: none;
+    }
+
+    .tokenfield .token > .token-label {
+        user-select: text;
+    }
+    .tokenfield .token > .token-label::after {
+        content: ", ";
+    }
+    .tokenfield .token:last-child > .token-label::after {
+        content: "";
     }
 </style>
