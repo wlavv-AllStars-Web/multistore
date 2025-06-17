@@ -1663,7 +1663,7 @@
     });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize tokenfield for each language input (tokenfield is an input for tag input)
+    // Initialize tokenfield for each language input
     const tokenInputs = document.querySelectorAll('.token-input');
 
     tokenInputs.forEach(function(input) {
@@ -1674,73 +1674,72 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Function to update the hidden input with the current tags (comma separated)
-function updateHiddenInput(input) {
-    console.log("Updating hidden input. Current value:", input.value);
-    if (!input || typeof input.value !== 'string') return;
+    function updateHiddenInput(input) {
+        console.log("Updating hidden input. Current value:", input.value);
+        if (!input || typeof input.value !== 'string') return;
 
-    const tokenString = input.value.trim();
-    console.log("Token String:", tokenString);
+        const tokenString = input.value.trim();
+        console.log("Token String:", tokenString);
 
-    let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+        let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
 
-    console.log("Tag Values to Update:", tagValues);
+        console.log("Tag Values to Update:", tagValues);
 
-    const langId = input.id.split('_')[3];
-    const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-    if (hiddenInput) {
-        hiddenInput.value = tagValues;
+        const langId = input.id.split('_')[3];
+        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
+        if (hiddenInput) {
+            hiddenInput.value = tagValues;
+        }
+
+        // Get the container specific to this input
+        const container = input.closest('.tokenfield');
+        
+        // Only check existing tokens in this specific container
+        const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+
+        // Split the input text by commas, then check if each token already exists in the specific container
+        const newTags = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+
+        newTags.forEach(tag => {
+            if (!existingTags.includes(tag)) {
+                // If the tag doesn't already exist, add it
+                const tokenElement = document.createElement('div');
+                tokenElement.classList.add('token');
+                tokenElement.dataset.value = tag;
+
+                const label = document.createElement('span');
+                label.classList.add('token-label');
+                label.textContent = tag;
+
+                const close = document.createElement('a');
+                close.href = '#';
+                close.classList.add('close');
+                close.innerHTML = '&times;';
+                close.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tokenElement.remove();
+                    updateHiddenInputByLangId(langId); // Update the hidden input after removing a token
+                });
+
+                tokenElement.appendChild(label);
+                tokenElement.appendChild(close);
+
+                // Insert the new token into the container
+                container.insertBefore(tokenElement, container.querySelector('.token-input'));
+            }
+        });
+
+        // Update the hidden input after adding new tokens
+        updateHiddenInputByLangId(langId);
     }
 
-    // Get the container specific to this input
-    const container = input.closest('.tokenfield');
-    
-    // Only check existing tokens in this specific container
-    const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
-
-    // Split the input text by commas, then check if each token already exists in the specific container
-    const newTags = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-
-    newTags.forEach(tag => {
-        if (!existingTags.includes(tag)) {
-            // If the tag doesn't already exist, add it
-            const tokenElement = document.createElement('div');
-            tokenElement.classList.add('token');
-            tokenElement.dataset.value = tag;
-
-            const label = document.createElement('span');
-            label.classList.add('token-label');
-            label.textContent = tag;
-
-            const close = document.createElement('a');
-            close.href = '#';
-            close.classList.add('close');
-            close.innerHTML = '&times;';
-            close.addEventListener('click', (e) => {
-                e.preventDefault();
-                tokenElement.remove();
-                updateHiddenInputByLangId(langId); // Update the hidden input after removing a token
-            });
-
-            tokenElement.appendChild(label);
-            tokenElement.appendChild(close);
-
-            // Insert the new token into the container
-            container.insertBefore(tokenElement, container.querySelector('.token-input'));
-        }
-    });
-
-    // Update the hidden input after adding new tokens
-    updateHiddenInputByLangId(langId);
-}
-
-    // Initialize the tokenfield with commas as delimiters for each language
+    // Automatically trigger an update to ensure the hidden input is in sync when the page loads
     tokenInputs.forEach(function(input) {
         const langId = input.id.split('_')[3]; // Extract the language ID from the input ID
-
-        // Automatically trigger an update to ensure the hidden input is in sync when the page loads
-        updateHiddenInput(input);
+        updateHiddenInput(input); // Trigger update to keep everything in sync
     });
 });
+
 
 
 
