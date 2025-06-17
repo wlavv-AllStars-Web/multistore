@@ -1599,7 +1599,7 @@
             const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
             const filteredTags = allTags
-                .filter(tag => typeof tag === 'string') // Adjust this to ensure no truncation
+                .filter(tag => typeof tag === 'string' && tag.trim().length >= 2) // Adjust this to ensure no truncation
                 .map(tag => tag.trim());
 
             const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
