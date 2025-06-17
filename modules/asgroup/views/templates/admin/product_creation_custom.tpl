@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -74,8 +74,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                                            </textarea>
+                                                                                                                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                                </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -186,8 +186,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                                            </textarea>
+                                                                                                                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                                </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -1558,99 +1558,100 @@
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
-function generateTagsASG() {
-    const tagNames = {};
+    function generateTagsASG() {
+        const tagNames = {};
 
-    {foreach from=$languages item=language}
-        tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
-    {/foreach}
-
-    const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
-    const tagRef = "{$product->reference|escape:'javascript'}";
-    const tagRefVariations = [];
-
-    {foreach from=$combinations item=combination}
-        tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
-    {/foreach}
-
-    const tagCompats = new Set();
-
-    {if isset($compats) && is_array($compats)}
-        {foreach from=$compats item=compat}
-            {if !empty($compat.brand)}
-                tagCompats.add("{$compat.brand|escape:'javascript'}");
-            {/if}
-            {if !empty($compat.model)}
-                tagCompats.add("{$compat.model|escape:'javascript'}");
-            {/if}
-            {if !empty($compat.type)}
-                tagCompats.add("{$compat.type|escape:'javascript'}");
-            {/if}
-            {if !empty($compat.version)}
-                tagCompats.add("{$compat.version|escape:'javascript'}");
-            {/if}
+        {foreach from=$languages item=language}
+            tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
         {/foreach}
-    {/if}
 
-    const uniqueTags = Array.from(tagCompats);
+        const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
+        const tagRef = "{$product->reference|escape:'javascript'}";
+        const tagRefVariations = [];
 
-    // Loop through each language and apply tags
-    Object.keys(tagNames).forEach((langId) => {
-        const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
+        {foreach from=$combinations item=combination}
+            tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
+        {/foreach}
 
-        const filteredTags = allTags
-            .filter(tag => typeof tag === 'string')  // Adjust this to ensure no truncation
-            .map(tag => tag.trim());
+        const tagCompats = new Set();
 
-        const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
-        const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+        {if isset($compats) && is_array($compats)}
+            {foreach from=$compats item=compat}
+                {if !empty($compat.brand)}
+                    tagCompats.add("{$compat.brand|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.model)}
+                    tagCompats.add("{$compat.model|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.type)}
+                    tagCompats.add("{$compat.type|escape:'javascript'}");
+                {/if}
+                {if !empty($compat.version)}
+                    tagCompats.add("{$compat.version|escape:'javascript'}");
+                {/if}
+            {/foreach}
+        {/if}
 
-        // Clear previous tags
-        // container.querySelectorAll('.token').forEach(el => el.remove());
+        const uniqueTags = Array.from(tagCompats);
 
-        filteredTags.forEach(tag => {
-            if (!existingTags.includes(tag)) {
-                const token = document.createElement('div');
-                token.className = 'token';
-                token.dataset.value = tag;
+        // Loop through each language and apply tags
+        Object.keys(tagNames).forEach((langId) => {
+            const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
-                const label = document.createElement('span');
-                label.className = 'token-label';
-                label.style.maxWidth = '951.213px';
-                label.textContent = tag;
+            const filteredTags = allTags
+                .filter(tag => typeof tag === 'string') // Adjust this to ensure no truncation
+                .map(tag => tag.trim());
 
-                const close = document.createElement('a');
-                close.href = '#';
-                close.className = 'close';
-                close.tabIndex = -1;
-                close.innerHTML = '&times;';
-                close.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    token.remove();
-                    updateHiddenInputByLangId(langId);
-                });
+            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
+            const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset
+                .value);
 
-                token.appendChild(label);
-                token.appendChild(close);
+            // Clear previous tags
+            // container.querySelectorAll('.token').forEach(el => el.remove());
 
-                container.insertBefore(token, container.querySelector('.token-input'));
-            }
+            filteredTags.forEach(tag => {
+                if (!existingTags.includes(tag)) {
+                    const token = document.createElement('div');
+                    token.className = 'token';
+                    token.dataset.value = tag;
+
+                    const label = document.createElement('span');
+                    label.className = 'token-label';
+                    label.style.maxWidth = '951.213px';
+                    label.textContent = tag;
+
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.className = 'close';
+                    close.tabIndex = -1;
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        token.remove();
+                        updateHiddenInputByLangId(langId);
+                    });
+
+                    token.appendChild(label);
+                    token.appendChild(close);
+
+                    container.insertBefore(token, container.querySelector('.token-input'));
+                }
+            });
+
+            updateHiddenInputByLangId(langId);
         });
 
-        updateHiddenInputByLangId(langId);
-    });
-
-    function updateHiddenInputByLangId(langId) {
-        const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
-        const tokens = container.querySelectorAll('.token');
-        const values = Array.from(tokens).map(token => token.dataset.value);
-        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId + ``);
-        if (hiddenInput) {
-            hiddenInput.value = values.join(', ');
+        function updateHiddenInputByLangId(langId) {
+            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
+            const tokens = container.querySelectorAll('.token');
+            const values = Array.from(tokens).map(token => token.dataset.value);
+            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId + ``);
+            if (hiddenInput) {
+                hiddenInput.value = values.join(', ');
+            }
+            buttonSaveProductFooter.removeAttribute('disabled');
         }
-        buttonSaveProductFooter.removeAttribute('disabled');
     }
-}
 
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -2204,87 +2205,98 @@ function generateTagsASG() {
         }
     });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.tokenfield').forEach(container => {
-        container.addEventListener('copy', function(e) {
-            e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.tokenfield').forEach(container => {
+            container.addEventListener('copy', function(e) {
+                e.preventDefault();
 
-            // Get all the selected tokens inside this token field
-            const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
-                token => {
-                    const label = token.querySelector('.token-label');
-                    if (!label) return false; // Skip if no label
+                // Get all the selected tokens inside this token field
+                const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
+                    token => {
+                        const label = token.querySelector('.token-label');
+                        if (!label) return false; // Skip if no label
 
-                    // Check if the label is selected
-                    return window.getSelection().containsNode(label, true);
-                });
-
-            // If there are selected tokens, prepare the text to copy
-            if (selectedTokens.length > 0) {
-                const textToCopy = selectedTokens
-                    .map(token => token.dataset.value || token.querySelector('.token-label')
-                        ?.textContent.trim())
-                    .filter(Boolean)
-                    .join(', ');
-
-                // Set the copied text to clipboard
-                e.clipboardData.setData('text/plain', textToCopy);
-            }
-        });
-
-        const pasteInput = container.querySelector('input[type="text"]');
-        pasteInput.addEventListener('paste', function(e) {
-            const pastedText = e.clipboardData.getData('text/plain');
-            const tokens = pastedText.split(',').map(token => token.trim()).filter(Boolean);
-
-            // Insert each token into the container as a tag
-            tokens.forEach(token => {
-                const existingTags = Array.from(container.querySelectorAll('.token')).map(
-                    token => token.dataset.value);
-
-                // Only add the token if it's not already in the container
-                if (!existingTags.includes(token)) {
-                    const tokenElement = document.createElement('div');
-                    tokenElement.className = 'token';
-                    tokenElement.dataset.value = token;
-
-                    const label = document.createElement('span');
-                    label.className = 'token-label';
-                    label.textContent = token;
-
-                    const close = document.createElement('a');
-                    close.href = '#';
-                    close.className = 'close';
-                    close.innerHTML = '&times;';
-                    close.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        tokenElement.remove();
-                        updateHiddenInputAfterPaste(container);
+                        // Check if the label is selected
+                        return window.getSelection().containsNode(label, true);
                     });
 
-                    tokenElement.appendChild(label);
-                    tokenElement.appendChild(close);
-                    container.insertBefore(tokenElement, container.querySelector('.token-input'));
+                // If there are selected tokens, prepare the text to copy
+                if (selectedTokens.length > 0) {
+                    const textToCopy = selectedTokens
+                        .map(token => token.dataset.value || token.querySelector('.token-label')
+                            ?.textContent.trim())
+                        .filter(Boolean)
+                        .join(', ');
+
+                    // Set the copied text to clipboard
+                    e.clipboardData.setData('text/plain', textToCopy);
                 }
             });
 
-            updateHiddenInputAfterPaste(container);
+
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tokenfield').forEach(container => {
+                const pasteInput = container.querySelector('input[type="text"]');
+
+                pasteInput.addEventListener('paste', function(e) {
+                    const pastedText = e.clipboardData.getData('text/plain');
+
+                    // Ensure that pastedText is handled correctly
+                    const tokens = pastedText.split(',').map(token => token.trim())
+                        .filter(Boolean);
+
+                    // Insert each token into the container as a tag
+                    tokens.forEach(token => {
+                        const existingTags = Array.from(container
+                                .querySelectorAll('.token'))
+                            .map(token => token.dataset.value);
+
+                        // Only add the token if it's not already in the container
+                        if (!existingTags.includes(token)) {
+                            const tokenElement = document.createElement('div');
+                            tokenElement.className = 'token';
+                            tokenElement.dataset.value = token;
+
+                            const label = document.createElement('span');
+                            label.className = 'token-label';
+                            label.textContent = token;
+
+                            const close = document.createElement('a');
+                            close.href = '#';
+                            close.className = 'close';
+                            close.innerHTML = '&times;';
+                            close.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                tokenElement.remove();
+                                updateHiddenInputAfterPaste(container);
+                            });
+
+                            tokenElement.appendChild(label);
+                            tokenElement.appendChild(close);
+                            container.insertBefore(tokenElement, container
+                                .querySelector('.token-input'));
+                        }
+                    });
+
+                    updateHiddenInputAfterPaste(container);
+                });
+            });
+
+            function updateHiddenInputAfterPaste(container) {
+                const tokens = container.querySelectorAll('.token');
+                const values = Array.from(tokens).map(token => token.dataset.value);
+
+                const hiddenInput = container.querySelector('input[type="text"]');
+                if (hiddenInput) {
+                    hiddenInput.value = values.join(', ');
+                }
+            }
+        });
+
+
     });
-
-    // Function to update the hidden input after paste for this specific token container
-    function updateHiddenInputAfterPaste(container) {
-        const tokens = container.querySelectorAll('.token');
-        const values = Array.from(tokens).map(token => token.dataset.value);
-        
-        // Find the corresponding hidden input field inside the container
-        const hiddenInput = container.querySelector('input[type="text"]');
-        if (hiddenInput) {
-            hiddenInput.value = values.join(', ');
-        }
-    }
-});
-
 </script>
 
 
