@@ -278,6 +278,7 @@
 
                 <span class="btn btn-info" onclick="generateTagsASG()">Generate Tags</span>
                 <span class="btn btn-danger" onclick="clearTagsASG()">Remove All Tags</span>
+                <span class="btn btn-secondary" onclick="copyTagsASG()">Copy Tags</span>
 
 
             </div>
@@ -1299,6 +1300,27 @@
 <script>
     let typingTimer;
     const delay = 300;
+
+    function copyTagsASG() {
+        let allTags = [];
+
+        document.querySelectorAll('.tokenfield').forEach(container => {
+            const tokens = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
+            allTags = allTags.concat(tokens);
+        });
+
+        // Remove duplicates
+        const uniqueTags = [...new Set(allTags)];
+
+        const tagString = uniqueTags.join(', ');
+
+        navigator.clipboard.writeText(tagString).then(() => {
+            alert('Tags copied to clipboard!');
+        }).catch(err => {
+            console.error('Could not copy tags: ', err);
+        });
+    }
+
 
     $('#related-product-autocomplete').on('input', function() {
         clearTimeout(typingTimer);
