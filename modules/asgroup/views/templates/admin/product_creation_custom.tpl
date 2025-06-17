@@ -2314,6 +2314,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const selection = window.getSelection();
             const selectedText = selection.toString().trim();
 
+            console.log(selectedText)
+
             if (selectedText.length > 0) {
                 // Go through all tokens and check if the selected text matches the token's label
                 container.querySelectorAll('.token').forEach(token => {
