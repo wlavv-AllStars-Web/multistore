@@ -215,7 +215,7 @@
             </div>
 
             <div class="form-group">
-                <h3>Tags</h3>
+                {* <h3>Tags</h3> *}
                 {* <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
                 </p> *}
 
@@ -307,7 +307,7 @@
                         <i class="material-icons">open_in_new</i>Manage all files</a>
                 </div>
                 <div id="product_details_attachments">
-                
+
                     <div class="form-group">
                         <a id="product_details_attachments_add_attachment_btn"
                             name="product[details][attachments][add_attachment_btn]"
@@ -370,7 +370,7 @@
                                 class="entity-search-widget">
                             {/literal}
 
-                            <div class="search search-with-icon">
+                            <div class="search search-with-icon" style="display: none;">
                                 <span class="twitter-typeahead" style="position: relative; display: inline-block;">
                                     <input id="product_details_attachments_attached_files_search_input"
                                         class="entity-search-input form-control tt-input" autocomplete="off"
