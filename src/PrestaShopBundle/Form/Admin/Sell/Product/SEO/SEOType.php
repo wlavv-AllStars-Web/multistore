@@ -106,11 +106,6 @@ class SEOType extends TranslatorAwareType
             $automaticUrlUpdate = true;
         }
 
-        
-        echo 'paulo';
-        exit;
-
-
         $builder
             ->add('serp', SerpType::class)
             ->add('meta_title', TranslatableType::class, [
