@@ -1666,7 +1666,7 @@
 
 
         // Initialize tokenfield for each language input (tokenfield is an input for tag input)
-        const tokenInputs = document.querySelectorAll('.js-taggable-field');
+        const tokenInputs = document.querySelectorAll('.token-input');
 
         tokenInputs.forEach(function(input) {
             // Initialize the tokenfield
