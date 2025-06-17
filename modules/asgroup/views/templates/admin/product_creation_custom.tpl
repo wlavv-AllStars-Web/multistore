@@ -28,11 +28,11 @@
                     {if isset($categories[$cat.id_category]) && $categories[$cat.id_category] != null}
                         <ul class="category-tree level-{$level+1}" style="padding-left: 20px; display: none;">
                             {renderCategoryTree 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
-                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                categories=$categories 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                parentId=$cat.id_category 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                selected_ids=$selected_ids 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                level=$level+1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
                         </ul>
                     {/if}
                 </li>
@@ -47,7 +47,7 @@
     <div class="col-lg-12 bg-creation-container br25" style="display: flex;">
         <div class="col-lg-9 bg-creation-container br25">
 
-                        <!-- Full Description Section -->
+            <!-- Full Description Section -->
             <div class="translations tabbable" id="product_description_full_description_custom" tabindex="2">
                 <label title="h2" for="product_custom_description">
                     Description
@@ -74,8 +74,8 @@
                             <textarea id="description_long_{$language.id_lang}"
                                 name="product[asg][description_long][{$language.id_lang}]"
                                 class="form-control tinymce-textarea-description" rows="5">
-                                                                                                                                                {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                                    {$product->description[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                </textarea>
 
 
                             <small class="form-text text-muted text-right maxLength maxType">
@@ -93,8 +93,9 @@
             <!-- Product images -->
 
             <div class="form-group mt-2">
-            {literal}
-                    <div class="manage-shop-images-button-container form-group" data-product-id="{/literal}{$product->id}{literal}"
+                {literal}
+                    <div class="manage-shop-images-button-container form-group"
+                        data-product-id="{/literal}{$product->id}{literal}"
                         data-translations="{&quot;button.label&quot;:&quot;Manage images&quot;,&quot;modal.save&quot;:&quot;Save and publish&quot;,&quot;modal.close&quot;:&quot;Close&quot;,&quot;modal.cancel&quot;:&quot;Cancel&quot;,&quot;cover.label&quot;:&quot;Cover&quot;,&quot;modal.noImages&quot;:&quot;Product has no images.&quot;,&quot;grid.imageHeader&quot;:&quot;Image&quot;,&quot;warning.deletedImages&quot;:&quot;Images will be deleted.&quot;}"
                         data-v-app="" style="display: none;">
                         <div el=".manage-shop-images-button-container"
@@ -103,14 +104,13 @@
                                 images</button>
                         </div>
                     </div>
-            
+
                     <div id="product_description_images" name="product[description][images]"
                         class="product-image-dropzone image-dropzone"
                         data-translations="{&quot;window.selectAll&quot;:&quot;Select all&quot;,&quot;window.settingsUpdated&quot;:&quot;Settings updated&quot;,&quot;window.imageReplaced&quot;:&quot;Image replaced&quot;,&quot;window.unselectAll&quot;:&quot;Unselect all&quot;,&quot;window.replaceSelection&quot;:&quot;Replace selection&quot;,&quot;window.cantDisableCover&quot;:&quot;Using another image as cover will automatically uncheck this box.&quot;,&quot;window.selectedFiles&quot;:&quot;&lt;span&gt;{filesNb}&lt;/span&gt; selected file(s)&quot;,&quot;window.notAssociatedToShop&quot;:&quot;Image is not associated to this store&quot;,&quot;window.useAsCover&quot;:&quot;Use as cover image&quot;,&quot;window.applyToAllStores&quot;:&quot;Apply changes to all associated stores&quot;,&quot;window.saveImage&quot;:&quot;Save image settings&quot;,&quot;window.delete&quot;:&quot;Delete selection&quot;,&quot;window.close&quot;:&quot;Close window&quot;,&quot;window.closePhotoSwipe&quot;:&quot;Close (esc)&quot;,&quot;window.download&quot;:&quot;Download&quot;,&quot;window.toggleFullscreen&quot;:&quot;Toggle Fullscreen&quot;,&quot;window.zoomPhotoSwipe&quot;:&quot;Zoom in\/out&quot;,&quot;window.previousPhotoSwipe&quot;:&quot;Previous (arrow left)&quot;,&quot;window.nextPhotoSwipe&quot;:&quot;Next (arrow right)&quot;,&quot;window.downloadImage&quot;:&quot;Download image&quot;,&quot;window.zoom&quot;:&quot;Zoom on selection&quot;,&quot;modal.close&quot;:&quot;Cancel&quot;,&quot;modal.accept&quot;:&quot;Delete&quot;,&quot;modal.title&quot;:&quot;Are you sure you want to delete the selected image?|Are you sure you want to delete the {filesNb} selected images?&quot;,&quot;delete.success&quot;:&quot;The selection has been successfully deleted.&quot;,&quot;window.fileisTooLarge&quot;:&quot;The file is too large. The maximum size allowed is {{maxFilesize}} MB. The file you are trying to upload is {{filesize}} MB.&quot;,&quot;window.dropImages&quot;:&quot;Drop images here&quot;,&quot;window.selectFiles&quot;:&quot;or select files&quot;,&quot;window.recommendedSize&quot;:&quot;Recommended size 800 x 800px for default theme.&quot;,&quot;window.recommendedFormats&quot;:&quot;JPG, GIF, PNG or WebP format.&quot;,&quot;window.cover&quot;:&quot;Cover&quot;,&quot;window.caption&quot;:&quot;Caption&quot;}"
                         data-locales="[{&quot;id_lang&quot;:2,&quot;name&quot;:&quot;English (English)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;en&quot;,&quot;language_code&quot;:&quot;en-us&quot;,&quot;locale&quot;:&quot;en-US&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}},{&quot;id_lang&quot;:4,&quot;name&quot;:&quot;Espa\u00f1ol (Spanish)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;es&quot;,&quot;language_code&quot;:&quot;es-es&quot;,&quot;locale&quot;:&quot;es-ES&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}},{&quot;id_lang&quot;:5,&quot;name&quot;:&quot;Fran\u00e7ais (French)&quot;,&quot;active&quot;:1,&quot;iso_code&quot;:&quot;fr&quot;,&quot;language_code&quot;:&quot;fr-fr&quot;,&quot;locale&quot;:&quot;fr-FR&quot;,&quot;date_format_lite&quot;:&quot;d\/m\/Y&quot;,&quot;date_format_full&quot;:&quot;d\/m\/Y H:i:s&quot;,&quot;is_rtl&quot;:0,&quot;id_shop&quot;:1,&quot;shops&quot;:{&quot;1&quot;:true,&quot;2&quot;:true,&quot;3&quot;:true,&quot;6&quot;:true}}]"
                         data-product-id="{/literal}{$product->id}{literal}" data-shop-id="6" data-is-multi-store-active="1"
-                        data-form-name="product_image" data-token="{/literal}{$img_upd_token}{literal}"
-                        data-v-app="">
+                        data-form-name="product_image" data-token="{/literal}{$img_upd_token}{literal}" data-v-app="">
                         <div id="product-images-container" el=".product-image-dropzone"
                             template="&lt;dropzone :productId=productId :locales=locales :token=token :formName=formName /&gt;"
                             i18n="[object Object]">
@@ -122,15 +122,15 @@
                                         class="material-icons">add_a_photo</i><br> Drop images here<br><a>or select
                                         files</a><br><small>Recommended size 800 x 800px for default theme.<br> JPG, GIF,
                                         PNG or WebP format.</small></div>
-            {/literal}
-                                <!--v-if-->
-                                    {foreach from=$product->images item=image}
-                                        <div class="dz-preview is-cover dz-complete dz-image-preview" data-id="{$image->id}">
-                                            <div class="dz-image">
-                                                <img data-dz-thumbnail="" alt="undefined" src="{$image->src}">
-                                            </div>
-                                        </div>
-                                    {/foreach}
+                            {/literal}
+                            <!--v-if-->
+                            {foreach from=$product->images item=image}
+                                <div class="dz-preview is-cover dz-complete dz-image-preview" data-id="{$image->id}">
+                                    <div class="dz-image">
+                                        <img data-dz-thumbnail="" alt="undefined" src="{$image->src}">
+                                    </div>
+                                </div>
+                            {/foreach}
 
                         </div>
                         <!--v-if-->
@@ -186,8 +186,8 @@
                             <textarea id="description_short_{$language.id_lang}"
                                 name="product[asg][description_short][{$language.id_lang}]"
                                 class="form-control tinymce-textarea" rows="5">
-                                                                                                                                                {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
-                                                                                                                                            </textarea>
+                                                                                                                                                    {$product->description_short[$language.id_lang]|escape:'htmlall':'UTF-8'}
+                                                                                                                                                </textarea>
 
                             <small class="form-text text-muted text-right maxLength maxType">
                                 <em>
@@ -297,8 +297,7 @@
                 </h3>
                 <p class="subtitle" style="display: none;">Customers can download these files on the product page.</p>
                 <div class="small font-secondary" style="display: none;">
-                    <a target="_blank"
-                        id="link_manageall_files"
+                    <a target="_blank" id="link_manageall_files"
                         href="/admineuromus1/index.php/sell/attachments/?_token=__token__"
                         class="pt-0 btn btn-link px-0 align-right">
                         <i class="material-icons">open_in_new</i>Manage all files</a>
@@ -767,14 +766,12 @@
 
                     <div class="input-group">
                         <span class="ps-switch" id="product_description_real_photos">
-                            <input type="radio" id="product_description_real_photos_0"
-                                name="product[asg][real_photos]" value="0"
-                                {if isset($product->real_photos) && $product->real_photos != 1}checked{/if}>
+                            <input type="radio" id="product_description_real_photos_0" name="product[asg][real_photos]"
+                                value="0" {if isset($product->real_photos) && $product->real_photos != 1}checked{/if}>
                             <label for="product_description_real_photos_0">No</label>
 
-                            <input type="radio" id="product_description_real_photos_1"
-                                name="product[asg][real_photos]" value="1"
-                                {if isset($product->real_photos) && $product->real_photos == 1}checked{/if}>
+                            <input type="radio" id="product_description_real_photos_1" name="product[asg][real_photos]"
+                                value="1" {if isset($product->real_photos) && $product->real_photos == 1}checked{/if}>
                             <label for="product_description_real_photos_1">Yes</label>
 
                             <span class="slide-button"></span>
@@ -893,10 +890,10 @@
                 </div>
             </div>
 
-            <div class="form-group select-widget"> 
+            <div class="form-group select-widget">
                 <h3 for="product_description_difficulty">
                     Difficulty
-                </h3> 
+                </h3>
                 <select id="product_description_difficulty" name="product[asg][difficulty]"
                     class="custom-select form-control">
                     <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
@@ -1068,7 +1065,8 @@
                         <div class="form-group select-widget retail-price-tax-rules-group-id" style="display: none;">
                             <label for="product_pricing_retail_price_tax_rules_group_id_asg">Tax rule</label>
                             <select id="product_pricing_retail_price_tax_rules_group_id_asg"
-                                name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
+                                name="product[asg][retail_price][tax_rules_group_id]"
+                                class="custom-select form-control">
                                 {foreach from=$tax_rules item=rule}
                                     <option value="{$rule.id}" data-tax-rate="{$rule.rate}"
                                         {if $rule.id == $selected_tax_rule_id}selected="selected" {/if}>
@@ -1104,7 +1102,8 @@
                 <div class="form-group">
                     <h3>{l s='Summary' d='Admin.Catalog.Feature'}</h3>
 
-                    <div id="product_pricing_summary" name="product[asg][summary]" class="price-summary-widget form-group"
+                    <div id="product_pricing_summary" name="product[asg][summary]"
+                        class="price-summary-widget form-group"
                         data-price-tax-excluded="{$retail_price_tax_excl|string_format:'%.2f'} {$currency->sign} tax excl."
                         data-price-tax-included="{$retail_price_tax_incl|string_format:'%.2f'} {$currency->sign} tax incl."
                         data-unit-price="{$product->unit_price|string_format:'%.2f'} {$product->unity|escape} unit price"
@@ -1112,15 +1111,15 @@
                         data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
                         data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price">
                         {* <div class="price-summary-block"> *}
-                            {* <div class="price-summary-value price-tax-excluded-value">
+                        {* <div class="price-summary-value price-tax-excluded-value">
                                 {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign}
                                 {l s='tax excl.' d='Admin.Catalog.Feature'}
                             </div> *}
-                            {* <div class="price-summary-value price-tax-included-value">
+                        {* <div class="price-summary-value price-tax-included-value">
                                 {$retail_price_tax_incl|string_format:'%.2f'}&nbsp;{$currency->sign}
                                 {l s='tax incl.' d='Admin.Catalog.Feature'}
                             </div> *}
-                            {* <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
+                        {* <div class="price-summary-value unit-price-value {if !$product->unit_price}d-none{/if}">
                                 {$product->unit_price|string_format:'%.2f'}&nbsp;{$currency->sign} /
                                 {$product->unity|escape}
                             </div> *}
@@ -1163,7 +1162,8 @@
                                     data-confirm-button-label="{l s='Save and publish' d='Admin.Actions'}"
                                     data-cancel-button-label="{l s='Cancel' d='Admin.Actions'}" type="button">
                                     <i class="material-icons">add_circle</i>
-                                    <span class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
+                                    <span
+                                        class="btn-label">{l s='Add a specific price' d='Admin.Catalog.Feature'}</span>
                                 </button>
                             </div>
                         </div>
@@ -1171,7 +1171,7 @@
                     <div>
                         <div id="specific-price-list-container_asg">
                             <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                                id="specific-prices-list-table_asg" style="width: fit-content;"> 
+                                id="specific-prices-list-table_asg" style="width: fit-content;">
                                 <thead class="thead-default">
                                     <tr>
 
@@ -1224,7 +1224,8 @@
                                                     class="js-edit-specific-price-btn btn tooltip-link"
                                                     data-modal-title="Edit specific price"
                                                     data-confirm-button-label="Save and publish"
-                                                    data-cancel-button-label="Cancel" data-specific-price-id="{$specific.id}">
+                                                    data-cancel-button-label="Cancel"
+                                                    data-specific-price-id="{$specific.id}">
                                                     <i class="material-icons">edit</i>
                                                 </span>
                                             </td>
@@ -1498,19 +1499,19 @@
         }
 
         var token = getUrlParameter('_token');
-        
+
 
         if (token) {
-        // Select all elements in the DOM
-        document.querySelectorAll('*').forEach(function(el) {
-            // Loop through all attributes of the element
-            Array.from(el.attributes).forEach(function(attr) {
-            if (attr.value.includes('__token__')) {
-                // Replace __token__ with actual token
-                el.setAttribute(attr.name, attr.value.replace(/__token__/g, token));
-            }
+            // Select all elements in the DOM
+            document.querySelectorAll('*').forEach(function(el) {
+                // Loop through all attributes of the element
+                Array.from(el.attributes).forEach(function(attr) {
+                    if (attr.value.includes('__token__')) {
+                        // Replace __token__ with actual token
+                        el.setAttribute(attr.name, attr.value.replace(/__token__/g, token));
+                    }
+                });
             });
-        });
         }
 
     });
@@ -2223,37 +2224,37 @@
         }
     });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.tokenfield').forEach(container => {
+            container.addEventListener('copy', function(e) {
+                const selection = window.getSelection();
+                if (!selection.rangeCount) return;
 
-document.querySelectorAll('.tokenfield').forEach(container => {
-    container.addEventListener('copy', function(e) {
-        const selection = window.getSelection();
-        if (!selection.rangeCount) return;
+                const range = selection.getRangeAt(0);
 
-        const range = selection.getRangeAt(0);
+                // Find tokens that intersect the selection
+                const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
+                    token => {
+                        const tokenRange = document.createRange();
+                        tokenRange.selectNodeContents(token);
+                        return range.intersectsNode(token);
+                    });
 
-        // Find tokens that intersect the selection
-        const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(token => {
-            const tokenRange = document.createRange();
-            tokenRange.selectNodeContents(token);
-            return range.intersectsNode(token);
+                if (selectedTokens.length === 0) {
+                    return; // Let default copy happen if no tokens matched
+                }
+
+                e.preventDefault();
+                const textToCopy = selectedTokens
+                    .map(token => token.dataset.value || token.querySelector('.token-label')
+                        ?.textContent.trim())
+                    .filter(Boolean)
+                    .join(', ');
+
+                e.clipboardData.setData('text/plain', textToCopy);
+            });
         });
-
-        if (selectedTokens.length === 0) {
-            return; // Let default copy happen if no tokens matched
-        }
-
-        e.preventDefault();
-        const textToCopy = selectedTokens
-            .map(token => token.dataset.value || token.querySelector('.token-label')?.textContent.trim())
-            .filter(Boolean)
-            .join(', ');
-
-        e.clipboardData.setData('text/plain', textToCopy);
     });
-});
-
-
-
 </script>
 
 
@@ -2375,14 +2376,16 @@ document.querySelectorAll('.tokenfield').forEach(container => {
         user-select: none;
     }
 
-    .tokenfield .token > .token-label {
+    .tokenfield .token>.token-label {
         user-select: text;
     }
-    .tokenfield .token > .token-label::after {
+
+    .tokenfield .token>.token-label::after {
         content: ", ";
-        opacity: 0; 
+        opacity: 0;
     }
-    .tokenfield .token:last-child > .token-label::after {
+
+    .tokenfield .token:last-child>.token-label::after {
         content: "";
     }
 </style>
