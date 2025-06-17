@@ -291,15 +291,15 @@
             {* aqui attachments  *}
 
             <div class="form-group">
-                <h3>
+                <h3 style="display: none;">
                     Attached files
                     <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
                         data-content="Instructions, size guide, or any file you want to add to a product."
                         data-placement="top" data-original-title="" title="">
                     </span>
                 </h3>
-                <p class="subtitle">Customers can download these files on the product page.</p>
-                <div class="small font-secondary">
+                <p class="subtitle" style="display: none;">Customers can download these files on the product page.</p>
+                <div class="small font-secondary" style="display: none;">
                     <a target="_blank"
                         id="link_manageall_files"
                         href="/admineuromus1/index.php/sell/attachments/?_token=__token__"
@@ -307,6 +307,18 @@
                         <i class="material-icons">open_in_new</i>Manage all files</a>
                 </div>
                 <div id="product_details_attachments">
+                
+                    <div class="form-group">
+                        <a id="product_details_attachments_add_attachment_btn"
+                            name="product[details][attachments][add_attachment_btn]"
+                            data-success-create-message="The file was successfully added."
+                            data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
+                            href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=__token__">
+                            <i class="material-icons">add_circle</i>
+                            <span class="btn-label">Add new file</span>
+                        </a>
+                    </div>
+
                     <div class="form-group">
                         {literal}
                             <div id="product_details_attachments_attached_files" data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
@@ -433,16 +445,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <a id="product_details_attachments_add_attachment_btn"
-                                name="product[details][attachments][add_attachment_btn]"
-                                data-success-create-message="The file was successfully added."
-                                data-modal-title="Add new file" class="btn-outline-secondary add-attachment btn"
-                                href="/admineuromus1/index.php/sell/attachments/new?liteDisplaying=1&amp;saveAndStay=1&amp;_token=__token__">
-                                <i class="material-icons">add_circle</i>
-                                <span class="btn-label">Add new file</span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -720,8 +723,6 @@
                 <div class="form-group col-lg-4">
                     <label for="product_description_ec_approved_0">
                         Ec approved
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="Ec approved helper." data-placement="top" title=""></span>
                     </label>
 
                     <div class="input-group">
@@ -743,8 +744,6 @@
                 <div class="form-group col-lg-4">
                     <label for="product_description_wmdeprecated_0">
                         End of life
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="End of life helper." data-placement="top" title=""></span>
                     </label>
 
                     <div class="input-group">
@@ -767,8 +766,6 @@
                 <div class="form-group col-lg-4">
                     <label for="product_description_real_photos_0">
                         Real Photos
-                        <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
-                            data-content="Real Photos helper." data-placement="top" title=""></span>
                     </label>
 
                     <div class="input-group">
@@ -843,7 +840,6 @@
             </div>
 
             <div class="form-group">
-                <label>Options</label>
                 <div class="input-group">
 
                     <div class="form-check col-lg-6">
@@ -873,7 +869,7 @@
 
 
             <div class="form-group">
-                <label for="youtube_code_1">YouTube</label>
+                <h3 for="youtube_code_1">YouTube</h3>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="youtube_code_1" name="product[asg][youtube_1]"
                         placeholder="YouTube Code 1" value="{$product->youtube_1}">
@@ -893,17 +889,18 @@
             </div>
 
             <div class="form-group">
-                <label for="youtube_code_1">HS Code</label>
+                <h3 for="youtube_code_1">HS Code</h3>
                 <div class="input-group">
                     <input type="text" class="form-control" id="hs_code" name="product[asg][nc]" placeholder="HS Code"
                         value="{$product->nc}">
                 </div>
             </div>
 
-            <div class="form-group select-widget"> <label class="text-info" for="product_description_difficulty">
-                    Instructions Difficulty
-
-                </label> <select id="product_description_difficulty" name="product[asg][difficulty]"
+            <div class="form-group select-widget"> 
+                <h3 for="product_description_difficulty">
+                    Difficulty
+                </h3> 
+                <select id="product_description_difficulty" name="product[asg][difficulty]"
                     class="custom-select form-control">
                     <option value="0" {if $product->difficulty == 0}selected{/if}>Default</option>
                     <option value="1" {if $product->difficulty == 1}selected{/if}>1</option>
