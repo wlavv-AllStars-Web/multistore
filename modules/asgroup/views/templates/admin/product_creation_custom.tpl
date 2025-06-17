@@ -2358,6 +2358,17 @@ document.addEventListener("DOMContentLoaded", function() {
           const otherNameInput = document.getElementById(`product_header_name_`+otherLangId);
           const otherMetaInput = document.getElementById(`product_seo_meta_title_`+otherLangId);
 
+            if (otherMetaInput) {
+            otherMetaInput.setAttribute('maxlength', '128');
+            otherMetaInput.setAttribute('data-max-length', '128');
+            
+            // Optional: update counter display if it exists
+            const counter = otherMetaInput.closest('.input-group').querySelector('.js-countable-text');
+            if (counter) {
+                counter.innerText = '128';
+            }
+            }
+
           if (otherNameInput && otherMetaInput) {
             otherMetaInput.value = otherNameInput.value;
           }
