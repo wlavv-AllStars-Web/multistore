@@ -2210,6 +2210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const input = container.querySelector('.token-input');
 
         input.addEventListener('keydown', function (e) {
+            console.log("Keydown detected:", e.key);
             if (e.key === 'Enter' || e.key === ',' ) {
                 e.preventDefault();
 
