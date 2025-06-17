@@ -2257,7 +2257,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHiddenInput(container);
         });
 
-        container.querySelector('input.token-input').addEventListener('keydown', function(e) {
+        container.querySelector('input.token-input').addEventListener('keydown', function (e) {
             if (e.key === 'Backspace' || e.key === 'Delete') {
                 deleteSelectedTokens(container); // Call the function to delete selected tokens
             }
@@ -2302,10 +2302,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to delete selected tokens
     function deleteSelectedTokens(container) {
-        // Get all the selected tokens inside this token field
-        const selectedTokens = Array.from(container.querySelectorAll('.token.selected'));
-        
+        // Get all the selected tokens inside this token field using mouse selection
+        const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(token => {
+            const label = token.querySelector('.token-label');
+            if (!label) return false; // Skip if no label
+
+            // Check if the label is selected (by mouse selection)
+            return window.getSelection().containsNode(label, true);
+        });
+
         // Remove the selected tokens from the DOM
         selectedTokens.forEach(token => {
             token.remove(); // Remove token element
