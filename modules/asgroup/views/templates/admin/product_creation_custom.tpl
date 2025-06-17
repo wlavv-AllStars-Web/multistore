@@ -1674,6 +1674,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 e.preventDefault();
 
                 let tag = input.value.trim();
+                console.log(tag)
                 if (tag.length === 0) {
                     input.value = '';
                     return;
