@@ -1693,7 +1693,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (!existingTags.includes(tag.toLowerCase())) {
                     createToken(container, tag, input);
                 } else {
-                    console.log(`Tag "${tag}" already exists. Skipping.`);
+                    console.log(`Tag "`+tag+`" already exists. Skipping.`);
                 }
 
                 input.value = '';
