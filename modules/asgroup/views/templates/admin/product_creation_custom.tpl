@@ -1665,46 +1665,34 @@
 document.addEventListener("DOMContentLoaded", function() {
     const tokenInputs = document.querySelectorAll('.token-input');
 
+
     tokenInputs.forEach(function(input) {
         const container = input.closest('.tokenfield');
 
         input.addEventListener('keydown', function(e) {
-            // Check for comma (`,`) or Enter key
-            if (e.key === ',' || e.key === 'Enter') {
+            if (e.key === 'Enter') {
                 e.preventDefault();
-                
-                const tag = input.value.trim().replace(/,$/, '');
+
+                let tag = input.value.trim();
                 if (tag.length === 0) {
                     input.value = '';
                     return;
                 }
 
-                // Check if the tag already exists
-                const existingTags = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
-                if (!existingTags.includes(tag)) {
+                // Get existing tags (case-insensitive match)
+                const existingTags = Array.from(container.querySelectorAll('.token')).map(
+                    t => t.dataset.value.toLowerCase()
+                );
+
+                console.log(existingTags)
+
+                if (!existingTags.includes(tag.toLowerCase())) {
                     createToken(container, tag, input);
                 }
 
                 input.value = '';
                 updateHiddenInput(container, input);
             }
-        });
-
-        // Optional: handle blur if you want to create token when user clicks away
-        input.addEventListener('blur', function() {
-            const tag = input.value.trim().replace(/,$/, '');
-            if (tag.length === 0) {
-                input.value = '';
-                return;
-            }
-
-            const existingTags = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
-            if (!existingTags.includes(tag)) {
-                createToken(container, tag, input);
-            }
-
-            input.value = '';
-            updateHiddenInput(container, input);
         });
     });
 
