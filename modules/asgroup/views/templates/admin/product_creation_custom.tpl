@@ -1202,7 +1202,7 @@
                     data-margin="{($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'} {$currency->sign} margin"
                     data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
                     data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price">
-                    <div class="price-summary-block">
+                    {* <div class="price-summary-block"> *}
                         {* <div class="price-summary-value price-tax-excluded-value">
                             {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='tax excl.' d='Admin.Catalog.Feature'}
@@ -1215,7 +1215,7 @@
                             {$product->unit_price|string_format:'%.2f'}&nbsp;{$currency->sign} /
                             {$product->unity|escape}
                         </div> *}
-                    </div>
+                    {* </div> *}
 
                     <div class="price-summary-block">
                         <div class="price-summary-value margin-value">
