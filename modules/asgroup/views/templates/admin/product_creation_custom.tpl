@@ -215,7 +215,7 @@
             </div>
 
             <div class="form-group">
-                {* <h3>Tags</h3> *}
+                <h3>Tags</h3>
                 {* <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
                 </p> *}
 
@@ -307,7 +307,6 @@
                         <i class="material-icons">open_in_new</i>Manage all files</a>
                 </div>
                 <div id="product_details_attachments">
-
                     <div class="form-group">
                         <a id="product_details_attachments_add_attachment_btn"
                             name="product[details][attachments][add_attachment_btn]"
@@ -318,7 +317,6 @@
                             <span class="btn-label">Add new file</span>
                         </a>
                     </div>
-
                     <div class="form-group">
                         {literal}
                             <div id="product_details_attachments_attached_files" data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
@@ -370,7 +368,7 @@
                                 class="entity-search-widget">
                             {/literal}
 
-                            <div class="search search-with-icon" style="display: none;">
+                            <div class="search search-with-icon">
                                 <span class="twitter-typeahead" style="position: relative; display: inline-block;">
                                     <input id="product_details_attachments_attached_files_search_input"
                                         class="entity-search-input form-control tt-input" autocomplete="off"
@@ -457,7 +455,7 @@
 
             {* inicio features *}
 
-            <div class="form-group" style="display: none;">
+            <div class="form-group">
                 <h3>Features</h3>
                 {literal}
                     <div id="product_details_features_feature_values" name="product[details][features][feature_values]"
@@ -1067,7 +1065,7 @@
                     </div>
 
                     <!-- Tax Rule -->
-                    <div class="form-group select-widget retail-price-tax-rules-group-id" style="display: none;">
+                    <div class="form-group select-widget retail-price-tax-rules-group-id">
                         <label for="product_pricing_retail_price_tax_rules_group_id_asg">Tax rule</label>
                         <select id="product_pricing_retail_price_tax_rules_group_id_asg"
                             name="product[asg][retail_price][tax_rules_group_id]" class="custom-select form-control">
@@ -1106,6 +1104,10 @@
             <div class="form-group">
                 <h2>
                     {l s='Specific prices' d='Admin.Catalog.Feature'}
+                    <span class="help-box" data-toggle="popover" data-trigger="hover" data-html="true"
+                        data-content="{l s='Set specific prices for customers meeting certain conditions.' d='Admin.Catalog.Help'}"
+                        data-placement="top">
+                    </span>
                 </h2>
 
                 <div id="specific-prices-container_asg">
@@ -1224,7 +1226,7 @@
                     data-margin="{($retail_price_tax_excl - $product->wholesale_price)|string_format:'%.2f'} {$currency->sign} margin"
                     data-margin-rate="{if $product->wholesale_price > 0}{(($retail_price_tax_excl - $product->wholesale_price) / $product->wholesale_price * 100)|string_format:'%.2f'}%{else}0%{/if} margin rate"
                     data-wholesale-price="{$product->wholesale_price|string_format:'%.2f'} {$currency->sign} cost price">
-                    <div class="price-summary-block" style="display: none;">
+                    <div class="price-summary-block">
                         <div class="price-summary-value price-tax-excluded-value">
                             {$retail_price_tax_excl|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='tax excl.' d='Admin.Catalog.Feature'}
@@ -1252,7 +1254,7 @@
                             {/if}
                             {l s='margin rate' d='Admin.Catalog.Feature'}
                         </div>
-                        <div class="price-summary-value wholesale-price-value" style="display: none;"
+                        <div class="price-summary-value wholesale-price-value">
                             {$product->wholesale_price|string_format:'%.2f'}&nbsp;{$currency->sign}
                             {l s='cost price' d='Admin.Catalog.Feature'}
                         </div>
@@ -2343,10 +2345,6 @@
     }
 
     #product_description-tab-nav {
-        display: none;
-    }
-
-    .translationsFields .maxLength {
         display: none;
     }
 </style>
