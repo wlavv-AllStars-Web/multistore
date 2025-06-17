@@ -1663,21 +1663,13 @@
     });
 
 document.addEventListener("DOMContentLoaded", function() {
-    let debounceTimeout; // To store the debounce timeout
-
     // Initialize tokenfield for each language input (tokenfield is an input for tag input)
     const tokenInputs = document.querySelectorAll('.token-input');
 
     tokenInputs.forEach(function(input) {
         // Initialize the tokenfield
         input.addEventListener('input', function(e) {
-            // Clear the previous debounce timeout
-            clearTimeout(debounceTimeout);
-
-            // Set a new timeout to update the hidden input after 300ms of inactivity
-            debounceTimeout = setTimeout(function() {
-                updateHiddenInput(input);
-            }, 300); // 300ms delay to wait before updating hidden input
+            updateHiddenInput(input);
         });
     });
 
