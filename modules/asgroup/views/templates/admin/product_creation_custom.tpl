@@ -1730,7 +1730,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateHiddenInput(container, input) {
         const tokens = Array.from(container.querySelectorAll('.token')).map(t => t.dataset.value);
         const langId = input.id.split('_')[3];
-        const hiddenInput = document.querySelector(`#product_seo_tags_${langId}`);
+        const hiddenInput = document.querySelector(`#product_seo_tags_`+langId+``);
         if (hiddenInput) {
             hiddenInput.value = tokens.join(', ');
         }
