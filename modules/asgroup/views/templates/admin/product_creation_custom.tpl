@@ -400,7 +400,7 @@
                                             </thead>
                                             <tbody class="entities-list">
                                                 {foreach from=$attachments item=file name=attachedFiles}
-                                                    <tr class="entity-item" style="display: contents;"
+                                                    <tr class="entity-item" style="display: revert-layer;"
                                                         id="product_details_attachments_attached_files_{$smarty.foreach.attachedFiles.index}">
                                                         <td>
                                                             <input type="hidden"
@@ -1125,7 +1125,7 @@
 
                     <div id="specific-price-list-container_asg">
                         <table class="table {if $specific_data|count > 0}d-block{else}d-none{/if}"
-                            id="specific-prices-list-table_asg">
+                            id="specific-prices-list-table_asg" style="width: fit-content;">
                             <thead class="thead-default">
                                 <tr>
                                     {* <th>{l s='ID'}</th>
