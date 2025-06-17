@@ -1676,7 +1676,7 @@ public function getASGProductCreation($product) {
         LEFT JOIN "._DB_PREFIX_."image i ON i.id_product = p.id_product AND i.cover = 1
         INNER JOIN "._DB_PREFIX_."product_shop ps ON p.id_product = ps.id_product
         WHERE a.id_product_1 = ".(int)$product->id." AND a.id_shop = ".(int)$this->context->shop->id."
-        AND pl.id_lang = ".(int)$id_lang."
+        AND pl.id_lang = ".(int)$id_lang." AND pl.id_shop = ".(int)$this->context->shop->id."
         AND ps.id_shop = ".(int)$this->context->shop->id."
         GROUP BY p.id_product
         ORDER BY pl.name ASC
