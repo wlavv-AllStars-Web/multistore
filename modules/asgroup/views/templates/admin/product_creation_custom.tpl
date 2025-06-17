@@ -1677,28 +1677,28 @@
 
 
         // Function to update the hidden input with the current tags (comma separated)
-function updateHiddenInput(input) {
-    console.log("Updating hidden input. Current value:", input.value);
-    if (!input || typeof input.value !== 'string') return;
-    // Get all tokens (tags) from the input (assumes tokens are separated by commas)
-    const tokenString = input.value.trim();
-    
-    console.log("Token String:", tokenString);
+        function updateHiddenInput(input) {
+            console.log("Updating hidden input. Current value:", input.value);
+            if (!input || typeof input.value !== 'string') return;
+            // Get all tokens (tags) from the input (assumes tokens are separated by commas)
+            const tokenString = input.value.trim();
+            
+            console.log("Token String:", tokenString);
 
-    // If there are tokens, update the hidden field
-    let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
+            // If there are tokens, update the hidden field
+            let tagValues = tokenString.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0).join(',');
 
-    console.log("Tag Values to Update:", tagValues);
+            console.log("Tag Values to Update:", tagValues);
 
-    // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
-    const langId = input.id.split('_')[3];
+            // Get language ID from the input field ID (e.g., product_seo_tags_1 => 1)
+            const langId = input.id.split('_')[3];
 
-    // Find the corresponding hidden input and update its value
-    const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
-    if (hiddenInput) {
-        hiddenInput.value = tagValues;
-    }
-}
+            // Find the corresponding hidden input and update its value
+            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId);
+            if (hiddenInput) {
+                hiddenInput.value = tagValues;
+            }
+        }
 
 
         // Initialize the tokenfield with commas as delimiters for each language
@@ -2212,56 +2212,6 @@ function updateHiddenInput(input) {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tokenfield').forEach(container => {
-        const input = container.querySelector('.token-input');
-
-        input.addEventListener('keydown', function (e) {
-
-            if (e.key === 'Enter' || e.key === ',' ) {
-                e.preventDefault();
-                const newTokenValue = input.value.trim();
-                console.log("New token value: [" + newTokenValue + "]");
-                if (!newTokenValue) return;
-
-                // Get existing token values (case-insensitive check)
-                const existingTokens = Array.from(container.querySelectorAll('.token'))
-                    .map(token => token.dataset.value.toLowerCase());
-
-                console.log("existingtokens ->"+ existingTokens)
-                if (existingTokens.includes(newTokenValue.toLowerCase())) {
-                    // Token already exists, do not add it
-                    input.value = '';  // Clear the input
-                    return;
-                }
-
-                // Add the new token
-                const tokenElement = document.createElement('div');
-                tokenElement.classList.add('token');
-                tokenElement.dataset.value = newTokenValue;
-
-                const label = document.createElement('span');
-                label.classList.add('token-label');
-                label.textContent = newTokenValue;
-
-                const close = document.createElement('a');
-                close.href = '#';
-                close.classList.add('close');
-                close.innerHTML = '&times;';
-                close.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    tokenElement.remove();
-                    updateHiddenInput(container);
-                });
-
-                tokenElement.appendChild(label);
-                tokenElement.appendChild(close);
-
-                container.insertBefore(tokenElement, input);
-
-                updateHiddenInput(container);
-
-                input.value = ''; // Clear the input after adding
-            }
-        });
 
         // Handle the paste event
         container.addEventListener('paste', function(e) {
