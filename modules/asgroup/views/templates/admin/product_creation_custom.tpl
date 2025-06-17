@@ -1626,19 +1626,6 @@
                     label.style.maxWidth = '951.213px'; // Optional: dynamic width?
                     label.textContent = tag;
 
-                    const comma = document.createElement('span')
-                    comma.className = 'token-comma'
-                    comma.textContent = ', ';
-
-                    // Style to make it invisible but copyable
-                    comma.style.position = 'absolute';
-                    comma.style.left = '-9999px';
-                    comma.style.height = '1px';
-                    comma.style.width = '1px';
-                    comma.style.overflow = 'hidden';
-
-                    label.appendChild(comma)
-
                     const close = document.createElement('a');
                     close.href = '#';
                     close.className = 'close';
@@ -2224,89 +2211,87 @@
         }
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.tokenfield').forEach(container => {
-            container.addEventListener('copy', function(e) {
-                e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tokenfield').forEach(container => {
+        container.addEventListener('copy', function(e) {
+            e.preventDefault();
 
-                // Get all the selected tokens inside this token field
-                const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
-                    token => {
-                        const label = token.querySelector('.token-label');
-                        if (!label) return false; // Skip if no label
+            // Get all the selected tokens inside this token field
+            const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
+                token => {
+                    const label = token.querySelector('.token-label');
+                    if (!label) return false; // Skip if no label
 
-                        // Check if the label is selected
-                        return window.getSelection().containsNode(label, true);
+                    // Check if the label is selected
+                    return window.getSelection().containsNode(label, true);
+                });
+
+            // If there are selected tokens, prepare the text to copy
+            if (selectedTokens.length > 0) {
+                const textToCopy = selectedTokens
+                    .map(token => token.dataset.value || token.querySelector('.token-label')
+                        ?.textContent.trim())
+                    .filter(Boolean)
+                    .join(', ');
+
+                // Set the copied text to clipboard
+                e.clipboardData.setData('text/plain', textToCopy);
+            }
+        });
+
+        const pasteInput = container.querySelector('input[type="text"]');
+        pasteInput.addEventListener('paste', function(e) {
+            const pastedText = e.clipboardData.getData('text/plain');
+            const tokens = pastedText.split(',').map(token => token.trim()).filter(Boolean);
+
+            // Insert each token into the container as a tag
+            tokens.forEach(token => {
+                const existingTags = Array.from(container.querySelectorAll('.token')).map(
+                    token => token.dataset.value);
+
+                // Only add the token if it's not already in the container
+                if (!existingTags.includes(token)) {
+                    const tokenElement = document.createElement('div');
+                    tokenElement.className = 'token';
+                    tokenElement.dataset.value = token;
+
+                    const label = document.createElement('span');
+                    label.className = 'token-label';
+                    label.textContent = token;
+
+                    const close = document.createElement('a');
+                    close.href = '#';
+                    close.className = 'close';
+                    close.innerHTML = '&times;';
+                    close.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        tokenElement.remove();
+                        updateHiddenInputAfterPaste(container);
                     });
 
-                // If there are selected tokens, prepare the text to copy
-                if (selectedTokens.length > 0) {
-                    const textToCopy = selectedTokens
-                        .map(token => token.dataset.value || token.querySelector('.token-label')
-                            ?.textContent.trim())
-                        .filter(Boolean)
-                        .join(', ');
-
-                    // Set the copied text to clipboard
-                    e.clipboardData.setData('text/plain', textToCopy);
+                    tokenElement.appendChild(label);
+                    tokenElement.appendChild(close);
+                    container.insertBefore(tokenElement, container.querySelector('.token-input'));
                 }
             });
 
-
-            const pasteInput = container.querySelector('input[type="text"]');
-            pasteInput.addEventListener('paste', function(e) {
-                const pastedText = e.clipboardData.getData('text/plain');
-                const tokens = pastedText.split(',').map(token => token.trim()).filter(Boolean);
-
-                // Insert each token into the container as a tag
-                tokens.forEach(token => {
-                    const existingTags = Array.from(container.querySelectorAll(
-                        '.token')).map(token => token.dataset.value);
-
-                    // Only add the token if it's not already in the container
-                    if (!existingTags.includes(token)) {
-                        const tokenElement = document.createElement('div');
-                        tokenElement.className = 'token';
-                        tokenElement.dataset.value = token;
-
-                        const label = document.createElement('span');
-                        label.className = 'token-label';
-                        label.textContent = token;
-
-                        const close = document.createElement('a');
-                        close.href = '#';
-                        close.className = 'close';
-                        close.innerHTML = '&times;';
-                        close.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            tokenElement.remove();
-                            updateHiddenInputAfterPaste(container);
-                        });
-
-                        tokenElement.appendChild(label);
-                        tokenElement.appendChild(close);
-                        container.insertBefore(tokenElement, container.querySelector(
-                            '.token-input'));
-                    }
-                });
-
-                updateHiddenInputAfterPaste(container);
-            });
+            updateHiddenInputAfterPaste(container);
         });
-
-        // Function to update the hidden input after paste for this specific token container
-        function updateHiddenInputAfterPaste(container) {
-            const tokens = container.querySelectorAll('.token');
-            const values = Array.from(tokens).map(token => token.dataset.value);
-            
-            // Find the corresponding hidden input field inside the container
-            const hiddenInput = container.querySelector('input[type="text"]');
-            if (hiddenInput) {
-                hiddenInput.value = values.join(', ');
-            }
-        }
-
     });
+
+    // Function to update the hidden input after paste for this specific token container
+    function updateHiddenInputAfterPaste(container) {
+        const tokens = container.querySelectorAll('.token');
+        const values = Array.from(tokens).map(token => token.dataset.value);
+        
+        // Find the corresponding hidden input field inside the container
+        const hiddenInput = container.querySelector('input[type="text"]');
+        if (hiddenInput) {
+            hiddenInput.value = values.join(', ');
+        }
+    }
+});
+
 </script>
 
 
