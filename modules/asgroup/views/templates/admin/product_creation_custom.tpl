@@ -2224,21 +2224,36 @@
     });
 
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     document.querySelectorAll('.tokenfield').forEach(container => {
-    //         container.addEventListener('copy', function(e) {
-    //         e.preventDefault();
+document.querySelectorAll('.tokenfield').forEach(container => {
+    container.addEventListener('copy', function(e) {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
 
-    //         const tokens = Array.from(container.querySelectorAll('.token'))
-    //             .map(token => token.dataset.value)
-    //             .filter(Boolean);
+        const range = selection.getRangeAt(0);
+        if (!range || !selection.toString().trim()) {
+            return; // Let normal copy happen if nothing meaningful selected
+        }
 
-    //         const textToCopy = tokens.join(', ');
+        // Clone the selected DOM fragment
+        const tempDiv = document.createElement('div');
+        tempDiv.appendChild(range.cloneContents());
 
-    //         e.clipboardData.setData('text/plain', textToCopy);
-    //         });
-    //     });
-    // });
+        // Extract token-label text only
+        const tokens = Array.from(tempDiv.querySelectorAll('.token-label'))
+            .map(el => el.textContent.trim())
+            .filter(Boolean);
+
+        if (tokens.length === 0) {
+            // No tokens selected, let normal copy happen
+            return;
+        }
+
+        // Prevent default and set our formatted copy text
+        e.preventDefault();
+        e.clipboardData.setData('text/plain', tokens.join(', '));
+    });
+});
+
 
 </script>
 
