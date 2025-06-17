@@ -215,9 +215,6 @@
             </div>
 
             <div class="form-group">
-                <h3>Tags</h3>
-                {* <p class="subtitle">Enter the keywords that customers might search for when looking for this product.
-                </p> *}
 
                 <div class="" style="display: flex;gap: 1rem;">
                     <div class="input-group locale-input-group js-locale-input-group d-flex" id="product_seo_tags"
@@ -307,6 +304,7 @@
                         <i class="material-icons">open_in_new</i>Manage all files</a>
                 </div>
                 <div id="product_details_attachments">
+
                     <div class="form-group">
                         <a id="product_details_attachments_add_attachment_btn"
                             name="product[details][attachments][add_attachment_btn]"
@@ -317,6 +315,7 @@
                             <span class="btn-label">Add new file</span>
                         </a>
                     </div>
+
                     <div class="form-group">
                         {literal}
                             <div id="product_details_attachments_attached_files" data-prototype-template="    &lt;tr id=&quot;product_details_attachments_attached_files___entity_index__&quot; class=&quot;entity-item&quot;&gt;
@@ -368,7 +367,7 @@
                                 class="entity-search-widget">
                             {/literal}
 
-                            <div class="search search-with-icon">
+                            <div class="search search-with-icon" style="display: none;">
                                 <span class="twitter-typeahead" style="position: relative; display: inline-block;">
                                     <input id="product_details_attachments_attached_files_search_input"
                                         class="entity-search-input form-control tt-input" autocomplete="off"
