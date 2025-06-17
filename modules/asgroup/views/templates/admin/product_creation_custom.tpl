@@ -1558,107 +1558,100 @@
     // 
     let buttonSaveProductFooter = document.querySelector("#product_footer_save")
 
-    function generateTagsASG() {
-        const tagNames = {};
+function generateTagsASG() {
+    const tagNames = {};
 
-        {foreach from=$languages item=language}
-            tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
+    {foreach from=$languages item=language}
+        tagNames[{$language.id_lang}] = "{$product->name[$language.id_lang]|escape:'javascript'}";
+    {/foreach}
+
+    const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
+    const tagRef = "{$product->reference|escape:'javascript'}";
+    const tagRefVariations = [];
+
+    {foreach from=$combinations item=combination}
+        tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
+    {/foreach}
+
+    const tagCompats = new Set();
+
+    {if isset($compats) && is_array($compats)}
+        {foreach from=$compats item=compat}
+            {if !empty($compat.brand)}
+                tagCompats.add("{$compat.brand|escape:'javascript'}");
+            {/if}
+            {if !empty($compat.model)}
+                tagCompats.add("{$compat.model|escape:'javascript'}");
+            {/if}
+            {if !empty($compat.type)}
+                tagCompats.add("{$compat.type|escape:'javascript'}");
+            {/if}
+            {if !empty($compat.version)}
+                tagCompats.add("{$compat.version|escape:'javascript'}");
+            {/if}
         {/foreach}
+    {/if}
 
-        const tagBrand = "{$product->manufacturer_name|escape:'javascript'}";
-        const tagRef = "{$product->reference|escape:'javascript'}";
-        const tagRefVariations = [];
+    const uniqueTags = Array.from(tagCompats);
 
-        {foreach from=$combinations item=combination}
-            tagRefVariations.push("{$combination['reference']|escape:'javascript'}");
-        {/foreach}
+    // Loop through each language and apply tags
+    Object.keys(tagNames).forEach((langId) => {
+        const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
 
+        const filteredTags = allTags
+            .filter(tag => typeof tag === 'string' && tag.trim().length >= 2)  // Adjust this to ensure no truncation
+            .map(tag => tag.trim());
 
-        const tagCompats = new Set();
+        const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
+        const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset.value);
 
-        {if isset($compats) && is_array($compats)}
-            {foreach from=$compats item=compat}
-                {if !empty($compat.brand)}
-                    tagCompats.add("{$compat.brand|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.model)}
-                    tagCompats.add("{$compat.model|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.type)}
-                    tagCompats.add("{$compat.type|escape:'javascript'}");
-                {/if}
-                {if !empty($compat.version)}
-                    tagCompats.add("{$compat.version|escape:'javascript'}");
-                {/if}
-            {/foreach}
-        {/if}
+        // Clear previous tags
+        // container.querySelectorAll('.token').forEach(el => el.remove());
 
-        const uniqueTags = Array.from(tagCompats);
+        filteredTags.forEach(tag => {
+            if (!existingTags.includes(tag)) {
+                const token = document.createElement('div');
+                token.className = 'token';
+                token.dataset.value = tag;
 
-        // Loop through each language and apply tags
-        Object.keys(tagNames).forEach((langId) => {
-            // const tagName = tagNames[langId];
+                const label = document.createElement('span');
+                label.className = 'token-label';
+                label.style.maxWidth = '951.213px';
+                label.textContent = tag;
 
-            const allTags = [tagBrand, tagRef, ...tagRefVariations, ...uniqueTags];
+                const close = document.createElement('a');
+                close.href = '#';
+                close.className = 'close';
+                close.tabIndex = -1;
+                close.innerHTML = '&times;';
+                close.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    token.remove();
+                    updateHiddenInputByLangId(langId);
+                });
 
-            const filteredTags = allTags
-                .filter(tag => typeof tag === 'string' && tag.trim().length >= 2)
-                .map(tag => tag.trim());
+                token.appendChild(label);
+                token.appendChild(close);
 
-            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
-
-            const existingTags = Array.from(container.querySelectorAll('.token')).map(token => token.dataset
-                .value);
-
-            // Clear previous tags
-            // container.querySelectorAll('.token').forEach(el => el.remove());
-
-
-            filteredTags.forEach(tag => {
-                // Only add the tag if it doesn't already exist in the container
-                if (!existingTags.includes(tag)) {
-                    const token = document.createElement('div');
-                    token.className = 'token';
-                    token.dataset.value = tag;
-
-                    const label = document.createElement('span');
-                    label.className = 'token-label';
-                    label.style.maxWidth = '951.213px'; // Optional: dynamic width?
-                    label.textContent = tag;
-
-                    const close = document.createElement('a');
-                    close.href = '#';
-                    close.className = 'close';
-                    close.tabIndex = -1;
-                    close.innerHTML = '&times;';
-                    close.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        token.remove();
-                        updateHiddenInputByLangId(langId);
-                    });
-
-                    token.appendChild(label);
-                    token.appendChild(close);
-
-                    container.insertBefore(token, container.querySelector('.token-input'));
-                }
-            });
-
-            // Update the hidden field for this lang
-            updateHiddenInputByLangId(langId);
+                container.insertBefore(token, container.querySelector('.token-input'));
+            }
         });
 
-        function updateHiddenInputByLangId(langId) {
-            const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
-            const tokens = container.querySelectorAll('.token');
-            const values = Array.from(tokens).map(token => token.dataset.value);
-            const hiddenInput = document.querySelector(`#product_seo_tags_` + langId + ``);
-            if (hiddenInput) {
-                hiddenInput.value = values.join(', ');
-            }
-            buttonSaveProductFooter.removeAttribute('disabled'); // Enable the save button
+        updateHiddenInputByLangId(langId);
+    });
+
+    function updateHiddenInputByLangId(langId) {
+        const container = document.querySelector(`#product_seo_tags_` + langId + ``).closest('.tokenfield');
+        const tokens = container.querySelectorAll('.token');
+        const values = Array.from(tokens).map(token => token.dataset.value);
+        const hiddenInput = document.querySelector(`#product_seo_tags_` + langId + ``);
+        if (hiddenInput) {
+            hiddenInput.value = values.join(', ');
         }
+        buttonSaveProductFooter.removeAttribute('disabled');
     }
+}
+
 
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.js-taggable-field input[type="text"]:first-child').forEach(function(input) {
