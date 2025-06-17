@@ -1245,7 +1245,7 @@
         <div class="form-group">
             <h3>Related Products</h3>
             <input type="text" id="related-product-autocomplete" class="form-control"
-                placeholder="Type reference, name, id product (min 3 chars)" autocomplete="off" />
+                placeholder="Reference, Name or id product (min 3 chars)" autocomplete="off" />
             <ul id="related-products-list" class="entities-list mt-3">
                 {foreach from=$related_products item=rp}
                     <li class="related-product entity-item col-lg-2">
