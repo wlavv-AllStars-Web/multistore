@@ -2314,16 +2314,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const selection = window.getSelection();
             const selectedText = selection.toString().trim();
 
-            console.log(selectedText)
-
             if (selectedText.length > 0) {
-                // Go through all tokens and check if the selected text matches the token's label
+                // Go through all tokens and check if the selected text matches any part of the token's label
                 container.querySelectorAll('.token').forEach(token => {
                     const label = token.querySelector('.token-label');
-                    if (label && label.textContent.trim() === selectedText) {
-                        token.classList.add('active'); // Mark the token as active
-                    } else {
-                        token.classList.remove('active'); // Remove active class from non-matching tokens
+                    if (label) {
+                        const tokenText = label.textContent.trim();
+
+                        // Check if the selected text is part of the token's text
+                        if (tokenText.includes(selectedText)) {
+                            token.classList.add('active'); // Mark the token as active
+                        } else {
+                            token.classList.remove('active'); // Remove active class from non-matching tokens
+                        }
                     }
                 });
             }
