@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   // 2. Inject the checkbox and update data-url when modal opens
   $(document).on('shown.bs.modal', modalSelector, function () {
-    const $modalBody = $(this).find('.modal-body');
+    const $modalBody = $(this).find('#product-grid-confirm-modal .modal-body');
 
     // Inject checkbox only once
     if ($modalBody.find('#duplicate-images-checkbox').length === 0) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
   // 4. Function to update the data-url based on checkbox state
   function updateDataUrl() {
     console.log("change checkbox -> "+ ( $('#duplicate-images-checkbox').is(':checked') ? 1 : 0 ))
-    if ($lastClickedDuplicateBtn) {
+    
       const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
       console.log("checkboxValue -> "+checkboxValue)
       let url = $lastClickedDuplicateBtn.attr('data-url');
@@ -47,6 +47,6 @@ $(document).ready(function () {
 
       // Set the updated URL
       $lastClickedDuplicateBtn.attr('data-url', url);
-    }
+    
   }
 });
