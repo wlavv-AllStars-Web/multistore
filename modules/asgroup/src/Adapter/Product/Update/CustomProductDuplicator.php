@@ -28,6 +28,76 @@ use Tools;
 
 class CustomProductDuplicator extends CoreProductDuplicator
 {
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
+
+    /**
+     * @var HookDispatcherInterface
+     */
+    private $hookDispatcher;
+
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
+     * @var StringModifierInterface
+     */
+    private $stringModifier;
+
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
+     * @var string
+     */
+    private $dbPrefix;
+
+    /**
+     * @var CombinationRepository
+     */
+    private $combinationRepository;
+
+    /**
+     * @var ProductSupplierRepository
+     */
+    private $productSupplierRepository;
+
+    /**
+     * @var SpecificPriceRepository
+     */
+    private $specificPriceRepository;
+
+    /**
+     * @var StockAvailableRepository
+     */
+    private $stockAvailableRepository;
+
+    /**
+     * @var ProductStockUpdater
+     */
+    private $productStockUpdater;
+
+    /**
+     * @var CombinationStockUpdater
+     */
+    private $combinationStockUpdater;
+
+    /**
+     * @var ProductImageRepository
+     */
+    private $productImageRepository;
+
+    /**
+     * @var ProductImagePathFactory
+     */
+    private $productImageSystemPathFactory;
+
     public function __construct(
         ProductRepository $productRepository,
         HookDispatcherInterface $hookDispatcher,
@@ -44,22 +114,46 @@ class CustomProductDuplicator extends CoreProductDuplicator
         ProductImageRepository $productImageRepository,
         ProductImagePathFactory $productImageSystemPathFactory
     ) {
-        parent::__construct(
-            $productRepository,
-            $hookDispatcher,
-            $translator,
-            $stringModifier,
-            $connection,
-            $dbPrefix,
-            $combinationRepository,
-            $productSupplierRepository,
-            $specificPriceRepository,
-            $stockAvailableRepository,
-            $productStockUpdater,
-            $combinationStockUpdater,
-            $productImageRepository,
-            $productImageSystemPathFactory
-        );
+        $this->productRepository = $productRepository;
+        $this->hookDispatcher = $hookDispatcher;
+        $this->translator = $translator;
+        $this->stringModifier = $stringModifier;
+        $this->connection = $connection;
+        $this->dbPrefix = $dbPrefix;
+        $this->combinationRepository = $combinationRepository;
+        $this->productSupplierRepository = $productSupplierRepository;
+        $this->specificPriceRepository = $specificPriceRepository;
+        $this->stockAvailableRepository = $stockAvailableRepository;
+        $this->productStockUpdater = $productStockUpdater;
+        $this->combinationStockUpdater = $combinationStockUpdater;
+        $this->productImageRepository = $productImageRepository;
+        $this->productImageSystemPathFactory = $productImageSystemPathFactory;
+    }
+
+        /**
+     * Fetches rows from a given table based on conditions
+     *
+     * @param string $table The database table to query
+     * @param array $conditions The conditions (where clauses) for the query
+     * @param string $errorMessage Error message to throw in case of failure
+     * @return array The result set
+     * @throws CannotDuplicateProductException
+     */
+    private function getRowsFromTable(string $table, array $conditions, string $errorMessage): array
+    {
+        // Construct SQL query with conditions
+        $sql = 'SELECT * FROM `' . _DB_PREFIX_ . $table . '` WHERE ' . implode(' AND ', array_map(function ($key, $value) {
+            return '`' . $key . '` = ' . (int) $value;
+        }, array_keys($conditions), $conditions));
+
+        // Execute the query and fetch results
+        $result = Db::getInstance()->executeS($sql);
+
+        if (!$result) {
+            throw new CannotDuplicateProductException($errorMessage);
+        }
+
+        return $result;
     }
 
         public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
@@ -84,19 +178,18 @@ class CustomProductDuplicator extends CoreProductDuplicator
         return $newProductId;
     }
 
-    private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
+ private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
-
-        // Check if duplicateimages is set to 1, if so, duplicate the images
         if ((int) Tools::getValue('duplicateimages') === 1) {
-            // Proceed with the image duplication logic as it is
-            $oldImages = $this->getRows('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
-
+            // Use the new getRowsFromTable method
+            $oldImages = $this->getRowsFromTable('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
             $imagesMapping = [];
             $fs = new Filesystem();
+            
             foreach ($oldImages as $oldImage) {
                 $oldImageId = new ImageId((int) $oldImage['id_image']);
                 $newImage = $this->productImageRepository->duplicate($oldImageId, new ProductId($newProductId), $shopConstraint);
+
                 if (null === $newImage) {
                     continue;
                 }
@@ -104,7 +197,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
                 $newImageId = new ImageId((int) $newImage->id);
                 $imageTypes = $this->productImageRepository->getProductImageTypes();
 
-                // Copy the generated images instead of generating them is more performant
                 foreach ($imageTypes as $imageType) {
                     $fs->copy(
                         $this->productImageSystemPathFactory->getPathByType($oldImageId, $imageType->name),
@@ -112,40 +204,33 @@ class CustomProductDuplicator extends CoreProductDuplicator
                     );
                 }
 
-                // Also copy original
                 $oldOriginalPath = $this->productImageSystemPathFactory->getPath($oldImageId);
                 $newOriginalPath = $this->productImageSystemPathFactory->getPath($newImageId);
-                $fs->copy(
-                    $oldOriginalPath,
-                    $newOriginalPath
-                );
+                $fs->copy($oldOriginalPath, $newOriginalPath);
 
-                // And fileType
                 $originalFileTypePath = dirname($oldOriginalPath) . '/fileType';
                 if (file_exists($originalFileTypePath)) {
-                    $fs->copy(
-                        $originalFileTypePath,
-                        dirname($newOriginalPath) . '/fileType'
-                    );
+                    $fs->copy($originalFileTypePath, dirname($newOriginalPath) . '/fileType');
                 }
 
                 $imagesMapping[$oldImageId->getValue()] = $newImageId->getValue();
             }
 
-            $oldCombinationImages = $this->getRows('product_attribute_image', ['id_image' => array_keys($imagesMapping)], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
+            $oldCombinationImages = $this->getRowsFromTable('product_attribute_image', ['id_image' => array_keys($imagesMapping)], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
             $newCombinationImages = [];
+
             foreach ($oldCombinationImages as $oldCombinationImage) {
                 $newCombinationImages[] = [
                     'id_image' => $imagesMapping[(int) $oldCombinationImage['id_image']],
                     'id_product_attribute' => $combinationMatching[(int) $oldCombinationImage['id_product_attribute']],
                 ];
             }
+
             $this->bulkInsert('product_attribute_image', $newCombinationImages, CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
         } else {
-            // If duplicateimages is not 1, skip the image duplication
-            // Optional: You can log this or add additional handling for non-duplication scenarios
             echo 'Images are not being duplicated.';
         }
     }
+
     
 }
