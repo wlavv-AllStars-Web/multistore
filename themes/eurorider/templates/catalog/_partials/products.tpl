@@ -128,11 +128,11 @@
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" id_compat="{$compat['id_compat']}">
       <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
           <div style="width: 100%;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
-            <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0 auto;max-width: 300px; position: relative; top: -5px;pointer-events: none;max-height: 157px;">
+            <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0;max-width: 300px;width:100%;pointer-events: none;height:auto;">
           </div>
           <div class="current-car-content">
             {if !$compat['subscribed']}
-            <div class="addToMyCarsButton" style="position: relative; top: -5px;cursor: pointer; color: var(--asm-color);font-weight:600;"
+            <div class="addToMyCarsButton" style="cursor: pointer; color: var(--asm-color);font-weight:600;font-size:1rem;"
             onclick="addToMyCars({$compat['id_compat']})">
               {l s='Click to receive updates about new products for this bike' d='Shop.Theme.ProductList'}
             </div>
