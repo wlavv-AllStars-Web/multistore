@@ -58,28 +58,26 @@
     {$cms.content nofilter}
 
     {if $cms.id == 4}
-        <div style="max-width: 1440px; margin: auto;">
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-            
-            {* First 16 images in normal 4-column grid *}
-            {section name=i loop=16}
-                {assign var=imgNum value=$smarty.section.i.index+1}
-                <div>
-                <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
-                </div>
-            {/section}
+    <div style="max-width: 1440px; margin: auto;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
 
-            {* Special layout for the last 7 images (17 to 23, with 23 twice) *}
-            {assign var=extraImages value=[17, 18, 19, 23, 20, 21, 22, 23]}
-            {foreach from=$extraImages item=imgNum}
-                <div>
-                <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
-                </div>
-            {/foreach}
-
+        {* First 22 images (1 to 22) *}
+        {section name=i loop=22}
+            {assign var=imgNum value=$smarty.section.i.index+1}
+            <div>
+            <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
             </div>
+        {/section}
+
+        {* Image 23 spans 2 rows *}
+        <div style="grid-row: span 2;">
+            <img src="/img/eurorider/cms/aboutus/23.jpg" alt="Image 23" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
+
+        </div>
+    </div>
     {/if}
+
 
     {if $cms.id == 30}
         <script>
