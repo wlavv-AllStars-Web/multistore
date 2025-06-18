@@ -18,7 +18,8 @@ services:
   #   tags:
   #     - { name: 'form.type', alias: 'asgroup_seo_type' }
 
-  PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType:
+  form.type.sell.product.seo.seo_type:
+    class: 'PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType'
     parent: 'form.type.translatable.aware'
     public: true
     arguments:
