@@ -30,7 +30,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
         Connection $connection,
         string $dbPrefix,
         CombinationRepository $combinationRepository,
-        ProductSupplierRepository $productSupplierRepository,
         SpecificPriceRepository $specificPriceRepository,
         StockAvailableRepository $stockAvailableRepository,
         ProductStockUpdater $productStockUpdater,
