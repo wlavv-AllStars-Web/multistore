@@ -21,27 +21,41 @@ $(document).ready(function () {
       `);
     }
 
-    // Attach handler once each time modal is shown
-    const $confirmBtn = $(this).find('.btn-confirm-submit');
-    $confirmBtn.off('click.custom-duplicate'); // Remove previous to avoid stacking
-    $confirmBtn.on('click.custom-duplicate', function (e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
+    // Listen for checkbox state change
+    $('#duplicate-images-checkbox').on('change', function () {
+      updateDuplicateUrl();
+    });
 
+    // Initial URL update based on the checkbox state
+    updateDuplicateUrl();
+  });
+
+  // Function to update the URL parameter based on checkbox state
+  function updateDuplicateUrl() {
+    if ($lastClickedDuplicateBtn) {
       const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+      let url = $lastClickedDuplicateBtn.attr('data-url') || '';
 
-      if ($lastClickedDuplicateBtn) {
-        let url = $lastClickedDuplicateBtn.attr('data-url') || '';
+      // Clean old duplicateimages param
+      url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
 
-        // Clean old param
-        url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
+      // Add new duplicateimages param
+      const separator = url.includes('?') ? '&' : '?';
+      url += `${separator}duplicateimages=${checkboxValue}`;
 
-        const separator = url.includes('?') ? '&' : '?';
-        url += `${separator}duplicateimages=${checkboxValue}`;
+      // Update the URL of the button (this could be used later)
+      $lastClickedDuplicateBtn.attr('data-url', url);
+    }
+  }
 
-        // Trigger redirect manually
+  // Handle the actual submission or redirection when the confirmation button is clicked
+  $(document).on('click', '.btn-confirm-submit', function (e) {
+    if ($lastClickedDuplicateBtn) {
+      let url = $lastClickedDuplicateBtn.attr('data-url');
+      if (url) {
+        // Trigger the redirection
         window.location.href = url;
       }
-    });
+    }
   });
 });
