@@ -60,6 +60,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
     private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
+        pre(Tools::getAllValues());
         // Check if duplicateimages is set to 1, if so, duplicate the images
         if ((int) Tools::getValue('duplicateimages') === 1) {
             // Proceed with the image duplication logic as it is
