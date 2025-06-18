@@ -2,40 +2,49 @@ $(document).ready(function () {
   const modalSelector = '#product-grid-confirm-modal';
   let $lastClickedDuplicateBtn = null;
 
-  // 1. Track the clicked duplicate button
+  // Track the clicked duplicate button
   $(document).on('click', '.js-submit-row-action.grid-duplicate', function () {
     $lastClickedDuplicateBtn = $(this);
   });
 
-  // 2. Inject the checkbox and update data-url when modal opens
+  // When modal opens
   $(document).on('shown.bs.modal', modalSelector, function () {
     const $modalBody = $(this).find('.modal-body');
 
-    // Inject checkbox only once
+    // Inject the checkbox if not already added
     if ($modalBody.find('#duplicate-images-checkbox').length === 0) {
-      $modalBody.append(`
+      const $checkboxContainer = $(`
         <div class="form-group mt-3">
-          <input type="checkbox" id="duplicate-images-checkbox" checked />
+          <input type="checkbox" id="duplicate-images-checkbox" />
           <label for="duplicate-images-checkbox">Also duplicate images</label>
         </div>
       `);
+
+      $modalBody.append($checkboxContainer);
+
+      // Listen for checkbox changes and update data-url
+      $checkboxContainer.find('#duplicate-images-checkbox').on('change', function () {
+        updateDuplicateUrl();
+      });
     }
 
-    // Update the data-url on modal open using checkbox state
-    if ($lastClickedDuplicateBtn) {
-      const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
-
-      let url = $lastClickedDuplicateBtn.attr('data-url');
-
-      // Remove old param if present
-      url = url.replace(/([?&])duplicateimages=\d(&|$)/, '$1').replace(/&$/, '');
-
-      // Add new param
-      const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}duplicateimages=${checkboxValue}`;
-
-      // Set the updated URL
-      $lastClickedDuplicateBtn.attr('data-url', url);
-    }
+    // Initial update on modal open (in case checkbox is toggled before confirmation)
+    updateDuplicateUrl();
   });
+
+  // Update the URL parameter based on checkbox state
+  function updateDuplicateUrl() {
+    if (!$lastClickedDuplicateBtn) return;
+
+    const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+    let url = $lastClickedDuplicateBtn.attr('data-url');
+
+    // Remove existing duplicateimages param
+    url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
+
+    const separator = url.includes('?') ? '&' : '?';
+    url += `${separator}duplicateimages=${checkboxValue}`;
+
+    $lastClickedDuplicateBtn.attr('data-url', url);
+  }
 });
