@@ -58,6 +58,31 @@ class CustomProductDuplicator extends CoreProductDuplicator
         );
     }
 
+        public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
+    {
+        // Custom logic before duplicating the product (e.g., check duplicate images flag)
+        if ((int) Tools::getValue('duplicateimages') === 0) {
+            // If duplicateimages is set to 0, you can modify or skip image duplication
+            // For example, you could set a flag or skip calling the duplicateImages method
+            echo 'Images will not be duplicated.';
+        }
+
+        echo 'override';
+        pre(Tools::getAllValues()); 
+
+        // Call the parent method to ensure normal duplication behavior
+        $newProductId = parent::duplicate($productId, $shopConstraint);
+
+        // Optionally, after duplication, check the images flag and handle accordingly
+        if ((int) Tools::getValue('duplicateimages') === 1) {
+            // If duplicateimages is set to 1, duplicate the images
+            $this->duplicateImages($productId->getValue(), $newProductId->getValue(), [], $shopConstraint);
+        }
+
+        // Return the new product ID
+        return $newProductId;
+    }
+
     private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
         pre(Tools::getAllValues());
