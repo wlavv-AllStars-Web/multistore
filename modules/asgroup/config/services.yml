@@ -39,6 +39,12 @@ services:
     tags:
       - { name: form.type }
 
+  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\BulkDuplicateProductHandler:
+    arguments:
+      - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator'
+    tags:
+      - name: tactician.handler
+        command: PrestaShop\PrestaShop\Core\Domain\Product\Command\BulkDuplicateProductCommand
 
   PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
     arguments:
