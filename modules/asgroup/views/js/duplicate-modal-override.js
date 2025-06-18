@@ -32,7 +32,7 @@ $(document).ready(function () {
 
       // Add new param
       const separator = url.includes('?') ? '&' : '?';
-      url += ${separator}duplicateimages=${checkboxValue};
+      url += `${separator}duplicateimages=${checkboxValue}`;
 
       // Set the updated URL
       $lastClickedDuplicateBtn.attr('data-url', url);
