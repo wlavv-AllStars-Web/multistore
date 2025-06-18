@@ -177,6 +177,8 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
         // asg
         $newProduct->housing = '';
+        $newProduct->save();
+
         $this->duplicateRelations($oldProductId, $newProductId, $shopConstraint, $newProduct->getProductType());
 
         if ($newProduct->hasAttributes()) {
