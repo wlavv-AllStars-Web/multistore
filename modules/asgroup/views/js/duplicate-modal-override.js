@@ -32,9 +32,10 @@ $(document).ready(function () {
 
   // 4. Function to update the data-url based on checkbox state
   function updateDataUrl() {
-    console.log("change checkbox -> "+ $('#duplicate-images-checkbox').is(':checked') ? 1 : 0)
+    console.log("change checkbox -> "+ ( $('#duplicate-images-checkbox').is(':checked') ? 1 : 0 ))
     if ($lastClickedDuplicateBtn) {
       const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+      console.log("checkboxValue -> "+checkboxValue)
       let url = $lastClickedDuplicateBtn.attr('data-url');
 
       // Remove old param if present
