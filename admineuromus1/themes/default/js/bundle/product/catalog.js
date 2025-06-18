@@ -350,6 +350,8 @@ function unitProductAction(element, action) {
   a = action.split(' '); action = a[0]; params = (a.length == 1) ? '' : a[1]; //Asg
   const form = $('form#product_catalog_list');
 
+  alert('paulo'+ action)
+
   // save action URL for redirection and update to post to bulk action instead
   // using form action URL allow to get route attributes and stay on the same page & ordering.
   const urlHandler = $(element).closest('[data-uniturl]');
