@@ -98,37 +98,39 @@ class CustomProductDuplicator extends CoreProductDuplicator
      */
     private $productImageSystemPathFactory;
 
-    public function __construct(
-        ProductRepository $productRepository,
-        HookDispatcherInterface $hookDispatcher,
-        TranslatorInterface $translator,
-        StringModifierInterface $stringModifier,
-        Connection $connection,
-        string $dbPrefix,
-        CombinationRepository $combinationRepository,
-        ProductSupplierRepository $productSupplierRepository,
-        SpecificPriceRepository $specificPriceRepository,
-        StockAvailableRepository $stockAvailableRepository,
-        ProductStockUpdater $productStockUpdater,
-        CombinationStockUpdater $combinationStockUpdater,
-        ProductImageRepository $productImageRepository,
-        ProductImagePathFactory $productImageSystemPathFactory
-    ) {
-        $this->productRepository = $productRepository;
-        $this->hookDispatcher = $hookDispatcher;
-        $this->translator = $translator;
-        $this->stringModifier = $stringModifier;
-        $this->connection = $connection;
-        $this->dbPrefix = $dbPrefix;
-        $this->combinationRepository = $combinationRepository;
-        $this->productSupplierRepository = $productSupplierRepository;
-        $this->specificPriceRepository = $specificPriceRepository;
-        $this->stockAvailableRepository = $stockAvailableRepository;
-        $this->productStockUpdater = $productStockUpdater;
-        $this->combinationStockUpdater = $combinationStockUpdater;
-        $this->productImageRepository = $productImageRepository;
-        $this->productImageSystemPathFactory = $productImageSystemPathFactory;
-    }
+public function __construct(
+    ProductRepository $productRepository,
+    HookDispatcherInterface $hookDispatcher,
+    TranslatorInterface $translator,
+    StringModifierInterface $stringModifier,
+    Connection $connection,
+    string $dbPrefix,
+    CombinationRepository $combinationRepository,
+    ProductSupplierRepository $productSupplierRepository,
+    SpecificPriceRepository $specificPriceRepository,
+    StockAvailableRepository $stockAvailableRepository,
+    ProductStockUpdater $productStockUpdater,
+    CombinationStockUpdater $combinationStockUpdater,
+    ProductImageRepository $productImageRepository,
+    ProductImagePathFactory $productImageSystemPathFactory
+) {
+    parent::__construct(
+        $productRepository,
+        $hookDispatcher,
+        $translator,
+        $stringModifier,
+        $connection,
+        $dbPrefix,
+        $combinationRepository,
+        $productSupplierRepository,
+        $specificPriceRepository,
+        $stockAvailableRepository,
+        $productStockUpdater,
+        $combinationStockUpdater,
+        $productImageRepository,
+        $productImageSystemPathFactory
+    );
+}
 
         /**
      * Fetches rows from a given table based on conditions
