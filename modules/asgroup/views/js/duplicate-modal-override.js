@@ -1,10 +1,17 @@
 $(document).ready(function () {
   const modalSelector = '#product-grid-confirm-modal';
+  let $lastClickedDuplicateBtn = null;
 
-  // Inject checkbox into the modal once
+  // 1. Track the clicked duplicate button
+  $(document).on('click', '.js-submit-row-action.grid-duplicate', function () {
+    $lastClickedDuplicateBtn = $(this);
+  });
+
+  // 2. Inject the checkbox and update data-url when modal opens
   $(document).on('shown.bs.modal', modalSelector, function () {
     const $modalBody = $(this).find('.modal-body');
 
+    // Inject checkbox only once
     if ($modalBody.find('#duplicate-images-checkbox').length === 0) {
       $modalBody.append(`
         <div class="form-group mt-3">
@@ -13,19 +20,22 @@ $(document).ready(function () {
         </div>
       `);
     }
-  });
 
-  // Modify the data-url of the clicked duplicate button
-  $(document).on('click', '.js-submit-row-action.grid-duplicate', function () {
-    const $btn = $(this);
-    const duplicateImages = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+    // Update the data-url on modal open using checkbox state
+    if ($lastClickedDuplicateBtn) {
+      const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
 
-    let url = $btn.attr('data-url');
-    if (!url.includes('duplicateimages=')) {
-      // Append or update the param
+      let url = $lastClickedDuplicateBtn.attr('data-url');
+
+      // Remove old param if present
+      url = url.replace(/([?&])duplicateimages=\d(&|$)/, '$1').replace(/&$/, '');
+
+      // Add new param
       const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}duplicateimages=${duplicateImages}`;
-      $btn.attr('data-url', url);
+      url += `${separator}duplicateimages=${checkboxValue}`;
+
+      // Set the updated URL
+      $lastClickedDuplicateBtn.attr('data-url', url);
     }
   });
 });
