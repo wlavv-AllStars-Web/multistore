@@ -103,7 +103,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
     private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
-        pre(Tools::getAllValues());
+
         if ((int) Tools::getValue('duplicateimages') === 1) {
             // Use the new getRowsFromTable method
             $oldImages = $this->getRowsFromTable('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
