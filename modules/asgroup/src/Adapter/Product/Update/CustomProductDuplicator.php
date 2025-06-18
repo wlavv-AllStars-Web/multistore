@@ -28,119 +28,40 @@ use Tools;
 
 class CustomProductDuplicator extends CoreProductDuplicator
 {
-    /**
-     * @var ProductRepository
-     */
-    private $productRepository;
-
-    /**
-     * @var HookDispatcherInterface
-     */
-    private $hookDispatcher;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * @var StringModifierInterface
-     */
-    private $stringModifier;
-
-    /**
-     * @var Connection
-     */
-    private $connection;
-
-    /**
-     * @var string
-     */
-    private $dbPrefix;
-
-    /**
-     * @var CombinationRepository
-     */
-    private $combinationRepository;
-
-    /**
-     * @var ProductSupplierRepository
-     */
-    private $productSupplierRepository;
-
-    /**
-     * @var SpecificPriceRepository
-     */
-    private $specificPriceRepository;
-
-    /**
-     * @var StockAvailableRepository
-     */
-    private $stockAvailableRepository;
-
-    /**
-     * @var ProductStockUpdater
-     */
-    private $productStockUpdater;
-
-    /**
-     * @var CombinationStockUpdater
-     */
-    private $combinationStockUpdater;
-
-    /**
-     * @var ProductImageRepository
-     */
-    private $productImageRepository;
-
-    /**
-     * @var ProductImagePathFactory
-     */
-    private $productImageSystemPathFactory;
-
-public function __construct(
-    ProductRepository $productRepository,
-    HookDispatcherInterface $hookDispatcher,
-    TranslatorInterface $translator,
-    StringModifierInterface $stringModifier,
-    Connection $connection,
-    string $dbPrefix,
-    CombinationRepository $combinationRepository,
-    ProductSupplierRepository $productSupplierRepository,
-    SpecificPriceRepository $specificPriceRepository,
-    StockAvailableRepository $stockAvailableRepository,
-    ProductStockUpdater $productStockUpdater,
-    CombinationStockUpdater $combinationStockUpdater,
-    ProductImageRepository $productImageRepository,
-    ProductImagePathFactory $productImageSystemPathFactory
-) {
-    parent::__construct(
-        $productRepository,
-        $hookDispatcher,
-        $translator,
-        $stringModifier,
-        $connection,
-        $dbPrefix,
-        $combinationRepository,
-        $productSupplierRepository,
-        $specificPriceRepository,
-        $stockAvailableRepository,
-        $productStockUpdater,
-        $combinationStockUpdater,
-        $productImageRepository,
-        $productImageSystemPathFactory
-    );
-}
-
-        /**
-     * Fetches rows from a given table based on conditions
-     *
-     * @param string $table The database table to query
-     * @param array $conditions The conditions (where clauses) for the query
-     * @param string $errorMessage Error message to throw in case of failure
-     * @return array The result set
-     * @throws CannotDuplicateProductException
-     */
+    public function __construct(
+        ProductRepository $productRepository,
+        HookDispatcherInterface $hookDispatcher,
+        TranslatorInterface $translator,
+        StringModifierInterface $stringModifier,
+        Connection $connection,
+        string $dbPrefix,
+        CombinationRepository $combinationRepository,
+        ProductSupplierRepository $productSupplierRepository,
+        SpecificPriceRepository $specificPriceRepository,
+        StockAvailableRepository $stockAvailableRepository,
+        ProductStockUpdater $productStockUpdater,
+        CombinationStockUpdater $combinationStockUpdater,
+        ProductImageRepository $productImageRepository,
+        ProductImagePathFactory $productImageSystemPathFactory
+    ) {
+        parent::__construct(
+            $productRepository,
+            $hookDispatcher,
+            $translator,
+            $stringModifier,
+            $connection,
+            $dbPrefix,
+            $combinationRepository,
+            $productSupplierRepository,
+            $specificPriceRepository,
+            $stockAvailableRepository,
+            $productStockUpdater,
+            $combinationStockUpdater,
+            $productImageRepository,
+            $productImageSystemPathFactory
+        );
+    }
+    
     private function getRowsFromTable(string $table, array $conditions, string $errorMessage): array
     {
         // Construct SQL query with conditions
@@ -158,36 +79,14 @@ public function __construct(
         return $result;
     }
 
-        public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
-    {
-        // Custom logic before duplicating the product (e.g., check duplicate images flag)
-        if ((int) Tools::getValue('duplicateimages') === 0) {
-            // If duplicateimages is set to 0, you can modify or skip image duplication
-            // For example, you could set a flag or skip calling the duplicateImages method
-            echo 'Images will not be duplicated.';
-        }
-
-        // Call the parent method to ensure normal duplication behavior
-        $newProductId = parent::duplicate($productId, $shopConstraint);
-
-        // Optionally, after duplication, check the images flag and handle accordingly
-        if ((int) Tools::getValue('duplicateimages') === 1) {
-            // If duplicateimages is set to 1, duplicate the images
-            $this->duplicateImages($productId->getValue(), $newProductId->getValue(), [], $shopConstraint);
-        }
-
-        // Return the new product ID
-        return $newProductId;
-    }
-
- private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
+    private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
         if ((int) Tools::getValue('duplicateimages') === 1) {
             // Use the new getRowsFromTable method
             $oldImages = $this->getRowsFromTable('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
             $imagesMapping = [];
             $fs = new Filesystem();
-            
+
             foreach ($oldImages as $oldImage) {
                 $oldImageId = new ImageId((int) $oldImage['id_image']);
                 $newImage = $this->productImageRepository->duplicate($oldImageId, new ProductId($newProductId), $shopConstraint);
@@ -233,6 +132,4 @@ public function __construct(
             echo 'Images are not being duplicated.';
         }
     }
-
-    
 }
