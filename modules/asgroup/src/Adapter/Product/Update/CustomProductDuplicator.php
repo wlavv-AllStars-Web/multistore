@@ -175,6 +175,8 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $newProduct = $this->duplicateProduct($productId, $shopConstraint);
         $newProductId = (int) $newProduct->id;
 
+        // asg
+        $newProduct->housing = '';
         $this->duplicateRelations($oldProductId, $newProductId, $shopConstraint, $newProduct->getProductType());
 
         if ($newProduct->hasAttributes()) {
@@ -313,7 +315,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $this->duplicateGroupReduction($oldProductId, $newProductId);
         $this->duplicateRelatedProducts($oldProductId, $newProductId);
         $this->duplicateFeatures($oldProductId, $newProductId);
-        $this->duplicateSpecificPrices($oldProductId, $newProductId, $combinationMatching);
+        // $this->duplicateSpecificPrices($oldProductId, $newProductId, $combinationMatching);
         $this->duplicatePackedProducts($oldProductId, $newProductId);
         $this->duplicateCustomizationFields($oldProductId, $newProductId);
         $this->duplicateTags($oldProductId, $newProductId);
@@ -322,7 +324,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
             $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint);
         }
         $this->duplicateCarriers($oldProductId, $newProductId, $shopIds);
-        $this->duplicateAttachmentAssociation($oldProductId, $newProductId);
+        // $this->duplicateAttachmentAssociation($oldProductId, $newProductId);
         $this->duplicateStock($oldProductId, $newProductId, $shopIds, $productType, $combinationMatching);
     }
 
@@ -357,7 +359,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
                 $location = '';
             }
 
-            $stockModification = StockModification::buildFixedQuantity($productQuantity);
+            $stockModification = StockModification::buildFixedQuantity(0);
             $stockProperties = new ProductStockProperties(
                 $stockModification,
                 $outOfStock,
