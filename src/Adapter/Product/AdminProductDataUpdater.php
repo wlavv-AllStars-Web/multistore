@@ -41,6 +41,7 @@ use Shop;
 use ShopGroup;
 use StockAvailable;
 use Validate;
+use Tools;
 
 /**
  * @deprecated since 8.1 and will be removed in next major.
@@ -229,7 +230,7 @@ class AdminProductDataUpdater implements ProductInterface
                 Product::updateDefaultAttribute($product->id);
             }
 
-            if (!Image::duplicateProductImages($id_product_old, $product->id, $combination_images)) {
+            if (!Tools::getValue('noimage') && !Image::duplicateProductImages($id_product_old, $product->id, $combination_images)) {
                 throw new UpdateProductException('An error occurred while copying images.', 5008);
             } else {
                 $this->hookDispatcher->dispatchWithParameters('actionProductAdd', ['id_product_old' => $id_product_old, 'id_product' => (int) $product->id, 'product' => $product]);

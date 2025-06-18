@@ -111,7 +111,7 @@
 
                 {% set buttons_action = buttons_action|merge([
                     {
-                        "onclick": "unitProductAction(this, 'duplicate');",
+                        "onclick": "unitProductAction(this, 'duplicate noimage=1');",
                         "icon": "content_copy",
                         "label": "Duplicate"|trans({}, 'Admin.Actions')
                     }

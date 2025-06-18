@@ -347,6 +347,7 @@ function bulkProductAction(element, action) {
 }
 
 function unitProductAction(element, action) {
+  a = action.split(' '); action = a[0]; params = (a.length == 1) ? '' : a[1]; //Asg
   const form = $('form#product_catalog_list');
 
   // save action URL for redirection and update to post to bulk action instead
@@ -377,7 +378,8 @@ function unitProductAction(element, action) {
   }
 
   form.append($(redirectionInput));
-  const url = urlHandler.attr('data-uniturl').replace(/duplicate/, action);
+  // const url = urlHandler.attr('data-uniturl').replace(/duplicate/, action);
+  var url = urlHandler.attr('data-uniturl').replace(/duplicate/, action) + (params.length > 0 ? '&' + params : '');
   form.attr('action', url);
   form.submit();
 }
