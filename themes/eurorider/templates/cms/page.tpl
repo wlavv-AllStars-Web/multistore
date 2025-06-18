@@ -59,14 +59,23 @@
 
     {if $cms.id == 4}
         <div style="max-width: 1440px; margin: auto;">
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-
-            {section name=i loop=23}
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            
+            {* First 16 images in normal 4-column grid *}
+            {section name=i loop=16}
                 {assign var=imgNum value=$smarty.section.i.index+1}
-                <div style="flex: 0 0 24%; box-sizing: border-box;">
-                    <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                <div>
+                <img src="{$urls.theme_assets}img/gallery/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
                 </div>
             {/section}
+
+            {* Special layout for the last 7 images (17 to 23, with 23 twice) *}
+            {assign var=extraImages value=[17, 18, 19, 23, 20, 21, 22, 23]}
+            {foreach from=$extraImages item=imgNum}
+                <div>
+                <img src="{$urls.theme_assets}img/gallery/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                </div>
+            {/foreach}
 
             </div>
         </div>
