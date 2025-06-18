@@ -125,10 +125,11 @@
   <div class="products row" id="productList" style="margin-right: auto;min-height: 41dvh;">
   {if $cars_products_page}
     {if $compat}
+      {math equation='rand(0, 999999)' assign=randomNumber}
       <article id="current_car_settings" class=" js-product-miniature d-flex justify-content-center col-xl-3 col-lg-4 col-md-4  col-sm-6 col-xs-12" itemscope itemtype="http://schema.org/Product" id_compat="{$compat['id_compat']}">
       <div style="display:flex;flex-direction:column;align-items:center;height:100%;border-radius:.25rem;padding:1rem;width:100%;justify-content:center;">
           <div style="width: 100%;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;background:transparent;">
-            <img class="img-responsive" src="{$compat['cartoon']}" style="margin: 0;max-width: 300px;width:100%;pointer-events: none;height:auto;">
+            <img class="img-responsive" src="{$compat['cartoon']}?t={$randomNumber}" style="margin: 0;max-width: 300px;width:100%;pointer-events: none;height:auto;">
           </div>
           <div class="current-car-content">
             {if !$compat['subscribed']}
