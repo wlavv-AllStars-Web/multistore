@@ -57,6 +57,21 @@
  
     {$cms.content nofilter}
 
+    {if $cms.id == 4}
+        <div style="max-width: 1440px; margin: auto;">
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+            {section name=i loop=25}
+                {assign var=imgNum value=$smarty.section.i.index+1}
+                <div style="flex: 0 0 24%; box-sizing: border-box;">
+                    <img src="img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                </div>
+            {/section}
+
+            </div>
+        </div>
+    {/if}
+
     {if $cms.id == 30}
         <script>
             const classIframe = document.querySelectorAll(".user-help-content .iframeClass")
