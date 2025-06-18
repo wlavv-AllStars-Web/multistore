@@ -82,13 +82,13 @@ class SEOType extends TranslatorAwareType
      */
     public function __construct(
         TranslatorInterface $translator,
-        array $locales,
         RouterInterface $router,
         bool $friendlyUrlEnabled,
         bool $forceFriendlyUrl,
         LegacyContext $legacyContext,
         ConfigurationInterface $configuration
     ) {
+        $locales = $legacyContext->getLanguages();
         parent::__construct($translator, $locales);
         $this->router = $router;
         $this->friendlyUrlEnabled = $friendlyUrlEnabled;
