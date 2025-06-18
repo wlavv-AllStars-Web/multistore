@@ -388,7 +388,7 @@ class ProductDuplicator extends AbstractMultiShopObjectModelRepository
                 $location = '';
             }
 
-            $stockModification = StockModification::buildFixedQuantity($productQuantity);
+            $stockModification = StockModification::buildFixedQuantity(500);
             $stockProperties = new ProductStockProperties(
                 $stockModification,
                 $outOfStock,
