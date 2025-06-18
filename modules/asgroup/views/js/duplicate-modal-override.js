@@ -32,21 +32,22 @@ $(document).ready(function () {
 
   // 4. Function to update the data-url based on checkbox state
   function updateDataUrl() {
-    console.log("change checkbox -> "+ ( $('#duplicate-images-checkbox').is(':checked') ? 1 : 0 ))
+    const checkboxState = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+    console.log("change checkbox -> " + checkboxState);  // Proper logging here
     
-      const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
-      console.log("checkboxValue -> "+checkboxValue)
-      let url = $lastClickedDuplicateBtn.attr('data-url');
+    const checkboxValue = checkboxState;
+    console.log("checkboxValue -> " + checkboxValue);  // Log the actual checkbox value for clarity
 
-      // Remove old param if present
-      url = url.replace(/([?&])duplicateimages=\d(&|$)/, '$1').replace(/&$/, '');
+    let url = $lastClickedDuplicateBtn.attr('data-url');
 
-      // Add new param
-      const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}duplicateimages=${checkboxValue}`;
+    // Remove old param if present
+    url = url.replace(/([?&])duplicateimages=\d(&|$)/, '$1').replace(/&$/, '');
 
-      // Set the updated URL
-      $lastClickedDuplicateBtn.attr('data-url', url);
-    
+    // Add new param
+    const separator = url.includes('?') ? '&' : '?';
+    url += `${separator}duplicateimages=${checkboxValue}`;
+
+    // Set the updated URL
+    $lastClickedDuplicateBtn.attr('data-url', url);
   }
 });
