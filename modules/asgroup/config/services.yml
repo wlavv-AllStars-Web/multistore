@@ -18,16 +18,19 @@ services:
   #   tags:
   #     - { name: 'form.type', alias: 'asgroup_seo_type' }
 
-  form.type.sell.product.seo.seo_type:
+  form.type.sell.product.seo.seo_type.custom:
     class: 'PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType'
-    parent: 'form.type.translatable.aware'
+    decorates: form.type.sell.product.seo.seo_type
+    decoration_inner_name: form.type.sell.product.seo.seo_type.inner
     public: true
     arguments:
+      - '@translator'
       - "@router"
       - "@=service('prestashop.adapter.legacy.configuration').getBoolean('PS_REWRITING_SETTINGS')"
       - "@=service('prestashop.adapter.legacy.configuration').getBoolean('PS_FORCE_FRIENDLY_PRODUCT')"
       - '@prestashop.adapter.legacy.context'
       - '@PrestaShop\PrestaShop\Core\ConfigurationInterface'
+      - '@form.type.sell.product.seo.seo_type.inner'
     tags:
       - { name: form.type }
   
