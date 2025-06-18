@@ -22,24 +22,27 @@ $(document).ready(function () {
     }
   });
 
-    $(document).on('click', '.btn-confirm-submit', function () {
+  // Override the confirm duplicate button behavior
+  $(document).on('click', '.btn-confirm-submit', function (e) {
+    e.preventDefault(); // 🚫 Prevent PrestaShop's default behavior
+    e.stopImmediatePropagation(); // ✅ Stop other click handlers from running
+
     const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
 
     if ($lastClickedDuplicateBtn) {
-        let url = $lastClickedDuplicateBtn.attr('data-url');
+      let url = $lastClickedDuplicateBtn.attr('data-url');
 
-        // Remove previous param
-        url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
+      // Remove existing duplicateimages param
+      url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
 
-        // Add new param
-        const separator = url.includes('?') ? '&' : '?';
-        url += `${separator}duplicateimages=${checkboxValue}`;
+      // Add new param
+      const separator = url.includes('?') ? '&' : '?';
+      url += `${separator}duplicateimages=${checkboxValue}`;
 
-        // Optional: Debug
-        console.log('Redirecting to:', url);
+      console.log('Redirecting to:', url);
 
-        // Trigger the actual redirection or AJAX here
-        window.location.href = url;
+      // 🔁 Do the actual redirect
+      window.location.href = url;
     }
-    });
+  });
 });
