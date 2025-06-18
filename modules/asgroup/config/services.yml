@@ -5,18 +5,6 @@ services:
     arguments:
       $formBuilderModifier: '@form.form_builder_modifier'
 
-  # PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType:
-  #   autowire: true
-  #   public: true
-  #   arguments:
-  #     $translator: '@translator'
-  #     $router: '@router'
-  #     $friendlyUrlEnabled: '@prestashop.friendly_url_enabled'
-  #     $forceFriendlyUrl: '@prestashop.force_friendly_url'
-  #     $legacyContext: '@prestashop.context'
-  #     $configuration: '@prestashop.configuration'
-  #   tags:
-  #     - { name: 'form.type', alias: 'asgroup_seo_type' }
 
   form.type.sell.product.seo.seo_type.custom:
     class: 'PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType'
@@ -52,6 +40,12 @@ services:
       - { name: form.type }
 
 
+  PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
+    autowire: true
+    arguments:
+      $connection: '@doctrine.dbal.default_connection'
+      $dbPrefix: '%database_prefix%'
+      $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
 
 
 
