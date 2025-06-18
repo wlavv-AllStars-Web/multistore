@@ -39,29 +39,29 @@ services:
     tags:
       - { name: form.type }
 
-  PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
-    autowire: true
-    public: true
-    arguments:
-      $connection: '@doctrine.dbal.default_connection'
-      $dbPrefix: '%database_prefix%'
-      $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
-      $productRepository: '@prestashop.adapter.product.repository'
-      $hookDispatcher: '@prestashop.core.hook.dispatcher'
-      $translator: '@translator'
-      $stringModifier: '@prestashop.core.string.string_modifier'
-      $combinationRepository: '@prestashop.adapter.combination.repository'
-      $productSupplierRepository: '@prestashop.adapter.product.supplier.repository'
-      $specificPriceRepository: '@prestashop.adapter.specific_price.repository'
-      $stockAvailableRepository: '@prestashop.adapter.stock_available.repository'
-      $productStockUpdater: '@prestashop.adapter.product.stock.updater'
-      $combinationStockUpdater: '@prestashop.adapter.combination.stock.updater'
-      $productImageRepository: '@prestashop.adapter.product.image.repository'
+  # PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
+  #   autowire: true
+  #   public: true
+  #   arguments:
+  #     $connection: '@doctrine.dbal.default_connection'
+  #     $dbPrefix: '%database_prefix%'
+  #     $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
+  #     $productRepository: '@prestashop.adapter.product.repository'
+  #     $hookDispatcher: '@prestashop.core.hook.dispatcher'
+  #     $translator: '@translator'
+  #     $stringModifier: '@prestashop.core.string.string_modifier'
+  #     $combinationRepository: '@prestashop.adapter.combination.repository'
+  #     $productSupplierRepository: '@prestashop.adapter.product.supplier.repository'
+  #     $specificPriceRepository: '@prestashop.adapter.specific_price.repository'
+  #     $stockAvailableRepository: '@prestashop.adapter.stock_available.repository'
+  #     $productStockUpdater: '@prestashop.adapter.product.stock.updater'
+  #     $combinationStockUpdater: '@prestashop.adapter.combination.stock.updater'
+  #     $productImageRepository: '@prestashop.adapter.product.image.repository'
 
-  # This makes PrestaShop use your duplicator in place of the default one
-  PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator:
-    alias: PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator
-    public: true
+  # # This makes PrestaShop use your duplicator in place of the default one
+  # PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator:
+  #   alias: PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator
+  #   public: true
 
 
 
