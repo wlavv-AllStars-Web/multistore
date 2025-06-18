@@ -22,22 +22,24 @@ $(document).ready(function () {
     }
   });
 
-  // Intercept confirm click to update the URL
-  $(document).on('click', '.btn-confirm-submit', function () {
+    $(document).on('click', '.btn-confirm-submit', function () {
     const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
 
     if ($lastClickedDuplicateBtn) {
-      let url = $lastClickedDuplicateBtn.attr('data-url');
+        let url = $lastClickedDuplicateBtn.attr('data-url');
 
-      // Clean old param if exists
-      url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
+        // Remove previous param
+        url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
 
-      // Add new param
-      const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}duplicateimages=${checkboxValue}`;
+        // Add new param
+        const separator = url.includes('?') ? '&' : '?';
+        url += `${separator}duplicateimages=${checkboxValue}`;
 
-      // Set back the updated URL
-      $lastClickedDuplicateBtn.attr('data-url', url);
+        // Optional: Debug
+        console.log('Redirecting to:', url);
+
+        // Trigger the actual redirection or AJAX here
+        window.location.href = url;
     }
-  });
+    });
 });
