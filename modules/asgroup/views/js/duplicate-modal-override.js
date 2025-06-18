@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const checkbox = document.getElementById('duplicate-images-checkbox');
   if (checkbox) {
     checkbox.addEventListener('change', function () {
-      console.log("change checkbox -> " + (checkbox.checked ? 1 : 0)); // Log checkbox state (1 for checked, 0 for unchecked)
+      // Ensure logging of the correct checkbox state
+      const checkboxState = checkbox.checked ? 1 : 0;
+      console.log("change checkbox -> " + checkboxState); // Log checkbox state (1 for checked, 0 for unchecked)
       updateDataUrl(); // Update data-url when checkbox state changes
     });
   }
