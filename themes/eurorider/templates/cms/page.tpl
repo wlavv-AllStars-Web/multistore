@@ -61,10 +61,10 @@
         <div style="max-width: 1440px; margin: auto;">
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
 
-            {section name=i loop=25}
+            {section name=i loop=23}
                 {assign var=imgNum value=$smarty.section.i.index+1}
                 <div style="flex: 0 0 24%; box-sizing: border-box;">
-                    <img src="img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                    <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
                 </div>
             {/section}
 
