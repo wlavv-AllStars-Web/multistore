@@ -318,7 +318,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $this->duplicateCustomizationFields($oldProductId, $newProductId);
         $this->duplicateTags($oldProductId, $newProductId);
         $this->duplicateVirtualProductFiles($oldProductId, $newProductId);
-        pre(Tools::getAllValues());
         if(Tools::getValue('duplicateimages') == 1){
             $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint);
         }
