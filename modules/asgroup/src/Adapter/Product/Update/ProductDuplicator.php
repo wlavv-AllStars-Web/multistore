@@ -26,7 +26,7 @@
 
 declare(strict_types=1);
 
-namespace PrestaShop\PrestaShop\Adapter\Product\Update;
+namespace PrestaShop\Module\AsGroup\Adapter\Product\Update;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
@@ -188,7 +188,7 @@ class ProductDuplicator extends AbstractMultiShopObjectModelRepository
      */
     public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
     {
-        echo 'original';
+        echo 'override';
         pre(Tools::getAllValues());
 
         //@todo: add database transaction. After/if PR #21740 gets merged
