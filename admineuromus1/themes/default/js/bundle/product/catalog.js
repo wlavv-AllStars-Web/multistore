@@ -255,8 +255,6 @@ function bulkProductAction(element, action) {
   let redirectUrl = '';
   let urlHandler = null;
 
-  alert("action"+ action)
-
   const items = $('input:checked[name="bulk_action_selected_products[]"]', form);
 
   if (items.length === 0) {
@@ -350,8 +348,6 @@ function bulkProductAction(element, action) {
 
 function unitProductAction(element, action) {
   const form = $('form#product_catalog_list');
-
-  alert('paulo'+ action)
 
   // save action URL for redirection and update to post to bulk action instead
   // using form action URL allow to get route attributes and stay on the same page & ordering.
