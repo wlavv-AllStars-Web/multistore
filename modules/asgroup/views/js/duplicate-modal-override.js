@@ -13,18 +13,28 @@ $(document).ready(function () {
 
     // Inject checkbox only once
     if ($modalBody.find('#duplicate-images-checkbox').length === 0) {
-      $modalBody.append(
+      $modalBody.append(`
         <div class="form-group mt-3">
-          <input type="checkbox" id="duplicate-images-checkbox" checked />
+          <input type="checkbox" id="duplicate-images-checkbox" />
           <label for="duplicate-images-checkbox">Also duplicate images</label>
         </div>
-      );
+      `);
     }
 
     // Update the data-url on modal open using checkbox state
+    updateDataUrl();
+  });
+
+  // 3. When the checkbox state changes, update the data-url
+  $(document).on('change', '#duplicate-images-checkbox', function () {
+    updateDataUrl();
+  });
+
+  // 4. Function to update the data-url based on checkbox state
+  function updateDataUrl() {
+    console.log("change checkbox -> "+ $('#duplicate-images-checkbox').is(':checked') ? 1 : 0)
     if ($lastClickedDuplicateBtn) {
       const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
-
       let url = $lastClickedDuplicateBtn.attr('data-url');
 
       // Remove old param if present
@@ -37,5 +47,5 @@ $(document).ready(function () {
       // Set the updated URL
       $lastClickedDuplicateBtn.attr('data-url', url);
     }
-  });
+  }
 });
