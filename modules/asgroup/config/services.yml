@@ -40,6 +40,13 @@ services:
       - { name: form.type }
 
 
+  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
+    arguments:
+      - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator'
+    tags:
+      - name: tactician.handler
+        command: PrestaShop\PrestaShop\Core\Domain\Product\Command\DuplicateProductCommand
+
   PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
     autowire: true
     arguments:
