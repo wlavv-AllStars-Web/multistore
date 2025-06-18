@@ -12,6 +12,7 @@ use PrestaShop\PrestaShop\Adapter\Product\Stock\Update\ProductStockUpdater;
 use PrestaShop\PrestaShop\Adapter\Product\Combination\Update\CombinationStockUpdater;
 use PrestaShop\PrestaShop\Adapter\Product\Image\Repository\ProductImageRepository;
 use PrestaShop\PrestaShop\Adapter\Product\Image\ProductImagePathFactory;
+use PrestaShop\PrestaShop\Adapter\Product\Repository\ProductSupplierRepository as RepositoryProductSupplierRepository;
 use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\ProductId;
 use PrestaShop\PrestaShop\Core\Domain\Shop\ValueObject\ShopConstraint;
 use PrestaShop\PrestaShop\Core\Hook\HookDispatcherInterface;
@@ -22,6 +23,76 @@ use Tools;
 
 class CustomProductDuplicator extends CoreProductDuplicator
 {
+       /**
+     * @var ProductRepository
+     */
+    private $productRepository;
+
+    /**
+     * @var HookDispatcherInterface
+     */
+    private $hookDispatcher;
+
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
+     * @var StringModifierInterface
+     */
+    private $stringModifier;
+
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
+     * @var string
+     */
+    private $dbPrefix;
+
+    /**
+     * @var CombinationRepository
+     */
+    private $combinationRepository;
+
+    /**
+     * @var ProductSupplierRepository
+     */
+    private $productSupplierRepository;
+
+    /**
+     * @var SpecificPriceRepository
+     */
+    private $specificPriceRepository;
+
+    /**
+     * @var StockAvailableRepository
+     */
+    private $stockAvailableRepository;
+
+    /**
+     * @var ProductStockUpdater
+     */
+    private $productStockUpdater;
+
+    /**
+     * @var CombinationStockUpdater
+     */
+    private $combinationStockUpdater;
+
+    /**
+     * @var ProductImageRepository
+     */
+    private $productImageRepository;
+
+    /**
+     * @var ProductImagePathFactory
+     */
+    private $productImageSystemPathFactory;
+
     public function __construct(
         ProductRepository $productRepository,
         HookDispatcherInterface $hookDispatcher,
@@ -30,6 +101,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
         Connection $connection,
         string $dbPrefix,
         CombinationRepository $combinationRepository,
+        RepositoryProductSupplierRepository $productSupplierRepository,
         SpecificPriceRepository $specificPriceRepository,
         StockAvailableRepository $stockAvailableRepository,
         ProductStockUpdater $productStockUpdater,
@@ -37,21 +109,20 @@ class CustomProductDuplicator extends CoreProductDuplicator
         ProductImageRepository $productImageRepository,
         ProductImagePathFactory $productImageSystemPathFactory
     ) {
-        parent::__construct(
-            $productRepository,
-            $hookDispatcher,
-            $translator,
-            $stringModifier,
-            $connection,
-            $dbPrefix,
-            $combinationRepository,
-            $specificPriceRepository,
-            $stockAvailableRepository,
-            $productStockUpdater,
-            $combinationStockUpdater,
-            $productImageRepository,
-            $productImageSystemPathFactory
-        );
+        $this->productRepository = $productRepository;
+        $this->hookDispatcher = $hookDispatcher;
+        $this->translator = $translator;
+        $this->stringModifier = $stringModifier;
+        $this->connection = $connection;
+        $this->dbPrefix = $dbPrefix;
+        $this->combinationRepository = $combinationRepository;
+        $this->productSupplierRepository = $productSupplierRepository;
+        $this->specificPriceRepository = $specificPriceRepository;
+        $this->stockAvailableRepository = $stockAvailableRepository;
+        $this->productStockUpdater = $productStockUpdater;
+        $this->combinationStockUpdater = $combinationStockUpdater;
+        $this->productImageRepository = $productImageRepository;
+        $this->productImageSystemPathFactory = $productImageSystemPathFactory;
     }
 
     /**
