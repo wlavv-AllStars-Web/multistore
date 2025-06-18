@@ -46,7 +46,7 @@ services:
       - name: tactician.handler
         command: PrestaShop\PrestaShop\Core\Domain\Product\Command\BulkDuplicateProductCommand
 
-  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
+  PrestaShop\Module\AsGroup\Adapter\Product\CommandHandler\DuplicateProductHandler:
     arguments:
       - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator'
     tags:
