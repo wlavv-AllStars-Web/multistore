@@ -7,11 +7,11 @@ $(document).ready(function () {
     $lastClickedDuplicateBtn = $(this);
   });
 
-  // Inject the checkbox on modal open
+  // Inject the checkbox when the modal shows
   $(document).on('shown.bs.modal', modalSelector, function () {
     const $modalBody = $(this).find('.modal-body');
 
-    // Inject only once
+    // Inject the checkbox only once
     if ($modalBody.find('#duplicate-images-checkbox').length === 0) {
       $modalBody.append(`
         <div class="form-group mt-3">
@@ -20,29 +20,28 @@ $(document).ready(function () {
         </div>
       `);
     }
-  });
 
-  // Override the confirm duplicate button behavior
-  $(document).on('click', '.btn-confirm-submit', function (e) {
-    e.preventDefault(); // 🚫 Prevent PrestaShop's default behavior
-    e.stopImmediatePropagation(); // ✅ Stop other click handlers from running
+    // Attach handler once each time modal is shown
+    const $confirmBtn = $(this).find('.btn-confirm-submit');
+    $confirmBtn.off('click.custom-duplicate'); // Remove previous to avoid stacking
+    $confirmBtn.on('click.custom-duplicate', function (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
 
-    const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
+      const checkboxValue = $('#duplicate-images-checkbox').is(':checked') ? 1 : 0;
 
-    if ($lastClickedDuplicateBtn) {
-      let url = $lastClickedDuplicateBtn.attr('data-url');
+      if ($lastClickedDuplicateBtn) {
+        let url = $lastClickedDuplicateBtn.attr('data-url') || '';
 
-      // Remove existing duplicateimages param
-      url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
+        // Clean old param
+        url = url.replace(/([?&])duplicateimages=\d+(&|$)/, '$1').replace(/&$/, '');
 
-      // Add new param
-      const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}duplicateimages=${checkboxValue}`;
+        const separator = url.includes('?') ? '&' : '?';
+        url += `${separator}duplicateimages=${checkboxValue}`;
 
-      console.log('Redirecting to:', url);
-
-      // 🔁 Do the actual redirect
-      window.location.href = url;
-    }
+        // Trigger redirect manually
+        window.location.href = url;
+      }
+    });
   });
 });
