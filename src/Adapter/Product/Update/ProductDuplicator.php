@@ -67,6 +67,7 @@ use Product;
 use ProductDownload as VirtualProductFile;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Tools;
 
 /**
  * Duplicates product
@@ -187,6 +188,7 @@ class ProductDuplicator extends AbstractMultiShopObjectModelRepository
      */
     public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
     {
+        pre(Tools::getAllValues());
         //@todo: add database transaction. After/if PR #21740 gets merged
         $oldProductId = $productId->getValue();
         $this->hookDispatcher->dispatchWithParameters(
