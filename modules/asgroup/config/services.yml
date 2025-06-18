@@ -5,19 +5,19 @@ services:
     arguments:
       $formBuilderModifier: '@form.form_builder_modifier'
 
-  # PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType:
-  #   autowire: true
-  #   public: true
-  #   arguments:
-  #     $translator: '@translator'
-  #     $locales: '@prestashop.locales'
-  #     $router: '@router'
-  #     $friendlyUrlEnabled: '@prestashop.friendly_url_enabled'
-  #     $forceFriendlyUrl: '@prestashop.force_friendly_url'
-  #     $legacyContext: '@prestashop.context'
-  #     $configuration: '@prestashop.configuration'
-  #   tags:
-  #     - { name: 'form.type', alias: 'asgroup_seo_type' }
+  PrestaShop\Module\AsGroup\Form\Admin\Sell\Product\SEO\SEOType:
+    autowire: true
+    public: true
+    arguments:
+      $translator: '@translator'
+      $locales: '@prestashop.locales'
+      $router: '@router'
+      $friendlyUrlEnabled: '@prestashop.friendly_url_enabled'
+      $forceFriendlyUrl: '@prestashop.force_friendly_url'
+      $legacyContext: '@prestashop.context'
+      $configuration: '@prestashop.configuration'
+    tags:
+      - { name: 'form.type', alias: 'asgroup_seo_type' }
   
 
   
