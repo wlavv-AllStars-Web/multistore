@@ -81,9 +81,9 @@
         {/foreach}
 
         {* Slot 24 — image 23 again *}
-        <div>
+        {* <div>
             <img src="/img/eurorider/cms/aboutus/23.jpg" alt="Image 23" style="width: 100%; display: block;" />
-        </div>
+        </div> *}
 
         </div>
     </div>
