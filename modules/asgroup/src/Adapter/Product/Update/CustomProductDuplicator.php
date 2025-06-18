@@ -66,7 +66,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
             // For example, you could set a flag or skip calling the duplicateImages method
             echo 'Images will not be duplicated.';
         }
-; 
 
         // Call the parent method to ensure normal duplication behavior
         $newProductId = parent::duplicate($productId, $shopConstraint);
