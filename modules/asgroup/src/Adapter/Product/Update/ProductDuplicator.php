@@ -67,14 +67,12 @@ use Product;
 use ProductDownload as VirtualProductFile;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator as CoreProductDuplicator;
-
 use Tools;
 
 /**
  * Duplicates product
  */
-class ProductDuplicator extends CoreProductDuplicator
+class ProductDuplicator extends AbstractMultiShopObjectModelRepository
 {
     /**
      * @var ProductRepository
