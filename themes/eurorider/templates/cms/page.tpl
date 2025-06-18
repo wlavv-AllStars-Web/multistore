@@ -65,7 +65,7 @@
             {section name=i loop=16}
                 {assign var=imgNum value=$smarty.section.i.index+1}
                 <div>
-                <img src="{$urls.theme_assets}img/gallery/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
                 </div>
             {/section}
 
@@ -73,7 +73,7 @@
             {assign var=extraImages value=[17, 18, 19, 23, 20, 21, 22, 23]}
             {foreach from=$extraImages item=imgNum}
                 <div>
-                <img src="{$urls.theme_assets}img/gallery/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
+                <img src="/img/eurorider/cms/aboutus/{$imgNum}.jpg" alt="Image {$imgNum}" style="width: 100%; display: block;" />
                 </div>
             {/foreach}
 
