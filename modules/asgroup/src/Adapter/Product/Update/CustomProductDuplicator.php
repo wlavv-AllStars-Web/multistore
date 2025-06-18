@@ -303,7 +303,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
      */
     private function duplicateRelations(int $oldProductId, int $newProductId, ShopConstraint $shopConstraint, string $productType): void
     {
-        pre(Tools::getAllValues());
         $shopIds = array_map(static function (ShopId $shopId) {
             return $shopId->getValue();
         }, $this->productRepository->getShopIdsByConstraint(new ProductId($oldProductId), $shopConstraint));
@@ -319,7 +318,9 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $this->duplicateCustomizationFields($oldProductId, $newProductId);
         $this->duplicateTags($oldProductId, $newProductId);
         $this->duplicateVirtualProductFiles($oldProductId, $newProductId);
-        $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint);
+        if(Tools::getValue('duplicateimages') == 1){
+            $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint);
+        }
         $this->duplicateCarriers($oldProductId, $newProductId, $shopIds);
         $this->duplicateAttachmentAssociation($oldProductId, $newProductId);
         $this->duplicateStock($oldProductId, $newProductId, $shopIds, $productType, $combinationMatching);
