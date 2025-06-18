@@ -4,25 +4,22 @@
 namespace PrestaShop\Module\AsGroup\Adapter\Product\Update;
 
 use Doctrine\DBAL\Connection;
-use PrestaShop\PrestaShop\Adapter\Db;
 use PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator as CoreProductDuplicator;
 use PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository;
 use PrestaShop\PrestaShop\Adapter\Product\Combination\Repository\CombinationRepository;
-use PrestaShop\PrestaShop\Adapter\Product\Repository\ProductSupplierRepository;
+use PrestaShop\PrestaShop\Adapter\Product\Supplier\Repository\ProductSupplierRepository;
 use PrestaShop\PrestaShop\Adapter\Product\SpecificPrice\Repository\SpecificPriceRepository;
 use PrestaShop\PrestaShop\Adapter\Product\Stock\Repository\StockAvailableRepository;
 use PrestaShop\PrestaShop\Adapter\Product\Stock\Update\ProductStockUpdater;
 use PrestaShop\PrestaShop\Adapter\Product\Combination\Update\CombinationStockUpdater;
 use PrestaShop\PrestaShop\Adapter\Product\Image\Repository\ProductImageRepository;
 use PrestaShop\PrestaShop\Adapter\Product\Image\ProductImagePathFactory;
-use PrestaShop\PrestaShop\Core\Domain\Product\Exception\CannotDuplicateProductException;
-use PrestaShop\PrestaShop\Core\Domain\Product\Image\ValueObject\ImageId;
 use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\ProductId;
 use PrestaShop\PrestaShop\Core\Domain\Shop\ValueObject\ShopConstraint;
 use PrestaShop\PrestaShop\Core\Hook\HookDispatcherInterface;
-use PrestaShop\PrestaShop\Core\Util\String\StringModifierInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use PrestaShop\PrestaShop\Core\Util\String\StringModifierInterface;
 use Tools;
 
 
@@ -62,90 +59,77 @@ class CustomProductDuplicator extends CoreProductDuplicator
         );
     }
 
-        public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
+    /**
+     * Override the duplicate method to skip image duplication.
+     */
+    public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
     {
-        // Custom logic before duplicating the product (e.g., check duplicate images flag)
-        if ((int) Tools::getValue('duplicateimages') === 0) {
-            // If duplicateimages is set to 0, you can modify or skip image duplication
-            // For example, you could set a flag or skip calling the duplicateImages method
-            echo 'Images will not be duplicated.';
-        }
+        // Custom logic before duplicating the product (e.g., skip image duplication)
+        $oldProductId = $productId->getValue();
 
-        // Call the parent method to ensure normal duplication behavior
-        $newProductId = parent::duplicate($productId, $shopConstraint);
+        // Dispatch before duplication hook
+        $this->hookDispatcher->dispatchWithParameters(
+            'actionAdminDuplicateBefore',
+            ['id_product' => $oldProductId]
+        );
 
-        // Optionally, after duplication, check the images flag and handle accordingly
-        if ((int) Tools::getValue('duplicateimages') === 1) {
-            // If duplicateimages is set to 1, duplicate the images
-            $this->duplicateImages($productId->getValue(), $newProductId->getValue(), [], $shopConstraint);
-        }
+        // Call to parent method which will duplicate the product and relations
+        $newProduct = parent::duplicate($productId, $shopConstraint);
+        $newProductId = (int) $newProduct->id;
+
+        // After duplication, handle relations but skip images
+        $this->duplicateRelationsWithoutImages($oldProductId, $newProductId, $shopConstraint, $newProduct->getProductType());
+
+        // Dispatch after duplication hook
+        $this->hookDispatcher->dispatchWithParameters(
+            'actionAdminDuplicateAfter',
+            ['id_product' => $oldProductId, 'id_product_new' => $newProductId]
+        );
 
         // Return the new product ID
-        return $newProductId;
+        return new ProductId((int) $newProduct->id);
     }
 
-    private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
+    /**
+     * Skip the image duplication in this custom version.
+     */
+    protected function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
-
-        // Check if duplicateimages is set to 1, if so, duplicate the images
-        if ((int) Tools::getValue('duplicateimages') === 1) {
-            // Proceed with the image duplication logic as it is
-            $oldImages = $this->getRows('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
-
-            $imagesMapping = [];
-            $fs = new Filesystem();
-            foreach ($oldImages as $oldImage) {
-                $oldImageId = new ImageId((int) $oldImage['id_image']);
-                $newImage = $this->productImageRepository->duplicate($oldImageId, new ProductId($newProductId), $shopConstraint);
-                if (null === $newImage) {
-                    continue;
-                }
-
-                $newImageId = new ImageId((int) $newImage->id);
-                $imageTypes = $this->productImageRepository->getProductImageTypes();
-
-                // Copy the generated images instead of generating them is more performant
-                foreach ($imageTypes as $imageType) {
-                    $fs->copy(
-                        $this->productImageSystemPathFactory->getPathByType($oldImageId, $imageType->name),
-                        $this->productImageSystemPathFactory->getPathByType($newImageId, $imageType->name)
-                    );
-                }
-
-                // Also copy original
-                $oldOriginalPath = $this->productImageSystemPathFactory->getPath($oldImageId);
-                $newOriginalPath = $this->productImageSystemPathFactory->getPath($newImageId);
-                $fs->copy(
-                    $oldOriginalPath,
-                    $newOriginalPath
-                );
-
-                // And fileType
-                $originalFileTypePath = dirname($oldOriginalPath) . '/fileType';
-                if (file_exists($originalFileTypePath)) {
-                    $fs->copy(
-                        $originalFileTypePath,
-                        dirname($newOriginalPath) . '/fileType'
-                    );
-                }
-
-                $imagesMapping[$oldImageId->getValue()] = $newImageId->getValue();
-            }
-
-            $oldCombinationImages = $this->getRows('product_attribute_image', ['id_image' => array_keys($imagesMapping)], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
-            $newCombinationImages = [];
-            foreach ($oldCombinationImages as $oldCombinationImage) {
-                $newCombinationImages[] = [
-                    'id_image' => $imagesMapping[(int) $oldCombinationImage['id_image']],
-                    'id_product_attribute' => $combinationMatching[(int) $oldCombinationImage['id_product_attribute']],
-                ];
-            }
-            $this->bulkInsert('product_attribute_image', $newCombinationImages, CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
-        } else {
-            // If duplicateimages is not 1, skip the image duplication
-            // Optional: You can log this or add additional handling for non-duplication scenarios
-            echo 'Images are not being duplicated.';
-        }
+        // Skip image duplication by doing nothing here
+        // You can also log if necessary or add additional checks
+        echo 'Images are not being duplicated.';
     }
-    
+
+    /**
+     * Handle relations without duplicating images.
+     */
+    private function duplicateRelationsWithoutImages(
+        int $oldProductId, 
+        int $newProductId, 
+        ShopConstraint $shopConstraint, 
+        string $productType
+    ): void {
+        // Skipping the image duplication part
+        $shopIds = array_map(static function (ShopId $shopId) {
+            return $shopId->getValue();
+        }, $this->productRepository->getShopIdsByConstraint(new ProductId($oldProductId), $shopConstraint));
+
+        // Now we duplicate the relations without images
+        $this->duplicateCategories($oldProductId, $newProductId);
+        $combinationMatching = $this->duplicateCombinations($oldProductId, $newProductId, $shopIds);
+        $this->duplicateSuppliers($oldProductId, $newProductId, $combinationMatching);
+        $this->duplicateGroupReduction($oldProductId, $newProductId);
+        $this->duplicateRelatedProducts($oldProductId, $newProductId);
+        $this->duplicateFeatures($oldProductId, $newProductId);
+        $this->duplicateSpecificPrices($oldProductId, $newProductId, $combinationMatching);
+        $this->duplicatePackedProducts($oldProductId, $newProductId);
+        $this->duplicateCustomizationFields($oldProductId, $newProductId);
+        $this->duplicateTags($oldProductId, $newProductId);
+        $this->duplicateVirtualProductFiles($oldProductId, $newProductId);
+
+        // Skip image duplication here, hence no call to duplicateImages
+        $this->duplicateCarriers($oldProductId, $newProductId, $shopIds);
+        $this->duplicateAttachmentAssociation($oldProductId, $newProductId);
+        $this->duplicateStock($oldProductId, $newProductId, $shopIds, $productType, $combinationMatching);
+    }
 }
