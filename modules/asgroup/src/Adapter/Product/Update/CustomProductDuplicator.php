@@ -62,67 +62,41 @@ class CustomProductDuplicator extends CoreProductDuplicator
         );
     }
 
-public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
-{
-    $oldProductId = $productId->getValue();
-
-    $this->hookDispatcher->dispatchWithParameters(
-        'actionAdminDuplicateBefore',
-        ['id_product' => $oldProductId]
-    );
-
-    $newProduct = $this->duplicateProduct($productId, $shopConstraint);
-    $newProductId = (int) $newProduct->id;
-
-    $this->duplicateRelations($oldProductId, $newProductId, $shopConstraint, $newProduct->getProductType());
-
-    if ($newProduct->hasAttributes()) {
-        $this->updateDefaultAttribute($newProductId, $oldProductId);
-    }
-
-    $this->hookDispatcher->dispatchWithParameters(
-        'actionProductAdd',
-        ['id_product_old' => $oldProductId, 'id_product' => $newProductId, 'product' => $newProduct]
-    );
-
-    $this->hookDispatcher->dispatchWithParameters(
-        'actionAdminDuplicateAfter',
-        ['id_product' => $oldProductId, 'id_product_new' => $newProductId]
-    );
-
-    return new ProductId($newProductId);
-}
-
-
-    private function getRowsFromTable(string $table, array $conditions, string $errorMessage): array
+        public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
     {
-        // Construct SQL query with conditions
-        $sql = 'SELECT * FROM `' . _DB_PREFIX_ . $table . '` WHERE ' . implode(' AND ', array_map(function ($key, $value) {
-            return '`' . $key . '` = ' . (int) $value;
-        }, array_keys($conditions), $conditions));
-
-        // Execute the query and fetch results
-        $result = Db::getInstance()->executeS($sql);
-
-        if (!$result) {
-            throw new CannotDuplicateProductException($errorMessage);
+        // Custom logic before duplicating the product (e.g., check duplicate images flag)
+        if ((int) Tools::getValue('duplicateimages') === 0) {
+            // If duplicateimages is set to 0, you can modify or skip image duplication
+            // For example, you could set a flag or skip calling the duplicateImages method
+            echo 'Images will not be duplicated.';
         }
 
-        return $result;
+        // Call the parent method to ensure normal duplication behavior
+        $newProductId = parent::duplicate($productId, $shopConstraint);
+
+        // Optionally, after duplication, check the images flag and handle accordingly
+        if ((int) Tools::getValue('duplicateimages') === 1) {
+            // If duplicateimages is set to 1, duplicate the images
+            $this->duplicateImages($productId->getValue(), $newProductId->getValue(), [], $shopConstraint);
+        }
+
+        // Return the new product ID
+        return $newProductId;
     }
 
     private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
     {
+
+        // Check if duplicateimages is set to 1, if so, duplicate the images
         if ((int) Tools::getValue('duplicateimages') === 1) {
-            // Use the new getRowsFromTable method
-            $oldImages = $this->getRowsFromTable('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
+            // Proceed with the image duplication logic as it is
+            $oldImages = $this->getRows('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
+
             $imagesMapping = [];
             $fs = new Filesystem();
-
             foreach ($oldImages as $oldImage) {
                 $oldImageId = new ImageId((int) $oldImage['id_image']);
                 $newImage = $this->productImageRepository->duplicate($oldImageId, new ProductId($newProductId), $shopConstraint);
-
                 if (null === $newImage) {
                     continue;
                 }
@@ -130,6 +104,7 @@ public function duplicate(ProductId $productId, ShopConstraint $shopConstraint):
                 $newImageId = new ImageId((int) $newImage->id);
                 $imageTypes = $this->productImageRepository->getProductImageTypes();
 
+                // Copy the generated images instead of generating them is more performant
                 foreach ($imageTypes as $imageType) {
                     $fs->copy(
                         $this->productImageSystemPathFactory->getPathByType($oldImageId, $imageType->name),
@@ -137,31 +112,40 @@ public function duplicate(ProductId $productId, ShopConstraint $shopConstraint):
                     );
                 }
 
+                // Also copy original
                 $oldOriginalPath = $this->productImageSystemPathFactory->getPath($oldImageId);
                 $newOriginalPath = $this->productImageSystemPathFactory->getPath($newImageId);
-                $fs->copy($oldOriginalPath, $newOriginalPath);
+                $fs->copy(
+                    $oldOriginalPath,
+                    $newOriginalPath
+                );
 
+                // And fileType
                 $originalFileTypePath = dirname($oldOriginalPath) . '/fileType';
                 if (file_exists($originalFileTypePath)) {
-                    $fs->copy($originalFileTypePath, dirname($newOriginalPath) . '/fileType');
+                    $fs->copy(
+                        $originalFileTypePath,
+                        dirname($newOriginalPath) . '/fileType'
+                    );
                 }
 
                 $imagesMapping[$oldImageId->getValue()] = $newImageId->getValue();
             }
 
-            $oldCombinationImages = $this->getRowsFromTable('product_attribute_image', ['id_image' => array_keys($imagesMapping)], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
+            $oldCombinationImages = $this->getRows('product_attribute_image', ['id_image' => array_keys($imagesMapping)], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
             $newCombinationImages = [];
-
             foreach ($oldCombinationImages as $oldCombinationImage) {
                 $newCombinationImages[] = [
                     'id_image' => $imagesMapping[(int) $oldCombinationImage['id_image']],
                     'id_product_attribute' => $combinationMatching[(int) $oldCombinationImage['id_product_attribute']],
                 ];
             }
-
             $this->bulkInsert('product_attribute_image', $newCombinationImages, CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
         } else {
-            $newCombinationImages = [];
+            // If duplicateimages is not 1, skip the image duplication
+            // Optional: You can log this or add additional handling for non-duplication scenarios
+            echo 'Images are not being duplicated.';
         }
     }
+    
 }
