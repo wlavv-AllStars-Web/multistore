@@ -39,16 +39,30 @@ services:
     tags:
       - { name: form.type }
 
-  # PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator:
-  #   class: PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator
-  #   decorates: PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator
-  #   decoration_inner_name: PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator.inner
+  PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator:
+    class: PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator
+    decorates: PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator
+    decoration_inner_name: PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator.inner
+    arguments:
+      $connection: '@doctrine.dbal.default_connection'
+      $dbPrefix: '%database_prefix%'
+      $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
+    public: true
+    autowire: true
+
+    # PrestaShop\PrestaShop\Adapter\Product\CommandHandler\BulkDuplicateProductHandler:
+    # arguments:
+    #   - '@PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator'
+    # tags:
+    #   - name: tactician.handler
+    #     command: PrestaShop\PrestaShop\Core\Domain\Product\Command\BulkDuplicateProductCommand
+
+  # PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
   #   arguments:
-  #     $connection: '@doctrine.dbal.default_connection'
-  #     $dbPrefix: '%database_prefix%'
-  #     $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
-  #   public: true
-  #   autowire: true
+  #     - '@PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator'
+  #   tags:
+  #     - name: tactician.handler
+  #       command: PrestaShop\PrestaShop\Core\Domain\Product\Command\DuplicateProductCommand
 
   PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator:
     class: PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator
@@ -56,35 +70,11 @@ services:
     decoration_inner_name: PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator.inner
     autowire: true
     arguments:
-      $coreDuplicator: '@PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator.inner'
-      $productRepository: '@prestashop.adapter.product.repository'
-      $hookDispatcher: '@prestashop.core.hook.dispatcher'
-      $translator: '@translator'
-      $stringModifier: '@prestashop.core.string.string_modifier'
       $connection: '@doctrine.dbal.default_connection'
       $dbPrefix: '%database_prefix%'
-      $combinationRepository: '@prestashop.adapter.product.combination.repository'
-      $productSupplierRepository: '@prestashop.adapter.product.product_supplier.repository'
-      $specificPriceRepository: '@prestashop.adapter.product.specific_price.repository'
-      $stockAvailableRepository: '@prestashop.adapter.product.stock.repository.stock_available'
-      $productStockUpdater: '@prestashop.adapter.product.stock.update.product_stock_updater'
-      $combinationStockUpdater: '@prestashop.adapter.product.combination.update.combination_stock_updater'
-      $productImageRepository: '@prestashop.adapter.product.image.repository'
       $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
 
-  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
-    arguments:
-      - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator'
-    tags:
-      - name: tactician.handler
-        command: PrestaShop\PrestaShop\Core\Domain\Product\Command\DuplicateProductCommand
 
-  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\BulkDuplicateProductHandler:
-    arguments:
-      - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\CustomProductDuplicator'
-    tags:
-      - name: tactician.handler
-        command: PrestaShop\PrestaShop\Core\Domain\Product\Command\BulkDuplicateProductCommand
 
   prestashop.adapter.order.refund.order_slip_creator:
     class: PrestaShop\Module\AsGroup\OrderSlipCreator
