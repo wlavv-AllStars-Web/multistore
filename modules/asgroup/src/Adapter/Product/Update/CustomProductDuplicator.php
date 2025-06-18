@@ -303,7 +303,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
      */
     private function duplicateRelations(int $oldProductId, int $newProductId, ShopConstraint $shopConstraint, string $productType): void
     {
-        pre('override duplicateRelations');
+        pre(Tools::getAllValues());
         $shopIds = array_map(static function (ShopId $shopId) {
             return $shopId->getValue();
         }, $this->productRepository->getShopIdsByConstraint(new ProductId($oldProductId), $shopConstraint));
