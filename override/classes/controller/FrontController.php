@@ -934,7 +934,7 @@ class FrontControllerCore extends Controller
                             $html_model .= '<div class="car_item_holder">
                                                 <div class="myCarsBrand">
                                                     <div style="display:flex;flex-direction:column;" onclick="toogleClasslistCar(this)">
-                                                        <img class="img-responsive" src="' . $firstModel['cartoon'] . '?t='.random_int(1000, 9999).'" style="margin: 0 auto;width: 200px;height:150px;object-fit: contain; cursor: pointer;" />
+                                                        <img class="img-responsive" src="' . $firstModel['cartoon'] . '?t='.random_int(1000, 9999).'" style="margin: 0 auto;width: 100%;max-width:400px;height:auto;object-fit: contain; cursor: pointer;" />
                                                     </div>
                                                     <div id="container_version_parent" style="display:flex;justify-content:center;">
                                                         <div class="version_model_container" style="padding:1rem;text-align:center;">
@@ -947,7 +947,7 @@ class FrontControllerCore extends Controller
                             
                             // Add all versions under the same type
                             foreach ($models as $model) {
-                                $html_model .= '<div class="type_selector" onclick="setCarSearch(' . $model['id_compat'] . ')">
+                                $html_model .= '<div class="type_selector mt-2" onclick="setCarSearch(' . $model['id_compat'] . ')">
                                                     <span>' . $model['version'] . '</span>
                                                 </div>';
                             }
