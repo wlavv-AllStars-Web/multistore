@@ -64,6 +64,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
     public function duplicate(ProductId $productId, ShopConstraint $shopConstraint): ProductId
     {
+        pre(Tools::getAllValues());
                 // Custom logic before duplicating the product (e.g., check duplicate images flag)
         if ((int) Tools::getValue('duplicateimages') === 0) {
             // If duplicateimages is set to 0, you can modify or skip image duplication
