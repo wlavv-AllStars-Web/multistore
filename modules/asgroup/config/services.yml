@@ -40,20 +40,27 @@ services:
       - { name: form.type }
 
 
-  PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
-    arguments:
-      - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator'
-    tags:
-      - name: tactician.handler
-        command: PrestaShop\PrestaShop\Core\Domain\Product\Command\DuplicateProductCommand
+  # PrestaShop\PrestaShop\Adapter\Product\CommandHandler\DuplicateProductHandler:
+  #   arguments:
+  #     - '@PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator'
+  #   tags:
+  #     - name: tactician.handler
+  #       command: PrestaShop\PrestaShop\Core\Domain\Product\Command\DuplicateProductCommand
+
+  # PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
+  #   autowire: true
+  #   arguments:
+  #     $connection: '@doctrine.dbal.default_connection'
+  #     $dbPrefix: '%database_prefix%'
+  #     $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
+
+  PrestaShop\PrestaShop\Adapter\Product\Update\ProductDuplicator:
+    alias: PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator
 
   PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator:
+    class: PrestaShop\Module\AsGroup\Adapter\Product\Update\ProductDuplicator
     autowire: true
-    arguments:
-      $connection: '@doctrine.dbal.default_connection'
-      $dbPrefix: '%database_prefix%'
-      $productImageSystemPathFactory: '@prestashop.adapter.product.image.product_image_filesystem_path_factory'
-
+    public: true
 
 
   prestashop.adapter.order.refund.order_slip_creator:
