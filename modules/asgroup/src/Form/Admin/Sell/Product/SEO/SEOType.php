@@ -88,8 +88,6 @@ class SEOType extends TranslatorAwareType
             $automaticUrlUpdate = true;
         }
 
-        echo 'paulo';
-        exit;
 
         $builder
             ->add('serp', SerpType::class)
@@ -107,15 +105,15 @@ class SEOType extends TranslatorAwareType
                     'input_attr' => [
                         'class' => 'serp-watched-title',
                     ],
-                    'max_length' => ProductSettings::MAX_META_TITLE_LENGTH,
+                    'max_length' => 128,
                     'position' => 'after',
                     'constraints' => [
                         new Length([
-                            'max' => ProductSettings::MAX_META_TITLE_LENGTH,
+                            'max' => 128,
                             'maxMessage' => $this->trans(
                                 'This field cannot be longer than %limit% characters.',
                                 'Admin.Notifications.Error',
-                                ['%limit%' => ProductSettings::MAX_META_TITLE_LENGTH]
+                                ['%limit%' => 128]
                             ),
                         ]),
                     ],
