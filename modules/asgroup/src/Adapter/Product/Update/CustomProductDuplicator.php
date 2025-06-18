@@ -22,6 +22,39 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use PrestaShop\PrestaShop\Core\Util\String\StringModifierInterface;
 use Tools;
 
+
+
+use Doctrine\DBAL\Exception;
+use Language;
+
+use PrestaShop\PrestaShop\Adapter\Product\Combination\Update\CombinationStockProperties;
+
+use PrestaShop\PrestaShop\Adapter\Product\Stock\Update\ProductStockProperties;
+
+use PrestaShop\PrestaShop\Core\Domain\Product\Combination\ValueObject\CombinationId;
+use PrestaShop\PrestaShop\Core\Domain\Product\Exception\CannotDuplicateProductException;
+use PrestaShop\PrestaShop\Core\Domain\Product\Exception\CannotUpdateProductException;
+use PrestaShop\PrestaShop\Core\Domain\Product\Image\ValueObject\ImageId;
+use PrestaShop\PrestaShop\Core\Domain\Product\ProductSettings;
+use PrestaShop\PrestaShop\Core\Domain\Product\Stock\Exception\StockAvailableNotFoundException;
+use PrestaShop\PrestaShop\Core\Domain\Product\Stock\ValueObject\OutOfStockType;
+use PrestaShop\PrestaShop\Core\Domain\Product\Stock\ValueObject\StockModification;
+use PrestaShop\PrestaShop\Core\Domain\Product\Supplier\ValueObject\ProductSupplierId;
+
+use PrestaShop\PrestaShop\Core\Domain\Product\ValueObject\ProductType;
+use PrestaShop\PrestaShop\Core\Domain\Shop\Exception\ShopAssociationNotFound;
+
+use PrestaShop\PrestaShop\Core\Exception\CoreException;
+use PrestaShop\PrestaShop\Core\Exception\InvalidArgumentException;
+
+use PrestaShop\PrestaShop\Core\Repository\AbstractMultiShopObjectModelRepository;
+use PrestaShop\PrestaShop\Core\Util\DateTime\DateTime;
+
+use PrestaShopException;
+use Product;
+use ProductDownload as VirtualProductFile;
+
+
 class CustomProductDuplicator extends CoreProductDuplicator
 {
        /**
