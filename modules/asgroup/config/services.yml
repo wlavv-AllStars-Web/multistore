@@ -10,7 +10,6 @@ services:
     public: true
     arguments:
       $translator: '@translator'
-      $locales: '@prestashop.locales'
       $router: '@router'
       $friendlyUrlEnabled: '@prestashop.friendly_url_enabled'
       $forceFriendlyUrl: '@prestashop.force_friendly_url'
