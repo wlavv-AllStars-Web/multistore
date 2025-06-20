@@ -186,6 +186,9 @@ class AsGroup extends Module
         /** @var Product $newProduct */
         $newProduct = $params['newProduct'];
 
+        echo 'duplicate product paulo';
+        exit;
+
         // Clear the housing field
         if (property_exists($newProduct, 'housing')) {
             $newProduct->housing = '';
