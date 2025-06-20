@@ -5275,7 +5275,7 @@ class ProductCore extends ObjectModel
         $results = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query->build());
 
         // asg
-        $results = [];
+        // $results = [];
         if (!empty($results)) {
             foreach ($results as $result) {
                 if (!Db::getInstance()->update(
