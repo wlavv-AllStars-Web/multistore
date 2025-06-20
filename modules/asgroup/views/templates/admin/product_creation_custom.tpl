@@ -2295,27 +2295,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Handle copy event
         container.addEventListener('copy', function(e) {
-            e.preventDefault();
+            const activeTokens = Array.from(container.querySelectorAll('.token.active'));
 
-            // Get all the selected tokens inside this token field
-            const selectedTokens = Array.from(container.querySelectorAll('.token')).filter(
-                token => {
-                    const label = token.querySelector('.token-label');
-                    if (!label) return false; // Skip if no label
+            if (activeTokens.length > 0) {
+                e.preventDefault();
 
-                    // Check if the label is selected
-                    return window.getSelection().containsNode(label, true);
-                });
-
-            // If there are selected tokens, prepare the text to copy
-            if (selectedTokens.length > 0) {
-                const textToCopy = selectedTokens
-                    .map(token => token.dataset.value || token.querySelector('.token-label')
-                        ?.textContent.trim())
+                const textToCopy = activeTokens
+                    .map(token => token.dataset.value || token.textContent.trim())
                     .filter(Boolean)
                     .join(', ');
 
-                // Set the copied text to clipboard
                 e.clipboardData.setData('text/plain', textToCopy);
             }
         });
@@ -2358,16 +2347,6 @@ document.addEventListener("DOMContentLoaded", function() {
           const otherNameInput = document.getElementById(`product_header_name_`+otherLangId);
           const otherMetaInput = document.getElementById(`product_seo_meta_title_`+otherLangId);
 
-            if (otherMetaInput) {
-            otherMetaInput.setAttribute('maxlength', '128');
-            otherMetaInput.setAttribute('data-max-length', '128');
-            
-            // Optional: update counter display if it exists
-            const counter = otherMetaInput.closest('.input-group').querySelector('.js-countable-text');
-            if (counter) {
-                counter.innerText = '128';
-            }
-            }
 
           if (otherNameInput && otherMetaInput) {
             otherMetaInput.value = otherNameInput.value;
