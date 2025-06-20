@@ -246,6 +246,9 @@ class CustomProductDuplicator extends CoreProductDuplicator
             $shopProduct->id = $shopProduct->id_product = $newProductId->getValue();
             // Force the desired default shop so that it doesn't switch back to the source one
             $shopProduct->id_shop_default = $targetDefaultShopId->getValue();
+
+            $shopProduct->reference = $duplicatedProduct->housing;
+
             $this->productRepository->update(
                 $shopProduct,
                 ShopConstraint::shop($shopId->getValue()),
@@ -266,6 +269,8 @@ class CustomProductDuplicator extends CoreProductDuplicator
         if (property_exists($duplicatedObject, $idTable)) {
             unset($duplicatedObject->$idTable);
         }
+
+        $duplicatedObject->housing = '';
 
         $this->addObjectModelToShops($duplicatedObject, [$targetDefaultShopId], CannotDuplicateProductException::class);
 
