@@ -79,6 +79,7 @@ class AsGroup extends Module
             $this->registerHook('actionProductGridQueryBuilderModifier') &&
             $this->registerHook('actionAdminOrdersControllerSaveBefore') &&
             $this->registerHook('actionDispatcherBefore') &&
+            $this->registerHook('actionProductDuplicate') &&
             // $this->registerHook('actionAdminOrdersControllerView') &&
             // $this->registerHook('actionAdminOrderControllerSave') &&
             // $this->registerHook('actionOrderGridDataBefore') &&
@@ -176,6 +177,18 @@ class AsGroup extends Module
                     $this->ajaxProcessDeleteProductFeature();
                     break;
             }
+        }
+    }
+
+    public function hookActionProductDuplicate(array $params)
+    {
+        /** @var Product $newProduct */
+        $newProduct = $params['newProduct'];
+
+        // Clear the housing field
+        if (property_exists($newProduct, 'housing')) {
+            $newProduct->housing = '';
+            $newProduct->save();
         }
     }
 
