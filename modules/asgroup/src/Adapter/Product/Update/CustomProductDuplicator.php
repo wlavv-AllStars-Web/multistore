@@ -247,7 +247,8 @@ class CustomProductDuplicator extends CoreProductDuplicator
             // Force the desired default shop so that it doesn't switch back to the source one
             $shopProduct->id_shop_default = $targetDefaultShopId->getValue();
 
-            $shopProduct->reference = $duplicatedProduct->housing;
+            $shopProduct->housing = $duplicatedProduct->housing;
+            $shopProduct->price = $duplicatedProduct->price;
 
             $this->productRepository->update(
                 $shopProduct,
@@ -271,6 +272,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
         }
 
         $duplicatedObject->housing = '';
+        $duplicatedObject->price = 0;
 
         $this->addObjectModelToShops($duplicatedObject, [$targetDefaultShopId], CannotDuplicateProductException::class);
 
