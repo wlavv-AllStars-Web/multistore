@@ -2346,6 +2346,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const btnRewriteLink = document.querySelector("#product_seo-tab .reset-link-rewrite")
 
         if(btnRewriteLink) {
+            btnRewriteLink.removeAttribute("disabled")
             btnRewriteLink.click()
         }
 
