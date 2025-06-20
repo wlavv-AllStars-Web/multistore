@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 namespace PrestaShop\Module\AsGroup\Adapter\Product\Repository;
 
-use PrestaShop\PrestaShop\Adapter\Product\Repository as CoreProductRepository;
+use PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository; as CoreProductRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\Exception;
 use Doctrine\DBAL\Exception as ExceptionAlias;
