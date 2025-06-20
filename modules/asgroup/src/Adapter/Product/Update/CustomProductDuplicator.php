@@ -236,9 +236,10 @@ class CustomProductDuplicator extends CoreProductDuplicator
         // Then associate it to other shops and copy its values
         $newProductId = new ProductId((int) $duplicatedProduct->id);
 
-        pre($newProductId);
+
         foreach ($shopIds as $shopId) {
             $shopProduct = $this->productRepository->get($sourceProductId, $shopId);
+            pre($shopProduct);
             // The duplicated product is disabled and not indexed by default
             $shopProduct->indexed = false;
             $shopProduct->active = false;
