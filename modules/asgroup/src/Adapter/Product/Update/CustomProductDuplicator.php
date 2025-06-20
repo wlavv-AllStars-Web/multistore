@@ -319,9 +319,11 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $this->duplicateCustomizationFields($oldProductId, $newProductId);
         $this->duplicateTags($oldProductId, $newProductId);
         $this->duplicateVirtualProductFiles($oldProductId, $newProductId);
-        if(Tools::getValue('duplicateimages') == 1){
-            $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint);
-        }
+
+        // asg
+        $duplicateImages = Tools::getValue('duplicateimages') == 1 ? 1 : 0;
+        $this->duplicateImages($oldProductId, $newProductId, $combinationMatching, $shopConstraint, $duplicateImages);
+        
         $this->duplicateCarriers($oldProductId, $newProductId, $shopIds);
         // $this->duplicateAttachmentAssociation($oldProductId, $newProductId);
         $this->duplicateStock($oldProductId, $newProductId, $shopIds, $productType, $combinationMatching);
@@ -793,8 +795,12 @@ class CustomProductDuplicator extends CoreProductDuplicator
      * @throws CannotDuplicateProductException
      * @throws CoreException
      */
-    private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint): void
+    private function duplicateImages(int $oldProductId, int $newProductId, array $combinationMatching, ShopConstraint $shopConstraint, int $duplicateImages = 0): void
     {
+        if ($duplicateImages === 0) {
+            return;
+        }
+
         $oldImages = $this->getRows('image', ['id_product' => $oldProductId], CannotDuplicateProductException::FAILED_DUPLICATE_IMAGES);
 
         $imagesMapping = [];
