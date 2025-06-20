@@ -5268,6 +5268,8 @@ class ProductCore extends ObjectModel
      */
     public static function duplicatePrices($id_product_old, $id_product_new)
     {
+        // asg
+        return true;
         $query = new DbQuery();
         $query->select('price, unit_price, id_shop');
         $query->from('product_shop');
@@ -5275,29 +5277,19 @@ class ProductCore extends ObjectModel
         $results = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query->build());
 
         // asg
-        $results = [];
+        // $results = [];
+        return true;
         if (!empty($results)) {
             foreach ($results as $result) {
                 if (!Db::getInstance()->update(
                     'product_shop',
-                    ['price' => pSQL(0), 'unit_price' => 0],
+                    ['price' => pSQL($result['price']), 'unit_price' => pSQL($result['unit_price'])],
                     'id_product=' . (int) $id_product_new . ' AND id_shop = ' . (int) $result['id_shop']
                 )) {
                     return false;
                 }
             }
         }
-        // if (!empty($results)) {
-        //     foreach ($results as $result) {
-        //         if (!Db::getInstance()->update(
-        //             'product_shop',
-        //             ['price' => pSQL($result['price']), 'unit_price' => pSQL($result['unit_price'])],
-        //             'id_product=' . (int) $id_product_new . ' AND id_shop = ' . (int) $result['id_shop']
-        //         )) {
-        //             return false;
-        //         }
-        //     }
-        // }
 
         return true;
     }
