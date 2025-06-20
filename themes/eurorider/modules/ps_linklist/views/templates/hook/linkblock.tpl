@@ -59,7 +59,7 @@
 
             <li class="socials-footer">
               <div style="display: flex;">
-              <a title="Facebook" aria-label="Facebook" id="footer_facebook" class="social-icon" style="margin-right: 5px;" href="https://www.facebook.com/all-stars-motorsport" target="_NEW"> 
+              <a title="Facebook" aria-label="Facebook" id="footer_facebook" class="social-icon" style="margin-right: 5px;" href="https://www.facebook.com/profile.php?id=61561527998499" target="_NEW"> 
                 <img class="desktop" alt="Facebook" src="/img/eurorider/socials/facebook.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/facebook_hover.png'" onmouseout="this.src='/img/eurorider/socials/facebook.png' "> 
                 <img class="mobile" alt="Facebook" src="/img/eurorider/socials/facebook_hover.png" style="width: 50px;height:50px;" />
               </a> 
