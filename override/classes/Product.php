@@ -5280,7 +5280,7 @@ class ProductCore extends ObjectModel
             foreach ($results as $result) {
                 if (!Db::getInstance()->update(
                     'product_shop',
-                    ['price' => pSQL($result['price']), 'unit_price' => 0],
+                    ['price' => pSQL(0), 'unit_price' => 0],
                     'id_product=' . (int) $id_product_new . ' AND id_shop = ' . (int) $result['id_shop']
                 )) {
                     return false;
