@@ -2342,6 +2342,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (nameInput) {
       nameInput.addEventListener("input", function() {
+
+        const btnRewriteLink = document.querySelector("#product_seo-tab .reset-link-rewrite")
+
+        if(btnRewriteLink) {
+            btnRewriteLink.click()
+        }
+
         // On any name change, loop through all languages
         langIds.forEach(otherLangId => {
           const otherNameInput = document.getElementById(`product_header_name_`+otherLangId);
