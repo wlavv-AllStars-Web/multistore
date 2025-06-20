@@ -239,7 +239,6 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
         foreach ($shopIds as $shopId) {
             $shopProduct = $this->productRepository->get($sourceProductId, $shopId);
-            pre($shopProduct);
             // The duplicated product is disabled and not indexed by default
             $shopProduct->indexed = false;
             $shopProduct->active = false;
