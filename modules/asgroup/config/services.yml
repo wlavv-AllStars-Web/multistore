@@ -56,8 +56,8 @@ services:
     decoration_inner_name: PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository.inner
     autowire: true
     arguments:
-      - '@doctrine.dbal.default_connection'
-      - '%database_prefix%'
+      $connection: '@doctrine.dbal.default_connection'
+      $dbPrefix: '%database_prefix%'
 
 
 
