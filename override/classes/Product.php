@@ -5273,6 +5273,9 @@ class ProductCore extends ObjectModel
         $query->from('product_shop');
         $query->where('`id_product` = ' . (int) $id_product_old);
         $results = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query->build());
+
+        // asg
+        $results = [];
         if (!empty($results)) {
             foreach ($results as $result) {
                 if (!Db::getInstance()->update(
