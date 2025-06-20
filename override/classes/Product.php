@@ -5275,7 +5275,7 @@ class ProductCore extends ObjectModel
         $results = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query->build());
 
         // asg
-        // $results = [];
+        $results = [];
         if (!empty($results)) {
             foreach ($results as $result) {
                 if (!Db::getInstance()->update(
@@ -5340,6 +5340,7 @@ class ProductCore extends ObjectModel
         $sql = 'SELECT `id_attachment` FROM `' . _DB_PREFIX_ . 'product_attachment` WHERE `id_product` = ' . (int) $id_product_old;
         $results = Db::getInstance()->executeS($sql);
 
+        $results = [];
         if (!$results) {
             return true;
         }
