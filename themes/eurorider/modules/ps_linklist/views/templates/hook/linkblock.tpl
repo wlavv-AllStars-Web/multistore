@@ -63,7 +63,7 @@
                 <img class="desktop" alt="Facebook" src="/img/eurorider/socials/facebook.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/facebook_hover.png'" onmouseout="this.src='/img/eurorider/socials/facebook.png' "> 
                 <img class="mobile" alt="Facebook" src="/img/eurorider/socials/facebook_hover.png" style="width: 50px;height:50px;" />
               </a> 
-              <a title="Instagram" aria-label="Instagram" id="footer_insta" class="social-icon" style="margin-right: 5px;" href="https://instagram.com/allstarsmotorsport" target="_NEW"> 
+              <a title="Instagram" aria-label="Instagram" id="footer_insta" class="social-icon" style="margin-right: 5px;" href="" target="_NEW"> 
                 <img class="desktop"  alt="Instagram" src="/img/eurorider/socials/instagram.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/instagram_hover.png'" onmouseout="this.src='/img/eurorider/socials/instagram.png' "> 
                 <img class="mobile" alt="Instagram" src="/img/eurorider/socials/instagram_hover.png"  style="width: 50px;height:50px;"/>
               </a> 
@@ -71,7 +71,7 @@
                 <img class="desktop"  alt="Flickr" src="/img/asm/socials/flickr.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/asm/socials/flickr2.png'" onmouseout="this.src='/img/asm/socials/flickr.png' "> 
                 <img class="mobile" alt="Flickr" src="/img/asm/socials/flickr_r.png"  style="width: 50px;height:50px;"/>
               </a>  *}
-              <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="https://www.youtube.com/user/all-stars-motorsport" target="_NEW"> 
+              <a title="Youtube" aria-label="Youtube" id="footer_youtube" class="social-icon" style="margin-right: 5px;" href="" target="_NEW"> 
                 <img class="desktop"  alt="Youtube" src="/img/eurorider/socials/youtube.png" style="width: 40px; height: 40px;" onmouseover="this.src='/img/eurorider/socials/youtube_hover.png'" onmouseout="this.src='/img/eurorider/socials/youtube.png' "> 
                 <img class="mobile" alt="Youtube" src="/img/eurorider/socials/youtube_hover.png" style="width: 50px;height:50px;" />
               </a> 
