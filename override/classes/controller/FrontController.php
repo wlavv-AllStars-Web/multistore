@@ -934,7 +934,7 @@ class FrontControllerCore extends Controller
                             $html_model .= '<div class="car_item_holder">
                                                 <div class="myCarsBrand">
                                                     <div style="display:flex;flex-direction:column;" onclick="toogleClasslistCar(this)">
-                                                        <img class="img-responsive" src="' . $firstModel['cartoon'] . '?t='.random_int(1000, 9999).'" style="margin: 0 auto;width: 100%;max-width:400px;height:auto;object-fit: contain; cursor: pointer;" />
+                                                        <img class="img-responsive" src="' . $firstModel['cartoon'] . '?t='.random_int(1000, 9999).'" style="margin: 0 auto;width: 100%;max-width:300px;height:auto;object-fit: contain; cursor: pointer;" />
                                                     </div>
                                                     <div id="container_version_parent" style="display:flex;justify-content:center;">
                                                         <div class="version_model_container" style="padding:1rem;text-align:center;">
