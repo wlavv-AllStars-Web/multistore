@@ -108,7 +108,8 @@ class AsGroup extends Module
         $this->unregisterHook('actionProductGridDataModifier') &&
         $this->unregisterHook('actionProductGridQueryBuilderModifier') &&
         $this->unregisterHook('actionAdminOrdersControllerSaveBefore') &&
-        $this->unregisterHook('actionOrderGridQueryBuilderModifier');
+        $this->unregisterHook('actionOrderGridQueryBuilderModifier') &&
+        $this->unregisterHook('actionProductDuplicate') &&
         $this->unregisterHook('actionDispatcherBefore');
 }
 
