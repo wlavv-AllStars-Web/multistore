@@ -235,6 +235,8 @@ class CustomProductDuplicator extends CoreProductDuplicator
 
         // Then associate it to other shops and copy its values
         $newProductId = new ProductId((int) $duplicatedProduct->id);
+
+        pre($newProductId);
         foreach ($shopIds as $shopId) {
             $shopProduct = $this->productRepository->get($sourceProductId, $shopId);
             // The duplicated product is disabled and not indexed by default
@@ -247,8 +249,10 @@ class CustomProductDuplicator extends CoreProductDuplicator
             // Force the desired default shop so that it doesn't switch back to the source one
             $shopProduct->id_shop_default = $targetDefaultShopId->getValue();
 
+            // asg
             $shopProduct->housing = $duplicatedProduct->housing;
             $shopProduct->price = $duplicatedProduct->price;
+            $shopProduct->wholesale_price = $duplicatedProduct->wholesale_price;
 
             $this->productRepository->update(
                 $shopProduct,
@@ -271,8 +275,10 @@ class CustomProductDuplicator extends CoreProductDuplicator
             unset($duplicatedObject->$idTable);
         }
 
+        // asg
         $duplicatedObject->housing = '';
         $duplicatedObject->price = 0;
+        $duplicatedObject->wholesale_price = 0;
 
         $this->addObjectModelToShops($duplicatedObject, [$targetDefaultShopId], CannotDuplicateProductException::class);
 
