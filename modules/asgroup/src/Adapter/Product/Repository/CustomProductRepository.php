@@ -1028,6 +1028,9 @@ class CustomProductRepository extends CoreProductRepository
         $manufacturerIdIsBeingUpdated = empty($propertiesToUpdate) || in_array('id_manufacturer', $propertiesToUpdate, true);
         $manufacturerId = (int) $product->id_manufacturer;
 
+        // asg
+        $product->housing = '';
+
         if ($taxRulesGroupIdIsBeingUpdated && $taxRulesGroupId !== ProductTaxRulesGroupSettings::NONE_APPLIED) {
             $this->taxRulesGroupRepository->assertTaxRulesGroupExists(new TaxRulesGroupId($taxRulesGroupId));
         }
