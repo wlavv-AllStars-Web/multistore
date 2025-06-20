@@ -50,6 +50,15 @@ services:
     public: true
     autowire: true
 
+  PrestaShop\Module\AsGroup\Adapter\Product\Repository\CustomProductRepository:
+    class: PrestaShop\Module\AsGroup\Adapter\Product\Repository\CustomProductRepository
+    decorates: PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository
+    decoration_inner_name: PrestaShop\PrestaShop\Adapter\Product\Repository\ProductRepository.inner
+    autowire: true
+    arguments:
+      - '@doctrine.dbal.default_connection'
+      - '%database_prefix%'
+
 
 
   prestashop.adapter.order.refund.order_slip_creator:
