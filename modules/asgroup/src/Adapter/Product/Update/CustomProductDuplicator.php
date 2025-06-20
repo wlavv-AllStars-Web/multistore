@@ -175,9 +175,7 @@ class CustomProductDuplicator extends CoreProductDuplicator
         $newProduct = $this->duplicateProduct($productId, $shopConstraint);
         $newProductId = (int) $newProduct->id;
 
-        // asg
-        $newProduct->housing = '';
-        $newProduct->save();
+        
 
         $this->duplicateRelations($oldProductId, $newProductId, $shopConstraint, $newProduct->getProductType());
 
@@ -249,6 +247,10 @@ class CustomProductDuplicator extends CoreProductDuplicator
             $shopProduct->id = $shopProduct->id_product = $newProductId->getValue();
             // Force the desired default shop so that it doesn't switch back to the source one
             $shopProduct->id_shop_default = $targetDefaultShopId->getValue();
+
+            // asg
+            $shopProduct->housing = '';
+
             $this->productRepository->update(
                 $shopProduct,
                 ShopConstraint::shop($shopId->getValue()),
